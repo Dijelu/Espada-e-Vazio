@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { SeletorEssencia } from "../components/SeletorEssencia";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../components/Auth";
 import { Campo, LinhaAtributos, Passo, SeletorVariacoes, novoId } from "../components/FichaPecas";
@@ -8,7 +9,6 @@ import {
   ARMAS,
   ARTEFATOS,
   ASAUCHI,
-  ESSENCIAS_HOLLOW,
   ESSENCIA_SUGERIDA,
   FORCAS,
   ataquesIniciais,
@@ -166,7 +166,6 @@ export default function NovaFicha() {
     else if (escolhidas.length < c.quantasPericias) mudar({ pericias: [...f.pericias, id] });
   };
 
-  const [novaEss, setNovaEss] = useState("");
 
   return (
     <main className="page assistente">
@@ -380,19 +379,11 @@ export default function NovaFicha() {
                 </li>
               ))}
             </ul>
-            <form
-              className="add-linha"
-              onSubmit={(ev) => {
-                ev.preventDefault();
-                if (!novaEss.trim()) return;
-                mudar({ essencias: [...f.essencias, { id: novoId(), nome: novaEss.trim(), etapa: 1 }] });
-                setNovaEss("");
-              }}
-            >
-              <input value={novaEss} onChange={(e) => setNovaEss(e.target.value)} placeholder="Nome da essência" aria-label="Nome da essência" list="ess-hollow" />
-              {classe?.tipo === "hollow" && <datalist id="ess-hollow">{ESSENCIAS_HOLLOW.map((n) => <option key={n} value={n} />)}</datalist>}
-              <button className="btn btn-paper" type="submit">Adicionar</button>
-            </form>
+            <SeletorEssencia
+              tipo={classe?.tipo}
+              existentes={f.essencias.map((e) => e.nome)}
+              onEscolher={(nome) => mudar({ essencias: [...f.essencias, { id: novoId(), nome, etapa: 1 }] })}
+            />
           </div>
 
           <div className="caixa">

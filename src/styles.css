@@ -635,3 +635,22 @@ input:focus, select:focus, textarea:focus { outline: 3px solid var(--accent); ou
 .carta-hab header small { color: var(--muted); }
 .carta-hab p { margin: 0; font-size: 14px; line-height: 1.5; }
 .carta-hab .acao-hab { color: var(--accent); font-weight: 700; font-size: 13px; }
+
+/* seletor de essências */
+.seletor-fundo { position: fixed; inset: 0; z-index: 90; background: #000a; display: flex; align-items: flex-end; justify-content: center; padding: 0; }
+.seletor { background: var(--panel); color: var(--text); border: 2px solid var(--accent); width: min(720px, 100%); max-height: 92vh; display: flex; flex-direction: column; gap: 12px; padding: 16px; border-radius: 12px 12px 0 0; overflow: hidden; }
+.seletor-topo { display: flex; justify-content: space-between; align-items: center; }
+.seletor-topo h3 { margin: 0; font-size: 26px; }
+.seletor-topo .fechar { background: none; border: 0; font-size: 30px; min-width: 44px; min-height: 44px; color: var(--text); cursor: pointer; }
+.seletor-busca { font: inherit; font-size: 16px; color: var(--text); background: var(--bg); border: 2px solid var(--line); border-radius: 6px; padding: 10px 12px; min-height: 44px; width: 100%; }
+.seletor-lista { list-style: none; margin: 0; padding: 0; overflow-y: auto; flex: 1; min-height: 120px; display: grid; gap: 8px; align-content: start; }
+.seletor-lista li { border: 2px solid var(--line); border-radius: 8px; background: var(--panel2); }
+.seletor-lista li.aberta { border-color: var(--accent); }
+.seletor-item { width: 100%; text-align: left; background: none; border: 0; color: var(--text); font: inherit; padding: 12px 14px; min-height: 52px; cursor: pointer; display: grid; gap: 2px; }
+.seletor-item b { font-size: 18px; }
+.seletor-item small { color: var(--muted); font-size: 14px; }
+.seletor-item em { font-style: normal; font-size: 13px; color: var(--accent); font-weight: 700; }
+.seletor-detalhe { padding: 0 14px 14px; display: grid; gap: 8px; line-height: 1.5; }
+.seletor-detalhe p { margin: 0; }
+.seletor-detalhe ol { margin: 0; padding-left: 22px; }
+@media (min-width: 720px) { .seletor-fundo { align-items: center; padding: 24px; } .seletor { border-radius: 12px; } }

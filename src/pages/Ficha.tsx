@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { SeletorEssencia } from "../components/SeletorEssencia";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { CartasHabilidades, CondicoesAtivas, EfeitosAtivos } from "../components/CartasResumo";
 import { AcoesRapidas } from "../components/AcoesRapidas";
@@ -308,7 +309,11 @@ export default function Ficha() {
                 <button className="link-perigo" onClick={() => alterar({ essencias: f.essencias.filter((x) => x.id !== e.id) })}>Remover</button>
               </div>
             ))}
-            <button className="btn btn-paper" onClick={() => alterar({ essencias: [...f.essencias, { id: novoId(), nome: "Nova essência", etapa: 1 }] })}>Adicionar essência</button>
+            <SeletorEssencia
+              tipo={classe?.tipo}
+              existentes={f.essencias.map((e) => e.nome)}
+              onEscolher={(nome) => alterar({ essencias: [...f.essencias, { id: novoId(), nome, etapa: 1 }] })}
+            />
           </div>
           <PoderesEscolhidos f={f} />
           <div className="caixa">

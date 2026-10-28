@@ -1,0 +1,962 @@
+[
+ {
+  "nome": "Ajuste Vital",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Você soma metade do seu atributo de Constituição ao seu total de Pontos de Reiatsu a cada nível. Por exemplo, com Constituição 6 no nível 2, você soma 6 pontos de reiatsu ao total; a cada novo nível, soma mais 3.",
+  "etapas": [],
+  "nota": "Se você aumentar sua Constituição, ajuste retroativamente o bônus de reiatsu dos níveis passados."
+ },
+ {
+  "nome": "Armadura de Espinhos",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Quando uma criatura te atacar fisicamente corpo a corpo, com combate desarmado ou arma, você devolve 3 de dano a ela, mas só se o ataque acertar você. Esse dano não pode ser reduzido.",
+  "etapas": [
+   "A criatura recebe 6 de dano.",
+   "A criatura recebe 9 de dano.",
+   "A criatura recebe 12 de dano.",
+   "A criatura recebe 15 de dano."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Armadura de Reiatsu",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Você faz do próprio espírito a sua defesa. Pode substituir o cálculo da sua Classe de Resistência por 8 + bônus de proficiência + modificador de Espírito, ou manter o cálculo da classe. Quando receber dano de energia, você o reduz em 4.",
+  "etapas": [
+   "Você passa a reduzir 6.",
+   "Você passa a reduzir 8.",
+   "Você passa a reduzir 10.",
+   "Você passa a reduzir 15. Além disso, uma vez por dia, com uma ação bônus no seu turno, você fica resistente a dano de energia até o início do próximo turno. Ou, como reação ao sofrer dano de energia, reduz esse dano à metade e gasta o uso diário. Recupera o uso após um descanso longo."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Aumento de Atributo",
+  "grupo": "todas",
+  "repetivel": true,
+  "texto": "Para quem quer maximizar atributos: você distribui os pontos como preferir, respeitando o limite de 15 em cada atributo. Você recebe 1 ponto de atributo.",
+  "etapas": [
+   "Você recebe mais 1 ponto de atributo.",
+   "Você recebe mais 1 ponto de atributo.",
+   "Você recebe mais 1 ponto de atributo.",
+   "Você recebe mais 1 ponto de atributo."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Classe de Resistência Aprimorada",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Você fica muito mais resistente que uma criatura comum e recebe +1 na CR.",
+  "etapas": [
+   "O bônus aumenta para +2."
+  ],
+  "nota": "Esta essência tem no máximo duas etapas: +2 de CR no total."
+ },
+ {
+  "nome": "Clarividência",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Quando for alvo de um teste de resistência de Mente, você pode gastar 12 pontos de reiatsu para substituí-lo por um teste de resistência de Espírito.",
+  "etapas": [
+   "O custo diminui para 10 pontos de reiatsu.",
+   "O custo diminui para 8 pontos de reiatsu.",
+   "O custo diminui para 6 pontos de reiatsu.",
+   "O custo diminui para 4 pontos de reiatsu."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Conexão Interior",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Quando estiver com metade dos pontos de vida ou menos, você regenera 2 pontos de reiatsu no início de cada turno. Não regenera se estiver com 0 PV.",
+  "etapas": [
+   "Regenera 3 pontos de reiatsu.",
+   "Regenera 4 pontos de reiatsu.",
+   "Regenera 5 pontos de reiatsu.",
+   "Regenera 6 pontos de reiatsu."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Constituição Energética",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Seu corpo influencia a própria reiatsu: você soma seu atributo de Constituição ao máximo de pontos de reiatsu.",
+  "etapas": [
+   "Seus pontos de reiatsu aumentam em mais 5.",
+   "Seus pontos de reiatsu aumentam em mais 5.",
+   "Seus pontos de reiatsu aumentam em mais 5.",
+   "Seus pontos de reiatsu aumentam em mais 5."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Defesa Célere",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Quando usar a ação Esquivar, você soma seu bônus de proficiência à Classe de Resistência durante a esquiva.",
+  "etapas": [],
+  "nota": ""
+ },
+ {
+  "nome": "Fluxo Energético",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Em combate, ao usar a ação Recuperar Reiatsu, você ganha um dado d8 adicional.",
+  "etapas": [
+   "Aumenta para dois d8 adicionais.",
+   "Aumenta para três d8 adicionais."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Força do Gigante",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Sua força é amplificada: você se torna proficiente em testes de resistência de Força. Seu atributo de Força aumenta em 1, e o limite de Força passa a ser 16.",
+  "etapas": [
+   "Seu atributo de Força aumenta em mais 1, e o limite passa a ser 17.",
+   "Seu atributo de Força aumenta em mais 1, e o limite passa a ser 18.",
+   "Seu atributo de Força aumenta em mais 1, e o limite passa a ser 20.",
+   "Seu atributo de Força aumenta em mais 1, e você soma o dobro da sua proficiência aos testes de resistência de Força."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Fortaleza",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Quando for alvo de um teste de resistência de Destreza, você pode gastar 12 pontos de reiatsu para substituí-lo por um teste de resistência de Constituição.",
+  "etapas": [
+   "O custo diminui para 10 pontos de reiatsu.",
+   "O custo diminui para 8 pontos de reiatsu.",
+   "O custo diminui para 6 pontos de reiatsu.",
+   "O custo diminui para 4 pontos de reiatsu."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Fortitude",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Quando for alvo de um teste de resistência de Força, você pode gastar 12 pontos de reiatsu para substituí-lo por um teste de resistência de Constituição.",
+  "etapas": [
+   "O custo diminui para 10 pontos de reiatsu.",
+   "O custo diminui para 8 pontos de reiatsu.",
+   "O custo diminui para 6 pontos de reiatsu.",
+   "O custo diminui para 4 pontos de reiatsu."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Gênio",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Sua genialidade está acima de tudo: você se torna proficiente em testes de resistência de Mente. Seu atributo de Mente aumenta em 1, e o limite de Mente passa a ser 16.",
+  "etapas": [
+   "Seu atributo de Mente aumenta em mais 1, e o limite passa a ser 17.",
+   "Seu atributo de Mente aumenta em mais 1, e o limite passa a ser 18.",
+   "Seu atributo de Mente aumenta em mais 1, e o limite passa a ser 20.",
+   "Seu atributo de Mente aumenta em mais 1, e você soma o dobro da sua proficiência aos testes de resistência de Mente."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Golpe Raspante",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Quando errar um ataque, você ainda causa dano igual à metade do atributo usado na jogada de ataque e dano (por exemplo, Força ou Destreza). O dano é do mesmo tipo que você causaria; um Arco Quincy causaria dano Perfurante.",
+  "etapas": [
+   "Adicione +1 ao dano.",
+   "O bônus passa a ser +2.",
+   "O bônus passa a ser +3.",
+   "O bônus passa a ser +4."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Grão Mestre",
+  "grupo": "todas",
+  "repetivel": true,
+  "texto": "Você escolhe 3 perícias para ter expertise: soma o dobro do bônus de proficiência nelas. Deve escolher perícias nas quais já é proficiente.",
+  "etapas": [
+   "Você escolhe mais 2 perícias para expertise.",
+   "Você escolhe mais 2 perícias para expertise.",
+   "Você escolhe mais 3 perícias para expertise.",
+   "Você escolhe mais 3 perícias para expertise."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Mestre",
+  "grupo": "todas",
+  "repetivel": true,
+  "texto": "Você se torna exemplo de praticidade em várias situações. Escolha três perícias para se tornar proficiente.",
+  "etapas": [
+   "Você escolhe mais 2 perícias para ser proficiente.",
+   "Você escolhe mais 2 perícias para ser proficiente.",
+   "Você escolhe mais 3 perícias para ser proficiente.",
+   "Você escolhe mais 3 perícias para ser proficiente."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Mestre do Punho",
+  "grupo": "todas",
+  "repetivel": true,
+  "texto": "Seus ataques desarmados passam a causar 1d6 de dano, e você pode usar Força ou Destreza no acerto e no dano. Se o seu dado já for 1d6, ele sobe 1 passo.\n\nSe você já tem um dado progressivo, como no Hakuda, soma o dado da classe e o número de passos que possui, consultando a tabela. Por exemplo: Hakuda no nível 5 tem 1d8; com a essência duas vezes, soma +2 passos e chega a 1d12.\n\n| Dado | +1 passo | Dado | +1 passo |\n|---|---|---|---|\n| 1d6 | 1d8 | 2d8 | 2d10 |\n| 1d8 | 1d10 | 2d10 | 3d10 |\n| 1d10 | 1d12 | 3d10 | 4d10 |\n| 1d12 | 2d6 | 4d10 | 4d12 |\n| 2d6 | 2d8 | 4d12 | 5d10 |",
+  "etapas": [
+   "Aumente um passo de dano.",
+   "Aumente um passo de dano.",
+   "Aumente um passo de dano.",
+   "Aumente um passo de dano e a margem de crítico aumenta em 1.",
+   "Aumente um passo de dano e a margem de crítico aumenta em 1 (sexta etapa)."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Passagem",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Uma vez por turno, você pode passar pelo espaço de uma criatura inimiga, que conta como terreno difícil. Pode passar livremente pelo espaço de aliados.",
+  "etapas": [
+   "Você pode passar pelo espaço de até 2 criaturas inimigas.",
+   "Até 3 criaturas inimigas.",
+   "Até 4 criaturas inimigas.",
+   "Até 5 criaturas inimigas."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Pele de Aço",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Sua pele é robusta como o Hierro dos Arrancars: você tem redução de dano 2 contra ataques físicos (Concussão, Cortante e Perfurante).",
+  "etapas": [
+   "A redução total passa a ser 4.",
+   "A redução total passa a ser 6.",
+   "A redução total passa a ser 8.",
+   "A redução total passa a ser 10."
+  ],
+  "nota": "O valor de cada etapa é o total: não soma com as etapas anteriores."
+ },
+ {
+  "nome": "Perfuração",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Você ignora 4 pontos da Redução de Dano de uma criatura ao causar dano físico, se ela tiver redução a esses tipos de dano.",
+  "etapas": [
+   "Ignora 8 pontos.",
+   "Ignora 12 pontos.",
+   "Ignora 16 pontos.",
+   "Ignora 20 pontos."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Perfuração Esotérica",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Você ignora 4 pontos da Redução de Dano de uma criatura ao causar dano esotérico, se ela tiver redução a esses tipos de dano.",
+  "etapas": [
+   "Ignora 8 pontos.",
+   "Ignora 12 pontos.",
+   "Ignora 16 pontos.",
+   "Ignora 20 pontos."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Perspicácia",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Quando for alvo de um teste de resistência de Espírito, você pode gastar 12 pontos de reiatsu para substituí-lo por um teste de resistência de Mente.",
+  "etapas": [
+   "O custo diminui para 10 pontos de reiatsu.",
+   "O custo diminui para 8 pontos de reiatsu.",
+   "O custo diminui para 6 pontos de reiatsu.",
+   "O custo diminui para 4 pontos de reiatsu."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Persistência",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Você resiste mais à morte: soma +1 nos testes contra a morte.",
+  "etapas": [
+   "O bônus passa a ser +2.",
+   "O bônus passa a ser +3.",
+   "O bônus passa a ser +4.",
+   "O bônus passa a ser +5."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Proficiência Temporária",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Você se adapta rápido a novas situações. Ao terminar um descanso longo, escolha uma perícia na qual não é proficiente e receba proficiência nela até o próximo descanso longo.",
+  "etapas": [
+   "Você escolhe 2 perícias.",
+   "Você escolhe 3 perícias.",
+   "Você escolhe 4 perícias.",
+   "Você escolhe 5 perícias."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Quebra Escudos",
+  "grupo": "todas",
+  "repetivel": true,
+  "texto": "Escolha um tipo de dano, exceto Temporal e Luz: você ignora 5 pontos da redução de dano desse tipo da criatura que ataca.",
+  "etapas": [
+   "Ignora 10 pontos.",
+   "Ignora 15 pontos.",
+   "Ignora 20 pontos.",
+   "Ignora 30 pontos."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Reflexos Aprimorados",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Ao perceber qualquer indício de combate, seus reflexos ficam muito mais rápidos: você soma seu bônus de proficiência ao teste de iniciativa.",
+  "etapas": [
+   "Você soma +1 ao teste de iniciativa.",
+   "O bônus de iniciativa passa a ser +2.",
+   "O bônus de iniciativa passa a ser +4.",
+   "O bônus de iniciativa passa a ser +6."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Resiliente",
+  "grupo": "todas",
+  "repetivel": true,
+  "texto": "Escolha um tipo de dano, exceto Luz e Temporal: você tem 4 de redução desse tipo.",
+  "etapas": [
+   "Você tem 8 de redução do dano escolhido.",
+   "Você tem 12 de redução.",
+   "Você tem 16 de redução.",
+   "Você tem 20 de redução."
+  ],
+  "nota": "Para subir uma etapa, você pode adquirir a essência de outro tipo de dano, mas ela é considerada uma essência nova e sobe separadamente; o primeiro tipo não aumenta de etapa."
+ },
+ {
+  "nome": "Revestimento de Reiatsu",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Uma fina barreira de reiatsu cobre seu corpo e reduz o impacto de ataques esotéricos: você recebe redução de dano de 4 contra dano esotérico.",
+  "etapas": [
+   "Você reduz 8 de dano.",
+   "Você reduz 12 de dano.",
+   "Você reduz 16 de dano.",
+   "Você reduz 20 de dano."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Resoluto",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Sua Constituição se eleva: você se torna proficiente em testes de resistência de Constituição. O atributo de Constituição aumenta em 1, e o limite passa a ser 16.",
+  "etapas": [
+   "Seu atributo de Constituição aumenta em mais 1, e o limite passa a ser 17.",
+   "Seu atributo de Constituição aumenta em mais 1, e o limite passa a ser 18.",
+   "Seu atributo de Constituição aumenta em mais 1, e o limite passa a ser 20.",
+   "Seu atributo de Constituição aumenta em mais 1, e você soma o dobro da sua proficiência aos testes de resistência de Constituição."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Robusto",
+  "grupo": "todas",
+  "repetivel": true,
+  "texto": "Seus pontos de vida aumentam em 15 e você ganha 2 PV adicionais sempre que subir de nível depois de escolher a essência.",
+  "etapas": [
+   "Seus PV aumentam em mais 15 (total 30).",
+   "Mais 20 (total 50).",
+   "Mais 20 (total 70).",
+   "Mais 25 (total 95)."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Sábio",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Você estuda mais que os outros e possui uma Mente maior: proficiência em testes de resistência de Mente. O atributo de Mente aumenta em 1, e o limite passa a ser 16.",
+  "etapas": [
+   "Seu atributo de Mente aumenta em mais 1, e o limite passa a ser 17.",
+   "Seu atributo de Mente aumenta em mais 1, e o limite passa a ser 18.",
+   "Seu atributo de Mente aumenta em mais 1, e o limite passa a ser 20.",
+   "Seu atributo de Mente aumenta em mais 1, e você soma o dobro da sua proficiência aos testes de resistência de Mente."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Segunda Chance",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Ao falhar num teste de perícia, você pode gastar 6 pontos de reiatsu para rolar de novo. Você deve usar o novo resultado, mesmo que seja pior.",
+  "etapas": [
+   "O custo diminui para 4 pontos de reiatsu.",
+   "O custo diminui para 2 pontos de reiatsu."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Velocista",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Você fica muito veloz: seu movimento aumenta em 3 metros, somados ao deslocamento total.",
+  "etapas": [
+   "O deslocamento adicional vai para 4,5 metros.",
+   "Para 6 metros.",
+   "Para 7,5 metros.",
+   "Para 9 metros."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Veloz",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Sua Destreza é amplificada: proficiência em testes de resistência de Destreza. O atributo de Destreza aumenta em 1, e o limite passa a ser 16.",
+  "etapas": [
+   "Seu atributo de Destreza aumenta em mais 1, e o limite passa a ser 17.",
+   "Seu atributo de Destreza aumenta em mais 1, e o limite passa a ser 18.",
+   "Seu atributo de Destreza aumenta em mais 1, e o limite passa a ser 20.",
+   "Seu atributo de Destreza aumenta em mais 1, e você soma o dobro da sua proficiência aos testes de resistência de Destreza."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Vigor Inabalável",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Sua força física sustenta a resistência: você usa Força no lugar de Constituição para calcular seus PV, retroativamente em todos os níveis.",
+  "etapas": [],
+  "nota": ""
+ },
+ {
+  "nome": "Virtuoso",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Seu Espírito se intensifica: proficiência em testes de resistência de Espírito. O atributo de Espírito aumenta em 1, e o limite passa a ser 16.",
+  "etapas": [
+   "Seu atributo de Espírito aumenta em mais 1, e o limite passa a ser 17.",
+   "Seu atributo de Espírito aumenta em mais 1, e o limite passa a ser 18.",
+   "Seu atributo de Espírito aumenta em mais 1, e o limite passa a ser 20.",
+   "Seu atributo de Espírito aumenta em mais 1, e você soma o dobro da sua proficiência aos testes de resistência de Espírito."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Visão de Reishi",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Você enxerga a reiatsu das criaturas: faz um teste de Percepção Espiritual (CD definida pelo Mestre) para saber o Nível de Desafio delas.",
+  "etapas": [
+   "Você recebe +2 no teste.",
+   "O bônus aumenta para +3.",
+   "O bônus aumenta para +4.",
+   "O bônus aumenta para +5."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Vitalidade Adaptativa",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Seu corpo se adapta às adversidades: se receber dano durante a rodada, ao fim do seu turno você recebe PV temporários iguais ao seu atributo de Constituição (arredondado para baixo).",
+  "etapas": [],
+  "nota": ""
+ },
+ {
+  "nome": "Vitalidade Espiritual",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Você treina a reiatsu: seus pontos de reiatsu aumentam em 10 e você ganha 2 PR adicionais a cada nível depois de escolher a essência.",
+  "etapas": [
+   "Seus PR aumentam em mais 15.",
+   "Mais 20.",
+   "Mais 25.",
+   "Mais 30."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Zona de Pressão Espiritual",
+  "grupo": "todas",
+  "repetivel": false,
+  "texto": "Com 6 pontos de reiatsu e uma ação bônus, você cria uma aura opressora de 3 metros ao redor. Inimigos nela têm desvantagem em testes de resistência até o fim do turno atual.",
+  "etapas": [
+   "O raio vai a 4,5 metros e a aura dura 2 turnos com concentração.",
+   "O raio vai a 6 metros.",
+   "O raio vai a 9 metros.",
+   "O raio vai a 12 metros e inimigos que entram ou começam o turno na aura sofrem 1d6 de dano de energia."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Concentração Absoluta",
+  "grupo": "shinigami",
+  "repetivel": false,
+  "texto": "Você mantém a concentração num Kidō com muito mais facilidade: +2 nos testes para manter a concentração.",
+  "etapas": [
+   "O bônus vai a +4.",
+   "+6.",
+   "+8.",
+   "+10."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Diminuição de Custo Shikai",
+  "grupo": "shinigami",
+  "repetivel": false,
+  "texto": "Você reduz em 1 ponto o custo de liberar a Shikai e o de mantê-la ativa. O custo de liberação não cai abaixo de 1.",
+  "etapas": [
+   "A diminuição passa a ser 2.",
+   "3.",
+   "4.",
+   "5."
+  ],
+  "nota": "Se você tiver outra redução, aplique primeiro a desta essência e depois a outra."
+ },
+ {
+  "nome": "Diminuição de Custo Bankai",
+  "grupo": "shinigami",
+  "repetivel": false,
+  "texto": "Você reduz em 5 pontos o custo de liberar a Bankai e o de mantê-la ativa. O custo de liberação não cai abaixo de 1.",
+  "etapas": [
+   "A diminuição passa a ser 10.",
+   "15.",
+   "20.",
+   "25."
+  ],
+  "nota": "Se você tiver outra redução, aplique primeiro a desta essência e depois a outra."
+ },
+ {
+  "nome": "Ecos de Reiatsu",
+  "grupo": "shinigami",
+  "repetivel": false,
+  "texto": "Ao usar um Bakudō ou Hadō, você recebe um retorno de reiatsu e reduz o custo em 1d4. O Kidō nunca custa menos que 1 ponto.",
+  "etapas": [
+   "O dado sobe para 1d6.",
+   "1d8.",
+   "1d10.",
+   "1d12."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Estudioso de Bakudou",
+  "grupo": "shinigami",
+  "repetivel": true,
+  "texto": "Você estuda Bakudō e conhece 3 Bakudōs adicionais, dentro do seu acesso de rank (no nível 5, até o Rank C).",
+  "etapas": [
+   "Você escolhe mais 5 Bakudōs.",
+   "Mais 7.",
+   "Mais 9.",
+   "Mais 10."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Estudioso de Hadou",
+  "grupo": "shinigami",
+  "repetivel": true,
+  "texto": "Você estuda Hadō e conhece 3 Hadōs adicionais, dentro do seu acesso de rank (no nível 5, até o Rank C).",
+  "etapas": [
+   "Você escolhe mais 5 Hadōs.",
+   "Mais 7.",
+   "Mais 9.",
+   "Mais 10."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Feroz",
+  "grupo": "shinigami",
+  "repetivel": false,
+  "texto": "Seu domínio do combate corpo a corpo com a Zanpakutou é enorme: você causa 2 de dano a mais em cada golpe corpo a corpo com arma.",
+  "etapas": [
+   "Você causa 4 de dano a mais.",
+   "6 de dano a mais.",
+   "8 de dano a mais, e a margem de crítico aumenta em +1 (19–20), só em ataques corpo a corpo, não em técnicas.",
+   "10 de dano a mais."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Mestre do Combo",
+  "grupo": "shinigami",
+  "repetivel": false,
+  "texto": "Ao usar uma técnica de Hakuda com o requisito Combo, o custo de reiatsu cai 1 ponto. O custo nunca vai a 0; se zerar, fica em 1.",
+  "etapas": [
+   "Redução do custo para −2.",
+   "−3.",
+   "−4.",
+   "−5.",
+   "−6 (sexta etapa)."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Restrição de Kido",
+  "grupo": "shinigami",
+  "repetivel": false,
+  "texto": "Sua existência não é voltada ao Kidō. Você perde toda a capacidade de conjurar Hadō e Bakudō, mas seus ataques com a Zanpakutou ganham um dado de dano adicional. Seus ataques de Hakuda também recebem um dado de dano extra e a margem de crítico do Hakuda aumenta em +1.",
+  "etapas": [],
+  "nota": ""
+ },
+ {
+  "nome": "Blut Arterie Avançado",
+  "grupo": "quincy",
+  "repetivel": false,
+  "texto": "Você aprimora o controle sobre o Blut Arterie e não precisa mais manter a concentração. Porém, ao usar o Blut Vene, o Blut Arterie é desativado automaticamente.",
+  "etapas": [
+   "O dano adicional do Blut Arterie em ataques com armas Quincy aumenta em +2.",
+   "O bônus de dano aumenta para +4.",
+   "O bônus de dano aumenta para +6.",
+   "O bônus de dano aumenta para +8. Você também pode ativar o Blut Arterie como ação livre."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Blut Vene Avançado",
+  "grupo": "quincy",
+  "repetivel": false,
+  "texto": "Você aprimora o controle sobre o Blut Vene e não precisa mais manter a concentração. Porém, ao usar o Blut Arterie, o Blut Vene é desativado automaticamente.",
+  "etapas": [
+   "A RD do Blut Vene aumenta em 2.",
+   "A RD do Blut Vene aumenta para 4.",
+   "A RD do Blut Vene aumenta para 6.",
+   "A RD do Blut Vene aumenta para 8. Você também pode ativar o Blut Vene como ação livre, para mantê-lo ou como reação."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Carga Adicional",
+  "grupo": "quincy",
+  "repetivel": false,
+  "texto": "Ao atacar com uma Arma Quincy com a propriedade Energia, você pode pagar o custo dela de novo para adicionar 1 dado de dano da arma ao ataque.",
+  "etapas": [
+   "O custo da Energia adicional diminui em 1, mas nunca a menos de 1.",
+   "O custo diminui para 2.",
+   "O custo diminui para 3.",
+   "O custo diminui para 4."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Flanqueio Quincy",
+  "grupo": "quincy",
+  "repetivel": false,
+  "texto": "Você flanqueia uma criatura mesmo à distância, usando uma arma com a propriedade Distância (como um arco Quincy). Ainda deve estar adjacente a outra criatura que flanqueia com você.",
+  "etapas": [],
+  "nota": ""
+ },
+ {
+  "nome": "Materialização Rápida",
+  "grupo": "quincy",
+  "repetivel": false,
+  "texto": "Quando for alvo de um ataque sem a sua Quincy Cross materializada, você pode usar a reação para materializá-la na hora, se tiver reiatsu para pagar o custo.",
+  "etapas": [],
+  "nota": ""
+ },
+ {
+  "nome": "Mira Apurada",
+  "grupo": "quincy",
+  "repetivel": false,
+  "texto": "No início do seu turno, você pode gastar todo o deslocamento para mirar com uma arma de Distância: ganha +3 metros de alcance e +1 nas jogadas de acerto com essa arma até o fim do turno.",
+  "etapas": [
+   "Alcance adicional +4,5 m e acerto +2.",
+   "+6 m e +3.",
+   "+9 m e +4.",
+   "+12 m e +5."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Reishi Aumentado",
+  "grupo": "quincy",
+  "repetivel": false,
+  "texto": "Quando você absorve Reishi, sempre absorve +1 adicional.",
+  "etapas": [
+   "O bônus aumenta para +2.",
+   "+3.",
+   "+4.",
+   "+5."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Ruptura de Reishi",
+  "grupo": "quincy",
+  "repetivel": false,
+  "texto": "Ao acertar uma criatura com uma arma Quincy, você interfere no fluxo da reiatsu dela, que perde 2 pontos.",
+  "etapas": [
+   "A perda aumenta para 4 pontos.",
+   "6.",
+   "8.",
+   "10."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Versatilidade Marcial",
+  "grupo": "quincy",
+  "repetivel": true,
+  "texto": "Você escolhe duas armas nas quais não é proficiente e recebe proficiência nelas.",
+  "etapas": [
+   "Você escolhe mais uma arma.",
+   "Mais uma arma.",
+   "Mais uma arma.",
+   "Mais uma arma."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Vollständig Refinada",
+  "grupo": "quincy",
+  "repetivel": false,
+  "texto": "Você reduz em 5 pontos o custo de ativar e manter a Vollständig. O custo de ativação não cai abaixo de 1.",
+  "etapas": [
+   "A redução passa a ser de 10 pontos.",
+   "15.",
+   "20.",
+   "25."
+  ],
+  "nota": "Se você tiver outra redução de custo, aplique primeiro a desta essência e depois a outra."
+ },
+ {
+  "nome": "Contra o Balanço",
+  "grupo": "proibida",
+  "repetivel": false,
+  "texto": "Você quer destruir os Shinigamis de qualquer forma, e o ódio por eles se manifesta em você: causa 2 de dano adicional contra Shinigamis.",
+  "etapas": [
+   "Você causa 4 de dano a mais.",
+   "6 de dano a mais.",
+   "8 de dano a mais.",
+   "O bônus vai a +10 e a margem de crítico contra Shinigamis aumenta em +1."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Crítico Aprimorado",
+  "grupo": "proibida",
+  "repetivel": false,
+  "texto": "Sua margem de crítico aumenta em +1, e você se torna um dos combatentes mais letais que existem.",
+  "etapas": [
+   "A margem de crítico aumenta em mais +1.",
+   "Aumenta em mais +1.",
+   "O multiplicador de crítico aumenta em 1."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Decisão Crítica",
+  "grupo": "proibida",
+  "repetivel": false,
+  "texto": "Quando você sofre um acerto crítico, role 1d10. Se der ímpar, você sofre o crítico; se der par, sofre um acerto normal.",
+  "etapas": [],
+  "nota": ""
+ },
+ {
+  "nome": "Determinação Indomável",
+  "grupo": "proibida",
+  "repetivel": false,
+  "texto": "Uma vez por combate, ao sofrer uma condição causada por habilidade de uma criatura, você pode usar a Reação e gastar 10 pontos de reiatsu para encerrá-la na hora.",
+  "etapas": [
+   "Agora é duas vezes por combate.",
+   "O custo diminui para 5 pontos de reiatsu.",
+   "Agora é três vezes por combate.",
+   "Você não precisa usar a reação."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Expurgador",
+  "grupo": "proibida",
+  "repetivel": false,
+  "texto": "Ao lutar contra um Hollow, você causa dano adicional a ele: +2 de dano, e seu multiplicador de crítico aumenta em 2 contra Hollows.",
+  "etapas": [
+   "+4 de dano contra Hollows.",
+   "+6.",
+   "+8.",
+   "+10 e a margem de crítico contra Hollows aumenta em +1."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Fortaleza Inabalável",
+  "grupo": "proibida",
+  "repetivel": false,
+  "texto": "Você é muito mais resistente que quase qualquer criatura viva: +3 na Classe de Resistência.",
+  "etapas": [
+   "+3 na Classe de Resistência, somando às etapas anteriores.",
+   "+3, somando.",
+   "+3, somando.",
+   "+3, somando."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Golpe Adicional",
+  "grupo": "proibida",
+  "repetivel": false,
+  "texto": "Ao usar a ação Atacar, você pode gastar 20 pontos de reiatsu para fazer um ataque adicional na mesma ação, como num Ataque Extra. O limite de golpes no turno é o seu bônus de proficiência.",
+  "etapas": [
+   "O custo diminui para 18 pontos.",
+   "15.",
+   "10."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Imunidade Anormal",
+  "grupo": "proibida",
+  "repetivel": false,
+  "texto": "Você se torna imune a uma condição à sua escolha. Não vale para condições de formas finais ou habilidades extremamente poderosas, como Bankai, Schrift ou Resurrección, e você não pode escolher Esgotado.",
+  "etapas": [],
+  "nota": ""
+ },
+ {
+  "nome": "Impulso de Reiatsu",
+  "grupo": "proibida",
+  "repetivel": false,
+  "texto": "Uma vez por turno, você pode gastar 40 pontos de reiatsu para receber uma Ação adicional nesse turno.",
+  "etapas": [
+   "O custo diminui para 35 pontos.",
+   "30.",
+   "25.",
+   "20."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Pele Imortal",
+  "grupo": "proibida",
+  "repetivel": false,
+  "texto": "Você recebe uma redução de 10 pontos em todos os tipos de dano.",
+  "etapas": [
+   "Aumenta para 15 de redução.",
+   "20.",
+   "25."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Garras Afiadas",
+  "grupo": "hollow",
+  "repetivel": false,
+  "texto": "(Hueco) Seus ataques com a arma natural e a mordida causam +2 de dano.",
+  "etapas": [
+   "O bônus de dano aumenta para +4.",
+   "+6.",
+   "+8."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Instinto Predador",
+  "grupo": "hollow",
+  "repetivel": false,
+  "texto": "(Hueco) Sua margem de crítico com a arma natural aumenta em +1 contra criaturas com metade dos PV ou menos.",
+  "etapas": [
+   "O aumento de +1 vale contra qualquer criatura.",
+   "Contra criaturas com metade dos PV ou menos, a margem de crítico aumenta em +2 no total."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Reiatsu Condensado",
+  "grupo": "hollow",
+  "repetivel": false,
+  "texto": "(Hueco e Vazio) Seu Cero (Hueco) ou Poder Inato (Vazio) causa um dado de dano adicional.",
+  "etapas": [
+   "O custo em PR do Cero ou do Poder Inato diminui em 2 (mínimo 1).",
+   "O poder causa mais um dado de dano adicional.",
+   "O custo diminui em 4 no total (mínimo 1)."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Hierro Reforçado",
+  "grupo": "hollow",
+  "repetivel": false,
+  "texto": "(Hueco e Vazio) Sua RD contra dano físico aumenta em 2. O bônus soma com a RD da sua Origem, mas não com outras essências de redução (vale a maior entre as essências).",
+  "etapas": [
+   "O aumento passa a ser 4.",
+   "6."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Fome Insaciável",
+  "grupo": "hollow",
+  "repetivel": false,
+  "texto": "(Hueco e Vazio) Quando sua Fome é ativada, você também recupera PV iguais ao seu nível.",
+  "etapas": [
+   "A Fome recupera PR iguais ao nível mais a proficiência.",
+   "A Fome recupera PV iguais ao nível mais a proficiência."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Regeneração Hollow",
+  "grupo": "hollow",
+  "repetivel": false,
+  "texto": "(Hueco e Vazio) No início de cada turno em combate, você recupera 1 PV, com pelo menos 1 PV. Não soma com a Cicatrização Hollow nem com a Regeneração de Alta Velocidade: vale a maior.",
+  "etapas": [
+   "Recupera 2 PV.",
+   "3 PV.",
+   "4 PV."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Cheiro de Sangue",
+  "grupo": "hollow",
+  "repetivel": false,
+  "texto": "(Hueco e Vazio) Você tem vantagem em testes de Percepção para achar criaturas com menos que os PV máximos.",
+  "etapas": [
+   "Você recebe +1 nas jogadas de acerto contra criaturas com menos que seus PV máximos.",
+   "O bônus de acerto aumenta para +2."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Rugido Hollow",
+  "grupo": "hollow",
+  "repetivel": false,
+  "texto": "(Hueco e Vazio) Uma vez por descanso longo, com uma ação bônus e 5 PR, você ruge: criaturas hostis a até 6 metros fazem um teste de resistência de Espírito (CD de Espírito) ou ficam amedrontadas até o fim do próximo turno delas.",
+  "etapas": [
+   "O alcance vai a 9 metros.",
+   "Você pode usar duas vezes entre descansos longos.",
+   "Criaturas amedrontadas pelo Rugido também têm a CR reduzida em 1 até o fim do efeito."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Carne Adaptável",
+  "grupo": "hollow",
+  "repetivel": false,
+  "texto": "(Hueco e Vazio) Uma vez por descanso longo, após sofrer um tipo de dano elemental (Fogo, Gelo, Elétrico e semelhantes), você fica resistente a esse tipo por 1 hora.",
+  "etapas": [
+   "Você mantém resistência a dois tipos ao mesmo tempo.",
+   "Você pode usar a adaptação duas vezes entre descansos longos."
+  ],
+  "nota": ""
+ }
+]
