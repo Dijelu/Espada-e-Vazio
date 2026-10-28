@@ -14,11 +14,11 @@ Os Pontos de Reiatsu de uma Classe é dividida em duas partes igualmente os PVs,
 
 ### Perícias
 
-Todas as classes possuem um número de Perícias que você pode escolher: um valor fixo mais a metade do seu atributo de Inteligência. Caso, no futuro, você aumente seu atributo de Inteligência, o número de Perícias também aumentará.
+Todas as classes possuem um número de Perícias que você pode escolher: um valor fixo mais a metade do seu atributo de Mente. Caso, no futuro, você aumente seu atributo de Mente, o número de Perícias também aumentará.
 
 ### Testes de Resistência
 
-Você se torna proficiente em dois Testes de Resistência, normalmente dois fixos. No entanto, existem exceções, como a classe Especialista, que permite escolher um deles.
+Você se torna proficiente em dois Testes de Resistência, normalmente dois fixos. No entanto, existem exceções, como a classe Tokubetsu, que permite escolher um deles.
 
 ### Construção Rápida
 
@@ -30,23 +30,23 @@ As classes possuem uma característica chamada Talentos de Classe, que permite e
 
 ### Subclasses
 
-Toda classe possui, no mínimo, uma subclasse. As subclasses representam caminhos que você seguirá em determinados níveis, potencializando algo que a classe já faz. Por exemplo, o Combatente, ao escolher a subclasse Forja Espiritual, torna-se ainda mais focado em causar dano, aprimorando uma característica que já possui. Cada subclasse é única e, como regra geral, você só pode ter uma subclasse por personagem, embora existam exceções, como o Especialista, que pode escolher uma segunda.
+Toda classe possui, no mínimo, uma subclasse. As subclasses representam caminhos que você seguirá em determinados níveis, potencializando algo que a classe já faz. Por exemplo, o Zanjutsu, ao escolher a subclasse Forja Espiritual, torna-se ainda mais focado em causar dano, aprimorando uma característica que já possui. Cada subclasse é única e, como regra geral, você só pode ter uma subclasse por personagem, embora existam exceções, como o Tokubetsu, que pode escolher uma segunda.
 
 Aclasse representa o caminho que seu personagem trilha dentro do vasto universo espiritual. Ela define seu estilo de combate, suas especialidades e suas habilidades ao longo da jornada. Cada classe oferece uma identidade única, refletindo o papel que seu personagem desempenha tanto na Soul Society quanto no Mundo Humano ou Hueco Mundo.
 
-Neste capítulo, você encontrará todas as classes disponíveis, cada uma com suas características próprias, talentos, subclasses e estilos de crescimento. Seja um Shinigami especializado em batalhas corpo a corpo, um mestre do Kido, um quincy Atirador, ou alguém que combina técnicas únicas de apoio e estratégia, suas escolhas moldarão não apenas o que você é capaz de fazer, mas também quem você se tornará. Além disso, para facilitar sua criação de personagem, cada classe inclui uma seção de Construção Rápida, oferecendo sugestões de atributos, perícias e essências espirituais que combinam com seu estilo de jogo.
+Neste capítulo, você encontrará todas as classes disponíveis, cada uma com suas características próprias, talentos, subclasses e estilos de crescimento. Seja um Shinigami especializado em batalhas corpo a corpo, um mestre do Kido, um quincy Schütze, ou alguém que combina técnicas únicas de apoio e estratégia, suas escolhas moldarão não apenas o que você é capaz de fazer, mas também quem você se tornará. Além disso, para facilitar sua criação de personagem, cada classe inclui uma seção de Construção Rápida, oferecendo sugestões de atributos, perícias e essências espirituais que combinam com seu estilo de jogo.
 
 Escolher uma classe é dar mais um passo rumo ao seu próprio legado espiritual. Está pronto para descobrir qual caminho você irá seguir?
 
 ### Escolhendo Uma Classe
 
-Escolher uma Classe pode ser a parte mais difícil para alguns e díficil para outros. Você pode escolher qualquer Classe à qual tenha acesso a partir do tipo de Origem: Shinigami ou Quincy. Uma Classe é composta por diversas características, que são habilidades concedidas ao seu personagem. Você deve escolher com base no que achar mais confortável e divertido.
+Escolher uma Classe pode ser a parte mais difícil para alguns e díficil para outros. Você pode escolher qualquer Classe à qual tenha acesso a partir do tipo de Origem: Shinigami, Quincy ou Hollow. Uma Classe é composta por diversas características, que são habilidades concedidas ao seu personagem. Você deve escolher com base no que achar mais confortável e divertido.
 
 No Soul Society RPG, mais de um jogador na campanha pode facilmente ter a mesma Classe, pois, graças aos Talentos de Classe, cada personagem será único. Além disso, Zanpakutous, Armas Quincy, Bankais e Vollständigs diferenciam ainda mais cada personagem, não apenas pela Classe como em outros RPGs. Então, não tenha medo de escolher a Classe que parecer mais divertida para você — cada personagem será único à sua maneira.
 
-Na tabela abaixo está a lista de Classes, dividida em Classe, Atributo-chave utilizado e Tipo de Classe (Shinigami ou Quincy). A melhor forma de escolher sua Classe é lendo suas descrições e vendo qual faz mais sentido para o seu personagem.
+Na tabela abaixo está a lista de Classes, dividida em Classe, Atributo-chave utilizado e Tipo de Classe (Shinigami, Quincy ou Hollow). A melhor forma de escolher sua Classe é lendo suas descrições e vendo qual faz mais sentido para o seu personagem.
 
-Classe Atributo chave Tipo de Classe Combatente Força e Espírito Shinigami Especialista Força e Inteligência Shinigami Lutador Destreza e Sabedoria Shinigami Mestre Kido Inteligência e Espírito Shinigami Suporte Força e Sabedoria Shinigami Atirador Destreza e Inteligência Quincy Espadachim - Quincy Guardião - Quincy Pugilista - Quincy Transmutador - Quincy
+Classe Atributo chave Tipo de Classe Zanjutsu Força e Espírito Shinigami Tokubetsu Força e Mente Shinigami Hakuda Destreza e Mente Shinigami Kidōshū Mente e Espírito Shinigami Kyūgo Força e Mente Shinigami Schütze Destreza e Mente Quincy Ritter Destreza e Espírito Quincy Hueco Conforme o Caminho Hollow Vazio Espírito e Mente Hollow Guardião - Quincy Pugilista - Quincy Transmutador - Quincy
 
 ## Classes de Shinigami
 
@@ -91,31 +91,31 @@ Nível bÔNUS DE Proficiência KIDO CONHECIDOS CLASSIFICAÇÃO DO KIDO Caracter�
 | Nível | Proficiência | Col. 1 | Col. 2 | Características |
 |---|---|---|---|---|
 | 1° | +2 | 1 | D | Zanpakutou, Kido, Impacto de Reiatsu, Estilo de Combate |
-| 2° | +2 | 2 | D | Shunpo, Talentos de Combatente |
-| 3° | +2 | 3 | D | Especializando (Sub-classe), Talentos de Combatente |
+| 2° | +2 | 2 | D | Shunpo, Talentos de Zanjutsu |
+| 3° | +2 | 3 | D | Especializando (Sub-classe), Talentos de Zanjutsu |
 | 4° | +2 | 4 | D | Aprimoramento da Essência |
-| 5° | +3 | 4 | D | Talentos de Combatente |
-| 6° | +3 | 5 | C | Especializando (Sub-classe), Talentos de Combatente |
-| 7° | +3 | 5 | C | Talentos de Combatente |
+| 5° | +3 | 4 | D | Talentos de Zanjutsu |
+| 6° | +3 | 5 | C | Especializando (Sub-classe), Talentos de Zanjutsu |
+| 7° | +3 | 5 | C | Talentos de Zanjutsu |
 | 8° | +3 | 6 | C | Aprimoramento da Essência |
-| 9° | +4 | 6 | C | Talentos de Combatente |
-| 10° | +4 | 7 | C | Especializando (Sub-classe), Talentos de Combatente |
-| 11° | +4 | 7 | B | Talentos de Combatente |
+| 9° | +4 | 6 | C | Talentos de Zanjutsu |
+| 10° | +4 | 7 | C | Especializando (Sub-classe), Talentos de Zanjutsu |
+| 11° | +4 | 7 | B | Talentos de Zanjutsu |
 | 12° | +4 | 8 | B | Aprimoramento da Essência |
-| 13° | +5 | 8 | B | Especializando (Apenas Colosso), Talentos de Combatente |
-| 14° | +5 | 9 | B | Talentos de Combatente |
-| 15° | +5 | 9 | B | Especializando (Sub-classe), Talentos de Combatente |
+| 13° | +5 | 8 | B | Especializando (Apenas Colosso), Talentos de Zanjutsu |
+| 14° | +5 | 9 | B | Talentos de Zanjutsu |
+| 15° | +5 | 9 | B | Especializando (Sub-classe), Talentos de Zanjutsu |
 | 16° | +5 | 10 | A | Aprimoramento da Essência |
-| 17° | +6 | 10 | A | Talentos de Combatente |
-| 18° | +6 | 11 | A | Talentos de Combatente |
+| 17° | +6 | 10 | A | Talentos de Zanjutsu |
+| 18° | +6 | 11 | A | Talentos de Zanjutsu |
 | 19° | +6 | 11 | A | Aprimoramento da Essência |
-| 20° | +6 | 12 | A | Especializando (Sub-classe), Talentos de Combatente |
+| 20° | +6 | 12 | A | Especializando (Sub-classe), Talentos de Zanjutsu |
 
 ## Tabela de Classe
 
-## Combatente
+## Zanjutsu
 
-Aclasse Combatente é especializada no combate com a Zanpakutou, realizando golpes extremamente poderosos. É a escolha ideal para um Shinigami cujo foco é totalmente dedicado ao combate com sua arma. A classe Combatente possui três especializações: a primeira se concentra em desbloquear o máximo potencial da Shikai e Bankai; a segunda ignora completamente o vínculo com o espírito da Zanpakutou, focando apenas em golpes de grande impacto, e a terceira transforma o personagem em um verdadeiro colosso, capaz de suportar grandes quantidades de dano. Esta classe foi inspirada em personagens como Kurosaki Ichigo e Zaraki Kenpachi, onde os personagens são especialistas em combate com sua Zanpakutou e utilizam muita reiatsu em seus confrontos.
+Aclasse Zanjutsu é especializada no combate com a Zanpakutou, realizando golpes extremamente poderosos. É a escolha ideal para um Shinigami cujo foco é totalmente dedicado ao combate com sua arma. A classe Zanjutsu possui três especializações: a primeira se concentra em desbloquear o máximo potencial da Shikai e Bankai; a segunda ignora completamente o vínculo com o espírito da Zanpakutou, focando apenas em golpes de grande impacto, e a terceira transforma o personagem em um verdadeiro colosso, capaz de suportar grandes quantidades de dano. Esta classe foi inspirada em personagens como Kurosaki Ichigo e Zaraki Kenpachi, onde os personagens são especialistas em combate com sua Zanpakutou e utilizam muita reiatsu em seus confrontos.
 
 ### Traços de Classe
 
@@ -123,15 +123,17 @@ Pontos de Vida: No primeiro nível, seus pontos de vida são 30 + seu atributo d
 
 Pontos de reaitsu: No primeiro nível, seus pontos de reiatsu são 25 + seu atributo de Espírito. Nos próximos níveis, são 7 + seu atributo de Espírito.
 
-Perícias: Escolha 2 + metade do seu atributo de Inteligência, arredondado para baixo, para ser proficiênte.
+Perícias: Escolha 2 + metade do seu atributo de Mente, arredondado para baixo, para ser proficiênte.
 
 Proficiência em Teste de Resistência: Força, Espírito.
 
+Classe de Resistência: plena (10 + bônus de proficiência + Constituição + Destreza).
+
 ### Construção Rápida
 
-Ao escolher a classe Combatente, você deve focar no atributo de Força ou Destreza como atributo principal, e depois em Espirito, pois este é o atributo-chave da classe para utilizar Kido e técnicas com a Zanpakutou. Em seguida, dê prioridade ao atributo de Constituição e, por último, à Inteligência ou Sabedoria.
+Ao escolher a classe Zanjutsu, você deve focar no atributo de Força ou Destreza como atributo principal, e depois em Espirito, pois este é o atributo-chave da classe para utilizar Kido e técnicas com a Zanpakutou. Em seguida, dê prioridade ao atributo de Constituição e, por último, à Mente.
 
-FOR DES CON INT SAB ESP Recomendação de distribuição de atributos nível 1: Essência recomendada: VITALIDADE ESPIRITUAL CR 10 + Proficiência + Atributo de Constituição Características de classe Classe de Shinigami
+FOR DES CON MEN ESP Recomendação de distribuição de atributos nível 1: Essência recomendada: VITALIDADE ESPIRITUAL. CR plena: 10 + Proficiência + Constituição + Destreza.
 
 ### Zanpakutou
 
@@ -159,15 +161,15 @@ Quando utilizar essa técnica você ignora terreno difícil. Você não pode usa
 
 Shunpo e suas variantes seguem as regras de Deslocamento Instânteno do Capítulo Jogando na sessão de Combate.
 
-### Talentos de Combatente
+### Talentos de Zanjutsu
 
-A partir do 2° nível você pode escolher talentos de Combatente até o 20° nível de classe. No entanto, nos níveis em que recebe um “Aprimoramento da Essência”, não poderá escolher uma novo Talento de Combatente.
+A partir do 2° nível você pode escolher talentos de Zanjutsu até o 20° nível de classe. No entanto, nos níveis em que recebe um “Aprimoramento da Essência”, não poderá escolher uma novo Talento de Zanjutsu.
 
-Você pode escolher apenas um talento de Combatente por vez. E alguns Talentos têm requisitos, que devem ser atendidos para que possam ser escolhidas.
+Você pode escolher apenas um talento de Zanjutsu por vez. E alguns Talentos têm requisitos, que devem ser atendidos para que possam ser escolhidas.
 
 - Ataque Extra: Você ganha a habilidade de realizar mais ataques durante o seu turno. Quando você usar a ação “Ataque” no seu turno, pode realizar dois ataques em vez de um.
 
-Pré-Requisito: 5° nível de Combatente.
+Pré-Requisito: 5° nível de Zanjutsu.
 
 - Armadura Natural: Sua pele é mais resistente do que a de um Shinigami comum. Você recebe +2 na sua Classe de Resistência (CR).
 - Bankai Reativa: Quando uma criatura usar algum tipo de liberação, como Bankai, Ressurreição ou Vollstandig, você pode ativar sua própria Bankai como reação. Os efeitos causados por ela, como um dano em área, começarão a se manifestar apenas no início do seu próximo turno, mas os efeitos defensivos entram em vigor imediatamente. Você ainda deve gastar os pontos de reiatsu para liberar a Bankai.
@@ -177,7 +179,7 @@ Pré-Requisito: Bankai.
 - Campeão:Vocêsetornaimuneàcondiçãoamedrontado.
 - Crítico Brutal: Você aumenta o multiplicador de dano crítico da sua Zanpakutou em +1.
 
-Pré-Requisito: 18° nível de Combatente.
+Pré-Requisito: 18° nível de Zanjutsu.
 
 - Defesa Resoluta: Quando você for alvo de um ataque, pode usar sua reação para receber +5 em sua CR para esse ataque. Se o ataque ainda assim acertar, você reduz o dano sofrido em 5 pontos (RD).
 - Defesa Ágil: Seu estilo de luta é mais ágil, então suas defesas são baseadas em bloqueios e esquivas. Sua classe de resistência passa a ser 10 + proficiência + atributo de Destreza.
@@ -185,18 +187,18 @@ Pré-Requisito: 18° nível de Combatente.
 
 Duelista: Escolha uma criatura com uma Ação Livre no começo ou durante o combate, você concentra todo o seu poder contra esse alvo. Durante o combate, você recebe +2 nas rolagens de ataque e dano contra a criatura escolhida e +2 na sua Classe de Resistência contra ataques da criatura escolhida. Esses benefícios permanecem até o fim do combate ou até que você ataque outra criatura. Caso ataque um alvo diferente, os bônus são imediatamente perdidos. Você só pode escolher uma criatura como alvo de duelo por combate.
 
-- Foco Letal: Você aprimorou Talento "Duelista" agora você mantém o vínculo com a criatura escolhida mesmo após atacar outras criaturas, podendo selecionar um novo alvo durante o combate. No entanto, não é possível escolher a mesma criatura duas vezes em um único confronto. Contra a criatura escolhida, sua margem de crítico com a Zanpakutou agora é ampliada em +1. Pré-Requisito: Talento de Combatente "Duelista".
-- Pressão Espíritual: Você pode com uma ação livre utilizar a ação "Liberar Reaitsu". Todas as criaturas dentro da área da técnica devem realizar um Teste de Resistência de Sabedoria com a classe de dificuldade sendo 12 + sua proficiência + seu atributo de Espírito. Se falharem no teste, além da condição "Amendrontas" elas ficam paralisadas por 1 turno e as que passarem perdem metade do deslocamento delas. Você pode utilizar essa habilidade como uma ação livre duas vezes e recupera seus usos com um descanso longo.
+- Foco Letal: Você aprimorou Talento "Duelista" agora você mantém o vínculo com a criatura escolhida mesmo após atacar outras criaturas, podendo selecionar um novo alvo durante o combate. No entanto, não é possível escolher a mesma criatura duas vezes em um único confronto. Contra a criatura escolhida, sua margem de crítico com a Zanpakutou agora é ampliada em +1. Pré-Requisito: Talento de Zanjutsu "Duelista".
+- Pressão Espíritual: Você pode com uma ação livre utilizar a ação "Liberar Reaitsu". Todas as criaturas dentro da área da técnica devem realizar um Teste de Resistência de Mente com a classe de dificuldade sendo 12 + sua proficiência + seu atributo de Espírito. Se falharem no teste, além da condição "Amendrontas" elas ficam paralisadas por 1 turno e as que passarem perdem metade do deslocamento delas. Você pode utilizar essa habilidade como uma ação livre duas vezes e recupera seus usos com um descanso longo.
 - Recuperação de Reiatsu: Durante uma batalha, você pode canalizar reiatsu para se recuperar. Duas vezes por combate, pode utilizar a ação "Recuperação de Reiatsu" como uma ação bônus.
 - Retaliação: Quando uma criatura o atingir com um ataque corpo a corpo, você pode usar sua reação para realizar um único ataque com sua Zanpakutou contra ela.
 - Resistir: Quando estiver sob as condições Congelado, Eletrificado ou Queimado, você pode usar sua reação no seu turno e 2 pontos de reiatsu para encerrar a condição.
 
-Pré-Requisito: 15° nível de Combatente.
+Pré-Requisito: 15° nível de Zanjutsu.
 
 - Sede de Sangue: A cada dois ataques consecutivos bem-sucedidos com sua Zanpakutou contra a mesma criatura, ela recebe a condição Sangramento.
 - Sublimação da Máscara: Em combate contra um Hollow, todos os Shinigamis visam instintivamente sua máscara, pois destruí-la leva à sublimação. Quando você atingir um Hollow e deixá-lo com 10 pontos de vida ou menos, ele é automaticamente reduzido a 0 pontos de vida, sendo morto. Esta habilidade não funciona contra Arrancars.
 
-Pré-Requisito: 7° nível de Combatente.
+Pré-Requisito: 7° nível de Zanjutsu.
 
 - Shunpo Maior: Você adquire uma variação aprimorada do Shunpo, chamada Shunpo Maior. Com sua ação, você pode dobrar seu deslocamento normal e, em seguida, usar essa distância aumentada para se deslocar instântaneamente para qualquer local dentro desse alcance expandido.
 
@@ -216,12 +218,12 @@ No 4° nível e novamente no 8°, 12°, 16° e 19° nível, você pode aumentar 
 
 - Fulgor Espiritual: Durante o combate, seus instintos afloram e sua presença espiritual se intensifica drasticamente. Seu espírito entra em um estado elevado de poder, tornando-se mais difícil de ser ignorado ou subjugado. Sempre que você realiza um teste de Determinação, Intimidação ou Reiatsu durante o combate, você faz com vantagem.
 - Golpe Triplo: Quando você utiliza a ação "Atacar", agora você realiza três ataques.
-- Pré-Requisito: 11° nível de Combatente e talento de Combatente "Ataque Extra".
+- Pré-Requisito: 11° nível de Zanjutsu e talento de Zanjutsu "Ataque Extra".
 - Golpe Superior: Quando você utiliza a ação "Atacar", agora você realiza quatro ataques.
 
-Pré-Requisito: 15° nível de Combatente e talento de Combatente "Golpe Triplo".
+Pré-Requisito: 15° nível de Zanjutsu e talento de Zanjutsu "Golpe Triplo".
 
-- Julgamento Espiritual: Sempre que você entra em combate, todas as criaturas hostis que puderem vêlo e que possuam Espírito menor que o seu devem realizar um teste de Sabedoria (CD 10 + seu bônus de proficiência + seu atributo de Espírito). Em caso de falha, essas criaturas sofrem desvantagem em todas as jogadas de ataque contra você. A partir do segundo turno de combate, cada criatura que tenha falhado no teste pode refazê-lo no final do próprio turno. Com um sucesso, ela se livra do efeito.
+- Julgamento Espiritual: Sempre que você entra em combate, todas as criaturas hostis que puderem vêlo e que possuam Espírito menor que o seu devem realizar um teste de Mente (CD 10 + seu bônus de proficiência + seu atributo de Espírito). Em caso de falha, essas criaturas sofrem desvantagem em todas as jogadas de ataque contra você. A partir do segundo turno de combate, cada criatura que tenha falhado no teste pode refazê-lo no final do próprio turno. Com um sucesso, ela se livra do efeito.
 - Interferência Precisa: Quando você acerta um ataque contra uma criatura que está mantendo a concentração em um Kido ou habilidade, ela deve realizar o teste de resistência para manter a concentração com desvantagem.
 - Impacto Elemental: Você pode alterar o tipo de dano de energia do seu Impacto de Reiatsu para o tipo de dano causado pela sua Zanpakutou, desde que ela seja do tipo elemental. Por exemplo, se sua Zanpakutou for do tipo Fogo, o dano do seu Impacto de Reiatsu será alterado para dano de Fogo.
 
@@ -232,7 +234,7 @@ Pré-Requisito: Shikai, Zanpakutou do tipo Elemental e e característica de Clas
 - Instinto Espiritual: Você adiciona metade do seu atributo de Espírito à sua iniciativa.
 - Letalidade: Lutar contra um Shinigami como você é um desafio mortal, e poucos saem vivos desse confronto. Ao atacar com sua Zanpakutou, você adiciona 1d4 de dano perfurante ou cortante adicional para cada 2 pontos no atributo Espírito (arredondado para baixo). Esse dano adicional pode ser aplicado apenas uma vez por turno.
 
-Pré-Requisito: 13° nível de Combatente.
+Pré-Requisito: 13° nível de Zanjutsu.
 
 - Potencial de Combate: No início de um combate, você se adapta rapidamente à situação, canalizando sua energia espiritual com mais intensidade. Você pode aumentar em uma etapa uma de suas Essências Espirituais até o fim do combate.
 
@@ -255,6 +257,8 @@ Você pode escolher uma Zanpakutou da lista de Zanpakutous do tipo Combate ou El
 Para liberar sua Shikai, você deve usar sua ação bônus em seu turno e ser capaz de verbalizar o nome da Zanpakutou, os custos de liberação estão descrito na Zanpakutou. Seus atributos para acerto e dano com ela na forma Shikai permanecem os mesmos da forma Asauchi, mas a margem de crítico deixa de ser aprimorada, a menos que uma habilidade da Zanpakutou fale o contrário. Para as técnicas da Zanpakutou, o acerto e a classe de dificuldade são diferentes, conforme descrito abaixo:
 
 Acerto para as técnicas da Zanpakutou = d20 + bônus de proficiência + seu atributo de Espírito Classe de Dificuldade para suas técnicas com a Zanpakutou = 8 + bônus de proficiência + seu atributo de Espírito
+
+Enquanto a Shikai estiver liberada, você soma o seu bônus de proficiência à sua Classe de Resistência. O dano de Shikai e Bankai é Esotérico, portanto o Hierro dos Hollows não o reduz.
 
 ### Poder da Alma
 
@@ -279,9 +283,9 @@ Por exemplo, um personagem de nível 1 pode intensificar até 2 vezes, enquanto 
 - 
 - Versátil:
 
-Versátil: Seu estilo de luta é baseado em desferir Seu estilo de luta é baseado em desferir técnicas de Zanpakutou com facilidade. Você pode técnicas de Zanpakutou com facilidade. Você pode substituir um dos seus ataques extras da ação Atacar substituir um dos seus ataques extras da ação Atacar por uma técnica da sua Zanpakutou, desde que ela por uma técnica da sua Zanpakutou, desde que ela tenha como requisito uma Ação. (Requisito: Classe tenha como requisito uma Ação. (Requisito: Classe Combatente)
+Versátil: Seu estilo de luta é baseado em desferir Seu estilo de luta é baseado em desferir técnicas de Zanpakutou com facilidade. Você pode técnicas de Zanpakutou com facilidade. Você pode substituir um dos seus ataques extras da ação Atacar substituir um dos seus ataques extras da ação Atacar por uma técnica da sua Zanpakutou, desde que ela por uma técnica da sua Zanpakutou, desde que ela tenha como requisito uma Ação. (Requisito: Classe tenha como requisito uma Ação. (Requisito: Classe Zanjutsu)
 
-Combatente)
+Zanjutsu)
 
 ### Bankai
 
@@ -395,32 +399,32 @@ Nível bÔNUS DE Proficiência KIDO CONHECIDOS CLASSIFICAÇÃO DO KIDO Caracter�
 
 | Nível | Proficiência | Col. 1 | Col. 2 | Características |
 |---|---|---|---|---|
-| 1° | +2 | 1 | D | Zanpakutou, Talento de Especialista |
-| 2° | +2 | 2 | D | Talento de Especialista, Shunpo |
-| 3° | +2 | 3 | D | Sub-Classe de Especialista, Talento de Especialista |
+| 1° | +2 | 1 | D | Zanpakutou, Talento de Tokubetsu |
+| 2° | +2 | 2 | D | Talento de Tokubetsu, Shunpo |
+| 3° | +2 | 3 | D | Sub-Classe de Tokubetsu, Talento de Tokubetsu |
 | 4° | +2 | 4 | D | Aprimoramento da Essência |
-| 5° | +3 | 4 | D | Talento de Especialista |
-| 6° | +3 | 5 | C | Talento de Especialista |
-| 7° | +3 | 5 | C | Talento de Especialista |
+| 5° | +3 | 4 | D | Talento de Tokubetsu |
+| 6° | +3 | 5 | C | Talento de Tokubetsu |
+| 7° | +3 | 5 | C | Talento de Tokubetsu |
 | 8° | +3 | 6 | C | Aprimoramento da Essência |
-| 9° | +4 | 6 | C | Talento de Especialista |
-| 10° | +4 | 7 | C | Talento de Especialista |
-| 11° | +4 | 7 | B | Talento de Especialista |
+| 9° | +4 | 6 | C | Talento de Tokubetsu |
+| 10° | +4 | 7 | C | Talento de Tokubetsu |
+| 11° | +4 | 7 | B | Talento de Tokubetsu |
 | 12° | +4 | 8 | B | Aprimoramento da Essência |
-| 13° | +5 | 8 | B | Talento de Especialista |
-| 14° | +5 | 9 | B | Talento de Especialista |
-| 15° | +5 | 9 | B | Talento de Especialista |
+| 13° | +5 | 8 | B | Talento de Tokubetsu |
+| 14° | +5 | 9 | B | Talento de Tokubetsu |
+| 15° | +5 | 9 | B | Talento de Tokubetsu |
 | 16° | +5 | 10 | A | Aprimoramento da Essência |
-| 17° | +6 | 10 | A | Talento de Especialista |
-| 18° | +6 | 11 | A | Talento de Especialista |
+| 17° | +6 | 10 | A | Talento de Tokubetsu |
+| 18° | +6 | 11 | A | Talento de Tokubetsu |
 | 19° | +6 | 11 | A | Aprimoramento da Essência |
-| 20° | +6 | 12 | A | Talento de Especialista |
+| 20° | +6 | 12 | A | Talento de Tokubetsu |
 
 ## Tabela de Classe
 
-## Especialista
+## Tokubetsu
 
-OEspecialista é o Shinigami mais versátil e comum do Gotei 13, representando a essência daqueles que se dedicam ao equilíbrio entre combate, suporte e controle espiritual. Sem uma vocação específica, o Especialista possui a liberdade de escolher o próprio caminho, treinando em múltiplas áreas e desenvolvendo habilidades que podem ser adaptadas às necessidades do esquadrão ou da missão em curso.
+OTokubetsu é o Shinigami mais versátil e comum do Gotei 13, representando a essência daqueles que se dedicam ao equilíbrio entre combate, suporte e controle espiritual. Sem uma vocação específica, o Tokubetsu possui a liberdade de escolher o próprio caminho, treinando em múltiplas áreas e desenvolvendo habilidades que podem ser adaptadas às necessidades do esquadrão ou da missão em curso.
 
 Essa classe foi inspirada em diversos Shinigamis que não se encaixam em arquétipos pré-definidos, como Kuchiki Byakuya, Kuchiki Rukia, Hitsugaya Toshiro, Urahara Kisuke, entre outros. Cada um desses personagens é versátil e realiza diversas funções, sem se concentrar em apenas um tipo específico de especialidade.
 
@@ -430,13 +434,15 @@ Pontos de Vida: No primeiro nível, seus pontos de vida são 28 + seu atributo d
 
 Pontos de reaitsu: No primeiro nível, seus pontos de reiatsu são 22 + seu atributo de Espírito. Nos próximos níveis, são 6 + seu atributo de Espírito.
 
-Perícias: Escolha 6 + metade do seu atributo de Inteligência, arredondado para baixo, para ser proficiênte.
+Perícias: Escolha 6 + metade do seu atributo de Mente, arredondado para baixo, para ser proficiênte.
 
-Proficiência em Teste de Resistência: Inteligência e +1 a sua escolha.
+Proficiência em Teste de Resistência: Mente e +1 a sua escolha.
+
+Classe de Resistência: plena (10 + bônus de proficiência + Constituição + Destreza).
 
 ### Construção Rápida
 
-Ao escolher a classe Especialista, foque em Força ou Destreza como atributo principal, seguido por Inteligência, que é o atributo-chave da classe para o uso de Kido e outras habilidades. Em seguida, priorize o atributo Constituição e, por último, Espirito e Sabedoria. FOR DES CON INT SAB ESP Recomendação de distribuição de atributos nível 1: Essência recomendada: GRÃ MESTRE CR 10 + Proficiência + Atributo de Constituição
+Ao escolher a classe Tokubetsu, foque em Força ou Destreza como atributo principal, seguido por Mente, que é o atributo-chave da classe para o uso de Kido e outras habilidades. Em seguida, priorize o atributo Constituição e, por último, Espirito e Mente. FOR DES CON MEN ESP Recomendação de distribuição de atributos nível 1: Essência recomendada: GRÃ MESTRE. CR plena: 10 + Proficiência + Constituição + Destreza.
 
 ### Zanpakutou
 
@@ -446,50 +452,26 @@ Quando você se torna um shinigami da Gotei 13, você recebe uma Asauchi. Você 
 
 Você possui a capacidade de conjurar os dois tipos de Kido, que é a forma de combate dos shinigamis baseada na conjuração de magias a partir da reiatsu do shinigami, sendo elas Bakudou e Hadou.
 
-Você tem um número de escolhas conforme descrito na tabela de classe chamada “Conhecidos”, onde você pode consultar o Capítulo 11 e selecionar um determinado número de Kido da classificação a que você tem acesso ou menor, conforme listado na tabela de classe na categoria “Classificação do Kido”. Por exemplo, no primeiro nível de classe, você pode escolher 1 Kido da lista de Bakudou e Hadou de sua preferência, mas eles devem ser de Classificação D como indicado na tabela de Classe. Para conjurar e determinar a classe de dificuldade nos testes de seus Kido, o atributo a ser utilizado é Inteligência. Acerto para seus Kido = d20 + bônus de proficiência + seu atributo de Inteligência Classe de Dificuldade para seus Kido = 8 + bônus de proficiência + seu atributo de Inteligência
+Você tem um número de escolhas conforme descrito na tabela de classe chamada “Conhecidos”, onde você pode consultar o Capítulo 11 e selecionar um determinado número de Kido da classificação a que você tem acesso ou menor, conforme listado na tabela de classe na categoria “Classificação do Kido”. Por exemplo, no primeiro nível de classe, você pode escolher 1 Kido da lista de Bakudou e Hadou de sua preferência, mas eles devem ser de Classificação D como indicado na tabela de Classe. Para conjurar e determinar a classe de dificuldade nos testes de seus Kido, o atributo a ser utilizado é Mente. Acerto para seus Kido = d20 + bônus de proficiência + seu atributo de Mente Classe de Dificuldade para seus Kido = 8 + bônus de proficiência + seu atributo de Mente
 
-### Talentos de Especialista
+### Talentos de Tokubetsu
 
 Cada especialista é único e singular e você não é diferente. Você pode escolher Talentos de especialista nos níveis em que, normalmente, outras classes receberiam características de classe.
 
-Do 1° ao 20° nível de classe, você pode escolher um Talento de Especialista. No entanto, nos níveis em que recebe um "Aprimoramento da Essência", não poderá escolher um novo Talento de Especialista.
+Do 1° ao 20° nível de classe, você pode escolher um Talento de Tokubetsu. No entanto, nos níveis em que recebe um "Aprimoramento da Essência", não poderá escolher um novo Talento de Tokubetsu.
 
-Você pode escolher apenas um Talento de Especialista por vez. E alguns Talentos têm requisitos, que devem ser atendidos para que possam ser escolhidas.
+Você pode escolher apenas um Talento de Tokubetsu por vez. E alguns Talentos têm requisitos, que devem ser atendidos para que possam ser escolhidas.
 
 - Ajuste Ágil: As perícias Velocidade e Preparo Físico podem ser utilizadas com o atributo Destreza.
-- Ataque Extra: Você ganha a habilidade de realizar mais ataques durante o seu turno. Quando você usar a ação “Ataque” no seu turno, pode realizar dois ataques em vez de um.
-
-Pré-Requisito: 5° nível de Especialista.
-
-- Ataque Poderoso: Uma vez por rodada, ao atacar com sua Zanpakutou, você adiciona um dado de dano extra igual ao dano base da arma. Esta habilidade de Especialista pode ser escolhida novamente, permitindo que você faça dois ataques por rodada com um dado a mais de dano.
-- Aumento de Atributo: Você pode aumentar em dois pontos um atributo de sua escolha ou em um dois atributos diferentes. Este talento pode ser escolhido novamente, mas ao fazê-lo o aumento será apenas de um ponto em um único atributo.
-
-Características de classe Classe de Shinigami
-
-- Comando: Você pode usar a ação Ajudar como uma ação bônus. Além disso, o alcance da sua ação Ajudar aumenta para até 9 metros.
-- Controle de Kido: Quando você conjura um Kidou e a criatura alvo precisa resistir a ele, você pode gastar 4 pontos de reiatsu para reduzir a rolagem de resistência da criatura em -2. Você pode gastar pontos de reiatsu adicionais para ampliar essa penalidade, para cada 4 pontos de reiatsu gastos, a penalidade aumenta em -1, até um máximo de -5.
-- Controle Preciso: Quando você usar uma habilidade ou técnica da sua Zanpakutou que afete todas as criaturas dentro de uma área de efeito, poderá escolher um número de criaturas igual a metade do seu atributo de Inteligência (arredondado para baixo) para que não sejam afetadas pelos efeitos ou danos da habilidade. Isso também se aplica às liberações de Zanpakutou.
-- Defesa Calculada: Sua Classe de Resistência passa a ser baseada em Inteligência, tornando-se 10 + seu bônus de proficiência + metade do seu atributo de Inteligência. Você pode escolher este Talento de Especialista novamente, fazendo com que a soma passe a ser o valor total do seu atributo de Inteligência.
-- Defesa Intuitiva: Quando uma criatura utilizar um Deslocamento Instantâneo para atacar você, ela não recebe vantagem na rolagem para acertar o ataque contra você.
-
-Pré-Requisito: Talento de Especialista "Sem Brechas".
-
-- Domínio de Kido: Quando você realizar a ação "Atacar" com sua Zanpakutou, você pode utilizar um Hadou que tenha requisito "Ação" com sua ação bônus, e que tenha o encantamento rápido. Esse Hadou só pode ter uma criatura como alvo e não se beneficia de Kido Extra.
-- Domínio Temporário: Quando você fizer um teste de perícia em que não seja proficiente, pode gastar 4 pontos de reiatsu para tornar-se proficiente nessa perícia para esse teste.
-- Fluxo de Kidos: Agora, quando você utilizar um Kido que tenha como requisito "Ação", você pode conjurar dois Kidos adicionais. Respeitando as mesmas regras de conjuração do Kido Extra.
-
-Pré-Requisito: 11° nível de Especialista e Talento de Especialista "Kido Extra".
-
-- Golpe Instantâneo: Quando você utilizar um Kido até Rank B que possua o encantamento rápido, tenha o requisito de "Ação" e tenha apenas uma criatura como alvo, você pode realizar um ataque com sua Zanpakutou ou Hakuda como uma ação bônus. Você pode escolher este Talento de Especialista novamente, o que permite realizar dois ataques com a ação bônus e utilizar Kidos com encantamento normal, desde que siga o requisito de encantamento padrão.
 - Golpe Triplo: Quando você utiliza a ação "Atacar", agora você realiza três ataques.
 
-Pré-Requisito: 11° nível de Especialista e Talento de Especialista "Ataque Extra".
+Pré-Requisito: 11° nível de Tokubetsu e a característica Ataque Extra (5° nível).
 
 - Impacto de Reiatsu: Quando acertar uma criatura com sua Zanpakutou, você pode utilizar sua ação bônus e 4 pontos de reiatsu para causar 2d4 de dano de energia adicional, além do dano normal da arma. O dano extra pode ser aumentado em 1d4 para cada 2 pontos de reiatsu adicionais gastos, até um máximo de 5d4.
 - Imposição Espiritual: A classe de dificuldade para resistir aos seus Kidos aumenta em +3.
 - Kaido: Com sua "Ação" e o custo de 4 pontos de reiatsu, você pode utilizar um Kido de Cura, restaurando 1d8 + 4 pontos de vida em uma criatura ao tocá-la. Você pode potencializar essa cura, adicionando um dado extra ao efeito por 4 pontos de reiatsu adicionais para cada dado extra. Além disso, você pode dobrar o custo total do Kido para utilizá-lo como uma ação bônus.
-- Kido Extra: Você pode conjurar mais Kidos durante o seu turno. Quando usar um Kido com sua "Ação", pode conjurar um segundo Kido que também exija uma Ação, esse segundo Kido é considerado parte da mesma ação. Você ainda deve respeitar as regras de "Encantamento" e não pode conjurar Kidos iguais com essa habilidade. Pré-Requisito: 5° nível de Especialista.
-- Lâmina Restauradora: Ao atingir uma criatura com um ataque crítico com sua Zanpakutou, você recupera uma quantidade de pontos de reiatsu igual ao seu atributo de Inteligência.
+- Kido Extra: Você pode conjurar mais Kidos durante o seu turno. Quando usar um Kido com sua "Ação", pode conjurar um segundo Kido que também exija uma Ação, esse segundo Kido é considerado parte da mesma ação. Você ainda deve respeitar as regras de "Encantamento" e não pode conjurar Kidos iguais com essa habilidade. Pré-Requisito: 5° nível de Tokubetsu.
+- Lâmina Restauradora: Ao atingir uma criatura com um ataque crítico com sua Zanpakutou, você recupera uma quantidade de pontos de reiatsu igual ao seu atributo de Mente.
 - Mobilidade Fantasma: Você pode usar o Shunpo sem gastar sua Ação Bônus, tornando-o uma ação livre. No entanto, você só pode utilizá-lo uma vez por turno, e ele ainda consome seu deslocamento ao ser usado.
 
 Pré-Requisito: característica de classe "Shunpo".
@@ -500,11 +482,11 @@ Pré-Requisito: característica de classe "Sentido Espiritual Apurado".
 
 - Passo Relâmpago: Você pode usar o Shunpo mais de uma vez em seu turno.
 
-Pré-Requisito: Talento de Especialista "Mobilidade Fantasma".
+Pré-Requisito: Talento de Tokubetsu "Mobilidade Fantasma".
 
-- Perito em Hakuda: Seu dano desarmado se torna 1d6. Você pode escolher este Talento de Especialista novamente para aumentar o dano para 1d8, e uma terceira vez para aumentar para 1d10.
+- Perito em Hakuda: Seu dano desarmado se torna 1d6. Você pode escolher este Talento de Tokubetsu novamente para aumentar o dano para 1d8, e uma terceira vez para aumentar para 1d10.
 - Quebra de Defesas: Quando você realizar um ataque com sua Zanpakutou ou um Kido, pode gastar 5 pontos de reiatsu para ignorar 10 pontos de redução de dano da criatura para esse ataque. Alternativamente, você pode gastar mais 5 pontos, totalizando 10, para ignorar 20 pontos de redução de dano.
-- Resolução: Escolha um dos atributos, quando você realizar um teste de perícia que envolva o atributo escolhido, se falhar no teste, você pode gastar 4 pontos de reiatsu para rolar novamente, devendo utilizar o novo resultado. Você pode escolher esse Talento de Especialista novamente, escolhendo um novo atributo.
+- Resolução: Escolha um dos atributos, quando você realizar um teste de perícia que envolva o atributo escolhido, se falhar no teste, você pode gastar 4 pontos de reiatsu para rolar novamente, devendo utilizar o novo resultado. Você pode escolher esse Talento de Tokubetsu novamente, escolhendo um novo atributo.
 - Sem Brechas: Quando você estiver sendo Flanqueado, você não sofre penalidade na sua Classe de Resistência. Além disso, se uma criatura estiver em terreno elevado, ela não recebe vantagem ao atacar você.
 - Sentido Espiritual Apurado: Sua percepção espiritual é muito superior à de uma criatura comum. Sempre que uma criatura entrar a até 9 metros de você, você sabe exatamente aonde a criatura está. No caso de uma criatura que esteja suprimindo a reiatsu, você ainda sentirá uma sensação estranha, aonde o mestre pode descrever como um sentimento que tem algo errado. Além disso, se você realizar um teste de Percepção Espiritual para identificá-la, poderá rolar com vantagem.
 
@@ -516,18 +498,18 @@ Pré-Requisito: característica de classe "Shunpo".
 
 - Shunpo Suprimido: Após utilizar seu Shunpo, você pode, com sua ação bônus, você pode tentar se Esconder, permitindo que você faça um Teste de Furtividade ou um Teste de Suprimir Reiatsu, mesmo que não haja onde se esconder das criaturas, esse teste irá contar como uma furtividade completa, mas sem precisar fazer os dois testes. As criaturas devem fazer um Teste de Percepção ou Teste de Percepção Espiritual resistido ao seu teste.
 
-Pré-Requisito: Talento de Especialista "Mobilidade Fantasma".
+Pré-Requisito: Talento de Tokubetsu "Mobilidade Fantasma".
 
-- Versatilidade de Características: Você pode escolher uma nova característica de divisão (Cap 6: Sereitei), exceto a segunda característica da sua própria divisão. Você pode escolher este Talento de Especialista novamente, mas não pode selecionar características das mesmas divisões que você já possui.
-- Versatilidade de Habilidades: Você pode escolher um Talento de qualquer outra classe de Shinigami (Ex. Talentos de Lutador), desde que atenda aos requisitos. Você pode escolher este Talento novamente, mas só poderá ter até dois Talentos de cada classe.
+- Versatilidade de Características: Você pode escolher uma nova característica de divisão (Cap 6: Sereitei), exceto a segunda característica da sua própria divisão. Você pode escolher este Talento de Tokubetsu novamente, mas não pode selecionar características das mesmas divisões que você já possui.
+- Versatilidade de Habilidades: Você pode escolher um Talento de qualquer outra classe de Shinigami (Ex. Talentos de Hakuda), desde que atenda aos requisitos. Você pode escolher este Talento novamente, mas só poderá ter até dois Talentos de cada classe.
 
-Alguns Talentos possuem requisitos específicos, como Impacto Elemental da classe Combatente, que normalmente exige a característica Impacto de Reiatsu. Se você não atender a esse requisito diretamente, ainda pode adquiri-lo ao escolhendo o Talento Impacto de Reiatsu da classe Especialista.
+Alguns Talentos possuem requisitos específicos, como Impacto Elemental da classe Zanjutsu, que normalmente exige a característica Impacto de Reiatsu. Se você não atender a esse requisito diretamente, ainda pode adquiri-lo ao escolhendo o Talento Impacto de Reiatsu da classe Tokubetsu.
 
 Essa regra se aplica a qualquer Talento cujo requisito tenha o mesmo nome de outro Talento disponível. Se você possuir a versão equivalente de outra classe, ela contará como requisito para a seleção do Talento desejado.
 
-Além disso, se o Talento exigir um certo nível de classe específica, esse nível será considerado como pertencente à classe Especialista.
+Além disso, se o Talento exigir um certo nível de classe específica, esse nível será considerado como pertencente à classe Tokubetsu.
 
-- Versatilidade Marcial: Você pode utilizar técnicas de Hakuda, escolha duas da lista de Técnicas de Hakuda do capítulo 11. Você pode usá-las com Força ou Destreza, à sua escolha. Se a técnica exigir um Teste de Resistência da criatura, a dificuldade é igual a 8 + seu bônus de proficiência + seu modificador de Força ou Destreza. Pré-Requisito: Talento de Especialista "Perito em Hakuda".
+- Versatilidade Marcial: Você pode utilizar técnicas de Hakuda, escolha duas da lista de Técnicas de Hakuda do capítulo 11. Você pode usá-las com Força ou Destreza, à sua escolha. Se a técnica exigir um Teste de Resistência da criatura, a dificuldade é igual a 8 + seu bônus de proficiência + seu modificador de Força ou Destreza. Pré-Requisito: Talento de Tokubetsu "Perito em Hakuda".
 - Visão Aguçada: Quando você estiver investigando um ambiente ou procurando por pistas, pode gastar 4 pontos de reiatsu para ter vantagem em um teste de Percepção ou Investigação.
 
 ### Shunpo
@@ -536,13 +518,15 @@ A partir do 2° nível, você ganha a habilidade de utilizar uma técnica chamad
 
 Quando utilizar essa técnica você ignora terreno difícil. Você não pode usar o Shunpo para atravessar barreiras sólidas. Shunpo e suas variantes seguem as regras de Deslocamento Instânteno do Capítulo Jogando na sessão de Combate.
 
-### Subclasse de Especialista
+### Subclasse de Tokubetsu
 
-A partir do 3° nível, o Especialista pode escolher uma Subclasse, mas não possui subclasses próprias. Em vez disso, você deve selecionar uma Subclasse de outra classe, como a Colosso do Combatente. Algumas Subclasses, conforme descrito ao lado, não estão disponíveis para escolha.
+A partir do 3° nível, o Tokubetsu pode escolher uma Subclasse, mas não possui subclasses próprias. Em vez disso, você deve selecionar uma Subclasse de outra classe, como a Colosso do Zanjutsu. Algumas Subclasses, conforme descrito ao lado, não estão disponíveis para escolha.
 
-Nos níveis em que você recebe características da Subclasse primária, você as adquire normalmente. No entanto, é possível escolher uma segunda Subclasse em níveis em que não receberia características da Subclasse primária. Para isso, você deve abdicar da escolha de um Talento de Especialista em troca da característica de uma outra Subclasse. Para escolher uma segunda Subclasse, você deve atender ao nível mínimo exigido da característica ou estar em um nível superior. Por exemplo, para selecionar a Forja Espiritual, é necessário estar no 3° nível de classe. Quando alcançar um nível que conceda uma nova característica da segunda Subclasse, você deve abdicar novamente do Talento de Especialista para adquiri-la. Você adquire todas as habilidades do nível da Subclasse que está escolhendo, caso ela possua mais de uma característica nesse nível.
+No 5° nível, você recebe Ataque Extra (dois ataques com a ação Atacar) vindo da subclasse de combate que escolheu, Zanjutsu ou Hakuda. Não existe a opção de obtê-lo por Talento.
 
-Você deve sempre progredir na segunda Subclasse seguindo a progressão indicada, sem pular etapas. Por exemplo, na Forja Espiritual, ao atingir o 3° nível, você adquire Shikai e Poder da Alma, e no 6° nível recebe Vínculo Espiritual. Para obter a habilidade de 10° nível, Bankai, é necessário já ter adquirido o Vínculo Espiritual do 6° nível. Caso tenha habilidades idênticas em duas Subclasses, como Shikai, você escolhe qual delas utilizar. Se uma Subclasse que não seja sua primária conceder acesso a técnicas, ou Shikai e Bankai, utilize o atributo Inteligência para realizar ataques e calcular a Classe de Dificuldade. Acerto para as habilidades e técnicas de Subclasse = d20 + bônus de proficiência + seu atributo de Inteligência Classe de Dificuldade para suas habilidades e técnicas de Subclasse = 8 + bônus de proficiência + seu atributo de Inteligência
+Nos níveis em que você recebe características da Subclasse primária, você as adquire normalmente. No entanto, é possível escolher uma segunda Subclasse em níveis em que não receberia características da Subclasse primária. Para isso, você deve abdicar da escolha de um Talento de Tokubetsu em troca da característica de uma outra Subclasse. Para escolher uma segunda Subclasse, você deve atender ao nível mínimo exigido da característica ou estar em um nível superior. Por exemplo, para selecionar a Forja Espiritual, é necessário estar no 3° nível de classe. Quando alcançar um nível que conceda uma nova característica da segunda Subclasse, você deve abdicar novamente do Talento de Tokubetsu para adquiri-la. Você adquire todas as habilidades do nível da Subclasse que está escolhendo, caso ela possua mais de uma característica nesse nível.
+
+Você deve sempre progredir na segunda Subclasse seguindo a progressão indicada, sem pular etapas. Por exemplo, na Forja Espiritual, ao atingir o 3° nível, você adquire Shikai e Poder da Alma, e no 6° nível recebe Vínculo Espiritual. Para obter a habilidade de 10° nível, Bankai, é necessário já ter adquirido o Vínculo Espiritual do 6° nível. Caso tenha habilidades idênticas em duas Subclasses, como Shikai, você escolhe qual delas utilizar. Se uma Subclasse que não seja sua primária conceder acesso a técnicas, ou Shikai e Bankai, utilize o atributo Mente para realizar ataques e calcular a Classe de Dificuldade. Acerto para as habilidades e técnicas de Subclasse = d20 + bônus de proficiência + seu atributo de Mente Classe de Dificuldade para suas habilidades e técnicas de Subclasse = 8 + bônus de proficiência + seu atributo de Mente
 
 ### Aprimoramento da Essência
 
@@ -550,52 +534,52 @@ No 4° nível e novamente no 8°, 12°, 16° e 19° nível, você pode aumentar 
 
 ## Subclasses
 
-Algumas subclasses são exclusivas de determinadas classes e não podem ser acessadas pelo Especialista. Apenas as subclasses listadas na tabela podem ser escolhidas por ele. Além disso, essas subclasses exigem a escolha de um Talento de Especialista como requisito, mas essa exigência se aplica apenas às subclasses secundárias. A subclasse primária não possui requisitos.
+Algumas subclasses são exclusivas de determinadas classes e não podem ser acessadas pelo Tokubetsu. Apenas as subclasses listadas na tabela podem ser escolhidas por ele. Além disso, essas subclasses exigem a escolha de um Talento de Tokubetsu como requisito, mas essa exigência se aplica apenas às subclasses secundárias. A subclasse primária não possui requisitos.
 
 | Classe | Subclasse | reque. de Talento |
 |---|---|---|
-| Combatente | Forja Espiritual | Impacto de Reiatsu |
-| Combatente | Colosso | Impacto de Reiatsu |
-| Lutador | Híbrido | Perito em Hakuda |
-| Lutador | Caminho do Guerreiro | Perito em Hakuda |
-| Mestre Kido | Bibliotecário | Domínio de Kido |
-| Mestre Kido | Lâmina Espiritual | Domínio de Kido |
-| Suporte | Ajudante | Comando |
+| Zanjutsu | Forja Espiritual | Impacto de Reiatsu |
+| Zanjutsu | Colosso | Impacto de Reiatsu |
+| Hakuda | Híbrido | Perito em Hakuda |
+| Hakuda | Caminho do Guerreiro | Perito em Hakuda |
+| Kidōshū | Bibliotecário | Domínio de Kido |
+| Kidōshū | Lâmina Espiritual | Domínio de Kido |
+| Kyūgo | Ajudante | Comando |
 
 ### Zanpakutou e Regras de Liberação
 
 Se você possuir duas habilidades idênticas, como Bankai e Shikai, isso não significa que pode ter mais de uma Zanpakutou, mesmo que sejam de tipos diferentes. Sua Zanpakutou é única e sempre corresponde àquela escolhida em sua subclasse primária.
 
-Além disso, é importante observar o tipo de ação necessária para liberar sua Shikai ou Bankai. Algumas classes conseguem ativá-las com uma Ação Bônus, enquanto outras exigem uma Ação completa. Independentemente da classe, o atributo utilizado para essas liberações continua sendo a Inteligência, que é o atributo chave do Especialista. Nível bÔNUS DE Proficiência KIDO CONHECIDOS CLASSIFICAÇÃO DO KIDO hAKUDA Características
+Além disso, é importante observar o tipo de ação necessária para liberar sua Shikai ou Bankai. Algumas classes conseguem ativá-las com uma Ação Bônus, enquanto outras exigem uma Ação completa. Independentemente da classe, o atributo utilizado para essas liberações continua sendo a Mente, que é o atributo chave do Tokubetsu. Nível bÔNUS DE Proficiência KIDO CONHECIDOS CLASSIFICAÇÃO DO KIDO hAKUDA Características
 
 | Nível | Proficiência | Col. 1 | Col. 2 | Características |
 |---|---|---|---|---|
 | 1° | +2 | 1 | D | 1d6 Zanpakutou, Kido, Hakuda |
-| 2° | +2 | 2 | D | 1d6 Shunpo Aprimorado, Talento de Lutador |
+| 2° | +2 | 2 | D | 1d6 Shunpo Aprimorado, Talento de Hakuda |
 | 3° | +2 | 3 | D | 1d6 Caminhos D... (Sub Classe), Técnicas de Hakuda, Talento... |
 | 4° | +2 | 4 | D | 1d6 Aprimoramento da Essência |
-| 5° | +3 | 4 | D | 1d8 Talento de Lutador |
-| 6° | +3 | 5 | C | 1d8 Talento de Lutador |
-| 7° | +3 | 5 | C | 1d8 Caminhos Distintos (Sub Classe), Talento de Lutador |
+| 5° | +3 | 4 | D | 1d8 Talento de Hakuda |
+| 6° | +3 | 5 | C | 1d8 Talento de Hakuda |
+| 7° | +3 | 5 | C | 1d8 Caminhos Distintos (Sub Classe), Talento de Hakuda |
 | 8° | +3 | 6 | C | 1d8 Aprimoramento da Essência |
-| 9° | +4 | 6 | C | 1d10 Talento de Lutador |
-| 10° | +4 | 7 | C | 1d10 Talento de Lutador |
-| 11° | +4 | 7 | B | 1d10 Talento de Lutador |
+| 9° | +4 | 6 | C | 1d10 Talento de Hakuda |
+| 10° | +4 | 7 | C | 1d10 Talento de Hakuda |
+| 11° | +4 | 7 | B | 1d10 Talento de Hakuda |
 | 12° | +4 | 8 | B | 1d10 Aprimoramento da Essência |
-| 13° | +5 | 8 | B | 1d12 Caminhos Distintos (SubClasse), Talento de Lutador |
-| 14° | +5 | 9 | B | 1d12 Talento de Lutador |
-| 15° | +5 | 9 | B | 1d12 Talento de Lutador |
+| 13° | +5 | 8 | B | 1d12 Caminhos Distintos (SubClasse), Talento de Hakuda |
+| 14° | +5 | 9 | B | 1d12 Talento de Hakuda |
+| 15° | +5 | 9 | B | 1d12 Talento de Hakuda |
 | 16° | +5 | 10 | A | 2d6 Aprimoramento da Essência |
-| 17° | +6 | 10 | A | 2d6 Caminhos Distintos (SubClasse), Talento de Lutador |
-| 18° | +6 | 11 | A | 2d6 Talento de Lutador |
+| 17° | +6 | 10 | A | 2d6 Caminhos Distintos (SubClasse), Talento de Hakuda |
+| 18° | +6 | 11 | A | 2d6 Talento de Hakuda |
 | 19° | +6 | 11 | A | 2d6 Aprimoramento da Essência |
-| 20° | +6 | 12 | A | 2d8 Talento de Lutador |
+| 20° | +6 | 12 | A | 2d8 Talento de Hakuda |
 
 ## Tabela de Classe
 
-## Lutador
+## Hakuda
 
-OLutador é a classe especializada em Hakuda, um dos estilos de combate dos Shinigamis, sendo o estilo de combate corpo-a-corpo desarmadas. O Lutador é o melhor no que faz, seja combinando o combate de Hakuda com sua Zanpakutou ou abrindo mão desse vínculo para se tornar ainda mais proficiente no uso do Hakuda. Essa classe foi inspirada principalmente em dois personagens: Yoruichi Shihoin, que rompeu seu vínculo com a Zanpakutou para se concentrar exclusivamente no combate com Hakuda, aprimorando-se com a técnica Shunko, e Sui Feng, que também utiliza o Shunko em combate, mas sem abrir mão de sua Zanpakutou, equilibrando os dois estilos. Além disso, outros Shinigamis que utilizam Hakuda, também serviram de inspiração, como Kensei Muguruma e Lisa Yadomaru.
+OHakuda é a classe especializada em Hakuda, um dos estilos de combate dos Shinigamis, sendo o estilo de combate corpo-a-corpo desarmadas. O Hakuda é o melhor no que faz, seja combinando o combate de Hakuda com sua Zanpakutou ou abrindo mão desse vínculo para se tornar ainda mais proficiente no uso do Hakuda. Essa classe foi inspirada principalmente em dois personagens: Yoruichi Shihoin, que rompeu seu vínculo com a Zanpakutou para se concentrar exclusivamente no combate com Hakuda, aprimorando-se com a técnica Shunko, e Sui Feng, que também utiliza o Shunko em combate, mas sem abrir mão de sua Zanpakutou, equilibrando os dois estilos. Além disso, outros Shinigamis que utilizam Hakuda, também serviram de inspiração, como Kensei Muguruma e Lisa Yadomaru.
 
 ### Traços de Classe
 
@@ -603,15 +587,17 @@ Pontos de Vida: No primeiro nível, seus pontos de vida são 26 + seu atributo d
 
 Pontos de reaitsu: No primeiro nível, seus pontos de reiatsu são 22 + seu atributo de Espírito. Nos próximos níveis, são 6 + seu atributo de Espírito.
 
-Perícias: Escolha 4 + metade do seu atributo de Inteligência, arredondado para baixo, para ser proficiênte.
+Perícias: Escolha 4 + metade do seu atributo de Mente, arredondado para baixo, para ser proficiênte.
 
-Proficiência em Testes de Resistência: Destreza e Sabedoria.
+Proficiência em Testes de Resistência: Destreza e Mente.
+
+Classe de Resistência: plena (10 + bônus de proficiência + Constituição + Destreza).
 
 ### Construção Rápida
 
-Ao escolher a classe de Lutador, você deve focar no atributo de Força ou Destreza como atributo principal, e depois em Sabedoria, pois este é o atributo-chave da classe para utilizar Kido e técnicas de Shunko e Zanpakutou. Em seguida, dê prioridade ao atributo de Constituição e, por último, à Inteligência.
+Ao escolher a classe de Hakuda, você deve focar no atributo de Força ou Destreza como atributo principal, e depois em Mente, pois este é o atributo-chave da classe para utilizar Kido e técnicas de Shunko e Zanpakutou. Em seguida, dê prioridade ao atributo de Constituição e, por último, à Mente.
 
-FOR DES CON INT SAB ESP Recomendação de distribuição de atributos nível 1: Essência recomendada: Mestre do punho CR 10 + Proficiência + Metade do Atributo de Destreza
+FOR DES CON MEN ESP Recomendação de distribuição de atributos nível 1: Essência recomendada: Mestre do Punho. CR plena: 10 + Proficiência + Constituição + Destreza.
 
 ### Zanpakutou
 
@@ -621,7 +607,7 @@ Quando você se torna um shinigami da Gotei 13, você recebe uma Asauchi. Você 
 
 Você possui a capacidade de conjurar os dois tipos de Kido, que é a forma de combate dos shinigamis baseada na conjuração de magias a partir da reiatsu do shinigami, sendo elas Bakudou e Hadou.
 
-Você tem um número de escolhas conforme descrito na tabela de classe chamada “Conhecidos”, onde você pode consultar o Capítulo 11 e selecionar um determinado número de Kido da classificação a que você tem acesso ou menor, conforme listado na tabela de classe na categoria “Classificação do Kido”. Por exemplo, no primeiro nível de classe, você pode escolher 1 Kido da lista de Bakudou e Hadou de sua preferência, mas eles devem ser de Classificação D como indicado na tabela de Classe. Para conjurar e determinar a classe de dificuldade nos testes de seus Kido, o atributo a ser utilizado é Sabedoria. Acerto para seus Kido = d20 + bônus de proficiência + seu atributo de Sabedoria Classe de Dificuldade para seus Kido = 8 + bônus de proficiência + seu atributo de Sabedoria
+Você tem um número de escolhas conforme descrito na tabela de classe chamada “Conhecidos”, onde você pode consultar o Capítulo 11 e selecionar um determinado número de Kido da classificação a que você tem acesso ou menor, conforme listado na tabela de classe na categoria “Classificação do Kido”. Por exemplo, no primeiro nível de classe, você pode escolher 1 Kido da lista de Bakudou e Hadou de sua preferência, mas eles devem ser de Classificação D como indicado na tabela de Classe. Para conjurar e determinar a classe de dificuldade nos testes de seus Kido, o atributo a ser utilizado é Mente. Acerto para seus Kido = d20 + bônus de proficiência + seu atributo de Mente Classe de Dificuldade para seus Kido = 8 + bônus de proficiência + seu atributo de Mente
 
 ### Hakuda
 
@@ -657,57 +643,57 @@ Após utilizar seu Shunpo, você pode, com sua ação bônus, você pode tentar 
 
 Quando você utilizar o Shunpo Aprimorado, pode usar sua ação bônus para dobrar a distância do Shunpo. Por exemplo, se você tiver 6 metros de deslocamento e usar o Shunpo juntamente com a ação bônus, poderá se deslocar instântaneamente 12 metros, mas ainda assim ficará com 0 de deslocamento.
 
-### Talentos de Lutador
+### Talentos de Hakuda
 
-A partir do 2° nível você pode escolher talentos de Lutador até o 20° nível de classe. No entanto, nos níveis em que recebe um “Aprimoramento da Essência”, não poderá escolher uma novo Talento de Lutador.
+A partir do 2° nível você pode escolher talentos de Hakuda até o 20° nível de classe. No entanto, nos níveis em que recebe um “Aprimoramento da Essência”, não poderá escolher uma novo Talento de Hakuda.
 
-Você pode escolher apenas um talento de Lutador por vez. E alguns Talentos têm requisitos, que devem ser atendidos para que possam ser escolhidas.
+Você pode escolher apenas um talento de Hakuda por vez. E alguns Talentos têm requisitos, que devem ser atendidos para que possam ser escolhidas.
 
 - Ataque Extra: Você usar a ação “Ataque” no seu turno, pode realizar dois ataques em vez de um.
 
-Pré-Requisito: 5° nível de Lutador.
+Pré-Requisito: 5° nível de Hakuda.
 
 - Ataque de Oportunidade: Quando uma criatura sair da sua área de combate desarmado (1,5 m de você), seja se deslocando normalmente ou por meio de um deslocamento instantâneo, você pode usar sua Reação para realizar um ataque desarmado contra ela. Esse ataque consiste em um único golpe e não na ação Atacar.
-- Ataque Preciso: Você adota um estilo de combate focado na precisão, atingindo apenas pontos estratégicos do adversário. Você pode gastar sua ação bônus para adicionar seu atributo de Sabedoria ao dano de todos os ataques que fizer nesse turno.
-- Barreira Espiritual: Você infunde reiatsu em sua pele, tornando-a muito resistente. Você se torna resistente a danos físicos (Concussão, Cortante e Perfurante). Pré-Requisito: 13° nível de Lutador
+- Ataque Preciso: Você adota um estilo de combate focado na precisão, atingindo apenas pontos estratégicos do adversário. Você pode gastar sua ação bônus para adicionar seu atributo de Mente ao dano de todos os ataques que fizer nesse turno.
+- Barreira Espiritual: Você infunde reiatsu em sua pele, tornando-a muito resistente. Você se torna resistente a danos físicos (Concussão, Cortante e Perfurante). Pré-Requisito: 13° nível de Hakuda
 - Contra-Ataque: Quando você utilizar “Bloqueio” da característica de 1° nível e for atacado com um ataque corpo a corpo, você pode gastar 5 pontos de reiatsu para realizar um ataque corpo a corpo desarmado contra a criatura que o atacou. Essa habilidade não tem limite mas lembre-se, é apenas um ataque e não a ação “Atacar”.
 
 Pré-Requisito: característica de classe “Hakuda”.
 
-- Cura Corporal: No começo do seu turno você consegue utilizar kidou curativos em você mesmo, você pode utilizar 5 pontos de reiatsu para curar 3d8 + seu atributo de Sabedoria. Você pode intensificar essa cura, utilizando 3 pontos de reiatsu para adicionar 1d8 adicional. Você só pode utilizar, no máximo, um adicional igual ao seu atributo de Sabedoria.
+- Cura Corporal: No começo do seu turno você consegue utilizar kidou curativos em você mesmo, você pode utilizar 5 pontos de reiatsu para curar 3d8 + seu atributo de Mente. Você pode intensificar essa cura, utilizando 3 pontos de reiatsu para adicionar 1d8 adicional. Você só pode utilizar, no máximo, um adicional igual ao seu atributo de Mente.
 - Desvio Instintivo: Usando sua reação, você pode desviar o dano de um ataque corpo a corpo que o acertaria. Faça uma jogada de ataque; se o resultado for maior que a jogada de ataque do inimigo, o dano é reduzido para 0.
 - Domínio do Céu: Caminhar no Céu não consome mais pontos de reiatsu e deixa de ser considerado terreno difícil.
 - Estilo Veloz: Você adota um estilo de luta ágil, normalmente usado para capturar inimigos em fuga. Você pode usar sua ação bônus para aumentar seu deslocamento em 6 metros até o final do turno.
 - Fluxo Veloz: Suas perícias Preparo Físico e Velocidade agora utilizam o atributo Destreza em vez de Força.
 - Golpe Triplo: Quando você utiliza a ação “Atacar”, agora você realiza três ataques.
 
-Pré-Requisito: 11° nível de Lutador e habilidade de Lutador “Ataque Extra”.
+Pré-Requisito: 11° nível de Hakuda e habilidade de Hakuda “Ataque Extra”.
 
 - Golpe Superior: Quando você utiliza a ação “Atacar”, agora você realiza quatro ataques.
 
-Pré-Requisito: 15° nível de Lutador e habilidade de Lutador “Golpe Triplo”.
+Pré-Requisito: 15° nível de Hakuda e habilidade de Hakuda “Golpe Triplo”.
 
 - Hakuda Crescente: Para cada ataque corpo-a-corpo desarmado (Hakuda) que você errar, você adiciona +2 no seu acerto com Hakuda, até que você acerte um ataque, resetando os acúmulos.
 
-Pré-Requisito: 5° nível de Lutador.
+Pré-Requisito: 5° nível de Hakuda.
 
 - Instinto Assassino: No primeiro turno do combate, seus ataques têm vantagem contra inimigos que ainda não agiram.
 - Investida Mortal: Se atacar um inimigo que ainda não agiu no combate, seus ataques causam dano dobrado, mesmo que sejam crítico.
 
-Pré-Requisito: 13° nível de Lutador e habilidade de Lutador “Instinto Assassino”.
+Pré-Requisito: 13° nível de Hakuda e habilidade de Hakuda “Instinto Assassino”.
 
 - Marcial: Você adquiri duas técnicas adicionais de Hakuda. Essa habilidade pode ser escolhida mais vezes.
-- Pré-Requisito: 3° nível de Lutador.
+- Pré-Requisito: 3° nível de Hakuda.
 - Pressão Constante: Toda vez que você realizar um ataque desarmado corpo a corpo, role 1d10. Se o resultado for 1, você pode realizar um novo golpe (um único ataque desarmado). Você pode escolher essa habilidade novamente em um próximo nível, reduzindo o dado para 1d8 e, novamente para 1d6.
 - Primeiro Movimento: Você pode gastar 2 pontos de reiatsu para agir primeiro na rodada, independentemente da iniciativa, você deve informar que vai utilizar essa habilidade assim que o Mestre falar que uma nova rodada começou. Você pode usar essa habilidade um número de vezes igual ao seu bônus de proficiência por combate.
 - Recalibração: Quando você errar um ataque, pode gastar 2 pontos de reiatsu para adicionar 1d4 à rolagem de ataque (Acerto).Você pode utilizar essa habilidade uma vez no turno.
 - Reflexos Ho-Ho: Sua velocidade é muito maior do que a de um shinigami comum. Quando for alvo de um ataque que exige um Teste de Resistência de Destreza, você utiliza seu Shunpo para se tornar muito mais difícil de ser acertado. Se passar no teste de resistência, não sofre nenhum dano; se falhar, sofre apenas metade do dano.
 - Ripostar: Você aprimorou ainda mais sua habilidade de contra-ataque. Sempre que for acertado por um ataque corpo a corpo, poderá contra-atacar a criatura sem gastar um posto de reiatsu, desde que o Bloqueio esteja ativo.
 
-Pré-Requisito: 9° nível de Lutador e habilidade de Lutador “Contra-Ataque”.
+Pré-Requisito: 9° nível de Hakuda e habilidade de Hakuda “Contra-Ataque”.
 
 - Ruptura da Defesa: Você ignora uma quantidade de redução de dano (RD) da criatura igual ao seu nível de personagem.
-- Sede de Sangue: Quando você acerta um ataque crítico, ganha pontos de vida temporários iguais ao seu nível de personagem + metade do seu atributo de Sabedoria.
+- Sede de Sangue: Quando você acerta um ataque crítico, ganha pontos de vida temporários iguais ao seu nível de personagem + metade do seu atributo de Mente.
 - Shunpo Defensivo: Quando você usa um tipo de Shunpo, recebe um bônus na sua CR igual ao seu bônus de proficiência contra o primeiro ataque feito contra você até o começo do seu próximo turno.
 - Shunpo Reativo: Quando você for alvo de um ataque, você pode usar sua reação para ativar seu Shunpo para ficar quase intangível, reduzindo o dano que você sofreria pela metade.
 
@@ -717,7 +703,7 @@ A partir do 3° nível, você pode utilizar técnicas de Hakuda. Escolha três t
 
 ### Caminhos Distintos (sub-classe)
 
-A partir do 3° nível,você deve escolher um dos caminhos de um Lutador. O caminho escolhido concederá características no 3°, 6°, 10°, 15° e 20° nível de personagem.
+A partir do 3° nível,você deve escolher um dos caminhos de um Hakuda. O caminho escolhido concederá características no 3°, 6°, 10°, 15° e 20° nível de personagem.
 
 ### Aprimoramento da Essência
 
@@ -730,6 +716,18 @@ O Shunko é uma técnica criada por Yoruichi Shihoin, uma ex-capitã do Gotei 13
 O Shunko utilizado por Yoruichi é de Eletricidade, mas existem outras variações de elementos criadas por outros usuários. Sui Feng desenvolveu sua própria variação do Shunko, transformando a reiatsu em Vento, e o irmão mais novo de Yoruichi, Yushiro Shihoin, criou também sua própria variação, o Shunko de Fogo.
 
 No Soul Society RPG, você pode escolher um dos três tipos de Shunko: Eletricidade, Fogo ou Vento, que são os apresentados em Bleach.
+
+### Dano do Shunko
+
+O dano de Energia do Shunko por golpe segue esta tabela.
+
+| Nível | 3–5 | 6–9 | 10–19 | 20 |
+|---|---|---|---|---|
+| Dano de Energia do Shunko por golpe | 1d10 | 2d10 | 6d10 (os 2d10 anteriores +4d10) | 4d10 |
+
+O crítico 18–20 da habilidade de 20° nível continua.
+
+Exemplo: um Hakuda de 8° nível causa 2d10 de Energia extra por golpe com o Shunko ativo. No 10° nível, o mesmo golpe passa a causar 6d10.
 
 ## Caminhos Distintos
 
@@ -749,7 +747,7 @@ Quando você utilizar Bloqueio da característica de primeiro nível “Hakuda�
 
 ### Continuação Aprimorada
 
-Quando você utilizar Continuação da característica de primeiro nível “Hakuda”, você realiza dois ataques com sua ação bônus.
+Quando você utilizar Continuação da característica de primeiro nível “Hakuda”, você realiza um ataque desarmado com sua ação bônus antes do 10° nível e dois ataques com sua ação bônus a partir do 10° nível.
 
 ### Golpe Poderoso
 
@@ -763,7 +761,7 @@ Com o Shunko escolhido, você recebe uma habilidade primária associada a ele, q
 
 Como o Caminho do Shunko se especializa apenas no Shunko, você também recebe melhorias exclusivas no seu Shunko, conforme descrito no próprio Shunko escolhido como “Exclusivo do Caminho do Shunko”.
 
-Acerto para as técnicas do Shunko = d20 + bônus de proficiência + seu atributo de Sabedoria Classe de Dificuldade para suas técnicas do Shunko = 8 + bônus de proficiência + seu atributo de Sabedoria
+Acerto para as técnicas do Shunko = d20 + bônus de proficiência + seu atributo de Mente Classe de Dificuldade para suas técnicas do Shunko = 8 + bônus de proficiência + seu atributo de Mente
 
 ### Shunpo Infinito
 
@@ -793,7 +791,7 @@ Você pode escolher uma Zanpakutou da lista de Zanpakutous do tipo Combate ou Ki
 
 Para liberar sua Shikai, você deve usar sua ação bônus em seu turno e ser capaz de verbalizar o nome da Zanpakutou, os custos de liberação estão descrito na Zanpakutou. Seus atributos para acerto e dano com ela na forma Shikai permanecem os mesmos da forma Asauchi, mas a margem de crítico deixa de ser aprimorada, a menos que uma habilidade da Zanpakutou fale o contrário. Para as técnicas da Zanpakutou, o acerto e a classe de dificuldade são diferentes, conforme descrito abaixo:
 
-Acerto para as técnicas da Zanpakutou = d20 + bônus de proficiência + seu atributo de Sabedoria Classe de Dificuldade para suas técnicas com a Zanpakutou = 8 + bônus de proficiência + seu atributo de Sabedoria
+Acerto para as técnicas da Zanpakutou = d20 + bônus de proficiência + seu atributo de Mente Classe de Dificuldade para suas técnicas com a Zanpakutou = 8 + bônus de proficiência + seu atributo de Mente
 
 ### Shunko
 
@@ -801,7 +799,7 @@ A partir do 6° nível, você consegue revestir seu corpo com reiatsu, mais espe
 
 Com o Shunko escolhido, você recebe uma habilidade primária associada a ele, que pode ser ativada mesmo sem o Shunko estar ativo. Além disso, você adquire a capacidade da Primeira Liberação e, ao atingir o 17º nível de personagem, ganha acesso à Segunda Liberação do Shunko escolhido.
 
-Acerto para as técnicas do Shunko = d20 + bônus de proficiência + seu atributo de Sabedoria Classe de Dificuldade para suas técnicas do Shunko = 8 + bônus de proficiência + seu atributo de Sabedoria
+Acerto para as técnicas do Shunko = d20 + bônus de proficiência + seu atributo de Mente Classe de Dificuldade para suas técnicas do Shunko = 8 + bônus de proficiência + seu atributo de Mente
 
 ### Liberações Diferentes
 
@@ -833,7 +831,7 @@ Você pode escolher uma Zanpakutou da lista de Zanpakutous do tipo Combate ou El
 
 Para liberar sua Shikai, você deve usar sua ação bônus em seu turno e ser capaz de verbalizar o nome da Zanpakutou, os custos de liberação estão descrito na Zanpakutou. Seus atributos para acerto e dano com ela na forma Shikai permanecem os mesmos da forma Asauchi, mas a margem de crítico deixa de ser aprimorada, a menos que uma habilidade da Zanpakutou fale o contrário. Para as técnicas da Zanpakutou, o acerto e a classe de dificuldade são diferentes, conforme descrito abaixo:
 
-Acerto para as técnicas da Zanpakutou = d20 + bônus de proficiência + seu atributo de Sabedoria Classe de Dificuldade para suas técnicas com a Zanpakutou = 8 + bônus de proficiência + seu atributo de Sabedoria
+Acerto para as técnicas da Zanpakutou = d20 + bônus de proficiência + seu atributo de Mente Classe de Dificuldade para suas técnicas com a Zanpakutou = 8 + bônus de proficiência + seu atributo de Mente
 
 ### Ataque Livre
 
@@ -873,7 +871,7 @@ No 6° nível, você substitui a característica “Shunpo Infinito” por esta 
 
 ## Lista de Shunko
 
-Quando você obter acesso ao Shunko, poderá escolher um tipo de Shunko da lista. Escolha com sabedoria, pois cada Shunko possui habilidades e técnicas próprias. Além disso, cada Shunko tem um custo para ser liberado e um custo para se manter ativo, conforme descrito em cada tipo. Elemento Primeira Liberação Segunda Liberação Elétrico Lightining Shunko Shunko Chohengen Fogo Flame Shunko Kaji Shunko Vento Storm Shunko Mukyo Shunko
+Quando você obter acesso ao Shunko, poderá escolher um tipo de Shunko da lista. Escolha com mente, pois cada Shunko possui habilidades e técnicas próprias. Além disso, cada Shunko tem um custo para ser liberado e um custo para se manter ativo, conforme descrito em cada tipo. Elemento Primeira Liberação Segunda Liberação Elétrico Lightining Shunko Shunko Chohengen Fogo Flame Shunko Kaji Shunko Vento Storm Shunko Mukyo Shunko
 
 ### Traje Especial
 
@@ -941,9 +939,9 @@ A criatura atingida por pelo menos um desses ataques deve realizar um Teste de R
 
 ### Técnica: Shunkou Bakuen Muso
 
-A partir do 13° nível de personagem e quando estiver utilizando o Flame Shunko, com sua ação e 10 pontos de reiatsu, você pode intensificar as chamas em suas costas, criando esferas de fogo e arremessa em uma criatura. Faça um ataque a distância com técnica de Shunko contra uma criatura a até 18 metros, se acertar você causa 8d10 + seu atributo de Sabedoria de dano de Fogo na criatura. A criatura que foi acertada por essa técnica deve realizar um Teste de Resistência de Constituição para não receber a condição “Queimado”.
+A partir do 13° nível de personagem e quando estiver utilizando o Flame Shunko, com sua ação e 10 pontos de reiatsu, você pode intensificar as chamas em suas costas, criando esferas de fogo e arremessa em uma criatura. Faça um ataque a distância com técnica de Shunko contra uma criatura a até 18 metros, se acertar você causa 8d10 + seu atributo de Mente de dano de Fogo na criatura. A criatura que foi acertada por essa técnica deve realizar um Teste de Resistência de Constituição para não receber a condição “Queimado”.
 
-Exclusivo do Caminho do Shunko: Você pode gastar mais 3 pontos de Reiatsu para adicionar 1d10 de dano extra. Você pode intensificar esta técnica com esse dano adicional até um máximo de dados igual ao seu atributo de Sabedoria.
+Exclusivo do Caminho do Shunko: Você pode gastar mais 3 pontos de Reiatsu para adicionar 1d10 de dano extra. Você pode intensificar esta técnica com esse dano adicional até um máximo de dados igual ao seu atributo de Mente.
 
 ### Segunda Liberação: Kaji Shunko
 
@@ -951,9 +949,9 @@ A segunda liberação do Shunko de Fogo é chamada de Kaji Shunko. Nessa forma, 
 
 Usando sua ação e 35 pontos de Reiatsu, você pode ativar o Kaji Shunko. Para manter essa forma, deve gastar 8 pontos de Reiatsu a cada turno após a ativação. Você pode utilizar todas as técnicas do Flame Shunko, e se a técnica causar dano, ela causará 2 dados de dano a mais. Todos os seus ataques corpo a corpo desarmados ativam a habilidade “Explosão Ígnea” sem custo de Reiatsu, causando 2d6 + 5 de dano de Fogo. Se você utilizar a “Explosão Ígnea” diretamente, causará 4d6 + 10 de dano de Fogo, mas não causará o 2d6 + 5 da “Explosão Ígnea” passiva. Todo ataque desarmado seu que acertar uma criatura faz com que ela receba a condição “Queimado” automaticamente.
 
-Você recebe deslocamento de voo igual ao seu deslocamento normal e, se uma criatura acertar você com um ataque corpo a corpo, ela sofrerá 2d6 + metade do seu modificador de Sabedoria, arredondado para baixo, em dano de Fogo por entrar em contato com você.
+Você recebe deslocamento de voo igual ao seu deslocamento normal e, se uma criatura acertar você com um ataque corpo a corpo, ela sofrerá 2d6 + metade do seu modificador de Mente, arredondado para baixo, em dano de Fogo por entrar em contato com você.
 
-Exclusivo do Caminho do Shunko: Enquanto uma criatura estiver com a condição “Queimada” imposta por você, sua Classe de Resistência aumenta em +5 contra os ataques dela, e você tem vantagem em ataques desarmados e técnicas contra essa criatura. Além disso, você passa a adicionar todo o seu atributo de Sabedoria ao dano quando a criatura acertar você.
+Exclusivo do Caminho do Shunko: Enquanto uma criatura estiver com a condição “Queimada” imposta por você, sua Classe de Resistência aumenta em +5 contra os ataques dela, e você tem vantagem em ataques desarmados e técnicas contra essa criatura. Além disso, você passa a adicionar todo o seu atributo de Mente ao dano quando a criatura acertar você.
 
 ## Fogo
 
@@ -963,7 +961,7 @@ O Shunko de Fogo amplifica consideravelmente seu poder de destruição, incinera
 
 Quando você escolher o Shunko de Fogo, mesmo sem estar com o Shunko ativo, você consegue criar pequenas explosões de chamas com seus ataques. Ao realizar um ataque corpo a corpo desarmado, você pode gastar 5 pontos de Reiatsu para criar uma pequena explosão de chamas de 3 metros centrada na criatura que você atacou, causando 2d6 de dano de Fogo. A criatura atingida pelo ataque desarmado recebe o dano de Fogo automaticamente. Outras criaturas ao redor devem realizar um Teste de Resistência de Constituição, sofrendo todo o dano se falharem ou metade do dano se tiverem sucesso, você não sofre dano dessa habilidade. Esse golpe pode ser utilizado com o Shunko Ativo.
 
-Exclusivo do Caminho do Shunko: Você pode escolher um número de criaturas, igual ao seu atributo de Sabedoria, que não sofrerão o dano de Fogo dentro da área. Além disso, a área aumenta para 4,5 metros.
+Exclusivo do Caminho do Shunko: Você pode escolher um número de criaturas, igual ao seu atributo de Mente, que não sofrerão o dano de Fogo dentro da área. Além disso, a área aumenta para 4,5 metros.
 
 ### Primeira Liberação: Flame Shunko
 
@@ -981,9 +979,9 @@ Exclusivo do Caminho do Shunko: Após acertar o golpe na criatura, você pode cr
 
 ### Técnica: Defesa dos Ventos
 
-Quando o Storm Shunko estiver ativo e você for atacado, você pode usar sua reação e gastar 10 pontos de reiatsu para intensificar os ventos na área onde receberia o ataque, mitigando parte do dano. Reduza o dano recebido em 2d10 + seu atributo de Sabedoria.
+Quando o Storm Shunko estiver ativo e você for atacado, você pode usar sua reação e gastar 10 pontos de reiatsu para intensificar os ventos na área onde receberia o ataque, mitigando parte do dano. Reduza o dano recebido em 2d10 + seu atributo de Mente.
 
-Exclusivo do Caminho do Shunko: Você reduz o dano em 4d10 + seu atributo de Sabedoria e pode utilizar essa técnica uma vez por turno como uma ação livre ao ser atacado, sem gastar sua reação.
+Exclusivo do Caminho do Shunko: Você reduz o dano em 4d10 + seu atributo de Mente e pode utilizar essa técnica uma vez por turno como uma ação livre ao ser atacado, sem gastar sua reação.
 
 ### Técnica: Tempestade Repulsora
 
@@ -1032,49 +1030,51 @@ Nível bÔNUS DE Proficiência KIDO CONHECIDOS CLASSIFICAÇÃO DO KIDO Caracter�
 | Nível | Proficiência | Col. 1 | Col. 2 | Características |
 |---|---|---|---|---|
 | 1° | +2 | 6 | D | Zanpakutou, Kido, Estudos Avançados |
-| 2° | +2 | 7 | D | Shunpo, Talentos de Suporte |
-| 3° | +2 | 8 | D | Tradição (Sub-classe), Talentos de Mestre Kido |
+| 2° | +2 | 7 | D | Shunpo, Talentos de Kyūgo |
+| 3° | +2 | 8 | D | Tradição (Sub-classe), Talentos de Kidōshū |
 | 4° | +2 | 9 | C | Aprimoramento da Essência |
-| 5° | +3 | 10 | C | TTalentos de Mestre Kido |
-| 6° | +3 | 11 | C | Tradição (Sub-classe), Talentos de Mestre Kido |
-| 7° | +3 | 12 | C | Talentos de Mestre Kido |
+| 5° | +3 | 10 | C | TTalentos de Kidōshū |
+| 6° | +3 | 11 | C | Tradição (Sub-classe), Talentos de Kidōshū |
+| 7° | +3 | 12 | C | Talentos de Kidōshū |
 | 8° | +3 | 13 | B | Aprimoramento da Essência |
-| 9° | +4 | 14 | B | Talentos de Mestre Kido |
-| 10° | +4 | 15 | B | Tradição (Sub-classe), Talentos de Mestre Kido |
-| 11° | +4 | 16 | B | Talentos de Mestre Kido |
+| 9° | +4 | 14 | B | Talentos de Kidōshū |
+| 10° | +4 | 15 | B | Tradição (Sub-classe), Talentos de Kidōshū |
+| 11° | +4 | 16 | B | Talentos de Kidōshū |
 | 12° | +4 | 17 | A | Aprimoramento da Essência |
-| 13° | +5 | 18 | A | Talentos de Mestre Kido |
-| 14° | +5 | 19 | A | Talentos de Mestre Kido |
-| 15° | +5 | 20 | A | Tradição (Sub-classe), Talentos de Mestre Kido |
+| 13° | +5 | 18 | A | Talentos de Kidōshū |
+| 14° | +5 | 19 | A | Talentos de Kidōshū |
+| 15° | +5 | 20 | A | Tradição (Sub-classe), Talentos de Kidōshū |
 | 16° | +5 | 21 |  | S Aprimoramento da Essência |
-| 17° | +6 | 22 |  | S Talentos de Mestre Kido |
-| 18° | +6 | 23 |  | S Talentos de Mestre Kido |
+| 17° | +6 | 22 |  | S Talentos de Kidōshū |
+| 18° | +6 | 23 |  | S Talentos de Kidōshū |
 | 19° | +6 | 24 |  | SS Aprimoramento da Essência |
-| 20° | +6 | 25 |  | SS Tradição (Sub-classe), Talentos de Mestre Kido |
+| 20° | +6 | 25 |  | SS Tradição (Sub-classe), Talentos de Kidōshū |
 
 ## Tabela de Classe
 
-## Mestre Kido
+## Kidōshū
 
-Aclasse Mestre Kido é especializada no domínio das artes espirituais, utilizando Hadou e Bakudou para causar dano, controlar o campo de batalha e manipular a Reiatsu com precisão. É ideal para um Shinigami que deseja dedicar seu treinamento ao estudo e domínio do Kido.
+Aclasse Kidōshū é especializada no domínio das artes espirituais, utilizando Hadou e Bakudou para causar dano, controlar o campo de batalha e manipular a Reiatsu com precisão. É ideal para um Shinigami que deseja dedicar seu treinamento ao estudo e domínio do Kido.
 
 A classe possui quatro Tradições: a primeira busca o máximo poder dos Kidos, a segunda domina selos e barreiras, a terceira combina Zanpakutou e Kido em combate, e a quarta se dedica ao conhecimento e à reprodução de técnicas espirituais. Esta classe foi inspirada em personagens como Kisuke Urahara, Hachigen Ushōda, Tessai Tsukabishi e Nanao Ise, mestres das artes espirituais e do Kido.
 
 ### Traços de Classe
 
-Pontos de Vida: No primeiro nível, seus pontos de vida são 20 + seu atributo de Constituição. Nos próximos níveis, são 5 + seu atributo de Constituição.
+Pontos de Vida: No primeiro nível, seus pontos de vida são 28 + seu atributo de Constituição. Nos próximos níveis, são 11 + seu atributo de Constituição.
 
-Pontos de reaitsu: No primeiro nível, seus pontos de reiatsu são 30 + seu atributo de Espírito. Nos próximos níveis, são 10 + seu atributo de Espírito.
+Pontos de reaitsu: No primeiro nível, seus pontos de reiatsu são 30 + seu atributo de Espírito. Nos próximos níveis, são 14 + seu atributo de Espírito.
 
-Perícias: Escolha 8 + metade do seu atributo de Inteligência, arredondado para baixo, para ser proficiênte.
+Perícias: Escolha 8 + metade do seu atributo de Mente, arredondado para baixo, para ser proficiênte.
 
-Proficiência em Teste de Resistência: Inteligência e Espiríto.
+Proficiência em Teste de Resistência: Mente e Espiríto.
+
+Classe de Resistência: leve (10 + bônus de proficiência + Destreza + metade da Constituição, arredondada para baixo).
 
 ### Construção Rápida
 
-Ao escolher a classe Mestre Kido, você deve focar no atributo de Inteligência como atributo principal, pois este é o atributo-chave da classe para utilizar Kido e técnicas com a Zanpakutou e depois em Espirito. Em seguida, dê prioridade ao atributo de Destreza e, por último, à Constituição, Força ou Sabedoria.
+Ao escolher a classe Kidōshū, você deve focar no atributo de Mente como atributo principal, pois este é o atributo-chave da classe para utilizar Kido e técnicas com a Zanpakutou e depois em Espirito. Em seguida, dê prioridade ao atributo de Destreza e, por último, à Constituição, Força ou Mente.
 
-FOR DES CON INT SAB ESP Recomendação de distribuição de atributos nível 1: Essência recomendada: ECOS DE REIATSU CR 10 + Proficiência + Atributo de Constituição
+FOR DES CON MEN ESP Recomendação de distribuição de atributos nível 1: Essência recomendada: ECOS DE REIATSU. CR leve: 10 + Proficiência + Destreza + metade da Constituição.
 
 ## Características de Classe
 
@@ -1086,7 +1086,27 @@ Quando você se torna um shinigami da Gotei 13, você recebe uma Asauchi. Você 
 
 Você possui a capacidade de conjurar os dois tipos de Kido, que é a forma de combate dos shinigamis baseada na conjuração de magias a partir da reiatsu do shinigami, sendo elas Bakudou e Hadou.
 
-Você tem um número de escolhas conforme descrito na tabela de classe chamada “Conhecidos”, onde você pode consultar o Capítulo 11 e selecionar um determinado número de Kido da classificação a que você tem acesso ou menor, conforme listado na tabela de classe na categoria “Classificação do Kido”. Por exemplo, no primeiro nível de classe, você pode escolher 1 Kido da lista de Bakudou e Hadou de sua preferência, mas eles devem ser de Classificação D como indicado na tabela de Classe. Para conjurar e determinar a classe de dificuldade nos testes de seus Kido, o atributo a ser utilizado é Inteligência. Acerto para seus Kido = d20 + bônus de proficiência + seu atributo de Inteligência Classe de Dificuldade para seus Kido = 8 + bônus de proficiência + seu atributo de Inteligência
+Você tem um número de escolhas conforme descrito na tabela de classe chamada “Conhecidos”, onde você pode consultar o Capítulo 11 e selecionar um determinado número de Kido da classificação a que você tem acesso ou menor, conforme listado na tabela de classe na categoria “Classificação do Kido”. Por exemplo, no primeiro nível de classe, você pode escolher 1 Kido da lista de Bakudou e Hadou de sua preferência, mas eles devem ser de Classificação D como indicado na tabela de Classe. Para conjurar e determinar a classe de dificuldade nos testes de seus Kido, o atributo a ser utilizado é Mente. Acerto para seus Kido = d20 + bônus de proficiência + seu atributo de Mente Classe de Dificuldade para seus Kido = 8 + bônus de proficiência + seu atributo de Mente
+
+### Kido Extra e Classificação
+
+O Kidōshū conjura o Kido com mais frequência e chega às classificações altas mais cedo.
+
+- **Kido Extra** (dois Hadō por turno) desde o 3° nível.
+- **Hadō de rank C** desde o 4° nível, **rank B** no 8° e **rank A** no 10°.
+- **Bakudō de contenção**, a partir do 10° nível: a cada 3 rodadas, gastando PR, o alvo faz um teste de Mente e perde a ação se falhar.
+- **Acerto de Hadō** = d20 + Mente + proficiência + bônus de Foco Arcano.
+
+### Foco Arcano
+
+O bônus de Foco Arcano varia por nível. Na maior parte da progressão ele vale 2 × proficiência (o que dá Mente + 3 × proficiência no acerto), mas tem cortes nos níveis em que a proficiência acabou de subir.
+
+| Nível | 1–3 | 4 | 5–7 | 8 | 9 | 10–18 | 19 | 20 |
+|---|---|---|---|---|---|---|---|---|
+| Bibliotecário e Lâmina Espiritual | +4 | +2 | +4 | +5 | +5 | 2 × prof. (+8 a +12) | +11 | +12 |
+| Sacerdote | +4 | +0 | +3 | +3 | +3 | 2 × prof. | +11 | +12 |
+
+O Sacerdote tem o bônus menor porque os Selos Sagrados já lhe dão vantagem no acerto.
 
 ### Estudos Avançados
 
@@ -1100,29 +1120,29 @@ Quando utilizar essa técnica você ignora terreno difícil. Você não pode usa
 
 Shunpo e suas variantes seguem as regras de Deslocamento Instânteno do Capítulo Jogando na sessão de Combate.
 
-### Talentos de Mestre Kido
+### Talentos de Kidōshū
 
-A partir do 2° nível você pode escolher talentos de Mestre Kido até o 20° nível de classe. No entanto, nos níveis em que recebe um “Aprimoramento da Essência”, não poderá escolher uma novo Talento de Mestre Kido.
+A partir do 2° nível você pode escolher talentos de Kidōshū até o 20° nível de classe. No entanto, nos níveis em que recebe um “Aprimoramento da Essência”, não poderá escolher uma novo Talento de Kidōshū.
 
-Você pode escolher apenas um talento de Mestre Kido por vez. E alguns Talentos têm requisitos, que devem ser atendidos para que possam ser escolhidas.
+Você pode escolher apenas um talento de Kidōshū por vez. E alguns Talentos têm requisitos, que devem ser atendidos para que possam ser escolhidas.
 
 - Alinhamento: Sua maestria em focalizar reiatsu atinge um novo patamar, permitindo que cada Hadou disparado por você busque naturalmente o ponto vital do inimigo. Todos os seus Hadous que utilizem uma jogada de ataque de “Acerto” recebem +1 na margem de crítico, acumulando-se normalmente com o benefício do talento Convergência.
 
-Pré-Requisito: Talento de Mestre Kido “Convergência”.
+Pré-Requisito: Talento de Kidōshū “Convergência”.
 
 - Ataque Extra: Você ganha a habilidade de realizar mais ataques durante o seu turno. Quando você usar a ação “Ataque” no seu turno, pode realizar dois ataques em vez de um.
 
-Pré-Requisito: 5° nível de Mestre Kido.
+Pré-Requisito: 5° nível de Kidōshū.
 
-- Controle: Quando você conjurar um Kido que afete todas as criaturas dentro de uma área de efeito, poderá escolher um número de criaturas igual ao seu atributo de Inteligência. As criaturas escolhidas não são afetadas pelos efeitos do Kido.
+- Controle: Quando você conjurar um Kido que afete todas as criaturas dentro de uma área de efeito, poderá escolher um número de criaturas igual ao seu atributo de Mente. As criaturas escolhidas não são afetadas pelos efeitos do Kido.
 - Convergência: Você canaliza seu reiatsu de forma altamente concentrada, guiando o fluxo do Hadou com precisão cirúrgica. Com sua ação bônus, você aprimora o próximo Hadou que conjurar neste turno, fazendo com que ele receba +1 na margem de crítico, desde que seja um Hadou que utilize uma jogada de ataque de “Acerto”.
-- Defesa Inteligente: Seu estilo de luta é mais astuto, então suas defesas são baseadas em puramente prever os ataques inimigos. Sua classe de resistência passa a ser 10 + proficiência + metade do atributo de Inteligência.
-- Disciplina: Você consegue manter a concentração em mais de um Kido com mais facilidade. Tornando o cáculo para manter o Kido mais facil, se tornando 15 + o Rank do Kido (Capítulo 11: Feitiços e Técnicas). Pré-Requisito: 6° nível de Mestre Kido.
+- Defesa Inteligente: Seu estilo de luta é mais astuto, então suas defesas são baseadas em puramente prever os ataques inimigos. Sua classe de resistência passa a ser 10 + proficiência + metade do atributo de Mente.
+- Disciplina: Você consegue manter a concentração em mais de um Kido com mais facilidade. Tornando o cáculo para manter o Kido mais facil, se tornando 15 + o Rank do Kido (Capítulo 11: Feitiços e Técnicas). Pré-Requisito: 6° nível de Kidōshū.
 - Domínio: Quando você falhar em um teste para manter a concentração em um Kido enquanto estiver sustentando mais de um, você não perde mais a concentração em todos eles.
 
 Em vez disso, você perde a concentração apenas em um dos Kidos de sua escolha.
 
-Pré-Requisito: 12° nível de Mestre Kido e Talento de Mestre Kido “Disciplina”.
+Pré-Requisito: 12° nível de Kidōshū e Talento de Kidōshū “Disciplina”.
 
 - Encantamento Aprimorado: Você possui a habilidade de recitar qualquer Kido com extrema facilidade. Sempre que você recitar um Kido que tenha uma velocidade de Encatamento, você diminui uma categoria dessa velocidade.
 
@@ -1134,27 +1154,27 @@ Esse bônus não é acumulável e se dissipa no começo do seu próximo turno.
 
 - Escudo Aprimorado: Agora o Escudo é acumulável somando +1 para cada Kido adicional conjurado.
 
-Pré-Requisito: Talento de Mestre Kido “Escudo”.
+Pré-Requisito: Talento de Kidōshū “Escudo”.
 
 - Feitiço Discreto: Quando você lançar um Bakudou ou Hadou, pode remover a necessidade de encantamento do Kido, tornando-o um encantamento rápido. Para isso, ao conjurar o Hadou ou Bakudou, você deve gastar sua ação bônus para retirar o encantamento.
 
-Pré-Requisito: 6° nível de Mestre Kido e Talento de Mestre Kido “Encantamento Aprimorado”.
+Pré-Requisito: 6° nível de Kidōshū e Talento de Kidōshū “Encantamento Aprimorado”.
 
-- Hadou Poderoso: Quando utilizar um Hadou, você adiciona seu atributo de Inteligência ao dano.
+- Hadou Poderoso: Quando utilizar um Hadou, você adiciona seu atributo de Mente ao dano.
 - Kaido: Com sua “Ação” e o custo de 4 pontos de reiatsu, você pode utilizar um Kido de Cura, restaurando 1d8 + 4 pontos de vida em uma criatura ao tocá-la. Você pode potencializar essa cura, adicionando um dado extra ao efeito por 4 pontos de reiatsu adicionais para cada dado extra. Além disso, você pode dobrar o custo total do Kido para utilizá-lo como uma ação bônus.
-- Kido Extra: Você pode conjurar mais Kidos durante o seu turno. Quando usar um Kido com sua “Ação”, pode conjurar um segundo Kido que também exija uma Ação, esse segundo Kido é considerado parte da mesma ação. Você ainda deve respeitar as regras de “Encantamento” e não pode conjurar Kidos iguais com essa habilidade. Pré-Requisito: 5° nível de Mestre Kido.
+- Kido Extra: Você pode conjurar mais Kidos durante o seu turno. Quando usar um Kido com sua “Ação”, pode conjurar um segundo Kido que também exija uma Ação, esse segundo Kido é considerado parte da mesma ação. Você ainda deve respeitar as regras de “Encantamento” e não pode conjurar Kidos iguais com essa habilidade. Pré-Requisito: 5° nível de Kidōshū.
 - Fluxo de Kido: Agora, quando você utilizar um Kido que tenha como requisito “Ação”, você pode conjurar dois Kidos adicionais. Respeitando as mesmas regras de conjuração do Kido Extra.
 
-Pré-Requisito: 11° nível de Mestre Kido e Talento de Mestre Kido “Kido Extra”.
+Pré-Requisito: 11° nível de Kidōshū e Talento de Kidōshū “Kido Extra”.
 
 - Mestre: Quando você for atacado enquanto estiver mantendo a concentração em um ou mais Kidos e precisar realizar um teste para mantê-los, você não perde mais a concentração em nenhum deles ao falhar nesse teste.
 
-Pré-Requisito: 18° nível de Mestre Kido e Talento de Mestre Kido “Domínio”.
+Pré-Requisito: 18° nível de Kidōshū e Talento de Kidōshū “Domínio”.
 
 - Perfuração Arcana: Você afia seu reiatsu para perfurar defesas espirituais com precisão devastadora, fazendo com que o impacto do seu Kido atravesse camadas protetoras menores sem perder força. Seus Kidos passam a ignorar 5 pontos de redução de dano de qualquer criatura atingida, rompendo barreiras que antes mitigavam os efeitos de suas técnicas.
 - Perfuração Elemental: Ao conjurar um Hadou que cause dano Esotérico, você ignora 5 pontos de redução de dano da criatura atingida.
 
-Pré-Requisito: Talento de Mestre Kido “Perfuração Arcana”.
+Pré-Requisito: Talento de Kidōshū “Perfuração Arcana”.
 
 - Peso do Conjurador: Quando você conjurar um Kido que exija um teste de resistência de uma criatura, você pode gastar 4 pontos de reiatsu para impor uma penalidade de –2 na rolagem de resistência dessa criatura. Você pode gastar 2 pontos de reiatsu adicionais para cada –1 extras de penalidade, até um máximo de –5.
 - Rastro de Hadou: Após atingir uma criatura com um Hadou que tenha um alvo único, você pode gastar metade do custo em pontos de reiatsu para direcionar uma réplica menor do Hadou a outro inimigo dentro de 6 metros do alvo original.
@@ -1163,12 +1183,12 @@ Essa versão menor do Hadou causa metade do dano e ainda exige que você realize
 
 Esse talento apenas funciona em Hadous que tenha como jogada de ataque “Acerto”.
 
-Pré-Requisito: 3° nível de Mestre Kido.
+Pré-Requisito: 3° nível de Kidōshū.
 
 - Ressonar: Quando você errar uma jogada de ataque com um Kido, pode gastar metade do custo total em pontos de reiatsu para rolar novamente o ataque. Você só pode usar esta habilidade uma vez por turno.
 - Selo Imutável: Você eleva sua técnica de selos a um patamar impecável, moldando Bakudous tão precisos que se entrelaçam ao reiatsu do alvo como correntes absolutas. Criaturas afetadas por um Bakudou seu têm desvantagem para escapar, quebrar ou dissipar seus efeitos, tornando suas prisões espirituais quase inescapáveis.
 
-Pré-Requisito: 18° nível de Mestre Kido.
+Pré-Requisito: 18° nível de Kidōshū.
 
 - Selo Reforçado: Você fortalece a estrutura espiritual dos seus Bakudous com camadas adicionais de reiatsu. Sempre que uma criatura estiver presa por um Bakudou seu, ela sofre –2 em testes feitos para escapar dele.
 - Shunpo Maior: Você adquire uma variação aprimorada do Shunpo, chamada Shunpo Maior. Com sua ação, você pode dobrar seu deslocamento normal e, em seguida, usar essa distância aumentada para se deslocar instântaneamente para qualquer local dentro desse alcance expandido.
@@ -1182,7 +1202,7 @@ Pré-Requisito: característica de classe “Shunpo”.
 
 ### Tradição (sub-classe)
 
-A partir do 3° nível, você deve escolher uma tradição para o Mestre Kido. A tradição escolhida concederá características no 3°, 6°, 10°, 15° e 20° nível de personagem.
+A partir do 3° nível, você deve escolher uma tradição para o Kidōshū. A tradição escolhida concederá características no 3°, 6°, 10°, 15° e 20° nível de personagem.
 
 ### Aprimoramento da Essência
 
@@ -1194,7 +1214,7 @@ Você pode escolher uma entre quatro Tradições. O Mago é a tradição mais de
 
 ## Mago
 
-Como um Mestre Kido, seu objetivo é dominar a arte do Kido acima de qualquer outra forma de combate. Você deixa a Zanpakutou de lado para se dedicar por completo ao uso de Hadou e Bakudou, canalizando todo o seu treinamento para aprimorar seu poder, manipulação e versatilidade nos feitiços.
+Como um Kidōshū, seu objetivo é dominar a arte do Kido acima de qualquer outra forma de combate. Você deixa a Zanpakutou de lado para se dedicar por completo ao uso de Hadou e Bakudou, canalizando todo o seu treinamento para aprimorar seu poder, manipulação e versatilidade nos feitiços.
 
 ### Voto do Mago
 
@@ -1236,7 +1256,7 @@ A partir do 20° nível, o primeiro Hadou ou Bakudou que você conjurar em cada 
 
 ## Regra Opcional
 
-Como regra opcional, o Mestre e os jogadores podem decidir que, caso alguém escolha a classe Mestre Kido, esse personagem pertença à Quinta Divisão ou à Kido Corps. Isso não é obrigatório no Soul Society RPG, já que existem personagens em Bleach que atuam em outras divisões e ainda assim são grandes usuários de Kido. A tradição Mago mantém uma ligação direta e tradicional com a Kido Corps, portanto a regra pode ser mais rígida especificamente para essa tradição.
+Como regra opcional, o Mestre e os jogadores podem decidir que, caso alguém escolha a classe Kidōshū, esse personagem pertença à Quinta Divisão ou à Kido Corps. Isso não é obrigatório no Soul Society RPG, já que existem personagens em Bleach que atuam em outras divisões e ainda assim são grandes usuários de Kido. A tradição Mago mantém uma ligação direta e tradicional com a Kido Corps, portanto a regra pode ser mais rígida especificamente para essa tradição.
 
 ## Sarcedote
 
@@ -1258,13 +1278,13 @@ A partir do 3° nível, você já passou tanto tempo com sua Asauchi e gravou pa
 
 Você pode escolher uma Zanpakutou da lista de Zanpakutous do tipo Kido. Alternativamente, você pode criar uma Zanpakutou com a ajuda do seu mestre. Ao término do treinamento, sua Zanpakutou contará o nome dela e concederá a você o poder de liberar sua Shikai. Para liberar sua Shikai, você deve usar sua ação bônus em seu turno e ser capaz de verbalizar o nome da Zanpakutou, os custos de liberação estão descrito na Zanpakutou. Seus atributos para acerto e dano com ela na forma Shikai permanecem os mesmos da forma Asauchi, mas a margem de crítico deixa de ser aprimorada, a menos que uma habilidade da Zanpakutou fale o contrário. Para as técnicas da Zanpakutou, o acerto e a classe de dificuldade são diferentes, conforme descrito abaixo:
 
-Acerto para as técnicas da Zanpakutou = d20 + bônus de proficiência + seu atributo de Inteligência Classe de Dificuldade para suas técnicas com a Zanpakutou = 8 + bônus de proficiência + seu atributo de Inteligência
+Acerto para as técnicas da Zanpakutou = d20 + bônus de proficiência + seu atributo de Mente Classe de Dificuldade para suas técnicas com a Zanpakutou = 8 + bônus de proficiência + seu atributo de Mente
 
 ### Construtor
 
 A partir do 6° nível, você domina a criação de Kekkai, podendo construir barreiras espirituais em um ponto que possa ver a até 18 metros. A barreira pode possuir até 6 metros de cada lado, e sua resistência depende do tempo de preparação. A barreira conta como um Kido, portanto, efeitos que afetam Kidos também afetam ela.
 
-Para criar uma barreira, você deve utilizar sua Ação para iniciar a preparação e escolher o tempo de preparação. Durante esse período, você permanece em concentração e não pode realizar nenhum tipo de atividade. Ao término do tempo de preparação, a barreira é criada imediatamente no local escolhido. Você pode desfazê-la utilizando uma Ação Livre.
+Para criar uma barreira, você deve utilizar sua Ação para iniciar a preparação e escolher o tempo de preparação. Durante esse período, você permanece em concentração e não pode realizar nenhum tipo de atividade. Ao término do tempo de preparação, a barreira é criada imediatamente no local escolhido. Você pode desfazê-la utilizando uma Ação Livre. A barreira de Ação inicial (30 PV, RD 10) só pode ser criada a cada 3 turnos, e não todo turno.
 
 A duração máxima da barreira é igual ao tempo de preparação escolhido, exceto para a primeira barreira, que permanece até o final do seu próximo turno. Quando a barreira chega a 0 Pontos de Vida, ela é desfeita.
 
@@ -1278,7 +1298,7 @@ A duração máxima da barreira é igual ao tempo de preparação escolhido, exc
 
 Ao criar a barreira, você pode definir quais criaturas podem atravessá-la e escolher um efeito especial para ela. Você pode escolher um efeito gratuitamente. Um segundo efeito custa 10 pontos de Reiatsu adicionais.
 
-- Absorção: A barreira se torna muito mais robusta, protegendo melhor as criaturas em seu interior. Os Pontos de Vida e a Redução de Dano da barreira são dobrados.
+- Absorção: A barreira se torna muito mais robusta, protegendo melhor as criaturas em seu interior. Os Pontos de Vida e a Redução de Dano da barreira são dobrados. A Absorção não dobra a barreira de Ação inicial, que continua com 30 PV e RD 10.
 - Ocultação: O interior da barreira não pode ser localizado por técnicas de percepção espiritual. Criaturas do lado de fora têm Desvantagem para rastrear criaturas que estejam dentro dela.
 - Regressão: A barreira pode envolver uma criatura, objeto ou parte do corpo e restaurá-la gradualmente para um estado anterior. Todas as criaturas dentro da barreira recuperam 1d10 Pontos de Vida no início do turno delas. (Uma criatura não pode ser curada por mais de um minuto por essa barreira dentro de 24h).
 - Antidispersão: A barreira não pode ser dissipada ou anulada por efeitos comuns de Kido, como o Bakudou no Sanjuuichi: Kido Shoumei.
@@ -1316,13 +1336,13 @@ Você pode escolher uma Zanpakutou da lista de Zanpakutous do tipo Kido ou Eleme
 
 Para liberar sua Shikai, você não precisa usar nenhuma ação, como descrito na característica “União” mas ainda deve ser capaz de verbalizar o nome da Zanpakutou. Seus atributos para acerto e dano com ela na forma Shikai permanecem os mesmos da forma Asauchi, mas a margem de crítico deixa de ser aprimorada, a menos que uma habilidade da Zanpakutou fale o contrário. Para as técnicas da Zanpakutou, o acerto e a classe de dificuldade são diferentes, conforme descrito abaixo:
 
-Acerto para as técnicas da Zanpakutou = d20 + bônus de proficiência + seu atributo de Inteligência Classe de Dificuldade para suas técnicas com a Zanpakutou = 8 + bônus de proficiência + seu atributo de Inteligência
+Acerto para as técnicas da Zanpakutou = d20 + bônus de proficiência + seu atributo de Mente Classe de Dificuldade para suas técnicas com a Zanpakutou = 8 + bônus de proficiência + seu atributo de Mente
 
 ### União
 
 No 3° nível, você se uniu completamente à sua Zanpakutou, tornando-se capaz de manifestar seu poder espiritual diretamente em suas mãos. Você não depende mais de uma arma física para empunhá-la ou realizar suas liberações, mas pode continuar utilizando sua Zanpakutou física, caso escolha.
 
-No início de um combate, ou a qualquer momento fora dele, você pode manifestar uma lâmina de Reiatsu como uma ação livre. Para todos os efeitos de regras, essa lâmina funciona como sua Zanpakutou e você pode utilizar Inteligência no lugar do atributo utilizado pelas jogadas de ataque e dano da sua Zanpakutou, à sua escolha.
+No início de um combate, ou a qualquer momento fora dele, você pode manifestar uma lâmina de Reiatsu como uma ação livre. Para todos os efeitos de regras, essa lâmina funciona como sua Zanpakutou e você pode utilizar Mente no lugar do atributo utilizado pelas jogadas de ataque e dano da sua Zanpakutou, à sua escolha.
 
 Ao manifestá-la, você pode escolher se ela assume a forma de sua Zanpakutou normal ou de sua Shikai. Você não precisa mais realizar ações para a liberação da Shikai nem gastar Reiatsu para liberá-la, pois sua Zanpakutou permanece constantemente liberada e você já possui acesso ao seu poder, mantendo o dano e habilidades dela. Se sua Zanpakutou for do tipo Elemental e possuir habilidades que causem dano esotérico, você pode escolher causar esse tipo de dano normalmente ao utilizar seus ataques com ela.
 
@@ -1334,7 +1354,7 @@ As técnicas e habilidades de sua Zanpakutou que exigem algum tipo de ação ou 
 
 A partir do 6° nível, você pode alternar livremente entre seus estilos de combate. Você pode substituir seu Kido Extra por Ataque Extra, substituindo o uso de Kido por ataques com sua Zanpakutou.
 
-Quando utilizar um Kido como parte de sua Ação, você pode realizar um ataque com sua Zanpakutou como Ação Bônus.
+Quando utilizar um Kido como parte de sua Ação, você pode realizar um ataque com sua Zanpakutou como Ação Bônus. Antes do 10° nível, esse ataque bônus soma apenas a Mente ao dano. A partir do 10° nível, soma também +2 × proficiência de dano.
 
 ### Bankai
 
@@ -1356,11 +1376,11 @@ Como um Bibliotecário, você dedica sua vida ao estudo e à preservação do co
 
 ### Conhecimento Aplicado
 
-A partir do 3° nível, você dedicou grande parte de sua vida aos estudos, desenvolvendo um conhecimento amplo. Você soma metade do seu atributo de Inteligência ao seu atributo de Sabedoria. Além disso, sempre que realizar um teste de perícia que utilize Inteligência ou Sabedoria, você soma metade do do outro atributo ao resultado.
+A partir do 3° nível, você dedicou grande parte de sua vida aos estudos, desenvolvendo um conhecimento amplo. Você recebe o dobro do seu bônus de proficiência em uma perícia de Mente à sua escolha.
 
 ### Conhecimento Replicado
 
-A partir do 3° nível, quando uma criatura que você possa ver utilizar um Hadou ou Bakudou, você pode tentar aprendê-lo usando sua reação e realizando um teste de Inteligência com CD 10 + Rank do Kido (D = 2, C = 4, B = 6, A = 8, S = 10). Você só pode aprender Kidos de Ranks aos quais tenha acesso.
+A partir do 3° nível, quando uma criatura que você possa ver utilizar um Hadou ou Bakudou, você pode tentar aprendê-lo usando sua reação e realizando um teste de Mente com CD 10 + Rank do Kido (D = 2, C = 4, B = 6, A = 8, S = 10). Você só pode aprender Kidos de Ranks aos quais tenha acesso.
 
 O Mestre também pode permitir que você aprenda uma técnica de uma criatura e a utilize como Kido. O Rank é definido pela tabela de Rank de Kido da classe de acordo com o nível da técnica. Por exemplo, uma técnica de 3° nível é Rank D e uma de 5° nível é Rank C. Kidos aprendidos dessa forma não podem ser aprimorados e possuem sempre custo de ação e Encatamento Lento.
 
@@ -1370,11 +1390,11 @@ A partir do 3° nível, você já passou tanto tempo com sua Asauchi e gravou pa
 
 Você pode escolher uma Zanpakutou da lista de Zanpakutous do tipo Kido. Alternativamente, você pode criar uma Zanpakutou com a ajuda do seu mestre. Ao término do treinamento, sua Zanpakutou contará o nome dela e concederá a você o poder de liberar sua Shikai. Para liberar sua Shikai, você deve usar sua ação bônus em seu turno e ser capaz de verbalizar o nome da Zanpakutou, os custos de liberação estão descrito na Zanpakutou. Seus atributos para acerto e dano com ela na forma Shikai permanecem os mesmos da forma Asauchi, mas a margem de crítico deixa de ser aprimorada, a menos que uma habilidade da Zanpakutou fale o contrário. Para as técnicas da Zanpakutou, o acerto e a classe de dificuldade são diferentes, conforme descrito abaixo:
 
-Acerto para as técnicas da Zanpakutou = d20 + bônus de proficiência + seu atributo de Inteligência Classe de Dificuldade para suas técnicas com a Zanpakutou = 8 + bônus de proficiência + seu atributo de Inteligência
+Acerto para as técnicas da Zanpakutou = d20 + bônus de proficiência + seu atributo de Mente Classe de Dificuldade para suas técnicas com a Zanpakutou = 8 + bônus de proficiência + seu atributo de Mente
 
 ### Leitura Espiritual
 
-A partir do 6° nível, quando uma criatura que você possa ver utilizar uma técnica que consuma Reiatsu e exija um teste, você pode usar sua reação para substituir esse teste por um teste de Conhecimento. Se for um Teste de Resistência, você pode substituí-lo por um Teste de Resistência de Inteligência, apenas para você.
+A partir do 6° nível, quando uma criatura que você possa ver utilizar uma técnica que consuma Reiatsu e exija um teste, você pode usar sua reação para substituir esse teste por um teste de Conhecimento. Se for um Teste de Resistência, você pode substituí-lo por um Teste de Resistência de Mente, apenas para você.
 
 ### Domínio Rápido
 
@@ -1394,34 +1414,34 @@ Nível bÔNUS DE Proficiência KIDO CONHECIDOS CLASSIFICAÇÃO DO KIDO Caracter�
 
 | Nível | Proficiência | Col. 1 | Col. 2 | Características |
 |---|---|---|---|---|
-| 1° | +2 | 6 | D | Zanpakutou, Kido, Estilo de Suporte |
-| 2° | +2 | 7 | D | Shunpo, Talentos de Suporte |
-| 3° | +2 | 8 | D | Afinidade (Sub-classe), Talentos de Suporte |
+| 1° | +2 | 6 | D | Zanpakutou, Kido, Estilo de Kyūgo |
+| 2° | +2 | 7 | D | Shunpo, Talentos de Kyūgo |
+| 3° | +2 | 8 | D | Afinidade (Sub-classe), Talentos de Kyūgo |
 | 4° | +2 | 9 | C | Aprimoramento da Essência |
-| 5° | +3 | 10 | C | Talentos de Suporte |
-| 6° | +3 | 11 | C | Afinidade (Sub-classe), Talentos de Suporte |
-| 7° | +3 | 12 | C | Talentos de Suporte |
+| 5° | +3 | 10 | C | Talentos de Kyūgo |
+| 6° | +3 | 11 | C | Afinidade (Sub-classe), Talentos de Kyūgo |
+| 7° | +3 | 12 | C | Talentos de Kyūgo |
 | 8° | +3 | 13 | B | Aprimoramento da Essência |
-| 9° | +4 | 14 | B | Talentos de Suporte |
-| 10° | +4 | 15 | B | Afinidade (Sub-classe), Talentos de Suporte |
-| 11° | +4 | 16 | B | Talentos de Suporte |
+| 9° | +4 | 14 | B | Talentos de Kyūgo |
+| 10° | +4 | 15 | B | Afinidade (Sub-classe), Talentos de Kyūgo |
+| 11° | +4 | 16 | B | Talentos de Kyūgo |
 | 12° | +4 | 17 | A | Aprimoramento da Essência |
-| 13° | +5 | 18 | A | Talentos de Suporte |
-| 14° | +5 | 19 | A | Talentos de Suporte |
-| 15° | +5 | 20 | A | Afinidade (Sub-classe), Talentos de Suporte |
+| 13° | +5 | 18 | A | Talentos de Kyūgo |
+| 14° | +5 | 19 | A | Talentos de Kyūgo |
+| 15° | +5 | 20 | A | Afinidade (Sub-classe), Talentos de Kyūgo |
 | 16° | +5 | 21 |  | S Aprimoramento da Essência |
-| 17° | +6 | 22 |  | S Talentos de Suporte |
-| 18° | +6 | 23 |  | S Talentos de Suporte |
+| 17° | +6 | 22 |  | S Talentos de Kyūgo |
+| 18° | +6 | 23 |  | S Talentos de Kyūgo |
 | 19° | +6 | 24 |  | SS Aprimoramento da Essência |
-| 20° | +6 | 25 |  | SS Afinidade (Sub-classe), Talentos de Suporte |
+| 20° | +6 | 25 |  | SS Afinidade (Sub-classe), Talentos de Kyūgo |
 
 ## Tabela de Classe
 
-## Suporte
+## Kyūgo
 
-Aclasse Suporte é especializada em auxiliar aliados no campo de batalha, reforçando suas forças e protegendo-os em momentos críticos. É a escolha ideal para um Shinigami que prefere agir como a base que sustenta a equipe, fortalecendo seus companheiros e oferecendo proteção estratégica.
+Aclasse Kyūgo é especializada em auxiliar aliados no campo de batalha, reforçando suas forças e protegendo-os em momentos críticos. É a escolha ideal para um Shinigami que prefere agir como a base que sustenta a equipe, fortalecendo seus companheiros e oferecendo proteção estratégica.
 
-O Suporte possui três afinidades: a primeira se concentra na cura e restauração por meio do Kaido, a segunda amplia o poder dos aliados, aumentando sua capacidade de ataque e defesa, e a terceira foca na batalha com Kaido. Esta classe foi inspirada em personagens como Retsu Unohana, Rangiku Matsumoto e Isane Kotetsu, especialistas em suporte, cura e estratégias inteligentes durante o combate.
+O Kyūgo possui três afinidades: a primeira se concentra na cura e restauração por meio do Kaido, a segunda amplia o poder dos aliados, aumentando sua capacidade de ataque e defesa, e a terceira foca na batalha com Kaido. Esta classe foi inspirada em personagens como Retsu Unohana, Rangiku Matsumoto e Isane Kotetsu, especialistas em suporte, cura e estratégias inteligentes durante o combate.
 
 ### Traços de Classe
 
@@ -1429,13 +1449,15 @@ Pontos de Vida: No primeiro nível, seus pontos de vida são 22 + seu atributo d
 
 Pontos de reaitsu: No primeiro nível, seus pontos de reiatsu são 28 + seu atributo de Espírito. Nos próximos níveis, são 9 + seu atributo de Espírito.
 
-Perícias: Medicinas e escolha 8 + metade do seu atributo de Inteligência, arredondado para baixo, para ser proficiênte. Proficiência em Teste de Resistência: Sabedoria e +1 a sua escolha.
+Perícias: Medicinas e escolha 8 + metade do seu atributo de Mente, arredondado para baixo, para ser proficiênte. Proficiência em Teste de Resistência: Mente e +1 a sua escolha.
+
+Classe de Resistência: plena (10 + bônus de proficiência + Constituição + Destreza).
 
 ### Construção Rápida
 
-Ao escolher a classe de Suporte, você deve focar no atributo de Força ou Destreza como atributo principal, e depois em Sabedoria, pois este é o atributo-chave da classe para utilizar Kido e técnicas com a Zanpakutou. Em seguida, dê prioridade ao atributo de Constituição e, por último, à Inteligência ou Espirito.
+Ao escolher a classe de Kyūgo, você deve focar no atributo de Força ou Destreza como atributo principal, e depois em Mente, pois este é o atributo-chave da classe para utilizar Kido e técnicas com a Zanpakutou. Em seguida, dê prioridade ao atributo de Constituição e, por último, à Mente ou Espirito.
 
-FOR DES CON INT SAB ESP Recomendação de distribuição de atributos nível 1: Essência recomendada: Classe de resistência aprimorada CR 10 + Proficiência + Atributo de Constituição
+FOR DES CON MEN ESP Recomendação de distribuição de atributos nível 1: Essência recomendada: Classe de Resistência Aprimorada. CR plena: 10 + Proficiência + Constituição + Destreza.
 
 ### Zanpakutou
 
@@ -1445,14 +1467,14 @@ Quando você se torna um shinigami da Gotei 13, você recebe uma Asauchi. Você 
 
 Você possui a capacidade de conjurar os dois tipos de Kido, que é a forma de combate dos shinigamis baseada na conjuração de magias a partir da reiatsu do shinigami, sendo elas Bakudou e Hadou.
 
-Você tem um número de escolhas conforme descrito na tabela de classe chamada “Conhecidos”, onde você pode consultar o Capítulo 11 e selecionar um determinado número de Kido da classificação a que você tem acesso ou menor, conforme listado na tabela de classe na categoria “Classificação do Kido”. Por exemplo, no primeiro nível de classe, você pode escolher 1 Kido da lista de Bakudou e Hadou de sua preferência, mas eles devem ser de Classificação D como indicado na tabela de Classe. Para conjurar e determinar a classe de dificuldade nos testes de seus Kido, o atributo a ser utilizado é Sabedoria. Acerto para seus Kido = d20 + bônus de proficiência + seu atributo de Sabedoria Classe de Dificuldade para seus Kido = 8 + bônus de proficiência + seu atributo de Sabedoria
+Você tem um número de escolhas conforme descrito na tabela de classe chamada “Conhecidos”, onde você pode consultar o Capítulo 11 e selecionar um determinado número de Kido da classificação a que você tem acesso ou menor, conforme listado na tabela de classe na categoria “Classificação do Kido”. Por exemplo, no primeiro nível de classe, você pode escolher 1 Kido da lista de Bakudou e Hadou de sua preferência, mas eles devem ser de Classificação D como indicado na tabela de Classe. Para conjurar e determinar a classe de dificuldade nos testes de seus Kido, o atributo a ser utilizado é Mente. Acerto para seus Kido = d20 + bônus de proficiência + seu atributo de Mente Classe de Dificuldade para seus Kido = 8 + bônus de proficiência + seu atributo de Mente
 
-### Estilo de Suporte
+### Estilo de Kyūgo
 
 Escolha entre um dos estilos de suporte listados abaixo, sendo um voltado ao combate ou ao auxílio a aliados:
 
 - Apoiador: Você pode usar a ação Ajudar como uma ação bônus, aumentando o alcance da ação para 9 metros. Sempre que ajudar um aliado, outro aliado a até 9 metros dele também recebe o benefício. No 14° nível, se estende a dois aliados adicionais.
-- Combatente: Você pode escolher um Estilo de Combate da classe Combatente. Além disso, sempre que puder escolher um Talento de Suporte, você pode optar por escolher um Talento de Combatente em seu lugar. Você ainda deve atender a todos os pré-requisitos, e, caso o talento exija um nível de Combatente, considere seu nível de Suporte para esse fim.
+- Zanjutsu: Você pode escolher um Estilo de Combate da classe Zanjutsu. Além disso, sempre que puder escolher um Talento de Kyūgo, você pode optar por escolher um Talento de Zanjutsu em seu lugar. Você ainda deve atender a todos os pré-requisitos, e, caso o talento exija um nível de Zanjutsu, considere seu nível de Kyūgo para esse fim.
 
 ### Shunpo
 
@@ -1460,19 +1482,19 @@ A partir do 2° nível, você ganha a habilidade de utilizar uma técnica chamad
 
 Quando utilizar essa técnica você ignora terreno difícil. Você não pode usar o Shunpo para atravessar barreiras sólidas. Shunpo e suas variantes seguem as regras de Deslocamento Instânteno do Capítulo Jogando na sessão de Combate.
 
-### Talentos de Suporte
+### Talentos de Kyūgo
 
-A partir do 2° nível você pode escolher talentos de Suporte até o 20° nível de classe. No entanto, nos níveis em que recebe um “Aprimoramento da Essência”, não poderá escolher uma novo Talento de Suporte.
+A partir do 2° nível você pode escolher talentos de Kyūgo até o 20° nível de classe. No entanto, nos níveis em que recebe um “Aprimoramento da Essência”, não poderá escolher uma novo Talento de Kyūgo.
 
-Você pode escolher apenas um talento de Suporte por vez. E alguns Talentos têm requisitos, que devem ser atendidos para que possam ser escolhidas.
+Você pode escolher apenas um talento de Kyūgo por vez. E alguns Talentos têm requisitos, que devem ser atendidos para que possam ser escolhidas.
 
 - Ataque Extra: Você usar a ação “Ataque” no seu turno, pode realizar dois ataques em vez de um.
 
-Pré-Requisito: 5° nível de Suporte.
+Pré-Requisito: 5° nível de Kyūgo.
 
 - Alerta Espiritual: Um suporte é frequentemente o primeiro alvo em combate, mas isso não acontece mais com você. Você não pode ser surpreendido e pode gastar 2 pontos de reiatsu para cada aliado no campo para impedir que eles também sejam surpreendidos, você utilizará os pontos de reiatsu assim que o combate iniciar, mesmo que não seja seu turno.
 
-Pré-Requisito: 7° nível de Suporte e Talento de Suporte "Sentido Espiritual Apurado".
+Pré-Requisito: 7° nível de Kyūgo e Talento de Kyūgo "Sentido Espiritual Apurado".
 
 - Aliados: Quando você e uma criatura aliada realizarem um Teste de Resistência juntos por qualquer motivo, como um ataque que afete ambos, você pode gastar 3 pontos de reiatsu para que o aliado utilize o mesmo resultado que você obteve no teste. Você só pode utilizar esta habilidade para afetar uma única criatura por teste.
 - Análise: Durante um combate, você pode analisar uma habilidade utilizada por uma criatura. Para isso, use sua reação imediatamente após a criatura usar a habilidade, por exemplo, uma Zanpakutou, o poder de uma Letra Quincy ou qualquer outra técnica especial. Você deve então realizar um Teste de Intuição, com uma CD definida pelo Mestre (sugestão para o Mestre: CD = 10 + ND da criatura).
@@ -1485,38 +1507,38 @@ Além disso, você pode optar por dividir o custo da liberação com o aliado, f
 
 Pré-Requisito: Aliado tenha acesso a Shikai.
 
-- Controle Preciso: Quando você usar um Kido, técnica ou habilidade da sua Zanpakuto que afete todas as criaturas em uma área de efeito, poderá escolher um número de criaturas igual à metade do seu atributo de Sabedoria (arredondado para baixo) para que não sejam afetadas pelos efeitos ou pelo dano da habilidade. Essa regra também se aplica às liberações da Zanpakuto.
+- Controle Preciso: Quando você usar um Kido, técnica ou habilidade da sua Zanpakuto que afete todas as criaturas em uma área de efeito, poderá escolher um número de criaturas igual à metade do seu atributo de Mente (arredondado para baixo) para que não sejam afetadas pelos efeitos ou pelo dano da habilidade. Essa regra também se aplica às liberações da Zanpakuto.
 
-Pré-Requisito: 3° nível de Suporte.
+Pré-Requisito: 3° nível de Kyūgo.
 
 Características de classe Classe de Shinigami
 
 - Coordenação de Combate: Com uma ação bônus, você escolhe um aliado a até 9 metros. Até o início do próximo turno dele, esse aliado pode usar a reação dele para realizar um ataque corpo a corpo contra uma criatura que está sendo alvo de um ataque.
 - Cura Fragmentada: Quando você conjurar um Kido de cura que exija uma ação, pode gastar 4 pontos de reiatsu adicionais para dividir o valor da cura entre dois aliados diferentes que você consiga tocar, distribuindo a quantidade de cura conforme desejar.
 
-Pré-Requisito: Talento de Suporte "Kaido" ou Afinidade "Curandeiro".
+Pré-Requisito: Talento de Kyūgo "Kaido" ou Afinidade "Curandeiro".
 
-- Escudo de Reiatsu: Sempre que você curar uma criatura durante o combate, ela recebe +5 na Classe de Resistência (CR) contra o próximo ataque que sofrer até o início do próprio turno. Se não for atacada até lá, o bônus é perdido. Esse benefício só é concedido se a cura for direcionada exclusivamente a uma única criatura, não funcionando com efeitos de cura em área. Pré-Requisito: Talento de Suporte "Kaido" ou Afinidade "Curandeiro".
+- Escudo de Reiatsu: Sempre que você curar uma criatura durante o combate, ela recebe +5 na Classe de Resistência (CR) contra o próximo ataque que sofrer até o início do próprio turno. Se não for atacada até lá, o bônus é perdido. Esse benefício só é concedido se a cura for direcionada exclusivamente a uma única criatura, não funcionando com efeitos de cura em área. Pré-Requisito: Talento de Kyūgo "Kaido" ou Afinidade "Curandeiro".
 - Kaido: Com sua "Ação" e o custo de 4 pontos de reiatsu, você pode utilizar um Kido de Cura, restaurando 1d8 + 4 pontos de vida em uma criatura ao tocá-la. Você pode potencializar essa cura, adicionando um dado extra ao efeito por 4 pontos de reiatsu adicionais para cada dado extra. Além disso, você pode dobrar o custo total do Kido para utilizá-lo como uma ação livre.
 
 Se você possuir a subclasse Curandeiro este Talento, adiciona um dado de cura adicional a todas as suas curas.
 
 - Golpe Triplo: Quando você utiliza a ação "Atacar", agora você realiza três ataques.
 
-Pré-Requisito: 11° nível de Suporte e Talento de Suporte "Ataque Extra".
+Pré-Requisito: 11° nível de Kyūgo e Talento de Kyūgo "Ataque Extra".
 
-- Kido Extra: Você pode conjurar mais Kidos durante o seu turno. Quando usar um Kido com sua "Ação", pode conjurar um segundo Kido que também exija uma Ação, esse segundo Kido é considerado parte da mesma ação. Você ainda deve respeitar as regras de "Encantamento" e não pode conjurar Kidos iguais com essa habilidade. Pré-Requisito: 5° nível de Suporte.
+- Kido Extra: Você pode conjurar mais Kidos durante o seu turno. Quando usar um Kido com sua "Ação", pode conjurar um segundo Kido que também exija uma Ação, esse segundo Kido é considerado parte da mesma ação. Você ainda deve respeitar as regras de "Encantamento" e não pode conjurar Kidos iguais com essa habilidade. Pré-Requisito: 5° nível de Kyūgo.
 - Para o Outro: Você pode conjurar qualquer Bakudou que normalmente teria efeito apenas em você em outra criatura, como se estivesse conjurando em si mesmo. Para isso, você deve tocar a criatura no momento da conjuração. Todos os demais custos e requisitos do Bakudou permanecem os mesmos.
 - Potencial Compartilhado: No início do combate, ao definir a ordem de turnos, você pode compartilhar uma de suas Essências Espirituais com criaturas aliadas que participam da batalha, mantendo esse vínculo até o fim do combate. Se a essência escolhida tiver etapas aumentadas, os aliados também se beneficiam dessas melhorias. Essências Proibidas não podem ser compartilhadas.
 
-Pré-Requisito: 15° nível de Suporte.
+Pré-Requisito: 15° nível de Kyūgo.
 
 - Preparação: No primeiro turno de um combate, você ganha uma Ação adicional. No entanto, essa Ação não pode ser usada para atacar.
 - Proteção: Em situações de emergência, você pode proteger um aliado com seu próprio corpo. No seu turno, você pode gastar 5 pontos de reiatsu para usar a ação "Proteger" como uma ação bônus.
 - Recuperação Compartilhada: Quando você usar a ação "Recuperar Reiatsu", pode compartilhar parte do reiatsu recuperado com um aliado ao alcance do toque. Você escolhe a quantidade de reiatsu a ser transferida para o aliado.
 - Resposta Urgente: Quando um aliado for reduzido a 0 pontos de vida, você recebe uma ação bônus extra no seu turno. Se mais de um aliado cair a 0 pontos de vida, você recebe uma ação adicional ao invés de uma Ação Bônus. No entanto, essas ações adicionais não pode ser usada para atacar.
 
-Pré-Requisito: 10° nível de Suporte e Talento de Suporte "Preparação".
+Pré-Requisito: 10° nível de Kyūgo e Talento de Kyūgo "Preparação".
 
 - Sentido Espiritual Apurado: Sua percepção espiritual é muito superior à de uma criatura comum. Sempre que uma criatura entrar a até 9 metros de você, você sabe exatamente aonde a criatura está. No caso de uma criatura que esteja suprimindo a reiatsu, você ainda sentirá uma sensação estranha, aonde o mestre pode descrever como um sentimento que tem algo errado. Além disso, se você realizar um teste de Percepção Espiritual para identificá-la, poderá rolar com vantagem.
 
@@ -1527,13 +1549,13 @@ Pré-Requisito: Proficiência na perícia "Percepção Espiritual".
 
 O mestre pode decidir que essa habilidade não remove a condição quando ela for causada por algum tipo de liberação, como uma Shikai ou Bankai.
 
-Pré-Requisito: Talento de Suporte "Kaido" ou Afinidade "Curandeiro".
+Pré-Requisito: Talento de Kyūgo "Kaido" ou Afinidade "Curandeiro".
 
 - Troca de Ação: Se você estiver em combate, no início do seu turno, pode gastar 3 pontos de reiatsu para transferir uma de suas ações para um aliado a até 6 metros de você. Escolha entre Ação, Ação Bônus ou Reação, você pode transferir apenas uma por turno. Ao fazer isso, você perde essa ação no turno atual. O aliado recebe a ação transferida como uma ação extra no próximo turno dele, exceto no caso da Reação, que ele pode usar fora do próprio turno. Após ser utilizada, a ação transferida é consumida normalmente, como se fosse dele.
 
 ### Afinidade (sub-classe)
 
-A partir do 3° nível, você deve escolher uma afinidade para seguir como Suporte. A afinidade escolhida concederá características no 3°, 6°, 10°, 15° e 20° nível de personagem.
+A partir do 3° nível, você deve escolher uma afinidade para seguir como Kyūgo. A afinidade escolhida concederá características no 3°, 6°, 10°, 15° e 20° nível de personagem.
 
 ### Aprimoramento da Essência
 
@@ -1546,6 +1568,10 @@ Você deve escolher uma das três afinidades disponíveis como suporte. As afini
 ## Curandeiro
 
 O Curandeiro é o Shinigami que possui habilidade em Kido de cura, mas, diferentemente de outros Shinigamis que utilizam essa técnica, os Curandeiros são especialistas, curando seus aliados e atuando como verdadeiros médicos dos Shinigamis.
+
+- **Reforço de PV:** +8 no 1° nível e +3 por nível (30 + Constituição no 1° nível; 9 + Constituição nos níveis seguintes).
+- **Acerto dos Kido de ataque:** atributo + 2 × proficiência.
+- **Hadō:** o rank acessível acompanha o nível de classe − 2.
 
 ### Kido de Cura
 
@@ -1574,7 +1600,7 @@ Você pode escolher uma Zanpakutou da lista de Zanpakutous do tipo Elemental ou 
 
 Para liberar sua Shikai, você deve usar sua ação bônus em seu turno e ser capaz de verbalizar o nome da Zanpakutou, os custos de liberação estão descrito na Zanpakutou. Seus atributos para acerto e dano com ela na forma Shikai permanecem os mesmos da forma Asauchi, mas a margem de crítico deixa de ser aprimorada, a menos que uma habilidade da Zanpakutou fale o contrário. Para as técnicas da Zanpakutou, o acerto e a classe de dificuldade são diferentes, conforme descrito abaixo:
 
-Acerto para as técnicas da Zanpakutou = d20 + bônus de proficiência + seu atributo de Sabedoria Classe de Dificuldade para suas técnicas com a Zanpakutou = 8 + bônus de proficiência + seu atributo de Sabedoria
+Acerto para as técnicas da Zanpakutou = d20 + bônus de proficiência + seu atributo de Mente Classe de Dificuldade para suas técnicas com a Zanpakutou = 8 + bônus de proficiência + seu atributo de Mente
 
 ### Cura de Reiatsu
 
@@ -1622,7 +1648,7 @@ Você pode escolher uma Zanpakutou da lista de Zanpakutous do tipo Combate ou Ki
 
 Para liberar sua Shikai, você deve usar sua ação em seu turno e ser capaz de verbalizar o nome da Zanpakutou, os custos de liberação estão descrito na Zanpakutou. Seus atributos para acerto e dano com ela na forma Shikai permanecem os mesmos da forma Asauchi, mas a margem de crítico deixa de ser aprimorada, a menos que uma habilidade da Zanpakutou fale o contrário. Para as técnicas da Zanpakutou, o acerto e a classe de dificuldade são diferentes, conforme descrito abaixo:
 
-Acerto para as técnicas da Zanpakutou = d20 + bônus de proficiência + seu atributo de Sabedoria Classe de Dificuldade para suas técnicas com a Zanpakutou = 8 + bônus de proficiência + seu atributo de Sabedoria
+Acerto para as técnicas da Zanpakutou = d20 + bônus de proficiência + seu atributo de Mente Classe de Dificuldade para suas técnicas com a Zanpakutou = 8 + bônus de proficiência + seu atributo de Mente
 
 ### Defesa Compartilhada
 
@@ -1668,15 +1694,17 @@ Além disso, se a criatura alvo for imune ao tipo de dano causado, ela passa a s
 
 Essa é uma subclasse especial, é inspirada em curandeiros que vão ao combate utilizando seu Kido curativo para se manter vivos e manter seus aliados vivos durante as batalhas.
 
-Para escolher essa subclasse, você deve possuir o Estilo de Luta "Combatente". Essa afinidade, diferentemente das demais, não possui características próprias, sendo formada pela combinação de duas subclasses para criar um estilo de combate totalmente diferente, chamado Médico de Combate.
+Para escolher essa subclasse, você deve possuir o Estilo de Luta "Zanjutsu". Essa afinidade, diferentemente das demais, não possui características próprias, sendo formada pela combinação de duas subclasses para criar um estilo de combate totalmente diferente, chamado Médico de Combate.
 
-Você utilizará as características das afinidade "Curandeiro" e a especialização "Forja Espiritual" da classe Combatente, com algumas alterações.
+Você utilizará as características das afinidade "Curandeiro" e a especialização "Forja Espiritual" da classe Zanjutsu, com algumas alterações.
+
+Seus Pontos de Vida são os do Zanjutsu: 30 + Constituição no 1° nível e 10 + Constituição por nível. Você recebe Ataque Extra no 5° nível, Golpe Triplo no 11° e Golpe Superior (4° ataque) no 15° nível, todos como Talentos de Kyūgo.
 
 ### Características
 
 Como já mencionado, suas características são uma combinação de duas subclasses. A seguir, estão as instruções para o Médico de Combate.
 
-- 3° nível: Você recebe a característica Kido de Cura da afinidade Curandeiro, mas com uma limitação: sempre que utilizar essa característica para curar um aliado, ele recuperará apenas metade dos pontos de vida, enquanto você recuperará a outra metade. Se utilizar essa característica para curar a si mesmo, recuperará apenas metade do valor total, e a outra metade será perdida. Você também recebe a Shikai da especialização Forja Espiritual, mas utiliza Sabedoria como atributo para determinar o acerto e a CD de suas técnicas.
+- 3° nível: Você recebe a característica Kido de Cura da afinidade Curandeiro, mas com uma limitação: sempre que utilizar essa característica para curar um aliado, ele recuperará apenas metade dos pontos de vida, enquanto você recuperará a outra metade. Se utilizar essa característica para curar a si mesmo, recuperará apenas metade do valor total, e a outra metade será perdida. Você também recebe a Shikai da especialização Forja Espiritual, mas utiliza Mente como atributo para determinar o acerto e a CD de suas técnicas.
 - 6° nível: Você recebe a característica Poder da Alma da especialização Forja Espiritual.
 - 10° nível: Você recebe a Bankai da especialização Forja Espiritual, seguindo as mesmas regras de atributo utilizadas para sua Shikai.
 - 15° nível: Você recebe a característica Cura de Reiatsu da afinidade Curandeiro, mas ainda segue a regra de dividir a cura pela metade entre você e seu aliado. No entanto, você não pode direcionar a Cura de Reiatsu para si mesmo.
@@ -1730,50 +1758,52 @@ Nem todos os Quincy servem ao Wandenreich. Alguns vivem entre os humanos, preser
 
 ## Tabela de Classe
 
-## Atirador
+## Schütze
 
-AA classe de Atirador representa o Quincy que alcançou a perfeição no uso de armas à distância, transformando a manipulação do Reishi em precisão letal. Esses quincys unem técnica, cálculo e instinto espiritual, moldando flechas e projéteis de pura energia que atingem o alvo com exatidão sobrenatural. Seu poder nasce do controle absoluto do campo de batalha e da habilidade de antecipar cada movimento inimigo com clareza.
+AA classe de Schütze representa o Quincy que alcançou a perfeição no uso de armas à distância, transformando a manipulação do Reishi em precisão letal. Esses quincys unem técnica, cálculo e instinto espiritual, moldando flechas e projéteis de pura energia que atingem o alvo com exatidão sobrenatural. Seu poder nasce do controle absoluto do campo de batalha e da habilidade de antecipar cada movimento inimigo com clareza.
 
-Inspirado em mestres do disparo espiritual, o Atirador eleva a arte da mira à sua forma mais pura. Por meio de habilidades como Mira Impecável, ele canaliza sua reiatsu em ataques impossíveis.
+Inspirado em mestres do disparo espiritual, o Schütze eleva a arte da mira à sua forma mais pura. Por meio de habilidades como Mira Impecável, ele canaliza sua reiatsu em ataques impossíveis.
 
 ### Traços de Classe
 
-Pontos de Vida: No primeiro nível, seus pontos de vida são 20 + seu atributo de Constituição. Nos próximos níveis, são 6 + seu atributo de Constituição.
+Pontos de Vida: No primeiro nível, seus pontos de vida são 25 + seu atributo de Constituição. Nos próximos níveis, são 9 + seu atributo de Constituição.
 
 Pontos de reaitsu: No primeiro nível, seus pontos de reiatsu são 20 + seu atributo de Espírito. Nos próximos níveis, são 6 + seu atributo de Espírito.
 
-Perícias: Escolha 6 + metade do seu atributo de Inteligência, arredondado para baixo, para ser proficiênte.
+Perícias: Escolha 6 + metade do seu atributo de Mente, arredondado para baixo, para ser proficiênte.
 
-Proficiência em Teste de Resistência: Destreza, Inteligência.
+Proficiência em Teste de Resistência: Destreza, Mente.
+
+Classe de Resistência: leve (10 + bônus de proficiência + Destreza + metade da Constituição, arredondada para baixo).
 
 ### Construção Rápida
 
-Ao escolher a classe de Atirador, você deve focar no atributo de Destreza como atributo principal, e depois em Inteligência, pois este é o atributo-chave da classe para utilizar suas técnicas Quincy. Em seguida, dê prioridade ao atributo de Espirito e, por último, à Constituição ou Sabedoria.
+Ao escolher a classe de Schütze, você deve focar no atributo de Destreza como atributo principal, e depois em Mente, pois este é o atributo-chave da classe para utilizar suas técnicas Quincy. Em seguida, dê prioridade ao atributo de Espirito e, por último, à Constituição ou Mente.
 
-FOR DES CON INT SAB ESP Recomendação de distribuição de atributos nível 1: Essência recomendada: Mira apurada CR 10 + Proficiência + Metade do Atributo de Destreza Nível bÔNUS DE Proficiência técnicas De REISHI Conhecidas Nível das técnicas Características
+FOR DES CON MEN ESP Recomendação de distribuição de atributos nível 1: Essência recomendada: Mira Apurada. CR leve: 10 + Proficiência + Destreza + metade da Constituição. Nível bÔNUS DE Proficiência técnicas De REISHI Conhecidas Nível das técnicas Características
 
 | Nível | Proficiência | Col. 1 | Col. 2 | Características |
 |---|---|---|---|---|
 | 1° | +2 | 1 | 1 | Mira Impecável, Técnicas de Reish |
-| 2° | +2 | 2 | 1 | Habilidades de Atirador |
-| 3° | +2 | 3 | 1 | Estilo (Sub-classe), Habilidades de Atirador |
+| 2° | +2 | 2 | 1 | Habilidades de Schütze |
+| 3° | +2 | 3 | 1 | Estilo (Sub-classe), Habilidades de Schütze |
 | 4° | +2 | 4 | 1 | Aprimoramento da Essência |
-| 5° | +3 | 4 | 1 | Habilidades de Atirador, Melhoria de Equipamento |
-| 6° | +3 | 5 | 2 | Estilo (Sub-classe), Habilidades de Atirador |
-| 7° | +3 | 5 | 2 | Habilidades de Atirador |
+| 5° | +3 | 4 | 1 | Habilidades de Schütze, Melhoria de Equipamento |
+| 6° | +3 | 5 | 2 | Estilo (Sub-classe), Habilidades de Schütze |
+| 7° | +3 | 5 | 2 | Habilidades de Schütze |
 | 8° | +3 | 6 | 2 | Aprimoramento da Essência |
-| 9° | +4 | 6 | 2 | Habilidades de Atirador |
-| 10° | +4 | 7 | 2 | Estilo (Sub-classe), Habilidades de Atirador |
-| 11° | +4 | 7 | 3 | Habilidades de Atirador |
+| 9° | +4 | 6 | 2 | Habilidades de Schütze |
+| 10° | +4 | 7 | 2 | Estilo (Sub-classe), Habilidades de Schütze |
+| 11° | +4 | 7 | 3 | Habilidades de Schütze |
 | 12° | +4 | 8 | 3 | Aprimoramento da Essência |
-| 13° | +5 | 8 | 3 | Habilidades de Atirador, Vollstanding |
-| 14° | +5 | 9 | 3 | Habilidades de Atirador |
-| 15° | +5 | 9 | 3 | Estilo (Sub-classe), Habilidades de Atirador |
+| 13° | +5 | 8 | 3 | Habilidades de Schütze, Vollstanding |
+| 14° | +5 | 9 | 3 | Habilidades de Schütze |
+| 15° | +5 | 9 | 3 | Estilo (Sub-classe), Habilidades de Schütze |
 | 16° | +5 | 10 | 4 | Aprimoramento da Essência |
-| 17° | +6 | 10 | 4 | Habilidades de Atirador |
-| 18° | +6 | 11 | 4 | Habilidades de Atirador, Vollstanding (2) |
-| 19° | +6 | 11 | 4 | Habilidades de Atirador |
-| 20° | +6 | 12 | 4 | Estilo (Sub-classe), Habilidades de Atirador |
+| 17° | +6 | 10 | 4 | Habilidades de Schütze |
+| 18° | +6 | 11 | 4 | Habilidades de Schütze, Vollstanding (2) |
+| 19° | +6 | 11 | 4 | Habilidades de Schütze |
+| 20° | +6 | 12 | 4 | Estilo (Sub-classe), Habilidades de Schütze |
 
 Você é proficiênte nos seguintes Equipamentos Quincys:
 
@@ -1787,21 +1817,23 @@ REISHI
 
 ### Mira Impecável
 
-Você pode mirar em uma criatura no começo do seu turno, somando seu atributo de Inteligência ao Acerto em seus Ataques com armas a distância. Para isso, você não pode se mover, utilizando seu deslocamento para isso, nem recorrer a um Deslocamento Instantâneo.
+Você pode mirar em uma criatura no começo do seu turno, somando seu atributo de Mente ao Acerto em seus Ataques com armas a distância. Para isso, você não pode se mover, utilizando seu deslocamento para isso, nem recorrer a um Deslocamento Instantâneo. A partir do 3° nível, seus ataques à distância contra o alvo mirado também têm vantagem.
 
 ### Técnicas de Reishi
 
 Os Quincys, por conseguirem manipular o Reishi do ambiente, são capazes de criar habilidades a partir dessa manipulação, chamadas de Técnicas de Reishi.
 
-Você possui um número de escolhas de Técnicas de Reishi igual ao descrito na tabela de classe como "Técnicas de Reishi Conhecidas". As técnicas possuem níveis, e em determinados nível de personagem você ganha acesso a níveis mais altos de Técnicas de Reishi, que vão até o quarto nível. Você só pode escolher técnicas dos níveis aos quais tem acesso, conforme indicado na tabela de classe como "Nível das Técnicas". Por exemplo, no primeiro nível de classe, você só pode escolher Técnicas de Reishi de primeiro nível e, posteriormente, terá acesso a níveis mais altos. Para conjurar e determinar a Classe de Dificuldade das Técnicas de Reishi, você usará o seu atributo de Inteligência. No entanto, se a técnica utilizar a sua Arma Favorita como catalisador, você pode usar o atributo da arma para acertar, mas a Classe de Dificuldade ainda será baseada em Inteligência.
+Você possui um número de escolhas de Técnicas de Reishi igual ao descrito na tabela de classe como "Técnicas de Reishi Conhecidas". As técnicas possuem níveis, e em determinados nível de personagem você ganha acesso a níveis mais altos de Técnicas de Reishi, que vão até o quarto nível. Você só pode escolher técnicas dos níveis aos quais tem acesso, conforme indicado na tabela de classe como "Nível das Técnicas". Por exemplo, no primeiro nível de classe, você só pode escolher Técnicas de Reishi de primeiro nível e, posteriormente, terá acesso a níveis mais altos. Para conjurar e determinar a Classe de Dificuldade das Técnicas de Reishi, você usará o seu atributo de Mente. No entanto, se a técnica utilizar a sua Arma Favorita como catalisador, você pode usar o atributo da arma para acertar, mas a Classe de Dificuldade ainda será baseada em Mente.
 
-Acerto para suas Técnicas de Reishi = d20 + bônus de proficiência + seu atributo de Inteligência Classe de Dificuldade para suas Técnicas de Reishi = 8 + bônus de proficiência + seu atributo de Inteligência
+Acerto para suas Técnicas de Reishi = d20 + bônus de proficiência + seu atributo de Mente Classe de Dificuldade para suas Técnicas de Reishi = 8 + bônus de proficiência + seu atributo de Mente
 
-### Talento de Atirador
+Você tem uma Técnica de Reishi desde o 1° nível, com dano base de 2d10 + Espírito, sem dados extras. No 1° e no 2° nível seus disparos não têm vantagem. O bônus de acerto das suas técnicas é 1,5 × a proficiência em todos os níveis.
 
-A partir do 2° nível você pode escolher talentos de Atirador até o 20° nível de classe. No entanto, nos níveis em que recebe um “Aprimoramento da Essência”, não poderá escolher uma novo Talento de Atirador.
+### Talento de Schütze
 
-Você pode escolher apenas um talento de Atirador por vez. E alguns Talentos têm requisitos, que devem ser atendidos para que possam ser escolhidas.
+A partir do 2° nível você pode escolher talentos de Schütze até o 20° nível de classe. No entanto, nos níveis em que recebe um “Aprimoramento da Essência”, não poderá escolher uma novo Talento de Schütze.
+
+Você pode escolher apenas um talento de Schütze por vez. E alguns Talentos têm requisitos, que devem ser atendidos para que possam ser escolhidas.
 
 - Alvo Cercado: Você é capaz de flanquear uma criatura mesmo utilizando uma arma à distância, desde que esteja adjacente ao alvo e outra criatura esteja no lado oposto, engajada em combate corpo a corpo com o alvo ou possua essa habilidade.
 - Arma Favorita: Com o seu treinamento Quincy, você pode usar varios tipos de armas do Arsenal mas você escolheu uma arma para ser sua Arma Favorita.
@@ -1810,18 +1842,18 @@ Você pode escolher uma arma a Distância para ser sua Arma Favorita. Sua arma f
 
 - Ataque Extra: Você ganha a habilidade de realizar mais ataques durante o seu turno. Quando você usar a ação “Ataque” no seu turno, pode realizar dois ataques em vez de um.
 
-Pré-Requisito: 5° nível de Atirador.
+Pré-Requisito: 5° nível de Schütze.
 
-- Cálculo Rápido: Você adiciona metade do seu atributo de Inteligência, arredondado para baixo, à sua rolagem de iniciativa.
+- Cálculo Rápido: Você adiciona metade do seu atributo de Mente, arredondado para baixo, à sua rolagem de iniciativa.
 - Caçador Solitário: Quando não houver nenhuma criatura aliada próxima a você (18 metros), você recebe +2 na sua Classe de Resistência e +2 nas suas rolagens de dano.
 - Detetive: Você realiza todos os testes de Investigação com vantagem.
-- Disparo Perfurante: Você consegue concentrar Reishi em um disparo capaz de atravessar defesas. Uma vez por turno, quando acertar um ataque com arma à distância, você pode ignorar uma quantidade de Resistência a Dano (RD) igual ao seu atributo de Inteligência.
+- Disparo Perfurante: Você consegue concentrar Reishi em um disparo capaz de atravessar defesas. Uma vez por turno, quando acertar um ataque com arma à distância, você pode ignorar uma quantidade de Resistência a Dano (RD) igual ao seu atributo de Mente.
 - Disparo Ricochete: Você consegue controlar a trajetória dos seus projéteis de Reishi. Ao realizar um ataque à distância, pode ignorar cobertura e fazer o disparo contornar obstáculos, desde que o alvo esteja dentro do alcance da arma e você tenha uma trajetória plausível para o projétil
 - Dobro: Quando você utiliza armas à distância, o alcance indicado por elas é dobrado, permitindo que seus disparos alcancem alvos ainda mais distantes com precisão.
 - Executar: Você ganha a habilidade de executar criaturas com poucos pontos de vida. Se você atacar uma criatura, causar dano a ela e reduzi-la a 10 pontos de vida ou menos, ela será executada, morrendo instantaneamente. Você pode optar por não matá-la, causando dano não letal, o que a deixará com 1 ponto de vida e inconsciênte.
 - Execução Aprimorada: Você passa a executar criaturas com 20 pontos de vida, seguindo as mesmas regras da habilidade "Executar".
 
-Pré-Requisito: 9° nível de Atirador e habilidade de Atirador "Executar".
+Pré-Requisito: 9° nível de Schütze e habilidade de Schütze "Executar".
 
 - Foco Estável: Você não sofre mais a penalidade de deslocamento imposta pela característica "Mira Impecável".
 - Guarda: Quando uma criatura dentro de um raio de 9 metros de você se deslocar em sua direção, desde que não seja por um deslocamento instantâneo, você pode usar sua reação para realizar um único ataque com arma à distância contra ela.
@@ -1831,42 +1863,42 @@ Características de classe Classe de Quincy
 
 - Golpe Triplo: Quando você utiliza a ação "Atacar", agora você realiza três ataques.
 
-Pré-Requisito: 11° nível de Atirador e habilidade de Atirador "Ataque Extra".
+Pré-Requisito: 11° nível de Schütze e habilidade de Schütze "Ataque Extra".
 
 - Golpe Superior: Quando você utiliza a ação "Atacar", agora você realiza quatro ataques.
 
-Pré-Requisito: 15° nível de Atirador e habilidade de Atirador "Golpe Triplo".
+Pré-Requisito: 20° nível de Schütze e habilidade de Schütze "Golpe Triplo".
 
 - Feitiço Extra: Você pode conjurar mais de uma Técnica de Reishi durante o seu turno. Quando usar um Kido com sua "Ação", pode conjurar um segundo Kido que também exija uma Ação. Você ainda deve respeitar outros requisitos e não pode conjurar Técnicas de Reishi iguais com essa habilidade.
 
-Pré-Requisito: 5° nível de Atirador.
+Pré-Requisito: 5° nível de Schütze.
 
 - Foco Estável: Você não sofre mais a penalidade de deslocamento imposta pela característica "Mira Impecável", mas ainda não pode usar Deslocamento Instantâneo no mesmo turno.
 
-Pré-Requisito: 2° nível de Atirador e habilidade de Atirador "Mira Impecável".
+Pré-Requisito: 2° nível de Schütze e habilidade de Schütze "Mira Impecável".
 
-- Instinto do Atirador: Quando um inimigo erra um ataque contra você, você pode revidar acertando ele com um único ataque com sua arma, utilizando sua reação.
+- Instinto do Schütze: Quando um inimigo erra um ataque contra você, você pode revidar acertando ele com um único ataque com sua arma, utilizando sua reação.
 - Negação de Projetéis: Quando você for alvo de um ataque à distância, seja por técnica ou não, que venha em sua direção, você pode usar disparos da sua arma para tentar interceptar o ataque. Utilizando sua reação, você pode realizar um ataque com sua arma contra o ataque que se aproxima. O dano do ataque será reduzido pelo próprio dano causado pelo seu ataque. Se o dano for reduzido a 0 pontos, você anulará completamente o ataque.
-- Percepção Espiritual Apurada: Sua percepção espiritual está além do comum, permitindo que você sinta as criaturas com facilidade. Você recebe um bônus de +5 na sua percepção passiva, e todas as criaturas que entrarem dentro de um alcance de 36 metros ao seu redor (exceto aquelas que estejam suprimindo a reiatsu) serão imediatamente reveladas, permitindo que você saiba exatamente a localização de cada uma. Pré-Requisito: 9° nível de Atirador.
+- Percepção Espiritual Apurada: Sua percepção espiritual está além do comum, permitindo que você sinta as criaturas com facilidade. Você recebe um bônus de +5 na sua percepção passiva, e todas as criaturas que entrarem dentro de um alcance de 36 metros ao seu redor (exceto aquelas que estejam suprimindo a reiatsu) serão imediatamente reveladas, permitindo que você saiba exatamente a localização de cada uma. Pré-Requisito: 9° nível de Schütze.
 - Precisão Total: Você pode usar Deslocamento Instantâneo normalmente, não sofrendo mais a penalidade ao utilizar Mira Impecável.
 
-Pré-Requisito: habilidade de Atirador "Foco Estável".
+Pré-Requisito: habilidade de Schütze "Foco Estável".
 
 - Realocação Antecipada: Quando o combate começar, após utilizar o Saque Rápido você pode usar seu Hirenkyaku para se posicionar dentro do seu alcance antes que a ordem de turnos comece.
 
-Pré-Requisito: 8° nível de Atirador e habilidade de Atirador "Saque Rápido".
+Pré-Requisito: 8° nível de Schütze e habilidade de Schütze "Saque Rápido".
 
 - Recuo Tático: Quando uma criatura terminar seu deslocamento a até 3 metros de você, você pode usar sua reação para se deslocar até 3 metros sem provocar ataques de oportunidade.
 - Reposicionamento: Após acertar um ataque com uma arma à distância, você pode se deslocar até 3 metros sem provocar ataques de oportunidade. Esse deslocamento é descontado do seu deslocamento.
 - Saque Rápido: Quando o combate começar, você pode realizar um ataque com arma a distância contra uma criatura hostil antes da ordem de turnos começar.
-- Sequência Fatal: Cada vez que você acerta um ataque contra uma criatura, reduz a Classe de Resistência (CR) dela em –1 para você, até um máximo igual à metade do seu atributo de Inteligência (arredondado para baixo). Pré-Requisito: 12° nível de Atirador.
+- Sequência Fatal: Cada vez que você acerta um ataque contra uma criatura, reduz a Classe de Resistência (CR) dela em –1 para você, até um máximo igual à metade do seu atributo de Mente (arredondado para baixo). Pré-Requisito: 12° nível de Schütze.
 - Schrift: O poder latente na alma de um Quincy pode se manifestar de formas diversas, refletindo habilidades únicas e extraordinárias. A obtenção de uma Shrift é um evento raro e especial, que ocorre em circunstâncias distintas: alguns Quincy nascem com esse dom, enquanto outros o despertam ao beber o sangue do próprio Rei Quincy ou o desenvolvem ao longo de suas vidas.
 
 Ao selecionar esta habilidade, você pode escolher uma Shrift do capítulo "Arsenal Quincy". A escolha da Shrift deve ser aprovada pelo Mestre, garantindo que ela se encaixe na narrativa do jogo.
 
-Pré-Requisito: 6° nível de Atirador, aprovação do mestre.
+Pré-Requisito: 6° nível de Schütze, aprovação do mestre.
 
-- Tiro Mortal: Quando você obtiver um acerto crítico com uma arma à distância, pode adicionar metade do seu atributo de Inteligência ao dano causado pelo ataque.
+- Tiro Mortal: Quando você obtiver um acerto crítico com uma arma à distância, pode adicionar metade do seu atributo de Mente ao dano causado pelo ataque.
 
 ### Hirenkyaku
 
@@ -1874,9 +1906,9 @@ A partir do 2° nível, você ganha a habilidade de utilizar uma técnica chamad
 
 Quando utilizar essa técnica você ignora ataques de oportunidade e ignora terro difícil. Você não pode usar o Shunpo para atravessar barreiras sólidas.
 
-### Estilo de Atirador
+### Estilo de Schütze
 
-A partir do 3° nível, você deve escolher um Estilo de Atirador para seguir. O Estilo escolhido concederá características no 3°, 6°, 10°, 15° e 20° nível de personagem.
+A partir do 3° nível, você deve escolher um Estilo de Schütze para seguir. O Estilo escolhido concederá características no 3°, 6°, 10°, 15° e 20° nível de personagem.
 
 ### Aprimoramento da Essência
 
@@ -1894,7 +1926,7 @@ Você deve consultar o Capítulo 7: Arsenal Quincy para criar sua própria Volls
 
 ## Estilos
 
-Você pode escolher um entre três Estilos de Atirador: o primeiro é o Arqueiro, focado no uso de armas medievais, sendo o caminho mais comum entre os Quincys; o segundo é o Pistoleiro, que apesar de ser um Atirador, se especializa no combate de curta a média distância, e por fim, o Sniper, no qual o Quincy se destaca em ataques de longa distância, mirando nos pontos vitais de seus inimigos.
+Você pode escolher um entre três Estilos de Schütze: o primeiro é o Arqueiro, focado no uso de armas medievais, sendo o caminho mais comum entre os Quincys; o segundo é o Pistoleiro, que apesar de ser um Schütze, se especializa no combate de curta a média distância, e por fim, o Sniper, no qual o Quincy se destaca em ataques de longa distância, mirando nos pontos vitais de seus inimigos.
 
 ## Arqueiro
 
@@ -1918,7 +1950,7 @@ Você pode optar por não atingir uma ou mais criaturas dentro do cone. No entan
 
 ### Marca Quincy
 
-A partir do 15° nível, seu domínio sobre o disparo é absoluto. Você consegue marcar uma criatura, no começo do seu turno com uma ação livre e 5 pontos de reiatsu. Até o final do seu turno, todos os seus ataques à distância com uma arma medieval contra esse alvo têm vantagem na rolagem de ataque e causam dano adicional de 1d10 de dano de Energia.
+A partir do 20° nível, seu domínio sobre o disparo é absoluto. Você consegue marcar uma criatura, no começo do seu turno com uma ação livre e 5 pontos de reiatsu. Até o final do seu turno, todos os seus ataques à distância com uma arma medieval contra esse alvo têm vantagem na rolagem de ataque e causam dano adicional de 1d4 de dano de Energia.
 
 ### Disparo Perfeito
 
@@ -1926,27 +1958,27 @@ A partir do 20° nível, quando utilizar Disparo Adicional, você realiza dois d
 
 ## Sniper
 
-O Sniper é um Atirador que se especializa no uso de armas de longo alcance, como arcos longos ou rifles de precisão, focando em atingir os pontos vitais do inimigo com calma e precisão.
+O Sniper é um Schütze que se especializa no uso de armas de longo alcance, como arcos longos ou rifles de precisão, focando em atingir os pontos vitais do inimigo com calma e precisão.
 
 ### Disparo de Precisão
 
 A partir do 3° nível, seu foco é um úncio ataque, tão poderoso e letal que faz os inimigos duvidarem de qualquer estratégia contra você.
 
-Com sua ação, você realiza um ataque com arma à distância em uma criatura, se você estiver a pelo menos 9 metros do alvo ou mais, você adiciona dados adicionais de dano a sua arma, igual metade do seu atributo de Inteligência, arredondado para cima.
+Com sua ação, você realiza um ataque com arma à distância em uma criatura, se você estiver a pelo menos 9 metros do alvo ou mais, você adiciona dados adicionais de dano a sua arma, igual metade do seu atributo de Mente, arredondado para cima.
 
 ### Tiro de Execução
 
-A partir do 6° nível, se você possuir a habilidade Ataque Extra da trilha Atirador, seu Disparo de Precisão se torna mais poderoso. Ao utilizá-lo, você causa uma quantidade de dados de dano da arma igual ao dobro do número de Ataques Extras que possui, sem adicionar novamente outros bônus de dano. Entretanto, o custo de Energia também é multiplicado pelo número de Ataques Extras, considerando cada disparo individualmente.
+A partir do 6° nível, se você possuir a habilidade Ataque Extra da trilha Schütze, seu Disparo de Precisão se torna mais poderoso. Ao utilizá-lo, você causa uma quantidade de dados de dano da arma igual ao dobro do número de Ataques Extras que possui, sem adicionar novamente outros bônus de dano. Entretanto, o custo de Energia também é multiplicado pelo número de Ataques Extras, considerando cada disparo individualmente.
 
 Por exemplo, se você utilizar um rifle de precisão que causa 2d10 de dano e custa 5 pontos de Energia por disparo, e possuir um Ataque Extra, seu Disparo de Precisão causará 4d10 de dano e custará 10 pontos de Energia.
+
+### Projétil Perfurante
+
+A partir do 10° nível, seus disparos de arma ignoram até 5 de Redução de Dano do alvo.
 
 ### Mira Mortal
 
 A partir do 10° nível, você aprendeu a identificar e explorar os pontos vulneráveis de seus alvos. Quando realizar um Disparo de Precisão contra uma criatura a pelo menos 18 metros de distância, você recebe +5 na jogada de ataque.
-
-### Disparo Carregado
-
-A partir do 15° nível, você pode gastar 5 pontos de Reiatsu para adicionar um dado de dano da arma ao seu Disparo de Precisão. Você pode gastar Reiatsu dessa forma várias vezes no mesmo disparo, até um máximo de vezes igual à metade do seu atributo de Inteligência, arredondada para cima.
 
 ### Headshot
 
@@ -1960,7 +1992,7 @@ O Pistoleiro é um especialista em combate com duas armas Quincy, utilizando dis
 
 ### À Queima-roupa
 
-A partir do 3° nível, quando estiver a até 3 metros de uma criatura hostil, você recebe um bônus na sua CR igual ao seu bônus de proficiência. Se estiver a até 3 metros de duas ou mais criaturas hostis, em vez disso, você recebe um bônus na CR igual à metade do seu bônus de proficiência para cada uma dessas criaturas.
+A partir do 5° nível, quando estiver a até 3 metros de uma criatura hostil, você recebe +1 na sua CR.
 
 ### Dança de Balas
 
@@ -1980,6 +2012,479 @@ A partir do 15° nível, após acertar uma criatura com um ataque utilizando sua
 
 ### Descarregar o Arsenal
 
-No 20° nível, você aponta suas duas armas para uma única criatura e dispara uma sequência colossal de projéteis contra ela. Usando sua ação e gastando 40 pontos de Reiatsu, role 1d10 com vantagem. O resultado determina a quantidade de ataques que você pode realizar contra a criatura escolhida. Cada ataque causa o dano normal de seus ataques com duas armas, seguindo as regras de combate com armas Duplas. Para cada ataque, a criatura deve realizar um teste de resistência de Destreza. Em caso de falha, sofre o dano do ataque.
+No 20° nível, você aponta suas duas armas para uma única criatura e dispara uma sequência colossal de projéteis contra ela. Usando sua ação e gastando 40 pontos de Reiatsu, role 1d10 com vantagem. O resultado determina a quantidade de ataques que você pode realizar contra a criatura escolhida. Cada ataque causa o dano normal de uma arma (não dobre os dados por ser arma dupla). O alvo faz uma salvaguarda de Destreza: em caso de falha, sofre o dano total; em caso de sucesso, metade do dano.
 
-CD de Descarregar o Arsenal = 8 + bônus de proficiência + seu atributo de Espírito
+CD de Descarregar o Arsenal = 8 + bônus de proficiência + seu atributo de Destreza
+
+## Ritter
+
+O Ritter é o Quincy que traz o Reishi para a ponta da lâmina. Em vez de manter o inimigo longe, ele cria armas de corte de reishi, cruza a distância com o Hirenkyaku e decide o combate no corpo a corpo. Seu ponto forte é o dano de Energia: a lâmina do Ritter ignora o Hierro dos Hollows e a resistência a dano físico, algo que o Zanjutsu não consegue.
+
+O Ritter é o contraponto do Schütze, o atirador Quincy. Usa o mesmo molde: 20 níveis, um Estilo (subclasse) nos níveis 3, 6, 10, 15 e 20, Técnicas de Reishi, Aprimoramento da Essência, Melhoria de Equipamento, Vollständig e Schrift.
+
+### Traços de classe
+
+- **Pontos de Vida:** no 1º nível, 26 + Constituição; nos níveis seguintes, 8 + Constituição. Do 3º ao 10º nível, você ganha ainda +3 PV por nível (no máximo +24).
+- **Pontos de Reiatsu:** no 1º nível, 20 + Espírito; nos níveis seguintes, 6 + Espírito.
+- **Perícias:** escolha 6 + metade da Mente (arredondada para baixo) para ser proficiente.
+- **Proficiência em Teste de Resistência:** Destreza e Espírito.
+- **Atributos-chave:** Destreza (ou Força, conforme a arma) e Espírito.
+- **Acerto das Técnicas de Reishi:** d20 + proficiência + Espírito.
+- **CD das Técnicas de Reishi:** 8 + proficiência + Espírito.
+- **CR:** 10 + proficiência + Destreza + metade da Constituição (arredondada para baixo). É a CR leve das classes Quincy e conjuradoras.
+- **Dano da arma Quincy:** do 3º ao 9º nível, seus ataques corpo a corpo com armas Quincy causam +3 de dano.
+
+A CR leve vale para o Ritter, e não a CR plena do Zanjutsu: a Constituição conta só pela metade.
+
+#### Construção rápida
+
+Escolha Destreza como atributo principal (ou Força, se usar armas pesadas). Em seguida vem o Espírito, que alimenta o Duelo Impecável, a Lâmina de Reishi e as técnicas. Depois, Constituição e, por último, Mente ou Força.
+
+Distribuição sugerida no 1º nível:
+
+| FOR | DES | CON | MEN | ESP |
+|---|---|---|---|---|
+| 1 | 4 | 2 | 1 | 4 |
+
+A ordem dos pontos que você ganha ao subir de nível depende do Estilo:
+
+- **Seele Schneider:** Destreza, Espírito e Constituição.
+- **Eisenritter:** Força, Espírito e Constituição.
+- **Ätherklinge:** Espírito, Destreza e Constituição, porque o atributo de ataque da lâmina é o Espírito.
+
+**Essência recomendada:** Ruptura de Reishi.
+
+### Tabela de classe
+
+CR: 10 + Proficiência + Destreza + metade da Constituição
+
+| Nível | Prof. | Técnicas conhecidas | Nível das técnicas | Características |
+|---|---|---|---|---|
+| 1º | +2 | 1 | 1 | Duelo Impecável, Lâmina de Reishi, Técnicas de Reishi |
+| 2º | +2 | 1 | 1 | Hirenkyaku, Talento de Ritter |
+| 3º | +2 | 2 | 1 | Estilo (subclasse), Talento de Ritter, Blut Arterie |
+| 4º | +2 | 2 | 1 | Aprimoramento da Essência |
+| 5º | +3 | 3 | 1 | Talento de Ritter, Melhoria de Equipamento |
+| 6º | +3 | 3 | 2 | Estilo, Talento de Ritter |
+| 7º | +3 | 4 | 2 | Talento de Ritter |
+| 8º | +3 | 4 | 2 | Aprimoramento da Essência |
+| 9º | +4 | 5 | 2 | Talento de Ritter |
+| 10º | +4 | 5 | 2 | Estilo, Talento de Ritter, Melhoria de Equipamento |
+| 11º | +4 | 6 | 3 | Talento de Ritter |
+| 12º | +4 | 6 | 3 | Aprimoramento da Essência, Vollständig |
+| 13º | +5 | 7 | 3 | Talento de Ritter |
+| 14º | +5 | 7 | 3 | Talento de Ritter |
+| 15º | +5 | 8 | 3 | Estilo, Talento de Ritter, Melhoria de Equipamento |
+| 16º | +5 | 8 | 4 | Aprimoramento da Essência |
+| 17º | +6 | 9 | 4 | Talento de Ritter, Vollständig (2) |
+| 18º | +6 | 9 | 4 | Talento de Ritter |
+| 19º | +6 | 10 | 4 | Aprimoramento da Essência |
+| 20º | +6 | 10 | 4 | Estilo, Talento de Ritter, Melhoria de Equipamento |
+
+O Schütze chega a 12 técnicas conhecidas; o Ritter troca duas técnicas por seus ataques corpo a corpo.
+
+### Características de classe
+
+#### Arsenal Quincy
+
+Você é proficiente em todas as armas corpo a corpo Leves e Pesadas e em uma arma à distância à sua escolha. Todo Quincy é proficiente com artefatos Quincy.
+
+#### Reishi
+
+Você recupera 1d6 pontos de reiatsu no início de cada turno em combate. A quantidade aumenta em +1 dado nos níveis 5, 10, 15 e 20, como no Schütze.
+
+#### Duelo Impecável
+
+No início do seu turno, com uma ação livre, escolha uma criatura a até 9 metros e marque-a. Até o fim do turno, você soma seu atributo de Espírito ao Acerto dos seus ataques corpo a corpo com armas Quincy contra ela.
+
+Você só marca uma criatura por turno. Se terminar o turno sem ter atacado a criatura marcada, o bônus não se acumula para o turno seguinte.
+
+Exemplo: no início do turno, Renata (Ritter com Espírito 4) marca um Hollow a 7 metros. Ela se aproxima e ataca; todos os ataques corpo a corpo desse turno contra o Hollow somam +4 ao Acerto. No turno seguinte ela precisa marcar de novo.
+
+#### Lâmina de Reishi
+
+Quando atacar com uma arma Quincy corpo a corpo, você pode gastar **1 ponto de reiatsu** para converter o dano do ataque em dano de **Energia**. Para esse ataque, a arma ganha a propriedade Energia (1). Cada melhoria de equipamento da arma aumenta esse custo em +1 (e não em +2, como nas armas à distância).
+
+O ataque ainda usa a jogada de ataque da arma. O dano de Energia ignora a resistência a dano físico (como o Hierro) e só sofre a RD esotérica do alvo.
+
+Além disso, cada ataque convertido causa dados de Precisão: **+1d6 de dano de Energia por ponto do seu bônus de proficiência**, até o 14º nível. Do 15º ao 19º nível, os dados caem para 35% da proficiência, arredondados para baixo. No 20º nível, sobem para 60%.
+
+| Nível | Proficiência | Dados de Precisão (Energia) |
+|---|---|---|
+| 1º ao 4º | +2 | 2d6 |
+| 5º ao 8º | +3 | 3d6 |
+| 9º ao 12º | +4 | 4d6 |
+| 13º e 14º | +5 | 5d6 |
+| 15º e 16º | +5 | 1d6 |
+| 17º ao 19º | +6 | 2d6 |
+| 20º | +6 | 3d6 |
+
+Exemplo: no 9º nível, Kaito gasta 1 ponto de reiatsu e acerta um Hollow com Hierro usando a espada. O dano da espada vira Energia e ele soma +4d6 de Energia. Como o dano é de Energia, o Hierro não o reduz à metade.
+
+#### Técnicas de Reishi
+
+Funcionam como no Schütze (Capítulo 3 e Capítulo 7). O atributo de conjuração é o **Espírito**. Se a técnica usar a sua Arma Favorita como catalisador, você pode usar o atributo da arma para acertar.
+
+#### Blut Arterie
+
+O Ritter conhece o Blut Arterie, técnica de Reishi de 2º nível, **desde o 3º nível** (e não apenas quando chega às técnicas de 2º nível). Ativado por 10 pontos de reiatsu, ele faz seus golpes com armas Quincy somarem o Espírito ao dano, e suas Técnicas de Reishi que causam dano recebem dados adicionais iguais à metade do Espírito.
+
+O Blut Arterie é a marca do Quincy de corpo a corpo, que vive do Blut.
+
+#### Hirenkyaku
+
+Igual ao Schütze, a partir do 2º nível. Com uma ação bônus, você se teletransporta para um local dentro do seu campo de visão, usando seu deslocamento atual. Você ignora ataques de oportunidade e terreno difícil, mas não atravessa barreiras sólidas.
+
+#### Aprimoramento da Essência
+
+Nos níveis 4, 8, 12, 16 e 19, você aumenta duas etapas de uma Essência Espiritual, ou aumenta uma etapa e escolhe uma nova Essência. Nesses níveis você não escolhe um Talento de Ritter novo.
+
+#### Melhoria de Equipamento
+
+Nos níveis 5, 10, 15 e 20, você escolhe uma melhoria para sua arma ou escudo (dano, margem de crítico ou multiplicador), conforme o Capítulo 7.
+
+#### Vollständig do Ritter
+
+No **12º nível** você ativa sua Vollständig com uma ação e 60 pontos de reiatsu, um nível antes do Schütze. Enquanto ela está ativa, você recebe bônus com a arma espiritual, que deve ser corpo a corpo. As regras de criação da Vollständig estão no Capítulo 7.
+
+| Nível | Bônus de ataque | Bônus de CR | Bônus de dano |
+|---|---|---|---|
+| 12º ao 16º | +1 | +1 | +2 |
+| 17º ao 19º | +2 | +1 | +3 |
+| 20º | +4 | +1 | +3 |
+
+No **17º nível** (Vollständig 2) você escolhe as duas habilidades únicas adicionais da sua Vollständig e o bônus de ataque e de dano sobe como na tabela. No 20º nível, o bônus adicional de ataque chega a +3, para um total de +4.
+
+Atenção: a Vollständig do Ritter chega ao 12º nível, e as duas habilidades únicas adicionais, ao 17º. Para as outras classes Quincy, valem o 13º e o 18º. Veja as regras comuns dos Quincy no Capítulo 7.
+
+### Talentos de Ritter
+
+A partir do 2º nível, você escolhe um Talento de Ritter em cada nível de classe, exceto nos níveis com Aprimoramento da Essência. Você escolhe um talento por vez, e alguns têm requisitos.
+
+- **Alvo Cercado:** você flanqueia como qualquer atacante corpo a corpo e soma sua proficiência ao dano contra um alvo flanqueado.
+- **Aparar:** reação; quando for alvo de um ataque corpo a corpo, ataque com a sua arma contra o ataque. O dano do ataque é reduzido pelo dano do seu golpe; se chegar a zero, o ataque é anulado.
+- **Ataque Extra** (5º nível): quando usar a ação Atacar, você faz dois ataques.
+- **Cálculo de Duelo:** soma metade do seu Espírito (para baixo) à iniciativa.
+- **Estocada Perfurante:** uma vez por turno, ao acertar um ataque corpo a corpo, você ignora RD igual ao seu Espírito.
+- **Execução** (9º nível): criaturas reduzidas a 10 PV ou menos por um golpe seu morrem na hora, sem teste. Você pode optar por dano não letal.
+- **Execução Aprimorada** (9º nível, Execução): o limite sobe para 20 PV.
+- **Feitiço Extra** (5º nível): você pode lançar uma segunda Técnica de Reishi de ação no mesmo turno, sem repetir a técnica.
+- **Golpe Mortal:** em um acerto crítico corpo a corpo, some metade do seu Espírito ao dano.
+- **Golpe Superior** (15º nível, Golpe Triplo): quatro ataques com a ação Atacar.
+- **Golpe Triplo** (10º nível, Ataque Extra): três ataques com a ação Atacar.
+- **Guarda:** reação; quando uma criatura vinda de fora entra a até 3 metros de você, você pode atacá-la uma vez.
+- **Instinto do Seele Schneider:** quando um inimigo erra um ataque corpo a corpo contra você, você revida com um ataque (reação).
+- **Marca Móvel:** o bônus do Duelo Impecável vale mesmo que você use o Hirenkyaku no mesmo turno.
+- **Percepção Espiritual Apurada** (9º nível): como no Schütze, +5 na percepção passiva e criaturas a até 36 metros são reveladas.
+- **Realocação Antecipada** (8º nível, Saque Rápido): usa o Hirenkyaku antes da ordem de turnos.
+- **Recuo Tático:** reação; você se afasta 3 metros sem provocar ataques de oportunidade.
+- **Saque Rápido:** no início do combate, você ataca antes da ordem de turnos.
+- **Schrift** (6º nível, aprovação do Mestre): escolha uma Schrift do Arsenal Quincy (Capítulo 7).
+- **Sequência Fatal** (12º nível): cada acerto reduz a CR do alvo em 1 para você, até metade do seu Espírito (para baixo).
+
+### Estilos de Ritter
+
+No 3º nível você escolhe um Estilo, que concede características nos níveis 3, 6, 10, 15 e 20. Há três caminhos: o **Seele Schneider**, ágil e preciso; o **Eisenritter**, pesado e imóvel; e a **Ätherklinge**, que funde espada e técnica.
+
+Atenção: o Estilo só começa no 3º nível. Nos níveis 1 e 2, todo Ritter usa apenas as características base da classe.
+
+#### Seele Schneider
+
+Esgrimista de uma mão, com estoque, rapieira ou katana. Vive de CR alta e precisão.
+
+- **Postura de Duelo (3º):** se empunhar uma única arma Leve de uma mão, sem escudo, sua CR sobe **+1** e seus golpes com ela causam +2 de dano.
+- **Riposta (3º):** quando um inimigo erra um ataque corpo a corpo contra você, use a reação para atacá-lo, somando sua Destreza ao dano. Uma vez por rodada.
+- **Abertura (6º):** ao acertar uma criatura, o próximo ataque contra ela antes do seu próximo turno tem vantagem e ignora metade da RD.
+- **Estocada Decisiva (10º):** ao acertar, gaste 10 pontos de reiatsu para ignorar completamente a RD do alvo.
+- **Passo Cruzado (15º):** depois de usar o Hirenkyaku para ficar adjacente a uma criatura, seu primeiro ataque contra ela neste turno causa +2d8 de Energia.
+- **Mil Estocadas (20º):** com uma ação e 40 pontos de reiatsu, role 1d10 com vantagem. O resultado é o número de ataques que você faz contra uma criatura, cada um com o dano normal (some a Destreza ao dano uma única vez).
+
+#### Eisenritter
+
+Espada grande, machado ou lança pesada. Controla o espaço e aguenta pancada.
+
+- **Golpe Pesado (3º):** com uma arma Pesada de duas mãos, você soma sua proficiência ao dano. Nos níveis 3 e 4, o Eisenritter causa +5 de dano com a arma pesada, no lugar dos +3 de dano da classe; do 5º ao 9º nível valem os +3 da classe.
+- **Pele de Reishi (3º):** RD 6 contra dano físico. A RD sobe para 9 no 10º nível e para 12 no 15º.
+- **Vigor do Eisenritter (3º):** seus PV máximos aumentam em +3 por nível de classe.
+- **Varredura (6º):** com 5 pontos de reiatsu, ataque todas as criaturas a até 3 metros com uma arma Pesada (uma jogada de ataque contra a CR de cada uma).
+- **Quebra-Guarda (10º):** ao acertar, a CR do alvo cai pelo seu bônus de proficiência até o início do seu próximo turno.
+- **Muralha Quincy (15º):** ao usar Defender, aliados a até 3 metros também ganham +2 na CR até o seu próximo turno.
+- **Terremoto de Reishi (20º):** com uma ação e 40 pontos de reiatsu, todas as criaturas a até 6 metros sofrem o dobro dos dados de dano da sua arma, em Energia, e caem no chão (salvaguarda de Força contra a CD da classe evita a queda).
+
+#### Ätherklinge
+
+O Ritter que também é conjurador: sua lâmina é feita de Reishi puro.
+
+- **Conjurador de Lâminas (3º):** você conhece **+2 Técnicas de Reishi** (elas não contam na tabela de classe) e ganha +2 pontos de reiatsu por nível de classe.
+- **Heilig Schwert (3º, nunca antes):** com uma ação livre, crie uma lâmina de reishi com a forma de qualquer arma corpo a corpo na qual você seja proficiente, sem custo de reiatsu. Os ataques e o dano dela usam o **Espírito** no lugar de Destreza ou Força, e todo o dano é de Energia. A lâmina recebe os dados de Precisão da Lâmina de Reishi sem que você gaste reiatsu.
+- **Onda de Lâmina (3º):** com uma ação bônus e 2 pontos de reiatsu, faça um ataque à distância (9 metros) com a lâmina.
+- **Corte Ressonante (6º):** ao acertar, gaste 3 pontos de reiatsu para somar +1d8 de Energia. Você pode repetir isso até o seu bônus de proficiência em vezes por ataque.
+- **Lâmina Gêmea (10º):** você cria uma segunda lâmina. Quando usar Atacar, faz um ataque adicional com ela, sem somar atributo ao dano.
+- **Arco de Lâmina (15º):** uma vez por turno, sua Técnica de Reishi de ação é lançada junto de um ataque da lâmina, como parte da mesma ação.
+- **Tempestade de Lâminas (20º):** com uma ação e 40 pontos de reiatsu, faça 3 ataques com a lâmina contra cada criatura a até 9 metros (uma jogada de ataque por criatura). Cada acerto causa o dano da lâmina mais o Espírito.
+
+## Classe Hueco
+
+O Hueco luta com o corpo: armas naturais, mordida e Cero. É a classe de quem devora, corre ou explode. **Todo Hueco tem Resurrección no 10º nível**, e ela funciona como a Bankai do Zanjutsu: liberação por ação bônus, forma própria e uma Técnica de Resurrección de assinatura. A Origem escala o efeito.
+
+### Traços do Hueco
+
+- **Pontos de Vida:** 28 + Constituição no 1º nível; 9 + Constituição nos níveis seguintes. O **Corpo Hollow** soma +6 PV no 1º nível e +9 PV por nível seguinte.
+- **Pontos de Reiatsu:** 25 + Espírito no 1º nível; 7 + Espírito nos níveis seguintes.
+- **Classe de Resistência:** CR plena (10 + proficiência + Constituição + Destreza).
+- **Atributos-chave:** Glotonería usa Força e Constituição; Estallido usa Espírito e Constituição; Sonido usa Destreza e Espírito.
+- **Testes de Resistência:** Constituição e Espírito.
+- **Arma natural:** você escolhe a forma da sua arma natural (garras, cauda, chifres, lâminas de osso, tentáculos, punhos blindados e assim por diante). A mecânica é a mesma para todas. Seu dano é de Energia e cresce de acordo com a tabela de passos abaixo. Você também tem uma mordida.
+
+### Características do Hueco
+
+| Nível | Característica |
+|---|---|
+| 1º | Arma natural (1d10), Cero, Corpo Hollow |
+| 2º | Talento de Hueco |
+| 3º | Caminho; arma natural +1 passo |
+| 4º, 8º, 12º, 16º e 19º | Aprimoramento da Essência |
+| 5º | 2º ataque; arma natural +1 passo |
+| 6º | Característica do Caminho |
+| 7º | Arma natural +1 passo |
+| 10º | **Resurrección**; característica do Caminho |
+| 11º | 3º ataque |
+| 15º | 4º ataque; característica do Caminho |
+| 18º | +1 ataque do Caminho |
+| 20º | Capstone do Caminho; Mestre Resurrección |
+
+**Passos da arma natural:** 1d10, 1d12, 2d6, 2d8, 2d10, 2d12, 3d8.
+
+Uma vez que a arma natural chegue a 2d8 (7º nível), os passos seguintes só aparecem pela Resurrección e pela escala da Origem (veja abaixo).
+
+### Talentos de Hueco
+
+A partir do 2º nível você escolhe um Talento de Hueco por vez, até o 20º nível, exceto nos níveis em que ganha Aprimoramento da Essência. A lista completa está em Talentos Hollow.
+
+### Aprimoramento da Essência
+
+Nos níveis 4, 8, 12, 16 e 19, você aumenta duas etapas de uma Essência, ou aumenta uma etapa e escolhe uma nova Essência, como as demais classes. Nesses níveis você não escolhe Talento.
+
+### Cero
+
+Ação, **15 PR**: ataque à distância que causa **(nível + 8)d8 + Espírito** de dano de Energia. O Cero ignora o Hierro.
+
+Exemplo: um Hueco de 10º nível lança um Cero de 18d8 + Espírito.
+
+### Resurrección do Hueco (10º nível)
+
+Você liberta a forma verdadeira do corpo, sem espada: descreva a máscara, o corpo e o nome. A Resurrección é liberada no 10º nível depois de concluir o treinamento da Resurrección (Capítulo 9, Treinamentos).
+
+- **Ativação:** ação bônus, falando o nome da forma.
+- **Custo:** 45 PR.
+- **Duração:** até o fim da cena.
+- **Acerto e CD:** seguem o seu Caminho.
+
+**Forma liberada:**
+
+- CR + proficiência + 1.
+- Arma natural +1 passo e + proficiência de dano.
+- O Cero causa **x 1,7 dados**.
+- Sem PV temporários.
+- Não dá ataque extra.
+
+**Escala da Origem.** A origem escala o efeito da Resurrección: o Adjuchas ganha +1 estágio e o Vasto Lorde +2.
+
+**Mestre Resurrección (20º nível):** o custo da Resurrección cai pela metade.
+
+#### Técnica de Resurrección do Hueco
+
+Ação, **12 PR**, só durante a Resurrección. Substitui os ataques da sua ação. A técnica depende do Caminho:
+
+- **Glotonería, Devorar:** um ataque que causa (nível + 10)d10 + 2 x Força de Energia. Você recupera 60% do dano causado em PV.
+- **Estallido, Gran Rey Cero:** seu Cero em Resurrección causa +proficiência d8 de dano e você lança dois Ceros por turno (a partir do 6º nível).
+- **Sonido, Golpe Fantasma:** um ataque com vantagem, crítico em 19 ou 20 e dano de (nível/2 - 3)d10 + 2 x Destreza.
+
+### Caminhos do Hueco
+
+No 3º nível você escolhe um Caminho. Ele concede características no 3º, 6º, 10º, 15º e 20º níveis, define a Técnica de Resurrección e dá +1 ataque no 18º nível.
+
+#### Caminho Glotonería
+
+O Caminho da fome e da carne: um Hueco que cresce devorando o que enfrenta. Atributos-chave: Força e Constituição.
+
+- **Corpo:** +3 PV por nível, além do Corpo Hollow.
+- **3º nível:** sua arma natural causa **+5 x proficiência** de dano (**+8 x proficiência** a partir do 15º nível). No primeiro acerto da rodada, você se cura em 5 x proficiência PV.
+- **6º nível:** você pode usar a mordida (1d8 + Constituição) como ação bônus.
+- **10º nível:** RD igual à proficiência. A partir do 15º nível, soma mais **+3 de RD**.
+- **18º nível:** +1 ataque.
+- **20º nível:** +proficiência de dano e a cura do 3º nível dobra.
+
+#### Caminho Estallido
+
+O Caminho do Cero: um Hueco que é, antes de tudo, artilharia. Atributos-chave: Espírito e Constituição.
+
+- **3º nível:** +6 dados no Cero.
+- **6º nível:** você lança dois Ceros por turno.
+- **10º nível:** o Cero causa +proficiência d8 de dano.
+- **18º nível:** +1 ataque.
+- **20º nível:** +5 dados no Cero.
+
+#### Caminho Sonido
+
+O Caminho da velocidade: um Hueco que ataca antes de ser visto. Atributos-chave: Destreza e Espírito.
+
+- **3º nível:** vantagem no primeiro ataque do turno, e seus golpes causam **+1 x proficiência** de dano (**+2,5 x proficiência** a partir do 16º nível).
+- **6º nível:** deslocamento +6 m. Você pode usar sua reação para se mover 3 m. Os ataques depois do primeiro somam +proficiência de dano.
+- **18º nível:** +1 ataque.
+- **20º nível:** uma esquiva por rodada e +1 ataque.
+
+## Classe Vazio
+
+Enquanto o Hueco luta com o corpo, o Vazio luta com os **Poderes Inatos** do Hollow: técnicas de reiatsu, ilusões, venenos e contra-ataques. É o conjurador da Origem Hollow. A Resurrección também chega no 10º nível.
+
+### Traços do Vazio
+
+- **Pontos de Vida:** 26 + Constituição no 1º nível; 8 + Constituição nos níveis seguintes. O **Corpo Hollow** soma +6 PV por nível e, do 15º nível em diante, +20 PV extras por nível acima do 14º.
+- **Pontos de Reiatsu:** 30 + Espírito no 1º nível; 9 + Espírito nos níveis seguintes.
+- **Classe de Resistência:** CR leve (10 + proficiência + Destreza + metade da Constituição).
+- **Atributos-chave:** Espírito e Mente. O Caminho Reflejo usa Espírito e Destreza.
+- **Testes de Resistência:** Espírito e Mente.
+
+### Características do Vazio
+
+| Nível | Característica |
+|---|---|
+| 1º | Poder Inato, Golpe Vazio, Corpo Hollow |
+| 2º | Talento de Vazio |
+| 3º | Caminho |
+| 4º, 8º, 12º, 16º e 19º | Aprimoramento da Essência |
+| 5º, 11º e 17º | Golpe Vazio ganha +1 dado |
+| 6º | Característica do Caminho |
+| 10º | **Resurrección**; característica do Caminho |
+| 15º | Característica do Caminho |
+| 17º | Poder tardio do Caminho |
+| 20º | Capstone do Caminho; Mestre Resurrección |
+
+### Talentos de Vazio e Aprimoramento da Essência
+
+Como o Hueco, a partir do 2º nível você escolhe um Talento de Vazio por vez, exceto nos níveis de Aprimoramento da Essência (4º, 8º, 12º, 16º e 19º), que funcionam como descrito na classe Hueco.
+
+### Poder Inato
+
+Ação, custo de **8 PR + nível/5** (arredondado para baixo): ataque de técnica (d20 + proficiência + Espírito) que causa **(nível + 4)d10 + Espírito** de dano de Energia. O Poder Inato ignora o Hierro.
+
+**Golpe Vazio.** Quando está sem PR, você usa o Golpe Vazio: um ataque grátis de 1d10 + Espírito. Ele sobe para 2d10 no 5º nível, 3d10 no 11º e 4d10 no 17º.
+
+### Resurrección do Vazio (10º nível)
+
+Como a do Hueco, é liberada depois do treinamento do capítulo "Treinamento da Resurrección". Usa o próprio corpo como forma.
+
+- **Ativação:** ação bônus.
+- **Custo:** 40 PR (a do Hueco custa 45).
+- **Forma liberada:** bônus de CR, PV temporários e o Poder Inato com **dados x 1,6**.
+- **Escala da Origem:** o Adjuchas ganha +1 estágio e o Vasto Lorde +2, como na Resurrección do Hueco.
+- **Mestre Resurrección (20º nível):** o custo cai pela metade.
+
+Atenção: a Resurrección do Vazio cresce em duas fases.
+
+| Nível | Bônus de CR | PV temporários |
+|---|---|---|
+| 10º ao 15º | proficiência - 1 | 3 x nível |
+| 16º em diante | proficiência | 5 x nível |
+
+#### Técnica de Resurrección do Vazio
+
+A assinatura é definida pelo Caminho:
+
+- **Ponzoña, Veneno Total:** as cargas de Ponzoña causam +50% de dano durante a Resurrección.
+- **Ilusión, Mundo Quebrado:** a falha na salvaguarda também deixa o alvo sem reações.
+- **Reflejo, Espejo Roto:** o dano refletido sobe para 50%.
+
+### Caminhos do Vazio
+
+No 3º nível você escolhe um Caminho. Ele concede características no 3º, 6º, 10º, 15º e 20º níveis, e um poder tardio no 17º nível.
+
+#### Caminho Ponzoña
+
+O veneno do Hollow corrói devagar e de dentro para fora.
+
+- **Cargas:** quando o Poder Inato acerta, aplica uma carga de Ponzoña no alvo. O máximo é de 3 cargas, sobe para **4 no 12º nível** e para **5 no 17º nível**.
+- **Dano:** no início do turno do alvo, ele sofre (cargas x proficiência)d6 de dano de Energia, que ignora RD. Até o 11º nível o dano não tem modificador. A partir do **12º nível**, multiplique o dano por 1,5 e some +proficiência por carga.
+- **20º nível:** a Ponzoña dura até o fim da cena e o alvo tem -proficiência na CD das suas salvaguardas.
+
+#### Caminho Ilusión
+
+Você distorce o que o alvo vê e acredita.
+
+- **3º nível:** o Poder Inato impõe uma salvaguarda de Constituição (CD 8 + proficiência + Espírito). Na falha, o alvo tem desvantagem nos ataques e -5 x proficiência de dano.
+- **17º nível:** o Poder Inato impõe 2 salvaguardas, e suas técnicas causam +50% de dados.
+
+#### Caminho Reflejo
+
+Você devolve ao inimigo o golpe que ele errou. Atributos-chave: Espírito e Destreza.
+
+- **3º nível:** quando um ataque erra você, você contra-ataca com **1d8** mais metade do Espírito. No 7º nível, o contra-ataque passa a **2d8** mais metade do Espírito.
+- **10º nível:** você devolve **8%** do dano sofrido ao atacante.
+
+## Talentos Hollow
+
+Um Talento por vez, do 2º nível em diante, exceto nos níveis de Aprimoramento da Essência (4º, 8º, 12º, 16º e 19º). "Pré-req." indica o nível mínimo. Os custos são em PR; "prof." é o bônus de proficiência.
+
+### Talentos de Hueco
+
+#### Ofensivos
+
+- **Cero Rápido** (9º nível): uma vez por rodada, com uma ação bônus, você lança um Cero com metade dos dados (arredonde para cima), pagando o custo normal do Cero. Não pode ser escolhido por quem tem o Caminho Estallido, que já lança dois Ceros.
+- **Cero Perfurante:** seu Cero ignora RD igual ao seu Espírito.
+- **Cero em Cone** (6º nível): o Cero atinge um cone de 9 m, com salvaguarda de Destreza (CD 8 + prof. + Espírito). Custa +5 PR e -2 dados; metade do dano no sucesso.
+- **Cero Concentrado:** você pode gastar a ação para carregar o próximo Cero. No turno seguinte, ele causa +prof. d8.
+- **Golpe Rasgador:** em acerto crítico com a arma natural, o alvo sangra (1d6 por prof., por 3 rodadas).
+- **Mordida Esmagadora:** a mordida causa +metade da prof. de dano (arredonde para baixo) e prende o alvo (agarrado, CD igual à CD de salvaguarda).
+- **Alcance Alongado:** o alcance da arma natural aumenta em 3 m, e você faz ataques de oportunidade com ela.
+- **Frenesi** (11º nível): ao reduzir uma criatura a 0 PV, você faz um ataque extra imediato (uma vez por rodada).
+
+#### Defensivos
+
+- **Couraça Óssea:** +1 de CR e RD 2 contra dano físico.
+- **Hierro Reativo** (7º nível): com sua reação, ao ser acertado, você reduz o dano em 1d10 + Constituição (3 vezes por descanso longo).
+- **Persistência Hollow:** ao cair a 0 PV, faça uma salvaguarda de Constituição (CD 10 + dano). No sucesso, você fica com 1 PV (uma vez por descanso longo).
+- **Regeneração Menor** (5º nível): no início do seu turno, enquanto estiver abaixo da metade dos PV, você recupera PV iguais à sua Constituição.
+- **Resistência ao Medo:** vantagem contra as condições amedrontado e enfeitiçado.
+
+#### Utilidade e presença
+
+- **Fome Insaciável:** ao reduzir uma criatura a 0 PV, você recupera PR igual a prof. x 2.
+- **Rugido:** ação, 5 PR. Criaturas em 6 m fazem salvaguarda de Espírito (CD 8 + prof. + Espírito) ou ficam amedrontadas por 1 minuto.
+- **Salto Hollow:** você salta o dobro; uma vez por rodada, move 6 m como parte do ataque.
+- **Faro de Reiatsu:** você sente criaturas com reiatsu a 36 m, mesmo sem vê-las.
+- **Aura Opressora** (9º nível): criaturas hostis a 3 m têm -1 em testes de Espírito e em Determinação.
+- **Predador de Almas:** vantagem para rastrear almas e reiatsu e +prof. em Percepção Espiritual.
+- **Segunda Pele:** você veste ou dispensa a máscara como ação livre.
+
+### Talentos de Vazio
+
+#### Poderes
+
+- **Poder Duplo** (9º nível): você lança dois Poderes Inatos na mesma ação. O segundo custa 75% do PR normal e usa 75% dos dados.
+- **Poder Perfurante:** o Poder Inato ignora RD igual ao seu Espírito.
+- **Poder Preciso:** em crítico, o Poder Inato causa +prof. d10.
+- **Poder em Área** (6º nível): raio de 6 m, com salvaguarda de Destreza (CD 8 + prof. + Espírito). Custa +5 PR e -3 dados.
+- **Eco do Vazio** (11º nível): ao lançar um Poder, ele ecoa. Uma vez por descanso curto, você o repete pela metade do custo.
+- **Golpe Vazio Ampliado:** o Golpe Vazio ganha alcance de 18 m e +prof. de dano.
+
+#### Controle e ilusão
+
+- **Olhar Paralisante** (7º nível): ação, 8 PR. O alvo faz uma salvaguarda de Espírito ou fica paralisado até o fim do próximo turno dele (uma vez por descanso curto).
+- **Marca do Vazio:** ação bônus. Você marca uma criatura (uma marca por vez), e seus Poderes causam +prof. de dano nela.
+- **Véu:** ação, 6 PR. Você fica invisível por 1 minuto ou até atacar.
+- **Contramedida** (9º nível): com sua reação, você soma prof. + Espírito a uma salvaguarda sua ou de um aliado a 9 m.
+- **Mente Fechada:** proteção contra Kidō de controle e vantagem em salvaguardas de Mente.
+- **Ilusão Persistente** (Ilusión): a desvantagem imposta dura 1 rodada extra.
+- **Espelho Fraturado** (Reflejo): o contra-ataque pode usar Poder Inato (8 PR) em vez de Golpe Vazio.
+- **Ponzoña Persistente** (Ponzoña): as cargas duram 1 rodada depois que o alvo sai do alcance, e o limite de cargas sobe em 1.
+- **Toxina Corrosiva** (Ponzoña): a Ponzoña reduz a RD do alvo em prof.
+
+#### Reserva e utilidade
+
+- **Reserva Vazia:** +2 PR por nível (retroativo).
+- **Vazio Silencioso:** vantagem em Suprimir Reiatsu e +prof. em Furtividade.
+- **Sentir Fraquezas:** ação bônus. Você vê as vulnerabilidades do alvo, e o próximo Poder contra ele ignora metade da RD.
+- **Cura Hollow** (5º nível): ação, 6 PR. Você ou um aliado a 6 m recupera 1d8 + Espírito por prof. em PV (3 vezes por descanso longo).
+
+Atenção: os efeitos que reduzem RD ou dão resistência (Couraça Óssea, Hierro Reativo, o Caminho Glotonería, Toxina Corrosiva e outros) seguem a regra de uma Essência de redução por tipo de dano. O Mestre deve ficar atento a pacotes de talentos defensivos que acumulem demais.

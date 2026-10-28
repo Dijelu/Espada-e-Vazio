@@ -5,8 +5,6 @@ export interface Capitulo {
   desc: string;
   art: string;
   file: string;
-  parte?: "base" | "ev" | "creditos";
-  revisoes?: string[];
 }
 
 import lista from "./chapters.json";

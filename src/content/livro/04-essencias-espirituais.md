@@ -12,9 +12,11 @@ A leitura desse capítulo traz benefícios ao criar seu personagem. Existem dive
 
 ### Aumentando Etapas
 
-Ao escolher uma essência, você terá acesso às suas habilidades básicas, mas pode fortalecê-la ainda mais, aumentando suas etapas. Quando tiver a opção de escolher uma nova essência, também poderá optar por aumentar as etapas de uma essência já existente. Cada etapa adicional torna a essência mais poderosa; por exemplo, a essência “Pele de Aço” oferece inicialmente uma redução de 3 pontos de dano físico, e, ao aumentar a etapa, essa redução sobe para 6 pontos.
+Ao escolher uma essência, você terá acesso às suas habilidades básicas, mas pode fortalecê-la ainda mais, aumentando suas etapas. Quando tiver a opção de escolher uma nova essência, também poderá optar por aumentar as etapas de uma essência já existente. Cada etapa adicional torna a essência mais poderosa; por exemplo, a essência “Pele de Aço” oferece inicialmente uma redução de 2 pontos de dano físico, e, ao aumentar a etapa, essa redução sobe para 4 pontos.
 
 Quase todas as essências possuem etapas para aprimorá-las, embora algumas não tenham evoluções. Essas etapas são muito vantajosas conforme você evolui seu personagem, permitindo, por exemplo, torná-lo mais resistente ou aumentar seus atributos.
+
+Você só pode ter **uma Essência de redução por tipo de dano**. Pele de Aço, Resiliente e Revestimento de Reiatsu não somam no mesmo tipo; vale a maior.
 
 ### Essências Específicas
 
@@ -25,6 +27,22 @@ Também pode ocorrer de as essências especificarem que você já possua outra e
 ### Adquirindo Novas Essências
 
 Sua classe de personagem, nos níveis 4, 8, 12, 16 e 19, permitirá que você suba etapas de uma essência ou escolha uma nova, além de evoluir uma essência que já possui. No entanto, existem outros métodos para adquirir etapas e novas essências. Quando você derrota um inimigo poderoso, ele pode lhe conceder uma nova essência baseada nos poderes que possuía ou permitir que você suba uma etapa em uma essência à sua escolha ou à escolha do Mestre. Por exemplo, ao derrotar um inimigo com poderes de fogo, como uma Shikai de Chamas, você pode receber a essência “Resiliente” contra dano de fogo. Quanto mais poderoso o inimigo, mais etapas e essências ele pode conceder. Você não ganhará essências ao derrotar inimigos mais fracos, pois é o desafio que traz o desenvolvimento e fica marcado na sua alma. Portanto, inimigos com Nível de Desafio inferior ao seu nível de personagem não concederão essências, a menos que representem um verdadeiro desafio.
+
+### Pontos de Essência
+
+Você ganha 1 ponto de Essência na criação e **2 pontos em cada Aprimoramento da Essência** (níveis 4, 8, 12, 16 e 19). Cada ponto compra uma nova Essência ou sobe uma etapa de uma Essência que você já tem. Esta tabela vale também para quem começa em nível alto.
+
+| Nível | Ganho no nível | Total de pontos |
+|---|---|---|
+| 1 | 1 | 1 |
+| 4 | +2 | 3 |
+| 8 | +2 | 5 |
+| 12 | +2 | 7 |
+| 16 | +2 | 9 |
+| 19 | +2 | 11 |
+| 20 | 0 | 11 |
+
+Essências ganhas por feitos na história ficam fora dessa conta e são decisão do Mestre.
 
 ### Repetindo Uma Essência
 
@@ -74,9 +92,9 @@ Quando você receber dano de energia, você reduz em 4.
 - Segunda Etapa: agora você passa a reduzir em 6.
 - Terceira Etapa: agora você passa a reduzir em 8.
 - Quarta Etapa: agora você passa a reduzir em 10.
-- Quinta Etapa: agora você passa a reduzir o dano em 15. Além disso, uma vez por dia, no seu turno, utilizando uma “Ação Bônus”, você pode se tornar resistente a dano de energia até o início do seu próximo turno. Alternativamente, você pode usar essa habilidade como uma reação ao sofrer dano de energia, reduzindo o dano recebido pela metade e consumindo o uso diário. Você recupera essa habilidade após um descanso longo. aumento de atributo Esta essência é destinada a personagens que buscam maximizar seus atributos. Você pode distribuir os pontos de atributo da maneira que achar melhor, mas ainda deve respeitar o limite de 15 pontos em cada atributo. Você recebe 2 pontos de atributo.
+- Quinta Etapa: agora você passa a reduzir o dano em 15. Além disso, uma vez por dia, no seu turno, utilizando uma “Ação Bônus”, você pode se tornar resistente a dano de energia até o início do seu próximo turno. Alternativamente, você pode usar essa habilidade como uma reação ao sofrer dano de energia, reduzindo o dano recebido pela metade e consumindo o uso diário. Você recupera essa habilidade após um descanso longo. aumento de atributo Esta essência é destinada a personagens que buscam maximizar seus atributos. Você pode distribuir os pontos de atributo da maneira que achar melhor, mas ainda deve respeitar o limite de 15 pontos em cada atributo. Você recebe 1 ponto de atributo.
 
-Segunda Etapa: você recebe mais 2 pontos de atributo. Terceira Etapa: você recebe mais 2 pontos de atributo. Quarta Etapa: você recebe mais 2 pontos de atributo. Quinta Etapa: você recebe mais 2 pontos de atributo. CLARIVIDÊNCIA Quando for alvo de um Teste de Resistência de Inteligência, você pode gastar 12 pontos de reiatsu para substituir por um Teste de Resistência de Sabedoria.
+Segunda Etapa: você recebe mais 1 ponto de atributo. Terceira Etapa: você recebe mais 1 ponto de atributo. Quarta Etapa: você recebe mais 1 ponto de atributo. Quinta Etapa: você recebe mais 1 ponto de atributo. CLARIVIDÊNCIA Quando for alvo de um Teste de Resistência de Mente, você pode gastar 12 pontos de reiatsu para substituir por um Teste de Resistência de Mente.
 
 - Segunda Etapa: o custo diminui para 10 pontos de reiatsu.
 - Terceira Etapa: o custo diminui para 8 pontos de reiatsu.
@@ -97,12 +115,11 @@ CONSTITUIÇÃO ENERGÉTICA Seu corpo influencia sua própria reiatsu, você soma
 - Quarta Etapa: seus pontos de reiatsu aumentam em mais 5.
 - Quinta Etapa: seus pontos de reiatsu aumentam em mais 5.
 
-CLASSE DE RESISTÊNCIA APRIMORADA Com essa essência você se torna muito mais resitênte que uma criatura comum, recebendo +2 na sua CR.
+CLASSE DE RESISTÊNCIA APRIMORADA Com essa essência você se torna muito mais resitênte que uma criatura comum, recebendo +1 na sua CR.
 
-- Segunda Etapa: o bônus aumenta para +3.
-- Terceira Etapa: o bônus aumenta para +4.
-- Quarta Etapa: o bônus aumenta para +5.
-- Quinta Etapa: o bônus aumenta para +6.
+- Segunda Etapa: o bônus aumenta para +2.
+
+Essa essência tem no máximo duas etapas: +2 de CR no total.
 
 DEFESA CÉLERE Quando você utiliza a ação “Esquivar”, adiciona seu bônus de proficiência à sua Classe de Resistência durante a esquiva. FLUXO ENERGÉTICO Com essa essência, durante um combate, ao utilizar a ação “Recuperar Reiatsu”, você ganha um dado d8 adicional.
 
@@ -122,12 +139,12 @@ Seu atributo de Força aumenta em 1, e seu limite para o atributo de Força agor
 - Segunda Etapa: o custo diminui para 10 pontos de reiatsu.
 - Terceira Etapa: o custo diminui para 8 pontos de reiatsu.
 - Quarta Etapa: o custo diminui para 6 pontos de reiatsu.
-- Quinta Etapa: o custo diminui para 4 pontos de reiatsu. gênio Embora estude muito, sua genialidade está acima de tudo. Você se torna proficiente em Testes de Resistência de Inteligência.
+- Quinta Etapa: o custo diminui para 4 pontos de reiatsu. gênio Embora estude muito, sua genialidade está acima de tudo. Você se torna proficiente em Testes de Resistência de Mente.
 
-Seu atributo de Inteligência aumenta em 1, e seu limite para o atributo de Inteligência agora é 16.
+Seu atributo de Mente aumenta em 1, e seu limite para o atributo de Mente agora é 16.
 
-- Segunda Etapa: seu atributo de Inteligência aumenta em mais 1, e seu limite para o atributo de Inteligência agora é 17.
-- Terceira Etapa: seu atributo de Inteligência aumenta em mais 1, e seu limite para o atributo de Inteligência golpe raspante Quando errar um ataque, você ainda causa dano equivalente à metade do atributo usado para a jogada de ataque e dano (por exemplo, Força ou Destreza).
+- Segunda Etapa: seu atributo de Mente aumenta em mais 1, e seu limite para o atributo de Mente agora é 17.
+- Terceira Etapa: seu atributo de Mente aumenta em mais 1, e seu limite para o atributo de Mente golpe raspante Quando errar um ataque, você ainda causa dano equivalente à metade do atributo usado para a jogada de ataque e dano (por exemplo, Força ou Destreza).
 
 O dano causado será do mesmo tipo que você iria causar. Por exemplo, um Arco Quincy causaria dano Perfurante.
 
@@ -135,8 +152,8 @@ O dano causado será do mesmo tipo que você iria causar. Por exemplo, um Arco Q
 - Terceira Etapa: o bônus passa a ser +2.
 - Quarta Etapa: o bônus passa a ser +3.
 - Quinta Etapa: o bônus passa a ser +4. agora é 18.
-- Quarta Etapa: seu atributo de Inteligência aumenta em mais 1, e seu limite para o atributo de Inteligência agora é 20.
-- Quinta Etapa: seu atributo de Inteligência aumenta em mais 1, e você pode adicionar o dobro da sua proficência aos Testes de Resistência de Inteligência. grão mestre Ao escolher essa essência, você pode escolher 3 perícia para ter expertise, onde você adicionará o dobro do seu bônus de proficiência à perícia. Você deve escolher perícias das quais já seja proficiente.
+- Quarta Etapa: seu atributo de Mente aumenta em mais 1, e seu limite para o atributo de Mente agora é 20.
+- Quinta Etapa: seu atributo de Mente aumenta em mais 1, e você pode adicionar o dobro da sua proficência aos Testes de Resistência de Mente. grão mestre Ao escolher essa essência, você pode escolher 3 perícia para ter expertise, onde você adicionará o dobro do seu bônus de proficiência à perícia. Você deve escolher perícias das quais já seja proficiente.
 - Segunda Etapa: você escolhe mais 2 perícias para ter expertise.
 - Terceira Etapa: você escolhe mais 2 perícias para ter expertise.
 - Quarta Etapa: você escolhe mais 3 perícias para ter expertise.
@@ -160,7 +177,7 @@ As Essências Espirituais foram criadas com base nessa ideia, representando as c
 |  | Dado +1 Passo | Dado +1 Passo |  |  |
 |  |  | • | Quinta Etapa: | passa a ignorar 12 pontos. |
 
-1d6 1d8 2d8 2d10 1d8 1d10 2d10 3d10 1d10 1d12 3d10 4d10 1d12 2d6 4d10 4d12 2d6 2d8 4d12 5d10 Se você já possuir um dado progressivo, como na classe de Shinigami “Lutador”, você sempre somará o dado da classe mais o número de passos que possuir, consultando a tabela. Por exemplo, se você estiver no nível 5 na classe de Lutador, você teria 1d8 de dano nos seus ataques corpo a corpo. No entanto, se você já escolheu essa essência duas vezes, somará +2 passos, ficando com 1d12 de dano.
+1d6 1d8 2d8 2d10 1d8 1d10 2d10 3d10 1d10 1d12 3d10 4d10 1d12 2d6 4d10 4d12 2d6 2d8 4d12 5d10 Se você já possuir um dado progressivo, como na classe de Shinigami “Hakuda”, você sempre somará o dado da classe mais o número de passos que possuir, consultando a tabela. Por exemplo, se você estiver no nível 5 na classe de Hakuda, você teria 1d8 de dano nos seus ataques corpo a corpo. No entanto, se você já escolheu essa essência duas vezes, somará +2 passos, ficando com 1d12 de dano.
 
 - Segunda Etapa: Aumente um passo de dano.
 - Terceira Etapa: Aumente um passo de dano.
@@ -177,16 +194,18 @@ PASSAGEM Uma vez por turno, você pode passar pelo espaço que uma criatura inim
 - Quarta Etapa: passa a ignorar 16 pontos.
 - Quinta Etapa: passa a ignorar 20 pontos.
 
-PELE DE AÇO Você treinou por muito tempo para que sua pele se tornasse extremamente robusta, semelhante ao Hierro dos Arrancars, concedendo a você uma redução de dano de 4 de dano, contra ataques físicos (Concussão, Cortante e Perfurante).
+PELE DE AÇO Você treinou por muito tempo para que sua pele se tornasse extremamente robusta, semelhante ao Hierro dos Arrancars, concedendo a você uma redução de dano de 2 contra ataques físicos (Concussão, Cortante e Perfurante).
 
-- Segunda Etapa: você agora diminui 8 de dano.
-- Terceira Etapa: você agora diminui 12 de dano.
-- Quarta Etapa: você agora diminui 16 de dano.
-- Quinta Etapa: você agora diminui 20 de dano. perfuração esotérica Você ignora 4 pontos da Redução de Dano de uma criatura ao causar danos esotéricos, caso ela possua redução de dano a esses tipos de dano.
+- Segunda Etapa: a redução total passa a ser 4.
+- Terceira Etapa: a redução total passa a ser 6.
+- Quarta Etapa: a redução total passa a ser 8.
+- Quinta Etapa: a redução total passa a ser 10.
+
+O valor de cada etapa é o total: não soma com as etapas anteriores. perfuração esotérica Você ignora 4 pontos da Redução de Dano de uma criatura ao causar danos esotéricos, caso ela possua redução de dano a esses tipos de dano.
 - Segunda Etapa: passa a ignorar 8 pontos.
 - Terceira Etapa: passa a ignorar 12 pontos.
 - Quarta Etapa: passa a ignorar 16 pontos.
-- Quinta Etapa: passa a ignorar 20 pontos. perspicácia Quando for alvo de um Teste de Resistência de Sabedoria, você pode gastar 12 pontos de reiatsu para substituir por um Teste de Resistência de Inteligência.
+- Quinta Etapa: passa a ignorar 20 pontos. perspicácia Quando for alvo de um Teste de Resistência de Mente, você pode gastar 12 pontos de reiatsu para substituir por um Teste de Resistência de Mente.
 - Segunda Etapa: o custo diminui para 10 pontos de reiatsu.
 - Terceira Etapa: o custo diminui para 8 pontos de reiatsu.
 - Quarta Etapa: o custo diminui para 6 pontos de reiatsu.
@@ -229,21 +248,21 @@ Seu atributo de Constituição aumenta em 1, e seu limite para o atributo de Con
 - Quarta Etapa: Seu atributo de Constituição aumenta em mais 1, e seu limite para o atributo de Constituição agora é 20.
 - Quinta Etapa: Seu atributo de Constituição aumenta em mais 1, e você pode adicionar o dobro da sua proficência aos Testes de Resistência de Constituição.
 
-ROBUSTO Você aumenta significativamente sua quantidade de pontos de vida com essa essência. Quando você escolher essa essência, seus pontos de vida aumentam em 20 e você ganha dois pontos de vida adicionais sempre que subir de nível após escolher essa essência.
+ROBUSTO Você aumenta significativamente sua quantidade de pontos de vida com essa essência. Quando você escolher essa essência, seus pontos de vida aumentam em 15 e você ganha dois pontos de vida adicionais sempre que subir de nível após escolher essa essência.
 
-- Segunda Etapa: seus pontos de vida aumentam em mais 25.
-- Terceira Etapa: seus pontos de vida aumentam em mais 30.
-- Quarta Etapa: seus pontos de vida aumentam em mais 35.
-- Quinta Etapa: seus pontos de vida aumentam em mais 40.
+- Segunda Etapa: seus pontos de vida aumentam em mais 15 (total 30).
+- Terceira Etapa: seus pontos de vida aumentam em mais 20 (total 50).
+- Quarta Etapa: seus pontos de vida aumentam em mais 20 (total 70).
+- Quinta Etapa: seus pontos de vida aumentam em mais 25 (total 95).
 
-SÁBIO Você estuda muito mais do que outras pessoas e possui uma Sabedoria muito maior. Você se torna proficiente em testes de resistência de Sabedoria.
+SÁBIO Você estuda muito mais do que outras pessoas e possui uma Mente muito maior. Você se torna proficiente em testes de resistência de Mente.
 
-Seu atributo de Sabedoria aumenta em 1, e seu limite para o atributo de Sabedoria agora é 16.
+Seu atributo de Mente aumenta em 1, e seu limite para o atributo de Mente agora é 16.
 
-- Segunda Etapa: Seu atributo de Sabedoria aumenta em mais 1, e seu limite para o atributo de Sabedoria agora é 17.
-- Terceira Etapa: Seu atributo de Sabedoria aumenta em mais 1, e seu limite para o atributo de Sabedoria agora é 18.
-- Quarta Etapa: Seu atributo de Sabedoria aumenta em mais 1, e seu limite para o atributo de Sabedoria agora é 20.
-- Quinta Etapa: Seu atributo de Sabedoria aumenta em mais 1, e você pode adicionar o dobro da sua proficência aos Testes de Resistência de Sabedoria.
+- Segunda Etapa: Seu atributo de Mente aumenta em mais 1, e seu limite para o atributo de Mente agora é 17.
+- Terceira Etapa: Seu atributo de Mente aumenta em mais 1, e seu limite para o atributo de Mente agora é 18.
+- Quarta Etapa: Seu atributo de Mente aumenta em mais 1, e seu limite para o atributo de Mente agora é 20.
+- Quinta Etapa: Seu atributo de Mente aumenta em mais 1, e você pode adicionar o dobro da sua proficência aos Testes de Resistência de Mente.
 
 SEGUNDA CHANCE Quando você realizar um Teste de Perícia e falhar, pode gastar 6 pontos de Reiatsu para realizar uma nova rolagem do teste, buscando superar a dificuldade que não conseguiu vencer anteriormente. Você deve utilizar o resultado da nova rolagem, mesmo que seja inferior ao resultado original.
 
@@ -345,11 +364,11 @@ ESTUDIOSO DE BAKUDOU Você passa muito tempo estudando Bakudou e, por isso, adqu
 - Segunda Etapa: você escolhe mais 5 novos Hadous.
 - Terceira Etapa: você escolhe mais 7 novos Hadous.
 - Quarta Etapa: você escolhe mais 9 novos Hadous.
-- Quinta Etapa: você escolhe mais 10 novos Hadous. feroz SeudomínionocombatecorpoacorpocomumaZanpakutou, tornou-se extremamente poderoso. Com essa essência, você aumenta significativamente o dano em combates corpo a corpo com uma Zanpakutou, você causa 4 de dano a mais nos seus ataques com armas corpo a corpo.
-- Segunda Etapa: agora você causa 6 de dano a mais.
-- Terceira Etapa: agora você causa 8 de dano a mais.
-- Quarta Etapa: agora você causa 10 de dano a mais.
-- Quinta Etapa: sua margem de crítico aumenta em +1, aplicando-se também a técnicas e liberações de Shikai e Bankai.
+- Quinta Etapa: você escolhe mais 10 novos Hadous. feroz SeudomínionocombatecorpoacorpocomumaZanpakutou, tornou-se extremamente poderoso. Com essa essência, você aumenta significativamente o dano em combates corpo a corpo com uma Zanpakutou, você causa 2 de dano a mais em cada golpe corpo a corpo com arma.
+- Segunda Etapa: agora você causa 4 de dano a mais.
+- Terceira Etapa: agora você causa 6 de dano a mais.
+- Quarta Etapa: agora você causa 8 de dano a mais, e sua margem de crítico aumenta em +1 (19–20), apenas em ataques corpo a corpo. Não vale para técnicas.
+- Quinta Etapa: agora você causa 10 de dano a mais.
 
 ## Classes de Quincy
 

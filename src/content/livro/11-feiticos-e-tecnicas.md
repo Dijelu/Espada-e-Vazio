@@ -269,7 +269,7 @@ O Shinigami aponta um dedo em direção a uma criatura e envia uma mensagem ment
 - **Alcance:** 6 metros
 - **Velocidade:** Instantânea, Encantamento Rápido
 
-Quando uma criatura atacar com um ataque corpo-acorpo um aliado que esteja até 6 metros, o Shinigami usando a reação aponta a mão na direção da criatura que está atacando, recitando o encantamento e dificultando o ataque que a criatura iria realizar. A criatura deve realizar um Teste de Resistência de Sabedoria ou sofrerá -2 na rolagem de ataque.
+Quando uma criatura atacar com um ataque corpo-acorpo um aliado que esteja até 6 metros, o Shinigami usando a reação aponta a mão na direção da criatura que está atacando, recitando o encantamento e dificultando o ataque que a criatura iria realizar. A criatura deve realizar um Teste de Resistência de Mente ou sofrerá -2 na rolagem de ataque.
 
 Alternativamente você pode utilizar 10 pontos de Reiatsu para causar desvantagem na rolagem de ataque.
 
@@ -379,7 +379,7 @@ Kido e pode aumentar seu poder. Para cada 3 pontos de Reiatsu adicionais gastos,
 - **Alcance:** 12 metros
 - **Velocidade:** Instantânea, Encantamento Lento
 
-Com uma mão você cria um símbolo e depois junta as duas mãos em direção a uma criatura criando uma aura vermelha na criatura e causando dor a ela. A criatura deve realizar um Teste de Resistência de Sabedoria ou sofrerá 1d6 de dano Psíquico e não pode realizar “Reações” até o final do próximo turno dela.
+Com uma mão você cria um símbolo e depois junta as duas mãos em direção a uma criatura criando uma aura vermelha na criatura e causando dor a ela. A criatura deve realizar um Teste de Resistência de Mente ou sofrerá 1d6 de dano Psíquico e não pode realizar “Reações” até o final do próximo turno dela.
 
 - **Reiatsu:** Você gasta 3 pontos de Reiatsu para utilizar este
 
@@ -653,7 +653,7 @@ Kido.
 - **Alcance:** Toque
 - **Velocidade:** Concentração até 10 minutos, Encantamento Normal
 
-Ao tocar uma criatura, você canaliza sua Reiatsu para fortalecer sua alma e corpo, envolvendo-a em uma aura protetora translúcida. Escolha Força, Destreza, Inteligência, Sabedoria ou Espírito. Até o fim da duração, o alvo tem vantagem em testes de resistência usando o atributo escolhido e recebe um bônus de +1 no mesmo atributo.
+Ao tocar uma criatura, você canaliza sua Reiatsu para fortalecer sua alma e corpo, envolvendo-a em uma aura protetora translúcida. Escolha Força, Destreza, Mente ou Espírito. Até o fim da duração, o alvo tem vantagem em testes de resistência usando o atributo escolhido e recebe um bônus de +1 no mesmo atributo.
 
 O aprimoramento é desfeito se o Shinigami que conjurou perder a concentração ou ficar inconsciente.
 
@@ -694,7 +694,7 @@ Este Bakudou não pode ser utilizado em combate e você não pode se mover utili
 |  | Instantânea, Encantamento Lento | suspensa. | No início do próximo turno da criatura, ela pode |
 | Você lança um véu espiritual sobre a mente de uma |  | realizar um Teste de Resistência de Força para tentar se |  |
 | criatura à sua escolha dentro do alcance. O alvo deve |  | libertar, Reiatsu: e novamente nos turnos seguintes dela. |  |
-| realizar um Teste de Resistência de Sabedoria. Se falhar, |  |  |  |
+| realizar um Teste de Resistência de Mente. Se falhar, |  |  |  |
 | ele fica sob a condição “Efeitiçada” enquanto o Bakudou |  |  | Você gasta 10 pontos de Reiatsu para conjurar |
 | estiver ativo. |  | este Kido. |  |
 |  |  | 31 | Bakudou no Sanjuuichi: Kido Shoumei |
@@ -718,7 +718,7 @@ Bakudou de Rank C, Exclusivo
 - **Requisito:** Ação
 - **Jogada de Ataque:** Automático
 
-Enquanto estiver sob esse efeito, a criatura afetada vê o conjurador com admiração e empatia, sendo incapaz de realizar ataques ou ações hostis contra ele. No início de cada turno da criatura, ela pode refazer o teste de resistência de Sabedoria para tentar se libertar da condição. A condição termina imediatamente caso o conjurador ou um de seus aliados ataque o alvo ou cause dano a ele.
+Enquanto estiver sob esse efeito, a criatura afetada vê o conjurador com admiração e empatia, sendo incapaz de realizar ataques ou ações hostis contra ele. No início de cada turno da criatura, ela pode refazer o teste de resistência de Mente para tentar se libertar da condição. A condição termina imediatamente caso o conjurador ou um de seus aliados ataque o alvo ou cause dano a ele.
 
 - **Reiatsu:** Você gasta 10 pontos de Reiatsu para utilizar este
 
@@ -733,7 +733,7 @@ Kido.
 - **Jogada de Ataque:** Automático
 - **Alcance:** 18 metros
 
-O Shinigami concentra sua percepção espiritual e busca por Kido ativo dentro do alcance. Todas as áreas com Kido ativo em um raio de 18 metros são detectadas pelo usuário, permitindo que ele perceba a presença de conjurações, mesmo que invisíveis ou camufladas. O usuário deve fazer um teste de Sabedoria (oposição, se necessário, ao conjurador do Kido detectado) para identificar o tipo e a intensidade do Kido. Se falhar, ele apenas percebe a presença de energia espiritual, sem detalhes adicionais.
+O Shinigami concentra sua percepção espiritual e busca por Kido ativo dentro do alcance. Todas as áreas com Kido ativo em um raio de 18 metros são detectadas pelo usuário, permitindo que ele perceba a presença de conjurações, mesmo que invisíveis ou camufladas. O usuário deve fazer um teste de Mente (oposição, se necessário, ao conjurador do Kido detectado) para identificar o tipo e a intensidade do Kido. Se falhar, ele apenas percebe a presença de energia espiritual, sem detalhes adicionais.
 
 - **Reiatsu:** Você gasta 8 pontos de Reiatsu para utilizar este
 
@@ -1793,7 +1793,7 @@ Para cada 5 Reiatsu adicionais gastos, aumente o total de Pontos de Vida Tempor�
 - **Alcance:** Toque
 - **Velocidade:** Instantânea, Encantamento Lento
 
-O usuário envolve a mente de uma criatura mortal que tenha testemunhado algo relacionado ao mundo espiritual que não deveria conhecer, como um encontro com um Hollow ou a presença de um Shinigami. O alvo deve realizar um Teste de Resistência de Sabedoria. Uma criatura voluntária pode escolher falhar automaticamente. Em caso de falha, o mortal fica Incapacitado durante o processo, que dura 10 minutos, e perde a percepção do que acontece ao seu redor, embora consiga ouvir e compreender o usuário.
+O usuário envolve a mente de uma criatura mortal que tenha testemunhado algo relacionado ao mundo espiritual que não deveria conhecer, como um encontro com um Hollow ou a presença de um Shinigami. O alvo deve realizar um Teste de Resistência de Mente. Uma criatura voluntária pode escolher falhar automaticamente. Em caso de falha, o mortal fica Incapacitado durante o processo, que dura 10 minutos, e perde a percepção do que acontece ao seu redor, embora consiga ouvir e compreender o usuário.
 
 Enquanto o efeito durar, o usuário pode alterar, apagar ou substituir as memórias do mortal relacionadas ao acontecimento, desde que o evento tenha ocorrido nas últimas 24 horas.
 
@@ -1843,7 +1843,7 @@ Para cada 5 Reiatsu adicionais, você pode afetar 1 Hollow adicional, até o má
 - **Alcance:** 24 metros
 - **Velocidade:** Instantânea, Encantamento Lento
 
-O usuário concentra Reiatsu sobre até 3 criaturas que possa ver dentro do alcance. Cada alvo deve realizar um Teste de Resistência de Sabedoria.
+O usuário concentra Reiatsu sobre até 3 criaturas que possa ver dentro do alcance. Cada alvo deve realizar um Teste de Resistência de Mente.
 
 Em caso de falha, a criatura fica Paralisada durante 1 rodada.
 
@@ -2783,7 +2783,7 @@ Kido e pode aumentar seu poder. Para cada 7 pontos de Reiatsu adicionais gastos,
 
 diretamente sobre uma criatura específica. As ondas golpeiam a mente do alvo, causando distúrbios psíquicos imediatos e intensos.
 
-O alvo deve realizar um Teste de Resistência de Inteligência. Em caso de falha, sofre 5d10 de dano Psíquico. Em caso de sucesso, sofre metade do dano.
+O alvo deve realizar um Teste de Resistência de Mente. Em caso de falha, sofre 5d10 de dano Psíquico. Em caso de sucesso, sofre metade do dano.
 
 - **Reiatsu:** Você gasta 10 pontos de Reiatsu para utilizar
 
@@ -3006,7 +3006,7 @@ este Kidō e pode aumentar seu poder. Para cada 8 pontos de Reiatsu adicionais g
 
 *Hadou de Rank B, Bleach*
 
-- **Encantamento:** Variâncias do universo, peguem a lanterna da sabedoria! Com toda a soberania, mergulhem o cavaleiro e sua lança na taça do maravilhoso paraíso!
+- **Encantamento:** Variâncias do universo, peguem a lanterna da mente! Com toda a soberania, mergulhem o cavaleiro e sua lança na taça do maravilhoso paraíso!
 - **Requisito:** Ação
 - **Jogada de Ataque:** Automático
 - **Alcance:** Linha de 18 metros e 3 metros de largura
@@ -3068,7 +3068,7 @@ Kido e pode aumentar seu poder. Para cada 8 pontos de Reiatsu adicionais gastos,
 
 O Shinigami canaliza seu reiatsu em uma linha diante de si, e dele surgem garras sombrias feitas de energia espiritual condensada. Elas avançam em um estalo seco, rasgando o ar e deixando um rastro negro cintilante. O impacto é acompanhado de uma força espiritual sufocante que atinge o corpo e a mente dos inimigos.
 
-Realize uma jogada de ataque de Kido contra todas as criaturas na linha. Em um acerto, os alvos sofrem 3d10 de dano Psíquico e devem realizar um teste de resistência de Sabedoria. Caso falhem, ficam Amendrontado até o fim do próximo turno do Shinigami.
+Realize uma jogada de ataque de Kido contra todas as criaturas na linha. Em um acerto, os alvos sofrem 3d10 de dano Psíquico e devem realizar um teste de resistência de Mente. Caso falhem, ficam Amendrontado até o fim do próximo turno do Shinigami.
 
 - **Reiatsu:** Você gasta 16 pontos de Reiatsu para utilizar este
 
@@ -3344,7 +3344,7 @@ este Kido e pode aumentar seu poder. Para cada 9 pontos de Reiatsu adicionais ga
 
 O Shinigami reúne energia espiritual em torno dos dedos, comprimindo-a até formar um pequeno núcleo de escuridão temporal prateada. Quando disparado, o projétil atravessa o espaço como um relâmpago imóvel, e tudo o que toca parece ser engolido por um instante congelado.
 
-Realize uma jogada de ataque de Kido à distância contra uma criatura dentro do alcance. Em um acerto, o alvo sofre 3d8 de dano Temporal. O impacto o prende brevemente entre segundos que se repetem infinitamente. A criatura que foi acertada, deve fazer um Teste de Resistência de Sabedoria, falhando até o início do seu próximo turno, a criatura não pode usar Reações e suas jogadas de ataque têm desvantagem, pois o tempo ao seu redor se fragmenta.
+Realize uma jogada de ataque de Kido à distância contra uma criatura dentro do alcance. Em um acerto, o alvo sofre 3d8 de dano Temporal. O impacto o prende brevemente entre segundos que se repetem infinitamente. A criatura que foi acertada, deve fazer um Teste de Resistência de Mente, falhando até o início do seu próximo turno, a criatura não pode usar Reações e suas jogadas de ataque têm desvantagem, pois o tempo ao seu redor se fragmenta.
 
 - **Reiatsu:** Você gasta 25 pontos de Reiatsu para utilizar este
 
@@ -3769,7 +3769,7 @@ O Shinigami concentra intensamente seu reiatsu ao redor de sua cabeça, fechando
 
 energia psíquica em uma esfera de 9 metros ao seu redor. As criaturas atingidas sentem suas mentes comprimidas e dilaceradas, lutando para distinguir realidade de ilusão enquanto a dor mental os domina.
 
-Todas as criaturas na área devem realizar um Teste de Resistência de Inteligência, em caso de falha, sofrem 12d10 de dano Psíquico. Em caso de sucesso, sofrem metade do dano.
+Todas as criaturas na área devem realizar um Teste de Resistência de Mente, em caso de falha, sofrem 12d10 de dano Psíquico. Em caso de sucesso, sofrem metade do dano.
 
 - **Reiatsu:** Você gasta 26 pontos de Reiatsu para utilizar este
 
@@ -3803,7 +3803,7 @@ este Kido e pode aumentar seu poder. Para cada 16 pontos de Reiatsu adicionais g
 - **Alcance:** 56 metros
 - **Velocidade:** Instantânea, Encantamento Lento
 
-O Shinigami começa a recitar o encantamento, e tudo ao seu redor parece mergulhar na noite, especialmente para aqueles que o observam. Ele aponta para uma criatura alvo, que deve realizar um teste de resistência de Sabedoria, em caso de falha, o usuário recebe vantagem no lançamento deste Hadou.
+O Shinigami começa a recitar o encantamento, e tudo ao seu redor parece mergulhar na noite, especialmente para aqueles que o observam. Ele aponta para uma criatura alvo, que deve realizar um teste de resistência de Mente, em caso de falha, o usuário recebe vantagem no lançamento deste Hadou.
 
 Durante o encantamento, seis feixes de reiatsu rosa surgem ao redor do usuário. O Shinigami estende a mão em direção ao alvo e lança os seis feixes. Cada feixe causa 4d10 de dano de Energia, e uma jogada de ataque à distância com Kido é realizada para cada feixe. Efeitos adicionais por número de feixes que acertarem:
 
@@ -3964,7 +3964,7 @@ este Kido e pode aumentar seu poder. Para cada 15 pontos de Reiatsu adicionais g
 
 ## Curiosidades Goryutenmetsu
 
-O Goryutenmetsu é o hadou mais poderoso, mesmo existindo Hadous que causam mais dano, como o Ittoukasou, ao contrário desses o usuário não sofre efeitos ao utilizá-lo, permanecendo intacto. O único a sofrer é o próprio ambiente, o que torna este Hadou proibido pela Central 46. Portanto, se decidir usá-lo, faça-o com sabedoria.
+O Goryutenmetsu é o hadou mais poderoso, mesmo existindo Hadous que causam mais dano, como o Ittoukasou, ao contrário desses o usuário não sofre efeitos ao utilizá-lo, permanecendo intacto. O único a sofrer é o próprio ambiente, o que torna este Hadou proibido pela Central 46. Portanto, se decidir usá-lo, faça-o com mente.
 
 A cor do Hadou não é fixa; ela se adapta à reiatsu do usuário. No caso de Aizen, é roxa, enquanto com Urahara assume uma tonalidade vermelha.
 
@@ -3972,11 +3972,11 @@ A cor do Hadou não é fixa; ela se adapta à reiatsu do usuário. No caso de Ai
 
 Como regra opcional, o Mestre pode optar por não permitir que qualquer Shinigami o escolha, mesmo que tenha acesso ao seu Rank, reservando-o apenas para Shinigamis que aprendam o Hadou ao longo da campanha.
 
-É possível, inclusive, limitar o Hadou 99 à classe “Mestre Kido”.
+É possível, inclusive, limitar o Hadou 99 à classe “Kidōshū”.
 
 ## Hakuda
 
-Hakuda é um estilo de combate corpo a corpo dos Shinigami que incorpora diversas artes marciais. Neste estilo, o praticante está desarmado e utiliza apenas o corpo como arma. Ataques de alta velocidade e força são utilizados para sobrepujar o oponente. Hakuda é um dos quatro estilos de luta básicos dos Shinigami e existe grandes Shinigamis que se especializam apenas no uso de Hakuda para o combate como Yoruichi Shihoin que com apenas esse estilo, ela se tornou uma das Shinigamis mais fortes que já existiu. As técnicas de Hakuda são uma evolução do ataque desarmado de um Shinigami. Essas técnicas têm um custo de reiatsu, pois demandam muito do Shinigami para serem executadas. Isso pode levar o Shinigami a um desgaste muito rapidamente, portanto, devem ser usadas com sabedoria. Elas não possuem classificação, sendo livres para escolha caso você possua uma habilidade que permita selecioná-las. Como não possuem classificações, elas evoluem junto com o usuário, já que o dano desarmado é quase sempre somado ao dano da técnica.
+Hakuda é um estilo de combate corpo a corpo dos Shinigami que incorpora diversas artes marciais. Neste estilo, o praticante está desarmado e utiliza apenas o corpo como arma. Ataques de alta velocidade e força são utilizados para sobrepujar o oponente. Hakuda é um dos quatro estilos de luta básicos dos Shinigami e existe grandes Shinigamis que se especializam apenas no uso de Hakuda para o combate como Yoruichi Shihoin que com apenas esse estilo, ela se tornou uma das Shinigamis mais fortes que já existiu. As técnicas de Hakuda são uma evolução do ataque desarmado de um Shinigami. Essas técnicas têm um custo de reiatsu, pois demandam muito do Shinigami para serem executadas. Isso pode levar o Shinigami a um desgaste muito rapidamente, portanto, devem ser usadas com mente. Elas não possuem classificação, sendo livres para escolha caso você possua uma habilidade que permita selecioná-las. Como não possuem classificações, elas evoluem junto com o usuário, já que o dano desarmado é quase sempre somado ao dano da técnica.
 
 ### Combo
 

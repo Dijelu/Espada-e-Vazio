@@ -104,7 +104,7 @@ Esse descanso leva 8 horas seguidas, durante as quais o personagem deve dormir o
 
 Em Soul Society RPG, lembre-se: seu personagem não é você. Nenhuma derrota em combate, falha em testes ou reviravolta na história diminui suas conquistas pessoais. Da mesma forma, a maior vitória de um personagem existe apenas dentro da ficção do jogo.
 
-Não leve os acontecimentos do jogo para o lado pessoal. Soul Society RPG é sobre criar histórias emocionantes, cheias de surpresas e reviravoltas. Por melhor que sejam suas ideias e sua sorte nos dados, nem sempre o sucesso estará ao seu alcance — e tudo bem! Se seu Shinigami for derrotado por um Hollow menor ou se um ataque importante falhar, ria junto com o grupo. Todos estão rindo da situação inesperada, não de você. Seu personagem também não será o centro das atenções o tempo todo. Algumas cenas irão destacar as habilidades e o brilho de outros personagens: um Mestre em Kido pode ter destaque em batalhas a longa distância, enquanto um Combatente dominará os duelos. Se o seu personagem não tiver papel central em uma cena, aproveite para observar, apoiar e se divertir com seus amigos. Seu momento também chegará, e juntos vocês construirão uma história ainda mais épica.
+Não leve os acontecimentos do jogo para o lado pessoal. Soul Society RPG é sobre criar histórias emocionantes, cheias de surpresas e reviravoltas. Por melhor que sejam suas ideias e sua sorte nos dados, nem sempre o sucesso estará ao seu alcance — e tudo bem! Se seu Shinigami for derrotado por um Hollow menor ou se um ataque importante falhar, ria junto com o grupo. Todos estão rindo da situação inesperada, não de você. Seu personagem também não será o centro das atenções o tempo todo. Algumas cenas irão destacar as habilidades e o brilho de outros personagens: um Mestre em Kido pode ter destaque em batalhas a longa distância, enquanto um Zanjutsu dominará os duelos. Se o seu personagem não tiver papel central em uma cena, aproveite para observar, apoiar e se divertir com seus amigos. Seu momento também chegará, e juntos vocês construirão uma história ainda mais épica.
 
 Respeito e amizade são a alma do jogo. Todo conflito e rivalidade devem permanecer apenas na ficção. Jamais use o jogo como desculpa para diminuir, excluir ou ferir outros jogadores. Se algo tornar alguém desconfortável, é dever de todos estarem atentos e respeitar os limites, para manter o ambiente seguro e acolhedor. Não há espaço para discriminação em Soul Society RPG. Jogadores de todas as origens, crenças, identidades e estilos de vida são bem-vindos. Até mesmo dentro da história, personagens de diferentes tipos convivem lado a lado em respeito mútuo. Vilões intolerantes podem surgir, mas apenas se o grupo inteiro estiver confortável com isso nunca para replicar preconceitos da realidade.
 
@@ -186,7 +186,11 @@ Ao realizar essa Ação, você pode efetuar um ataque corpo a corpo ou à distâ
 
 ### Defender
 
-Durante seu turno, você pode querer mitigar o dano que irá receber. Para isso, você pode usar a Ação Defender, com essa ação, todo ataque que você receber de outras criaturas terá o dano reduzido em um valor igual à seu nível de personagem + seu atributo de Constituição ou Força à escolha. Essa defesa dura até o início do seu próximo turno. Por exemplo, um personagem de nível 3 com 5 pontos em Constituição reduzirá 8 pontos de dano de todos os ataques recebidos. Da mesma forma, se ele tiver 6 pontos em Força e for nível 4, ele reduzirá 10 pontos de dano de todos os ataques. Essa ação não reduz danos provenientes de ataques do tipo “Temporal” e Psíquico. Além disso, se você precisar fazer um Teste de Resistência de Destreza enquanto estiver com Defender ativo, poderá usar seu atributo de Constituição ou Força.
+Até o início do seu próximo turno, você tem **resistência** a dano físico e esotérico, exceto Temporal e Psíquico. Você também pode usar Constituição ou Força nos testes de Destreza.
+
+- Resistência não acumula. Defender não soma com Essência de resistência do mesmo tipo.
+- A resistência vale contra o dano de jogadas de ataque, inclusive de técnicas com jogada de ataque. Ela **não reduz** o dano de técnicas com salvaguarda: contra elas, a defesa é a própria salvaguarda (metade do dano no sucesso).
+- Usar Defender durante a Bankai também consome a ação extra (Manto Negro) naquele turno.
 
 ### Disparada
 
@@ -236,7 +240,7 @@ Quando uma habilidade ou característica requer uma ação, você usará a açã
 
 ### Ação Bônus
 
-Variadas características de classe, feitiços e outras habilidades, como técnicas de Zanpakutou, permitem que você realize uma ação extra no seu turno, chamada Ação Bônus. A característica Impacto de Reiatsu da classe Combatente, por exemplo, permite que, ao atacar, você adicione dano de energia ao ataque.
+Variadas características de classe, feitiços e outras habilidades, como técnicas de Zanpakutou, permitem que você realize uma ação extra no seu turno, chamada Ação Bônus. A característica Impacto de Reiatsu da classe Zanjutsu, por exemplo, permite que, ao atacar, você adicione dano de energia ao ataque.
 
 Você pode realizar apenas uma Ação Bônus por turno. Quando tiver mais de uma disponível, deverá escolher qual delas usar, ou optar por utilizar uma Perícia, como Percepção ou Furtividade. Você decide quando utilizar uma Ação Bônus durante o seu turno, a menos que o momento específico para realizá-la seja determinado ou que algo o impeça de realizar ações, o que também o impedirá de executar uma Ação Bônus.
 
@@ -292,7 +296,7 @@ Para realizar um ataque, você deve utilizar a Ação Atacar, conforme mencionad
 
 ### Jogadas de Ataque
 
-Para definir se você acertou um ataque ou não deve ser jogado d20 e adicionado os bônus. Cada tipo de classe no Soul Society possui uma abordagem diferente para ataques, determinada pela arma que você estiver usando. Por exemplo, a classe Suporte deve escolher uma Asauchi no primeiro nível, e essa Asauchi definirá qual atributo você utilizará para a Jogada de Ataque (para acertar um ataque). Se o total da jogada, somado aos modificadores, igualar ou ultrapassar a Classe de Resistência (CR) do alvo, o ataque acerta. Por exemplo, se uma criatura possuir 18 de CR e você obter um total de 18 no d20 com a soma dos modificadores, você a acertará.
+Para definir se você acertou um ataque ou não deve ser jogado d20 e adicionado os bônus. Cada tipo de classe no Soul Society possui uma abordagem diferente para ataques, determinada pela arma que você estiver usando. Por exemplo, a classe Kyūgo deve escolher uma Asauchi no primeiro nível, e essa Asauchi definirá qual atributo você utilizará para a Jogada de Ataque (para acertar um ataque). Se o total da jogada, somado aos modificadores, igualar ou ultrapassar a Classe de Resistência (CR) do alvo, o ataque acerta. Por exemplo, se uma criatura possuir 18 de CR e você obter um total de 18 no d20 com a soma dos modificadores, você a acertará.
 
 ### Armas e Atributos
 
@@ -302,7 +306,7 @@ Se você for proficiente com a arma, poderá adicionar o bônus de proficiência
 
 ### Outros Bônus
 
-Sua classe ou outras habilidades podem conceder bônus adicionais às suas jogadas de ataque e dano. Por exemplo, o Estilo de Combate Kendo da classe Combatente adiciona +2 nas jogadas de ataque e dano. Se você tiver mais de uma habilidade que aumente ou diminua os bônus nas suas jogadas de ataque e dano, deve aplicá-las e somar todos os modificadores.
+Sua classe ou outras habilidades podem conceder bônus adicionais às suas jogadas de ataque e dano. Por exemplo, o Estilo de Combate Kendo da classe Zanjutsu adiciona +2 nas jogadas de ataque e dano. Se você tiver mais de uma habilidade que aumente ou diminua os bônus nas suas jogadas de ataque e dano, deve aplicá-las e somar todos os modificadores.
 
 ### Jogadas de Ataque Desarmado
 
@@ -330,7 +334,7 @@ Se uma das armas que você empunhar conceder um efeito, como uma condição, voc
 
 ### Conjuração e Técnicas
 
-As classes ou habilidades exigem que você utilize certos atributos para realizar a conjuração ou executar uma técnica, como por exemplo o Lutador, que necessita do modificador de Sabedoria para realizar os Ataques com Kido e para determinar a resistência das criaturas aos seus Kido, representada pela Classe de Dificuldade (CD). Você identifica qual atributo de conjuração ou para uso de técnicas é descrito na habilidade que estará utilizando ou na sua classe. Todas os tipos de conjuração e técnicas, seguem as mesmas regras do capítulo Feitiços e Técnicas.
+As classes ou habilidades exigem que você utilize certos atributos para realizar a conjuração ou executar uma técnica, como por exemplo o Hakuda, que necessita do modificador de Mente para realizar os Ataques com Kido e para determinar a resistência das criaturas aos seus Kido, representada pela Classe de Dificuldade (CD). Você identifica qual atributo de conjuração ou para uso de técnicas é descrito na habilidade que estará utilizando ou na sua classe. Todas os tipos de conjuração e técnicas, seguem as mesmas regras do capítulo Feitiços e Técnicas.
 
 ### Rolando 1 Ou 20
 
@@ -507,7 +511,7 @@ O mestre pode manter os fracassos do teste de um personagem até que ele realize
 
 ### Estabilizando Uma Criatura Morrendo
 
-Quando uma criatura estiver com 0 pontos de vida e você não puder curá-la, você pode tentar salvá-la utilizando uma Ação especial chamada “Estabilizar”. Para isso, você deve utilizar sua ação e realizar um Teste de Medicina (Sabedoria) com uma Classe de Dificuldade 12. Para cada fracasso que a criatura tiver no Teste Contra a Morte, adicione +5 à dificuldade do teste.
+Quando uma criatura estiver com 0 pontos de vida e você não puder curá-la, você pode tentar salvá-la utilizando uma Ação especial chamada “Estabilizar”. Para isso, você deve utilizar sua ação e realizar um Teste de Medicina (Mente) com uma Classe de Dificuldade 12. Para cada fracasso que a criatura tiver no Teste Contra a Morte, adicione +5 à dificuldade do teste.
 
 Se você falhar no Teste de Medicina, não haverá alteração nos Testes Contra a Morte. No entanto, se você obtiver sucesso, a criatura será estabilizada, mas continuará inconsciente. Ela não correrá mais risco de morte, e após o combate terminar, acordará com 1 ponto de vida.
 
@@ -597,11 +601,11 @@ Você também pode trocar um tipo de deslocamento por outro. Se você tiver desl
 
 ### Deslocamento Instântaneo
 
-Todas as classes possuem um tipo de Deslocamento Instantâneo, como o Shunpo dos Shinigamis, o Sonido dos Hollows e o Hirenkyaku dos Quincys. Essas habilidades de deslocamento possuem regras próprias descritas nas classes, nas quais elas se diferenciam entre as classes do mesmo tipo. Por exemplo, a classe Combatente possui o Shunpo, enquanto a classe Lutador tem o Shunpo Aprimorado, que é uma versão melhorada do Shunpo. Sempre que você utilizar o Deslocamento Instantâneo, receberá vantagem no próximo ataque ou habilidade. Por exemplo, se você usar o Shunpo e, em seguida, utilizar a técnica Getsuga Tenshou da Zanpakutou Zangetsu, terá vantagem na rolagem de acerto, mas apenas para habilidades e ataques que requerem um acerto. Assim como na seção “Quebrando seu Movimento”, você pode realizar a Ação de Ataque, fazer um ataque, e se tiver mais ataques no turno, pode usar um Deslocamento Instantâneo para realizar o próximo ataque com vantagem. Por exemplo, se você é um Quincy, realiza a Ação de Ataque com seu Arco Longo, dispara o primeiro golpe, utiliza o Hirenkyaku e tem vantagem nesse próximo ataque, enquanto o terceiro ataque é realizado normalmente.
+Todas as classes possuem um tipo de Deslocamento Instantâneo, como o Shunpo dos Shinigamis, o Sonido dos Hollows e o Hirenkyaku dos Quincys. Essas habilidades de deslocamento possuem regras próprias descritas nas classes, nas quais elas se diferenciam entre as classes do mesmo tipo. Por exemplo, a classe Zanjutsu possui o Shunpo, enquanto a classe Hakuda tem o Shunpo Aprimorado, que é uma versão melhorada do Shunpo. Sempre que você utilizar o Deslocamento Instantâneo, receberá vantagem no próximo ataque ou habilidade. Por exemplo, se você usar o Shunpo e, em seguida, utilizar a técnica Getsuga Tenshou da Zanpakutou Zangetsu, terá vantagem na rolagem de acerto, mas apenas para habilidades e ataques que requerem um acerto. Assim como na seção “Quebrando seu Movimento”, você pode realizar a Ação de Ataque, fazer um ataque, e se tiver mais ataques no turno, pode usar um Deslocamento Instantâneo para realizar o próximo ataque com vantagem. Por exemplo, se você é um Quincy, realiza a Ação de Ataque com seu Arco Longo, dispara o primeiro golpe, utiliza o Hirenkyaku e tem vantagem nesse próximo ataque, enquanto o terceiro ataque é realizado normalmente.
 
 ### Caminhar no Céu
 
-Quando você tiver acesso a uma habilidade de Deslocamento Instantâneo, também conseguirá caminhar no céu, como se estivesse voando. No entanto, você não estará realmente voando, mas se deslocando no céu ao criar quantidades de energia nos pés para se manter no ar. Para caminhar no céu, você deve gastar 1 ponto de reiatsu no início de cada turno, tanto para começar quanto para se manter no ar. Caminhar no céu conta como “Terreno Difícil”, que será explicado na próxima seção, e você utiliza seu deslocamento normal para isso. Além disso, aplica-se a regra de Queda descrita na seção de Movimento de Voo. Por exemplo, se você é um Shinigami da classe Lutador e está no nível 2, onde já tem acesso ao Shunpo, uma habilidade de Deslocamento Instantâneo, então você consegue caminhar no céu. No começo do seu turno, você decide caminhar no céu para alcançar uma criatura que já está acima de você 4,5 metros. Com um deslocamento de 9 metros, você consegue subir até 4,5 metros, pois o movimento será considerado como “Terreno difícil”. Se você utilizar uma habilidade de Deslocamento Instantâneo para se deslocar até uma criatura que está no céu, isso não contará como terreno difícil, mesmo que alguns deslocamentos instantâneos já ignorem terrenos difíceis. Por exemplo, se a criatura está a 9 metros acima de você e seu deslocamento é de 9 metros, você pode usar o Shunpo para alcançá-la. Caminhando, você só conseguiria se deslocar 4,5 metros devido ao terreno difícil.
+Quando você tiver acesso a uma habilidade de Deslocamento Instantâneo, também conseguirá caminhar no céu, como se estivesse voando. No entanto, você não estará realmente voando, mas se deslocando no céu ao criar quantidades de energia nos pés para se manter no ar. Para caminhar no céu, você deve gastar 1 ponto de reiatsu no início de cada turno, tanto para começar quanto para se manter no ar. Caminhar no céu conta como “Terreno Difícil”, que será explicado na próxima seção, e você utiliza seu deslocamento normal para isso. Além disso, aplica-se a regra de Queda descrita na seção de Movimento de Voo. Por exemplo, se você é um Shinigami da classe Hakuda e está no nível 2, onde já tem acesso ao Shunpo, uma habilidade de Deslocamento Instantâneo, então você consegue caminhar no céu. No começo do seu turno, você decide caminhar no céu para alcançar uma criatura que já está acima de você 4,5 metros. Com um deslocamento de 9 metros, você consegue subir até 4,5 metros, pois o movimento será considerado como “Terreno difícil”. Se você utilizar uma habilidade de Deslocamento Instantâneo para se deslocar até uma criatura que está no céu, isso não contará como terreno difícil, mesmo que alguns deslocamentos instantâneos já ignorem terrenos difíceis. Por exemplo, se a criatura está a 9 metros acima de você e seu deslocamento é de 9 metros, você pode usar o Shunpo para alcançá-la. Caminhando, você só conseguiria se deslocar 4,5 metros devido ao terreno difícil.
 
 ## Adaptação de Bleach
 

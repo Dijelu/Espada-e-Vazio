@@ -11,6 +11,9 @@ import sys
 import unicodedata
 from pathlib import Path
 
+if "--forcar" not in sys.argv:
+    sys.exit("Os capítulos em src/content/livro já foram editados à mão. Rodar este script sobrescreve tudo. Use --forcar só se for esse o objetivo.")
+sys.argv = [a for a in sys.argv if a != "--forcar"]
 PDF = sys.argv[1] if len(sys.argv) > 1 else "livro.pdf"
 OUT = Path(__file__).resolve().parent.parent / "src" / "content"
 (OUT / "livro").mkdir(parents=True, exist_ok=True)

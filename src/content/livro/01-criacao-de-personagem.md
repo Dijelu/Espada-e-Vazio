@@ -1,8 +1,8 @@
 # Criação de Personagem
 
-Oprimeiro passo para jogar uma aventura em Soul Society RPG é imaginar e criar o seu personagem. Ele é uma combinação de estatísticas de jogo, interpretação e a força da sua imaginação. Você escolhe uma Origem (como Alma, Humano ou Quincy) e uma Classe (como Combatente, Atirador ou Suporte). Também é você quem define a personalidade, a aparência e o passado do seu personagem. Quando finalizado, ele se torna o seu representante dentro do mundo de Soul Society.
+Oprimeiro passo para jogar uma aventura em Soul Society RPG é imaginar e criar o seu personagem. Ele é uma combinação de estatísticas de jogo, interpretação e a força da sua imaginação. Você escolhe uma Origem (como Alma, Humano ou Quincy) e uma Classe (como Zanjutsu, Schütze ou Kyūgo). Também é você quem define a personalidade, a aparência e o passado do seu personagem. Quando finalizado, ele se torna o seu representante dentro do mundo de Soul Society.
 
-Ao longo deste capítulo, usaremos o termo ficha de personagem para nos referirmos a tudo aquilo que você utiliza para controlar seu personagem, seja com a ficha oficial do Soul Society RPG (disponível no final deste livro), algum tipo de registro digital ou mesmo uma folha de caderno. Depois de criado, seu personagem será seu representante em Soul Society RPG: a lâmina, a voz e o espírito que caminharão entre o Mundo Humano, a Soul Society e o Hueco Mundo.
+Ao longo deste capítulo, usaremos o termo ficha de personagem para nos referirmos a tudo aquilo que você utiliza para controlar seu personagem, seja com a ficha do site (na seção Fichas), algum tipo de registro digital ou mesmo uma folha de caderno. Depois de criado, seu personagem será seu representante em Soul Society RPG: a lâmina, a voz e o espírito que caminharão entre o Mundo Humano, a Soul Society e o Hueco Mundo.
 
 Cada etapa do processo de criação de personagens incluirá a construção de dois personagens existentes em Bleach: Kuchiki Rukia e Uryu Ishida, sendo um Shinigami, e o outro um Quincy.
 
@@ -50,7 +50,7 @@ O seu bônus de proficiência não pode ser adicionado mais de uma vez a uma ún
 
 ### Classe de Resistência
 
-A sua Classe de Resistência (CR) representa a habilidade do personagem em evitar ser ferido em combate. Cada classe possui um cálculo diferente para determinar a Classe de Resistência, que normalmente é 10 + o bônus de proficiência + um atributo chave da classe (veremos os atributos no próximo passo), que está na tabela de classe. Anote sua Classe de Resistência na Ficha de Personagem após distribuir os pontos de atributo.
+A sua Classe de Resistência (CR) representa a habilidade do personagem em evitar ser ferido em combate. Existem dois perfis de Classe de Resistência. A CR plena é 10 + o bônus de proficiência + Constituição + Destreza, e a CR leve é 10 + o bônus de proficiência + Destreza + metade da Constituição (arredondada para baixo). O perfil de cada classe está na descrição dela (veremos os atributos no próximo passo). Anote sua Classe de Resistência na Ficha de Personagem após distribuir os pontos de atributo.
 
 ### Essência Espiritual
 
@@ -62,11 +62,11 @@ Anote a Essência Espiritual inicial escolhida na Ficha de Personagem.
 
 Para cada tipo de classe, Shinigami ou Quincy, o método de equipamentos é diferente, seguindo um padrão específico para cada uma, destacado no capítulo 3: Classes. Um Quincy, por exemplo, usará diversos tipos de armas, enquanto um Shinigami usará apenas sua Zanpakutou. Anote os equipamentos da sua classe escolhida na Ficha de Personagem.
 
-Construindo Rukia (2): Para criar a personagem Rukia, devemos selecionar a Classe de Shinigami, que neste caso é a "Especialista", e escolha a Asauchi Katana. Anote todos os traços de classe, características, equipamentos e proficiências da sua classe na ficha de personagem. Construindo Ishida (2): Para criar o personagem Ishida, devemos selecionar a Classe de Quincy, que é a "Atirador", escolha um Arco Longo. Anote todos os traços de classe, características, equipamentos e proficiências da sua classe na ficha de personagem.
+Construindo Rukia (2): Para criar a personagem Rukia, devemos selecionar a Classe de Shinigami, que neste caso é a "Tokubetsu", e escolha a Asauchi Katana. Anote todos os traços de classe, características, equipamentos e proficiências da sua classe na ficha de personagem. Construindo Ishida (2): Para criar o personagem Ishida, devemos selecionar a Classe de Quincy, que é a "Schütze", escolha um Arco Longo. Anote todos os traços de classe, características, equipamentos e proficiências da sua classe na ficha de personagem.
 
 ## 3. Atributos
 
-Todo personagem tem seis atributos que definem suas competências: Força, Destreza, Constituição, Inteligência, Sabedoria e Espírito. As seis habilidades e sua utilização no jogo são descritos no capítulo 8.
+Todo personagem tem cinco atributos que definem suas competências: Força, Destreza, Constituição, Mente e Espírito. Os cinco atributos e sua utilização no jogo são descritos no capítulo 8.
 
 Quando você cria um personagem, todos os seus atributos começam em 0 e você recebe 12 pontos para distribuir entre eles como desejar. Nessa distribuição, você não pode ultrapassar 4 pontos em um mesmo atributo, a menos que tenha alguma característica que conceda pontos extras a um atributo. Anote seus atributos na sua Ficha de Personagem.
 
@@ -75,13 +75,12 @@ Quando você cria um personagem, todos os seus atributos começam em 0 e você r
 - A Força reflete a capacidade física e a potência do personagem, envolvendo musculatura, resistência e habilidade para tarefas exigentes. Personagens com alta Força podem levantar objetos pesados, empurrar obstáculos e desferir golpes poderosos.
 - A Destreza representa a agilidade, coordenação e reflexos do personagem, medindo sua capacidade de se mover e reagir rapidamente, além de realizar tarefas precisas. Personagens com alta Destreza são ágeis, rápidos e habilidosos em manobras acrobáticas.
 - A Constituição representa a saúde e resistência física do personagem, medindo sua vitalidade, resistência a doenças e capacidade de suportar danos. Personagens com alta Constituição são robustos e conseguem resistir a condições adversas melhor do que outros.
-- A Inteligência representa a capacidade mental e raciocínio lógico do personagem, medindo sua habilidade de aprender, resolver problemas e aplicar conhecimentos. Personagens com alta Inteligência são perspicazes e astutos.
-- A Sabedoria representa a intuição e discernimento do personagem, medindo sua capacidade de compreender o mundo, interpretar sinais e prever consequências. Personagens com alta Sabedoria são perspicazes e tomam decisões prudentes.
+- A Mente representa a capacidade mental do personagem: raciocínio lógico, intuição e discernimento. Mede sua habilidade de aprender, resolver problemas, compreender o mundo, interpretar sinais e prever consequências. Personagens com alta Mente são perspicazes e astutos.
 - O Espírito representa a intensidade espiritual e o Carisma do personagem, medindo sua capacidade de controlar sua energia espiritual e influenciar os outros. Personagens com alta pontuação em Espírito possuem grande poder de reiatsu e forte influência, seja para o bem ou para o mal.
 
-Construindo Rukia (3): Para criar a personagem Rukia, devemos distribuir os pontos de atributo da seguinte forma: Força (1), Destreza (3), Constituição (2), Inteligência (2), Sabedoria (3) e Espírito (1). Os Pontos de Vida ficam em 28, Pontos de Reiatsu em 23 e CR em 14.
+Construindo Rukia (3): Para criar a personagem Rukia, devemos distribuir os pontos de atributo da seguinte forma: Força (1), Destreza (3), Constituição (2), Mente (3) e Espírito (3). Os Pontos de Vida ficam em 30, Pontos de Reiatsu em 25 e CR em 17.
 
-Construindo Ishida (3): Para criar o personagem Ishida, devemos distribuir os pontos de atributo da seguinte forma: Força (0), Destreza (4), Constituição (0), Inteligência (4), Sabedoria (2) e Espírito (2). Os Pontos de Vida ficam em 28, Pontos de Reiatsu em 23 e CR em 14.
+Construindo Ishida (3): Para criar o personagem Ishida, devemos distribuir os pontos de atributo da seguinte forma: Força (0), Destreza (4), Constituição (0), Mente (4) e Espírito (4). Os Pontos de Vida ficam em 25, Pontos de Reiatsu em 24 e CR em 16.
 
 ### Por Favor Um Doze
 
@@ -143,7 +142,7 @@ Anote a história do seu personagem na Ficha de Personagem, incluindo personagen
 
 Construindo Rukia (4): A aparência de Rukia é de uma jovem de estatura baixa e porte esguio, com aparência leve e graciosa. Sua pele é muito clara e suave, quase lembrando porcelana. Ela possui cabelos pretos e lisos, cortados em um estilo simples e prático: fios retos que caem um pouco abaixo do queixo, com uma franja longa que às vezes cobre parte de seu rosto. Seus olhos são grandes, de um tom violeta-escuro profundo, transmitindo seriedade e, ao mesmo tempo, uma certa melancolia e sensibilidade. Normalmente, Rukia usa o uniforme padrão dos shinigami e apesar de pequena e aparentemente frágil, Rukia carrega uma postura ereta e uma presença digna, reflexo de seu treinamento e do orgulho silencioso que cultiva como membro adotado família Kuchiki.
 
-Rukia é uma personagem com a tendência espiritual boa e tem como objetivo manter o equilíbrio entre o mundo dos vivos e o mundo dos mortos, protegendo as almas e lutando para preservar a ordem espiritual, ao mesmo tempo em que busca honrar sua posição como membro da nobre família Kuchiki e ser fiel a seus próprios sentimentos de justiça e proteção. Construindo Ishida (4): A aparência de Uryu Ishida é de um jovem de estatura média-alta, com físico esguio e elegante. Seu porte é ereto e impecável, refletindo disciplina e orgulho. Ele tem cabelos lisos e pretos, cortados de forma reta e bem cuidada, com uma franja que desce até pouco acima dos olhos. Seus olhos são estreitos e de um azul intenso e frio, transmitindo inteligência e uma certa distância emocional.
+Rukia é uma personagem com a tendência espiritual boa e tem como objetivo manter o equilíbrio entre o mundo dos vivos e o mundo dos mortos, protegendo as almas e lutando para preservar a ordem espiritual, ao mesmo tempo em que busca honrar sua posição como membro da nobre família Kuchiki e ser fiel a seus próprios sentimentos de justiça e proteção. Construindo Ishida (4): A aparência de Uryu Ishida é de um jovem de estatura média-alta, com físico esguio e elegante. Seu porte é ereto e impecável, refletindo disciplina e orgulho. Ele tem cabelos lisos e pretos, cortados de forma reta e bem cuidada, com uma franja que desce até pouco acima dos olhos. Seus olhos são estreitos e de um azul intenso e frio, transmitindo mente e uma certa distância emocional.
 
 Ishida é quase sempre visto usando roupas extremamente limpas e organizadas. No dia a dia, prefere vestimentas tradicionais de estudante, como o uniforme branco da escola de Karakura, mas quando entra em combate como Quincy, ele veste o traje branco típico dos Quincy: uma roupa de combate justa, geralmente adornada com detalhes em azul-claro, que destaca seu símbolo de cruz em prata.
 
@@ -163,7 +162,7 @@ Quando um personagem sobe de nível, ele recebe pontos de Atributo que podem ser
 
 ### Essência Espiritual Adicional
 
-Subir de nível na sua classe não é a única forma de conseguir uma nova essência espiritual. Ao derrotar um inimigo poderoso, você pode conquistar uma nova essência ou evoluir uma que já possua, avançando para uma etapa superior. Para campanhas em que os personagens começam em níveis mais altos, consulte a tabela para ver quantos pontos de essência adicionais você recebe na criação do personagem. Um ponto compra uma nova essência ou sobe uma etapa. Lembre-se: esses pontos extras são apenas para personagens que começam em níveis avançados. Se você estiver subindo de nível normalmente durante a campanha, não receberá esses pontos adicionais. Nesses casos, cabe ao Mestre conceder novas essências de acordo com os inimigos vencidos e o progresso da história. Para mais detalhes, consulte o Capítulo 4.
+Subir de nível na sua classe não é a única forma de conseguir uma nova essência espiritual. Ao derrotar um inimigo poderoso, você pode conquistar uma nova essência ou evoluir uma que já possua, avançando para uma etapa superior. Para campanhas em que os personagens começam em níveis mais altos, consulte a tabela de Pontos de Essência no Capítulo 4 para ver quantos pontos de essência você recebe na criação do personagem. Um ponto compra uma nova essência ou sobe uma etapa. Lembre-se: esses pontos extras são apenas para personagens que começam em níveis avançados. Se você estiver subindo de nível normalmente durante a campanha, não receberá esses pontos adicionais. Nesses casos, cabe ao Mestre conceder novas essências de acordo com os inimigos vencidos e o progresso da história. Para mais detalhes, consulte o Capítulo 4.
 
 ## Tabela de Progressão de Nível
 
@@ -173,26 +172,26 @@ Subir de nível na sua classe não é a única forma de conseguir uma nova essê
 |  | 10 | 2 | - | 1 |
 | Espírito Desperto |  |  |  |  |
 |  | 25 | 3 | +1 | 1 |
-|  | 45 | 4 | - | 2 |
-|  | 70 | 5 | +1 | 2 |
+|  | 45 | 4 | - | 3 |
+|  | 70 | 5 | +1 | 3 |
 |  | 100 | 6 | - | 3 |
 |  | 135 | 7 | +1 | 3 |
 | Eco Espiritual |  |  |  |  |
-|  | 175 | 8 | - | 4 |
-|  | 220 | 9 | +1 | 4 |
+|  | 175 | 8 | - | 5 |
+|  | 220 | 9 | +1 | 5 |
 |  | 270 | 10 | - | 5 |
 |  | 325 | 11 | +1 | 5 |
-|  | 385 | 12 | - | 6 |
-|  | 450 | 13 | +1 | 6 |
+|  | 385 | 12 | - | 7 |
+|  | 450 | 13 | +1 | 7 |
 | Pilar Espiritual |  |  |  |  |
 |  | 520 | 14 | - | 7 |
 |  | 595 | 15 | +1 | 7 |
-|  | 675 | 16 | - | 8 |
-|  | 760 | 17 | +1 | 8 |
+|  | 675 | 16 | - | 9 |
+|  | 760 | 17 | +1 | 9 |
 |  | 850 | 18 | - | 9 |
 | Risco Existencial |  |  |  |  |
-|  | 945 | 19 | +1 | 9 |
-|  | 1045 | 20 | - | 10 |
+|  | 945 | 19 | +1 | 11 |
+|  | 1045 | 20 | - | 11 |
 
 ## Influência
 

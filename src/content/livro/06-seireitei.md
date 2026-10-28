@@ -84,7 +84,7 @@ A quarta divisão é focada em dar suporte ao seu time, utilizando a cura em seu
 
 ### Características da Divisão:
 
-1. MÉDICO: Você consegue utilizar kido curativos recebendo o talento da classe Suporte “Kaido”, e se possuir a habilidade de utilizar kido curativos, você adiciona seu bônus de proficiência a mais à sua cura. 2. ESPECIALISTA EM CURA: Quando você utilizar um Kido de Cura e ele envolver rolagens de dados para determinar a quantidade de cura concedida a uma criatura, você pode rolar os dados com vantagem e escolher o resultado mais alto.
+1. MÉDICO: Você consegue utilizar kido curativos recebendo o talento da classe Kyūgo “Kaido”, e se possuir a habilidade de utilizar kido curativos, você adiciona seu bônus de proficiência a mais à sua cura. 2. ESPECIALISTA EM CURA: Quando você utilizar um Kido de Cura e ele envolver rolagens de dados para determinar a quantidade de cura concedida a uma criatura, você pode rolar os dados com vantagem e escolher o resultado mais alto.
 
 ## Quinta Divisão
 
@@ -134,7 +134,7 @@ A Nona Divisão tem a função de proteger a Soul Society e fazer a guarda dela,
 
 ### Características da Divisão:
 
-1. controle de danos: Quando você estiver em uma situação de perigo constante, você pode utilizar sua ação para criar um plano e, até o final do seu próximo turno, tudo que você fizer e todos os aliados que possam te ouvir recebem +2 em todas as suas ações, mas você só pode utilizar essa ação uma vez por situação, como um combate, ou uma perseguição. 2. Intelecto: Escolha duas perícias que utilizem o atributo de inteligência, essas duas pericias você adiciona o dobro do atributo de inteligência a essa perícia e uma vez por dia quando você realizar um Teste de Resistência de Inteligência você pode jogar ele com vantagem.
+1. controle de danos: Quando você estiver em uma situação de perigo constante, você pode utilizar sua ação para criar um plano e, até o final do seu próximo turno, tudo que você fizer e todos os aliados que possam te ouvir recebem +2 em todas as suas ações, mas você só pode utilizar essa ação uma vez por situação, como um combate, ou uma perseguição. 2. Intelecto: Escolha duas perícias que utilizem o atributo de mente, essas duas pericias você adiciona o dobro do atributo de mente a essa perícia e uma vez por dia quando você realizar um Teste de Resistência de Mente você pode jogar ele com vantagem.
 
 ## Décima Divisão
 
@@ -342,7 +342,7 @@ Em cada geração, o chefe dos Shihouin recebe a responsabilidade de proteger os
 
 ### Característica da Família Shihoin:
 
-1. Transformação animal: Você é capaz de se transformar em um animal de pequeno porte, como um gato. Para isso, deve usar uma ação. Da mesma forma, para retornar à sua forma normal, é necessário gastar uma ação. Enquanto transformado, você mantém sua personalidade e inteligência, mas assume completamente a aparência do animal escolhido.
+1. Transformação animal: Você é capaz de se transformar em um animal de pequeno porte, como um gato. Para isso, deve usar uma ação. Da mesma forma, para retornar à sua forma normal, é necessário gastar uma ação. Enquanto transformado, você mantém sua personalidade e mente, mas assume completamente a aparência do animal escolhido.
 
 Enquanto transformado, você não pode usar habilidades de combate, liberações de Zanpakutou ou técnicas de Shunko. No entanto, pode utilizar habilidades de movimentação e não pode realizar ataques. Você recebe vantagem em testes de Furtividade e para suprimir sua reiatsu.
 

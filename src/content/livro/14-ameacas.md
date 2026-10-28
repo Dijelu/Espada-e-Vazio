@@ -122,9 +122,9 @@ O ND não determina sozinho todas as características da ameaça. Cada categoria
 
 Depois de determinar o ND e o formato da ameaça, consulte a tabela correspondente à sua categoria para verificar a quantidade de pontos de atributo disponíveis.
 
-Esses pontos podem ser distribuídos entre Força, Destreza, Constituição, Inteligência, Sabedoria e Espírito, de acordo com o conceito e a função da ameaça.
+Esses pontos podem ser distribuídos entre Força, Destreza, Constituição, Mente e Espírito, de acordo com o conceito e a função da ameaça.
 
-Uma ameaça não precisa possuir valores altos em todos os atributos. Distribua os pontos de acordo com a forma como ela deverá atuar em combate. Um inimigo focado em combate físico pode concentrar seus pontos em Força, Constituição e Destreza, enquanto um inimigo especializado em Kido pode priorizar Inteligência e Espírito.
+Uma ameaça não precisa possuir valores altos em todos os atributos. Distribua os pontos de acordo com a forma como ela deverá atuar em combate. Um inimigo focado em combate físico pode concentrar seus pontos em Força, Constituição e Destreza, enquanto um inimigo especializado em Kido pode priorizar Mente e Espírito.
 
 ### Valores Base de Pv e Pr
 
@@ -219,7 +219,160 @@ Use as ameaças prontas deste capítulo como referência. O Mestre também pode 
 
 ### Testes
 
-Assim como outras criaturas, as Ameaças possuem proficiência. Porém, em vez de possuir um valor separado, a proficiência de uma Ameaça é igual ao seu ND e é adicionada ao resultado de ataques, testes de perícia e Testes de Resistência nos quais ela seja proficiente.
+Assim como outras criaturas, as Ameaças possuem proficiência. Ela segue a mesma tabela dos personagens, aplicada ao Nível de Desafio (ND), e é adicionada ao resultado de ataques, testes de perícia e Testes de Resistência nos quais a ameaça seja proficiente.
+
+| ND | 1–4 | 5–8 | 9–12 | 13–16 | 17–20 |
+|---|---|---|---|---|---|
+| Proficiência da ameaça | +2 | +3 | +4 | +5 | +6 |
+
+- Acerto da ameaça = proficiência + atributo.
+- CD das técnicas da ameaça = 8 + proficiência + atributo.
+- Acerto de técnica de Zanpakutou = d20 + proficiência + Espírito; CD = 8 + proficiência + Espírito.
+
+## Combate Equilibrado
+
+Esta seção ensina a montar combates equilibrados. O formato padrão do jogo é o duelo: cada jogador enfrenta um NPC feito para ele, do mesmo nível, e um grupo luta em duelos paralelos (cinco jogadores contra cinco NPCs). As regras abaixo dizem como transformar uma ameaça deste capítulo em um adversário calibrado para essa luta, como criar um curandeiro adversário, um Hollow espelhado, um chefe de grupo e como ajustar o 5v5.
+
+### O que um combate equilibrado quer dizer
+
+O duelo é construído para que o jogador seja um pouco mais forte que o NPC: entre **5% e 10%**. Na prática, isso significa que o jogador vence cerca de **55% a 65%** dos duelos. Em outras palavras, a cada dez duelos contra NPCs pareados, ele deve vencer seis, e perder uns quatro (ou ficar muito perto disso).
+
+- **Meta:** vitória do jogador entre 55% e 65%.
+- **Tolerância:** entre 45% e 75%. Fora disso, o duelo está fácil ou duro demais.
+- **Resultado esperado:** o jogador sente o risco, mas sai por cima na maioria das vezes.
+
+Uma luta perdida faz parte do jogo. Se a mesa estiver vencendo com folga demais ou sofrendo demais, ajuste os PV do NPC em 10% para mais ou para menos e siga em frente.
+
+Atenção: as tabelas desta seção foram calibradas com personagens de 11 Pontos de Essência até o 19º nível (1 na criação e 2 em cada Aprimoramento da Essência: 4º, 8º, 12º, 16º e 19º), com atributos e proficiência pelas regras de personagem e com o NPC usando os atributos das fichas de ameaça e a mesma proficiência que um personagem do nível (+2 do 1º ao 4º, +3 do 5º ao 8º, +4 do 9º ao 12º, +5 do 13º ao 16º e +6 do 17º ao 20º). Essências ganhas pela história ficam fora do cálculo, e cabe ao Mestre compensá-las.
+
+### NPC pareado
+
+O NPC pareado é uma ameaça Solo de ND igual ao nível do jogador, com PV, dano e técnicas multiplicados por um **fator k** que depende do nível. O fator k é o que transforma uma ficha de ameaça comum em um rival à altura de um personagem de jogador.
+
+#### Montando um NPC pareado, passo a passo
+
+1. **Escolha a ficha.** Pegue uma ameaça Shinigami do capítulo Ameaças com ND igual ao nível do jogador (use as regras de mudar o ND se a ficha for de outro nível).
+2. **Consulte o fator k** na tabela abaixo. Cada nível tem o seu próprio valor: não interpole nem arredonde.
+3. **Multiplique os PV** da ficha por k e arredonde **para baixo**, para o número inteiro.
+4. **Multiplique os dados de dano base** (os dados dos ataques) por k. O número de dados é arredondado **para baixo**.
+5. **Multiplique os dados das técnicas** por k, com o mesmo arredondamento.
+6. **Mantenha o resto.** CR, bônus de acerto, CD, atributos fixos e bônus de dano fixos continuam como na ficha.
+
+| Nível | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Fator k | 2,5 | 1,9 | 1,65 | 1,45 | 1,5 | 1,375 | 1,25 | 1,1 | 1,15 | 1,3 |
+
+| Nível | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Fator k | 1,35 | 1,1 | 1,2 | 1,07 | 1,08 | 1,0 | 1,07 | 1,0 | 1,0 | 1,0 |
+
+Os níveis em que o personagem ganha proficiência nova ou muita força de uma vez (como 3, 9, 11, 13, 15 e 17) pedem seu próprio valor de k, e é por isso que a tabela não sobe nem desce em linha reta.
+
+#### Arredondando os dados
+
+Ao multiplicar dados por k (ou pelo fator de suporte, mais adiante), **o número de dados é sempre arredondado para baixo**. O tipo do dado não muda.
+
+- 1d8 × 1,9 = **1d8** (1,9 vira 1).
+- 1d8 × 2,5 = **2d8** (2,5 vira 2).
+- 3d10 × 1,65 = **4d10** (4,95 vira 4).
+
+Não pule essa regra. Sem o arredondamento para baixo, o NPC do 2º ao 5º nível sai bem mais forte do que o calibrado.
+
+Atenção: nunca use um k entre 1,95 e 2,05 em uma ficha com 1 dado só. O NPC dobraria o dano de uma vez, o que desequilibra o duelo do 2º nível por inteiro. Se você inventar um fator para um NPC especial, fique abaixo de 1,95 ou acima de 2,05.
+
+#### Exemplo trabalhado
+
+Exemplo: o grupo está no 5º nível e um jogador vai duelar com um Shinigami rival. O Mestre pega a ficha de ameaça Shinigami de ND 5, que tem 125 PV, ataque de espada 2d8 + atributo e uma técnica de 4d6.
+
+1. O nível é 5, então k = **1,5**.
+2. PV: 125 × 1,5 = 187,5, que vira **187 PV**.
+3. Dado de dano do ataque: 2 × 1,5 = 3, então o ataque passa a **3d8 + atributo**.
+4. Técnica: 4 × 1,5 = 6, então a técnica passa a **6d6**.
+5. CR, acerto, CD e o bônus fixo de dano não mudam. A proficiência do NPC é +3, a mesma do jogador de 5º nível.
+
+O NPC pareado está pronto: 187 PV, ataque 3d8 + atributo e técnica 6d6.
+
+Agora o mesmo cálculo no 2º nível, com uma ficha de ND 2 de 50 PV, ataque 1d8 + atributo e técnica 2d6. Com k = 1,9: PV 50 × 1,9 = 95; ataque 1 × 1,9 = 1,9, que vira **1d8**; técnica 2 × 1,9 = 3,8, que vira **3d6**. Note que o ataque não muda: por isso o NPC desse nível ganha quase tudo em PV e técnica.
+
+### NPC Hollow espelhado
+
+Para um duelo contra um Hollow, use o NPC pareado Shinigami do mesmo ND (a mesma tabela de k), mude o tipo para Hollow e dê a ele o **Hierro**.
+
+- **Hierro:** dano físico sofrido é reduzido à metade.
+- **O que o Hierro não reduz:** dano de energia ou esotérico. Isso inclui Shikai e Bankai, Resurrección, Cero, Kidō e Shunko.
+
+Assim o Hollow resiste a espadadas e socos, mas não a técnicas e liberações, e o jogador que depende só de golpes físicos precisa de um plano.
+
+Atenção: nos níveis altos (do 12º em diante), alguns duelos com Hueco e Vazio podem se arrastar por muitas rodadas, porque os golpes comuns quase não passam pela defesa. Se o duelo travar, encerre-o na narrativa ou dê ao adversário uma forma de furar a defesa do outro lado.
+
+### NPC de suporte
+
+O Kyūgo Curandeiro duela contra um NPC de suporte, uma versão do NPC pareado que cura e reforça aliados e luta menos. O fator de suporte existe porque um curandeiro tem pouca ofensiva: sem ele, um NPC normal esmagaria o jogador.
+
+#### Montando o NPC de suporte
+
+1. Monte o **NPC pareado** do mesmo nível (passos da seção anterior).
+2. Multiplique **PV, dados de dano e dados de técnica** desse NPC pelo **fator de suporte** da tabela, com o arredondamento para baixo.
+3. A CR **não** muda.
+
+| Nível | 1 | 2 | 3 | 4 | 5–6 | 7–8 | 9 | 10 | 11 |
+|---|---|---|---|---|---|---|---|---|---|
+| Fator de suporte | 1,1 | 1,0 (**PV × 1,1**) | 0,75 | 0,7 | 0,65 | 0,6 | 0,65 | 0,38 | 0,35 |
+
+| Nível | 12–15 | 16 | 17 | 18 | 19 | 20 |
+|---|---|---|---|---|---|---|
+| Fator de suporte | 0,32 | 0,28 | 0,3 | 0,28 | 0,21 | 0,13 |
+
+- **No 2º nível,** o fator de dados fica em 1,0 e só os **PV sobem 10%**. Um fator de 1,05 tiraria um dado da técnica e deixaria o duelo duro demais para o curandeiro.
+- **No 3º nível,** nenhum fator abaixo de 0,75 serve, porque tiraria 1 dado da técnica.
+- **Não use um fator fixo.** Algo como ×0,4 funcionaria em um nível e quebraria o duelo em outros.
+
+Exemplo: no 5º nível, o NPC pareado do exemplo anterior tem 187 PV, ataque 3d8 e técnica 6d6. Com fator 0,65: PV 187 × 0,65 = 121,55, que vira **121 PV**; ataque 3 × 0,65 = 1,95, que vira **1d8**; técnica 6 × 0,65 = 3,9, que vira **3d6**.
+
+#### Quem enfrenta o NPC de suporte
+
+- **Curandeiro:** sempre duela contra o NPC de suporte.
+- **1º e 2º nível:** a Afinidade só chega no 3º nível, então até lá **todo Kyūgo** duela contra o NPC de suporte, seja Curandeiro ou futuro Médico de Combate.
+- **Médico de Combate:** a partir do 3º nível duela contra o NPC pareado normal.
+
+Em grupo, o NPC de suporte cura e reforça os NPCs aliados, com a mesma reserva de cura do Curandeiro dos jogadores.
+
+### Boss de grupo
+
+Se a mesa quiser o formato "grupo contra um chefe", use um Boss. Ele está fora da calibração padrão dos duelos, então trate os números como ponto de partida e ajuste-os em cerca de 20% conforme o resultado.
+
+- **PV:** os PV do NPC pareado × número de jogadores × **1,8** (níveis 3 a 10) ou × **2,3** (nível 11 em diante). Para um grupo de 5 jogadores, o Boss tem cerca de 9 vezes os PV do NPC pareado no 3º a 10º nível e cerca de 11 vezes e meia do 11º em diante.
+- **Ataques:** o Boss faz **1 ataque a mais** por rodada.
+- **Técnicas em área:** a técnica de área do Boss atinge **2 alvos**.
+
+A regra foi pensada para o 3º nível em diante. Nos níveis 1 e 2, use o fator 1,8 e acompanhe de perto os primeiros turnos.
+
+### 5v5
+
+No 5v5, cada jogador duela com um NPC e o grupo vence quando ganha **3 duelos de 5**. Como a maioria ganha, cada jogador vencendo seus duelos com 60% a 65% de chance faz o grupo vencer com cerca de 68% a 76%, e isso é folga demais. Por isso, os NPCs do grupo recebem **PV extra**, calculado sobre os PV do NPC já montado (e arredondado para baixo).
+
+| Grupo dos jogadores | PV dos NPCs até o 12º nível | PV dos NPCs do 13º em diante |
+|---|---|---|
+| Nenhum Curandeiro | +10% | +10% |
+| Exatamente 1 Curandeiro | +20% | +10% |
+| 2 ou mais Curandeiros | +10% | +0% |
+
+- **Só o Curandeiro conta.** O Médico de Combate cura aliados pela metade do próprio custo e não cria reserva de cura para o grupo, então um grupo com Médico (e sem Curandeiro) é tratado como grupo **sem Curandeiro**.
+- **Um Curandeiro é útil, não obrigatório.** A reserva de cura dele vale bastante para o grupo, mas trocá-lo por um lutador dá resultados parecidos.
+- **Dois Curandeiros** deixam o grupo mais fraco no ataque, por isso o extra de PV some do 13º em diante.
+- **O NPC de suporte** (par do Curandeiro) cura os outros NPCs com a mesma reserva do Curandeiro dos jogadores.
+
+Exemplo: um grupo de 5º nível com exatamente 1 Curandeiro vai ao 5v5. Todos os NPCs ganham +20% de PV. O NPC pareado do exemplo (187 PV) passa a ter 187 × 1,2 = 224,4, ou seja, **224 PV**. O NPC de suporte do Curandeiro (121 PV) também recebe o aumento: 121 × 1,2 = 145,2, ou **145 PV**.
+
+Atenção: o 5v5 tem dois pontos que merecem olho na mesa. No **7º nível**, os grupos tendem a sofrer mais do que nos outros níveis, principalmente quando há Curandeiro. Já os grupos com **1 Curandeiro entre o 13º e o 19º nível** podem vencer com folga. Se isso acontecer, mexa em 10% dos PV dos NPCs, para mais ou para menos, até o duelo ficar bom.
+
+### Ajustando na mesa
+
+As regras acima apontam para a meta de 55% a 65% de vitória. Cada grupo é diferente, e a mesa é o teste de verdade. Use estas ideias para acertar o tom:
+
+- **O jogador vence sem suar?** Some 10% aos PV do NPC.
+- **O jogador perde com frequência demais?** Tire 10% dos PV do NPC.
+- **O duelo pede uma cena especial?** Dê ao NPC uma técnica única, em vez de mexer nos números. A tabela não precisa ser lei em todo duelo, só um bom ponto de partida.
 
 ## Experiência e Recompensas
 
@@ -271,11 +424,11 @@ Você pode querer utilizar uma ficha de Ameaça pronta, mas ela pode não estar 
 
 As habilidades e características da Ameaça também podem ser ajustadas quando necessário. Uma habilidade que cause dano muito alto, ofereça uma defesa muito poderosa ou dependa de valores específicos pode precisar de pequenas alterações para acompanhar o novo ND. Da mesma forma, você pode manter habilidades que façam parte da identidade da Ameaça, mesmo que seus valores não precisem ser modificados. O importante é preservar aquilo que torna aquela Ameaça única enquanto seus valores são adaptados para o combate. grupo DE hollowS Atributos:
 
-PV cr 9m dESL FOR DES CON INT SAB ESP Hollow raid PR Percepção Passiva: 11. (10 + Sabedoria + ND)
+PV cr 9m dESL FOR DES CON MEN ESP Hollow raid PR Percepção Passiva: 11. (10 + Mente + proficiência)
 
-Percepção Espiritual Passiva: 13. (10 + Espírito + ND)
+Percepção Espiritual Passiva: 13. (10 + Espírito + proficiência)
 
-Teste de Resistência: Força e Destreza (ND + Atributo)
+Teste de Resistência: Força e Destreza (proficiência + Atributo)
 
 ### Características
 
@@ -293,11 +446,11 @@ O Grupo de Hollows nunca recua. Ele sempre tenta cercar, pressionar e desgastar 
 
 O Grupo de Hollows pode realizar dois dos ataques listados abaixo ao usar a ação Atacar.
 
-Ataque em Massa: Ataque Corpo a Corpo: ND + Força para atingir, alcance 1,5 m, um alvo. Dano: 3d6 + Força de dano Cortante + 1d4 de dano de Energia.
+Ataque em Massa: Ataque Corpo a Corpo: proficiência + Força para atingir, alcance 1,5 m, um alvo. Dano: 3d6 + Força de dano Cortante + 1d4 de dano de Energia.
 
 Técnica - Investida Predatória (6 PR): O Grupo se move até metade de seu deslocamento, atingindo todas as criaturas que estiverem em seu caminho.
 
-Cada criatura deve realizar um Teste de Resistência de Destreza ou Constituição (CD 8 + ND + Força), a escolha da criatura atingida. Dano: 4d10 + Força de dano de Concussão em caso de falha, ou nada em caso de sucesso.
+Cada criatura deve realizar um Teste de Resistência de Destreza ou Constituição (CD 8 + proficiência + Força), a escolha da criatura atingida. Dano: 4d10 + Força de dano de Concussão em caso de falha, ou nada em caso de sucesso.
 
 O Grupo após usar Investida perde todo seu deslocamento.
 
@@ -313,9 +466,9 @@ TRAÇOS Enorme
 
 Hollows comuns são espíritos corrompidos consumidos pela fome e pelo instinto predatório. Seus corpos são deformados, com pele pálida ou acinzentada e membros longos demais, enquanto uma máscara óssea às vezes rachada ou com feições monstruosas cobre o rosto por completo. Sem lembranças de quem foram, agem apenas movidos pela necessidade de devorar energia espiritual para aliviar o vazio interior. Movem-se pelas sombras com passos animalescos, atraídos por emoções intensas ou qualquer fonte de reiatsu. Embora não sejam organizados nem inteligentes, sua ferocidade imprevisível faz de cada encontro um perigo real, e até mesmo Shinigami iniciantes aprendem cedo que subestimar um Hollow pode custar caro. hollow COMUM Atributos:
 
-PV cr 9m dESL FOR DES CON INT SAB ESP Hollow solo PR Percepção Passiva: 11. (10 + Sabedoria + ND)
+PV cr 9m dESL FOR DES CON MEN ESP Hollow solo PR Percepção Passiva: 11. (10 + Mente + proficiência)
 
-Percepção Espiritual Passiva: 13. (10 + Espírito + ND)
+Percepção Espiritual Passiva: 13. (10 + Espírito + proficiência)
 
 ### Características
 
@@ -329,9 +482,9 @@ O Hollow no turno dele pode realizar uma das seguintes ações, a ação “Atac
 
 O Hollow Comum pode realizar dois dos ataques listados abaixo ao usar a ação Atacar.
 
-Garras: Ataque Corpo a Corpo: ND + Força para atingir, alcance 1,5 m, um alvo. Dano: 1d8 + Força de dano Cortante.
+Garras: Ataque Corpo a Corpo: proficiência + Força para atingir, alcance 1,5 m, um alvo. Dano: 1d8 + Força de dano Cortante.
 
-Mordida (3 PR): Ataque Corpo a Corpo: ND + Força para atingir, alcance 1,5 m, um alvo. Dano: 1d8 + Força de dano Cortante mais 1d4 de dano de Energia.
+Mordida (3 PR): Ataque Corpo a Corpo: proficiência + Força para atingir, alcance 1,5 m, um alvo. Dano: 1d8 + Força de dano Cortante mais 1d4 de dano de Energia.
 
 TRAÇOS Médio A versão Raid do Hollow Comum é uma versão onde se junta um grupo deles, formando uma massa agressiva e desorganizada que ataca como uma única entidade. Diferente de um Hollow isolado, o Grupo de Hollows age movido por instinto coletivo. Eles cercam, pressionam e rasgam tudo que entra em seu alcance, utilizando da própria vantagem numérica para esmagar suas presas.
 
@@ -345,9 +498,9 @@ Caso se divida, o Mestre define a quantidade de dano que cada parte do grupo cau
 
 Atributos:
 
-PV cr 6m dESL FOR DES CON INT SAB ESP Hollow solo PR Percepção Passiva: 13. (10 + Sabedoria + ND)
+PV cr 6m dESL FOR DES CON MEN ESP Hollow solo PR Percepção Passiva: 13. (10 + Mente + proficiência)
 
-Percepção Espiritual Passiva: 17. (10 + Espírito + ND)
+Percepção Espiritual Passiva: 17. (10 + Espírito + proficiência)
 
 Teste de Resistência: Força e Constituição
 
@@ -367,11 +520,11 @@ O Gillian no turno dele pode realizar uma ação “Atacar”.
 
 O Gillian pode realizar dois ataques com Garras Pesadas quando utilizar a ação Atacar:
 
-Garras Pesadas: Ataque Corpo a Corpo: ND + Força para atingir, alcance 3 m, um alvo. Dano: 2d8 + Força de dano Cortante.
+Garras Pesadas: Ataque Corpo a Corpo: proficiência + Força para atingir, alcance 3 m, um alvo. Dano: 2d8 + Força de dano Cortante.
 
-Pisada: Ataque Corpo a Corpo: ND + Força para atingir, alcance 3 m, Esfera de 3 metros. Dano: 2d6 + Força de dano de Concussão para todas as criaturas atingidas.
+Pisada: Ataque Corpo a Corpo: proficiência + Força para atingir, alcance 3 m, Esfera de 3 metros. Dano: 2d6 + Força de dano de Concussão para todas as criaturas atingidas.
 
-Técnica: Cero (10 PR - Ação): O Gillian dispara um Cero instável em uma Linha de 12 m. Teste de Resistência de Destreza ou Constituição (CD 8 + ND + Atributo de Espírito) para todas as criaturas dentro da linha. Dano: 24 (7d6) de dano Energia em falha, ou metade em sucesso no teste.
+Técnica: Cero (10 PR - Ação): O Gillian dispara um Cero instável em uma Linha de 12 m. Teste de Resistência de Destreza ou Constituição (CD 8 + proficiência + Atributo de Espírito) para todas as criaturas dentro da linha. Dano: 24 (7d6) de dano Energia em falha, ou metade em sucesso no teste.
 
 TRAÇOS
 
@@ -383,9 +536,9 @@ Quando essas criaturas se movem como uma única maré gigante, até patrulhas ex
 
 GRUPO GILLIAN Atributos:
 
-PV cr 6m dESL FOR DES CON INT SAB ESP Hollow raid PR Percepção Passiva: 14. (10 + Sabedoria + ND)
+PV cr 6m dESL FOR DES CON MEN ESP Hollow raid PR Percepção Passiva: 14. (10 + Mente + proficiência)
 
-Percepção Espiritual Passiva: 19. (10 + Espírito + ND)
+Percepção Espiritual Passiva: 19. (10 + Espírito + proficiência)
 
 Teste de Resistência: Força, Constituição e Espiríto
 
@@ -409,9 +562,9 @@ O Grupo Gillian no turno dele pode realizar a ação “Atacar”.
 
 O Gillian pode realizar dois ataques com Garras Pesadas quando utilizar a ação Atacar:
 
-Garras Pesadas: Ataque Corpo a Corpo: ND + Força para atingir, alcance 3 m, um alvo. Dano: 2d10 + Força de dano de Concussão.
+Garras Pesadas: Ataque Corpo a Corpo: proficiência + Força para atingir, alcance 3 m, um alvo. Dano: 2d10 + Força de dano de Concussão.
 
-Técnica: Cero em Massa (10 PR - Ação): O Grupo de Gillians dispara um Cero massivo e instável em uma Linha de 18 m. Todas as criaturas dentro da linha devem realizar um Teste de Resistência de Destreza ou Constituição (CD 8 + ND + Atributo de Espírito). Dano: 28 (8d6) de dano de Energia em falha, ou metade em sucesso no teste.
+Técnica: Cero em Massa (10 PR - Ação): O Grupo de Gillians dispara um Cero massivo e instável em uma Linha de 18 m. Todas as criaturas dentro da linha devem realizar um Teste de Resistência de Destreza ou Constituição (CD 8 + proficiência + Atributo de Espírito). Dano: 28 (8d6) de dano de Energia em falha, ou metade em sucesso no teste.
 
 TRAÇOS Imenso Enorme
 
@@ -431,8 +584,8 @@ Um Adjuchas pode assumir traços inspirados em animais, como visto em Grimmjow J
 
 - Canino: O Adjuchas possui presas poderosas capazes de esmagar armaduras espirituais. Ele ganha o ataque Mordida Brutal, causando 2d10 + Força de dano cortante, e qualquer criatura atingida deve realizar um teste de Constituição CD 17 ou fica amedrontada até o fim do próximo turno do Adjuchas.
 - Felino: As garras longas e curvadas do Adjuchas abrem ferimentos profundos. Seus ataque corpo a corpo causam 1d8 de dano adicional e qualquer criatura atingida deve fazer um teste de Constituição CD 16 ou sofre a condição sangramento.
-- Réptil: O Adjuchas possui uma cauda afiada ou venenosa capaz de atacar à distância. Ele ganha o ataque de Golpe de Cauda, causando 2d8 + Força de dano perfurante e 2d8 de dano de veneno, e o alvo deve fazer um teste de Constituição (CD 8 + ND + Espírito) para não sofrer a condição envenenado.
-- Serpente: O corpo flexível e sinuoso do Adjuchas permite movimentos quase impossíveis, ele pode atravessar o espaço de outras criaturas sem provocar ataques de oportunidade e, sempre que causar dano com uma técnica ou ataque corpo a corpo, o alvo deve passar em um Teste de Resistência de Constituição (CD 8 + ND + Espírito) ou ficará Envenenado até o final do próximo turno do Adjuchas.
+- Réptil: O Adjuchas possui uma cauda afiada ou venenosa capaz de atacar à distância. Ele ganha o ataque de Golpe de Cauda, causando 2d8 + Força de dano perfurante e 2d8 de dano de veneno, e o alvo deve fazer um teste de Constituição (CD 8 + proficiência + Espírito) para não sofrer a condição envenenado.
+- Serpente: O corpo flexível e sinuoso do Adjuchas permite movimentos quase impossíveis, ele pode atravessar o espaço de outras criaturas sem provocar ataques de oportunidade e, sempre que causar dano com uma técnica ou ataque corpo a corpo, o alvo deve passar em um Teste de Resistência de Constituição (CD 8 + proficiência + Espírito) ou ficará Envenenado até o final do próximo turno do Adjuchas.
 
 ### Adjuchas Raid
 
@@ -442,15 +595,15 @@ Para criar a versão Raid do Adjuchas, utilize sua ficha padrão acompanhada de 
 
 Atributos:
 
-PV cr 12m dESL FOR DES CON INT SAB ESP Hollow Solo PR Percepção Passiva: 18. (10 + Sabedoria + ND)
+PV cr 12m dESL FOR DES CON MEN ESP Hollow Solo PR Percepção Passiva: 18. (10 + Mente + proficiência)
 
-Percepção Espiritual Passiva: 23. (10 + Espírito + ND)
+Percepção Espiritual Passiva: 23. (10 + Espírito + proficiência)
 
 Hierro: Resistência a danos Físicos.
 
 Redução de Dano: 5 dano Físico e 5 dano Esotérico.
 
-Teste de Resistência: Destreza e Inteligência TRAÇOS Médio Escolha 6 perícias para o Adjuchas ser treinado, somando ND a testes. Abaixo, sugestões de perícias:
+Teste de Resistência: Destreza e Mente TRAÇOS Médio Escolha 6 perícias para o Adjuchas ser treinado, somando a proficiência a testes. Abaixo, sugestões de perícias:
 
 Perícias
 
@@ -481,11 +634,11 @@ Regeneração de Alta Velocidade: O Adjuchas pode recuperar 15 pontos de vida ut
 
 O Adjuchas pode realizar dois dos ataques listados abaixo ao usar a ação Atacar.
 
-Ataque Focado: Ataque Corpo a Corpo: ND + Destreza, alcance 1,5 m, um alvo. Dano: 3d10 + Destreza de dano Perfurante.
+Ataque Focado: Ataque Corpo a Corpo: proficiência + Destreza, alcance 1,5 m, um alvo. Dano: 3d10 + Destreza de dano Perfurante.
 
-Bala de Cero (5 PR): Ataque à Distância: ND + Espírito para atingir, alcance 18 m, um alvo. Dano: 4d8 + Espírito de dano Energia.
+Bala de Cero (5 PR): Ataque à Distância: proficiência + Espírito para atingir, alcance 18 m, um alvo. Dano: 4d8 + Espírito de dano Energia.
 
-Técnica: Cero (15 PR - Ação): O Adjuchas dispara um Cero massivo e instável em uma Linha de 18 m. Todas as criaturas dentro da linha devem realizar um Teste de Resistência de Destreza ou Constituição (CD 8 + ND + Atributo de Espírito). Dano: ND em d8s de dano de Energia em falha, ou metade em sucesso no teste.
+Técnica: Cero (15 PR - Ação): O Adjuchas dispara um Cero massivo e instável em uma Linha de 18 m. Todas as criaturas dentro da linha devem realizar um Teste de Resistência de Destreza ou Constituição (CD 8 + proficiência + Atributo de Espírito). Dano: ND em d8s de dano de Energia em falha, ou metade em sucesso no teste.
 
 ### Reação
 
@@ -503,19 +656,19 @@ Criaturas com ND Inferior a do Vasto Lord falham automaticamente no teste.
 
 Regeneração de Alta Velocidade: O Vasto Lorde recupera duas vezes a ND em pontos de vida no início do turno dele, desde que ainda possua ao menos 1 ponto de vida.
 
-Sonido: O Vasto Lorde pode utilizar Sonido, que funciona da mesma forma que o Shunpo. Para determinar seus efeitos, utilize a versão do Shunpo sugerida para a classe Combatente. Ao utilizar Sonido, os próximos dois ataques do Vasto Lorde têm vantagem nas jogadas de dano.
+Sonido: O Vasto Lorde pode utilizar Sonido, que funciona da mesma forma que o Shunpo. Para determinar seus efeitos, utilize a versão do Shunpo sugerida para a classe Zanjutsu. Ao utilizar Sonido, os próximos dois ataques do Vasto Lorde têm vantagem nas jogadas de dano.
 
-PV cr 12m dESL FOR DES CON INT SAB ESP PR Percepção Passiva: 22. (10 + Sabedoria + ND)
+PV cr 12m dESL FOR DES CON MEN ESP PR Percepção Passiva: 22. (10 + Mente + proficiência)
 
-Percepção Espiritual Passiva: 32. (10 + Espírito + ND)
+Percepção Espiritual Passiva: 32. (10 + Espírito + proficiência)
 
 Hierro: Resistência a danos Físicos.
 
 Redução de Dano: 0 dano Físico e 10 dano Esotérico.
 
-Teste de Resistência: Força, Inteligência e Espiríto.
+Teste de Resistência: Força, Mente e Espiríto.
 
-TRAÇOS VASTO LORDE 12 Escolha 8 perícias para o Vasto Lord ser treinado, somando ND a testes. Abaixo, sugestões de perícias:
+TRAÇOS VASTO LORDE 12 Escolha 8 perícias para o Vasto Lord ser treinado, somando a proficiência a testes. Abaixo, sugestões de perícias:
 
 Perícias
 
@@ -532,15 +685,15 @@ Perícias
 
 O Vasto Lord no turno dele pode usar uma ação ou pode utilizar a ação especial abaixo:
 
-Técnica: Explosão de Reiatsu (30 PR): O Vasto Lorde libera violentamente seu poder espiritual. Todas as criaturas à sua escolha a até 6 metros dele devem realizar um Teste de Resistência de Força (CD 8 + ND + Espírito). Em uma falha, sofrem ND em d8s de dano de Energia e são empurradas 6 metros. Em um sucesso, sofrem metade do dano e não são empurradas.
+Técnica: Explosão de Reiatsu (30 PR): O Vasto Lorde libera violentamente seu poder espiritual. Todas as criaturas à sua escolha a até 6 metros dele devem realizar um Teste de Resistência de Força (CD 8 + proficiência + Espírito). Em uma falha, sofrem ND em d8s de dano de Energia e são empurradas 6 metros. Em um sucesso, sofrem metade do dano e não são empurradas.
 
 ### Ataques
 
 O Vasto Lord pode realizar quatro ataques quando utilizar a ação Atacar:
 
-Impacto Brutal: Ataque Corpo a Corpo: ND + Força, alcance 1,5 m, um alvo. Dano: 3d10 + Força de dano de Concussão e 2d10 de dano de Energia.
+Impacto Brutal: Ataque Corpo a Corpo: proficiência + Força, alcance 1,5 m, um alvo. Dano: 3d10 + Força de dano de Concussão e 2d10 de dano de Energia.
 
-Técnica: Cero (20 PR) (1 vez por turno): O Vasto Lord dispara um Cero massivo e direcionado em uma Linha de 24 m. Todas as criaturas dentro da linha devem realizar um Teste de Resistência de Destreza ou Constituição (CD 8 + ND + Atributo de Espírito). Dano:
+Técnica: Cero (20 PR) (1 vez por turno): O Vasto Lord dispara um Cero massivo e direcionado em uma Linha de 24 m. Todas as criaturas dentro da linha devem realizar um Teste de Resistência de Destreza ou Constituição (CD 8 + proficiência + Atributo de Espírito). Dano:
 
 ND em d8s de dano de Energia em falha, ou metade em sucesso no teste.
 
@@ -572,21 +725,21 @@ Imbuir com Cero: Quando o Arrancar acerta uma criatura com sua Zanpakutou, ele p
 
 Regeneração de Alta Velocidade: O Arrancar recupera duas vezes a ND em pontos de vida no início do turno dele, desde que ainda possua ao menos 1 ponto de vida.
 
-Sonido: O Arrancar pode utilizar Sonido, que funciona da mesma forma que o Shunpo. Para determinar seus efeitos, utilize a versão do Shunpo sugerida para a classe Combatente. Ao utilizar Sonido, os próximos dois ataques do Arrancar têm vantagem nas jogadas de dano.
+Sonido: O Arrancar pode utilizar Sonido, que funciona da mesma forma que o Shunpo. Para determinar seus efeitos, utilize a versão do Shunpo sugerida para a classe Zanjutsu. Ao utilizar Sonido, os próximos dois ataques do Arrancar têm vantagem nas jogadas de dano.
 
 ### Ações
 
 O Arrancar no turno dele pode usar uma ação ou pode utilizar a ação especial abaixo:
 
-Técnica: Grand Rey Cero (30 PR): O Vasto Lorde dispara um Cero concentrado contra uma criatura que possa ver a até 24 metros. Ataque à Distância: ND + Espírito para atingir. Se acertar, a criatura sofre 2 × ND d10 de dano de energia PV cr 15m dESL FOR DES CON INT SAB ESP PR Percepção Passiva: 24. (10 + Sabedoria + ND)
+Técnica: Grand Rey Cero (30 PR): O Vasto Lorde dispara um Cero concentrado contra uma criatura que possa ver a até 24 metros. Ataque à Distância: proficiência + Espírito para atingir. Se acertar, a criatura sofre 2 × ND d10 de dano de energia PV cr 15m dESL FOR DES CON MEN ESP PR Percepção Passiva: 24. (10 + Mente + proficiência)
 
-Percepção Espiritual Passiva: 34. (10 + Espírito + ND)
+Percepção Espiritual Passiva: 34. (10 + Espírito + proficiência)
 
 Hierro: Resistência a danos Físicos.
 
 Redução de Dano: 10 dano Físico e 10 dano Esotérico.
 
-Teste de Resistência: Força, Constituição e Espiríto TRAÇOS Arrancar 14 Escolha 8 perícias para o Arrancar ser treinado, somando ND a testes. Abaixo, sugestões de perícias:
+Teste de Resistência: Força, Constituição e Espiríto TRAÇOS Arrancar 14 Escolha 8 perícias para o Arrancar ser treinado, somando a proficiência a testes. Abaixo, sugestões de perícias:
 
 Perícias
 
@@ -603,13 +756,13 @@ Perícias
 
 O Arrancar pode realizar quatro ataques quando utilizar a ação Atacar:
 
-Katana (Crítico 18 - x2): Ataque Corpo a Corpo: ND + Força para atingir, alcance 1,5 m, um alvo. Dano: 2d10 + Força de dano Cortante.
+Katana (Crítico 18 - x2): Ataque Corpo a Corpo: proficiência + Força para atingir, alcance 1,5 m, um alvo. Dano: 2d10 + Força de dano Cortante.
 
-Punho (Crítico 19 - x3): Ataque Corpo a Corpo com Arma: ND + Força para atingir, alcance 1,5 m, um alvo.
+Punho (Crítico 19 - x3): Ataque Corpo a Corpo com Arma: proficiência + Força para atingir, alcance 1,5 m, um alvo.
 
 Dano: 3d10 + Força de dano de Concussão.
 
-Técnica: Cero (25 PR) (1 vez por turno): O Vasto Lord dispara um Cero massivo e direcionado em uma Linha de 24 m. Todas as criaturas dentro da linha devem realizar um Teste de Resistência de Destreza ou Constituição (CD 8 + ND + Atributo de Espírito). Dano:
+Técnica: Cero (25 PR) (1 vez por turno): O Vasto Lord dispara um Cero massivo e direcionado em uma Linha de 24 m. Todas as criaturas dentro da linha devem realizar um Teste de Resistência de Destreza ou Constituição (CD 8 + proficiência + Atributo de Espírito). Dano:
 
 ND em d12s de dano de Energia em falha, ou metade em sucesso no teste.
 
@@ -649,7 +802,7 @@ A Resurrección aumenta drasticamente o poder do Arrancar, permitindo que ele ma
 
 ### Liberação
 
-Quando o Arrancar se transforma, ele libera uma aura de escuridão. Todas as criaturas que possam vê-lo ou sentir sua energia espiritual devem realizar um Teste de Resistência de Determinação (CD 8 + ND + Espírito).
+Quando o Arrancar se transforma, ele libera uma aura de escuridão. Todas as criaturas que possam vê-lo ou sentir sua energia espiritual devem realizar um Teste de Resistência de Determinação (CD 8 + proficiência + Espírito).
 
 Em caso de falha, a criatura fica Paralisada até o final do próximo turno do Arrancar.
 
@@ -671,7 +824,7 @@ Além disso, seu deslocamento pode ser utilizado como deslocamento de voo.
 
 ### Luz de La Luna
 
-O Arrancar pode utilizar sua Ação Bônus e gastar 20 Pontos de Reiatsu para criar uma lança de energia verde. Ele pode utilizá-la em seus ataques, causando 3d10 + Força ou Destreza de dano de energia, com uma jogada de ataque igual a ND + Força ou Destreza.
+O Arrancar pode utilizar sua Ação Bônus e gastar 20 Pontos de Reiatsu para criar uma lança de energia verde. Ele pode utilizá-la em seus ataques, causando 3d10 + Força ou Destreza de dano de energia, com uma jogada de ataque igual a proficiência + Força ou Destreza.
 
 Quando uma criatura for atingida pela lança, o Arrancar pode fazê-la explodir. A criatura deve realizar um Teste de Resistência de Constituição ou sofrerá 6d10 de dano de energia. CD igual ao Cero.
 
@@ -705,11 +858,11 @@ O Shinigami no turno dele pode usar uma ação ou conjurar um Kido.
 
 O Shinigami pode realizar um ataque com sua Asauchi quando utilizar a ação Atacar:
 
-Katana (Crítico 19 x2): Ataque Corpo a Corpo com Arma: ND + Destreza para atingir, alcance 1,5 m, um alvo. Dano: 1d8 + Destreza de dano Cortante.
+Katana (Crítico 19 x2): Ataque Corpo a Corpo com Arma: proficiência + Destreza para atingir, alcance 1,5 m, um alvo. Dano: 1d8 + Destreza de dano Cortante.
 
 ### Kido
 
-Escolha Kido da lista de Bakudou ou Hadou (Rank D), um número igual ao atributo de Inteligência. Para realizar ataques com esses Kido, utilize o atributo de Inteligência, somando ND + Inteligência no acerto. A CD para resistir a esses Kido é igual a 10 + metade do ND (arredondado para baixo) + Inteligência. Sugestões de Kido:
+Escolha Kido da lista de Bakudou ou Hadou (Rank D), um número igual ao atributo de Mente. Para realizar ataques com esses Kido, utilize o atributo de Mente, somando proficiência + Mente no acerto. A CD para resistir a esses Kido é igual a 10 + metade do ND (arredondado para baixo) + Mente. Sugestões de Kido:
 
 - 1º Bakudou: Sai
 - 8º Bakudou: Seki
@@ -719,17 +872,17 @@ Escolha Kido da lista de Bakudou ou Hadou (Rank D), um número igual ao atributo
 
 O Shinigami pode utilizar uma reação lançando um Kido, como no exemplo sugerido de Kido: 8º Bakudou: Seki.
 
-PV cr 9m dESL FOR DES CON INT SAB ESP PR Percepção Passiva: 11. (10 + Sabedoria + ND)
+PV cr 9m dESL FOR DES CON MEN ESP PR Percepção Passiva: 11. (10 + Mente + proficiência)
 
-Percepção Espiritual Passiva: 13. (10 + Espírito + ND)
+Percepção Espiritual Passiva: 13. (10 + Espírito + proficiência)
 
 TRAÇOS Shinigami solo Shinigami 1 Atributos:
 
 ### Características
 
-Característica Adicional: O Tenente Shinigami recebe um talento ou caracteristica de uma Classe. O talento sugerido é “Domínio Temporário” da classe Especialista.
+Característica Adicional: O Tenente Shinigami recebe um talento ou caracteristica de uma Classe. O talento sugerido é “Domínio Temporário” da classe Tokubetsu.
 
-Shunpo: O Tenente Shinigami pode utilizar Shunpo, seguindo a versão sugerida da classe Especialista.
+Shunpo: O Tenente Shinigami pode utilizar Shunpo, seguindo a versão sugerida da classe Tokubetsu.
 
 ### Ações
 
@@ -739,19 +892,19 @@ O Shinigami no turno dele pode usar uma ação ou conjurar um Kido.
 
 O Shinigami pode realizar um ataque com sua Asauchi quando utilizar a ação Atacar:
 
-Katana (Crítico 19 x2): Ataque Corpo a Corpo com Arma: ND + Força para atingir, alcance 1,5 m, um alvo.
+Katana (Crítico 19 x2): Ataque Corpo a Corpo com Arma: proficiência + Força para atingir, alcance 1,5 m, um alvo.
 
 Dano: 1d8 + Força de dano Cortante.
 
 ### Kido
 
-Escolha Kido da lista de Bakudou ou Hadou (Rank D), um número igual ao atributo de Sabedoria + ND. Para realizar ataques com esses Kido, utilize o atributo de Sabedoria, somando ND + Sabedoria no acerto. A CD para resistir a esses Kido é igual a 10 + metade do ND (arredondado para baixo) + Sabedoria. Abaixo Sugestões de Kido:
+Escolha Kido da lista de Bakudou ou Hadou (Rank D), um número igual ao atributo de Mente + ND. Para realizar ataques com esses Kido, utilize o atributo de Mente, somando proficiência + Mente no acerto. A CD para resistir a esses Kido é igual a 10 + metade do ND (arredondado para baixo) + Mente. Abaixo Sugestões de Kido:
 
-PV cr 9m dESL FOR DES CON INT SAB ESP PR Percepção Passiva: 17. (10 + Sabedoria + ND)
+PV cr 9m dESL FOR DES CON MEN ESP PR Percepção Passiva: 17. (10 + Mente + proficiência)
 
-Percepção Espiritual Passiva: 14. (10 + Espírito + ND)
+Percepção Espiritual Passiva: 14. (10 + Espírito + proficiência)
 
-Teste de Resistência: Força e Espiríto TRAÇOS Shinigami solo Tenente Shinigami 3 Escolha 6 perícias para o Tenente Shinigami ser treinado, somando ND a testes. Abaixo, sugestões de perícias:
+Teste de Resistência: Força e Espiríto TRAÇOS Shinigami solo Tenente Shinigami 3 Escolha 6 perícias para o Tenente Shinigami ser treinado, somando a proficiência a testes. Abaixo, sugestões de perícias:
 
 Perícias
 
@@ -766,7 +919,7 @@ Perícias
 
 Um Tenente Shinigami pode liberar sua Shikai usando uma ação bônus em seu turno. Escolha ou crie uma Zanpakutou a partir da lista disponível de Zanpakutous.
 
-O acerto das técnicas da Zanpakutou, use d20 + Nível de Desafio + atributo de Inteligência. A Classe de Dificuldade (CD) para resistir às técnicas da Zanpakutou é 8 + Nível de Desafio + atributo de Inteligência.
+O acerto das técnicas da Zanpakutou, use d20 + Nível de Desafio + atributo de Mente. A Classe de Dificuldade (CD) para resistir às técnicas da Zanpakutou é 8 + Nível de Desafio + atributo de Mente.
 
 ### Reação
 
@@ -781,25 +934,25 @@ O Shinigami pode utilizar uma reação lançando um Kido ou utilizando uma carac
 
 ### Características
 
-Característica Adicional: O Tenente Shinigami recebe um talento ou caracteristica de uma Classe. O talento sugerido é “Desvio Instintivo” da classe Combatente.
+Característica Adicional: O Tenente Shinigami recebe um talento ou caracteristica de uma Classe. O talento sugerido é “Desvio Instintivo” da classe Zanjutsu.
 
 Impacto de Reiatsu: Quando o Tenente acertar uma criatura com sua Zanpakutou, pode utilizar 4 pontos de reiatsu para causar 2d4 de dano de energia adicional, além do dano normal da arma. O dano extra pode ser aumentado em 1d4 para cada 2 pontos de reiatsu adicionais gastos, até um máximo de 5d4.
 
 Kido Adicional: O Tenente Shinigami possui um Kido rank C adicional.
 
-Shunpo: O Tenente Shinigami pode utilizar Shunpo, seguindo a versão sugerida da classe Combatente.
+Shunpo: O Tenente Shinigami pode utilizar Shunpo, seguindo a versão sugerida da classe Zanjutsu.
 
 ### Ações
 
 O Shinigami no turno dele pode usar uma ação ou conjurar um Kido.
 
-PV cr 9m dESL FOR DES CON INT SAB ESP PR Percepção Passiva: 16. (10 + Sabedoria + ND)
+PV cr 9m dESL FOR DES CON MEN ESP PR Percepção Passiva: 16. (10 + Mente + proficiência)
 
-Percepção Espiritual Passiva: 17. (10 + Espírito + ND)
+Percepção Espiritual Passiva: 17. (10 + Espírito + proficiência)
 
-Teste de Resistência: Força e Espiríto (ND + Atributo)
+Teste de Resistência: Força e Espiríto (proficiência + Atributo)
 
-TRAÇOS Shinigami raid Tenente Shinigami 3 Escolha 6 perícias para o Tenente Shinigami ser treinado, somando ND a testes. Abaixo, sugestões de perícias:
+TRAÇOS Shinigami raid Tenente Shinigami 3 Escolha 6 perícias para o Tenente Shinigami ser treinado, somando a proficiência a testes. Abaixo, sugestões de perícias:
 
 Perícias
 
@@ -829,15 +982,15 @@ O Shinigami pode utilizar uma reação lançando um Kido ou utilizando uma carac
 - 20º Hadou: Shoutenkyu
 - 33º Hadou: Soukatsui Médio Ataques O Shinigami pode realizar dois ataques quando utilizar a ação Atacar:
 
-Hakuda: Ataque Corpo a Corpo: ND + Força para atingir, alcance 1,5 m, um alvo. Dano: 1d6 + Força de dano de Concussão.
+Hakuda: Ataque Corpo a Corpo: proficiência + Força para atingir, alcance 1,5 m, um alvo. Dano: 1d6 + Força de dano de Concussão.
 
-Uchigatana (Crítico 19): Ataque Corpo a Corpo com Arma: ND + Força para atingir, alcance 1,5 m, um alvo.
+Uchigatana (Crítico 19): Ataque Corpo a Corpo com Arma: proficiência + Força para atingir, alcance 1,5 m, um alvo.
 
 Dano: 1d12 + Força de dano Cortante.
 
 ### Kido
 
-Escolha Kido da lista de Bakudou ou Hadou (Rank D), um número igual ao atributo de Espírito + ND. Para realizar ataques com esses Kido, utilize o atributode Espírito, somando ND + Espírito no acerto. A CD para resistir a esses Kido é igual a 10 + metade do ND (arredondado para baixo) + Espírito. Sugestões de Kido:
+Escolha Kido da lista de Bakudou ou Hadou (Rank D), um número igual ao atributo de Espírito + ND. Para realizar ataques com esses Kido, utilize o atributode Espírito, somando proficiência + Espírito no acerto. A CD para resistir a esses Kido é igual a 10 + metade do ND (arredondado para baixo) + Espírito. Sugestões de Kido:
 
 ## Tenentes
 
@@ -853,7 +1006,7 @@ Tenentes são, portanto, líderes essenciais dentro das Divisões: combatentes h
 
 ### Diretriz de Identidade de Divisão
 
-Ao criar um NPC Shinigami, você pode escolher uma divisão para ele, tornando o personagem mais integrado ao mundo e à hierarquia da Soul Society. A partir dessa escolha, é possível atribuir uma característica típica da divisão ou até mesmo conceder uma característica de classe. Por exemplo: um Shinigami da Quarta Divisão pode receber a subclasse Curandeiro da classe Suporte, tornando-se um médico.
+Ao criar um NPC Shinigami, você pode escolher uma divisão para ele, tornando o personagem mais integrado ao mundo e à hierarquia da Soul Society. A partir dessa escolha, é possível atribuir uma característica típica da divisão ou até mesmo conceder uma característica de classe. Por exemplo: um Shinigami da Quarta Divisão pode receber a subclasse Curandeiro da classe Kyūgo, tornando-se um médico.
 
 Atributos:
 
@@ -861,9 +1014,9 @@ Atributos:
 
 Autoridade Espiritual: A presença de um Capitão é sufocante para criaturas comuns. Criaturas que dependem de reiatsu percebem imediatamente a pressão esmagadora. Sempre que o Capitão entrar em combate ele utiliza a ação “Liberar Reiatsu” com uma ação livre (CD igual 10 + Nível de Desafio + Espírito).
 
-Característica Adicional (2x): O Capitão Shinigami recebe dois talentos ou caracteristicas de uma Classe. Os talentos sugeridos é “Análise” da classe Suporte e “Estilo Veloz” da classe Lutador.
+Característica Adicional (2x): O Capitão Shinigami recebe dois talentos ou caracteristicas de uma Classe. Os talentos sugeridos é “Análise” da classe Kyūgo e “Estilo Veloz” da classe Hakuda.
 
-Shunpo Aprimorado: O Capitão Shinigami pode utilizar Shunpo, seguindo a versão sugerida da classe Combatente. Mas quando ele utiliza Shunpo os próximos dois ataques dele tem vantagem.
+Shunpo Aprimorado: O Capitão Shinigami pode utilizar Shunpo, seguindo a versão sugerida da classe Zanjutsu. Mas quando ele utiliza Shunpo os próximos dois ataques dele tem vantagem.
 
 Técnicas Dominadas: Quando o Capitão Shinigami utiliza uma técnica de sua Zanpakutou, ele adiciona 2 dados de dano adicionais a técnica.
 
@@ -871,11 +1024,11 @@ Técnicas Dominadas: Quando o Capitão Shinigami utiliza uma técnica de sua Zan
 
 O Shinigami no turno dele pode usar uma ação ou conjurar um Kido.
 
-PV cr 12m dESL FOR DES CON INT SAB ESP PR Percepção Passiva: 22. (10 + Sabedoria + ND)
+PV cr 12m dESL FOR DES CON MEN ESP PR Percepção Passiva: 22. (10 + Mente + proficiência)
 
-Percepção Espiritual Passiva: 24. (10 + Espírito + ND)
+Percepção Espiritual Passiva: 24. (10 + Espírito + proficiência)
 
-Redução de Dano: 5 dano Físico e 5 dano Esotérico Teste de Resistência: Destreza e Inteligência TRAÇOS Shinigami Solo Capitão shinigami 10 Escolha 8 perícias para o Capitão Shinigami ser treinado, somando ND a testes. Abaixo, sugestões de perícias:
+Redução de Dano: 5 dano Físico e 5 dano Esotérico Teste de Resistência: Destreza e Mente TRAÇOS Shinigami Solo Capitão shinigami 10 Escolha 8 perícias para o Capitão Shinigami ser treinado, somando a proficiência a testes. Abaixo, sugestões de perícias:
 
 Perícias
 
@@ -892,7 +1045,7 @@ Perícias
 
 Um Capitão Shinigami pode liberar sua Shikai usando uma ação bônus em seu turno. Escolha ou crie uma Zanpakutou a partir da lista disponível de Zanpakutous.
 
-O acerto das técnicas da Zanpakutou, use d20 + Nível de Desafio + atributo de Inteligência. A Classe de Dificuldade (CD) para resistir às técnicas da Zanpakutou é 8 + Nível de Desafio + atributo de Inteligência.
+O acerto das técnicas da Zanpakutou, use d20 + Nível de Desafio + atributo de Mente. A Classe de Dificuldade (CD) para resistir às técnicas da Zanpakutou é 8 + Nível de Desafio + atributo de Mente.
 
 ### Bankai
 
@@ -911,11 +1064,11 @@ O Shinigami pode utilizar uma reação lançando um Kido ou utilizando uma carac
 - 33º Hadou: Soukatsui
 - 63° Hadou: Raikouhou Médio Ataques O Shinigami pode realizar três ataques quando utilizar a ação Atacar:
 
-Katana (Crítico 19 - x3): Ataque Corpo a Corpo com Arma: ND + Destreza para atingir, alcance 1,5 m, um alvo. Dano: 1d8 + Destreza de dano Cortante.
+Katana (Crítico 19 - x3): Ataque Corpo a Corpo com Arma: proficiência + Destreza para atingir, alcance 1,5 m, um alvo. Dano: 1d8 + Destreza de dano Cortante.
 
 ### Kido
 
-Escolha Kido da lista de Bakudou ou Hadou (Rank D-A), um número igual ao atributo de Inteligência + ND. Para realizar ataques com esses Kido, utilize o atributo de Inteligência, somando ND + Inteligência no acerto. A CD para resistir a esses Kido é igual a 10 + metade do ND (arredondado para baixo) + Inteligência. Sugestões de Kido:
+Escolha Kido da lista de Bakudou ou Hadou (Rank D-A), um número igual ao atributo de Mente + ND. Para realizar ataques com esses Kido, utilize o atributo de Mente, somando proficiência + Mente no acerto. A CD para resistir a esses Kido é igual a 10 + metade do ND (arredondado para baixo) + Mente. Sugestões de Kido:
 
 ## Capitão
 
@@ -929,23 +1082,23 @@ Ao usar um Capitão como NPC, você não está apenas colocando um inimigo ou al
 
 Autoridade Espiritual: A presença de um Capitão é sufocante para criaturas comuns. Criaturas que dependem de reiatsu percebem imediatamente a pressão esmagadora. Sempre que o Capitão entrar em combate ele utiliza a ação “Liberar Reiatsu” com uma ação livre (CD igual 10 + Nível de Desafio + Espírito).
 
-Característica Adicional (2x): O Capitão Shinigami recebe dois talentos ou caracteristicas de uma Classe. Os talentos sugeridos é “Análise” da classe Suporte e “Estilo Veloz” da classe Lutador.
+Característica Adicional (2x): O Capitão Shinigami recebe dois talentos ou caracteristicas de uma Classe. Os talentos sugeridos é “Análise” da classe Kyūgo e “Estilo Veloz” da classe Hakuda.
 
 Domínio da Zanpakutou: Uma vez por turno, quando o Capitão acertar um ataque ou técnica da Zanpakutou, ele causa dano adicional igual ao seu ND a todas as criaturas inimigas a até 3 m do alvo original.
 
 Sequência de Kido: Se o Shinigami utilizar um Kido em seu turno, ele pode conjurar outros Kidos adicionais, em número igual à quantidade de ataques que possui, mas cada Kido subsequente deve ser de Rank inferior ao anterior.
 
-Shunpo Aprimorado: O Capitão Shinigami pode utilizar Shunpo, seguindo a versão sugerida da classe Combatente. Mas quando ele utiliza Shunpo os próximos dois ataques dele tem vantagem.
+Shunpo Aprimorado: O Capitão Shinigami pode utilizar Shunpo, seguindo a versão sugerida da classe Zanjutsu. Mas quando ele utiliza Shunpo os próximos dois ataques dele tem vantagem.
 
 Técnicas Dominadas: Quando o Capitão Shinigami utiliza uma técnica de sua Zanpakutou, ele adiciona 2 dados de dano adicionais a técnica.
 
 ### Ações
 
-O Shinigami no turno dele pode usar uma ação ou conjurar um Kido. 1070 PV cr 12m dESL FOR DES CON INT SAB ESP PR Percepção Passiva: 24. (10 + Sabedoria + ND)
+O Shinigami no turno dele pode usar uma ação ou conjurar um Kido. 1070 PV cr 12m dESL FOR DES CON MEN ESP PR Percepção Passiva: 24. (10 + Mente + proficiência)
 
-Percepção Espiritual Passiva: 26. (10 + Espírito + ND)
+Percepção Espiritual Passiva: 26. (10 + Espírito + proficiência)
 
-Redução de Dano: 10 dano Físico e 10 dano Esotérico Teste de Resistência: Força,Constituição e Espiríto TRAÇOS Shinigami raid Capitão shinigami 10 Escolha 8 perícias para o Capitão Shinigami ser treinado, somando ND a testes. Abaixo, sugestões de perícias:
+Redução de Dano: 10 dano Físico e 10 dano Esotérico Teste de Resistência: Força,Constituição e Espiríto TRAÇOS Shinigami raid Capitão shinigami 10 Escolha 8 perícias para o Capitão Shinigami ser treinado, somando a proficiência a testes. Abaixo, sugestões de perícias:
 
 Perícias
 
@@ -987,15 +1140,15 @@ Resistência Suprema: Duas vezes por combate, o Capitão Shinigami pode passar a
 - 33º Hadou: Soukatsui
 - 63° Hadou: Raikouhou Médio Ataques O Shinigami pode realizar três ataques quando utilizar a ação Atacar:
 
-Katana (Crítico 18 - x3): Ataque Corpo a Corpo com Arma: ND + Força para atingir, alcance 1,5 m, um alvo.
+Katana (Crítico 18 - x3): Ataque Corpo a Corpo com Arma: proficiência + Força para atingir, alcance 1,5 m, um alvo.
 
 Dano: 1d8 + Força de dano Cortante.
 
 ### Kido
 
-Escolha Kido da lista de Bakudou ou Hadou (Rank D-A), um número igual ao atributo de Inteligência + ND.
+Escolha Kido da lista de Bakudou ou Hadou (Rank D-A), um número igual ao atributo de Mente + ND.
 
-Para realizar ataques com esses Kido, utilize o atributo de Espírito, somando ND + Espírito no acerto. A CD para resistir a esses Kido é igual a 10 + metade do ND (arredondado para baixo) + Espírito. Sugestões de Kido:
+Para realizar ataques com esses Kido, utilize o atributo de Espírito, somando proficiência + Espírito no acerto. A CD para resistir a esses Kido é igual a 10 + metade do ND (arredondado para baixo) + Espírito. Sugestões de Kido:
 
 Para representar um Capitão Comandante, utilize uma das fichas de Capitão, seja a Solo ou a Raid, e adicione +5 ao ND , refletindo seu poder superior. O Capitão Comandante possui ND 15, tornando-se significativamente mais forte que um Capitão comum, capaz de enfrentar múltiplos adversários com maestria e de alterar o curso de uma batalha com sua presença.
 
@@ -1009,9 +1162,9 @@ Seu domínio sobre as partículas espirituais permite que assumam diferentes est
 
 Soldat Atributos:
 
-PV cr 9m dESL FOR DES CON INT SAB ESP Quincy solo PR Percepção Passiva: 13. (10 + Sabedoria + ND)
+PV cr 9m dESL FOR DES CON MEN ESP Quincy solo PR Percepção Passiva: 13. (10 + Mente + proficiência)
 
-Percepção Espiritual Passiva: 13. (10 + Espírito + ND)
+Percepção Espiritual Passiva: 13. (10 + Espírito + proficiência)
 
 Reishi: Durante o combate recupera ND em pontos de reiatsu no começo do turno.
 
@@ -1029,9 +1182,9 @@ O Quincy no turno dele pode usar uma ação.
 
 O Quincy pode realizar um ataque com uma de suas Armas do Arsenal Quincy ao utilizar a ação Atacar:
 
-Adaga (Crítico 19 - x3) (1 PR): Ataque Corpo a Corpo com Arma: ND + Destreza para atingir, alcance 1,5 m, um alvo. Dano: 1d4 + Destreza de dano Perfurante.
+Adaga (Crítico 19 - x3) (1 PR): Ataque Corpo a Corpo com Arma: proficiência + Destreza para atingir, alcance 1,5 m, um alvo. Dano: 1d4 + Destreza de dano Perfurante.
 
-Arco Curto (Crítico 17 - x2): Ataque com Arma a distância: ND + Destreza para atingir, alcance 18 m, um alvo. Dano: 1d6 + Destreza de dano Perfurante.
+Arco Curto (Crítico 17 - x2): Ataque com Arma a distância: proficiência + Destreza para atingir, alcance 18 m, um alvo. Dano: 1d6 + Destreza de dano Perfurante.
 
 TRAÇOS Médio As Ameaças Quincy possuem o mesmo Arsenal dos jogadores, seguindo as mesmas regras. Elas podem utilizar normalmente as propriedades de suas armas.
 
@@ -1049,7 +1202,7 @@ Especialista em Kido: Kuchiki Rukia é um gênio na arte de manipular Kido. Todo
 
 Sequência de Kido: Se ela conjurar um Kido no turno dela, pode lançar Kidos adicionais naquele mesmo turno, em uma quantidade igual ao número de ataques que possui. Como também pode alternar seus ataques com Kido.
 
-Shunpo: Kuchiki Rukia pode utilizar Shunpo, seguindo a versão da classe Especialista.
+Shunpo: Kuchiki Rukia pode utilizar Shunpo, seguindo a versão da classe Tokubetsu.
 
 Técnicas Dominadas: Quando Kuchiki Rukia utiliza uma das técnica da sua Zanpakutou, ela adiciona 2 dados de dano adicionais a técnica.
 
@@ -1057,11 +1210,11 @@ Técnicas Dominadas: Quando Kuchiki Rukia utiliza uma das técnica da sua Zanpak
 
 A Rukia no turno dela pode usar uma ação.
 
-PV cr 12m dESL FOR DES CON INT SAB ESP PR Percepção Passiva: 26.
+PV cr 12m dESL FOR DES CON MEN ESP PR Percepção Passiva: 26.
 
 Percepção Espiritual Passiva: 26.
 
-Resistência a Dano: Frio Testes de Resistência: Destreza e Inteligência TRAÇOS KUCHIKI rukia Bankai 12 Kuchiki Rukia é treinada em diversas péricias, listada abaixo:
+Resistência a Dano: Frio Testes de Resistência: Destreza e Mente TRAÇOS KUCHIKI rukia Bankai 12 Kuchiki Rukia é treinada em diversas péricias, listada abaixo:
 
 Perícias
 
@@ -1080,7 +1233,7 @@ Perícias
 
 A Zanpakutou de Rukia é a Sode no Shirayuki, e ela pode ativar sua Shikai com uma ação bônus e sua Bankai com uma ação.
 
-O acerto das técnicas da Zanpakutou, use d20 + Nível de Desafio + atributo de Inteligência. A Classe de Dificuldade (CD) para resistir às técnicas da Zanpakutou é 8 + Nível de Desafio + atributo de Inteligência.
+O acerto das técnicas da Zanpakutou, use d20 + Nível de Desafio + atributo de Mente. A Classe de Dificuldade (CD) para resistir às técnicas da Zanpakutou é 8 + Nível de Desafio + atributo de Mente.
 
 ### Reação
 
@@ -1102,13 +1255,13 @@ Resistência Suprema: Três vezes por combate, a Rukia pode passar automaticamen
 
 A Rukia pode realizar três ataques quando utilizar a ação Atacar:
 
-Katana (Crítico 19 - x2): Ataque Corpo a Corpo com Arma: ND + Destreza para atingir, alcance 1,5 m, um alvo. Dano: 1d10 + Destreza de dano Cortante.
+Katana (Crítico 19 - x2): Ataque Corpo a Corpo com Arma: proficiência + Destreza para atingir, alcance 1,5 m, um alvo. Dano: 1d10 + Destreza de dano Cortante.
 
 ### Kido
 
-Para realizar ataques com Kido, utilize o atributo de Inteligência, somando ND + Inteligência no acerto.
+Para realizar ataques com Kido, utilize o atributo de Mente, somando proficiência + Mente no acerto.
 
-A CD para resistir a esses Kido é igual a 10 + metade do ND (arredondado para baixo) + Inteligência. Kido conhecidos:
+A CD para resistir a esses Kido é igual a 10 + metade do ND (arredondado para baixo) + Mente. Kido conhecidos:
 
 Shinigami Médio Iconico
 
@@ -1126,13 +1279,13 @@ Impacto de Reiatsu: Quando Ichigo atacar uma criatura com a Zangetsu, ele pode u
 
 Mestre Zanjutsu: Ataques com a Zanpakutou recebem um dado a mais de dano. Ja adicionado a Shikai.
 
-Shunpo: Kurosaki Ichigo pode utilizar Shunpo, seguindo a versão da classe Lutador.
+Shunpo: Kurosaki Ichigo pode utilizar Shunpo, seguindo a versão da classe Hakuda.
 
 Técnicas Dominadas: Quando Kurosaki Ichigo utiliza uma das técnica da sua Zanpakutou, ela adiciona 3 dados de dano adicionais a técnica.
 
 ### Ações
 
-O Ichigo no turno dele pode usar uma ação. 1116 PV cr 12m dESL FOR DES CON INT SAB ESP PR Percepção Passiva: 26.
+O Ichigo no turno dele pode usar uma ação. 1116 PV cr 12m dESL FOR DES CON MEN ESP PR Percepção Passiva: 26.
 
 Percepção Espiritual Passiva: 26.
 
@@ -1151,9 +1304,9 @@ Perícias
 
 O Ichigo pode realizar quatro ataques quando utilizar a ação Atacar:
 
-Hakuda: Ataque Corpo a Corpo: ND + Força para atingir, alcance 1,5 m, um alvo. Dano: 1d8 + Força de dano de Concussão.
+Hakuda: Ataque Corpo a Corpo: proficiência + Força para atingir, alcance 1,5 m, um alvo. Dano: 1d8 + Força de dano de Concussão.
 
-Zangetsu Shikai (Crítico 18 - x3): Ataque Corpo a Corpo com Arma: ND + Força para atingir, alcance 1,5 m, um alvo. Dano: 3d10 + Força de dano Cortante.
+Zangetsu Shikai (Crítico 18 - x3): Ataque Corpo a Corpo com Arma: proficiência + Força para atingir, alcance 1,5 m, um alvo. Dano: 3d10 + Força de dano Cortante.
 
 ### Zangetsu
 
@@ -1187,53 +1340,10 @@ Cordell, John D. Rateliff, Thomas Reid, James Wyatt, based on original material 
 
 END OF LICENSE
 
-## Open Game License
+## Nota do autor
 
-## Soul Society
-
-ATRIBUTOS FORÇA destreza CONSTITUIÇÃO inteligência SABEDORIA espírito TESTES DE RESISTÊNCIA
-
-| FORÇA | destreza PERÍCIAS | CONSTITUIÇÃO | inteligência |
-|---|---|---|---|
-| Prof Outros Total |  | Atributo |  |
-|  | aCROBACIA | des |  |
-|  | aTUAÇÃO | esp | cr |
-|  | conhecimento | int |  |
-|  | DETERMINAÇÃO | esp |  |
-|  | durabilidade | con |  |
-|  | FURTIVIDADE | des |  |
-|  | história | SAB |  |
-|  | INTIMIDAÇÃO | esp |  |
-|  | INTUIÇÃO | SAB |  |
-|  | investigação | int |  |
-|  | MANIPULAÇÃO | esp |  |
-|  | medicina | SAB |  |
-|  | NATUREZA | int |  |
-|  | nobreza | int |  |
-|  | PERCEPÇÃO | SAB |  |
-|  | PERCEPÇÃO espiritual | esp |  |
-|  | PERSUASÃO | esp |  |
-|  | preparo físico | FOR | Nome |
-|  | PRESTIDIGITAÇÃO | des |  |
-|  | REIATSU | esp |  |
-|  | suprimir REIATSU | esp |  |
-|  | sobrevivência | SAB |  |
-|  | VELOCIDADE | FOR |  |
-
-DESTREZA constituição Inteligência tESTES CONTRA MORTE sUCESSOs fracassos SABEDORIA espírito Pontos de vida Atual PV TEMPORÁRIOs Pontos de reiatsu Total Atual PR TEMPORÁRIOs
-
-## Rpg
-
-BÔNUS DE PROFICIÊNCIA PERCEPÇÃO PASSIVA PERCEPÇÃO ESPIRITUAL PASSIVA
-
-## Nome do Personagem
-
-CLASSE sub-classe ORIGEM experiência Termos da Ficha:
-
-For = Força Des = Destreza Con = Constituição Int = Inteligência Sab = Sabedoria Esp = Espírito Prof = Proficiência efeitos negativos Dano Turnos Condição ATAQUES Requisito Nome Acerto Dano/Tipo de Dano NÍVEL DESLOCAMENTO Total Outros Prof Total EQUIPAMENTOS Variação Anotações iniciativa Habilidades de origem Características de classe TÉCNICAS E Feitiços ESSÊNCIAS ESpirituais Etapa Nome Resumo Outras Características FIM Apósquasedoisanosdededicaçãointensa,incontáveisnoitesemclaroemuitoaprendizado, finalmente apresento este RPG com imenso orgulho. Cada página carrega minha paixão pelo universo dos RPGs fandom e o desejo de ver produções brasileiras alcançando um novo patamar de qualidade.
+Após quase dois anos de dedicação intensa, incontáveis noites em claro e muito aprendizado, finalmente apresento este RPG com imenso orgulho. Cada página carrega minha paixão pelo universo dos RPGs fandom e o desejo de ver produções brasileiras alcançando um novo patamar de qualidade.
 
 Minha esperança é que este livro abra novas portas para mim como criador, e que ele inspire outros a também darem vida às suas ideias. Que vocês se divirtam tanto jogando quanto eu me diverti escrevendo.
 
 Dedico este RPG a todos que esperaram com paciência durante esse processo e acreditaram no projeto. Até a próxima.
-
-Soul Society RPG

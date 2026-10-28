@@ -95,12 +95,7 @@ export default function Capitulo() {
   const prox = capitulos[idx + 1];
   let n = 0;
   const idDe = (children: ReactNode) => lista[n++]?.id ?? slugify(textoDe(children));
-  const revisoes = (cap.revisoes ?? [])
-    .map((s) => capitulos.find((c) => c.slug === s))
-    .filter((c): c is NonNullable<typeof c> => !!c);
-
-  const kicker =
-    cap.no === 0 ? "INTRODUÇÃO" : cap.parte === "ev" ? `ESPADA & VAZIO · CAPÍTULO ${cap.no}` : cap.parte === "creditos" ? "CRÉDITOS" : `CAPÍTULO ${cap.no}`;
+  const kicker = cap.no === 0 ? "INTRODUÇÃO" : cap.slug === "homenagens-e-fontes" ? "CRÉDITOS" : `CAPÍTULO ${cap.no}`;
 
   return (
     <div className="reader" key={cap.slug}>
@@ -118,27 +113,6 @@ export default function Capitulo() {
         <Link to="/livro" className="voltar">← Todos os capítulos</Link>
         <div className="kicker">{kicker}</div>
         <h1>{cap.title}</h1>
-        {cap.parte === "ev" && (
-          <div className="aviso aviso-ev">
-            <b>Edição Espada &amp; vazio</b>
-            <span>As regras deste capítulo valem sobre o livro base quando forem diferentes.</span>
-          </div>
-        )}
-        {revisoes.length > 0 && (
-          <div className="aviso aviso-base">
-            <b>Há regras revisadas para este capítulo</b>
-            <span>
-              O texto abaixo é do livro base. Na edição Espada &amp; vazio, valem as regras de:{" "}
-              {revisoes.map((r, i) => (
-                <span key={r.slug}>
-                  {i > 0 && (i === revisoes.length - 1 ? " e " : ", ")}
-                  <Link to={`/livro/${r.slug}`}>{r.title}</Link>
-                </span>
-              ))}
-              .
-            </span>
-          </div>
-        )}
         {md === null ? (
           <p>Carregando…</p>
         ) : (

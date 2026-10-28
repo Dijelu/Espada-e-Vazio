@@ -41,7 +41,7 @@ Os pecados purificados pelas Asauchi e Zanpakutous ocorrem apenas quando o ser �
 
 ### Quebrar o Vínculo
 
-Um Shinigami pode quebrar seu vínculo por completo com sua Asauchi/Zanpakutou, e isso pode ter diversas consequências, que o Mestre pode definir. Em termos básicos, dentro de Soul Society existe uma subclasse que representa essa quebra total de vínculo: a subclasse de Combatente, o Ryoka. Não é algo comum, mas pode acontecer de a Zanpakutou tomar a forma de uma Alma, tornando-se física no mundo.
+Um Shinigami pode quebrar seu vínculo por completo com sua Asauchi/Zanpakutou, e isso pode ter diversas consequências, que o Mestre pode definir. Em termos básicos, dentro de Soul Society existe uma subclasse que representa essa quebra total de vínculo: a subclasse de Zanjutsu, o Ryoka. Não é algo comum, mas pode acontecer de a Zanpakutou tomar a forma de uma Alma, tornando-se física no mundo.
 
 Se um personagem perder o vínculo com sua Zanpakutou, a melhor abordagem é transformar o Espírito Vivo em um personagem do Mestre, um NPC. Esse NPC geralmente será um aliado e deve manter um vínculo profundo com o personagem, mas essa conexão não deve ser de conhecimento dele. O personagem só descobrirá a verdade no momento em que aceitar a Zanpakutou de volta, sem rejeitá-la. Também existe a opção de um jogador jogar como uma Zanpakutou, com a origem Espírito Vivo.
 
@@ -60,7 +60,7 @@ Primeiro antes de escolher sua Zanpakutou você deve saber que existe uma infini
 - Kido: Zanpakutous que possuem uma habilidade especial, geralmente relacionada a técnicas espirituais.
 - Especial: Zanpakutous que não se encaixam em nenhuma das categorias anteriores.
 
-Sua classe e subclasse vão definir a categoria de Zanpakutou que você pode ter. Por exemplo, a classe Combatente com a subclasse Forja Espiritual permite escolher Zanpakutous das categorias Combate e Elemental. As Zanpakutous da categoria Especial podem ser escolhidas por qualquer classe, mas essa escolha precisa ser aprovada pelo mestre.
+Sua classe e subclasse vão definir a categoria de Zanpakutou que você pode ter. Por exemplo, a classe Zanjutsu com a subclasse Forja Espiritual permite escolher Zanpakutous das categorias Combate e Elemental. As Zanpakutous da categoria Especial podem ser escolhidas por qualquer classe, mas essa escolha precisa ser aprovada pelo mestre.
 
 O mestre também pode permitir que você escolha uma Zanpakutou de uma categoria que normalmente não estaria disponível para a sua subclasse. No caso da Forja Espiritual, que normalmente só pode pegar Zanpakutous de Combate e Elemental, o mestre pode permitir que você escolha uma da categoria Kido, por exemplo.
 
@@ -74,7 +74,7 @@ Normalmente, no nível em que você escolhe sua Zanpakutou, sempre o nível 3, v
 
 A Shikai é o primeiro nível de liberação de uma Zanpakutou, que traz parte do seu espírito para o mundo material. Ao liberar sua Shikai, isso terá um inicial em pontos de reiatsu mantendo ela ativa por 1 minuto e depois você deve utilizar novamente o mesmo custo para manter ela ativa por mais 1 minuto. Fora de combate, o mestre pode estabelecer um custo específico para manter a Shikai ativa.
 
-Sua Shikai pode ativar um poder ou permitir que você utilize técnicas que estão descritas na Zanpakutou, seja uma escolhida da lista ou uma que você tenha criado.
+Sua Shikai pode ativar um poder ou permitir que você utilize técnicas que estão descritas na Zanpakutou, seja uma escolhida da lista ou uma que você tenha criado. Enquanto a Shikai estiver liberada, você soma o seu bônus de proficiência à sua Classe de Resistência.
 
 ### Bankai
 
@@ -148,7 +148,7 @@ O usuário lança uma quantidade de reiatsu extremamente cortante em direção a
 
 ### Técnica: Tsuppane, Benihime
 
-Após observar uma habilidade de uma criatura especificada como técnica, o mestre pode informá-lo. Você pode fazer um teste de Sabedoria com a dificuldade definida pelo mestre. Se obtiver sucesso, você aprende a anular a técnica da criatura fazendo um círculo de reiatsu carmesim. Usando sua reação e 15 pontos de reiatsu, você pode anular uma técnica para a qual tenha passado no teste. No entanto, a técnica precisa ser direcionada a você e ter apenas você como alvo.
+Após observar uma habilidade de uma criatura especificada como técnica, o mestre pode informá-lo. Você pode fazer um teste de Mente com a dificuldade definida pelo mestre. Se obtiver sucesso, você aprende a anular a técnica da criatura fazendo um círculo de reiatsu carmesim. Usando sua reação e 15 pontos de reiatsu, você pode anular uma técnica para a qual tenha passado no teste. No entanto, a técnica precisa ser direcionada a você e ter apenas você como alvo.
 
 Uma técnica anulada ainda custará os pontos de reiatsu da criatura que a lançou, mas não causará dano em você.
 
@@ -386,7 +386,7 @@ O mestre e o jogador podem criar brincadeiras diferentes, adaptando-as às vivê
 
 ### Técnica: Bushogoma
 
-Como em uma brincadeira infantil de jogar peão, o usuário gira sobre o próprio eixo e lança duas lâminas de ar carregadas de reiatsu giratório. Realize um ataque com técnica contra uma criatura que esteja até 9 metros de distância em linha reta, se acertar você causa 7d10 de dano cortante. A primeira vez que uma criatura receber essa técnica ela deve realizar um Teste de Resistência de Sabedoria ou não poderá realizar ações no próximo turno dela. Você pode usar essa técnica como uma reação quando for alvo de um ataque à distância, reduzindo o dano que receberia em 6d10.
+Como em uma brincadeira infantil de jogar peão, o usuário gira sobre o próprio eixo e lança duas lâminas de ar carregadas de reiatsu giratório. Realize um ataque com técnica contra uma criatura que esteja até 9 metros de distância em linha reta, se acertar você causa 7d10 de dano cortante. A primeira vez que uma criatura receber essa técnica ela deve realizar um Teste de Resistência de Mente ou não poderá realizar ações no próximo turno dela. Você pode usar essa técnica como uma reação quando for alvo de um ataque à distância, reduzindo o dano que receberia em 6d10.
 
 Essa técnica é uma das Brincadeiras, mas ela pode ser utilizada a vontade.
 
@@ -608,7 +608,7 @@ Você invocará um número de mortos igual à sua contagem. Eles devem rolar ini
 
 Alternativamente, o mestre pode oferecer a ficha original do inimigo que você matou. Eles contarão como mortos-vivo e terão todas as habilidades que possuíam em vida, como classe de resistência, acerto e etc... com a única diferença de que terão os mesmos Pontos de Vida da ficha de Morto Vivo.
 
-Morto-Vivo FOR DES CON INT SAB ESP Atributos Aura de Medo: Quando os mortos-vivos são invocados pela primeira vez, todas as criaturas até 36 metros deles, devem realizar um Teste de Sabedoria. Se falhar, ficará com a condição “Amedrontado” em relação ao usuário da Bankai, se uma criatura conheceu um dos mortos vivos quando ele estava vivo, ela fará o teste de resistência com desvantagem. A criatura que falhou no teste pode repetir o teste no início de cada um dos seus turnos, mas agora deve realizar um Teste de Determinação para tentar se livrar da condição de Amedrontado.
+Morto-Vivo FOR DES CON MEN ESP Atributos Aura de Medo: Quando os mortos-vivos são invocados pela primeira vez, todas as criaturas até 36 metros deles, devem realizar um Teste de Mente. Se falhar, ficará com a condição “Amedrontado” em relação ao usuário da Bankai, se uma criatura conheceu um dos mortos vivos quando ele estava vivo, ela fará o teste de resistência com desvantagem. A criatura que falhou no teste pode repetir o teste no início de cada um dos seus turnos, mas agora deve realizar um Teste de Determinação para tentar se livrar da condição de Amedrontado.
 
 O morto vivo pode realizar a ação Atacar Corpo-a-Corpo se em vida ele ter sido um Shinigami, ou a distância se ele era um Quincy.
 
@@ -642,11 +642,11 @@ A cada início de turno, você deve utilizar uma ação bônus para começar a g
 
 Você deve manter, a cada início de turno, a ação bônus dedicada a girar e soltar o gás com ela, se não a técnica será encerrada.
 
-Tudo o que a criatura tentar realizar em seu turno, como movimentação ou um ataque, exigirá um Teste de Resistência de Sabedoria. Se falhar, ela realizará a ação na direção oposta. Por exemplo, se ela tentar caminhar para a direita e falhar no teste, ela caminhará para a esquerda. Se ela tentar realizar um ataque em uma criatura, atacará o lado oposto ao que a criatura realmente está. Se a criatura falhar em 3 testes de resistência seguidos ela perderá o próximo turno dela, ficando parada.
+Tudo o que a criatura tentar realizar em seu turno, como movimentação ou um ataque, exigirá um Teste de Resistência de Mente. Se falhar, ela realizará a ação na direção oposta. Por exemplo, se ela tentar caminhar para a direita e falhar no teste, ela caminhará para a esquerda. Se ela tentar realizar um ataque em uma criatura, atacará o lado oposto ao que a criatura realmente está. Se a criatura falhar em 3 testes de resistência seguidos ela perderá o próximo turno dela, ficando parada.
 
-Criaturas mais poderosas enfrentam maior dificuldade com o Mundo Invertido, pois seus instintos de batalha são muito aprimorados, como lista abaixo: Nível de dificuldade de 1 a 5: Criaturas com esse ND costumam ser iniciantes em batalha, então seus instintos ainda não estão muito aprimorados, elas sofrem -1 no Teste de Resistência de Sabedoria.
+Criaturas mais poderosas enfrentam maior dificuldade com o Mundo Invertido, pois seus instintos de batalha são muito aprimorados, como lista abaixo: Nível de dificuldade de 1 a 5: Criaturas com esse ND costumam ser iniciantes em batalha, então seus instintos ainda não estão muito aprimorados, elas sofrem -1 no Teste de Resistência de Mente.
 
-Nível de dificuldade de 6 a 10: Essas criaturas já começam a ter bastante dificuldade ao enfrentar o Mundo Invertido sofrendo -3 no Teste de Resistência de Sabedoria. Nível de dificuldade de 11 a 15: Normalmente criaturas com essa ND já tem um poder de batalha muito alto, então são muito afetados, causando -4 no Teste de Resistência. Nível de dificuldade de 16 a 20 ou mais: As dificuldades para criaturas com esse ND são muito maiores resultando, recebendo -5 no teste de resistência e desvantagem nele. As criaturas começam a desenvolver resistência à Sakanade com o tempo, podendo até mesmo se libertar dos efeitos do Mundo Invertido. Para cada cinco testes de resistência de Sabedoria, o mestre pode realizar um teste de intuição para diminuir a CD do teste em -3, podendo repetir o teste de intuição a cada cinco teste, até diminuir a CD do teste de resistência de sabedoria a 0. Após a criatura ficar um dia sem entrar em contato com a Sakanade, a dificuldade é resetada.
+Nível de dificuldade de 6 a 10: Essas criaturas já começam a ter bastante dificuldade ao enfrentar o Mundo Invertido sofrendo -3 no Teste de Resistência de Mente. Nível de dificuldade de 11 a 15: Normalmente criaturas com essa ND já tem um poder de batalha muito alto, então são muito afetados, causando -4 no Teste de Resistência. Nível de dificuldade de 16 a 20 ou mais: As dificuldades para criaturas com esse ND são muito maiores resultando, recebendo -5 no teste de resistência e desvantagem nele. As criaturas começam a desenvolver resistência à Sakanade com o tempo, podendo até mesmo se libertar dos efeitos do Mundo Invertido. Para cada cinco testes de resistência de Mente, o mestre pode realizar um teste de intuição para diminuir a CD do teste em -3, podendo repetir o teste de intuição a cada cinco teste, até diminuir a CD do teste de resistência de mente a 0. Após a criatura ficar um dia sem entrar em contato com a Sakanade, a dificuldade é resetada.
 
 ### Bankai
 
@@ -668,7 +668,7 @@ A forma Shikai, quando liberada, exige que seu nome seja dito, que é “Senbonz
 
 ### Flor de Sakura
 
-As pequenas lâminas, que refletem luz rosa, podem ser controladas pelo usuário apenas com o balançar do cabo da Zanpakutou. Você ganha um alcance de 9 metros com a Senbonzakura, o que é considerado um ataque à distância, causando 2d10 de dano cortante nas jogadas de ataque. Como a Senbonzakura não exige que o usuário se envolva fisicamente em combate para ser utilizada, ela pode utilizar o Atributo de Inteligência para as jogadas de ataque (Acerto) e para as jogadas de dano com ela.
+As pequenas lâminas, que refletem luz rosa, podem ser controladas pelo usuário apenas com o balançar do cabo da Zanpakutou. Você ganha um alcance de 9 metros com a Senbonzakura, o que é considerado um ataque à distância, causando 2d10 de dano cortante nas jogadas de ataque. Como a Senbonzakura não exige que o usuário se envolva fisicamente em combate para ser utilizada, ela pode utilizar o Atributo de Mente para as jogadas de ataque (Acerto) e para as jogadas de dano com ela.
 
 ### Perseguir
 

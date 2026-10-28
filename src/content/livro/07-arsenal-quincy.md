@@ -6,7 +6,7 @@ Neste capítulo, você terá acesso a diversas ferramentas para que um Quincy po
 
 O domínio mais importante para os Quincys é a utilização de suas Armas Quincy, que podem assumir diferentes formas. Como um Quincy, você possui acesso a um vasto arsenal e a capacidade de manejar diversas armas, mas o grau de habilidade varia de acordo com sua classe, seus treinamentos e outros fatores.
 
-Sua classe define com quais armas você tem maior afinidade, determinando sua proficiência. Em geral, todo Quincy pode utilizar diferentes armas, mas certas classes se especializam em um tipo específico, elevando sua maestria nesse estilo. Por exemplo, a classe Atirador é voltada para armas à distância, enquanto sua subclasse Arqueiro aprimora ainda mais a eficácia com o arco.
+Sua classe define com quais armas você tem maior afinidade, determinando sua proficiência. Em geral, todo Quincy pode utilizar diferentes armas, mas certas classes se especializam em um tipo específico, elevando sua maestria nesse estilo. Por exemplo, a classe Schütze é voltada para armas à distância, enquanto sua subclasse Arqueiro aprimora ainda mais a eficácia com o arco.
 
 As armas disponíveis estão listadas nas tabelas de Armas Corpo a Corpo e Armas à Distância, que são organizadas em subgrupos para facilitar a consulta.
 
@@ -237,14 +237,14 @@ Além disso, a arma escolhida recebe duas melhorias em seus passos de dano, e qu
 
 As habilidades únicas são semelhantes às habilidades de classe e, diferentemente das passivas, você escolhe quais delas compõem sua Vollstanding, tornando-a única.
 
-Você pode selecionar quatro habilidades únicas para sua Vollstanding, e ao atingir o 18° nível de classe como Quincy, recebe mais duas habilidades únicas à sua escolha. Escolha com sabedoria, pois uma vez definidas, não poderão ser alteradas.
+Você pode selecionar quatro habilidades únicas para sua Vollstanding, e ao atingir o 18° nível de classe como Quincy, recebe mais duas habilidades únicas à sua escolha. Escolha com mente, pois uma vez definidas, não poderão ser alteradas.
 
-Essas habilidades só são válidas enquanto a Vollstanding estiver ativa, e você pode escolhê-las várias vezes, acumulando seus efeitos.
+Essas habilidades só são válidas enquanto a Vollstanding estiver ativa, e você pode escolhê-las várias vezes, acumulando seus efeitos, exceto Força Espiritual e Precisão Espiritual, que só podem ser escolhidas uma vez cada.
 
 - Aumento de Atributo: Escolha um atributo. Ele aumenta em +2.
 - Armadura de Reishi: Reduza todo o dano que sofrer em 5. Exceto dano Psíquico.
 - Defesa: Sua Vollstanding se torna mais resistênte, você aumenta em +3 sua Classe de Resistência.
-- Especialista: Quando realizar um teste de pericia, adicione +3.
+- Tokubetsu: Quando realizar um teste de pericia, adicione +3.
 - Força Espiritual: Aumente seu dano com a arma espiritual em +5.
 - Melhoria: Escolha uma melhoria para arma escolhida na utilização da Vollstanding.
 - Olhos do Céu: Aumente em +6 metros o alcance de ataques à distância (Técnicas de Reish, Habilidades e Armas a distância).
@@ -256,6 +256,16 @@ Essas habilidades só são válidas enquanto a Vollstanding estiver ativa, e voc
 - Sentido Divino: Aumente o alcance da sua Consciência Espiritual Expandida em +12 metros.
 - Velocidade: Seu deslocamento aumenta em 6 metros, podendo escolher entre o deslocamento normal ou voo.
 - Vigor do Reishi: Todo começo do seu turno você recupera 5 pontos de vida. Se você estiver com os pontos de vida no máxima, eles se transformam em pontos de vida temporários.
+
+## Regras Comuns dos Quincy
+
+Estas regras valem para qualquer classe Quincy, e não só para o Ritter.
+
+- **Vollständig:** o Ritter a ativa a partir do 12º nível, e as demais classes Quincy a partir do 13º (60 pontos de reiatsu, uma ação). As duas habilidades únicas adicionais vêm cinco níveis depois. Os poderes passivos e as habilidades únicas são os descritos neste capítulo.
+- **Schrift:** é um talento disponível a partir do 6º nível, com aprovação do Mestre. A Schrift influencia o nome e os efeitos da Vollständig.
+- **Dano de Energia:** o dano da arma espiritual da Vollständig e o das Técnicas de Reishi já é de Energia, então ignora a resistência a dano físico. O Ritter obtém o mesmo efeito antes disso, com a Lâmina de Reishi.
+
+Atenção: Força Espiritual e Precisão Espiritual só podem ser escolhidas **uma vez cada** entre as habilidades únicas da Vollständig. Sem esse limite, o Quincy fica forte demais logo que ganha a Vollständig. Os demais poderes não mudam: Arma Espiritual com duas melhorias de dano, Consciência Espiritual Expandida, Sklaverei e Voo de 6 metros.
 
 ## Vollstanding Prontas
 

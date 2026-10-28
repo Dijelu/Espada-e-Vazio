@@ -34,7 +34,7 @@ Entretanto, a Origem de um personagem não limita onde ele pode viver. Um Humano
 
 ### Escolhendo Uma Origem
 
-Você deve escolher uma Origem para o seu personagem com base no que deseja ser. Por exemplo, se pretende ser um Shinigami, uma escolha comum seria a Origem Alma, indicando que seu personagem treinou e se tornou um Shinigami na Soul Society. Como veremos no Capítulo 3: Classes, existem dois tipos de classes — Classes de Shinigamis e Classes de Quincys. Escolha sua Origem conforme a classe desejada, para verificar quais Origens são compatíveis com cada classe, consulte a tabela abaixo.
+Você deve escolher uma Origem para o seu personagem com base no que deseja ser. Por exemplo, se pretende ser um Shinigami, uma escolha comum seria a Origem Alma, indicando que seu personagem treinou e se tornou um Shinigami na Soul Society. Como veremos no Capítulo 3: Classes, existem três tipos de classes: Classes de Shinigami, Classes de Quincy e Classes de Hollow. Escolha sua Origem conforme a classe desejada, para verificar quais Origens são compatíveis com cada classe, consulte a tabela abaixo.
 
 | Origem | Classe |
 |---|---|
@@ -45,6 +45,10 @@ Você deve escolher uma Origem para o seu personagem com base no que deseja ser.
 | Mod Soul | Shinigami |
 | Quincy | Quincy |
 | Visored | Shinigami |
+| Hollow Comum | Hollow |
+| Gillian | Hollow |
+| Adjuchas | Hollow |
+| Vasto Lorde | Hollow |
 
 Sua Origem irá potencializar as habilidades do seu personagem e influenciará toda a campanha, pois cada uma possui características únicas e concede um tipo específico de poder. Uma Alma recebe poderes de Shinigami, enquanto um Quincy adquire habilidades típicas dos Quincys. Por isso, a escolha da Origem é importante para definir como seu personagem irá interagir com o mundo e com quem ele terá mais afinidade. Por exemplo, um Shinigami dificilmente se aproximará de um Hollow, e um Quincy provavelmente não simpatizará com Shinigamis ou Hollows. Tenha clareza sobre sua função no ciclo de existência e foque-se nela.
 
@@ -80,9 +84,9 @@ As almas possuem variações entre elas. Aquelas que nasceram na Soul Society e 
 
 Se você nasceu diretamente na Soul Society ou veio de uma linhagem já existente, de uma família nobre, você possui costumes e participa diretamente na Gotei 13 desde o seu nascimento. Muitos possuem um controle maior da Reiatsu, pois são treinados para serem Shinigamis desde cedo e aprendem kidous. Você ganha as seguintes características por ser um Nobre:
 
-Estudos Avançados: Seu valor de Inteligência aumenta em 1, e você recebe proficiência na perícia História.
+Estudos Avançados: Seu valor de Mente aumenta em 1, e você recebe proficiência na perícia História.
 
-Nobreza: Como você é um nobre, você tem vantagem em testes que envolvem assuntos relacionados a nobres e é proficiente em Nobreza. Reiatsu Superior: Você recebe um aumento maior de Reiatsu, começando com 5 pontos adicionais de Reiatsu inicial e, para cada nível de personagem posterior, você recebe +2 de Reiatsu adicional. Treinamento de Kido: Você pode escolher dois Kidous adicionais para iniciar e sua habilidade de conjuração é a inteligência para eles.
+Nobreza: Como você é um nobre, você tem vantagem em testes que envolvem assuntos relacionados a nobres e é proficiente em Nobreza. Reiatsu Superior: Você recebe um aumento maior de Reiatsu, começando com 5 pontos adicionais de Reiatsu inicial e, para cada nível de personagem posterior, você recebe +2 de Reiatsu adicional. Treinamento de Kido: Você pode escolher dois Kidous adicionais para iniciar e sua habilidade de conjuração é a mente para eles.
 
 ### Fâmilias Nobres
 
@@ -104,7 +108,7 @@ A existência de um Espírito Vivo é envolta em mistério, e a quantidade deles
 
 ### Personagem do Mestre e Jogador
 
-Se um personagem do jogador perder o vínculo com sua Zanpakutou (Combatente Ryoka), a melhor abordagem é que o Espírito Vivo se torne um personagem do Mestre, um NPC. Esse NPC geralmente será um aliado e deve manter um vínculo profundo com o personagem, mas essa conexão não deve ser do conhecimento do personagem. Ele só deverá descobrir que o NPC era o Espírito da sua Zanpakutou no momento em que aceitar a Zanpakutou de volta, sem rejeitá-la. Por outro lado se um jogador quiser criar um personagem Espírito Vivo, sendo a Zanpakutou de outro jogador ou de um NPC, para isso deve ser criar um personagem com a origem Alma, mas utilizando uma variação alternativa chamada “Espírito Vivo”. No entanto ao criar um personagem Espírito Vivo, o Jogador deve estar ciente de que perderá seu personagem caso o Shinigami, do qual ele é o Espírito Vivo, aceite sua Zanpakutou de volta. O jogador poderá escolher uma classe de Shinigami normalmente, mas não poderá utilizar a subclasse Ryoka da classe Combatente.
+Se um personagem do jogador perder o vínculo com sua Zanpakutou (Zanjutsu Ryoka), a melhor abordagem é que o Espírito Vivo se torne um personagem do Mestre, um NPC. Esse NPC geralmente será um aliado e deve manter um vínculo profundo com o personagem, mas essa conexão não deve ser do conhecimento do personagem. Ele só deverá descobrir que o NPC era o Espírito da sua Zanpakutou no momento em que aceitar a Zanpakutou de volta, sem rejeitá-la. Por outro lado se um jogador quiser criar um personagem Espírito Vivo, sendo a Zanpakutou de outro jogador ou de um NPC, para isso deve ser criar um personagem com a origem Alma, mas utilizando uma variação alternativa chamada “Espírito Vivo”. No entanto ao criar um personagem Espírito Vivo, o Jogador deve estar ciente de que perderá seu personagem caso o Shinigami, do qual ele é o Espírito Vivo, aceite sua Zanpakutou de volta. O jogador poderá escolher uma classe de Shinigami normalmente, mas não poderá utilizar a subclasse Ryoka da classe Zanjutsu.
 
 ### Variação Alternativa (alma)
 
@@ -114,7 +118,7 @@ Essa váriação de Alma é uma alternativa e deve ser aprovada pelo Mestre.
 
 Um Espírito Vivo é uma Alma muito diferente, mas ainda assim pode se tornar tão forte quanto um Shinigami comum. Um Espírito Vivo terá o mesmo status social que o Shinigami de Origem.
 
-Atributo Herdado: Você recebe 1 ponto no Atributo correspondente ao maior ou segundo maior valor de Atributo do Shinigami de Origem. Herança Espiritual: Você possui a característica da classe Combatente “Impacto de Reiatsu”. Se o Shinigami de Origem não possuir essa classe, você pode herdar outra característica de classe, aprovada pelo Mestre, de primeiro nível da classe do Shinigami de Origem. Você também pode receber uma Habilidade de Classe, no entanto, você deve atender aos requisitos dessa característica. Por exemplo, você não pode escolher um Talento que dependa de outro para funcionar.
+Atributo Herdado: Você recebe 1 ponto no Atributo correspondente ao maior ou segundo maior valor de Atributo do Shinigami de Origem. Herança Espiritual: Você possui a característica da classe Zanjutsu “Impacto de Reiatsu”. Se o Shinigami de Origem não possuir essa classe, você pode herdar outra característica de classe, aprovada pelo Mestre, de primeiro nível da classe do Shinigami de Origem. Você também pode receber uma Habilidade de Classe, no entanto, você deve atender aos requisitos dessa característica. Por exemplo, você não pode escolher um Talento que dependa de outro para funcionar.
 
 Vínculo: Você consegue sentir exatamente aonde o Shinigami de Origem está, mesmo que estejam em dimensões diferentes.
 
@@ -250,7 +254,7 @@ Os Quincys têm a tradição de preservar sua linhagem pura, onde as famílias r
 
 Os Echt são Quincy de sangue puro, descendentes de linhagens que preservam suas tradições há gerações. Criados sob treinamento rigoroso, aprendem desde cedo a dominar seus poderes e técnicas ancestrais. Muitas famílias valorizam a pureza do sangue e esperam que seus descendentes mantenham o prestígio da linhagem. Você recebe as seguintes características por ser um Quincy Echt:
 
-Estudos Echt: Seu valor de Inteligência aumenta em 1, e você recebe proficiência na perícia Conhecimento.
+Estudos Echt: Seu valor de Mente aumenta em 1, e você recebe proficiência na perícia Conhecimento.
 
 Reiatsu Aumentada: Você recebe um aumento maior de Reiatsu, começando com 5 pontos adicionais de Reiatsu inicial e, para cada nível de classe, você recebe +2 de Reiatsu adicional.
 
@@ -264,7 +268,7 @@ Treino Intenço: Seu valor de Destreza aumenta em 2.
 
 Determinação: Uma vez por descanso longo, quando falhar em um teste de resistência, você pode repetir o teste, devendo utilizar o novo resultado.
 
-Raciocínio Rápido: Você precisou se esforçar muito mais do que um Quincy de linhagem nobre para alcançar o mesmo nível de habilidade. Esse esforço aprimorou sua capacidade de analisar situações rapidamente. Ao realizar um teste de iniciativa, você pode utilizar seu valor de Inteligência no lugar do valor de Destreza.
+Raciocínio Rápido: Você precisou se esforçar muito mais do que um Quincy de linhagem nobre para alcançar o mesmo nível de habilidade. Esse esforço aprimorou sua capacidade de analisar situações rapidamente. Ao realizar um teste de iniciativa, você pode utilizar seu valor de Mente no lugar do valor de Destreza.
 
 ## Visored
 
@@ -303,3 +307,166 @@ Reiatsu Hollow: Você recebe um aumento maior de Reiatsu, começando com 5 ponto
 Vitalidade Unificada: O Hollow já se uniu a sua essência, tanto que seu corpo se torna mais robusto, você começa com 5 pontos de vida adicionais.
 
 Corpo Hollowdificado: Você recebe 2 de redução de dano contra danos físicos.
+
+## Hollow
+
+Hollows são almas que perderam o coração e passaram a viver da fome. As Origens Hollow permitem jogar com um deles: Hollow Comum, Gillian, Adjuchas ou Vasto Lorde. Os personagens Hollow usam as classes Hueco e Vazio (Capítulo 3), a Resurrección (Capítulo 9) e os Talentos Hollow.
+
+As Origens Hollow seguem a escala Hollow do cenário e têm o mesmo formato das demais Origens: Traços de Origem e duas Variações cada. Todas liberam a mesma opção de classe: personagens de Origem Hollow escolhem **Hueco** ou **Vazio**.
+
+| Origem | Classes liberadas |
+|---|---|
+| Hollow Comum | Hueco ou Vazio |
+| Gillian | Hueco ou Vazio |
+| Adjuchas | Hueco ou Vazio |
+| Vasto Lorde (Latente) | Hueco ou Vazio |
+
+### Regras comuns das Origens Hollow
+
+- **Máscara Hollow:** seu rosto ou parte do corpo carrega um fragmento de máscara. Você tem vantagem em testes de Percepção Espiritual e é detectado por Shinigamis e Quincys como Hollow. Nenhum disfarce comum esconde isso.
+- **Dano de Energia:** seus ataques naturais e armas naturais podem causar dano de Energia no lugar do dano físico, à sua escolha. O dano de Energia ignora o Hierro (veja a seção Hierro).
+- **Fome:** uma vez por rodada, ao reduzir uma criatura hostil a 0 PV, você recupera PR iguais ao seu nível. O Mestre pode limitar a Fome de Hollows que não devoram almas.
+- **Evolução automática:** a Origem Hollow evolui sozinha com o nível, em uma única linha: **Hollow Comum** (níveis 1 a 4), **Gillian** (a partir do 5º nível) e **Adjuchas** (a partir do 10º nível).
+
+Atenção: diferente das outras Origens, a Origem Hollow muda durante a campanha. Ao evoluir, você troca os traços da Origem antiga pelos da nova, incluindo o bônus de atributo da Variação antiga (os bônus **não** se acumulam), e escolhe a Variação do novo estágio.
+
+- **O Gillian Fusão não evolui.** É o preço dos Pontos de Vida extras. Só o Gillian **Mente Clara** evolui para Adjuchas.
+- **O Adjuchas não evolui para Vasto Lorde.** No cenário, ninguém sabe como alguém chega a Vasto Lorde, e a teoria mais forte é que ele já nasce assim. Por isso o Vasto Lorde é uma Origem de nascimento, escolhida na criação do personagem.
+- Um Hollow que perdeu parte do corpo para outro Hollow não evolui mais. O Mestre pode usar isso como consequência narrativa.
+
+Exemplo: Nagi cria um Hollow Comum Predador. Nos níveis 1 a 4 usa os traços do Hollow Comum e o Força +1 do Predador. No 5º nível vira Gillian: perde os traços do Hollow Comum, incluindo o Força +1, e escolhe uma Variação de Gillian. Para chegar a Adjuchas no 10º nível, precisa ter escolhido a Variação Mente Clara.
+
+### Hollow Comum
+
+Hollows que ainda não se fundiram a outros. Evoluem para Gillian no 5º nível. Primitivos, famintos e imprevisíveis, quase sempre têm forma monstruosa, mas um personagem Hollow Comum pode ter forma humanoide.
+
+#### Traços do Hollow Comum
+
+- **Deslocamento:** 9 metros.
+- **Longevidade:** Hollows não envelhecem; vivem enquanto devoram almas. Séculos de existência são comuns.
+- **Tamanho:** até 3 metros de altura.
+- **Instinto Hollow:** você tem vantagem em testes de Percepção e Iniciativa contra emboscadas e nunca pode ser surpreendido enquanto estiver consciente.
+- **Corpo Hollow:** você recebe **RD 2** contra dano físico.
+
+#### Variações do Hollow Comum
+
+**Predador.** Você nasceu para caçar.
+
+- **Corpo Forte:** Força +1.
+- **Ataque Feroz:** quando acertar um ataque corpo a corpo, causa +2 de dano.
+
+**Persistente.** Você sobrevive onde outros morrem.
+
+- **Corpo Reforçado:** Constituição +1 e +5 PV iniciais.
+- **Cicatrização Hollow:** no início de cada turno seu em combate, você recupera 1 PV (precisa ter pelo menos 1 PV).
+
+### Gillian
+
+Acesso: Origem inicial, ou evolução do Hollow Comum no 5º nível.
+
+Os Menos Grandes são Hollows fundidos a centenas de outros: colossais, lentos para pensar e enormes para atacar. Um Gillian jogador é um gigante dominado por muitas vozes.
+
+#### Traços do Gillian
+
+- **Deslocamento:** 9 metros.
+- **Longevidade:** como a de um Hollow, mas com a consciência fragmentada ao longo dos séculos.
+- **Tamanho:** até 6 metros de altura.
+- **Corpo Colossal:** vantagem em testes de Preparo Físico e desvantagem em Furtividade. Criaturas Médias ou menores não podem empurrá-lo.
+- **Hierro Menor:** você recebe **RD 5** contra dano físico.
+- **Kumon:** uma vez por dia, você abre uma fenda para o Hueco Mundo (1 hora para abrir). Funciona como a Garganta do cenário, com aprovação do Mestre.
+
+#### Variações do Gillian
+
+**Fusão.** Você é um amálgama de muitas almas.
+
+- **Muitas Vozes:** +5 PV iniciais e +2 PV por nível de classe.
+- **Alvo Enorme:** seu tamanho é uma desvantagem; sua CR é reduzida em 1.
+- O Gillian Fusão **não evolui** para Adjuchas.
+
+**Mente Clara.** Seu centro de consciência se manteve dentro da massa. É o caminho natural para o Adjuchas.
+
+- **Vontade Forte:** Espírito +1 e vantagem em testes de Determinação.
+- **Reiatsu Concentrada:** +5 PR iniciais e +1 PR por nível de classe.
+- Seu Hierro Menor passa a **RD 3**: você troca resistência por foco.
+
+### Adjuchas
+
+Acesso: apenas por evolução do Gillian Mente Clara, no 10º nível. Não é Origem inicial.
+
+Gillians que desenvolveram consciência. Menores, mais rápidos, mais inteligentes e mais raros, vivem solitários ou como guardiões de Gillians.
+
+#### Traços do Adjuchas
+
+- **Deslocamento:** 12 metros.
+- **Longevidade:** praticamente imortal enquanto houver Reishi para devorar.
+- **Tamanho:** até 2,5 metros.
+- **Hierro:** você recebe **RD 5** contra dano físico.
+- **Corpo Ágil:** você usa a ação Desengajar como ação bônus.
+- **Regeneração de Alta Velocidade:** no início de cada turno seu em combate, você recupera PV iguais ao seu bônus de proficiência (precisa ter pelo menos 1 PV).
+- **Cero Menor:** você conhece a técnica Bala de Cero (alcance 18 m, dano de Energia, 5 PR). A classe Hueco tem o Cero completo; veja a seção Cero.
+
+#### Variações do Adjuchas
+
+**Guardião.** Você lidera outros Hollows.
+
+- **Presença Hollow:** Espírito +1 e proficiência em Presença.
+- **Comando:** uma vez por combate, com uma ação bônus, um Hollow aliado a até 18 m recebe +2 de dano até o fim do próximo turno dele.
+
+**Caçador.** Você caça sozinho.
+
+- **Ataque Focado:** +2 de dano em ataques corpo a corpo.
+- **Instinto Afiado:** vantagem em testes de Percepção e Iniciativa. Ao causar dano a uma criatura, a CR dela cai em 1 até o fim do próximo turno dela (não acumula).
+
+### Vasto Lorde (Latente)
+
+O ápice da evolução Hollow. Raros, poderosos e quase sempre inteligentes. Você escolhe esta Origem na criação do personagem: sua máscara e sua natureza são de Vasto Lorde desde o início, mas o poder se manifesta com o tempo.
+
+#### Traços do Vasto Lorde
+
+- **Deslocamento:** 9 metros (12 metros no 10º nível).
+- **Longevidade:** milênios.
+- **Tamanho:** até 2,5 metros.
+- **Natureza Latente:** seus traços crescem com o nível, conforme a tabela.
+
+| Nível | Traços liberados |
+|---|---|
+| 1º | Máscara Hollow, Instinto Hollow e Corpo Hollow (**RD 2** contra dano físico) |
+| 5º | **Hierro: RD 5** contra dano físico; **Regeneração de Alta Velocidade** (recupera PV iguais à proficiência no início de cada turno em combate, se tiver 1 PV ou mais) |
+| 10º | **RD 2** contra dano esotérico; **Sonido** (funciona como o Shunpo do Zanjutsu, e seus próximos dois ataques têm vantagem nas jogadas de dano); **Aura Predatória**; deslocamento 12 m |
+
+**Aura Predatória.** Criaturas hostis a até 3 m no início do turno delas fazem um teste de Espírito (CD 8 + proficiência + seu Espírito). Quem falha tem desvantagem no próximo ataque contra você. Criaturas de nível menor que o seu falham automaticamente.
+
+O Vasto Lorde tem o Instinto Hollow do Hollow Comum a partir do 1º nível.
+
+#### Variações do Vasto Lorde
+
+Escolhidas na criação do personagem. Ambas começam a funcionar no 10º nível.
+
+**Soberano.** Você domina pela vontade.
+
+- **Mente Soberana (10º):** Espírito +1 e CR +1.
+- **Ordem Real (10º):** uma vez por dia, você ordena uma ação a um Hollow de nível menor que o seu. Ele obedece como aliado por 1 minuto (salvaguarda de Espírito, CD de classe, anula).
+
+**Predador Supremo.** Você é a presença mais letal do campo.
+
+- **Arma Real (10º):** +3 de dano em ataques corpo a corpo.
+- **Perseguição (10º):** CR +1 e, quando um inimigo erra você em corpo a corpo, você pode atacá-lo com sua reação.
+
+### Corpo Hollow e Hierro
+
+#### Corpo Hollow
+
+O Corpo Hollow aparece em dois lugares, e os dois valem ao mesmo tempo:
+
+- **Na Origem:** uma Resistência a Dano (RD) física fixa, que cresce com a evolução (RD 2 no Hollow Comum, RD 5 no Gillian Fusão e no Adjuchas, e assim por diante).
+- **Na classe:** Pontos de Vida extras a cada nível. O Hueco recebe +6 PV no 1º nível e +9 PV por nível seguinte. O Vazio recebe +6 PV por nível e, a partir do 15º nível, mais PV por nível (veja a classe Vazio).
+
+#### Hierro
+
+O Hierro é a pele endurecida de reiatsu dos Hollows.
+
+- **Dano físico:** é reduzido. Em personagens Hollow, o Hierro aparece na Origem como RD física (Hierro Menor do Gillian, Hierro do Adjuchas e do Vasto Lorde). Em ameaças Hollow do Mestre, o Hierro reduz o dano físico à metade.
+- **Dano esotérico e de Energia:** **não** é reduzido pelo Hierro. Isso inclui Shikai e Bankai liberados, Resurrección, Cero, Kidō e Shunkō.
+- **O dano de Energia dos Hollows ignora o Hierro** dos outros Hollows. Por isso as armas naturais podem causar dano de Energia à sua escolha, e o Cero e o Poder Inato sempre causam.
+
+Atenção: a RD de Origem e a RD da Essência Pele de Aço seguem a regra das Essências (Capítulo 4): uma Essência de redução por tipo de dano. Pele de Aço, Resiliente e Revestimento de Reiatsu não somam no mesmo tipo de dano; vale a maior.
