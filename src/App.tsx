@@ -12,6 +12,7 @@ import Ficha from "./pages/Ficha";
 import Conta from "./pages/Conta";
 import { RequerLogin } from "./components/Auth";
 import { efeito } from "./lib/som";
+import { EfeitoLiberacao } from "./components/EfeitoLiberacao";
 
 export default function App() {
   const [busca, setBusca] = useState(false);
@@ -46,6 +47,7 @@ export default function App() {
     <>
       <Topbar onBuscar={() => setBusca(true)} />
       <Busca aberto={busca} onFechar={() => setBusca(false)} />
+      <EfeitoLiberacao />
       <Routes>
         <Route path="/" element={<Capa />} />
         <Route path="/livro" element={<Livro />} />
