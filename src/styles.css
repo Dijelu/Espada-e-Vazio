@@ -376,3 +376,7 @@ img { max-width: 100%; }
 .aviso a { color: var(--accent); border-bottom: 1px solid var(--accent); font-weight: 600; }
 .aviso-base { border-left-color: var(--muted); }
 .aviso-base b { color: var(--muted); }
+
+.hero-sym { width: clamp(72px, 9vw, 120px); height: auto; display: block; animation: sym-entra .8s ease both; filter: drop-shadow(0 4px 18px color-mix(in srgb, var(--accent) 45%, transparent)); }
+@keyframes sym-entra { from { opacity: 0; transform: scale(.8) rotate(-6deg); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .hero-sym { animation: none; } }
