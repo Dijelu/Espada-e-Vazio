@@ -2510,7 +2510,8 @@ Se não quiser um modelo pronto, siga o mesmo caminho da Bankai (Capítulo 5, �
 2. **Aparência:** descreva o corpo, a máscara e a arma natural na forma liberada.
 3. **Técnica de assinatura:** ela é a do seu Caminho (veja acima). Você só descreve como ela se manifesta.
 4. **Traço:** crie um efeito pequeno e claro, na escala dos modelos prontos (+3 metros de alcance, voo, +proficiência em PV temporários, uma reação por rodada e assim por diante). Nada de dano fixo grande: o dano já vem da forma.
-5. **Ponto fraco:** toda Resurrección tem um preço, como menos CR contra um tipo de ataque, menos deslocamento ou um custo extra. 6. **Ações:** monte de duas a três técnicas no padrão da Bankai, com ação, custo e dano: uma básica de 8 a 10 PR, uma de apoio e uma final de 30 PR (a assinatura do Caminho conta como uma delas, a 12 PR). Cada técnica vira uma carta na ficha.
+5. **Ponto fraco:** toda Resurrección tem um preço, como menos CR contra um tipo de ataque, menos deslocamento ou um custo extra.
+6. **Ações:** monte de duas a três técnicas no padrão da Bankai, com ação, custo e dano: uma básica de 8 a 10 PR, uma de apoio e uma final de 30 PR (a assinatura do Caminho conta como uma delas, a 12 PR). Cada técnica vira uma carta na ficha.
 
 O Mestre aprova o traço, o ponto fraco e as ações.
 
