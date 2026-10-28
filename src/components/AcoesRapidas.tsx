@@ -1,3 +1,4 @@
+import { Icone } from "./Icone";
 import { useState } from "react";
 import { Passo } from "./FichaPecas";
 import type { Rolagens } from "./Rolador";
@@ -73,9 +74,9 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
       return f.nivel >= 20 ? Math.ceil(base / 2) : base;
     }
     if (id === "mascara") return 5 * c.prof;
-    if (id === "vollstandig") return 60;
-    if (id === "bankai") return f.formas?.bankai?.custo ?? 0;
-    if (id === "shikai") return f.formas?.shikai?.custo ?? 0;
+    if (id === "vollstandig") return Math.max(1, 60 - c.reducaoLib.vollstandig);
+    if (id === "bankai") return Math.max(1, (f.formas?.bankai?.custo ?? 0) - c.reducaoLib.bankai);
+    if (id === "shikai") return Math.max(1, (f.formas?.shikai?.custo ?? 0) - c.reducaoLib.shikai);
     return 0;
   };
 
@@ -93,7 +94,7 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
   return (
     <section className="caixa acoes" aria-label="Ações rápidas">
       <div className="acoes-linha">
-        <button type="button" className="btn btn-paper" onClick={() => r.d20("Iniciativa", c.iniciativa)}>🎲 Iniciativa</button>
+        <button type="button" className="btn btn-paper" onClick={() => r.d20("Iniciativa", c.iniciativa)}><Icone nome="dado" /> Iniciativa</button>
         <button type="button" className="btn btn-paper" onClick={curto} disabled={e.curtosUsados >= 2}>Descanso curto ({2 - e.curtosUsados} restante{e.curtosUsados === 1 ? "" : "s"})</button>
         <button type="button" className="btn btn-paper" onClick={longo}>Descanso longo</button>
         <button type="button" className="btn btn-paper" onClick={encerrar}>Encerrar combate</button>

@@ -1,3 +1,4 @@
+import { Icone } from "./Icone";
 import { useEffect, useState } from "react";
 import { classePorId, type Ficha, type FormaLib, type HabForma, type TipoForma } from "../regras/ficha";
 import {
@@ -403,7 +404,7 @@ function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg }: { f: Ficha; c: 
           )}
           {/\d/.test(dano) && (
             <button type="button" className="btn-mini" disabled={!ativa} onClick={() => r.expr(h.nome, dano)}>
-              🎲 {dano}
+              <Icone nome="dado" /> {dano}
             </button>
           )}
         </div>

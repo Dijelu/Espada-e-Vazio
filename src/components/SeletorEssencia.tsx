@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { createPortal } from "react-dom";
 import { ESSENCIAS, ROTULO_GRUPO, gruposDaClasse, type EssenciaLivro, type GrupoEssencia } from "../regras/essencias";
 
 interface Props {
@@ -8,11 +9,13 @@ interface Props {
   existentes: string[];
   onEscolher: (nome: string) => void;
   rotulo?: string;
+  /** classe do botão que abre a janela */
+  className?: string;
 }
 
 const norm = (s: string) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
 
-export function SeletorEssencia({ tipo, existentes, onEscolher, rotulo = "Escolher essência do livro" }: Props) {
+export function SeletorEssencia({ tipo, existentes, onEscolher, rotulo = "Escolher essência do livro", className = "btn btn-paper" }: Props) {
   const [aberto, setAberto] = useState(false);
   const [busca, setBusca] = useState("");
   const [grupo, setGrupo] = useState<GrupoEssencia | "classe">("classe");
@@ -50,10 +53,10 @@ export function SeletorEssencia({ tipo, existentes, onEscolher, rotulo = "Escolh
 
   return (
     <>
-      <button type="button" className="btn btn-paper" onClick={() => setAberto(true)}>
+      <button type="button" className={className} onClick={() => setAberto(true)}>
         {rotulo}
       </button>
-      {aberto && (
+      {aberto && createPortal(
         <div className="seletor-fundo" role="dialog" aria-modal="true" aria-label="Escolher essência" onClick={(e) => e.target === e.currentTarget && setAberto(false)}>
           <div className="seletor">
             <div className="seletor-topo">
@@ -79,6 +82,7 @@ export function SeletorEssencia({ tipo, existentes, onEscolher, rotulo = "Escolh
                     <button type="button" className="seletor-item" onClick={() => setVista(aberta ? null : e)} aria-expanded={aberta}>
                       <b>{e.nome}</b>
                       <small>{ROTULO_GRUPO[e.grupo]}{e.repetivel ? " · repetível" : ""}{e.etapas.length ? ` · ${e.etapas.length + 1} etapas` : " · sem etapas"}</small>
+                      {!aberta && <span className="seletor-previa">{e.texto.replace(/^\([^)]*\)\s*/, "")}</span>}
                       {ja && <em>já tem</em>}
                     </button>
                     {aberta && (
@@ -115,7 +119,8 @@ export function SeletorEssencia({ tipo, existentes, onEscolher, rotulo = "Escolh
               <button className="btn-mini" type="submit">Anotar</button>
             </form>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );

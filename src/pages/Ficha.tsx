@@ -1,5 +1,7 @@
+import { Icone } from "../components/Icone";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { SeletorEssencia } from "../components/SeletorEssencia";
+import { NomeEssencia, TrocarEssencia } from "../components/EssenciaPecas";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { CartasHabilidades, CondicoesAtivas, EfeitosAtivos } from "../components/CartasResumo";
 import { AcoesRapidas } from "../components/AcoesRapidas";
@@ -313,7 +315,7 @@ export default function Ficha() {
                         disabled={r.fixa}
                         onChange={() => alterar({ pericias: f.pericias.includes(p.id) ? f.pericias.filter((x) => x !== p.id) : [...f.pericias, p.id] })}
                       />
-                      <span>{p.nome}{r.fixa && " 🔒"}</span>
+                      <span>{p.nome}{r.fixa && <> <Icone nome="cadeado" tamanho={14} titulo="fixa" /></>}</span>
                       <em>{mod(r.total)}</em>
                       <BotaoRolar r={rol} rotulo={p.nome} bonus={r.total} />
                     </label>
@@ -331,8 +333,9 @@ export default function Ficha() {
             <h3>Essências Espirituais</h3>
             <p className="ajuda">Pontos: {c.pontosEssencia.usados} de {c.pontosEssencia.total} usados. Os nomes e efeitos estão no <Link to="/livro/essencias-espirituais" target="_blank">Capítulo 4</Link>.</p>
             {f.essencias.map((e) => (
-              <div className="linha-edit" key={e.id}>
-                <input value={e.nome} onChange={(ev) => alterar({ essencias: f.essencias.map((x) => (x.id === e.id ? { ...x, nome: ev.target.value } : x)) })} aria-label="Nome da essência" />
+              <div className="linha-edit linha-ess" key={e.id}>
+                <NomeEssencia nome={e.nome} etapa={e.etapa} />
+                <TrocarEssencia tipo={classe?.tipo} existentes={f.essencias.map((x) => x.nome)} onTrocar={(nome) => alterar({ essencias: f.essencias.map((x) => (x.id === e.id ? { ...x, nome, etapa: 1 } : x)) })} />
                 <Passo valor={e.etapa} min={1} max={5} rotulo={`etapa de ${e.nome}`} onChange={(v) => alterar({ essencias: f.essencias.map((x) => (x.id === e.id ? { ...x, etapa: v } : x)) })} />
                 <label className="mini"><input type="checkbox" checked={!!e.gratis} onChange={(ev) => alterar({ essencias: f.essencias.map((x) => (x.id === e.id ? { ...x, gratis: ev.target.checked } : x)) })} /> grátis</label>
                 <button className="link-perigo" onClick={() => alterar({ essencias: f.essencias.filter((x) => x.id !== e.id) })}>Remover</button>
@@ -578,7 +581,7 @@ function Evolucao({ f, c, alterar, subir, onForma, onSub }: { f: TFicha; c: Retu
 function LinhaAtaque({ r, nome, bonus, dano }: { r: Rolagens; nome: string; bonus: number; dano: string }) {
   return (
     <span className="rolar-grupo">
-      <button type="button" className="rolar" onClick={() => r.d20(`Acerto: ${nome}`, bonus)} title="Rolar acerto">🎲 Acerto</button>
+      <button type="button" className="rolar" onClick={() => r.d20(`Acerto: ${nome}`, bonus)} title="Rolar acerto"><Icone nome="dado" /> Acerto</button>
       <button type="button" className="rolar" disabled={!dano} onClick={() => r.expr(`Dano: ${nome}`, dano)} title="Rolar dano">Dano</button>
       <button type="button" className="rolar" disabled={!dano} onClick={() => r.expr(`Dano crítico: ${nome}`, dano, true)} title="Rolar dano crítico (dados dobrados)">Crítico</button>
     </span>

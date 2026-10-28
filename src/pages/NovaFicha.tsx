@@ -1,5 +1,7 @@
+import { Icone } from "../components/Icone";
 import { useEffect, useMemo, useState } from "react";
 import { SeletorEssencia } from "../components/SeletorEssencia";
+import { NomeEssencia, TrocarEssencia } from "../components/EssenciaPecas";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../components/Auth";
 import { Campo, LinhaAtributos, Passo, SeletorVariacoes, novoId } from "../components/FichaPecas";
@@ -317,7 +319,7 @@ export default function NovaFicha() {
                   return (
                     <label key={p.id} className={`pericia ${marcada ? "on" : ""}`}>
                       <input type="checkbox" checked={marcada} disabled={fixa || (!marcada && escolhidas.length >= c.quantasPericias)} onChange={() => alternarPericia(p.id)} />
-                      <span>{p.nome}{fixa && " 🔒"}</span>
+                      <span>{p.nome}{fixa && <> <Icone nome="cadeado" tamanho={14} titulo="fixa" /></>}</span>
                       <em>{mod(c.pericias[p.id].total)}</em>
                     </label>
                   );
@@ -372,7 +374,8 @@ export default function NovaFicha() {
             <ul className="lista-ess">
               {f.essencias.filter((e) => !e.id.startsWith("origem-")).map((e) => (
                 <li key={e.id}>
-                  <span>{e.nome}</span>
+                  <NomeEssencia nome={e.nome} etapa={e.etapa} />
+                  <TrocarEssencia tipo={classe?.tipo} existentes={f.essencias.map((x) => x.nome)} onTrocar={(nome) => mudar({ essencias: f.essencias.map((x) => (x.id === e.id ? { ...x, nome, etapa: 1 } : x)) })} />
                   <Passo valor={e.etapa} min={1} max={5} rotulo={`etapa de ${e.nome}`} onChange={(v) => mudar({ essencias: f.essencias.map((x) => (x.id === e.id ? { ...x, etapa: v } : x)) })} />
                   <label className="mini"><input type="checkbox" checked={!!e.gratis} onChange={(ev) => mudar({ essencias: f.essencias.map((x) => (x.id === e.id ? { ...x, gratis: ev.target.checked } : x)) })} /> grátis</label>
                   <button type="button" className="link-perigo" onClick={() => mudar({ essencias: f.essencias.filter((x) => x.id !== e.id) })}>Remover</button>

@@ -52,7 +52,7 @@ export default function Livro() {
           {capitulos.map((c, i) => (
             <Link key={c.slug} to={`/livro/${c.slug}`} className={`bar ${i < 2 ? "big" : ""}`}>
               <div className={`bar-num ${c.no === 0 || c.slug === "homenagens-e-fontes" ? "intro" : ""}`}>
-                {c.no === 0 ? "Intro" : c.slug === "homenagens-e-fontes" ? "Fim" : c.no}
+                {c.no === 0 ? <img className="bar-emblema" src="/art/sym-intro.png" alt="Introdução" /> : c.slug === "homenagens-e-fontes" ? "Fim" : c.no}
               </div>
               <div className="bar-text">
                 <b>{c.title}</b>

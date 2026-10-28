@@ -5,9 +5,11 @@ import App from "./App";
 import { AuthProvider } from "./components/Auth";
 import { ThemeProvider } from "./components/Theme";
 import { iniciarSom } from "./lib/som";
+import { iniciarProtecao } from "./lib/protecao";
 import "./styles.css";
 
 iniciarSom();
+iniciarProtecao();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

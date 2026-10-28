@@ -1,3 +1,4 @@
+import { Icone } from "./Icone";
 import { useCallback, useState } from "react";
 import { efeito as som } from "../lib/som";
 import { rolarD20, rolarExpressao, type Modo, type Rolagem } from "../lib/dados";
@@ -32,7 +33,7 @@ export type Rolagens = ReturnType<typeof useRolagens>;
 export function BotaoRolar({ r, rotulo, bonus, texto }: { r: Rolagens; rotulo: string; bonus: number; texto?: string }) {
   return (
     <button type="button" className="rolar" onClick={() => r.d20(rotulo, bonus)} aria-label={`Rolar ${rotulo}`} title={`Rolar ${rotulo}`}>
-      {texto ?? "🎲"}
+      {texto ?? <Icone nome="dado" />}
     </button>
   );
 }
@@ -52,7 +53,7 @@ export function PainelRolagens({ r }: { r: Rolagens }) {
     <aside className={`rolador ${r.aberto ? "aberto" : ""}`} aria-label="Rolagens de dados">
       {!r.aberto && (
         <button type="button" className="rolador-botao" onClick={() => r.setAberto(true)} aria-label="Abrir rolagens de dados">
-          🎲 {ultima ? <b>{ultima.total}</b> : "Dados"}
+          <Icone nome="dado" /> {ultima ? <b>{ultima.total}</b> : "Dados"}
         </button>
       )}
       {r.aberto && (

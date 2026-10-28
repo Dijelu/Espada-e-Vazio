@@ -57,19 +57,34 @@ export function EfeitosAtivos({ f, c }: { f: Ficha; c: Calculo }) {
   if (c.crEvasao) chips.push(`Evasão Aprimorada: CR +${Math.floor(c.prof / 2)}`);
   if (c.iniciativa !== c.atr.des) chips.push(`Iniciativa com Mente (${mod(c.iniciativa)})`);
   if (c.desloc !== 9) chips.push(`Deslocamento ${c.desloc} m`);
+  if (c.cdKido !== c.cd) chips.push(`CD dos Kidōs ${c.cdKido}`);
   if (f.estado.liberado) chips.push(`Liberação: ${{ shikai: "Shikai", bankai: "Bankai", resurreccion: "Resurrección", mascara: "Máscara Hollow", "": "" }[f.estado.liberado]}`);
 
   return (
     <div className="caixa">
       <h3>Efeitos ativos</h3>
       {chips.length > 0 && <div className="chips">{chips.map((x) => <span className="chip" key={x}>{x}</span>)}</div>}
-      {lista.length === 0 && chips.length === 0 && <p className="ajuda">Nenhum efeito contínuo.</p>}
+      {lista.length === 0 && chips.length === 0 && c.passivas.length === 0 && <p className="ajuda">Nenhum efeito contínuo.</p>}
       {lista.map((e, i) => (
         <details className="poder-livro" key={e.nome + i}>
           <summary><b>{e.nome}</b> <small>{e.fonte}</small></summary>
           <p>{e.texto}</p>
         </details>
       ))}
+      {c.passivas.length > 0 && (
+        <>
+          <h4 className="sub-passivas">Talentos e essências</h4>
+          {c.passivas.map((p, i) => (
+            <details className="poder-livro" key={p.nome + i}>
+              <summary>
+                <b>{p.nome}</b> <small>{p.fonte}</small>
+                {p.auto ? <span className="chip chip-auto">{p.efeito ? `aplicado: ${p.efeito}` : "aplicado"}</span> : <span className="chip chip-manual">usar na mesa</span>}
+              </summary>
+              <p>{p.texto}</p>
+            </details>
+          ))}
+        </>
+      )}
     </div>
   );
 }

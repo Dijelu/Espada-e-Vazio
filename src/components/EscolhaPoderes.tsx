@@ -1,3 +1,4 @@
+import { Icone } from "./Icone";
 import { useMemo, useState } from "react";
 import {
   KIDOS,
@@ -119,7 +120,7 @@ export function EscolhaPoderes({ f, mudar }: { f: Ficha; mudar: (p: Partial<Fich
                   const trava = talentoLiberado(t, f);
                   const cheio = !marcado && escolhidos.length >= slots;
                   return (
-                    <Dica key={t.id} balao={<><b>{t.nome}</b><small>{trava ? `🔒 ${trava}` : t.req || `${t.nivel}º nível`}</small><p>{t.texto}</p></>}>
+                    <Dica key={t.id} balao={<><b>{t.nome}</b><small>{trava ? `Bloqueado: ${trava}` : t.req || `${t.nivel}º nível`}</small><p>{t.texto}</p></>}>
                       {(alternar) => (
                         <div className={`tal ${marcado ? "on" : ""} ${trava ? "trava" : ""}`}>
                           <button
@@ -129,8 +130,8 @@ export function EscolhaPoderes({ f, mudar }: { f: Ficha; mudar: (p: Partial<Fich
                             disabled={(!!trava && !marcado) || cheio}
                             aria-pressed={marcado}
                           >
-                            <b>{marcado ? "✓ " : ""}{t.nome}</b>
-                            <small>{trava ? `🔒 ${trava}` : t.req || `${t.nivel}º nível`}</small>
+                            <b>{marcado ? <><Icone nome="check" tamanho={15} /> </> : null}{t.nome}</b>
+                            <small>{trava ? <><Icone nome="cadeado" tamanho={13} /> {trava}</> : t.req || `${t.nivel}º nível`}</small>
                           </button>
                           <button type="button" className="tal-ver" onClick={alternar} aria-label={`Ler ${t.nome}`}>Ler</button>
                         </div>

@@ -1,3 +1,4 @@
+import { atributosPassivos, passivasDaFicha, type PassivaAtiva, type EfeitoSoma } from "./passivas";
 /* Regras de criação e cálculo da ficha (Espada & vazio). Tudo o que está aqui vem dos capítulos 1, 2, 3, 4 e 8 do livro. */
 
 export type Atr = "for" | "des" | "con" | "men" | "esp";
@@ -727,6 +728,12 @@ export interface Calculo {
   cd: number;
   proximoXp: number | null;
   avisos: string[];
+  /** efeitos passivos de talentos e essências (os automáticos já estão somados acima) */
+  passivas: PassivaAtiva[];
+  /** bônus na CD dos Kidōs */
+  cdKido: number;
+  /** quanto cada essência reduz o custo de liberação */
+  reducaoLib: EfeitoSoma["reducaoLib"];
 }
 
 const soma = (r: Record<Atr, number>) => ATRIBUTOS.reduce((s, a) => s + (r[a.id] ?? 0), 0);
@@ -738,9 +745,10 @@ export function calcular(f: Ficha): Calculo {
   const prof = proficiencia(n);
   const avisos: string[] = [];
 
+  const pas = atributosPassivos(f);
   const atr = zero();
   ATRIBUTOS.forEach(({ id }) => {
-    atr[id] = (f.base[id] ?? 0) + ef.atr[id] + (f.livre[id] ?? 0) + (f.nivelAtr[id] ?? 0);
+    atr[id] = (f.base[id] ?? 0) + ef.atr[id] + (f.livre[id] ?? 0) + (f.nivelAtr[id] ?? 0) + (pas.atr[id] ?? 0);
   });
 
   const pontosNivel = pontosAtributoDeNivel(n);
@@ -756,7 +764,8 @@ export function calcular(f: Ficha): Calculo {
   if (pa.usados > pa.inicial) avisos.push("Você usou mais pontos de atributo do que tem na criação.");
   ATRIBUTOS.forEach(({ id, nome }) => {
     if ((f.base[id] ?? 0) > f.maxInicial) avisos.push(`${nome} passa do máximo de ${f.maxInicial} na criação.`);
-    if (atr[id] > 15) avisos.push(`${nome} passa do limite de 15.`);
+    const lim = pas.limite[id] ?? 15;
+    if (atr[id] > lim) avisos.push(`${nome} passa do limite de ${lim}.`);
   });
   if (pa.nivelUsados > pa.nivel) avisos.push("Você gastou mais pontos de atributo de nível do que ganhou.");
   if (pa.livreUsados > pa.livre) avisos.push("Você gastou mais pontos livres de variação do que a Origem dá.");
@@ -798,10 +807,15 @@ export function calcular(f: Ficha): Calculo {
     deslocExtra = 6 * (pk["velocidade"] ?? 0);
   }
 
+  const { soma: px, lista: passivas } = passivasDaFicha(f, { atr, prof, n });
+  pv += px.pv;
+  pr += px.pr;
+  cr += px.cr;
+
   const saves = {} as Calculo["saves"];
   const fixos = c?.saves ?? [];
   ATRIBUTOS.forEach(({ id }) => {
-    const p = fixos.includes(id) || f.saveExtra.includes(id);
+    const p = fixos.includes(id) || f.saveExtra.includes(id) || pas.saves.includes(id);
     saves[id] = { prof: p, total: atr[id] + (p ? prof : 0) };
   });
   if (c?.saveEscolha && f.saveExtra.length < c.saveEscolha) avisos.push("Escolha a salvaguarda extra da classe.");
@@ -815,7 +829,8 @@ export function calcular(f: Ficha): Calculo {
   PERICIAS.forEach((p) => {
     const fixa = fixas.includes(p.id);
     const prf = fixa || f.pericias.includes(p.id);
-    pericias[p.id] = { prof: prf, fixa, total: atr[p.atr] + (prf ? prof : 0) };
+    const outro = px.periciaAtr[p.id];
+    pericias[p.id] = { prof: prf, fixa, total: Math.max(atr[p.atr], outro ? atr[outro] : -99) + (prf ? prof : 0) };
   });
 
   const pe = { total: pontosEssencia(n), usados: f.essencias.filter((e) => !e.gratis).reduce((s, e) => s + e.etapa, 0) };
@@ -829,13 +844,13 @@ export function calcular(f: Ficha): Calculo {
     pv,
     pr,
     cr,
-    desloc: ef.desloc + deslocExtra,
-    rdFis: ef.rdFis + rdFisExtra,
-    rdEso: ef.rdEso + rdEsoExtra,
-    iniciativa: ef.iniMente ? Math.max(atr.des, atr.men) : atr.des,
-    danoCorpo: ef.danoCorpo,
+    desloc: ef.desloc + deslocExtra + px.desloc,
+    rdFis: ef.rdFis + rdFisExtra + px.rdFis,
+    rdEso: ef.rdEso + rdEsoExtra + px.rdEso,
+    iniciativa: (ef.iniMente ? Math.max(atr.des, atr.men) : atr.des) + px.iniciativa,
+    danoCorpo: ef.danoCorpo + px.danoCorpo,
     crEvasao,
-    percPassiva: 10 + pericias["percepcao"].total,
+    percPassiva: 10 + pericias["percepcao"].total + px.percPassiva,
     saves,
     pericias,
     quantasPericias: quantas,
@@ -846,6 +861,9 @@ export function calcular(f: Ficha): Calculo {
     cd: 8 + prof + atr.esp,
     proximoXp,
     avisos,
+    passivas,
+    cdKido: 8 + prof + atr.esp + px.cdKido,
+    reducaoLib: px.reducaoLib,
   };
 }
 
