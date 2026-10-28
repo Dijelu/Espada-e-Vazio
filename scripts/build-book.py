@@ -44,77 +44,240 @@ def titulo(s: str) -> str:
     return " ".join(out)
 
 
-def eh_titulo(linha: str) -> bool:
-    letras = [c for c in linha if c.isalpha()]
-    if len(letras) < 4 or len(linha) > 70:
-        return False
-    if re.search(r"\d", linha) and len(letras) < 8:
-        return False
-    return linha == linha.upper()
+import pdfplumber
+from collections import Counter
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import tabelas
+
+DISP = ("HyperBrush", "JasonBrush", "BRUSHIA", "Arrancar", "PWBrusheez")
+IGNORAR = {"não oficial", "nao oficial"}
+CAMPOS = ("Encantamento:", "Requisito:", "Jogada de Ataque:", "Alcance:", "Velocidade:", "Reiatsu:")
+FIM_FRASE = re.compile(r"[.!?:”\")]$")
+INICIO_FRASE = "“\"("
+DOBRO = re.compile(r"\b[A-Za-zÀ-ÿ]{4,}\b")
+NIVEL = re.compile(r"^\d{1,2}°\s+\+\d")
 
 
-def converter(texto: str, titulo_cap: str) -> str:
-    linhas = [l.rstrip() for l in texto.replace("\f", "\n").split("\n")]
-    # remove numeração de página e o cabeçalho "CAPÍTULO N: ..."
-    linhas = [l for l in linhas if not re.fullmatch(r"\s*\d{1,3}\s*", l)]
-    linhas = [l for l in linhas if not re.match(r"^\s*CAP[ÍI]TULO\s+\d+\s*:", l, re.I)]
-    blocos, atual = [], []
-    for l in linhas:
-        if l.strip() == "":
-            if atual:
-                blocos.append(atual)
-                atual = []
+def norm(s: str) -> str:
+    return re.sub(r"\s+", " ", s).strip().lower()
+
+
+def familia(w) -> str:
+    return re.sub(r"^[A-Z]{6}\+", "", w["fontname"])
+
+
+def exibicao(pg):
+    """Linhas em fontes de exibição: (texto, família, tamanho)."""
+    ws = pg.extract_words(use_text_flow=True, extra_attrs=["fontname", "size"])
+    out, cur = [], []
+    for w in ws:
+        if familia(w).startswith(DISP):
+            if cur and abs(cur[-1]["top"] - w["top"]) <= 3 and cur[-1]["fontname"] == w["fontname"]:
+                cur.append(w)
+            else:
+                if cur:
+                    out.append(cur)
+                cur = [w]
         else:
-            atual.append(l.strip())
-    if atual:
-        blocos.append(atual)
-
-    saida = []
-    i = 0
-    while i < len(blocos):
-        b = blocos[i]
-        # letra capitular sozinha: "S" + "er o Mestre..."
-        if len(b) == 1 and len(b[0]) == 1 and b[0].isalpha() and i + 1 < len(blocos):
-            prox = blocos[i + 1]
-            prox[0] = b[0] + prox[0]
-            i += 1
-            continue
-        if len(b) == 1 and eh_titulo(b[0]):
-            saida.append("## " + titulo(b[0]))
-        else:
-            largura = max(len(l) for l in b)
-            par = ""
-            anterior = ""
-            for l in b:
-                if not par:
-                    par = l
-                elif par.endswith("-") and l[:1].islower():
-                    par = par[:-1] + l
-                elif (
-                    re.search(r"[.!?:”\")]$", anterior)
-                    and len(anterior) < largura * 0.8
-                    and l[:1].isupper()
-                ):
-                    saida.append(par)
-                    par = l
-                else:
-                    par = par + " " + l
-                anterior = l
-            saida.append(par)
-        i += 1
-    return f"# {titulo_cap}\n\n" + "\n\n".join(saida) + "\n"
+            if cur:
+                out.append(cur)
+                cur = []
+    if cur:
+        out.append(cur)
+    return [(" ".join(x["text"] for x in l), familia(l[0]), round(l[0]["size"])) for l in out]
 
 
-def pdftotext(p1: int, p2: int) -> str:
-    return subprocess.run(
-        ["pdftotext", "-f", str(p1), "-l", str(p2), PDF, "-"],
+def pagina(pdf, n: int):
+    """Linhas da página n na ordem de leitura, como (tipo, texto)."""
+    raw = subprocess.run(
+        ["pdftotext", "-raw", "-f", str(n), "-l", str(n), PDF, "-"],
         capture_output=True, text=True, check=True,
     ).stdout
+    marc = {}
+    for texto, fam, tam in exibicao(pdf.pages[n - 1]):
+        k = norm(texto)
+        if k in IGNORAR or len(k) < 2:
+            continue
+        if fam.startswith("BRUSHIA") and tam >= 15:
+            marc[k] = "h1"
+        elif fam.startswith(("HyperBrush", "JasonBrush")) and tam in (12, 14) and not re.fullmatch(r"\d+", k):
+            marc[k] = "h2"
+        elif fam.startswith("Arrancar") and tam == 14 and re.fullmatch(r"\d{1,3}", k):
+            marc[k] = "num"
+        elif fam.startswith("JasonBrush") and tam == 11:
+            marc[k] = "banner"
+    def limpa(l):
+        l = l.strip().replace("\u200b", "")
+        return DOBRO.sub(lambda m: m.group(0)[::2] if m.group(0)[::2] * 2 == m.group(0) else m.group(0), l)
 
+    tabs = tabelas.detectar(pdf.pages[n - 1])
+    for t in tabs:
+        t["pal"] = Counter({limpa(k): v for k, v in t["pal"].items()})
+    linhas = []
+    for l in raw.replace("\f", "").split("\n"):
+        l = limpa(l)
+        if not l or re.match(r"^CAP[ÍI]TULO\s+\d+\s*:", l, re.I):
+            continue
+        linhas.append(l)
+    if linhas and re.fullmatch(r"\d{1,3}", linhas[-1]) and marc.get(linhas[-1]) != "num":
+        linhas.pop()
+    out = []
+    emitidas = set()
+    for l in linhas:
+        dono = None
+        toks = l.split()
+        for k, t in enumerate(tabs):
+            c = Counter(toks)
+            if toks and all(t["pal"][x] >= v for x, v in c.items()):
+                dono = k
+                for x, v in c.items():
+                    t["pal"][x] -= v
+                break
+        if dono is not None:
+            if dono not in emitidas:
+                emitidas.add(dono)
+                out.append(("tab", tabs[dono]["md"]))
+            continue
+        t = marc.get(norm(l))
+        if t:
+            out.append((t, l))
+        elif re.fullmatch(r"\d{1,3}", l):
+            continue
+        else:
+            out.append(("txt", l))
+    for k, t in enumerate(tabs):
+        if k not in emitidas:
+            out.append(("tab", t["md"]))
+    return out
+
+
+def tabela_nivel(linhas):
+    """Converte linhas '1° +2 1 D Texto' em tabela Markdown."""
+    rows = []
+    for l in linhas:
+        m = re.match(r"^(\d{1,2}°)\s+(\+\d)\s+(.*)$", l)
+        toks = m.group(3).split() if m else []
+        extra = []
+        while toks and re.fullmatch(r"\d{1,2}|[A-E]|—|-", toks[0]):
+            extra.append(toks.pop(0))
+        rows.append((m.group(1), m.group(2), extra, " ".join(toks)))
+    n_extra = max(len(r[2]) for r in rows)
+    cab = ["Nível", "Proficiência"] + [f"Col. {i + 1}" for i in range(n_extra)] + ["Características"]
+    out = ["| " + " | ".join(cab) + " |", "|" + "---|" * len(cab)]
+    for nv, pr, ex, txt in rows:
+        ex = ex + [""] * (n_extra - len(ex))
+        out.append("| " + " | ".join([nv, pr] + ex + [txt.replace("|", "/")]) + " |")
+    return "\n".join(out)
+
+
+def converter(pdf, p1: int, p2: int, titulo_cap: str) -> str:
+    itens = []
+    for n in range(p1, p2 + 1):
+        itens.extend(pagina(pdf, n))
+    tem_h1 = any(t == "h1" for t, _ in itens)
+
+    lim, i = [], 0
+    while i < len(itens):
+        t, l = itens[i]
+        if t in ("h1", "txt") and len(l) == 1 and l.isalpha() and i + 1 < len(itens) and itens[i + 1][0] == "txt":
+            itens[i + 1] = ("txt", l + itens[i + 1][1])
+            i += 1
+            continue
+        lim.append((t, l))
+        i += 1
+    itens = lim
+
+    larg = sorted(len(l) for t, l in itens if t == "txt" and len(l) > 40)
+    maxlen = larg[int(len(larg) * 0.92)] if larg else 70
+
+    saida, par, estado = [], [], {"item": False}
+
+    def fecha():
+        if par:
+            txt = par[0]
+            for x in par[1:]:
+                txt = txt[:-1] + x if (txt.endswith("-") and x[:1].islower() and not txt.endswith(" -")) else txt + " " + x
+            saida.append(("- " if estado["item"] else "") + txt)
+        par.clear()
+        estado["item"] = False
+
+    def rank(j):
+        return j < len(itens) and itens[j][0] == "txt" and re.search(r"Rank|Quincy|Hakuda", itens[j][1])
+
+    i = 0
+    while i < len(itens):
+        t, l = itens[i]
+        if t == "h1":
+            fecha()
+            saida.append("## " + titulo(l))
+        elif t == "h2":
+            fecha()
+            saida.append(("### " if tem_h1 else "## ") + titulo(l))
+        elif t == "num":
+            fecha()
+            for k in range(len(saida) - 1, -1, -1):
+                if saida[k].startswith("### ") and "·" not in saida[k]:
+                    saida[k] = "### " + l + " · " + saida[k][4:]
+                    break
+        elif t == "tab":
+            fecha()
+            saida.append(l)
+        elif t == "banner":
+            fecha()
+            saida.append("### " + l)
+            if rank(i + 1):
+                saida.append("*" + itens[i + 1][1] + "*")
+                i += 1
+        elif NIVEL.match(l):
+            j = i
+            while j < len(itens) and itens[j][0] == "txt" and NIVEL.match(itens[j][1]):
+                j += 1
+            fecha()
+            saida.append(tabela_nivel([x[1] for x in itens[i:j]]))
+            i = j
+            continue
+        else:
+            campo = next((c for c in CAMPOS if l.startswith(c)), None)
+            if campo:
+                fecha()
+                txt, j = l, i + 1
+                if campo == "Velocidade:" and txt.endswith("Encantamento") and j < len(itens) and itens[j][0] == "txt":
+                    txt += " " + itens[j][1]
+                    j += 1
+                if campo == "Encantamento:":
+                    while j < len(itens) and itens[j][0] == "txt" and not any(itens[j][1].startswith(c) for c in CAMPOS):
+                        txt += " " + itens[j][1]
+                        j += 1
+                saida.append("- **" + campo + "**" + txt[len(campo):])
+                i = j
+                continue
+            if l.startswith("•"):
+                fecha()
+                par.append(l.lstrip("• ").strip())
+                estado["item"] = True
+            elif par:
+                ant = par[-1]
+                if FIM_FRASE.search(ant) and len(ant) < maxlen * 0.8 and (l[:1].isupper() or l[:1] in INICIO_FRASE):
+                    fecha()
+                par.append(l)
+            else:
+                par.append(l)
+        i += 1
+    fecha()
+    corpo = ""
+    for k, b in enumerate(saida):
+        if k:
+            corpo += "\n" if (b.startswith("- ") and saida[k - 1].startswith("- ")) else "\n\n"
+        corpo += b
+    return f"# {titulo_cap}\n\n" + corpo + "\n"
+
+
+PDFOBJ = pdfplumber.open(PDF)
 
 meta = []
 for slug, no, tit, desc, arte, p1, p2 in CAPS:
-    md = converter(pdftotext(p1, p2), tit)
+    md = converter(PDFOBJ, p1, p2, tit)
     nome = f"{no:02d}-{slug}.md"
     (OUT / "livro" / nome).write_text(md, encoding="utf-8")
     meta.append({"slug": slug, "no": no, "title": tit, "desc": desc, "art": arte, "file": nome})

@@ -4,7 +4,7 @@ Este capítulo apresenta treinamentos que permitem ao personagem desenvolver hab
 
 O Treinamento Geral é a única opção que pode ser realizada livremente, permitindo aprimorar determinadas essências espirituais que você já tenha obtido anteriormente.
 
-## Treinamento Geral
+### Treinamento Geral
 
 De todos os treinamentos apresentados neste capítulo, o Treinamento Geral é o que mais contribui para o avanço central de um personagem. Ele permite treinar uma essência espíritual do tipo repetitiva, desde que ela já tenha sido escolhida anteriormente por outro meio.
 
@@ -12,11 +12,23 @@ O personagem pode dedicar dias de treinamento árduo para aprimorar essa essênc
 
 Se o personagem já possui uma essência espíritual repetitiva no nível máximo, mas ainda não a obteve novamente, o Treinamento Geral permite escolhê-la outra vez, porém isso exige 30 dias de treinamento.
 
-## Humanização
+Os Cientistas são inventores e estudiosos que dedicam sua vida a compreender e aprimorar o uso do reiatsu através da tecnologia espiritual. De ferramentas simples a dispositivos complexos, seu trabalho serve tanto aos laboratórios da Soul Society quanto às frentes de combate. São os responsáveis por desenvolver novos equipamentos, aprimorar os existentes e criar soluções práticas que tornam o dia a dia dos Shinigamis mais eficiente. A especialização do Cientista permite fabricar, modificar e projetar itens únicos, seja adaptando equipamentos existentes ou criando algo inteiramente novo. Para desenvolver uma invenção, o jogador deve descrever ao Mestre o propósito e funcionamento do item, explicando de forma coerente como ele utiliza reiatsu, energia espiritual ou componentes físicos. O Mestre então define o impacto da invenção dentro do sistema, garantindo que o resultado seja equilibrado e funcional.
 
-A Técnica de Humanização é um segredo ancestral do Clã dos Lobisomens, transmitido exclusivamente entre seus membros. Por meio de um ritual proibido, o usuário rompe temporariamente sua maldição, assumindo uma forma mais humanoide e recuperando sua aparência humana, ao mesmo tempo que alcança um poder extraordinário.
+O processo de criação exige um teste de Inteligência + metade do seu nível de personagem + bônus de proficiência. A dificuldade (CD) e o tempo necessários dependem do valor e da complexidade da invenção. Em caso de falha, o Cientista pode descobrir inconsistências no projeto ou falhas, sendo obrigado a recomeçar o trabalho. Com sucesso, ele obtém um protótipo funcional, que pode ser reproduzido posteriormente por outros Cientistas com acesso às anotações e esquemas do projeto.
 
-Treinamento: Para aprender essa técnica, o personagem deve pertencer ao Clã dos Lobisomens e receber os ensinamentos de um ancião capaz de realizar o ritual um tempo definido para o mestre.
+O Mestre pode, a qualquer momento, ajustar o funcionamento de uma invenção que se mostre desequilibrada ou problemática, mantendo a coerência do jogo. Afinal, a ciência espiritual é uma área em constante desenvolvimento, e até os projetos mais promissores exigem testes e ajustes contínuos.
+
+Tabela de Complexidade de Invenções Complexidade Classe de Dificuldade Tempo Simples 15 6 horas Moderada 20 1 dia Complexa 25 3 dias Avançada 30 1 semana Extrema 35 2 semanas
+
+### Criando Soluções
+
+Um Cientista é capaz de criar soluções para problemas que parecem não ter saída, sua mente enxerga possibilidades. Um exemplo notável foi Kisuke Urahara, que desenvolveu uma pílula espiritual capaz de deter o roubo de Bankai pelos Quincys, explorando sua vulnerabilidade à energia Hollow. Quando um Quincy roubava uma Bankai, a substância introduzia energia Hollow nela, forçando sua liberação imediata.
+
+Um Cientista pode desenvolver invenções que mudam o rumo de uma batalha ou fortalecem toda uma divisão. Seja criando dispositivos de reforço espiritual ou projetando defesas contra energias inimigas, suas criações têm o poder de transformar o campo de batalha.
+
+## Ciêntista
+
+A Técnica de Humanização é um segredo ancestral do Clã dos Lobisomens, transmitido exclusivamente entre seus membros. Por meio de um ritual proibido, o usuário rompe temporariamente sua maldição, assumindo uma forma mais humanoide e recuperando sua aparência humana, ao mesmo tempo que alcança um poder extraordinário. Treinamento: Para aprender essa técnica, o personagem deve pertencer ao Clã dos Lobisomens e receber os ensinamentos de um ancião capaz de realizar o ritual um tempo definido para o mestre.
 
 Ritual: Para ativar a técnica, o usuário deve arrancar o próprio coração e entregá-lo ao ancião do clã. Ao concluir o ritual, sua vida passa a ser sustentada temporariamente pelo poder obtido.
 
@@ -26,47 +38,9 @@ Imortalidade: Enquanto a Técnica de Humanização estiver ativa, você não mor
 
 Se o período de um dia terminar ou seus pontos de Reiatsu chegarem a 0, você morre.
 
-Ciêntista
+## Humanização
 
-Os Cientistas são inventores e estudiosos que dedicam sua vida a compreender e aprimorar o uso do reiatsu através da tecnologia espiritual. De ferramentas simples a dispositivos complexos, seu trabalho serve tanto aos laboratórios da Soul Society quanto às frentes de combate. São os responsáveis por desenvolver novos equipamentos, aprimorar os existentes e criar soluções práticas que tornam o dia a dia dos Shinigamis mais eficiente. A especialização do Cientista permite fabricar, modificar e projetar itens únicos, seja adaptando equipamentos existentes ou criando algo inteiramente novo. Para desenvolver uma invenção, o jogador deve descrever ao Mestre o propósito e funcionamento do item, explicando de forma coerente como ele utiliza reiatsu, energia espiritual ou componentes físicos. O Mestre então define o impacto da invenção dentro do sistema, garantindo que o resultado seja equilibrado e funcional.
-
-O processo de criação exige um teste de Inteligência + metade do seu nível de personagem + bônus de proficiência. A dificuldade (CD) e o tempo necessários dependem do valor e da complexidade da invenção. Em caso de falha, o Cientista pode descobrir inconsistências no projeto ou falhas, sendo obrigado a recomeçar o trabalho. Com sucesso, ele obtém um protótipo funcional, que pode ser reproduzido posteriormente por outros Cientistas com acesso às anotações e esquemas do projeto.
-
-O Mestre pode, a qualquer momento, ajustar o funcionamento de uma invenção que se mostre desequilibrada ou problemática, mantendo a coerência do jogo. Afinal, a ciência espiritual é uma área em constante desenvolvimento, e até os projetos mais promissores exigem testes e ajustes contínuos.
-
-### Tabela de Complexidade de Invenções Complexidade
-
-### Classe de Dificuldade
-
-Tempo
-
-6 horas
-
-1 semana
-
-Simples
-
-Moderada
-
-Complexa
-
-Avançada
-
-Extrema
-
-## Criando Soluções
-
-1 dia
-
-3 dias
-
-2 semanas
-
-Um Cientista é capaz de criar soluções para problemas que parecem não ter saída, sua mente enxerga possibilidades. Um exemplo notável foi Kisuke Urahara, que desenvolveu uma pílula espiritual capaz de deter o roubo de Bankai pelos Quincys, explorando sua vulnerabilidade à energia Hollow. Quando um Quincy roubava uma Bankai, a substância introduzia energia Hollow nela, forçando sua liberação imediata.
-
-Um Cientista pode desenvolver invenções que mudam o rumo de uma batalha ou fortalecem toda uma divisão. Seja criando dispositivos de reforço espiritual ou projetando defesas contra energias inimigas, suas criações têm o poder de transformar o campo de batalha.
-
-Controlando sua ZanpaKutou Com o passar dos anos, o Shinigami, por meio de intenso treinamento e convivência, funde parte de seu próprio espírito à sua Asauchi, fazendo com que ela se transforme em uma Zanpakutou.
+Com o passar dos anos, o Shinigami, por meio de intenso treinamento e convivência, funde parte de seu próprio espírito à sua Asauchi, fazendo com que ela se transforme em uma Zanpakutou.
 
 Para que isso aconteça, o Shinigami deve estabelecer uma união completa com sua Asauchi, mantendo-a sempre por perto e compartilhando com ela todos os aspectos de sua vida.
 
@@ -86,39 +60,27 @@ O espírito pode fazer perguntas profundas, questionando o motivo pelo qual o Sh
 
 Junto ao nome, o Shinigami também deve escolher uma palavra ou frase de liberação, que expressa a natureza de sua Zanpakutou.
 
+## Controlando Sua Zanpakutou
+
 Essa frase de liberação da Shikai normalmente faz referência aos seus poderes ou a algo mais profundo, voltando ao exemplo da Ryuujin Jakka, aonde sua frase de liberação é “Reduza tudo as cinzas, Ryuujin Jakka”.
 
 ### Teste de Determinação
 
 Após entrar em seu mundo interior, o espírito de sua Zanpakutou iniciará um teste de determinação. Durante esse teste, o Shinigami será questionado por meio de perguntas profundas, e suas respostas determinarão se ele é digno de empunhar o verdadeiro poder de sua Zanpakutou. Esse processo cria o vínculo entre ambos, permitindo que a espada revele parte de seu poder. É importante lembrar que a Zanpakutou é uma manifestação da alma do próprio Shinigami. Por isso, seus questionamentos geralmente refletem aspectos ocultos da personalidade, traumas passados ou conflitos internos. Ao enfrentar ou aceitar essas partes de si mesmo, o Shinigami demonstra maturidade espiritual, e, nesse momento, a Zanpakutou reconhece que ele está pronto. Por se tratar de uma experiência profundamente pessoal, o mestre deve adaptar o teste de acordo com a história e o desenvolvimento do personagem, criando perguntas ou situações que façam sentido dentro da trajetória do Shinigami.
 
-Exemplos de questionamentos 1.
-
-Porque você é digno do meu poder?
-
-3.
-
-Você luta pelo dever… ou pelo medo de perder algo?
-
-2. 4. 5.
-
-O que você busca proteger com a força que tanto deseja?
-
-Quem você seria se perdesse sua lâmina?
-
-Você entende o preço que deve pagar pelo poder que procura?
+Exemplos de questionamentos 1. Porque você é digno do meu poder? 2. O que você busca proteger com a força que tanto deseja? 3. Você luta pelo dever… ou pelo medo de perder algo? 4. Quem você seria se perdesse sua lâmina? 5. Você entende o preço que deve pagar pelo poder que procura?
 
 Os exemplos de questionamentos podem ser utilizados livremente, e não existe uma resposta exata para cada pergunta. Cabe ao Mestre decidir se o personagem demonstrou compreensão e evolução suficientes para ser considerado bem-sucedido no teste.
 
-Se o Mestre julgar apropriado, ele pode solicitar testes específicos relacionados ao tema de cada pergunta.
+Se o Mestre julgar apropriado, ele pode solicitar testes específicos relacionados ao tema de cada pergunta. Por exemplo, diante da questão “Por que você é digno do meu poder?”, o Mestre pode pedir um Teste de Determinação (CD 10). Caso o personagem seja bemsucedido, considera-se que ele respondeu de forma satisfatória, avançando no processo de conexão com sua Zanpakutou.
 
-Por exemplo, diante da questão “Por que você é digno do meu poder?”, o Mestre pode pedir um Teste de Determinação (CD 10). Caso o personagem seja bemsucedido, considera-se que ele respondeu de forma satisfatória, avançando no processo de conexão com sua Zanpakutou.
-
-Alternativas
+### Alternativas
 
 Alternativamente, se o Shinigami já estiver preparado, sua Zanpakutou pode perceber isso durante um combate e, como forma de salvá-lo em uma situação de vida ou morte, revelar parte de seu nome, permitindo o acesso à Shikai. Outra possibilidade é que, ao entrar em seu mundo interior, a Zanpakutou proponha um duelo entre ambos para determinar se o Shinigami é digno de liberar seu poder.
 
-BANKAI A Bankai de um Shinigami é a forma final de sua Zanpakutou, na qual o espírito da espada é trazido para o mundo real. Para alcançar esse estágio, o Shinigami deve passar por inúmeros treinamentos ao longo de sua vida, que podem envolver tanto aspectos físicos quanto espirituais.
+## Bankai
+
+A Bankai de um Shinigami é a forma final de sua Zanpakutou, na qual o espírito da espada é trazido para o mundo real. Para alcançar esse estágio, o Shinigami deve passar por inúmeros treinamentos ao longo de sua vida, que podem envolver tanto aspectos físicos quanto espirituais.
 
 É necessário estabelecer um vínculo poderoso com a Zanpakutou, um processo que pode levar décadas para alguns Shinigamis. Para um Shinigami, isso pode não parecer muito, mas, do ponto de vista humano, pode representar metade de uma vida inteira.
 
@@ -146,21 +108,25 @@ Para tentar, você deve rolar d100 e, se o resultado for menor ou igual à soma 
 
 O espírito da sua Zanpakutou surgirá no mundo real e revelará o nome de liberação, que deve ser pronunciado corretamente. Por exemplo, no caso de Yamamoto, a verbalização seria: “Bankai, Zanka no Tachi”. Caso o Shinigami tenha sucesso na última fase da Bankai, ele terá acesso a ela, aonde também sua Sua Shikai não exige mais que voce fale a frase e o nome de ativação, mas muitos shinigamis, por hábito e ainda os utilizam mesmo após adquirirem a Bankai. E em caso de falha no teste de materialização, ele pode ser refeito uma vez a cada 30 dias.
 
-## Alternativas
+### Alternativas
 
 Para liberar a Bankai, existem métodos alternativos. De forma semelhante à Shikai, o Shinigami pode estar à beira da morte, e sua Zanpakutou pode decidir que ele está pronto para liberá-la.
 
 Há também outro método conhecido como “Método Tenshinta”, descrito no capítulo 5: Zanpakutous.
 
-Espírito da ZanpaKutou O espírito da Zanpakutou é a manifestação viva da alma de um Shinigami. Ele habita o mundo interior, um espaço que reflete a mente, o coração e as emoções mais profundas de seu portador. Dentro desse mundo, o espírito assume uma forma própria, pode parecer humano, uma fera mística ou até uma figura completamente simbólica, mas sempre representa aquilo que o Shinigami carrega dentro de si. Esse espírito não é apenas uma projeção, mas uma consciência real. Ele pensa, sente e age por conta própria. Pode ser sereno e sábio, ou selvagem e impetuoso, dependendo da natureza do Shinigami que o abriga. O relacionamento entre ambos é único e muda com o tempo, conforme o portador amadurece, enfrenta seus medos e se aproxima de sua própria verdade. Mesmo com vontades diferentes, o espírito e o Shinigami são partes da mesma alma. Quando estão em sintonia, o poder flui livremente entre os dois, permitindo a liberação da Shikai e, mais tarde, da Bankai. Mas quando há conflito, esse poder se torna instável. A Zanpakutou pode se calar, agir por conta própria ou até desafiar seu dono, forçando-o a encarar seus próprios limites.
+## Espírito da Zanpakutou
+
+O espírito da Zanpakutou é a manifestação viva da alma de um Shinigami. Ele habita o mundo interior, um espaço que reflete a mente, o coração e as emoções mais profundas de seu portador. Dentro desse mundo, o espírito assume uma forma própria, pode parecer humano, uma fera mística ou até uma figura completamente simbólica, mas sempre representa aquilo que o Shinigami carrega dentro de si.
+
+Esse espírito não é apenas uma projeção, mas uma consciência real. Ele pensa, sente e age por conta própria. Pode ser sereno e sábio, ou selvagem e impetuoso, dependendo da natureza do Shinigami que o abriga. O relacionamento entre ambos é único e muda com o tempo, conforme o portador amadurece, enfrenta seus medos e se aproxima de sua própria verdade. Mesmo com vontades diferentes, o espírito e o Shinigami são partes da mesma alma. Quando estão em sintonia, o poder flui livremente entre os dois, permitindo a liberação da Shikai e, mais tarde, da Bankai. Mas quando há conflito, esse poder se torna instável. A Zanpakutou pode se calar, agir por conta própria ou até desafiar seu dono, forçando-o a encarar seus próprios limites.
 
 O espírito da Zanpakutou não é um servo, mas um parceiro. Ele existe para guiar, testar e provocar o Shinigami, levando-o a compreender quem realmente é. Apenas quando o portador aceita todas as partes de si mesmo, suas virtudes, medos e contradições, o espírito reconhece sua força e concede o direito de liberar seu verdadeiro poder.
 
 No fim, entender o espírito da Zanpakutou é entender a si mesmo. Dominar a lâmina não é dominar uma arma, mas encontrar equilíbrio entre corpo, mente e alma.
 
-Despertar do Hollow Os Visored possuem a capacidade de controlar seus Hollows e canalizar seus poderes em combate, tornando-se, como o próprio nome indica, o exército mascarado. Eles são Shinigamis que utilizam máscaras de Hollow, unindo o poder espiritual dos Shinigamis à força destrutiva dos Hollows. No entanto, para alcançar esse domínio, precisam passar por um treinamento mortal, um processo que pode facilmente levá-los à morte.
+Os Visored possuem a capacidade de controlar seus Hollows e canalizar seus poderes em combate, tornando-se, como o próprio nome indica, o exército mascarado. Eles são Shinigamis que utilizam máscaras de Hollow, unindo o poder espiritual dos Shinigamis à força destrutiva dos Hollows. No entanto, para alcançar esse domínio, precisam passar por um treinamento mortal, um processo que pode facilmente levá-los à morte.
 
-### Controlando o Hollow
+## Controlando o Hollow
 
 O treinamento para controlar um Hollow é um dos processos mais difíceis e perigosos que um shinigami pode enfrentar. Sendo muito díficil que um indivíduo consiga realizá-lo sozinho. é necessário o auxílio de outros companheiros experientes, capazes de conter o corpo do Visored caso ele perca o controle. Essa é uma provação em que o risco de morte é constante, e o fracasso pode significar ser consumido pelo próprio Hollow.
 
@@ -174,7 +140,11 @@ Esse treinamento dura 10 dias, reduzindo o número de dias pelo atributo de Esp�
 
 Se o shinigami tiver sucesso em controlar o seu Hollow, ele se torna apto a realizar o próximo passo, chamado Máscara Hollow, no qual aprenderá a manifestar e utilizar os poderes de seu Hollow em combate.
 
-Máscara Hollow Após concluir o treinamento “Controlando o Hollow” e dominar o poder interno de sua alma corrompida, o Shinigami torna-se capaz de invocar a Máscara Hollow e acessar seus poderes.
+## Despertar do Hollow
+
+## Máscara Hollow
+
+Após concluir o treinamento “Controlando o Hollow” e dominar o poder interno de sua alma corrompida, o Shinigami torna-se capaz de invocar a Máscara Hollow e acessar seus poderes.
 
 Existem diferentes tipos de máscaras, cada uma com um propósito e forma únicos. Cada máscara concede benefícios específicos enquanto está ativa, mas também possui um custo em Reiatsu e um tempo de duração limitado. Quando esse tempo se encerra, o usuário recebe automaticamente a condição “Esgotado”.
 
@@ -186,9 +156,9 @@ Abaixo, você deve escolher qual Máscara Hollow possuirá. Existem três opçõ
 
 A Máscara do Conquistador é conhecida por intensificar a reiatsu do usuário, tornando-se a escolha ideal para combatentes que utilizam grandes quantidades de reiatsu. Para ativá-la, você deve gastar cinco vezes o seu bônus de proficiência em reiatsu e, ao fazê-lo, adquire as seguintes características:
 
-Imposição Hollow: Se você utilizar uma técnica de Zanpakutou, Hadou ou Bakudou e ela exigir que a criatura realize um teste de resistência, aumente a CD do teste em um valor igual ao seu nível de personagem. Poder Aumentado: Suas técnicas de Zanpakutou, Hadou e Bakudou tornam-se mais intensas. Sempre que uma dessas técnicas causar dano, aumente o número de dados de dano em um valor igual ao dobro do seu bônus de proficiência.
-
-Reiatsu Amplificada: Você recebe pontos de reiatsu temporários iguais ao total dos seus pontos de reiatsu totais.
+- Imposição Hollow: Se você utilizar uma técnica de Zanpakutou, Hadou ou Bakudou e ela exigir que a criatura realize um teste de resistência, aumente a CD do teste em um valor igual ao seu nível de personagem.
+- Poder Aumentado: Suas técnicas de Zanpakutou, Hadou e Bakudou tornam-se mais intensas. Sempre que uma dessas técnicas causar dano, aumente o número de dados de dano em um valor igual ao dobro do seu bônus de proficiência.
+- Reiatsu Amplificada: Você recebe pontos de reiatsu temporários iguais ao total dos seus pontos de reiatsu totais.
 
 ### Máscara do Predador
 
@@ -196,25 +166,19 @@ A Máscara do Predador é conhecida por intensificar o poder físico do usuário
 
 Para ativá-la, você deve gastar cinco vezes o seu bônus de proficiência em reiatsu e, ao fazê-lo, adquire as seguintes características:
 
-Corpo Hollow: Seu corpo se torna muito mais resistente, concedendo redução de dano igual ao seu nível de personagem contra todos os tipos de dano, exceto psíquico e temporal.
-
-Golpes Amplificados: Seu poder físico se intensifica.
-
-Seus ataques com Zanpakutou ou Hakuda causam dano adicional, recebendo um número extra de dados igual à seu bônus de proficiência.
-
-Vitalidade Hollow: Você recebe pontos de vida temporários iguais ao total dos seus pontos de vida totais.
+- Corpo Hollow: Seu corpo se torna muito mais resistente, concedendo redução de dano igual ao seu nível de personagem contra todos os tipos de dano, exceto psíquico e temporal.
+- Golpes Amplificados: Seu poder físico se intensifica. Seus ataques com Zanpakutou ou Hakuda causam dano adicional, recebendo um número extra de dados igual à seu bônus de proficiência.
+- Vitalidade Hollow: Você recebe pontos de vida temporários iguais ao total dos seus pontos de vida totais.
 
 ### Máscara do Equilíbrio
 
-A Máscara do Equilíbrio é conhecida por ser balanceada, aumentando a reiatsu e poder físico do usuário, tornandose a escolha ideal para combatentes híbridos que utilizam grandes quantidades de reiatsu e se colocam em risco.
+A Máscara do Equilíbrio é conhecida por ser balanceada, aumentando a reiatsu e poder físico do usuário, tornandose a escolha ideal para combatentes híbridos que utilizam grandes quantidades de reiatsu e se colocam em risco. Para ativá-la, você deve gastar cinco vezes o seu bônus de proficiência em reiatsu e, ao fazê-lo, adquire as seguintes características:
 
-Para ativá-la, você deve gastar cinco vezes o seu bônus de proficiência em reiatsu e, ao fazê-lo, adquire as seguintes características:
+- Poder Amplificado: Suas técnicas de Zanpakutou, Hadou e Bakudou tornam-se mais intensas. Sempre que uma dessas técnicas causar dano, aumente o número de dados de dano em um valor igual à metade do seu bônus de proficiência. Além disso, seus ataques com Zanpakutou ou Hakuda se tornam mais devastadores, causando um dado de dano adicional em cada acerto.
+- Reiatsu Amplificada: Você recebe pontos de reiatsu temporários iguais a metade do total dos seus pontos de reiatsu totais.
+- Vitalidade Hollow: Você recebe pontos de vida temporários iguais a metade do total dos seus pontos de vida totais.
 
-Poder Amplificado: Suas técnicas de Zanpakutou, Hadou e Bakudou tornam-se mais intensas. Sempre que uma dessas técnicas causar dano, aumente o número de dados de dano em um valor igual à metade do seu bônus de proficiência. Além disso, seus ataques com Zanpakutou ou Hakuda se tornam mais devastadores, causando um dado de dano adicional em cada acerto. Reiatsu Amplificada: Você recebe pontos de reiatsu temporários iguais a metade do total dos seus pontos de reiatsu totais.
-
-Vitalidade Hollow: Você recebe pontos de vida temporários iguais a metade do total dos seus pontos de vida totais.
-
-### Regras Visored
+## Regras Visored
 
 Essa sessão é para elucidar como funciona o tempo com a Máscara como também método de aumentar o tempo de uso. Quando o Visored coloca a Máscara Hollow, como já mencionado, ele deve levar a mão até o rosto para ativá-la. O turno em que a máscara é colocada já conta para o número total de turnos em que ela pode permanecer ativa. Por exemplo, se o Visored pode manter a máscara por apenas um turno, ao final desse turno ele a perderá automaticamente, encerrando todos os benefícios concedidos por ela e adquirindo imediatamente a condição “Esgotado” até o fim do combate ou até o Mestre decidir.
 
@@ -224,7 +188,9 @@ O Visored também pode optar por retirar a máscara antes do tempo acabar, utili
 
 Quanto mais o Visored utiliza a Máscara, maior se torna seu domínio sobre ela. O Mestre pode solicitar um Teste de Determinação, com uma CD definida por ele, quando o Visored usar a Máscara diversas vezes ou passar por uma situação de vida ou morte enquanto a utiliza. Em caso de sucesso, o tempo de uso da Máscara aumenta em 1d6 turnos, dividido pela metade (arredondando para baixo), com um mínimo de 1 turno adicional.
 
-Cero Um Cero é uma técnica ofensiva usada pelos Hollows que consiste em concentrar e disparar uma explosão de energia espiritual em linha reta.
+## Cero
+
+Um Cero é uma técnica ofensiva usada pelos Hollows que consiste em concentrar e disparar uma explosão de energia espiritual em linha reta.
 
 Após dominar sua Máscara Hollow, você pode aprender a usar o Cero, tão característico dos Hollows. Para isso, é necessário ter controle total do tempo da máscara, e ser capaz de mantê-la ativa por 1 minuto (10 turnos). Quando você atingir esse tempo de domínio, passa a ser capaz de utilizar o Cero.
 
@@ -234,11 +200,9 @@ O usuário aponta para uma criatura, acumulando energia espiritual e liberando u
 
 A criatura deve então realizar um Teste de Resistência de Constituição, se falhar, seu corpo é queimado pela energia, sofrendo +4d8 de dano de Energia.
 
-Acerto para Cero = d20 + bônus de proficiência + seu atributo de Espirito, Sabedoria ou Inteligência Classe de Dificuldade para seu Cero = 8 + bônus de proficiência + seu atributo de Espirito, Sabedoria ou Inteligência
+Acerto para Cero = d20 + bônus de proficiência + seu atributo de Espirito, Sabedoria ou Inteligência Classe de Dificuldade para seu Cero = 8 + bônus de proficiência + seu atributo de Espirito, Sabedoria ou Inteligência Você pode aumentar a potência do seu Cero gastando mais pontos de reiatsu. Para cada 2 pontos de reiatsu gastos, você adiciona +1d8 de dano de Energia. Com o máximo de dano sendo 12d8 de dano de energia.
 
-Você pode aumentar a potência do seu Cero gastando mais pontos de reiatsu. Para cada 2 pontos de reiatsu gastos, você adiciona +1d8 de dano de Energia. Com o máximo de dano sendo 12d8 de dano de energia.
-
-### Personalização do Cero
+## Personalização do Cero
 
 O Cero é uma das manifestações mais icônicas do poder Hollow, e sua aparência varia conforme a essência espiritual do usuário. Embora o tom vermelho seja o mais comum e tradicional, representando a natureza destrutiva desse ataque, muitos conjuradores manifestam o Cero na cor de seu próprio reiatsu, criando versões únicas e facilmente reconhecíveis. Essa variação não altera apenas a estética; em alguns casos, reflete a intensidade emocional ou a assinatura espiritual do usuário, tornando cada Cero uma extensão direta de sua alma. Além da cor, a forma de disparo do Cero é outro aspecto altamente personalizável. O método mais difundido é apontar um dedo para o alvo, concentrando a energia espiritual na ponta antes de liberá-la em um feixe devastador. Contudo, essa técnica não é rígida: Hollows, Arrancars e Visoreds desenvolvem maneiras próprias de canalizar o ataque.
 
