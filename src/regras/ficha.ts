@@ -97,7 +97,7 @@ export interface Efeito {
   livre?: number;
   /** dano extra em ataques corpo a corpo */
   danoCorpo?: number;
-  /** Evasão Aprimorada: CR pode usar 10 + proficiência + metade da Destreza */
+  /** Evasão Aprimorada: soma metade da proficiência (arredondada para baixo) à CR */
   evasao?: boolean;
   /** Raciocínio Rápido: iniciativa pode usar Mente no lugar de Destreza */
   iniMente?: boolean;
@@ -193,7 +193,7 @@ export const ORIGENS: Origem[] = [
       {
         id: "aureo",
         nome: "Áureo",
-        texto: "Agilidade Animal (Destreza +2), Deslocamento Aprimorado (essência Velocista, que não conta como inicial) e Evasão Aprimorada.",
+        texto: "Agilidade Animal (Destreza +2), Deslocamento Aprimorado (essência Velocista, que não conta como inicial) e Evasão Aprimorada (CR +½ proficiência: +1 até o 8º nível, +2 até o 16º, +3 depois).",
         efeito: { atr: { des: 2 }, evasao: true },
       },
     ],
@@ -726,11 +726,8 @@ export function calcular(f: Ficha): Calculo {
     pv += c.extraPv ? c.extraPv(n, f.subclasse) : 0;
     cr = c.cr === "plena" ? 10 + prof + atr.con + atr.des : 10 + prof + atr.des + Math.floor(atr.con / 2);
     if (ef.evasao) {
-      const alt = 10 + prof + Math.floor(atr.des / 2);
-      if (alt > cr) {
-        cr = alt;
-        crEvasao = true;
-      }
+      cr += Math.floor(prof / 2);
+      crEvasao = true;
     }
   }
   pv += f.ajuste.pv;

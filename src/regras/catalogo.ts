@@ -149,7 +149,22 @@ export const ESSENCIA_SUGERIDA: Record<string, string> = {
   kyugo: "Classe de Resistência Aprimorada",
   schutze: "Mira Apurada",
   ritter: "Ruptura de Reishi",
+  hueco: "Garras Afiadas",
+  vazio: "Reiatsu Condensado",
 };
+
+/** Essências de Hollow criadas para Hueco e Vazio (capítulo 4). */
+export const ESSENCIAS_HOLLOW = [
+  "Garras Afiadas",
+  "Instinto Predador",
+  "Reiatsu Condensado",
+  "Hierro Reforçado",
+  "Fome Insaciável",
+  "Regeneração Hollow",
+  "Cheiro de Sangue",
+  "Rugido Hollow",
+  "Carne Adaptável",
+];
 
 export const equipamentoPadrao = (): Ficha["equip"] => ({ forca: "", divisao: 0, asauchi: "", armas: [], artefato: "", naturalForma: "", extras: "" });
 

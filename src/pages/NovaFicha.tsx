@@ -8,6 +8,7 @@ import {
   ARMAS,
   ARTEFATOS,
   ASAUCHI,
+  ESSENCIAS_HOLLOW,
   ESSENCIA_SUGERIDA,
   FORCAS,
   ataquesIniciais,
@@ -388,7 +389,8 @@ export default function NovaFicha() {
                 setNovaEss("");
               }}
             >
-              <input value={novaEss} onChange={(e) => setNovaEss(e.target.value)} placeholder="Nome da essência" aria-label="Nome da essência" />
+              <input value={novaEss} onChange={(e) => setNovaEss(e.target.value)} placeholder="Nome da essência" aria-label="Nome da essência" list="ess-hollow" />
+              {classe?.tipo === "hollow" && <datalist id="ess-hollow">{ESSENCIAS_HOLLOW.map((n) => <option key={n} value={n} />)}</datalist>}
               <button className="btn btn-paper" type="submit">Adicionar</button>
             </form>
           </div>

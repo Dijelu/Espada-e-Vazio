@@ -190,7 +190,7 @@ Agilidade Animal: Você é muito mais rápido que outras criaturas. Você recebe
 
 Deslocamento Aprimorado: Você possui a essência espiritual Velocista, que não conta como sua essência espiritual inicial.
 
-Evasão Aprimorada: Você pode substituir sua Classe de Resistência da classe por 10 + seu bônus de Proficiência + metade do seu atributo de Destreza.
+Evasão Aprimorada: Você soma à sua Classe de Resistência metade do seu bônus de Proficiência, arredondada para baixo: +1 do 1º ao 8º nível, +2 do 9º ao 16º e +3 a partir do 17º.
 
 ### Humanização
 

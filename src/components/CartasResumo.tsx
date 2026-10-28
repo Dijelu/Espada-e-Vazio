@@ -54,7 +54,7 @@ export function EfeitosAtivos({ f, c }: { f: Ficha; c: Calculo }) {
   if (c.rdFis > 0) chips.push(`RD física ${c.rdFis}`);
   if (c.rdEso > 0) chips.push(`RD esotérica ${c.rdEso}`);
   if (c.danoCorpo > 0) chips.push(`+${c.danoCorpo} de dano corpo a corpo`);
-  if (c.crEvasao) chips.push(`CR pela Evasão Aprimorada (${c.cr})`);
+  if (c.crEvasao) chips.push(`Evasão Aprimorada: CR +${Math.floor(c.prof / 2)}`);
   if (c.iniciativa !== c.atr.des) chips.push(`Iniciativa com Mente (${mod(c.iniciativa)})`);
   if (c.desloc !== 9) chips.push(`Deslocamento ${c.desloc} m`);
   if (f.estado.liberado) chips.push(`Liberação: ${{ shikai: "Shikai", bankai: "Bankai", resurreccion: "Resurrección", mascara: "Máscara Hollow", "": "" }[f.estado.liberado]}`);

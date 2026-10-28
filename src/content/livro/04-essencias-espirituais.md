@@ -426,6 +426,71 @@ BLUT ARTERIE AVANÇADO Você aprimora seu controle sobre o Blut Arterie, não pr
 - Quarta Etapa: o bônus de dano aumenta para +6.
 - Quinta Etapa: o bônus de dano aumenta para +8. Além disso, você pode ativar o Blut Arterie como uma ação livre.
 
+## Classes de Hollow
+
+Hueco e Vazio usam as essências desta lista e também as de **Todas as Classes** que não dependam de Kidō, Zanpakutou ou Reishi. As essências de Hollow seguem as mesmas regras de etapas e de Pontos de Essência dos outros capítulos. Aqui, “Hueco” e “Vazio” indicam quem pode escolher.
+
+| Nome | Classe | Repetível? |
+|---|---|---|
+| Garras Afiadas | Hueco | Não |
+| Instinto Predador | Hueco | Não |
+| Reiatsu Condensado | Hueco e Vazio | Não |
+| Hierro Reforçado | Hueco e Vazio | Não |
+| Fome Insaciável | Hueco e Vazio | Não |
+| Regeneração Hollow | Hueco e Vazio | Não |
+| Cheiro de Sangue | Hueco e Vazio | Não |
+| Rugido Hollow | Hueco e Vazio | Não |
+| Carne Adaptável | Hueco e Vazio | Não |
+
+**Garras Afiadas** (Hueco). Seus ataques com a arma natural e a mordida causam +2 de dano.
+
+- Segunda Etapa: o bônus de dano aumenta para +4.
+- Terceira Etapa: o bônus de dano aumenta para +6.
+- Quarta Etapa: o bônus de dano aumenta para +8.
+
+**Instinto Predador** (Hueco). Sua margem de crítico com a arma natural aumenta em +1 contra criaturas com metade dos PV ou menos.
+
+- Segunda Etapa: o aumento de +1 passa a valer contra qualquer criatura.
+- Terceira Etapa: contra criaturas com metade dos PV ou menos, a margem de crítico aumenta em +2 no total.
+
+**Reiatsu Condensado** (Hueco e Vazio). Seu Cero (Hueco) ou Poder Inato (Vazio) causa um dado de dano adicional.
+
+- Segunda Etapa: o custo em PR do Cero ou do Poder Inato diminui em 2 (mínimo 1).
+- Terceira Etapa: o poder causa mais um dado de dano adicional.
+- Quarta Etapa: o custo diminui em 4 no total (mínimo 1).
+
+**Hierro Reforçado** (Hueco e Vazio). Sua RD contra dano físico aumenta em 2. Este bônus **soma** com a RD da sua Origem, mas não com outras essências de redução (vale a maior entre as essências).
+
+- Segunda Etapa: o aumento passa a ser de 4.
+- Terceira Etapa: o aumento passa a ser de 6.
+
+**Fome Insaciável** (Hueco e Vazio). Quando sua Fome é ativada, você também recupera PV iguais ao seu nível.
+
+- Segunda Etapa: a Fome recupera PR iguais ao seu nível mais o seu bônus de proficiência.
+- Terceira Etapa: a Fome recupera PV iguais ao seu nível mais o seu bônus de proficiência.
+
+**Regeneração Hollow** (Hueco e Vazio). No início de cada turno seu em combate, você recupera 1 PV (precisa ter pelo menos 1 PV). Não soma com a Cicatrização Hollow nem com a Regeneração de Alta Velocidade: vale a maior.
+
+- Segunda Etapa: a recuperação passa a ser de 2 PV.
+- Terceira Etapa: a recuperação passa a ser de 3 PV.
+- Quarta Etapa: a recuperação passa a ser de 4 PV.
+
+**Cheiro de Sangue** (Hueco e Vazio). Você tem vantagem em testes de Percepção para encontrar criaturas que estejam com menos que seus PV máximos.
+
+- Segunda Etapa: você recebe +1 nas jogadas de acerto contra criaturas com menos que seus PV máximos.
+- Terceira Etapa: o bônus de acerto aumenta para +2.
+
+**Rugido Hollow** (Hueco e Vazio). Uma vez por descanso longo, com uma ação bônus e 5 PR, você ruge: criaturas hostis a até 6 metros fazem um teste de resistência de Espírito (CD de Espírito) ou ficam amedrontadas até o fim do próximo turno delas.
+
+- Segunda Etapa: o alcance aumenta para 9 metros.
+- Terceira Etapa: você pode usar o Rugido duas vezes entre descansos longos.
+- Quarta Etapa: criaturas amedrontadas pelo Rugido também têm a CR reduzida em 1 até o fim do efeito.
+
+**Carne Adaptável** (Hueco e Vazio). Uma vez por descanso longo, após sofrer um tipo de dano elemental (Fogo, Gelo, Elétrico e semelhantes), você fica resistente a esse tipo por 1 hora.
+
+- Segunda Etapa: você pode manter resistência a dois tipos ao mesmo tempo.
+- Terceira Etapa: você pode usar a adaptação duas vezes entre descansos longos.
+
 ## Essências Proibidas
 
 No universo de Bleach, algumas criaturas possuem tanto poder que são capazes de perturbar o equilíbrio entre os mundos — a conexão essencial entre a Soul Society, o Mundo Humano e o Hueco Mundo. Essas entidades, ao cruzarem limites de poder que desafiam a lógica espiritual, colocam todos os planos de existência em risco, ameaçando romper o ciclo de reencarnação e vida. São seres que transcenderam a natureza comum de Hollows, Shinigamis ou mesmo humanos espiritualmente despertos, alcançando um patamar onde suas presenças influenciam o fluxo de reiatsu e ameaçam até a estrutura dos mundos.
