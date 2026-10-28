@@ -403,6 +403,64 @@ Cada Vollstanding pronta vem com as suas próprias ações, no estilo das técni
 - **Postura Firme** (Ação bônus, 8 PR): Até o início do próximo turno, você não pode ser empurrado nem derrubado, e os ataques contra aliados a 3 metros de você têm desvantagem.
 - **Muralha Viva** (Reação, 15 PR): Quando um aliado a até 6 metros sofre dano, você voa até ele sem provocar ataques de oportunidade e reduz esse dano na quantidade indicada. Dano: 2d10 + (proficiência).
 
+### Ações das Vollstanding Prontas
+
+Cada Vollstanding pronta vem com as suas próprias ações, no estilo das técnicas da Bankai: custo, ação e dano definidos. Elas só valem enquanto a Vollstanding estiver ativa. Se você criar a sua, monte as ações no mesmo padrão (uma básica de 8 a 10 PR, uma de apoio e uma final de 30 PR).
+
+**Conjurador**
+
+- **Salva de Reishi** (Ação, 25 PR): Três ataques de técnica à distância (18 metros), em alvos iguais ou diferentes. Cada acerto causa o dano indicado de Energia. Dano: 3d10 + (Espírito).
+- **Círculo de Reishi** (Ação bônus, 10 PR): Seu próximo ataque de técnica de Reishi no turno recebe vantagem e +3 metros de alcance.
+- **Chuva de Reishi** (Ação, 30 PR): Área de 6 metros de raio num ponto a até 18 metros. Salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso. Dano: (nível/2 + 5)d10 + (Espírito).
+
+**Defensivo**
+
+- **Muralha de Reishi** (Reação, 10 PR): Quando você ou um aliado a 3 metros sofre dano, reduza esse dano na quantidade indicada. Dano: 2d10 + (proficiência).
+- **Escudo de Asas** (Ação bônus, 8 PR): Você ganha PV temporários na quantidade indicada e a sua CR aumenta em 2 até o início do próximo turno. Dano: (nível).
+- **Barreira Sentinela** (Ação, 20 PR): Você e os aliados a até 3 metros ganham PV temporários na quantidade indicada. Dano: (nível×2).
+
+**Duelista**
+
+- **Corte Alado** (Ação, 20 PR): Dois ataques com a arma espiritual. Se ambos acertarem no mesmo alvo, ele sofre o dano de Energia indicado a mais. Dano: 4d10 + (Espírito).
+- **Passo do Duelo** (Ação bônus, 8 PR): Você voa até 9 metros e o próximo ataque com a arma espiritual no turno tem vantagem.
+- **Lâmina de Estrelas** (Ação, 30 PR): Um ataque com a arma espiritual com margem de crítico 19–20. Se acertar, causa o dano de Energia indicado a mais. Dano: (nível/2 + 5)d10 + (Espírito).
+
+**Expurgador**
+
+- **Disparo Perfurante** (Ação, 20 PR): Ataque com a arma espiritual que ignora toda a redução de dano do alvo. Dano: 6d10 + (Espírito).
+- **Marca do Expurgo** (Ação bônus, 8 PR): Marque uma criatura que você veja: os seus ataques contra ela somam +3 até o fim da cena.
+- **Execução** (Ação, 30 PR): Ataque com a arma espiritual contra a criatura marcada, com margem de crítico 19–20. Ignora a redução de dano. Dano: (nível/2 + 6)d10 + (Espírito).
+
+**Oráculo**
+
+- **Visão Total** (Ação bônus, 10 PR): Até o fim do seu próximo turno, você sabe a localização de todas as criaturas a 56 metros e tem vantagem no próximo ataque.
+- **Previsão Divina** (Reação, 10 PR): Quando uma criatura o ataca, imponha desvantagem nessa jogada de ataque.
+- **Julgamento do Céu** (Ação, 30 PR): Um ataque à distância sem limite de alcance contra uma criatura cuja posição você sabe. Não pode ter desvantagem. Causa dano de Energia. Dano: (nível/2 + 5)d10 + (Espírito).
+
+**Velocista**
+
+- **Passo Relâmpago** (Ação bônus, 10 PR): Você voa até 18 metros sem provocar ataques de oportunidade. O seu próximo ataque no turno causa o dano de Energia indicado a mais. Dano: 2d10.
+- **Rastro de Asas** (Ação, 15 PR): Você voa até 12 metros em linha reta: cada criatura no caminho faz salvaguarda de Destreza (CD 8 + proficiência + Espírito) e sofre o dano na falha, metade no sucesso. Dano: 4d10 + (Espírito).
+- **Mil Cortes** (Ação, 30 PR): Quatro ataques rápidos com a arma espiritual. Cada acerto causa o dano indicado, dividido em partes iguais. Dano: (nível/2 + 4)d10 + (Espírito).
+
+**Atirador Celeste**
+
+- **Flecha Celeste** (Ação, 25 PR): Um disparo com o dobro do alcance e margem de crítico 19–20. Causa dano de Energia. Dano: 8d10 + (Espírito).
+- **Olho do Falcão** (Ação bônus, 8 PR): Até o fim do turno, os seus ataques à distância ignoram cobertura e você tem +2 nas jogadas de ataque.
+- **Chuva de Flechas** (Ação, 30 PR): Área de 6 metros de raio num ponto a até 36 metros. Salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso. Dano: (nível/2 + 5)d10 + (Espírito).
+
+**Bombardeiro**
+
+- **Bomba de Reishi** (Ação, 30 PR): Explosão de 6 metros de raio num ponto a até 18 metros. Salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso. Dano: (nível/2 + 4)d10 + (Espírito).
+- **Marca Explosiva** (Ação bônus, 8 PR): Marque uma criatura ou objeto a até 18 metros. Quando você usar a Bomba de Reishi em uma área que o inclua, ele sofre o dano indicado a mais. Dano: 4d10.
+- **Detonação em Cadeia** (Ação, 20 PR): A explosão salta entre até 4 criaturas a até 6 metros uma da outra: cada uma faz salvaguarda de Destreza (CD 8 + proficiência + Espírito) e sofre o dano na falha, metade no sucesso. Dano: 3d10 + (Espírito).
+
+**Sentinela**
+
+- **Barreira Sentinela** (Ação, 15 PR): Você e os aliados a até 3 metros ganham PV temporários na quantidade indicada. Dano: (nível×2).
+- **Postura Firme** (Ação bônus, 8 PR): Até o início do próximo turno, você não pode ser empurrado nem derrubado, e os ataques contra aliados a 3 metros de você têm desvantagem.
+- **Muralha Viva** (Reação, 15 PR): Quando um aliado a até 6 metros sofre dano, você voa até ele sem provocar ataques de oportunidade e reduz esse dano na quantidade indicada. Dano: 2d10 + (proficiência).
+
 ## Schirift
 
 ## Antítese

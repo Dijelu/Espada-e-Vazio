@@ -164,8 +164,8 @@
    {
     "id": "3-dangyo-no-fuchi",
     "nome": "3. Dangyo no Fuchi",
-    "acao": "Ação",
-    "pr": 1,
+    "acao": "Habilidade",
+    "pr": 0,
     "dano": "",
     "texto": "Após terminar a segunda provação, esta se inicia: o ambiente inteiro do combate se enche de água e todas as criaturas que estão sofrendo o efeito da Bankai são submersas nessa água, inclusive o usuário. Esta provação dura por três rodadas, durante os quais todas as criaturas afetadas são incapazes de realizar qualquer ação, permanecendo imóveis. Cada criatura recebe 100 pontos que serão diminuídos ao longo da duração da provação. No início do turno de cada criatura, a criatura deve rolar um d100, e o resultado será subtraído dos 100 pontos. A criatura ou o usuário da Bankai que zerar os pontos primeiro perde a provação e morre. O usuário também morrerá se chegar a 0 pontos, desfazendo a Bankai instantaneamente. Se passar as três rodadas e ninguém chegar a 0 pontos, ninguém morrerá e passará para a próxima provação.\n\nO mestre pode utilizar uma regra alternativa: quem chegar a 0 pontos fic"
    },
@@ -360,7 +360,7 @@
    {
     "id": "comando-gestual",
     "nome": "Comando Gestual",
-    "acao": "Ação bônus",
+    "acao": "Habilidade",
     "pr": 3,
     "dano": "",
     "texto": "Depois de liberar a Bankai, você controla as lâminas com o pensamento, mas pode utilizar sua mão para gesticular, dando comandos às lâminas. Isso as torna muito mais velozes e fáceis de acertar. Diferente da habilidade da Shikai “Perseguir”, você intensifica a velocidade utilizando sua mão e reiatsu, sem a necessidade de utilizar a ação bônus. Para cada ataque que você realizar com a Senbonzakura Kageyoshi, pode gastar 3 pontos de reiatsu para receber vantagem na jogada de ataque."
@@ -459,8 +459,8 @@
    {
     "id": "m-ssil",
     "nome": "Míssil",
-    "acao": "Ação bônus",
-    "pr": 1,
+    "acao": "Ação",
+    "pr": 0,
     "dano": "12d10",
     "texto": "Seu míssil criado é muito poderoso, até mesmo para o usuário da Bankai, então deve ser utilizado como último recurso, pois consome muita reiatsu. O míssil tem um poder igual a seu nível de classe, em dados de dano d10. Se estiver no nível 12 de classe, você terá 12d10 de dano no míssil, mais 30 de dano, causando 12d10 + 30 de dano de Fogo com esse míssil. Na liberação da sua Bankai, você pode utilizar mais pontos de reiatsu para causar mais dano com esse míssil, gastando 1 ponto de reiatsu para cada ponto de dano adicional, com o máximo de reiatsu gasto sendo o disponível no momento da liberação da sua Bankai. Para disparar esse míssil você deve utilizar uma ação. Este míssil causa uma área de explosão quando entra em contato com uma criatura ou objeto, resultando numa explosão de 36 metros de raio a partir do ponto de impacto, e pode acertar um alvo até 100 metros. Se não atingir nada, "
    }
@@ -575,7 +575,7 @@
    {
     "id": "t-cnica-getsuga-tenshou-negro",
     "nome": "Getsuga Tenshou Negro",
-    "acao": "Ação bônus",
+    "acao": "Ação",
     "pr": 15,
     "dano": "14d12",
     "texto": "Agora você canaliza a energia espiritual negra em sua arma e desfere um poderoso ataque à distância com a Zangetsu. Utilizando sua ação e 15 pontos de reiatsu faça um ataque à distância com vantagem contra um alvo em até 36 metros de distância em linha. Em um acerto, o alvo sofre 14d12 de dano de energia.\n\nVocê também consegue utilizar o Getsu Tenshou cocentrado, quando você realizar um ataque corpo a corpo com a Zangetsu, antes de saber se o ataque acertou, com sua ação bônus e 7 pontos de reiatsu você adiciona 7d12 de dano de Energia ao ataque."

@@ -181,6 +181,7 @@ export function formaPendente(f: { classe: string; nivel: number; formas?: Parti
 /* ---------- ações das formas ---------- */
 
 export interface AcaoForma {
+  prExpr?: string;
   nome: string;
   acao: string;
   pr: number;
@@ -221,10 +222,10 @@ export function resolverDano(expr: string, f: Ficha, c: Calculo): string {
 /** Habilidades da forma: as que estão salvas, ou as do modelo pronto se ainda não foram copiadas. */
 export function habilidadesDaForma(forma: FormaLib): HabForma[] {
   if (forma.habilidades.length > 0) return forma.habilidades;
-  return acoesDaForma(forma).map((a) => ({ id: "m-" + a.nome, nome: a.nome, texto: a.texto, custo: `${a.pr} PR`, acao: a.acao, pr: a.pr, dano: a.dano }));
+  return acoesDaForma(forma).map((a) => ({ id: "m-" + a.nome, nome: a.nome, texto: a.texto, custo: `${a.pr} PR`, acao: a.acao, pr: a.pr, prExpr: a.prExpr, dano: a.dano }));
 }
 
 /** Converte as ações de um modelo pronto em habilidades editáveis da ficha. */
-export function comoHabilidades(acoes: { nome: string; acao: string; pr: number; dano: string; texto: string }[]): HabForma[] {
-  return acoes.map((a, i) => ({ id: `${Date.now()}-${i}-${a.nome}`, nome: a.nome, texto: a.texto, custo: a.pr ? `${a.pr} PR` : "", acao: a.acao, pr: a.pr || undefined, dano: a.dano || undefined }));
+export function comoHabilidades(acoes: { nome: string; acao: string; pr: number; prExpr?: string; dano: string; texto: string }[]): HabForma[] {
+  return acoes.map((a, i) => ({ id: `${Date.now()}-${i}-${a.nome}`, nome: a.nome, texto: a.texto, custo: a.pr ? `${a.pr} PR` : "", acao: a.acao, pr: a.pr || undefined, prExpr: a.prExpr, dano: a.dano || undefined }));
 }

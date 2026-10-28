@@ -74,16 +74,17 @@
     {
      "nome": "Lança Verde",
      "acao": "Ação",
-     "pr": 9,
+     "pr": 10,
      "dano": "[(NIV+4)*1.6]d10+[ESP]",
-     "texto": "O Poder Inato de Resurrección sai da lança de reiatsu esverdeado. Ataque de técnica (d20 + proficiência + Espírito), alcance de 24 metros. Ignora o Hierro. Custo: 8 PR + nível/5."
+     "texto": "O Poder Inato de Resurrección sai da lança de reiatsu esverdeado. Ataque de técnica (d20 + proficiência + Espírito), alcance de 24 metros. Ignora o Hierro. Custo: 8 PR + nível/5.",
+     "prExpr": "8+[NIV/5]"
     },
     {
      "nome": "Mundo Quebrado",
      "acao": "Ação",
      "pr": 12,
      "dano": "",
-     "texto": "Técnica de assinatura do Caminho Ilusión. Um alvo a até 24 metros faz salvaguarda de Constituição (CD 8 + proficiência + Espírito). Na falha, tem desvantagem nos ataques e fica sem reações até o fim do próximo turno dele."
+     "texto": "Técnica de assinatura do Caminho Ilusión. Substitui os ataques da ação. Um alvo a até 24 metros faz salvaguarda de Constituição (CD 8 + proficiência + Espírito). Na falha, tem desvantagem nos ataques e fica sem reações até o fim do próximo turno dele."
     },
     {
      "nome": "Noite Sem Estrelas",
@@ -97,16 +98,17 @@
     {
      "nome": "Espinho Roxo",
      "acao": "Ação",
-     "pr": 9,
+     "pr": 10,
      "dano": "[(NIV+4)*1.6]d10+[ESP]",
-     "texto": "O Poder Inato de Resurrección sai como um espinho de veneno. Ataque de técnica (d20 + proficiência + Espírito). Ignora o Hierro. Se acertar, aplica 1 carga de Ponzoña."
+     "texto": "O Poder Inato de Resurrección sai como um espinho de veneno. Ataque de técnica (d20 + proficiência + Espírito). Ignora o Hierro. Se acertar, aplica 1 carga de Ponzoña.",
+     "prExpr": "8+[NIV/5]"
     },
     {
      "nome": "Veneno Total",
-     "acao": "Ação bônus",
+     "acao": "Ação",
      "pr": 12,
      "dano": "",
-     "texto": "Técnica de assinatura do Caminho Ponzoña. Até o fim do seu próximo turno, as cargas de Ponzoña causam +50% de dano."
+     "texto": "Técnica de assinatura do Caminho Ponzoña. Substitui os ataques da ação. Até o fim do seu próximo turno, as cargas de Ponzoña causam +50% de dano."
     },
     {
      "nome": "Colheita Venenosa",
@@ -120,16 +122,17 @@
     {
      "nome": "Reflexo Negro",
      "acao": "Ação",
-     "pr": 9,
+     "pr": 10,
      "dano": "[(NIV+4)*1.6]d10+[ESP]",
-     "texto": "O Poder Inato de Resurrección sai em estilhaços de vidro negro. Ataque de técnica (d20 + proficiência + Espírito). Ignora o Hierro. Custo: 8 PR + nível/5."
+     "texto": "O Poder Inato de Resurrección sai em estilhaços de vidro negro. Ataque de técnica (d20 + proficiência + Espírito). Ignora o Hierro. Custo: 8 PR + nível/5.",
+     "prExpr": "8+[NIV/5]"
     },
     {
      "nome": "Espejo Roto",
-     "acao": "Reação",
+     "acao": "Ação",
      "pr": 12,
      "dano": "",
-     "texto": "Técnica de assinatura do Caminho Reflejo. Quando você sofre dano, devolve 50% desse dano ao atacante como dano de Energia."
+     "texto": "Técnica de assinatura do Caminho Reflejo. Substitui os ataques da ação. Até o início do seu próximo turno, quando você sofre dano, devolve 50% desse dano ao atacante como dano de Energia."
     },
     {
      "nome": "Espelho Quebrado",

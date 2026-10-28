@@ -492,6 +492,8 @@ export interface HabForma {
   acao: string;
   /** custo em PR, para o botão de usar */
   pr?: number;
+  /** custo em PR que depende do nível, como "8+[NIV/5]" */
+  prExpr?: string;
   /** dano ou valor rolável, como "4d10+[ESP]" */
   dano?: string;
 }

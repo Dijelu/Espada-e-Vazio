@@ -5,6 +5,12 @@ txt = (raiz / "src/content/livro/05-zanpakutous.md").read_text(encoding="utf-8")
 fim = txt.index("## Criando Sua Zanpakutou")
 txt = txt[:fim]
 partes = re.split(r"(?m)^## ", txt)[1:]
+AJUSTES = {
+    ("Zangetsu", "Getsuga Tenshou Negro"): {"acao": "Ação"},
+    ("Suzumebachi", "Míssil"): {"acao": "Ação", "pr": 0},
+    ("Katen Kyokotsu", "3. Dangyo no Fuchi"): {"acao": "Habilidade", "pr": 0},
+    ("Senbonzakura", "Comando Gestual"): {"acao": "Habilidade"},
+}
 vistos = set()
 saida = []
 for p in partes:
@@ -37,6 +43,8 @@ for p in partes:
             "dano": dano.group(0) if dano else "",
             "texto": corpo_h[:900],
         })
+    for a in acoes:
+        a.update(AJUSTES.get((nome, a["nome"]), {}))
     saida.append({
         "id": re.sub(r"[^a-z0-9]+", "-", nome.lower()).strip("-"),
         "nome": nome,

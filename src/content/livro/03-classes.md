@@ -2474,8 +2474,8 @@ A Resurrección já tem custo, duração, bônus de CR e técnica de assinatura 
 - **Traço, Asas Negras:** você ganha voo igual ao seu deslocamento.
 - **Ponto fraco, Olhos Sensíveis:** você tem desvantagem em testes de Percepção feitos com luz intensa.
 - **Ações da forma:**
-  - **Lança Verde** (Ação, 9 PR): O Poder Inato de Resurrección sai da lança de reiatsu esverdeado. Ataque de técnica (d20 + proficiência + Espírito), alcance de 24 metros. Ignora o Hierro. Custo: 8 PR + nível/5. Dano: ((nível + 4)×1.6)d10 + (Espírito).
-  - **Mundo Quebrado** (Ação, 12 PR): Técnica de assinatura do Caminho Ilusión. Um alvo a até 24 metros faz salvaguarda de Constituição (CD 8 + proficiência + Espírito). Na falha, tem desvantagem nos ataques e fica sem reações até o fim do próximo turno dele.
+  - **Lança Verde** (Ação, 10 PR): O Poder Inato de Resurrección sai da lança de reiatsu esverdeado. Ataque de técnica (d20 + proficiência + Espírito), alcance de 24 metros. Ignora o Hierro. Custo: 8 PR + nível/5. Dano: ((nível + 4)×1.6)d10 + (Espírito).
+  - **Mundo Quebrado** (Ação, 12 PR): Técnica de assinatura do Caminho Ilusión. Substitui os ataques da ação. Um alvo a até 24 metros faz salvaguarda de Constituição (CD 8 + proficiência + Espírito). Na falha, tem desvantagem nos ataques e fica sem reações até o fim do próximo turno dele.
   - **Noite Sem Estrelas** (Ação, 30 PR): Esfera de 9 metros de raio num ponto a até 24 metros. Salvaguarda de Mente (CD 8 + proficiência + Espírito): na falha o alvo sofre o dano e fica cego até o fim do próximo turno dele; no sucesso, metade do dano. Dano: (nível/2 + 5)d10 + (Espírito).
 
 **Fornicarás** (Caminho Ponzoña)
@@ -2486,8 +2486,8 @@ A Resurrección já tem custo, duração, bônus de CR e técnica de assinatura 
 - **Traço, Casulo Venenoso:** uma vez por rodada, quando uma criatura acerta você em combate corpo a corpo, ela recebe 1 carga de Ponzoña (respeitando o máximo de cargas).
 - **Ponto fraco, Corpo Pesado:** seu deslocamento diminui em 3 metros.
 - **Ações da forma:**
-  - **Espinho Roxo** (Ação, 9 PR): O Poder Inato de Resurrección sai como um espinho de veneno. Ataque de técnica (d20 + proficiência + Espírito). Ignora o Hierro. Se acertar, aplica 1 carga de Ponzoña. Dano: ((nível + 4)×1.6)d10 + (Espírito).
-  - **Veneno Total** (Ação bônus, 12 PR): Técnica de assinatura do Caminho Ponzoña. Até o fim do seu próximo turno, as cargas de Ponzoña causam +50% de dano.
+  - **Espinho Roxo** (Ação, 10 PR): O Poder Inato de Resurrección sai como um espinho de veneno. Ataque de técnica (d20 + proficiência + Espírito). Ignora o Hierro. Se acertar, aplica 1 carga de Ponzoña. Dano: ((nível + 4)×1.6)d10 + (Espírito).
+  - **Veneno Total** (Ação, 12 PR): Técnica de assinatura do Caminho Ponzoña. Substitui os ataques da ação. Até o fim do seu próximo turno, as cargas de Ponzoña causam +50% de dano.
   - **Colheita Venenosa** (Ação, 30 PR): Detona todas as cargas de Ponzoña num alvo que você veja. Ele sofre os dados indicados de Energia por carga (ignora RD) e as cargas somem. Dano: (proficiência)d10.
 
 **Espejo Negro** (Caminho Reflejo)
@@ -2498,8 +2498,8 @@ A Resurrección já tem custo, duração, bônus de CR e técnica de assinatura 
 - **Traço, Véu de Reflexo:** uma vez por rodada, quando um ataque erra você, você ganha PV temporários iguais ao seu bônus de proficiência.
 - **Ponto fraco, Vidro Frágil:** se você sofrer um acerto crítico, o Véu de Reflexo deixa de funcionar até o fim da Resurrección.
 - **Ações da forma:**
-  - **Reflexo Negro** (Ação, 9 PR): O Poder Inato de Resurrección sai em estilhaços de vidro negro. Ataque de técnica (d20 + proficiência + Espírito). Ignora o Hierro. Custo: 8 PR + nível/5. Dano: ((nível + 4)×1.6)d10 + (Espírito).
-  - **Espejo Roto** (Reação, 12 PR): Técnica de assinatura do Caminho Reflejo. Quando você sofre dano, devolve 50% desse dano ao atacante como dano de Energia.
+  - **Reflexo Negro** (Ação, 10 PR): O Poder Inato de Resurrección sai em estilhaços de vidro negro. Ataque de técnica (d20 + proficiência + Espírito). Ignora o Hierro. Custo: 8 PR + nível/5. Dano: ((nível + 4)×1.6)d10 + (Espírito).
+  - **Espejo Roto** (Ação, 12 PR): Técnica de assinatura do Caminho Reflejo. Substitui os ataques da ação. Até o início do seu próximo turno, quando você sofre dano, devolve 50% desse dano ao atacante como dano de Energia.
   - **Espelho Quebrado** (Ação, 30 PR): Uma criatura a até 18 metros faz salvaguarda de Espírito (CD 8 + proficiência + Espírito). Na falha sofre o dano de Energia e tem desvantagem nos ataques até o início do seu próximo turno; no sucesso, metade do dano. Dano: (nível/2 + 5)d10 + (Espírito).
 
 ### Criando Sua Resurrección

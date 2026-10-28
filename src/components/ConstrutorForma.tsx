@@ -227,7 +227,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
                   </select>
                 </label>
                 <div className="duas">
-                  <label className="campo">Custo de liberação (40 a 80 PR)<input type="number" min={40} max={80} value={r.custo} onChange={(e) => mud({ custo: Number(e.target.value) })} /></label>
+                  <label className="campo">Custo de liberação (40 a 80 PR)<input type="number" min={20} max={80} value={r.custo} onChange={(e) => mud({ custo: Number(e.target.value) })} /></label>
                   <label className="campo">Duração<input value={r.duracao} onChange={(e) => mud({ duracao: e.target.value })} /></label>
                 </div>
               </>
@@ -310,7 +310,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
   );
 }
 
-type ItemAcao = { id: string; nome: string; texto: string; custo: string; acao: string; pr?: number; dano?: string };
+type ItemAcao = { id: string; nome: string; texto: string; custo: string; acao: string; pr?: number; prExpr?: string; dano?: string };
 
 const formasDefinidas = (f: Ficha) =>
   (["bankai", "resurreccion", "vollstandig"] as TipoForma[]).map((t) => f.formas[t]).filter((x): x is FormaLib => !!x && !!x.nome);
@@ -318,7 +318,7 @@ const formasDefinidas = (f: Ficha) =>
 /** Uma habilidade da forma como carta, com botões de usar e rolar. */
 function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg }: { f: Ficha; c: Calculo; r: Rolagens; alterar: (p: Partial<Ficha>) => void; forma: FormaLib; h: ItemAcao; ativa: boolean; onMsg: (m: string) => void }) {
   const dano = h.dano ? resolverDano(h.dano, f, c) : "";
-  const gasta = h.pr ?? 0;
+  const gasta = h.prExpr ? Number(resolverDano(h.prExpr, f, c)) || (h.pr ?? 0) : h.pr ?? 0;
   return (
     <article className={`carta-hab acao-carta ${ativa ? "" : "travada"}`}>
       <small className="ajuda">{TIPO_FORMA_NOME[forma.tipo]} · {forma.nome}</small>
