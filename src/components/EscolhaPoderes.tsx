@@ -13,11 +13,14 @@ import {
   tecnicasConhecidas,
 } from "../regras/catalogo";
 import { classePorId, type Ficha } from "../regras/ficha";
+import { formaPendente } from "../regras/liberacoes";
 
 export interface Pendencias {
   talentos: number;
   kidos: number;
   tecnicas: number;
+  /** forma de liberação (Bankai, Resurrección ou Vollständig) por montar */
+  forma: number;
 }
 
 /** Quantas escolhas de poderes ainda faltam para o nível atual. */
@@ -28,10 +31,11 @@ export function pendencias(f: Ficha): Pendencias {
     talentos: Math.max(0, slotsTalento(f.nivel) - tals),
     kidos: Math.max(0, kidosConhecidos(f.classe, f.nivel) - f.kidos.length),
     tecnicas: Math.max(0, tecnicasConhecidas(f.classe, f.nivel) - f.tecnicasReishi.length),
+    forma: formaPendente(f, classePorId(f.classe)?.tipo) ? 1 : 0,
   };
 }
 
-export const totalPendencias = (p: Pendencias) => p.talentos + p.kidos + p.tecnicas;
+export const totalPendencias = (p: Pendencias) => p.talentos + p.kidos + p.tecnicas + p.forma;
 
 export function EscolhaPoderes({ f, mudar }: { f: Ficha; mudar: (p: Partial<Ficha>) => void }) {
   const classe = classePorId(f.classe);

@@ -480,7 +480,39 @@ export interface Treinos {
   geralDias: number;
 }
 
-export type Liberacao = "" | "shikai" | "bankai" | "resurreccion" | "mascara";
+export type Liberacao = "" | "shikai" | "bankai" | "resurreccion" | "vollstandig" | "mascara";
+
+export type TipoForma = "bankai" | "resurreccion" | "vollstandig";
+
+export interface HabForma {
+  id: string;
+  nome: string;
+  texto: string;
+  custo: string;
+  acao: string;
+}
+
+/** Forma de liberação avançada do personagem (Bankai, Resurrección ou Vollständig). */
+export interface FormaLib {
+  tipo: TipoForma;
+  /** id do modelo pronto usado, ou vazio se for própria */
+  modelo: string;
+  nome: string;
+  comando: string;
+  aparencia: string;
+  estilo: "" | "potencializadora" | "transformadora";
+  custo: number;
+  duracao: string;
+  habilidades: HabForma[];
+  traco: string;
+  pontoFraco: string;
+  canalizador: string;
+  schrift: string;
+  /** Vollständig: habilidades únicas escolhidas (id -> vezes) */
+  picks: Record<string, number>;
+  /** texto de referência do modelo pronto */
+  texto: string;
+}
 
 export interface Estado {
   pvTemp: number;
@@ -531,6 +563,7 @@ export interface Ficha {
   treinos: Treinos;
   estado: Estado;
   zanpakutou: { nome: string; frase: string };
+  formas: Partial<Record<TipoForma, FormaLib>>;
 }
 
 const zero = (): Record<Atr, number> => ({ for: 0, des: 0, con: 0, men: 0, esp: 0 });
@@ -573,6 +606,7 @@ export function fichaNova(): Ficha {
     treinos: { feitos: [], pf: 0, geralDias: 0 },
     estado: { pvTemp: 0, liberado: "", condicoes: [], ultimoFolegoUsado: false, curtosUsados: 0, ativas: [], usos: {} },
     zanpakutou: { nome: "", frase: "" },
+    formas: {},
   };
 }
 
@@ -588,6 +622,7 @@ export function normalizar(bruto: Partial<Ficha> | null | undefined): Ficha {
   f.treinos = { ...n.treinos, ...f.treinos };
   f.estado = { ...n.estado, ...f.estado };
   f.zanpakutou = { ...n.zanpakutou, ...f.zanpakutou };
+  f.formas = f.formas ?? {};
   f.talentos = f.talentos ?? [];
   f.kidos = f.kidos ?? [];
   f.tecnicasReishi = f.tecnicasReishi ?? [];
@@ -740,6 +775,19 @@ export function calcular(f: Ficha): Calculo {
     if (c?.id === "vazio") cr += n >= 16 ? prof : prof - 1;
   }
 
+  let rdFisExtra = 0;
+  let rdEsoExtra = 0;
+  let deslocExtra = 0;
+  if (f.estado.liberado === "vollstandig") {
+    const pk = f.formas?.vollstandig?.picks ?? {};
+    cr += 3 * (pk["defesa"] ?? 0);
+    pv += 40 * (pk["reserva-vital"] ?? 0);
+    pr += 40 * (pk["reserva-esp"] ?? 0);
+    rdFisExtra = 5 * (pk["armadura"] ?? 0);
+    rdEsoExtra = rdFisExtra;
+    deslocExtra = 6 * (pk["velocidade"] ?? 0);
+  }
+
   const saves = {} as Calculo["saves"];
   const fixos = c?.saves ?? [];
   ATRIBUTOS.forEach(({ id }) => {
@@ -771,9 +819,9 @@ export function calcular(f: Ficha): Calculo {
     pv,
     pr,
     cr,
-    desloc: ef.desloc,
-    rdFis: ef.rdFis,
-    rdEso: ef.rdEso,
+    desloc: ef.desloc + deslocExtra,
+    rdFis: ef.rdFis + rdFisExtra,
+    rdEso: ef.rdEso + rdEsoExtra,
     iniciativa: ef.iniMente ? Math.max(atr.des, atr.men) : atr.des,
     danoCorpo: ef.danoCorpo,
     crEvasao,

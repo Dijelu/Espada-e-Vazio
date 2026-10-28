@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Passo } from "./FichaPecas";
 import type { Rolagens } from "./Rolador";
 import { CONDICOES, treinoConcluido } from "../regras/catalogo";
+import { nivelLiberacao } from "../regras/liberacoes";
 import { classePorId, type Calculo, type Ficha, type Liberacao } from "../regras/ficha";
 import { efeito as som } from "../lib/som";
 
@@ -62,6 +63,7 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
     if (treinoConcluido(f, "bankai") || f.estado.liberado === "bankai") libs.push({ id: "bankai", nome: "Bankai" });
   }
   if (tipo === "hollow" && (treinoConcluido(f, "resurreccion") || f.estado.liberado === "resurreccion")) libs.push({ id: "resurreccion", nome: "Resurrección" });
+  if (tipo === "quincy" && (f.nivel >= nivelLiberacao(f.classe, tipo, "vollstandig") || f.estado.liberado === "vollstandig")) libs.push({ id: "vollstandig", nome: "Vollständig" });
   if (f.origem === "visored" && f.treinos.feitos.includes("visored-2")) libs.push({ id: "mascara", nome: "Máscara Hollow" });
 
   const custoLib = (id: Liberacao) => {
@@ -70,6 +72,8 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
       return f.nivel >= 20 ? Math.ceil(base / 2) : base;
     }
     if (id === "mascara") return 5 * c.prof;
+    if (id === "vollstandig") return 60;
+    if (id === "bankai") return f.formas?.bankai?.custo ?? 0;
     return 0;
   };
 
@@ -81,7 +85,7 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
     const custo = custoLib(id);
     const ganhoTemp = id === "resurreccion" && classe?.id === "vazio" ? (f.nivel >= 16 ? 5 : 3) * f.nivel : 0;
     alterar({ prAtual: Math.max(0, f.prAtual - custo), estado: { ...f.estado, liberado: id, pvTemp: Math.max(e.pvTemp, ganhoTemp) } });
-    setMsg(custo ? `${id === "mascara" ? "Máscara" : "Resurrección"} ativada: ${custo} PR gastos.` : "Liberação marcada. O custo está na descrição da sua Zanpakutou.");
+    setMsg(custo ? `${id === "mascara" ? "Máscara" : id === "vollstandig" ? "Vollständig" : id === "bankai" ? "Bankai" : "Resurrección"} ativada: ${custo} PR gastos.` : "Liberação marcada. O custo está na descrição da sua Zanpakutou.");
   };
 
   return (

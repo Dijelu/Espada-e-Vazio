@@ -4,6 +4,8 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { CartasHabilidades, CondicoesAtivas, EfeitosAtivos } from "../components/CartasResumo";
 import { AcoesRapidas } from "../components/AcoesRapidas";
 import { EscolhaPoderes, pendencias, totalPendencias } from "../components/EscolhaPoderes";
+import { CartasFormas, ConstrutorForma } from "../components/ConstrutorForma";
+import { TIPO_FORMA_NOME, formaPendente, nivelLiberacao } from "../regras/liberacoes";
 import { Campo, LinhaAtributos, Passo, SeletorVariacoes, novoId } from "../components/FichaPecas";
 import { BotaoRolar, PainelRolagens, useRolagens, type Rolagens } from "../components/Rolador";
 import { AbaTreinamento } from "../components/Treinamento";
@@ -27,6 +29,7 @@ import {
   proficiencia,
   type Atr,
   type Ficha as TFicha,
+  type TipoForma,
 } from "../regras/ficha";
 
 const ABAS = ["Resumo", "Combate", "Perícias", "Poderes", "Treinamento", "Evolução", "Notas"] as const;
@@ -40,6 +43,8 @@ export default function Ficha() {
   const [estado, setEstado] = useState<"salvo" | "salvando" | "erro">("salvo");
   const [aba, setAba] = useState<Aba>("Resumo");
   const carregada = useRef(false);
+  const [construir, setConstruir] = useState<TipoForma | null>(null);
+  const nivelVisto = useRef<number | null>(null);
   const rol = useRolagens();
 
   useEffect(() => {
@@ -73,6 +78,17 @@ export default function Ficha() {
   }, [f, id, estado]);
 
   const c = useMemo(() => (f ? calcular(f) : null), [f]);
+
+  // ao subir de nível e chegar numa liberação nova, abre a tela para montá-la
+  useEffect(() => {
+    if (!f) return;
+    const antes = nivelVisto.current;
+    nivelVisto.current = f.nivel;
+    if (antes !== null && f.nivel > antes) {
+      const t = formaPendente(f, classePorId(f.classe)?.tipo);
+      if (t) setConstruir(t);
+    }
+  }, [f]);
 
   const subirNivel = useCallback(() => {
     alterar((x) => ({ nivel: Math.min(20, x.nivel + 1) }));
@@ -194,6 +210,7 @@ export default function Ficha() {
             </div>
           </div>
           <CartasHabilidades f={f} c={c} alterar={alterar} r={rol} />
+          <CartasFormas f={f} onEditar={setConstruir} />
           <div className="grade2">
             <EfeitosAtivos f={f} c={c} />
             <CondicoesAtivas f={f} alterar={alterar} />
@@ -337,9 +354,20 @@ export default function Ficha() {
 
       {aba === "Treinamento" && <AbaTreinamento f={f} c={c} alterar={alterar} />}
 
-      {aba === "Evolução" && <Evolucao f={f} c={c} alterar={alterar} subir={subirNivel} />}
+      {aba === "Evolução" && <Evolucao f={f} c={c} alterar={alterar} subir={subirNivel} onForma={setConstruir} />}
 
       <PainelRolagens r={rol} />
+      {construir && (
+        <ConstrutorForma
+          f={f}
+          tipo={construir}
+          onFechar={() => setConstruir(null)}
+          onSalvar={(forma) => {
+            alterar({ formas: { ...f.formas, [construir]: forma } });
+            setConstruir(null);
+          }}
+        />
+      )}
 
       {aba === "Notas" && (
         <section className="aba">
@@ -387,7 +415,7 @@ function Barra({ tipo, rotulo, atual, max, pct, onChange }: { tipo: "pv" | "pr";
   );
 }
 
-function Evolucao({ f, c, alterar, subir }: { f: TFicha; c: ReturnType<typeof calcular>; alterar: (p: Partial<TFicha>) => void; subir: () => void }) {
+function Evolucao({ f, c, alterar, subir, onForma }: { f: TFicha; c: ReturnType<typeof calcular>; alterar: (p: Partial<TFicha>) => void; subir: () => void; onForma: (t: TipoForma) => void }) {
   const classe = classePorId(f.classe);
   const origem = origemPorId(f.origem);
   const nivelXp = nivelPorXp(f.xp);
@@ -445,6 +473,30 @@ function Evolucao({ f, c, alterar, subir }: { f: TFicha; c: ReturnType<typeof ca
 
       <h2 className="title-font sub">Poderes do nível {f.nivel}</h2>
       <EscolhaPoderes f={f} mudar={alterar} />
+
+      {(["bankai", "resurreccion", "vollstandig"] as TipoForma[])
+        .filter((t) => nivelLiberacao(f.classe, classe?.tipo, t) > 0)
+        .map((t) => {
+          const nv = nivelLiberacao(f.classe, classe?.tipo, t);
+          const forma = f.formas[t];
+          return (
+            <div className="caixa" key={t}>
+              <h3>{TIPO_FORMA_NOME[t]}</h3>
+              {f.nivel < nv ? (
+                <p className="ajuda">Disponível a partir do nível {nv}.</p>
+              ) : forma?.nome ? (
+                <p>Definida: <b>{forma.nome}</b></p>
+              ) : (
+                <p>Você já pode ter a sua {TIPO_FORMA_NOME[t]}. Escolha um modelo do livro ou monte a sua.</p>
+              )}
+              {f.nivel >= nv && (
+                <button type="button" className="btn btn-red" onClick={() => onForma(t)}>
+                  {forma?.nome ? "Editar" : "Montar"} {TIPO_FORMA_NOME[t]}
+                </button>
+              )}
+            </div>
+          );
+        })}
 
       {classe && f.nivel >= 3 && (
         <div className="caixa">

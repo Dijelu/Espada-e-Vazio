@@ -297,9 +297,11 @@ Melhoria (2x): Aprimoramento na arma espiritual, crítico e dano.
 
 DUELISTA A Vollstanding Expurgador tem as seguintes habilidades únicas escolhidas:
 
-Melhoria (1x): Aprimoramento na arma espiritual, crítico.
+Melhoria (2x): Aprimoramento na arma espiritual, crítico e dano.
 
-Olhos do Céu (1x): +6 metros no alcance com arma. Precisão Espiritual (2x): +6 nas jogadas de ataque com a arma espiritual.
+Olhos do Céu (1x): +6 metros no alcance com arma.
+
+Precisão Espiritual (1x): +3 nas jogadas de ataque com a arma espiritual.
 
 EXPURGADOR A Vollstanding Oráculo tem as seguintes habilidades únicas escolhidas:
 
@@ -318,6 +320,30 @@ Precisão Espiritual (1x): +3 nas jogadas de ataque com a arma espiritual.
 Força Espiritual (1x): +5 de dano com a arma espiritual.
 
 VELOCISTA
+
+### Vollstanding Inspiradas no Mangá
+
+Estes três modelos seguem o estilo de combate de Quincy famosos da obra. Eles usam as mesmas habilidades únicas da lista acima, então os limites valem (Força Espiritual e Precisão Espiritual só uma vez cada).
+
+**Atirador Celeste.** Um arqueiro que acerta qualquer coisa à vista e dispara de longe.
+
+- Olhos do Céu (1x): +6 metros de alcance.
+- Potência Espiritual (1x): +5 de dano com Técnicas de Reishi.
+- Precisão Espiritual (1x): +3 nas jogadas de ataque com a arma espiritual.
+- Velocidade (1x): +6 metros de deslocamento.
+
+**Bombardeiro.** Um Quincy que transforma o reishi em explosões e vive de reserva espiritual.
+
+- Potência Espiritual (2x): +10 de dano com Técnicas de Reishi.
+- Reserva Espiritual (1x): +40 de reiatsu máximo.
+- Reunião Eficiente (1x): +5 pontos de reiatsu com Sklaverei.
+
+**Sentinela.** Um Quincy que guarda o grupo e aguenta o que vier.
+
+- Armadura de Reishi (1x): RD 5 a todos os tipos de dano, exceto Psíquico.
+- Defesa (1x): +3 na Classe de Resistência.
+- Reserva Vital (1x): +40 de PV máximos.
+- Vigor do Reishi (1x): recupera 5 PV no início do turno.
 
 ## Schirift
 

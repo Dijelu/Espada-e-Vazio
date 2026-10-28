@@ -2422,6 +2422,72 @@ Você devolve ao inimigo o golpe que ele errou. Atributos-chave: Espírito e Des
 - **3º nível:** quando um ataque erra você, você contra-ataca com **1d8** mais metade do Espírito. No 7º nível, o contra-ataque passa a **2d8** mais metade do Espírito.
 - **10º nível:** você devolve **8%** do dano sofrido ao atacante.
 
+## Resurrecciones Prontas
+
+A Resurrección já tem custo, duração, bônus de CR e técnica de assinatura definidos pela classe e pelo Caminho. O que muda de um Hollow para outro é a **forma**: o nome, a aparência, um **traço** próprio e um **ponto fraco**. Os modelos abaixo servem de ponto de partida. Cada um é pensado para um Caminho, mas qualquer Hollow da mesma classe pode usá-lo trocando só a aparência da técnica de assinatura. Os traços valem **apenas enquanto a Resurrección estiver ativa**.
+
+### Modelos de Hueco
+
+**Pantera** (Caminho Sonido)
+
+- **Comando:** “Rasgue o silêncio, Pantera.”
+- **Aparência:** corpo esguio de felino, garras longas de osso, cauda e a máscara reduzida a uma crista na face.
+- **Técnica de assinatura:** o Golpe Fantasma surge como uma sequência de arranhões de garras, cada um vindo de uma direção diferente.
+- **Traço, Salto de Pantera:** seu deslocamento aumenta em 6 metros e, uma vez por turno, você usa Desengajar como ação livre.
+- **Ponto fraco, Pelagem Rasgada:** você sofre -2 de CR contra ataques à distância.
+
+**Los Lobos** (Caminho Estallido)
+
+- **Comando:** “Uivem, Los Lobos.”
+- **Aparência:** duas silhuetas de lobo feitas de reiatsu acompanham você, e o seu próprio corpo ganha pelagem de névoa e uma pistola de osso nas mãos.
+- **Técnica de assinatura:** os dois Ceros do Gran Rey Cero saem um de cada lobo.
+- **Traço, Cero em Matilha:** ao lançar o Cero, você pode dividi-lo entre até 2 alvos a até 6 metros um do outro. Cada alvo sofre metade do dano (arredonde para cima). O custo não muda.
+- **Ponto fraco, Sede de Matilha:** se nenhum aliado estiver a até 9 metros de você, o Cero custa +3 PR.
+
+**Santa Teresa** (Caminho Glotonería)
+
+- **Comando:** “Estraçalhe, Santa Teresa.”
+- **Aparência:** um corpo magro e alto, com quatro braços de osso afiado e uma boca extra no peito.
+- **Técnica de assinatura:** o Devorar usa os quatro braços para prender e rasgar o alvo.
+- **Traço, Braços Múltiplos:** seu alcance corpo a corpo aumenta em 3 metros. Se você acertar a mesma criatura duas vezes na mesma ação, ela fica agarrada (salvaguarda de Força, CD 8 + proficiência + Força).
+- **Ponto fraco, Guarda Aberta:** enquanto estiver agarrando uma criatura, a margem de crítico dos ataques contra você aumenta em 1.
+
+### Modelos de Vazio
+
+**Murciélago** (Caminho Ilusión)
+
+- **Comando:** “Cubra o céu, Murciélago.”
+- **Aparência:** asas membranosas, pele pálida, lágrimas negras sob os olhos e uma lança de reiatsu esverdeado.
+- **Técnica de assinatura:** o Mundo Quebrado surge como um céu escuro que apaga as referências do alvo.
+- **Traço, Asas Negras:** você ganha voo igual ao seu deslocamento.
+- **Ponto fraco, Olhos Sensíveis:** você tem desvantagem em testes de Percepção feitos com luz intensa.
+
+**Fornicarás** (Caminho Ponzoña)
+
+- **Comando:** “Teça a ruína, Fornicarás.”
+- **Aparência:** corpo coberto de casulos que se abrem como flores, de onde escorre um veneno roxo.
+- **Técnica de assinatura:** o Veneno Total faz as cargas escorrerem pelo corpo do alvo como fios.
+- **Traço, Casulo Venenoso:** uma vez por rodada, quando uma criatura acerta você em combate corpo a corpo, ela recebe 1 carga de Ponzoña (respeitando o máximo de cargas).
+- **Ponto fraco, Corpo Pesado:** seu deslocamento diminui em 3 metros.
+
+**Espejo Negro** (Caminho Reflejo)
+
+- **Comando:** “Reflita-os, Espejo Negro.”
+- **Aparência:** a pele vira vidro escuro e o rosto some atrás de uma máscara lisa em que o inimigo vê o próprio reflexo.
+- **Técnica de assinatura:** o Espejo Roto devolve o golpe em estilhaços de vidro negro.
+- **Traço, Véu de Reflexo:** uma vez por rodada, quando um ataque erra você, você ganha PV temporários iguais ao seu bônus de proficiência.
+- **Ponto fraco, Vidro Frágil:** se você sofrer um acerto crítico, o Véu de Reflexo deixa de funcionar até o fim da Resurrección.
+
+### Criando Sua Resurrección
+
+Se não quiser um modelo pronto, siga o mesmo caminho da Bankai (Capítulo 5, “Criando Sua Zanpakutou”), adaptado ao Hollow:
+
+1. **Nome e comando:** o nome costuma ser um animal ou conceito em espanhol, e o comando é a frase dita ao liberar.
+2. **Aparência:** descreva o corpo, a máscara e a arma natural na forma liberada.
+3. **Técnica de assinatura:** ela é a do seu Caminho (veja acima). Você só descreve como ela se manifesta.
+4. **Traço:** crie um efeito pequeno e claro, na escala dos modelos prontos (+3 metros de alcance, voo, +proficiência em PV temporários, uma reação por rodada e assim por diante). Nada de dano fixo grande: o dano já vem da forma.
+5. **Ponto fraco:** toda Resurrección tem um preço, como menos CR contra um tipo de ataque, menos deslocamento ou um custo extra. O Mestre aprova o traço e o ponto fraco.
+
 ## Talentos Hollow
 
 Um Talento por vez, do 2º nível em diante, exceto nos níveis de Aprimoramento da Essência (4º, 8º, 12º, 16º e 19º). "Pré-req." indica o nível mínimo. Os custos são em PR; "prof." é o bônus de proficiência.
