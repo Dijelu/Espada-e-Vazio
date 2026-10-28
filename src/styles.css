@@ -314,3 +314,22 @@ img { max-width: 100%; }
 .article strong.def { font-size: 1.08em; }
 .article .kicker { font-size: 18px; letter-spacing: .06em; }
 @media (max-width: 560px) { .article h2 { font-size: 32px; } .article h3 { font-size: 23px; } }
+
+/* capa e capítulos em pincel */
+.hero h1, .strip b, .bar-text b, .bar-num, .article h1, .page > h1.title-font, .page > h2.title-font, .painel-txt b, .cap-cortina-txt b {
+  font-family: var(--font-pincel);
+  font-style: normal;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: .01em;
+}
+.hero h1 { line-height: .9; font-size: clamp(64px, 13vw, 170px); }
+.bar-text b { font-size: 40px; }
+.bar.big .bar-text b { font-size: 52px; }
+.bar-num { font-size: 70px; }
+.bar.big .bar-num { font-size: 92px; }
+.strip b { font-size: 30px; }
+.article h1 { font-size: clamp(46px, 7vw, 80px); line-height: 1; }
+.painel-txt b { font-size: 24px; }
+@media (max-width: 900px) { .bar-text b, .bar.big .bar-text b { font-size: 28px; } .bar-num, .bar.big .bar-num { font-size: 44px; } }
+@media (max-width: 560px) { .bar-text b, .bar.big .bar-text b { font-size: 23px; } .bar-num, .bar.big .bar-num { font-size: 34px; } }
