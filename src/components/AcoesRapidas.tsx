@@ -11,6 +11,7 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
   const [dano, setDano] = useState("");
   const [tipoDano, setTipoDano] = useState<"fis" | "eso" | "direto">("fis");
   const [msg, setMsg] = useState("");
+  const [metade, setMetade] = useState(false);
   const e = f.estado;
   const setE = (p: Partial<Ficha["estado"]>) => alterar({ estado: { ...f.estado, ...p } });
 
@@ -18,12 +19,13 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
     const n = Math.floor(Number(dano));
     if (!Number.isFinite(n) || n <= 0) return;
     const rd = tipoDano === "fis" ? c.rdFis : tipoDano === "eso" ? c.rdEso : 0;
-    const real = Math.max(0, n - rd);
+    const real = Math.max(0, Math.floor(metade ? n / 2 : n) - rd);
     const noTemp = Math.min(e.pvTemp, real);
     const noPv = real - noTemp;
     alterar({ pvAtual: Math.max(0, f.pvAtual - noPv), estado: { ...f.estado, pvTemp: e.pvTemp - noTemp } });
     setMsg(`${n} de dano${rd ? ` − RD ${rd}` : ""} = ${real}${noTemp ? ` (${noTemp} nos PV temporários)` : ""}. ${f.pvAtual - noPv <= 0 ? "Você caiu a 0 PV." : ""}`);
     setDano("");
+    setMetade(false);
     som.corte();
   };
 
@@ -40,16 +42,17 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
     alterar({
       pvAtual: c.pv,
       prAtual: c.pr,
-      estado: { ...f.estado, pvTemp: 0, curtosUsados: 0, ultimoFolegoUsado: false, liberado: "" },
+      estado: { ...f.estado, pvTemp: 0, curtosUsados: 0, ultimoFolegoUsado: false, liberado: "", usos: {} },
     });
     setMsg("Descanso longo: PV e PR cheios, descansos curtos e habilidades renovados.");
   };
 
-  const podeFolego = f.origem === "humano" && f.pvAtual <= 0 && !e.ultimoFolegoUsado;
-  const folego = () => {
-    const v = 5 * c.prof;
-    alterar({ pvAtual: Math.min(c.pv, v), prAtual: Math.min(c.pr, f.prAtual + v), estado: { ...f.estado, ultimoFolegoUsado: true } });
-    setMsg(`Último Fôlego: ${v} PV e ${v} PR.`);
+  const encerrar = () => {
+    // fim do combate: habilidades por combate voltam e a liberação termina
+    const usos = { ...f.estado.usos };
+    delete usos["ultimo-folego"];
+    alterar({ estado: { ...f.estado, usos, liberado: "" } });
+    setMsg("Combate encerrado: habilidades de uso por combate renovadas.");
   };
 
   // liberações disponíveis conforme o treinamento concluído
@@ -87,7 +90,7 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
         <button type="button" className="btn btn-paper" onClick={() => r.d20("Iniciativa", c.iniciativa)}>🎲 Iniciativa</button>
         <button type="button" className="btn btn-paper" onClick={curto} disabled={e.curtosUsados >= 2}>Descanso curto ({2 - e.curtosUsados} restante{e.curtosUsados === 1 ? "" : "s"})</button>
         <button type="button" className="btn btn-paper" onClick={longo}>Descanso longo</button>
-        {podeFolego && <button type="button" className="btn btn-red" onClick={folego}>Último Fôlego</button>}
+        <button type="button" className="btn btn-paper" onClick={encerrar}>Encerrar combate</button>
         <button type="button" className="btn btn-paper" onClick={() => window.print()}>Imprimir</button>
       </div>
 
@@ -100,6 +103,9 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
           <option value="eso">Esotérico (RD {c.rdEso})</option>
           <option value="direto">Ignora RD</option>
         </select>
+        {f.origem === "lobisomem" && (
+          <label className="mini"><input type="checkbox" checked={metade} onChange={(ev) => setMetade(ev.target.checked)} /> metade (Corpo Animalesco)</label>
+        )}
         <button type="button" className="btn btn-paper" onClick={aplicarDano}>Aplicar dano</button>
         <div className="mini">PV temporários <Passo valor={e.pvTemp} min={0} max={999} rotulo="PV temporários" onChange={(v) => setE({ pvTemp: v })} /></div>
       </div>

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { CartasHabilidades, CondicoesAtivas, EfeitosAtivos } from "../components/CartasResumo";
 import { AcoesRapidas } from "../components/AcoesRapidas";
 import { EscolhaPoderes, pendencias, totalPendencias } from "../components/EscolhaPoderes";
 import { Campo, LinhaAtributos, Passo, SeletorVariacoes, novoId } from "../components/FichaPecas";
@@ -162,8 +163,8 @@ export default function Ficha() {
               {f.ataques.map((a) => (
                 <div className="carta-mini" key={a.id}>
                   <b>{a.nome}</b>
-                  <span>Acerto {mod(ataqueBonus(f, c, a))} · Dano {a.dano || "—"}</span>
-                  <LinhaAtaque r={rol} nome={a.nome} bonus={ataqueBonus(f, c, a)} dano={a.dano} />
+                  <span>Acerto {mod(ataqueBonus(f, c, a))} · Dano {danoFinal(a.dano, a, c) || "—"}</span>
+                  <LinhaAtaque r={rol} nome={a.nome} bonus={ataqueBonus(f, c, a)} dano={danoFinal(a.dano, a, c)} />
                 </div>
               ))}
             </div>
@@ -190,6 +191,11 @@ export default function Ficha() {
                 <p className="ajuda">RD: {c.rdFis > 0 ? `${c.rdFis} físico` : ""}{c.rdFis > 0 && c.rdEso > 0 ? " · " : ""}{c.rdEso > 0 ? `${c.rdEso} esotérico` : ""}</p>
               )}
             </div>
+          </div>
+          <CartasHabilidades f={f} c={c} alterar={alterar} r={rol} />
+          <div className="grade2">
+            <EfeitosAtivos f={f} c={c} />
+            <CondicoesAtivas f={f} alterar={alterar} />
           </div>
           {f.essencias.length > 0 && (
             <div className="caixa">
@@ -232,13 +238,13 @@ export default function Ficha() {
                 </select>
                 <input value={a.dano} placeholder="Dano (ex.: 2d8+3)" onChange={(e) => alterar({ ataques: f.ataques.map((x) => (x.id === a.id ? { ...x, dano: e.target.value } : x)) })} aria-label="Dano" />
                 <span className="acerto">{mod(ataqueBonus(f, c, a))}</span>
-                <LinhaAtaque r={rol} nome={a.nome} bonus={ataqueBonus(f, c, a)} dano={a.dano} />
+                <LinhaAtaque r={rol} nome={a.nome} bonus={ataqueBonus(f, c, a)} dano={danoFinal(a.dano, a, c)} />
                 <button className="link-perigo" onClick={() => alterar({ ataques: f.ataques.filter((x) => x.id !== a.id) })}>Remover</button>
               </div>
             ))}
             <select className="arma-add" value="" aria-label="Adicionar arma do livro" onChange={(e) => {
               const a = [...ARMAS.corpo, ...ARMAS.distancia].find((x) => x.nome === e.target.value);
-              if (a) alterar({ ataques: [...f.ataques, { id: novoId(), nome: a.nome, atr: a.atr.startsWith("Destreza") ? "des" : "for", dano: a.dano }] });
+              if (a) alterar({ ataques: [...f.ataques, { id: novoId(), nome: a.nome, atr: a.atr.startsWith("Destreza") ? "des" : "for", dano: a.dano, distancia: ARMAS.distancia.some((x) => x.nome === a.nome) }] });
             }}>
               <option value="">Adicionar arma do livro…</option>
               {[...ARMAS.corpo, ...ARMAS.distancia].map((a) => <option key={a.nome} value={a.nome}>{a.nome} ({a.dano})</option>)}
@@ -522,4 +528,10 @@ function PoderesEscolhidos({ f }: { f: TFicha }) {
       <p className="ajuda">Descrições completas de Kidō e das técnicas no <Link to="/livro/feiticos-e-tecnicas" target="_blank">capítulo de Feitiços e Técnicas</Link>.</p>
     </div>
   );
+}
+
+/** Soma o dano extra de corpo a corpo da Origem (Predador, Infectado, Caçador…) nos ataques que não são à distância. */
+function danoFinal(dano: string, a: { distancia?: boolean }, c: ReturnType<typeof calcular>) {
+  if (!dano.trim() || a.distancia || c.danoCorpo <= 0) return dano;
+  return `${dano}+${c.danoCorpo}`;
 }

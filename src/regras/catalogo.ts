@@ -252,10 +252,10 @@ export const treinoConcluido = (f: Ficha, treinoId: string) => {
   return t.etapas.length > 0 && t.etapas.every((e) => f.treinos.feitos.includes(e.id));
 };
 
-export const CONDICOES = [
-  "Agarrado", "Amendrontado", "Atordoado", "Caído", "Cego", "Congelado", "Distorcido", "Eletrificado", "Enfeitiçado", "Envenenado",
-  "Esgotado", "Incapacitado", "Inconsciente", "Invisível", "Paralisado", "Petrificado", "Preso", "Queimado", "Sangramento", "Surdo",
-];
+import condicoesJson from "./condicoes.json";
+
+export const CONDICAO_TEXTO = condicoesJson as unknown as Record<string, string[]>;
+export const CONDICOES = Object.keys(CONDICAO_TEXTO);
 
 /* ---------- equipamento inicial ---------- */
 
@@ -287,6 +287,7 @@ export function ataquesIniciais(f: Ficha, tipo: TipoClasse | undefined): Ficha["
     }
   }
   if (tipo === "hollow") mk("Arma natural", "for", "1d10");
+  for (const a of out) if (ARMAS.distancia.some((x) => a.nome === x.nome)) a.distancia = true;
   return out;
 }
 

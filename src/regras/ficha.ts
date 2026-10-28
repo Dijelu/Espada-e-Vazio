@@ -95,6 +95,12 @@ export interface Efeito {
   pericias?: string[];
   /** pontos de atributo a distribuir livremente */
   livre?: number;
+  /** dano extra em ataques corpo a corpo */
+  danoCorpo?: number;
+  /** Evasão Aprimorada: CR pode usar 10 + proficiência + metade da Destreza */
+  evasao?: boolean;
+  /** Raciocínio Rápido: iniciativa pode usar Mente no lugar de Destreza */
+  iniMente?: boolean;
 }
 
 export interface Variacao {
@@ -188,7 +194,7 @@ export const ORIGENS: Origem[] = [
         id: "aureo",
         nome: "Áureo",
         texto: "Agilidade Animal (Destreza +2), Deslocamento Aprimorado (essência Velocista, que não conta como inicial) e Evasão Aprimorada.",
-        efeito: { atr: { des: 2 } },
+        efeito: { atr: { des: 2 }, evasao: true },
       },
     ],
   },
@@ -231,7 +237,7 @@ export const ORIGENS: Origem[] = [
         id: "gemischt",
         nome: "Gemischt",
         texto: "Treino Intenso (Destreza +2), Determinação (repete uma salvaguarda falha por descanso longo) e Raciocínio Rápido na iniciativa.",
-        efeito: { atr: { des: 2 } },
+        efeito: { atr: { des: 2 }, iniMente: true },
       },
     ],
   },
@@ -247,7 +253,7 @@ export const ORIGENS: Origem[] = [
         id: "infectado",
         nome: "Infectado",
         texto: "Corpo Reforçado (Constituição +1), Força Instintiva (+2 de dano corpo a corpo) e Corpo Hollowdificado (RD 5 contra dano físico).",
-        efeito: { atr: { con: 1 }, rdFis: 5 },
+        efeito: { atr: { con: 1 }, rdFis: 5, danoCorpo: 2 },
       },
       {
         id: "unificado",
@@ -269,7 +275,7 @@ export const ORIGENS: Origem[] = [
       "Corpo Hollow: RD 2 contra dano físico. Até 3 m de altura.",
     ],
     variacoes: [
-      { id: "predador", nome: "Predador", texto: "Corpo Forte (Força +1) e Ataque Feroz (+2 de dano corpo a corpo).", efeito: { atr: { for: 1 } } },
+      { id: "predador", nome: "Predador", texto: "Corpo Forte (Força +1) e Ataque Feroz (+2 de dano corpo a corpo).", efeito: { atr: { for: 1 }, danoCorpo: 2 } },
       { id: "persistente", nome: "Persistente", texto: "Corpo Reforçado (Constituição +1 e +5 PV iniciais) e Cicatrização Hollow (1 PV no início de cada turno).", efeito: { atr: { con: 1 }, pvIni: 5 } },
     ],
   },
@@ -303,7 +309,7 @@ export const ORIGENS: Origem[] = [
     ],
     variacoes: [
       { id: "guardiao", nome: "Guardião", texto: "Presença Hollow (Espírito +1, proficiência em Presença) e Comando (aliado Hollow recebe +2 de dano).", efeito: { atr: { esp: 1 }, pericias: ["presenca"] } },
-      { id: "cacador", nome: "Caçador", texto: "Ataque Focado (+2 de dano corpo a corpo) e Instinto Afiado (a CR do alvo cai 1 até o fim do próximo turno dele)." },
+      { id: "cacador", nome: "Caçador", texto: "Ataque Focado (+2 de dano corpo a corpo) e Instinto Afiado (a CR do alvo cai 1 até o fim do próximo turno dele).", efeito: { danoCorpo: 2 } },
     ],
   },
   {
@@ -323,7 +329,7 @@ export const ORIGENS: Origem[] = [
     ],
     variacoes: [
       { id: "soberano", nome: "Soberano", texto: "10º nível: Mente Soberana (Espírito +1, CR +1) e Ordem Real.", desdeNivel: 10, efeito: { atr: { esp: 1 }, cr: 1 } },
-      { id: "predador-supremo", nome: "Predador Supremo", texto: "10º nível: Arma Real (+3 de dano corpo a corpo) e Perseguição (CR +1, reação de ataque).", desdeNivel: 10, efeito: { cr: 1 } },
+      { id: "predador-supremo", nome: "Predador Supremo", texto: "10º nível: Arma Real (+3 de dano corpo a corpo) e Perseguição (CR +1, reação de ataque).", desdeNivel: 10, efeito: { cr: 1, danoCorpo: 3 } },
     ],
   },
 ];
@@ -445,6 +451,8 @@ export interface Ataque {
   atr: Atr;
   dano: string;
   nota?: string;
+  /** ataque à distância: não recebe o dano extra de corpo a corpo */
+  distancia?: boolean;
 }
 
 export interface KidoEscolhido {
@@ -480,6 +488,10 @@ export interface Estado {
   condicoes: string[];
   ultimoFolegoUsado: boolean;
   curtosUsados: number;
+  /** habilidades ativas ligadas (efeitos que duram) */
+  ativas: string[];
+  /** usos gastos de habilidades limitadas, por id */
+  usos: Record<string, number>;
 }
 
 export interface Ficha {
@@ -559,7 +571,7 @@ export function fichaNova(): Ficha {
     tecnicasReishi: [],
     equip: { forca: "", divisao: 0, asauchi: "", armas: [], artefato: "", naturalForma: "", extras: "" },
     treinos: { feitos: [], pf: 0, geralDias: 0 },
-    estado: { pvTemp: 0, liberado: "", condicoes: [], ultimoFolegoUsado: false, curtosUsados: 0 },
+    estado: { pvTemp: 0, liberado: "", condicoes: [], ultimoFolegoUsado: false, curtosUsados: 0, ativas: [], usos: {} },
     zanpakutou: { nome: "", frase: "" },
   };
 }
@@ -614,8 +626,11 @@ export function efeitoOrigem(f: Ficha): Required<Pick<Efeito, "pvIni" | "prIni" 
   atr: Record<Atr, number>;
   pericias: string[];
   livre: number;
+  danoCorpo: number;
+  evasao: boolean;
+  iniMente: boolean;
 } {
-  const out = { pvIni: 0, prIni: 0, pvNivel: 0, prNivel: 0, cr: 0, rdFis: 0, rdEso: 0, desloc: 9, atr: zero(), pericias: [] as string[], livre: 0 };
+  const out = { danoCorpo: 0, evasao: false, iniMente: false, pvIni: 0, prIni: 0, pvNivel: 0, prNivel: 0, cr: 0, rdFis: 0, rdEso: 0, desloc: 9, atr: zero(), pericias: [] as string[], livre: 0 };
   const soma = (e?: Efeito) => {
     if (!e) return;
     out.pvIni += e.pvIni ?? 0;
@@ -626,6 +641,9 @@ export function efeitoOrigem(f: Ficha): Required<Pick<Efeito, "pvIni" | "prIni" 
     out.rdFis += e.rdFis ?? 0;
     out.rdEso += e.rdEso ?? 0;
     out.livre += e.livre ?? 0;
+    out.danoCorpo += e.danoCorpo ?? 0;
+    if (e.evasao) out.evasao = true;
+    if (e.iniMente) out.iniMente = true;
     if (e.desloc) out.desloc = Math.max(out.desloc, e.desloc);
     (Object.keys(e.atr ?? {}) as Atr[]).forEach((a) => (out.atr[a] += e.atr![a] ?? 0));
     out.pericias.push(...(e.pericias ?? []));
@@ -650,6 +668,9 @@ export interface Calculo {
   rdFis: number;
   rdEso: number;
   iniciativa: number;
+  danoCorpo: number;
+  /** CR veio da Evasão Aprimorada */
+  crEvasao: boolean;
   percPassiva: number;
   saves: Record<Atr, { prof: boolean; total: number }>;
   pericias: Record<string, { prof: boolean; fixa: boolean; total: number }>;
@@ -698,11 +719,19 @@ export function calcular(f: Ficha): Calculo {
   let pv = 0;
   let pr = 0;
   let cr = 0;
+  let crEvasao = false;
   if (c) {
     pv = c.pvIni + atr.con + ef.pvIni + (n - 1) * (c.pvNivel + atr.con + ef.pvNivel);
     pr = c.prIni + atr.esp + ef.prIni + (n - 1) * (c.prNivel + atr.esp + ef.prNivel);
     pv += c.extraPv ? c.extraPv(n, f.subclasse) : 0;
     cr = c.cr === "plena" ? 10 + prof + atr.con + atr.des : 10 + prof + atr.des + Math.floor(atr.con / 2);
+    if (ef.evasao) {
+      const alt = 10 + prof + Math.floor(atr.des / 2);
+      if (alt > cr) {
+        cr = alt;
+        crEvasao = true;
+      }
+    }
   }
   pv += f.ajuste.pv;
   pr += f.ajuste.pr;
@@ -748,7 +777,9 @@ export function calcular(f: Ficha): Calculo {
     desloc: ef.desloc,
     rdFis: ef.rdFis,
     rdEso: ef.rdEso,
-    iniciativa: atr.des,
+    iniciativa: ef.iniMente ? Math.max(atr.des, atr.men) : atr.des,
+    danoCorpo: ef.danoCorpo,
+    crEvasao,
     percPassiva: 10 + pericias["percepcao"].total,
     saves,
     pericias,

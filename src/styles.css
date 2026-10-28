@@ -627,3 +627,11 @@ input:focus, select:focus, textarea:focus { outline: 3px solid var(--accent); ou
   .ficha .aba { display: block !important; }
   body { background: #fff !important; color: #000 !important; }
 }
+
+/* ---------- cartas de habilidade ---------- */
+.cartas-hab { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 10px; }
+.carta-hab { display: grid; gap: 6px; align-content: start; padding: 12px 14px; border: 2px solid var(--accent); border-radius: 10px; background: var(--panel2); }
+.carta-hab header { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+.carta-hab header small { color: var(--muted); }
+.carta-hab p { margin: 0; font-size: 14px; line-height: 1.5; }
+.carta-hab .acao-hab { color: var(--accent); font-weight: 700; font-size: 13px; }
