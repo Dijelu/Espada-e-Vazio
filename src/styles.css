@@ -688,3 +688,19 @@ input:focus, select:focus, textarea:focus { outline: 3px solid var(--accent); ou
 .painel-forma-topo small { color: var(--accent); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 .painel-forma p { margin: 0; }
 .painel-forma-botoes { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* assistente passo a passo */
+.assistente { display: grid; gap: 12px; }
+.assistente-trilha { list-style: none; margin: 0; padding: 0; display: flex; gap: 6px; overflow-x: auto; }
+.assistente-trilha li button { background: var(--panel2); color: var(--muted); border: 2px solid var(--line); border-radius: 999px; padding: 6px 12px; min-height: 40px; font: inherit; font-size: 14px; cursor: pointer; white-space: nowrap; }
+.assistente-trilha li.atual button { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.assistente-trilha li.feito button { color: var(--text); border-color: var(--accent); }
+.assistente-trilha li span { font-weight: 800; margin-right: 4px; }
+.assistente-passo { display: grid; gap: 10px; }
+.assistente-passo h3 { margin: 0; font-size: 26px; }
+.assistente-nav, .assistente-fim { display: flex; gap: 10px; justify-content: space-between; flex-wrap: wrap; }
+.opcoes-grandes { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.opcao { text-align: left; background: var(--panel2); color: var(--text); border: 2px solid var(--line); border-radius: 8px; padding: 14px; font: inherit; display: grid; gap: 4px; cursor: pointer; min-height: 72px; }
+.opcao small { color: var(--muted); font-size: 14px; }
+.opcao.on { border-color: var(--accent); box-shadow: 4px 4px 0 var(--accent); }
+.assistente .chip-btn { text-align: left; white-space: normal; padding: 8px 12px; }

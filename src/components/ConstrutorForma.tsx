@@ -11,6 +11,7 @@ import {
   totalPicks,
 } from "../regras/liberacoes";
 import { novoId } from "./FichaPecas";
+import { AssistenteForma } from "./AssistenteForma";
 import { acoesDaForma, comoHabilidades, habilidadesDaForma, resolverDano } from "../regras/liberacoes";
 import type { Calculo } from "../regras/ficha";
 import type { Rolagens } from "./Rolador";
@@ -51,7 +52,7 @@ const DICAS: Record<TipoForma, string> = {
 
 export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
   const classe = classePorId(f.classe);
-  const [aba, setAba] = useState<"modelos" | "meu">(f.formas[tipo]?.nome ? "meu" : "modelos");
+  const [aba, setAba] = useState<"modelos" | "passo" | "meu">(f.formas[tipo]?.nome ? "meu" : "passo");
   const [r, setR] = useState<FormaLib>(f.formas[tipo] ? { ...vazia(tipo), ...f.formas[tipo]! } : vazia(tipo));
   const [aberto, setAberto] = useState("");
   const [busca, setBusca] = useState("");
@@ -136,7 +137,8 @@ export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
       <p className="ajuda construtor-dica">{DICAS[tipo]}</p>
       <div className="modos" role="tablist" aria-label="Como montar">
         <button type="button" role="tab" aria-selected={aba === "modelos"} className={aba === "modelos" ? "on" : ""} onClick={() => setAba("modelos")}>Modelos prontos</button>
-        <button type="button" role="tab" aria-selected={aba === "meu"} className={aba === "meu" ? "on" : ""} onClick={() => setAba("meu")}>Montar a minha</button>
+        <button type="button" role="tab" aria-selected={aba === "passo"} className={aba === "passo" ? "on" : ""} onClick={() => setAba("passo")}>Passo a passo</button>
+        <button type="button" role="tab" aria-selected={aba === "meu"} className={aba === "meu" ? "on" : ""} onClick={() => setAba("meu")}>Editar tudo</button>
       </div>
 
       <div className="construtor-corpo">
@@ -208,6 +210,10 @@ export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
               </li>
             ))}
           </ul>
+        )}
+
+        {aba === "passo" && (
+          <AssistenteForma f={f} tipo={tipo} r={r} mud={mud} onSalvar={() => onSalvar(r)} onEditarTudo={() => setAba("meu")} />
         )}
 
         {aba === "meu" && (

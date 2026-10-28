@@ -461,6 +461,17 @@ Cada Vollstanding pronta vem com as suas próprias ações, no estilo das técni
 - **Postura Firme** (Ação bônus, 8 PR): Até o início do próximo turno, você não pode ser empurrado nem derrubado, e os ataques contra aliados a 3 metros de você têm desvantagem.
 - **Muralha Viva** (Reação, 15 PR): Quando um aliado a até 6 metros sofre dano, você voa até ele sem provocar ataques de oportunidade e reduz esse dano na quantidade indicada. Dano: 2d10 + (proficiência).
 
+### Criando Sua Vollstanding
+
+Se não quiser uma versão pronta, monte a sua em seis passos. A ficha oferece este mesmo passo a passo quando você chega ao nível da Vollstanding.
+
+1. **Nome e frase de liberação:** “Quincy Vollständig” ou um nome próprio. Se tiver Schrift, ela influencia o nome.
+2. **Aparência:** asas e auréola de reishi, na cor do seu reishi.
+3. **Canalizador:** o objeto que ativa a Vollstanding (colar, luva, máscara ou o sangue desenhando o símbolo no ar).
+4. **Habilidades únicas:** escolha quatro (seis a partir do 18º nível, ou do 17º para o Ritter). Depois de definidas, não mudam.
+5. **Ações:** de duas a três, no padrão da Bankai: uma básica de 8 a 10 PR, uma de apoio e uma final de 30 PR.
+6. **Revisão:** ativar custa 60 PR e usa uma ação. O Mestre aprova as ações.
+
 ## Schirift
 
 ## Antítese
