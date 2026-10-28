@@ -490,6 +490,10 @@ export interface HabForma {
   texto: string;
   custo: string;
   acao: string;
+  /** custo em PR, para o botão de usar */
+  pr?: number;
+  /** dano ou valor rolável, como "4d10+[ESP]" */
+  dano?: string;
 }
 
 /** Forma de liberação avançada do personagem (Bankai, Resurrección ou Vollständig). */

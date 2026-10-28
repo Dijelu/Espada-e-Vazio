@@ -345,6 +345,28 @@ Estes três modelos seguem o estilo de combate de Quincy famosos da obra. Eles u
 - Reserva Vital (1x): +40 de PV máximos.
 - Vigor do Reishi (1x): recupera 5 PV no início do turno.
 
+### Ações da Vollstanding
+
+Enquanto a Vollstanding estiver ativa, você tem estas ações, além dos ataques com a arma espiritual e das Técnicas de Reishi. Os bônus de Potência Espiritual, Olhos do Céu e das outras habilidades únicas continuam valendo.
+
+**Ações de todo Quincy:**
+
+- **Rajada de Reishi** (Ação, 10 PR): Ataque de técnica à distância (alcance de 18 metros). Soma os bônus de Potência Espiritual e Olhos do Céu que você escolheu. Dano: 4d10 + Espírito.
+- **Golpe Alado** (Ação, 15 PR): Você voa até 9 metros e ataca com a arma espiritual. O ataque causa o dano de Energia indicado a mais. Dano: 3d10.
+- **Chuva de Reishi** (Ação, 30 PR): Área de 6 metros de raio num ponto a até 18 metros. Salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso. Dano: (nível/2 + 5)d10 + Espírito.
+
+**Ação própria de cada modelo pronto:**
+
+- **Conjurador:** **Salva de Reishi** (Ação, 25 PR): Três ataques de técnica à distância, em alvos iguais ou diferentes. Cada acerto causa o dano indicado de Energia. Dano: 3d10 + Espírito.
+- **Defensivo:** **Muralha de Reishi** (Reação, 10 PR): Quando você ou um aliado a 3 metros sofre dano, reduza esse dano na quantidade indicada. Dano: 2d10 + proficiência.
+- **Duelista:** **Corte Alado** (Ação, 20 PR): Dois ataques com a arma espiritual. Se ambos acertarem no mesmo alvo, ele sofre o dano de Energia indicado a mais. Dano: 4d10 + Espírito.
+- **Expurgador:** **Disparo Perfurante** (Ação, 20 PR): Ataque com a arma espiritual que ignora toda a redução de dano do alvo. Dano: 6d10 + Espírito.
+- **Oráculo:** **Visão Total** (Ação bônus, 10 PR): Até o fim do seu próximo turno, você sabe a localização de todas as criaturas a 56 metros e tem vantagem no próximo ataque.
+- **Velocista:** **Passo Relâmpago** (Ação bônus, 10 PR): Você voa até 18 metros sem provocar ataques de oportunidade. O seu próximo ataque no turno causa o dano de Energia indicado a mais. Dano: 2d10.
+- **Atirador Celeste:** **Flecha Celeste** (Ação, 25 PR): Um disparo com o dobro do alcance e margem de crítico 19–20. Causa dano de Energia. Dano: 8d10 + Espírito.
+- **Bombardeiro:** **Bomba de Reishi** (Ação, 30 PR): Explosão de 6 metros de raio num ponto a até 18 metros. Salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso. Dano: (nível/2 + 4)d10 + Espírito.
+- **Sentinela:** **Barreira Sentinela** (Ação, 15 PR): Você e os aliados a até 3 metros ganham PV temporários na quantidade indicada. Dano: (nível×2).
+
 ## Schirift
 
 ## Antítese

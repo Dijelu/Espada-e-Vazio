@@ -676,3 +676,7 @@ input:focus, select:focus, textarea:focus { outline: 3px solid var(--accent); ou
 .pick-passo .btn-mini:disabled { opacity: .35; cursor: not-allowed; }
 .forma-card { display: grid; gap: 6px; }
 .forma-card h3 { margin: 0; }
+.acao-forma { border-top: 1px dashed var(--line); padding-top: 8px; }
+.acao-forma p { margin: 0 0 6px; }
+.acao-botoes { display: flex; gap: 8px; flex-wrap: wrap; }
+.acao-botoes .btn-mini:disabled { opacity: .4; cursor: not-allowed; }

@@ -2435,6 +2435,9 @@ A Resurrección já tem custo, duração, bônus de CR e técnica de assinatura 
 - **Técnica de assinatura:** o Golpe Fantasma surge como uma sequência de arranhões de garras, cada um vindo de uma direção diferente.
 - **Traço, Salto de Pantera:** seu deslocamento aumenta em 6 metros e, uma vez por turno, você usa Desengajar como ação livre.
 - **Ponto fraco, Pelagem Rasgada:** você sofre -2 de CR contra ataques à distância.
+- **Ações da forma:**
+  - **Garra Relâmpago** (Ação bônus, 8 PR): Você se move até 9 metros sem provocar ataques de oportunidade e ataca com a arma natural. O ataque causa 2d10 + Destreza de Energia a mais. Dano: 2d10 + Destreza.
+  - **Tempestade de Garras** (Ação, 30 PR): Você investe contra até 3 criaturas a 4,5 metros de você. Cada uma faz uma salvaguarda de Destreza (CD 8 + proficiência + Destreza): sofre o dano de Energia na falha ou metade no sucesso. Dano: (nível/2 + 5)d10 + Destreza.
 
 **Los Lobos** (Caminho Estallido)
 
@@ -2443,6 +2446,9 @@ A Resurrección já tem custo, duração, bônus de CR e técnica de assinatura 
 - **Técnica de assinatura:** os dois Ceros do Gran Rey Cero saem um de cada lobo.
 - **Traço, Cero em Matilha:** ao lançar o Cero, você pode dividi-lo entre até 2 alvos a até 6 metros um do outro. Cada alvo sofre metade do dano (arredonde para cima). O custo não muda.
 - **Ponto fraco, Sede de Matilha:** se nenhum aliado estiver a até 9 metros de você, o Cero custa +3 PR.
+- **Ações da forma:**
+  - **Uivo de Matilha** (Ação bônus, 8 PR): Os lobos uivam: o seu próximo Cero até o fim do próximo turno causa os dados indicados a mais. Dano: (proficiência)d8.
+  - **Matilha Voraz** (Ação, 30 PR): Os lobos disparam numa linha de 12 metros por 1,5. Cada criatura na linha faz salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso. Dano: (nível/2 + 5)d10 + Espírito.
 
 **Santa Teresa** (Caminho Glotonería)
 
@@ -2451,6 +2457,9 @@ A Resurrección já tem custo, duração, bônus de CR e técnica de assinatura 
 - **Técnica de assinatura:** o Devorar usa os quatro braços para prender e rasgar o alvo.
 - **Traço, Braços Múltiplos:** seu alcance corpo a corpo aumenta em 3 metros. Se você acertar a mesma criatura duas vezes na mesma ação, ela fica agarrada (salvaguarda de Força, CD 8 + proficiência + Força).
 - **Ponto fraco, Guarda Aberta:** enquanto estiver agarrando uma criatura, a margem de crítico dos ataques contra você aumenta em 1.
+- **Ações da forma:**
+  - **Abraço de Osso** (Ação, 10 PR): Contra uma criatura que você agarra: ela sofre o dano de Concussão e fica contida até o fim do próximo turno dela, a menos que passe numa salvaguarda de Força (CD 8 + proficiência + Força). Dano: 3d10 + Força.
+  - **Banquete de Carne** (Ação, 30 PR): Ataque corpo a corpo com as quatro garras. Se acertar, você recupera PV iguais à metade do dano causado. Dano: (nível/2 + 5)d10 + Força.
 
 ### Modelos de Vazio
 
@@ -2461,6 +2470,9 @@ A Resurrección já tem custo, duração, bônus de CR e técnica de assinatura 
 - **Técnica de assinatura:** o Mundo Quebrado surge como um céu escuro que apaga as referências do alvo.
 - **Traço, Asas Negras:** você ganha voo igual ao seu deslocamento.
 - **Ponto fraco, Olhos Sensíveis:** você tem desvantagem em testes de Percepção feitos com luz intensa.
+- **Ações da forma:**
+  - **Lança Verde** (Ação, 10 PR): Ataque à distância de técnica, alcance de 24 metros, dano de Energia. Dano: 4d10 + Espírito.
+  - **Noite Sem Estrelas** (Ação, 30 PR): Esfera de 9 metros de raio num ponto a até 24 metros. Salvaguarda de Mente (CD 8 + proficiência + Espírito): na falha o alvo sofre o dano e fica cego até o fim do próximo turno dele; no sucesso, metade do dano. Dano: (nível/2 + 5)d10 + Espírito.
 
 **Fornicarás** (Caminho Ponzoña)
 
@@ -2469,6 +2481,9 @@ A Resurrección já tem custo, duração, bônus de CR e técnica de assinatura 
 - **Técnica de assinatura:** o Veneno Total faz as cargas escorrerem pelo corpo do alvo como fios.
 - **Traço, Casulo Venenoso:** uma vez por rodada, quando uma criatura acerta você em combate corpo a corpo, ela recebe 1 carga de Ponzoña (respeitando o máximo de cargas).
 - **Ponto fraco, Corpo Pesado:** seu deslocamento diminui em 3 metros.
+- **Ações da forma:**
+  - **Casulo Explosivo** (Ação, 10 PR): Um alvo a até 12 metros faz salvaguarda de Constituição (CD 8 + proficiência + Espírito). Na falha, recebe 1 carga de Ponzoña sem precisar de ataque.
+  - **Colheita Venenosa** (Ação, 30 PR): Detona todas as cargas de Ponzoña num alvo que você veja. Ele sofre os dados indicados de Energia por carga (ignora RD) e as cargas somem. Dano: (proficiência)d10.
 
 **Espejo Negro** (Caminho Reflejo)
 
@@ -2477,6 +2492,18 @@ A Resurrección já tem custo, duração, bônus de CR e técnica de assinatura 
 - **Técnica de assinatura:** o Espejo Roto devolve o golpe em estilhaços de vidro negro.
 - **Traço, Véu de Reflexo:** uma vez por rodada, quando um ataque erra você, você ganha PV temporários iguais ao seu bônus de proficiência.
 - **Ponto fraco, Vidro Frágil:** se você sofrer um acerto crítico, o Véu de Reflexo deixa de funcionar até o fim da Resurrección.
+- **Ações da forma:**
+  - **Estilhaço** (Reação, 8 PR): Quando um ataque erra você, o atacante sofre o dano de Energia em estilhaços de vidro negro. Dano: 3d10 + Espírito.
+  - **Espelho Quebrado** (Ação, 30 PR): Uma criatura a até 18 metros faz salvaguarda de Espírito (CD 8 + proficiência + Espírito). Na falha sofre o dano de Energia e tem desvantagem nos ataques até o início do seu próximo turno; no sucesso, metade do dano. Dano: (nível/2 + 5)d10 + Espírito.
+
+### Ações Básicas da Resurrección
+
+Estas ações valem para qualquer Resurrección da classe, só enquanto ela estiver ativa. Os valores entre parênteses usam o seu nível e os seus atributos.
+
+- **Hueco:**
+  - **Cero de Resurrección** (Ação, 15 PR): Ataque à distância de Energia. Na Resurrección o Cero causa 1,7 vez os dados. Ignora o Hierro. Dano: ((nível + 8)×1.7)d8 + Espírito.
+- **Vazio:**
+  - **Poder Inato de Resurrección** (Ação, 9 PR): Ataque de técnica (d20 + proficiência + Espírito). Na Resurrección o Poder Inato causa 1,6 vez os dados. Ignora o Hierro. Custo: 8 PR + nível/5. Dano: ((nível + 4)×1.6)d10 + Espírito.
 
 ### Criando Sua Resurrección
 

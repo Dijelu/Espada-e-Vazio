@@ -11,6 +11,9 @@ import {
   totalPicks,
 } from "../regras/liberacoes";
 import { novoId } from "./FichaPecas";
+import { acoesDaForma, resolverDano } from "../regras/liberacoes";
+import type { Calculo } from "../regras/ficha";
+import type { Rolagens } from "./Rolador";
 
 const vazia = (tipo: TipoForma): FormaLib => ({
   tipo,
@@ -245,6 +248,8 @@ export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
                       <input value={h.nome} onChange={(e) => habil(h.id, { nome: e.target.value })} placeholder="Nome" aria-label="Nome da habilidade" />
                       <input value={h.acao} onChange={(e) => habil(h.id, { acao: e.target.value })} placeholder="Ação, bônus, reação" aria-label="Ação" />
                       <input value={h.custo} onChange={(e) => habil(h.id, { custo: e.target.value })} placeholder="Custo (ex.: 20 PR)" aria-label="Custo" />
+                      <input type="number" min={0} value={h.pr ?? ""} onChange={(e) => habil(h.id, { pr: e.target.value === "" ? undefined : Number(e.target.value) })} placeholder="PR do botão" aria-label="PR gastos ao usar" />
+                      <input value={h.dano ?? ""} onChange={(e) => habil(h.id, { dano: e.target.value })} placeholder="Dano (ex.: 8d10+5)" aria-label="Dano rolável" />
                     </div>
                     <textarea rows={3} value={h.texto} onChange={(e) => habil(h.id, { texto: e.target.value })} placeholder="O que faz, dano e alcance" aria-label="Texto da habilidade" />
                     <button type="button" className="link-perigo" onClick={() => mud({ habilidades: r.habilidades.filter((x) => x.id !== h.id) })}>Remover</button>
@@ -303,39 +308,71 @@ export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
   );
 }
 
-/** Formas já definidas, em cartas para o Resumo. */
-export function CartasFormas({ f, onEditar }: { f: Ficha; onEditar: (t: TipoForma) => void }) {
+/** Formas já definidas, em cartas para o Resumo, com as ações usáveis. */
+export function CartasFormas({ f, c, r, alterar, onEditar }: { f: Ficha; c: Calculo; r: Rolagens; alterar: (p: Partial<Ficha>) => void; onEditar: (t: TipoForma) => void }) {
+  const [msg, setMsg] = useState("");
   const lista = (["bankai", "resurreccion", "vollstandig"] as TipoForma[]).map((t) => f.formas[t]).filter((x): x is FormaLib => !!x && !!x.nome);
   if (lista.length === 0) return null;
+
+  const usar = (nome: string, pr: number) => {
+    alterar({ prAtual: Math.max(0, f.prAtual - pr) });
+    setMsg(`${nome}: ${pr} PR gastos.`);
+  };
+
   return (
     <div className="caixa">
       <h3>Formas de liberação</h3>
+      {msg && <p className="ajuda" role="status">{msg}</p>}
       <div className="cartas-hab">
-        {lista.map((x) => (
-          <article className="carta-hab forma-card" key={x.tipo}>
-            <small className="ajuda">{TIPO_FORMA_NOME[x.tipo]}{x.estilo ? ` · ${x.estilo}` : ""}</small>
-            <h3>{x.nome}</h3>
-            {x.comando && <p><i>“{x.comando}”</i></p>}
-            {x.aparencia && <p>{x.aparencia}</p>}
-            {x.tipo === "bankai" && <p><b>Custo:</b> {x.custo} PR · <b>Duração:</b> {x.duracao}</p>}
-            {x.traco && <p><b>Traço:</b> {x.traco}</p>}
-            {x.habilidades.map((h) => (
-              <p key={h.id}><b>{h.nome || "Habilidade"}</b>{h.acao || h.custo ? ` (${[h.acao, h.custo].filter(Boolean).join(", ")})` : ""}: {h.texto}</p>
-            ))}
-            {x.tipo === "vollstandig" && Object.keys(x.picks).length > 0 && (
-              <ul>
-                {Object.entries(x.picks).map(([id, n]) => {
-                  const h = HAB_UNICAS.find((u) => u.id === id);
-                  return <li key={id}>{h?.nome} ({n}x): {h?.texto}</li>;
-                })}
-              </ul>
-            )}
-            {x.canalizador && <p><b>Canalizador:</b> {x.canalizador}</p>}
-            {x.schrift && <p><b>Schrift:</b> {x.schrift}</p>}
-            {x.pontoFraco && <p><b>Ponto fraco:</b> {x.pontoFraco}</p>}
-            <button type="button" className="link-perigo" onClick={() => onEditar(x.tipo)}>Editar</button>
-          </article>
-        ))}
+        {lista.map((x) => {
+          const ativa = f.estado.liberado === x.tipo;
+          const prontas = acoesDaForma(x, f.classe);
+          return (
+            <article className="carta-hab forma-card" key={x.tipo}>
+              <small className="ajuda">{TIPO_FORMA_NOME[x.tipo]}{x.estilo ? ` · ${x.estilo}` : ""}{ativa ? " · ATIVA" : ""}</small>
+              <h3>{x.nome}</h3>
+              {x.comando && <p><i>“{x.comando}”</i></p>}
+              {x.aparencia && <p>{x.aparencia}</p>}
+              {x.tipo === "bankai" && <p><b>Custo:</b> {x.custo} PR · <b>Duração:</b> {x.duracao}</p>}
+              {x.traco && <p><b>Traço:</b> {x.traco}</p>}
+              {!ativa && <p className="ajuda">Ative a {TIPO_FORMA_NOME[x.tipo]} nas Ações rápidas para usar as ações abaixo.</p>}
+              {[...prontas.map((a) => ({ id: "p-" + a.nome, nome: a.nome, texto: a.texto, custo: `${a.pr} PR`, acao: a.acao, pr: a.pr, dano: a.dano })), ...x.habilidades].map((h) => {
+                const dano = h.dano ? resolverDano(h.dano, f, c) : "";
+                return (
+                  <div className="acao-forma" key={h.id}>
+                    <p><b>{h.nome || "Habilidade"}</b>{h.acao || h.custo ? ` (${[h.acao, h.custo].filter(Boolean).join(", ")})` : ""}: {h.texto}</p>
+                    {(h.pr !== undefined || dano) && (
+                      <div className="acao-botoes">
+                        {h.pr !== undefined && h.pr > 0 && (
+                          <button type="button" className="btn-mini" disabled={!ativa || f.prAtual < h.pr} onClick={() => usar(h.nome, h.pr!)}>
+                            Usar ({h.pr} PR)
+                          </button>
+                        )}
+                        {dano && /\d/.test(dano) && (
+                          <button type="button" className="btn-mini" disabled={!ativa} onClick={() => r.expr(h.nome, dano)}>
+                            🎲 {dano}
+                          </button>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+              {x.tipo === "vollstandig" && Object.keys(x.picks).length > 0 && (
+                <ul>
+                  {Object.entries(x.picks).map(([id, n]) => {
+                    const h = HAB_UNICAS.find((u) => u.id === id);
+                    return <li key={id}>{h?.nome} ({n}x): {h?.texto}</li>;
+                  })}
+                </ul>
+              )}
+              {x.canalizador && <p><b>Canalizador:</b> {x.canalizador}</p>}
+              {x.schrift && <p><b>Schrift:</b> {x.schrift}</p>}
+              {x.pontoFraco && <p><b>Ponto fraco:</b> {x.pontoFraco}</p>}
+              <button type="button" className="link-perigo" onClick={() => onEditar(x.tipo)}>Editar</button>
+            </article>
+          );
+        })}
       </div>
     </div>
   );

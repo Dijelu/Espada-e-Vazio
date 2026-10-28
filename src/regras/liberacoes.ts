@@ -1,5 +1,6 @@
 import bankaisJson from "./bankais.json";
-import type { FormaLib, TipoForma } from "./ficha";
+import acoesJson from "./acoes-forma.json";
+import type { Calculo, Ficha, FormaLib, TipoForma } from "./ficha";
 
 /* ---------- Bankai: modelos prontos do capítulo de Zanpakutōs ---------- */
 
@@ -165,4 +166,44 @@ export function formaPendente(f: { classe: string; nivel: number; formas?: Parti
     if (t === "vollstandig" && totalPicks(forma.picks) < picksVoll(f.classe, f.nivel)) return t;
   }
   return null;
+}
+
+/* ---------- ações das formas ---------- */
+
+export interface AcaoForma {
+  nome: string;
+  acao: string;
+  pr: number;
+  dano: string;
+  texto: string;
+}
+
+const AC = acoesJson as unknown as {
+  resurreccion: { base: Record<string, AcaoForma[]>; modelos: Record<string, AcaoForma[]> };
+  vollstandig: { base: AcaoForma[]; prontas: Record<string, AcaoForma[]> };
+};
+
+/** Ações prontas da forma: as da classe/base mais as do modelo escolhido. */
+export function acoesDaForma(forma: FormaLib, classeId: string): AcaoForma[] {
+  if (forma.tipo === "resurreccion") return [...(AC.resurreccion.base[classeId] ?? []), ...(AC.resurreccion.modelos[forma.modelo] ?? [])];
+  if (forma.tipo === "vollstandig") return [...AC.vollstandig.base, ...(AC.vollstandig.prontas[forma.modelo] ?? [])];
+  return [];
+}
+
+export const ACOES_DADOS = AC;
+
+/** Troca os valores entre colchetes pelo número calculado: "[NIV/2+5]d10+[ESP]" vira "10d10+4". */
+export function resolverDano(expr: string, f: Ficha, c: Calculo): string {
+  const v: Record<string, number> = { NIV: f.nivel, PROF: c.prof, ESP: c.atr.esp, FOR: c.atr.for, DES: c.atr.des, CON: c.atr.con, MEN: c.atr.men };
+  return expr.replace(/\[([^\]]+)\]/g, (_, dentro: string) => {
+    const t = dentro.replace(/[A-Z]{3,4}/g, (k) => String(v[k] ?? 0));
+    if (!/^[0-9+\-*/(). ]+$/.test(t)) return "0";
+    try {
+      // eslint-disable-next-line no-new-func
+      const r = Function(`"use strict"; return (${t});`)() as number;
+      return String(Math.max(0, Math.floor(r)));
+    } catch {
+      return "0";
+    }
+  });
 }
