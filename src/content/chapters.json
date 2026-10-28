@@ -1,0 +1,130 @@
+[
+  {
+    "slug": "introducao",
+    "no": 0,
+    "title": "Introdução",
+    "desc": "O que é Espada & vazio e como jogar",
+    "art": "intro",
+    "file": "00-introducao.md"
+  },
+  {
+    "slug": "criacao-de-personagem",
+    "no": 1,
+    "title": "Criação de Personagem",
+    "desc": "Do conceito à ficha pronta",
+    "art": "c01",
+    "file": "01-criacao-de-personagem.md"
+  },
+  {
+    "slug": "origem",
+    "no": 2,
+    "title": "Origem",
+    "desc": "Shinigami, Quincy, Hollow, Humano",
+    "art": "c02",
+    "file": "02-origem.md"
+  },
+  {
+    "slug": "classes",
+    "no": 3,
+    "title": "Classes",
+    "desc": "Zanjutsu, Hakuda, Kidō, Kyūgo…",
+    "art": "c03",
+    "file": "03-classes.md"
+  },
+  {
+    "slug": "essencias-espirituais",
+    "no": 4,
+    "title": "Essências Espirituais",
+    "desc": "Poderes e reiryoku",
+    "art": "c04",
+    "file": "04-essencias-espirituais.md"
+  },
+  {
+    "slug": "zanpakutous",
+    "no": 5,
+    "title": "Zanpakutōs",
+    "desc": "Shikai, Bankai e treinamento",
+    "art": "c05",
+    "file": "05-zanpakutous.md"
+  },
+  {
+    "slug": "seireitei",
+    "no": 6,
+    "title": "Seireitei",
+    "desc": "O mundo e suas cortes",
+    "art": "c06",
+    "file": "06-seireitei.md"
+  },
+  {
+    "slug": "arsenal-quincy",
+    "no": 7,
+    "title": "Arsenal Quincy",
+    "desc": "Ritter, Schütze, Vollständig",
+    "art": "c07",
+    "file": "07-arsenal-quincy.md"
+  },
+  {
+    "slug": "atributos-e-pericias",
+    "no": 8,
+    "title": "Atributos e Perícias",
+    "desc": "Testes, CR e proficiência",
+    "art": "c08",
+    "file": "08-atributos-e-pericias.md"
+  },
+  {
+    "slug": "treinamentos",
+    "no": 9,
+    "title": "Treinamentos",
+    "desc": "Evoluir além do nível",
+    "art": "c09",
+    "file": "09-treinamentos.md"
+  },
+  {
+    "slug": "condicoes",
+    "no": 10,
+    "title": "Condições",
+    "desc": "Estados e efeitos",
+    "art": "c10",
+    "file": "10-condicoes.md"
+  },
+  {
+    "slug": "feiticos-e-tecnicas",
+    "no": 11,
+    "title": "Feitiços e Técnicas",
+    "desc": "Lista completa",
+    "art": "c11",
+    "file": "11-feiticos-e-tecnicas.md"
+  },
+  {
+    "slug": "jogando",
+    "no": 12,
+    "title": "Jogando",
+    "desc": "Turnos, combate e descanso",
+    "art": "c12",
+    "file": "12-jogando.md"
+  },
+  {
+    "slug": "mestre",
+    "no": 13,
+    "title": "Mestre",
+    "desc": "Duelos, NPCs e mesas",
+    "art": "c13",
+    "file": "13-mestre.md"
+  },
+  {
+    "slug": "ameacas",
+    "no": 14,
+    "title": "Ameaças",
+    "desc": "Hollows, Arrancar e chefes",
+    "art": "c14",
+    "file": "14-ameacas.md"
+  },
+  {
+    "slug": "homenagens-e-fontes",
+    "no": 15,
+    "title": "Homenagens e Fontes",
+    "desc": "Créditos, inspirações e referências",
+    "art": "c06",
+    "file": "15-homenagens-e-fontes.md"
+  }
+]
