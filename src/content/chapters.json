@@ -5,7 +5,11 @@
     "title": "Introdução",
     "desc": "O que é Espada & vazio e como jogar",
     "art": "intro",
-    "file": "00-introducao.md"
+    "file": "00-introducao.md",
+    "parte": "base",
+    "revisoes": [
+      "regras-gerais"
+    ]
   },
   {
     "slug": "criacao-de-personagem",
@@ -13,7 +17,11 @@
     "title": "Criação de Personagem",
     "desc": "Do conceito à ficha pronta",
     "art": "c01",
-    "file": "01-criacao-de-personagem.md"
+    "file": "01-criacao-de-personagem.md",
+    "parte": "base",
+    "revisoes": [
+      "regras-gerais"
+    ]
   },
   {
     "slug": "origem",
@@ -21,7 +29,11 @@
     "title": "Origem",
     "desc": "Shinigami, Quincy, Hollow, Humano",
     "art": "c02",
-    "file": "02-origem.md"
+    "file": "02-origem.md",
+    "parte": "base",
+    "revisoes": [
+      "hollow"
+    ]
   },
   {
     "slug": "classes",
@@ -29,7 +41,13 @@
     "title": "Classes",
     "desc": "Zanjutsu, Hakuda, Kidō, Kyūgo…",
     "art": "c03",
-    "file": "03-classes.md"
+    "file": "03-classes.md",
+    "parte": "base",
+    "revisoes": [
+      "classes-revisadas",
+      "hollow",
+      "ritter"
+    ]
   },
   {
     "slug": "essencias-espirituais",
@@ -37,7 +55,11 @@
     "title": "Essências Espirituais",
     "desc": "Poderes e reiryoku",
     "art": "c04",
-    "file": "04-essencias-espirituais.md"
+    "file": "04-essencias-espirituais.md",
+    "parte": "base",
+    "revisoes": [
+      "regras-gerais"
+    ]
   },
   {
     "slug": "zanpakutous",
@@ -45,7 +67,12 @@
     "title": "Zanpakutōs",
     "desc": "Shikai, Bankai e treinamento",
     "art": "c05",
-    "file": "05-zanpakutous.md"
+    "file": "05-zanpakutous.md",
+    "parte": "base",
+    "revisoes": [
+      "regras-gerais",
+      "resurreccion"
+    ]
   },
   {
     "slug": "seireitei",
@@ -53,7 +80,8 @@
     "title": "Seireitei",
     "desc": "O mundo e suas cortes",
     "art": "c06",
-    "file": "06-seireitei.md"
+    "file": "06-seireitei.md",
+    "parte": "base"
   },
   {
     "slug": "arsenal-quincy",
@@ -61,7 +89,11 @@
     "title": "Arsenal Quincy",
     "desc": "Ritter, Schütze, Vollständig",
     "art": "c07",
-    "file": "07-arsenal-quincy.md"
+    "file": "07-arsenal-quincy.md",
+    "parte": "base",
+    "revisoes": [
+      "ritter"
+    ]
   },
   {
     "slug": "atributos-e-pericias",
@@ -69,7 +101,11 @@
     "title": "Atributos e Perícias",
     "desc": "Testes, CR e proficiência",
     "art": "c08",
-    "file": "08-atributos-e-pericias.md"
+    "file": "08-atributos-e-pericias.md",
+    "parte": "base",
+    "revisoes": [
+      "regras-gerais"
+    ]
   },
   {
     "slug": "treinamentos",
@@ -77,7 +113,8 @@
     "title": "Treinamentos",
     "desc": "Evoluir além do nível",
     "art": "c09",
-    "file": "09-treinamentos.md"
+    "file": "09-treinamentos.md",
+    "parte": "base"
   },
   {
     "slug": "condicoes",
@@ -85,7 +122,8 @@
     "title": "Condições",
     "desc": "Estados e efeitos",
     "art": "c10",
-    "file": "10-condicoes.md"
+    "file": "10-condicoes.md",
+    "parte": "base"
   },
   {
     "slug": "feiticos-e-tecnicas",
@@ -93,7 +131,8 @@
     "title": "Feitiços e Técnicas",
     "desc": "Lista completa",
     "art": "c11",
-    "file": "11-feiticos-e-tecnicas.md"
+    "file": "11-feiticos-e-tecnicas.md",
+    "parte": "base"
   },
   {
     "slug": "jogando",
@@ -101,7 +140,11 @@
     "title": "Jogando",
     "desc": "Turnos, combate e descanso",
     "art": "c12",
-    "file": "12-jogando.md"
+    "file": "12-jogando.md",
+    "parte": "base",
+    "revisoes": [
+      "regras-gerais"
+    ]
   },
   {
     "slug": "mestre",
@@ -109,7 +152,11 @@
     "title": "Mestre",
     "desc": "Duelos, NPCs e mesas",
     "art": "c13",
-    "file": "13-mestre.md"
+    "file": "13-mestre.md",
+    "parte": "base",
+    "revisoes": [
+      "regras-do-mestre"
+    ]
   },
   {
     "slug": "ameacas",
@@ -117,14 +164,74 @@
     "title": "Ameaças",
     "desc": "Hollows, Arrancar e chefes",
     "art": "c14",
-    "file": "14-ameacas.md"
+    "file": "14-ameacas.md",
+    "parte": "base",
+    "revisoes": [
+      "regras-do-mestre",
+      "regras-gerais"
+    ]
+  },
+  {
+    "slug": "regras-gerais",
+    "no": 15,
+    "title": "Regras Gerais",
+    "desc": "Atributos, perícias, CR, Defender e Essências",
+    "art": "c08",
+    "file": "15-regras-gerais.md",
+    "parte": "ev"
+  },
+  {
+    "slug": "classes-revisadas",
+    "no": 16,
+    "title": "Classes Revisadas",
+    "desc": "Todas as classes com os números finais",
+    "art": "c03",
+    "file": "16-classes-revisadas.md",
+    "parte": "ev"
+  },
+  {
+    "slug": "hollow",
+    "no": 17,
+    "title": "Hollow",
+    "desc": "Origens, classes Hueco e Vazio e talentos",
+    "art": "c14",
+    "file": "17-hollow.md",
+    "parte": "ev"
+  },
+  {
+    "slug": "ritter",
+    "no": 18,
+    "title": "Quincy: Ritter",
+    "desc": "A classe Ritter e a Vollständig",
+    "art": "c07",
+    "file": "18-ritter.md",
+    "parte": "ev"
+  },
+  {
+    "slug": "resurreccion",
+    "no": 19,
+    "title": "Treinamento da Resurrección",
+    "desc": "Como o Hollow libera sua forma final",
+    "art": "c05",
+    "file": "19-resurreccion.md",
+    "parte": "ev"
+  },
+  {
+    "slug": "regras-do-mestre",
+    "no": 20,
+    "title": "Regras do Mestre",
+    "desc": "NPC pareado, suporte, Boss e 5v5",
+    "art": "c13",
+    "file": "20-regras-do-mestre.md",
+    "parte": "ev"
   },
   {
     "slug": "homenagens-e-fontes",
-    "no": 15,
+    "no": 21,
     "title": "Homenagens e Fontes",
     "desc": "Créditos, inspirações e referências",
     "art": "c06",
-    "file": "15-homenagens-e-fontes.md"
+    "file": "21-homenagens-e-fontes.md",
+    "parte": "creditos"
   }
 ]

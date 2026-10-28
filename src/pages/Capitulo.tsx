@@ -7,15 +7,23 @@ import { Item, Paragrafo, comDicas, textoDe } from "../components/Texto";
 import Transicao from "../components/Transicao";
 import EmBreve from "./EmBreve";
 
+interface Grupo {
+  id: string;
+  titulo: string;
+  filhos: { id: string; titulo: string }[];
+}
+
 export default function Capitulo() {
   const { slug } = useParams();
   const { hash } = useLocation();
   const idx = capitulos.findIndex((c) => c.slug === slug);
   const cap = capitulos[idx];
   const [md, setMd] = useState<string | null>(null);
+  const [ativo, setAtivo] = useState<string>("");
 
   useEffect(() => {
     setMd(null);
+    setAtivo("");
     if (cap) carregarCapitulo(cap).then(setMd);
   }, [cap]);
 
@@ -31,32 +39,68 @@ export default function Capitulo() {
     window.scrollTo(0, 0);
   }, [md, hash]);
 
-  // ids únicos para títulos repetidos (ex.: "Traços de Classe" em cada classe)
-  const { toc, ids } = useMemo(() => {
-    const vistos = new Map<string, number>();
-    const lista: { id: string; titulo: string }[] = [];
-    const todos: string[] = [];
-    const unicos = new Set<string>();
-    if (md) {
-      for (const s of secoes(md)) {
-        const n = (vistos.get(s.id) ?? 0) + 1;
-        vistos.set(s.id, n);
-        const id = n === 1 ? s.id : `${s.id}-${n}`;
-        todos.push(id);
-        if (!unicos.has(s.id)) {
-          unicos.add(s.id);
-          lista.push({ id, titulo: s.titulo });
-        }
-      }
+  const lista = useMemo(() => (md ? secoes(md) : []), [md]);
+
+  // sumário em seções: cada ## é um grupo, e os ### aparecem dentro do grupo ativo
+  const grupos = useMemo(() => {
+    const g: Grupo[] = [];
+    for (const s of lista) {
+      if (s.nivel === 2 || g.length === 0) g.push({ id: s.id, titulo: s.titulo, filhos: [] });
+      else g[g.length - 1].filhos.push({ id: s.id, titulo: s.titulo });
     }
-    return { toc: lista, ids: todos };
-  }, [md]);
+    return g;
+  }, [lista]);
+
+  const grupoAtivo = useMemo(() => {
+    const g = grupos.find((x) => x.id === ativo || x.filhos.some((f) => f.id === ativo));
+    return g?.id ?? "";
+  }, [grupos, ativo]);
+
+  // destaca no sumário a seção que está na tela
+  useEffect(() => {
+    if (!lista.length) return;
+    const els = lista.map((s) => document.getElementById(s.id)).filter((e): e is HTMLElement => !!e);
+    if (!els.length) return;
+    const obs = new IntersectionObserver(
+      () => {
+        let atual = "";
+        for (const el of els) {
+          if (el.getBoundingClientRect().top <= 140) atual = el.id;
+          else break;
+        }
+        setAtivo(atual);
+      },
+      { rootMargin: "0px 0px -60% 0px", threshold: [0, 1] }
+    );
+    els.forEach((e) => obs.observe(e));
+    const f = () => {
+      let atual = "";
+      for (const el of els) {
+        if (el.getBoundingClientRect().top <= 140) atual = el.id;
+        else break;
+      }
+      setAtivo(atual);
+    };
+    window.addEventListener("scroll", f, { passive: true });
+    f();
+    return () => {
+      obs.disconnect();
+      window.removeEventListener("scroll", f);
+    };
+  }, [lista]);
 
   if (!cap) return <EmBreve titulo="Capítulo não encontrado" texto="Volte ao índice do livro." />;
 
   const ant = capitulos[idx - 1];
   const prox = capitulos[idx + 1];
-  let h2 = 0;
+  let n = 0;
+  const idDe = (children: ReactNode) => lista[n++]?.id ?? slugify(textoDe(children));
+  const revisoes = (cap.revisoes ?? [])
+    .map((s) => capitulos.find((c) => c.slug === s))
+    .filter((c): c is NonNullable<typeof c> => !!c);
+
+  const kicker =
+    cap.no === 0 ? "INTRODUÇÃO" : cap.parte === "ev" ? `ESPADA & VAZIO · CAPÍTULO ${cap.no}` : cap.parte === "creditos" ? "CRÉDITOS" : `CAPÍTULO ${cap.no}`;
 
   return (
     <div className="reader" key={cap.slug}>
@@ -72,8 +116,29 @@ export default function Capitulo() {
       </aside>
       <article className="article">
         <Link to="/livro" className="voltar">← Todos os capítulos</Link>
-        <div className="kicker">{cap.no === 0 ? "INTRODUÇÃO" : `CAPÍTULO ${cap.no}`}</div>
+        <div className="kicker">{kicker}</div>
         <h1>{cap.title}</h1>
+        {cap.parte === "ev" && (
+          <div className="aviso aviso-ev">
+            <b>Edição Espada &amp; vazio</b>
+            <span>As regras deste capítulo valem sobre o livro base quando forem diferentes.</span>
+          </div>
+        )}
+        {revisoes.length > 0 && (
+          <div className="aviso aviso-base">
+            <b>Há regras revisadas para este capítulo</b>
+            <span>
+              O texto abaixo é do livro base. Na edição Espada &amp; vazio, valem as regras de:{" "}
+              {revisoes.map((r, i) => (
+                <span key={r.slug}>
+                  {i > 0 && (i === revisoes.length - 1 ? " e " : ", ")}
+                  <Link to={`/livro/${r.slug}`}>{r.title}</Link>
+                </span>
+              ))}
+              .
+            </span>
+          </div>
+        )}
         {md === null ? (
           <p>Carregando…</p>
         ) : (
@@ -81,10 +146,15 @@ export default function Capitulo() {
             remarkPlugins={[remarkGfm]}
             components={{
               h1: () => null,
-              h2: ({ children }) => <h2 id={ids[h2++] ?? slugify(textoDe(children))}>{children}</h2>,
-              h3: ({ children }) => (
-                <h3 className={/regra/i.test(textoDe(children)) ? "h-regra" : undefined}>{children}</h3>
-              ),
+              h2: ({ children }) => <h2 id={idDe(children)}>{children}</h2>,
+              h3: ({ children }) => {
+                const id = idDe(children);
+                return (
+                  <h3 id={id} className={/regra opcional/i.test(textoDe(children)) ? "h-regra" : undefined}>
+                    {children}
+                  </h3>
+                );
+              },
               p: Paragrafo,
               li: Item,
               td: ({ children }: { children?: ReactNode }) => <td>{comDicas(children)}</td>,
@@ -100,10 +170,21 @@ export default function Capitulo() {
       </article>
       <aside className="toc" aria-label="Nesta página">
         <small>NESTA PÁGINA</small>
-        {toc.map((s) => (
-          <a key={s.id} href={`#${s.id}`}>
-            {s.titulo}
-          </a>
+        {grupos.map((g) => (
+          <div key={g.id} className={`toc-grupo ${g.id === grupoAtivo ? "aberto" : ""}`}>
+            <a href={`#${g.id}`} className={ativo === g.id ? "ativo" : ""}>
+              {g.titulo}
+            </a>
+            {g.id === grupoAtivo && g.filhos.length > 0 && (
+              <div className="toc-filhos">
+                {g.filhos.map((f) => (
+                  <a key={f.id} href={`#${f.id}`} className={ativo === f.id ? "ativo" : ""}>
+                    {f.titulo}
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
         ))}
       </aside>
     </div>

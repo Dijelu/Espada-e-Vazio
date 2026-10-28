@@ -23,7 +23,11 @@ export function montar() {
       for (const c of capitulos) {
         const md = await carregarCapitulo(c);
         const lista = secoes(md);
-        if (lista.length === 0) {
+        const intro = md.split(/^#{2,3} /m)[0].replace(/^# .*$/m, "").trim();
+        if (intro) {
+          docs.push({ id: `${c.slug}#intro`, slug: c.slug, secao: c.title, capitulo: c.title, texto: intro, anchor: "" });
+        }
+        if (lista.length === 0 && !intro) {
           docs.push({ id: c.slug, slug: c.slug, secao: c.title, capitulo: c.title, texto: md, anchor: "" });
         }
         lista.forEach((s, i) =>

@@ -5,6 +5,8 @@ export interface Capitulo {
   desc: string;
   art: string;
   file: string;
+  parte?: "base" | "ev" | "creditos";
+  revisoes?: string[];
 }
 
 import lista from "./chapters.json";
@@ -29,14 +31,27 @@ export function slugify(t: string): string {
     .replace(/^-|-$/g, "");
 }
 
-export function secoes(md: string): { id: string; titulo: string; texto: string }[] {
-  const partes = md.split(/^## /m);
-  const out: { id: string; titulo: string; texto: string }[] = [];
-  partes.forEach((p, i) => {
-    if (i === 0) return;
-    const nl = p.indexOf("\n");
-    const titulo = (nl === -1 ? p : p.slice(0, nl)).trim();
-    out.push({ id: slugify(titulo), titulo, texto: nl === -1 ? "" : p.slice(nl + 1) });
+export interface Secao {
+  id: string;
+  titulo: string;
+  nivel: 2 | 3;
+  texto: string;
+}
+
+/** Divide o capítulo em seções (## e ###) com ids únicos, na ordem do documento. */
+export function secoes(md: string): Secao[] {
+  const re = /^(#{2,3}) +(.+)$/gm;
+  const marcas: { nivel: 2 | 3; titulo: string; ini: number; fim: number }[] = [];
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(md))) {
+    marcas.push({ nivel: m[1].length as 2 | 3, titulo: m[2].trim(), ini: m.index, fim: m.index + m[0].length });
+  }
+  const vistos = new Map<string, number>();
+  return marcas.map((h, i) => {
+    const base = slugify(h.titulo) || "secao";
+    const n = (vistos.get(base) ?? 0) + 1;
+    vistos.set(base, n);
+    const corpo = md.slice(h.fim, i + 1 < marcas.length ? marcas[i + 1].ini : md.length).trim();
+    return { id: n === 1 ? base : `${base}-${n}`, titulo: h.titulo, nivel: h.nivel, texto: corpo };
   });
-  return out;
 }

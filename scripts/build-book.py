@@ -282,7 +282,35 @@ for slug, no, tit, desc, arte, p1, p2 in CAPS:
     (OUT / "livro" / nome).write_text(md, encoding="utf-8")
     meta.append({"slug": slug, "no": no, "title": tit, "desc": desc, "art": arte, "file": nome})
 
-meta.append({"slug": "homenagens-e-fontes", "no": 15, "title": "Homenagens e Fontes",
-             "desc": "Créditos, inspirações e referências", "art": "c06", "file": "15-homenagens-e-fontes.md"})
+REVISOES = {
+    "introducao": ["regras-gerais"],
+    "criacao-de-personagem": ["regras-gerais"],
+    "origem": ["hollow"],
+    "classes": ["classes-revisadas", "hollow", "ritter"],
+    "essencias-espirituais": ["regras-gerais"],
+    "zanpakutous": ["regras-gerais", "resurreccion"],
+    "arsenal-quincy": ["ritter"],
+    "atributos-e-pericias": ["regras-gerais"],
+    "jogando": ["regras-gerais"],
+    "mestre": ["regras-do-mestre"],
+    "ameacas": ["regras-do-mestre", "regras-gerais"],
+}
+for m in meta:
+    m["parte"] = "base"
+    if m["slug"] in REVISOES:
+        m["revisoes"] = REVISOES[m["slug"]]
+
+# capítulos da edição Espada & vazio e créditos (arquivos escritos à mão)
+EXTRAS = [
+    ("regras-gerais", 15, "Regras Gerais", "Atributos, perícias, CR, Defender e Essências", "c08", "15-regras-gerais.md", "ev"),
+    ("classes-revisadas", 16, "Classes Revisadas", "Todas as classes com os números finais", "c03", "16-classes-revisadas.md", "ev"),
+    ("hollow", 17, "Hollow", "Origens, classes Hueco e Vazio e talentos", "c14", "17-hollow.md", "ev"),
+    ("ritter", 18, "Quincy: Ritter", "A classe Ritter e a Vollständig", "c07", "18-ritter.md", "ev"),
+    ("resurreccion", 19, "Treinamento da Resurrección", "Como o Hollow libera sua forma final", "c05", "19-resurreccion.md", "ev"),
+    ("regras-do-mestre", 20, "Regras do Mestre", "NPC pareado, suporte, Boss e 5v5", "c13", "20-regras-do-mestre.md", "ev"),
+    ("homenagens-e-fontes", 21, "Homenagens e Fontes", "Créditos, inspirações e referências", "c06", "21-homenagens-e-fontes.md", "creditos"),
+]
+for slug, no, tit, desc, arte, arq, parte in EXTRAS:
+    meta.append({"slug": slug, "no": no, "title": tit, "desc": desc, "art": arte, "file": arq, "parte": parte})
 (OUT / "chapters.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
 print(len(meta), "capítulos")

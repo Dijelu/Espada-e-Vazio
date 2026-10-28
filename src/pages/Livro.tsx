@@ -48,21 +48,43 @@ export default function Livro() {
           ))}
         </div>
       ) : (
-        <div className="bars">
-          {capitulos.map((c, i) => (
-            <Link key={c.slug} to={`/livro/${c.slug}`} className={`bar ${i < 2 ? "big" : ""}`}>
-              <div className={`bar-num ${c.no === 0 ? "intro" : ""}`}>{c.no === 0 ? "Intro" : c.no}</div>
-              <div className="bar-text">
-                <b>{c.title}</b>
-                <span>{c.desc}</span>
-              </div>
-              <div className="bar-go">Abrir →</div>
-              <div className="bar-art">
-                <img src={`/art/${c.art}.jpg`} alt="" loading="lazy" />
-              </div>
-            </Link>
-          ))}
-        </div>
+        <>
+          {([
+            ["base", "Livro base", "O texto original do Soul Society RPG."],
+            ["ev", "Espada & vazio", "As regras da edição. Valem sobre o livro base."],
+            ["creditos", "", ""],
+          ] as const).map(([parte, titulo, sub]) => {
+            const lista = capitulos.filter((c) => (c.parte ?? "base") === parte);
+            if (!lista.length) return null;
+            return (
+              <section key={parte} className="parte">
+                {titulo && (
+                  <div className="parte-cab">
+                    <h2 className="title-font">{titulo}</h2>
+                    <p>{sub}</p>
+                  </div>
+                )}
+                <div className="bars">
+                  {lista.map((c, i) => (
+                    <Link key={c.slug} to={`/livro/${c.slug}`} className={`bar ${parte === "base" && i < 2 ? "big" : ""}`}>
+                      <div className={`bar-num ${c.no === 0 || parte === "creditos" ? "intro" : ""}`}>
+                        {c.no === 0 ? "Intro" : parte === "creditos" ? "Fim" : c.no}
+                      </div>
+                      <div className="bar-text">
+                        <b>{c.title}</b>
+                        <span>{c.desc}</span>
+                      </div>
+                      <div className="bar-go">Abrir →</div>
+                      <div className="bar-art">
+                        <img src={`/art/${c.art}.jpg`} alt="" loading="lazy" />
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            );
+          })}
+        </>
       )}
     </main>
   );
