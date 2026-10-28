@@ -1,6 +1,7 @@
 :root {
   --font-title: "Barlow Condensed", "Arial Narrow", sans-serif;
   --font-body: "Barlow", system-ui, sans-serif;
+  --font-pincel: "Caveat Brush", "Barlow Condensed", cursive;
 }
 :root[data-theme="dark"] {
   --bg: #0b0b0c;
@@ -298,3 +299,18 @@ img { max-width: 100%; }
   .hero { min-height: 420px; }
   .dialog { max-height: 90vh; }
 }
+
+/* texto do livro em pincel de mangá (títulos, rótulos e destaques; o corpo segue legível) */
+.article h2, .article h3, .article th, .callout b, .article strong.def, .article .kicker, .painel-txt b {
+  font-family: var(--font-pincel);
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: .02em;
+}
+.article h2 { font-size: 38px; text-transform: none; }
+.article h3 { font-size: 26px; text-transform: none; }
+.article th { font-size: 17px; }
+.callout b { font-size: 18px; letter-spacing: .04em; text-transform: none; }
+.article strong.def { font-size: 1.08em; }
+.article .kicker { font-size: 18px; letter-spacing: .06em; }
+@media (max-width: 560px) { .article h2 { font-size: 32px; } .article h3 { font-size: 23px; } }
