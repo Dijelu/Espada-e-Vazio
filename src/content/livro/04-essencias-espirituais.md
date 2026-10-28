@@ -50,7 +50,7 @@ Algumas essências podem ser repetidas, conforme indicado na lista de cada grupo
 
 ## Todas as Classes
 
-Qualquer personagem pode escolher estas essências (Hollows só as que não dependem de Kidō, Zanpakutou ou Reishi).
+Shinigamis e Quincys podem escolher estas essências; Hollows não (eles usam apenas as essências de Classes de Hollow).
 
 | Nome | Repetível? |
 |---|---|
@@ -139,7 +139,7 @@ Você fica muito mais resistente que uma criatura comum e recebe +1 na CR.
 
 ### Clarividência
 
-Quando for alvo de um teste de resistência de Mente, você pode gastar 12 pontos de reiatsu para substituí-lo por um teste de resistência de Espírito.
+Quando for alvo de um teste de resistência de Espírito, você pode gastar 12 pontos de reiatsu para substituí-lo por um teste de resistência de Mente.
 
 - **Segunda Etapa:** O custo diminui para 10 pontos de reiatsu.
 - **Terceira Etapa:** O custo diminui para 8 pontos de reiatsu.
@@ -298,7 +298,7 @@ Você ignora 4 pontos da Redução de Dano de uma criatura ao causar dano esoté
 
 ### Perspicácia
 
-Quando for alvo de um teste de resistência de Espírito, você pode gastar 12 pontos de reiatsu para substituí-lo por um teste de resistência de Mente.
+Quando for alvo de um teste de resistência de Mente, você pode gastar 12 pontos de reiatsu para substituí-lo por um teste de resistência de Espírito.
 
 - **Segunda Etapa:** O custo diminui para 10 pontos de reiatsu.
 - **Terceira Etapa:** O custo diminui para 8 pontos de reiatsu.
@@ -655,7 +655,7 @@ Você reduz em 5 pontos o custo de ativar e manter a Vollständig. O custo de at
 
 ## Classes de Hollow
 
-Hueco e Vazio usam as essências desta lista e também as de **Todas as Classes** que não dependam de Kidō, Zanpakutou ou Reishi. “Hueco” e “Vazio” indicam quem pode escolher.
+Hueco e Vazio usam apenas as essências desta lista (e as proibidas, quando a classe permitir); as de **Todas as Classes** não estão disponíveis para Hollows. “Hueco” e “Vazio” indicam quem pode escolher.
 
 | Nome | Repetível? |
 |---|---|

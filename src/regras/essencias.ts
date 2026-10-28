@@ -25,7 +25,7 @@ export const ROTULO_GRUPO: Record<GrupoEssencia, string> = {
 export function gruposDaClasse(tipo?: string): GrupoEssencia[] {
   if (tipo === "shinigami") return ["todas", "shinigami", "proibida"];
   if (tipo === "quincy") return ["todas", "quincy", "proibida"];
-  if (tipo === "hollow") return ["todas", "hollow", "proibida"];
+  if (tipo === "hollow") return ["hollow", "proibida"];
   return ["todas", "shinigami", "quincy", "hollow", "proibida"];
 }
 

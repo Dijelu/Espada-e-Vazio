@@ -60,7 +60,7 @@
   "nome": "Clarividência",
   "grupo": "todas",
   "repetivel": false,
-  "texto": "Quando for alvo de um teste de resistência de Mente, você pode gastar 12 pontos de reiatsu para substituí-lo por um teste de resistência de Espírito.",
+  "texto": "Quando for alvo de um teste de resistência de Espírito, você pode gastar 12 pontos de reiatsu para substituí-lo por um teste de resistência de Mente.",
   "etapas": [
    "O custo diminui para 10 pontos de reiatsu.",
    "O custo diminui para 8 pontos de reiatsu.",
@@ -275,7 +275,7 @@
   "nome": "Perspicácia",
   "grupo": "todas",
   "repetivel": false,
-  "texto": "Quando for alvo de um teste de resistência de Espírito, você pode gastar 12 pontos de reiatsu para substituí-lo por um teste de resistência de Mente.",
+  "texto": "Quando for alvo de um teste de resistência de Mente, você pode gastar 12 pontos de reiatsu para substituí-lo por um teste de resistência de Espírito.",
   "etapas": [
    "O custo diminui para 10 pontos de reiatsu.",
    "O custo diminui para 8 pontos de reiatsu.",
