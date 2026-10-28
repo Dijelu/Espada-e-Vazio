@@ -313,7 +313,7 @@
     "nome": "Minami, Kaka Juman Okushi Daisoujin",
     "acao": "Ação",
     "pr": 20,
-    "dano": "2d6",
+    "dano": "",
     "texto": "Quando você adquirir a Bankai Zanka no Tachi, todos os inimigos que você derrotar com ela poderão ser invocados na forma de esqueletos, mas que ainda possuem as mesmas habilidades de quando estavam vivos.\n\nQuando você matar uma criatura, seja um Shinigami ou Quincy, com sua Bankai, você adicionará uma ficha de “Morto-Vivo” à sua contagem de mortes, que está ao lado. Para invocá-los, você precisa utilizar uma ação e 20 pontos de reiatsu. Nos turnos seguintes, custará 5 pontos de reiatsu no começo do seu turno para mantê-los ativos. Todos eles se posicionarão o mais perto possível de você, começando a 1,5 metros e se afastando à medida que não houver mais espaço ao seu redor, formando um exército ao seu redor.\n\nVocê invocará um número de mortos igual à sua contagem. Eles devem rolar iniciativa e poderão agir na próxima rodada. Os mortos-vivos desaparecerão se você os dissipar com uma ação "
    },
    {
@@ -340,7 +340,16 @@
   "nome": "Sakanade",
   "resumo": "Transformando a Zanpakutou em um grande bastão, o usuário se posiciona dentro de uma flor, ficando protegido enquanto libera uma grande quantidade de gás.",
   "texto": "Transformando a Zanpakutou em um grande bastão, o usuário se posiciona dentro de uma flor, ficando protegido enquanto libera uma grande quantidade de gás.\n\nA Bankai é ativada quando o comando “Bankai” e o verdadeiro nome dela, “Sakashima Yokoshima Happofusagari” são pronunciados. Para isso, você deve gastar 60 Pontos de Reiatsu, deixando ela ativa por 1 minuto. Após esse minuto ela desativará não podendo manter ela ativa novamente apenas com custo de reiatsu. Quando você liberar a Bankai você entrará dentro da flor e ela se fechará, tornando você imune a todos os tipos de dano até desfazer a Bankai. Porém, não pode realizar ações ou se mover dentro da flor. A flor emite uma névoa branca em uma área de 36 metros ao redor. Todas as criaturas nessa área têm suas almas afetadas, invertendo suas crenças, fazendo-as atacar qualquer criatura que esteja próxima, seja aliado ou inimigo, enquanto a Bankai estiver ativa. O mestre pode conduzir turnos de combate ou decidir quais criaturas saem vivas ou não do confronto. As criaturas afetadas pela Bankai ficam imunes aos seus efeitos por um dia inteiro após serem impactadas por ela.\n\nCriaturas com Nível de Desafio igual ou superior ao dobro da proficiência do usuário da Bankai podem diminuir a duração pela metade (5 turnos da criatura) em si mesmo, realizando um Teste de Determinação.",
-  "acoes": [],
+  "acoes": [
+   {
+    "id": "flor-fechada",
+    "nome": "Flor Fechada",
+    "texto": "Ao liberar a Bankai você entra na flor, que se fecha: você fica imune a todo dano até desfazer a Bankai, mas não pode agir nem se mover. A névoa inverte as crenças de quem estiver a 36 metros, que passam a atacar quem estiver por perto.",
+    "acao": "Habilidade",
+    "pr": 0,
+    "dano": ""
+   }
+  ],
   "custo": 60
  },
  {
@@ -378,7 +387,7 @@
     "nome": "Senkei",
     "acao": "Ação",
     "pr": 0,
-    "dano": "4d10",
+    "dano": "",
     "texto": "Sendo a verdadeira forma da Bankai da Senbonzakura, um domo é criado em volta do usuário, unindo as pétalas em milhares de espadas que formam uma cúpula ao seu redor. O usuário desativa a forma Shikai de milhares lâminas soltas e controladas à distância, não possuindo mais acesso às habilidades “Flor de Sakura”, “Perseguir” e “Defesa Dilacerante”. Nessa forma o usuário abre a mão e sua Zanpakutou aparece nela em sua forma Asauchi para combate físico, mas com um dano muito maior.\n\nEsse domo criado tem um raio de 12 metros, centrado onde o usuário ativou essa habilidade, que deve ser ativada como uma ação livre. Toda criatura que estiver dentro do domo e tentar sair deve realizar um Teste de Resistência de Força. Se obtiver sucesso, consegue sair, mas recebe a técnica “Ikka Senjinka”, custando metade do custo original em reiatsu. A criatura dentro do domo sabe que, se tentar sair, receberá"
    },
    {
@@ -461,7 +470,7 @@
     "nome": "Míssil",
     "acao": "Ação",
     "pr": 0,
-    "dano": "12d10",
+    "dano": "[NIV]d10+30",
     "texto": "Seu míssil criado é muito poderoso, até mesmo para o usuário da Bankai, então deve ser utilizado como último recurso, pois consome muita reiatsu. O míssil tem um poder igual a seu nível de classe, em dados de dano d10. Se estiver no nível 12 de classe, você terá 12d10 de dano no míssil, mais 30 de dano, causando 12d10 + 30 de dano de Fogo com esse míssil. Na liberação da sua Bankai, você pode utilizar mais pontos de reiatsu para causar mais dano com esse míssil, gastando 1 ponto de reiatsu para cada ponto de dano adicional, com o máximo de reiatsu gasto sendo o disponível no momento da liberação da sua Bankai. Para disparar esse míssil você deve utilizar uma ação. Este míssil causa uma área de explosão quando entra em contato com uma criatura ou objeto, resultando numa explosão de 36 metros de raio a partir do ponto de impacto, e pode acertar um alvo até 100 metros. Se não atingir nada, "
    }
   ],

@@ -958,5 +958,109 @@
    "Você pode usar a adaptação duas vezes entre descansos longos."
   ],
   "nota": ""
+ },
+ {
+  "nome": "Sonído Bestial",
+  "grupo": "hollow",
+  "repetivel": false,
+  "texto": "(Hueco e Vazio) Seu deslocamento aumenta em 1,5 metro.",
+  "etapas": [
+   "o aumento passa a ser 3 metros.",
+   "4,5 metros.",
+   "6 metros."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Contra-ataque Selvagem",
+  "grupo": "hollow",
+  "repetivel": false,
+  "texto": "(Hueco) Uma vez por rodada, quando uma criatura te acerta com um ataque corpo a corpo, você usa a reação para atacá-la com a arma natural.",
+  "etapas": [
+   "o contra-ataque também causa metade da proficiência de dano extra.",
+   "você pode usar a reação duas vezes por rodada."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Aura Sufocante",
+  "grupo": "hollow",
+  "repetivel": false,
+  "texto": "(Hueco e Vazio) No início do seu turno, criaturas hostis a até 3 metros de você perdem 2 pontos de reiatsu.",
+  "etapas": [
+   "a perda passa a ser 3 pontos.",
+   "o alcance vai a 4,5 metros.",
+   "a perda passa a ser 4 pontos."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Último Fôlego",
+  "grupo": "hollow",
+  "repetivel": false,
+  "texto": "(Hueco e Vazio) Uma vez por descanso longo, ao cair a 0 PV por dano que não o mate na hora, você fica com 1 PV.",
+  "etapas": [
+   "você também recupera PV iguais ao seu nível.",
+   "você pode usar duas vezes entre descansos longos.",
+   "ao usar, ganha RD 5 contra todo dano até o fim do próximo turno."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Cero Perfurante",
+  "grupo": "hollow",
+  "repetivel": false,
+  "texto": "(Hueco e Vazio) Seu Cero (Hueco) ou Poder Inato (Vazio) ignora 5 pontos da redução de dano de Energia do alvo.",
+  "etapas": [
+   "ignora 10 pontos.",
+   "ignora 15 pontos."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Hirenkyaku Aprimorado",
+  "grupo": "quincy",
+  "repetivel": false,
+  "texto": "Ao usar o Hirenkyaku, você pode se teletransportar até 1,5 metro além do seu deslocamento atual.",
+  "etapas": [
+   "o acréscimo passa a ser 3 metros.",
+   "4,5 metros.",
+   "6 metros."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Barreira de Reishi",
+  "grupo": "quincy",
+  "repetivel": false,
+  "texto": "Com a reação e 4 PR, ao ser atingido por um ataque, você condensa Reishi na frente do corpo e reduz o dano recebido em 5.",
+  "etapas": [
+   "a redução passa a ser 8.",
+   "12.",
+   "16."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Tiro Penetrante",
+  "grupo": "quincy",
+  "repetivel": false,
+  "texto": "Seus ataques à distância com Arma Quincy ignoram cobertura parcial.",
+  "etapas": [
+   "também ignoram cobertura de três quartos.",
+   "você recebe +1 nas jogadas de acerto contra alvos com qualquer cobertura."
+  ],
+  "nota": ""
+ },
+ {
+  "nome": "Tiro Livre",
+  "grupo": "quincy",
+  "repetivel": false,
+  "texto": "Você não sofre desvantagem ao atacar à distância com uma criatura hostil adjacente a você.",
+  "etapas": [
+   "você recebe +1 nas jogadas de acerto à distância contra a criatura adjacente.",
+   "o bônus passa a ser +2."
+  ],
+  "nota": ""
  }
 ]

@@ -182,7 +182,7 @@
     "nome": "Rokui Hyoketsujin",
     "acao": "Ação bônus",
     "pr": 5,
-    "dano": "4d10",
+    "dano": "",
     "texto": "Você pode preparar armadilhas de gelo no campo de batalha que assumem a forma de um floco de neve pentagonal no chão. Essas armadilhas são ativadas quando uma criatura pisa sobre elas, fazendo com que cada ponta do floco de neve lance um jato de gelo em direção à criatura. Para preparar a armadilha, você deve criá-la em um local a 1,5 metros de distância de você, utilizando uma ação bônus e 5 pontos de reiatsu durante seu turno. Além disso, você precisa realizar um Teste de Furtividade para garantir que nenhuma criatura perceba que você está criando a armadilha no local, cabe ao mestre decidir se você conseguiu criar a armadilha sem nenhuma criatura tenha notado. O mestre também pode realizar um teste de percepção para as criaturas que estão a sua volta. A armadilha dura 1 minuto e se uma criatura passar sobre a armadilha, ela é ativada, e a criatura deve realizar um Teste de Resistência"
    }
   ]
@@ -668,7 +668,7 @@
     "nome": "Reversão",
     "acao": "Reação",
     "pr": 5,
-    "dano": "2d10",
+    "dano": "[PROF]d10",
     "texto": "Quando você for alvo de um ataque feito por reiatsu, como um kido, flecha de um Quincy ou uma habilidade de Zanpakutou, você pode usar sua Reação e 5 pontos de reiatsu para absorver esse dano. Você consegue absorver uma quantidade de dano igual ao seu nível multiplicado por 10. Por exemplo, no primeiro nível de classe você consegue absorver até 10 pontos de dano.\n\nO dano absorvido dessa forma não afeta você, mas se o dano recebido exceder a quantidade que você pode absorver, você absorverá apenas a quantidade máxima e sofrerá o dano restante normalmente.\n\nCom uma ação no seu próximo turno após receber o ataque, você pode devolver o dano absorvido mais um número de dados d10 igual ao seu bônus de proficiência em uma técnica à distância em linha reta de até 18 metros, causando dano de energia. Por exemplo, se você absorveu 10 pontos de dano e tem um bônus de proficiência de +2, você devolv"
    }
   ]
@@ -1000,7 +1000,7 @@
     "nome": "Sentinelas da Alma",
     "acao": "Habilidade",
     "pr": 0,
-    "dano": "2d10",
+    "dano": "",
     "texto": "As duas criaturas invocadas ao liberar a Sanpo Kenju têm aparências distintas. Uma delas é alta e feita de ossos, usa um manto preto e tem um grande osso que atravessa verticalmente sua cabeça, empunhando uma lâmina longa com outra lâmina saliente na borda superior. A outra criatura é gorda e coberta de pelo, deixando seus olhos apenas parcialmente visíveis, empunhando um cutelo. As criaturas imitam todos os seus movimentos, locomovendose junto com você. Elas ocupam espaços adjacentes a você e sempre ficam a 1,5 metros de distância de você. Se você estiver em um local sem espaço suficiente, o mestre decide onde elas aparecem, mas elas sempre estarão ao seu lado, e por estarem sempre ao seu lado, fica mais díficil te acertar, você ganha +3 na sua Classe de Resistência.\n\nQuando você atacar com a Zanpakutou, as criaturas também atacarão com você, imitando seus movimentos por completo, aonde"
    }
   ]

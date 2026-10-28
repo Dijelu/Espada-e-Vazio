@@ -653,6 +653,36 @@ Você reduz em 5 pontos o custo de ativar e manter a Vollständig. O custo de at
 
 > Se você tiver outra redução de custo, aplique primeiro a desta essência e depois a outra.
 
+### Hirenkyaku Aprimorado
+
+Ao usar o Hirenkyaku, você pode se teletransportar até 1,5 metro além do seu deslocamento atual.
+
+- **Segunda Etapa:** O acréscimo passa a ser 3 metros.
+- **Terceira Etapa:** 4,5 metros.
+- **Quarta Etapa:** 6 metros.
+
+### Barreira de Reishi
+
+Com a reação e 4 PR, ao ser atingido por um ataque, você condensa Reishi na frente do corpo e reduz o dano recebido em 5.
+
+- **Segunda Etapa:** A redução passa a ser 8.
+- **Terceira Etapa:** 12.
+- **Quarta Etapa:** 16.
+
+### Tiro Penetrante
+
+Seus ataques à distância com Arma Quincy ignoram cobertura parcial.
+
+- **Segunda Etapa:** Também ignoram cobertura de três quartos.
+- **Terceira Etapa:** Você recebe +1 nas jogadas de acerto contra alvos com qualquer cobertura.
+
+### Tiro Livre
+
+Você não sofre desvantagem ao atacar à distância com uma criatura hostil adjacente a você.
+
+- **Segunda Etapa:** Você recebe +1 nas jogadas de acerto à distância contra a criatura adjacente.
+- **Terceira Etapa:** O bônus passa a ser +2.
+
 ## Classes de Hollow
 
 Hueco e Vazio usam apenas as essências desta lista (e as proibidas, quando a classe permitir); as de **Todas as Classes** não estão disponíveis para Hollows. “Hueco” e “Vazio” indicam quem pode escolher.
@@ -736,6 +766,44 @@ Hueco e Vazio usam apenas as essências desta lista (e as proibidas, quando a cl
 - **Segunda Etapa:** Você mantém resistência a dois tipos ao mesmo tempo.
 - **Terceira Etapa:** Você pode usar a adaptação duas vezes entre descansos longos.
 
+### Sonído Bestial
+
+(Hueco e Vazio) Seu deslocamento aumenta em 1,5 metro.
+
+- **Segunda Etapa:** O aumento passa a ser 3 metros.
+- **Terceira Etapa:** 4,5 metros.
+- **Quarta Etapa:** 6 metros.
+
+### Contra-ataque Selvagem
+
+(Hueco) Uma vez por rodada, quando uma criatura te acerta com um ataque corpo a corpo, você usa a reação para atacá-la com a arma natural.
+
+- **Segunda Etapa:** O contra-ataque também causa metade da proficiência de dano extra.
+- **Terceira Etapa:** Você pode usar a reação duas vezes por rodada.
+
+### Aura Sufocante
+
+(Hueco e Vazio) No início do seu turno, criaturas hostis a até 3 metros de você perdem 2 pontos de reiatsu.
+
+- **Segunda Etapa:** A perda passa a ser 3 pontos.
+- **Terceira Etapa:** O alcance vai a 4,5 metros.
+- **Quarta Etapa:** A perda passa a ser 4 pontos.
+
+### Último Fôlego
+
+(Hueco e Vazio) Uma vez por descanso longo, ao cair a 0 PV por dano que não o mate na hora, você fica com 1 PV.
+
+- **Segunda Etapa:** Você também recupera PV iguais ao seu nível.
+- **Terceira Etapa:** Você pode usar duas vezes entre descansos longos.
+- **Quarta Etapa:** Ao usar, ganha RD 5 contra todo dano até o fim do próximo turno.
+
+### Cero Perfurante
+
+(Hueco e Vazio) Seu Cero (Hueco) ou Poder Inato (Vazio) ignora 5 pontos da redução de dano de Energia do alvo.
+
+- **Segunda Etapa:** Ignora 10 pontos.
+- **Terceira Etapa:** Ignora 15 pontos.
+
 ## Essências Proibidas
 
 No universo de Bleach, algumas criaturas possuem tanto poder que são capazes de perturbar o equilíbrio entre os mundos — a conexão essencial entre a Soul Society, o Mundo Humano e o Hueco Mundo. Essas entidades, ao cruzarem limites de poder que desafiam a lógica espiritual, colocam todos os planos de existência em risco, ameaçando romper o ciclo de reencarnação e vida. São seres que transcenderam a natureza comum de Hollows, Shinigamis ou mesmo humanos espiritualmente despertos, alcançando um patamar onde suas presenças influenciam o fluxo de reiatsu e ameaçam até a estrutura dos mundos.
@@ -766,6 +834,15 @@ Todas as Essências Proibidas podem ser escolhidas por qualquer classe.
 | Imunidade Anormal | Não |
 | Impulso de Reiatsu | Não |
 | Pele Imortal | Não |
+| Sonído Bestial | Não |
+| Contra-ataque Selvagem | Não |
+| Aura Sufocante | Não |
+| Último Fôlego | Não |
+| Cero Perfurante | Não |
+| Hirenkyaku Aprimorado | Não |
+| Barreira de Reishi | Não |
+| Tiro Penetrante | Não |
+| Tiro Livre | Não |
 
 ### Contra o Balanço
 

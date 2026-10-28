@@ -7,7 +7,9 @@ txt = txt[:fim]
 partes = re.split(r"(?m)^## ", txt)[1:]
 AJUSTES = {
     ("Zangetsu", "Getsuga Tenshou Negro"): {"acao": "Ação"},
-    ("Suzumebachi", "Míssil"): {"acao": "Ação", "pr": 0},
+    ("Suzumebachi", "Míssil"): {"acao": "Ação", "pr": 0, "dano": "[NIV]d10+30"},
+    ("Ryuujin Jakka", "Minami, Kaka Juman Okushi Daisoujin"): {"dano": ""},
+    ("Senbonzakura", "Senkei"): {"dano": ""},
     ("Katen Kyokotsu", "3. Dangyo no Fuchi"): {"acao": "Habilidade", "pr": 0},
     ("Senbonzakura", "Comando Gestual"): {"acao": "Habilidade"},
 }
