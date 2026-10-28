@@ -233,7 +233,7 @@ export default function NovaFicha() {
                         {classe.subclasses.map((s) => <option key={s}>{s}</option>)}
                       </select>
                     ) : (
-                      <input value={f.subclasse} onChange={(e) => mudar({ subclasse: e.target.value })} placeholder="Subclasse de outra classe" />
+                      <input value={f.subclasse} onChange={(e) => mudar({ subclasse: e.target.value })} placeholder="Subclasse de uma classe de Shinigami" />
                     )}
                   </Campo>
                 )}

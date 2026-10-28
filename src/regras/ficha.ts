@@ -371,7 +371,7 @@ export const CLASSES: Classe[] = [
   },
   {
     id: "tokubetsu", nome: "Tokubetsu", tipo: "shinigami", slug: "classes",
-    texto: "Versátil: toma subclasses emprestadas de outras classes.",
+    texto: "Versátil: toma subclasses emprestadas de outras classes de Shinigami.",
     chave: "Força e Mente", pvIni: 28, pvNivel: 9, prIni: 22, prNivel: 6, pericias: 6,
     saves: ["men"], saveEscolha: 1, cr: "plena", subclasseNome: "Subclasse emprestada", subclasses: [],
   },

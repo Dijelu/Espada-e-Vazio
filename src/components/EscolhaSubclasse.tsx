@@ -26,7 +26,7 @@ export function EscolhaSubclasse({ f, onEscolher, onFechar }: Props) {
   }, [onFechar]);
 
   if (!classe) return null;
-  const emprestadas = classe.subclasses.length === 0 ? CLASSES.filter((c) => c.id !== classe.id).flatMap((c) => c.subclasses) : [];
+  const emprestadas = classe.subclasses.length === 0 ? CLASSES.filter((c) => c.id !== classe.id && c.tipo === "shinigami").flatMap((c) => c.subclasses) : [];
 
   return (
     <div className="construtor" role="dialog" aria-modal="true" aria-label={`Escolher ${classe.subclasseNome}`}>
