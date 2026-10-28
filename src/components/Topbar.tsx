@@ -1,8 +1,10 @@
 import { NavLink, Link } from "react-router-dom";
 import { useTema } from "./Theme";
+import { useAuth } from "./Auth";
 
 export default function Topbar({ onBuscar }: { onBuscar: () => void }) {
   const { tema, alternar } = useTema();
+  const { sessao } = useAuth();
   const cls = ({ isActive }: { isActive: boolean }) => (isActive ? "ativo" : "");
   return (
     <header className="topbar">
@@ -14,7 +16,7 @@ export default function Topbar({ onBuscar }: { onBuscar: () => void }) {
         <NavLink to="/fichas" className={cls}>Fichas</NavLink>
         <NavLink to="/campanhas" className={cls}>Campanhas</NavLink>
         <NavLink to="/ferramentas" className={cls}>Ferramentas</NavLink>
-        <NavLink to="/conta" className={cls}>Entrar</NavLink>
+        <NavLink to="/conta" className={cls}>{sessao ? "Conta" : "Entrar"}</NavLink>
       </nav>
       <button className="search-btn" onClick={onBuscar} aria-label="Buscar no livro">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">

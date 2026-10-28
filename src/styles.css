@@ -200,3 +200,20 @@ abbr.termo:hover::after, abbr.termo:focus::after { opacity: 1; transform: transl
 @keyframes cortina { 0% { clip-path: inset(0 100% 0 0); } 45% { clip-path: inset(0 0 0 0); } 58% { clip-path: inset(0 0 0 0); } 100% { clip-path: inset(0 0 0 100%); } }
 .article { animation: entra .5s .45s both; }
 @keyframes entra { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+/* login */
+.login { display: flex; flex-wrap: wrap; gap: 32px; }
+.login-card { flex: 1 1 340px; max-width: 460px; background: var(--panel); border: 3px solid var(--text); border-radius: 8px; padding: 28px; display: flex; flex-direction: column; gap: 14px; box-shadow: 8px 8px 0 var(--accent); }
+.login-card h1 { margin: 0; font-size: 44px; }
+.login-card label { display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: var(--muted); }
+.login-card input { min-height: 46px; padding: 0 12px; font-size: 16px; font-family: inherit; background: var(--bg); color: var(--text); border: 2px solid var(--line); border-radius: 6px; }
+.login-card .btn { justify-content: center; cursor: pointer; }
+.login-card .btn:disabled { opacity: .6; cursor: not-allowed; }
+.ou { text-align: center; color: var(--muted); font-size: 13px; }
+.link { background: none; border: 0; color: var(--accent); font-size: 14px; text-decoration: underline; padding: 6px; }
+.msg { margin: 0; font-size: 14px; }
+.msg.erro { color: var(--accent); font-weight: 600; }
+.msg.ok { color: var(--muted); }
+.login-lado { flex: 999 1 400px; display: flex; flex-direction: column; justify-content: center; gap: 12px; }
+.login-lado h2 { margin: 0; font-size: clamp(40px, 6vw, 64px); line-height: .95; }
+.login-lado p { color: var(--muted); font-size: 17px; max-width: 480px; margin: 0; }

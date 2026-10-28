@@ -6,6 +6,8 @@ import Capa from "./pages/Capa";
 import Livro from "./pages/Livro";
 import Capitulo from "./pages/Capitulo";
 import EmBreve from "./pages/EmBreve";
+import Conta from "./pages/Conta";
+import { RequerLogin } from "./components/Auth";
 
 export default function App() {
   const [busca, setBusca] = useState(false);
@@ -34,10 +36,10 @@ export default function App() {
         <Route path="/" element={<Capa />} />
         <Route path="/livro" element={<Livro />} />
         <Route path="/livro/:slug" element={<Capitulo />} />
-        <Route path="/fichas" element={<EmBreve titulo="Fichas" texto="O gerador de fichas com evolução de nível chega na próxima etapa." />} />
+        <Route path="/fichas" element={<RequerLogin><EmBreve titulo="Fichas" texto="Você está logado. O gerador de fichas com evolução de nível chega na próxima etapa." /></RequerLogin>} />
         <Route path="/campanhas" element={<EmBreve titulo="Campanhas" texto="Mesas, convites e o Painel do Mestre chegam nas etapas finais." />} />
         <Route path="/ferramentas" element={<EmBreve titulo="Ferramentas do Mestre" texto="Simulador, NPC pareado, Solo/Raid e Boss estão em preparação." />} />
-        <Route path="/conta" element={<EmBreve titulo="Entrar" texto="Contas com e-mail e Google chegam junto com as campanhas." />} />
+        <Route path="/conta" element={<Conta />} />
         <Route path="*" element={<EmBreve titulo="Página não encontrada" texto="Esse caminho não existe." />} />
       </Routes>
       <footer className="footer">
