@@ -60,7 +60,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
           className={`theme-overlay ${indoEscuro ? "vai-escuro" : "vai-claro"} ${anim === "sai" ? "sai" : ""}`}
           aria-hidden="true"
         >
-          <img src={indoEscuro ? "/art/sym-mask.jpg" : "/art/sym-flame.jpg"} alt="" />
+          <img src={indoEscuro ? "/art/sym-mask-claro.png" : "/art/sym-flame.png"} alt="" />
         </div>
       )}
     </ThemeCtx.Provider>

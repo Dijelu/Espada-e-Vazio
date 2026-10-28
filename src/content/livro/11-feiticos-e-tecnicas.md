@@ -12,7 +12,7 @@ Usar um Kido ou uma técnica Quincy na hora certa pode te dar uma vantagem enorm
 
 Neste capítulo, você encontrará as regras gerais para o uso de técnicas e feitiços, válidas para todas as categorias, com sessões separadas para Kidos, Técnicas de Hakuda e Técnicas Quincys, cada uma com suas regras específicas e descrições próprias. Além disso, todos os Kidos, Técnicas de Hakuda e Técnicas Quincys estarão listados neste capítulo.
 
-regras gerais
+### Regras Gerais
 
 A primeira parte do capítulo trata das regras gerais que você utilizará para todas as técnicas e feitiços. Todas as técnicas terão requisitos e, possivelmente, custos em pontos de reiatsu que devem ser cumpridos.
 
@@ -24,17 +24,7 @@ alcance
 
 A descrição do feitiço e técnica especifica seu alcance e área de efeito, a qual geralmente assume uma das formas destacada mais abaixo. Toda área de efeito tem um ponto de origem, sendo este o local de onde o feitiço e técnica se manifesta. As regras para cada forma determinam como você posiciona esse ponto de origem.
 
-O efeito se expande em linhas retas a partir do ponto de origem. Se nenhuma linha reta desobstruída se estender do ponto de origem até uma localização dentro da área de efeito, essa localização não estará inclusa na área. •
-
-• •
-
-•
-
-•
-
-• •
-
-•
+O efeito se expande em linhas retas a partir do ponto de origem. Se nenhuma linha reta desobstruída se estender do ponto de origem até uma localização dentro da área de efeito, essa localização não estará inclusa na área.
 
 Corpo-a-corpo: Você deve atacar a criatura em combate corpo a corpo, ou seja, a criatura precisa estar a uma distância de 1,5 metros de você, com você como ponto de origem.
 
@@ -70,11 +60,11 @@ velocidade
 
 A velocidade com que você conjura um feitiço ou técnica é de extrema importância em batalha. Alguns são “Instantâneos”, sendo canalizados e disparados imediatamente. Outros possuem uma duração maior, que será especificada em sua descrição. Alguns efeitos duram um tempo determinado sem requisitos adicionais, enquanto outros exigem que a criatura mantenha “Concentração”. Nesse caso, a criatura deve permanecer concentrada para prolongar o efeito. Se perder a concentração, o feitiço ou técnica se encerrará imediatamente. A criatura também pode optar por encerrar a concentração a qualquer momento usando uma “Ação Livre”, mesmo fora do seu turno.
 
-Mantendo a concentração
+### Mantendo a Concentração
 
 Sempre que a criatura sofrer dano enquanto estiver mantendo a concentração, ela deve fazer um Teste de Resistência de Espírito para verificar se não perde a concentração. Se falhar no teste, a concentração será encerrada imediatamente. A dificuldade desse teste é metade do dano sofrido ou a dificuldade definida pelo mestre. Caso a criatura fique inconsciente ou morra, a concentração também será encerrada imediatamente. Não é possível manter a concentração em dois feitiços ou técnicas ao mesmo tempo. Se você usar um feitiço ou técnica que exige concentração, o outro será encerrado.
 
-testes de resistência
+### Testes de Resistência
 
 Muitos feitiços ou técnicas especificam que o alvo deve fazer um teste de resistência para evitar parte ou todos os seus efeitos. O feitiço ou técnica detalha qual teste o alvo deve realizar e o que acontece em caso de sucesso ou falha. A CD para resistir aos seus feitiços ou técnicas é determinada pela sua classe, como exemplo é explicado nas características de Shikai e Bankai, que orientam como calcular tanto o acerto quanto a CD.
 
@@ -98,7 +88,7 @@ Encatamento Rápido: O usuário, apenas cumprindo os requisitos normais do kido.
 
 Encatamento Normal: Para realizar esse encantamento, o usuário deve utilizar metade do seu deslocamento total ou ação bônus, juntamente com os requisitos do kido. Encatamento Lento: O usuário não pode se movimentar durante esse turno, seja antes ou depois de realizar o Kido, ou o Kido não funcionará e ainda terá o gasto da Reiatsu.
 
-COnCENTRAÇÃO em KIDO
+### Concentração em Kido
 
 Você pode manter a “Concentração” em mais de um Kido simultaneamente, mas isso impõe grande dificuldade. Ao ativar um novo Kido que exija concentração enquanto já possui outro Kido com concentração ativo, você deve realizar um Teste de Resistência de Espírito com Classe de Dificuldade igual a 20 + o rank do Kido. Se falhar, o novo Kido não será realizado, mas você ainda gastará os pontos de reiatsu. ranK
 
@@ -138,25 +128,17 @@ Mesmo os Kidos sendo muito poderosos, o protagonista de Bleach, Ichigo Kurosaki,
 
 ## Bakudou
 
-Rank B
+### Rank B
 
-Rank D
-
-• • • • • • • • • • • • • • • • • • • •
+### Rank D
 
 41º Bakudou: Kouryuu 42º Bakudou: Kuukan no Kusari 43° Bakudou: Meikyuu 44º Bakudou: Ten’i 45º Bakudou: Seishin no Shirushi 46º Bakudou: Kukan Ido 47º Bakudou: Michibiki 48º Bakudou: Seishin Kekkai 49º Bakudou: Kekkai no Tate 50º Bakudou: Shingan 51º Bakudou: Saimin Kekkai 52º Bakudou: Reishi no Kusari 53º Bakudou: Kekkai no Kabe 54º Bakudou: Tsuushinka 55º Bakudou: Jakuten 56º Bakudou: Kakushi 57º Bakudou: Fuuin no Kyoukai 58º Bakudou: Kakushitsuijaku (Bleach) 59º Bakudou: Sanki Kousoku 60º Bakudou: Kyoumon (Bleach)
 
-Rank C
-
-• • • • • • • • • • • • • • • • • • • •
+### Rank C
 
 61º Bakudou: Rikujukourou (Bleach) 62º Bakudou: Hyapporankan (Bleach) 63° Bakudou: Sajou Sabaku (Bleach) 64º Bakudou: Shinshoku Ryoiki 65º Bakudou: Reien 66º Bakudou: Shouheki 67º Bakudou: Seimei Kekkai 68º Bakudou: Fuuin 69º Bakudou: Keimusho Mugen 70º Bakudou: Tsuihou 71º Bakudou: Kekkai Ryouiki 72º Bakudou: Shinjitsu no Tobari 73º Bakudou: Tozansho (Bleach) 74º Bakudou: Inochi no Kizuna 75º Bakudou: Gochuu Tekkan (Bleach) 76º Bakudou: Ten’i Rakuin 77º Bakudou: Tenteikuura (Bleach) 78º Bakudou: Reiatsu Shoumei 79º Bakudou: Kuyou Shibari (Bleach) 80º Bakudou: Kakurega
 
-• • • • • • • • • •
-
 81º Bakudou: Danku (Bleach) 82º Bakudou: Reishi Kassei 83° Bakudou: Kakuremi 84º Bakudou: Jikan Kekkai 85º Bakudou: Enkaku 86º Bakudou: Mugen Kagami 87º Bakudou: Tamashii Bunri 88º Bakudou: Gokan Fuin 89º Bakudou: Boukyaku 90º Bakudou: Keimusho Mugen
-
-• • • • • • • • • •
 
 91º Bakudou: Jikan Teishi 92º Bakudou: Seishin Shouheki 93º Bakudou: Unmei Shihai 94º Bakudou: Shihai 95º Bakudou: Shisoukeppu (Bleach) 96º Bakudou: Keikaigi (Bleach) 97º Bakudou: Jikanteishi (Bleach) 98º Bakudou: Kuukanten’i (Bleach) 99º Bakudou: Kin (Bleach) 99º Bakudou: Bankin (Bleach)
 
@@ -166,31 +148,29 @@ Bakudou é classificado em níveis, do 1 ao 99, sendo que níveis mais altos ind
 
 ## Lista de Bakudous
 
-Abaixo a lista de Bakudous, classificados (Rank) de D a S. • • • • • • • • • • • • • • • • • • • •
+Abaixo a lista de Bakudous, classificados (Rank) de D a S.
 
 1º Bakudou: Sai (Bleach) 2º Bakudou: Noroi 3° Bakudou: Tegami 4º Bakudou: Hainawa (Bleach) 5º Bakudou: Senkou 6º Bakudou: Shin’en 7º Bakudou: Genkai 8º Bakudou: Seki (Bleach) 9º Bakudou: Geki (Bleach) 10º Bakudou: Horin (Bleach) 11º Bakudou: Kyuketsu 12º Bakudou: Fushibi (Bleach) 13º Bakudou: Yojigen no Hokai 14º Bakudou: Seicho 15º Bakudou: Kukanshu 16º Bakudou: Koka no Hassha 17º Bakudou: Shinden 18º Bakudou: Hakuryoku no Yugen 19º Bakudou: Kouzen Fuuin 20º Bakudou: Kage Tsuru
 
-• • • • • • • • • • • • • • • • • • • •
-
 21º Bakudou: Sekienton (Bleach) 22º Bakudou: Seishin Heiwa 23° Bakudou: Keikai no Mon 24º Bakudou: Kamen no Utage 25º Bakudou: Joushin 26º Bakudou: Kyokkou (Bleach) 27º Bakudou: Seishin Tate 28º Bakudou: Kanjou no Tobari 29º Bakudou: Satori 30º Bakudou: Sansen (Bleach) 31º Bakudou: Kido Shoumei 32º Bakudou: Reijuu 33º Bakudou: Sokuheki 34º Bakudou: Kekkai 35º Bakudou: Ankoku En 36º Bakudou: Koumyou Shou 37º Bakudou: Tsuriboshi (Bleach) 38º Bakudou: Teikou 39º Bakudou: Enkosen (Bleach) 40º Bakudou: Kurokabe
 
-Rank A
+### Rank a
 
-Rank S
+### Rank S
 
-Rank SS
+### Rank Ss
 
-Bakudou no Ichi: Sai
+### Bakudou no Ichi: Sai
 
-Bakudou de Rank D, Bleach
+### Bakudou de Rank D, Bleach
 
 Encantamento: Senhor, as almas envolvem tudo e a todos, onde não se pode ver, alguma obstrução ocorre, te peço, me dê seu poder e me mostre a negação de Deus! Requisito: Ação Jogada de Ataque: Automático Alcance: 9 metros Velocidade: Instantânea, Encantamento Rápido O shinigami levanta dois dedos e aponta para uma ou mais criaturas. A criatura deve realizar um teste de resistência de Espirito em caso de falha, a criatura sofre 1d4 de dano de Energia e recebe a condição “Preso - Mãos”, ficando com as mãos atadas para trás, impossibilitando a realização de ações com as mãos até o final do próximo turno da criatura.
 
 Reiatsu: Você gasta 2 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 2 pontos de Reiatsu adicionais gastos, você adiciona mais uma criatura como alvo.
 
-Bakudou no NI: Noroi
+### Bakudou no Ni: Noroi
 
-Bakudou de Rank D, Exclusivo
+### Bakudou de Rank D, Exclusivo
 
 Encantamento: Que a vontade do guardião se erga como uma barreira entre o amigo e o fio da lâmina! Desvie, aço impiedoso, e encontre tua trajetória obscurecida pela luz da proteção!
 
@@ -202,9 +182,9 @@ Alternativamente você pode utilizar 10 pontos de Reiatsu para causar desvantage
 
 Reiatsu: Você gasta 2 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 2 pontos de Reiatsu adicionais gastos, você adiciona -1 na rolagem de ataque da criatura, com um máximo de -4.
 
-Bakudou no SAN: Tegami
+### Bakudou no San: Tegami
 
-Bakudou de Rank D, Exclusivo
+### Bakudou de Rank D, Exclusivo
 
 Encantamento: Que o sussurro dos laços seja tecido no tecido do espírito, emprestando voz ao silêncio e conforto à distância.
 
@@ -216,9 +196,9 @@ Essa mensagem não pode passar de vinte palavras e a resposta da criatura não p
 
 Reiatsu: Você gasta 2 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder.
 
-Bakudou no YON: Hainawa
+### Bakudou no Yon: Hainawa
 
-Bakudou de Rank D, Bleach
+### Bakudou de Rank D, Bleach
 
 Encantamento: Oh grande Deus, me empreste seus poderes para selar as almas indesejáveis, me ajude meu senhor, prenda aqueles que não acreditam no bem maior! Requisito: Ação Jogada de Ataque: Acerto Alcance: 9 metros Velocidade: Concentração até 1 minuto, Encantamento Normal
 
@@ -226,17 +206,17 @@ Você junta energia amarela em suas mãos e aponta para uma criatura, lançando 
 
 Reiatsu: Você gasta 3 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 2 pontos de Reiatsu adicionais gastos, você adiciona +1 na CD do teste de força, com um máximo de +3.
 
-Bakudou no GO: Senkou
+### Bakudou no Go: Senkou
 
-Bakudou de Rank D, Exclusivo
+### Bakudou de Rank D, Exclusivo
 
 Encantamento: Que a luz cegante da alma envolva meu ser, ocultando-me nas sombras da percepção alheia. Requisito: Ação Jogada de Ataque: Automático Alcance: 9 metros Velocidade: Instantânea, Encantamento Rápido
 
 O Shinigami cria uma rápida explosão de energia espiritual ao seu redor, envolvendo-o em uma esfera brilhante de luz. Isso desorienta as criaturas que estão olhando diretamente para o Shinigami, permitindo que ele desapareça instantaneamente do campo de visão delas usando Shunpo, proporcionando uma oportunidade para escapar. Após usar esse Bakudou, se o Shinigami usar qualquer tipo de Shunpo e se distanciar dos inimigos, ele pode fazer um Teste de Furtividade com vantagem. Reiatsu: Você gasta 5 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder.
 
-Bakudou no Roku: Shin’en
+### Bakudou no Roku: Shin’en
 
-Bakudou de Rank D, Exclusivo
+### Bakudou de Rank D, Exclusivo
 
 Encantamento: Que o vento da alma se erga e crie um redemoinho de poder! Rejeite, criaturas, o avanço do destino e caiam perante minha vontade!
 
@@ -246,9 +226,9 @@ O Shinigami faz um movimento com uma mão para frente, estendendo a palma rapida
 
 Reiatsu: Você gasta 5 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 5 pontos de Reiatsu adicionais gastos, você adiciona 1,5 metros na distância que as criaturas seram arremessadas, com um máximo de 9 metros.
 
-Bakudou no NANA: Genkai
+### Bakudou no Nana: Genkai
 
-Bakudou de Rank D, Exclusivo
+### Bakudou de Rank D, Exclusivo
 
 Encantamento: Que a vontade protetora se erga como uma pequena muralha de reiatsu, defendendo meu ser de toda agressão!
 
@@ -258,9 +238,9 @@ Enquanto recita o encantamento, o Shinigami faz um movimento com a mão de baixo
 
 Reiatsu: Você gasta 5 pontos de Reiatsu para utilizar este Kido.
 
-Bakudou no Hachi: Seki
+### Bakudou no Hachi: Seki
 
-Bakudou de Rank D, Bleach
+### Bakudou de Rank D, Bleach
 
 Encantamento: Oh Grande escudo, me defenda das catástrofes, me ajude a batalhar até o fim, bloqueie esse ataque e me ajude a vencer!
 
@@ -270,9 +250,9 @@ Ao ser alvo de um ataque desarmado corpo a corpo, você pode usar sua reação p
 
 Reiatsu: Você gasta 3 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 3 pontos de Reiatsu adicionais gastos, você diminui +10 de dano que iria receber com um máximo de 30 de dano diminuído.
 
-Bakudou no Hachi: Geki
+### Bakudou no Hachi: Geki
 
-Bakudou de Rank D, Bleach
+### Bakudou de Rank D, Bleach
 
 Encantamento: Desintegre-se, cão negro de Rondanini! Olhe para si mesmo em terror e rasge sua própria garganta!
 
@@ -282,9 +262,9 @@ Com uma mão você cria um símbolo e depois junta as duas mãos em direção a 
 
 Reiatsu: Você gasta 3 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 3 pontos de Reiatsu adicionais gastos, você adiciona 1d6 de dano.
 
-Bakudou no Juu: Horin
+### Bakudou no Juu: Horin
 
-Bakudou de Rank D, Bleach
+### Bakudou de Rank D, Bleach
 
 Encantamento: Deuses correntes das almas domem a violência trazendo a calma, capture e anule o mal inimigo. Espiral laranja reluzente, silencie!
 
@@ -292,9 +272,9 @@ Requisito: Ação Jogada de Ataque: Acerto Alcance: 9 metros Velocidade: Instant
 
 Reiatsu: Você gasta 3 pontos de Reiatsu para utilizar este Kido.
 
-Bakudou no juichi: Kyuketsu
+### Bakudou no Juichi: Kyuketsu
 
-Bakudou de Rank D, Exclusivo
+### Bakudou de Rank D, Exclusivo
 
 Encantamento: Que a esfera da avareza espiritual se manifeste, vinculando-se ao escolhido. Que sua força seja sugada pela noite eterna, alimentando minha própria alma!
 
@@ -306,9 +286,9 @@ O Shinigami cria uma esfera de energia espiritual que se prende a um alvo escolh
 
 Reiatsu: Você gasta 6 pontos de Reiatsu para utilizar este Kido.
 
-Bakudou no Juuni: Fushibi
+### Bakudou no Juuni: Fushibi
 
-Bakudou de Rank D, Bleach
+### Bakudou de Rank D, Bleach
 
 Encantamento: Tecelãs do destino eu as suplico. Oh, Moiras supremas que tudo tecem emprestem-me seu tear para que eu possa tecer os fios da vida dos meus inimigos com a chama da dor!
 
@@ -316,9 +296,9 @@ Requisito: Ação Bônus Jogada de Ataque: Automático Alcance: 18 metros Veloci
 
 Reiatsu: Você gasta 10 pontos de Reiatsu para utilizar este Kido.
 
-Bakudou no JuSAN: Yojigen no Hokai
+### Bakudou no Jusan: Yojigen no Hokai
 
-Bakudou de Rank D, Exclusivo
+### Bakudou de Rank D, Exclusivo
 
 Encantamento: Que a gravidade do universo se curve diante de minha vontade, distorcendo este espaço e tempo. Que a escuridão do desconhecido seja revelada, trazendo consigo o Colapso Quádruplo!
 
@@ -330,9 +310,9 @@ Esse cubo dura por dois turnos do Shinigami, se encerrando no começo do terceir
 
 Reiatsu: Você gasta 6 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 2 pontos de Reiatsu adicionais gastos, você adiciona 1d6 de dano Temporal.
 
-Bakudou no Juyon: Seicho
+### Bakudou no Juyon: Seicho
 
-Bakudou de Rank D, Exclusivo
+### Bakudou de Rank D, Exclusivo
 
 Encantamento: Que minha reiatsu se entrelace com vossas almas, fortalecendo vossos espíritos. Sob esta bênção, que cada ação seja amplificada pela tríplice energia!
 
@@ -344,9 +324,9 @@ O Shinigami pode se incluir na contagem de criaturas, mas todas as criaturas que
 
 Reiatsu: Você gasta 9 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 3 pontos de Reiatsu adicionais gastos você adiciona uma criatura a mais para infundir esse Kido.
 
-Bakudou no Jugo: Kukanshu
+### Bakudou no Jugo: Kukanshu
 
-Bakudou de Rank D, Exclusivo
+### Bakudou de Rank D, Exclusivo
 
 Encantamento: Que os laços do espaço se enrolem ao meu redor, atraindo os golpes destinados aos outros para mim. Que minha defesa seja o escudo daqueles que estão ao meu lado!
 
@@ -356,9 +336,9 @@ Quando uma criatura a até 1,5 metro de você for alvo de um ataque corpo a corp
 
 Reiatsu: Você gasta 5 pontos de Reiatsu para utilizar este Kido.
 
-Bakudou no Juroku: Koka no Hassha
+### Bakudou no Juroku: Koka no Hassha
 
-Bakudou de Rank D, Exclusivo
+### Bakudou de Rank D, Exclusivo
 
 Encantamento: Que a energia vital se irradie através de ti, concedendo-te velocidade e agilidade além dos limites comuns.
 
@@ -368,9 +348,9 @@ O Shinigami toca uma criatura, inclusive a si mesmo, e recita o encantamento, co
 
 Reiatsu: Você gasta 1 ponto de Reiatsu para utilizar este Kido.
 
-Bakudou no junana: Shinden
+### Bakudou no Junana: Shinden
 
-Bakudou de Rank D, Exclusivo
+### Bakudou de Rank D, Exclusivo
 
 Encantamento: Que esta barreira seja tecida com fios de energia, guardando o espaço e o tempo. Que nenhum movimento escape à minha percepção!
 
@@ -380,9 +360,9 @@ O Shinigami recita o encantamento e cria um domo numa área de 18 metros de diâ
 
 Reiatsu: Você gasta 1 ponto de Reiatsu para utilizar este Kido.
 
-Bakudou no juhachi: Hakuryoku no Yugen
+### Bakudou no Juhachi: Hakuryoku no Yugen
 
-Bakudou de Rank D, Exclusivo
+### Bakudou de Rank D, Exclusivo
 
 Encantamento: Que a força do universo se curve perante minha vontade, atraindo-te para a minha escolha! Requisito: Ação Jogada de Ataque: Acerto Alcance: 9 metros Velocidade: Instantânea, Encantamento Normal
 
@@ -390,9 +370,9 @@ O Shinigami faz um gesto com os dedos, criando uma atração gravitacional em um
 
 Se a criatura for empurrada para dentro de um Kido ou um efeito debilitante e precisar realizar um teste de resistência ela fará o teste com desvantagem. Reiatsu: Você gasta 5 ponto de Reiatsu para utilizar este Kido.
 
-Bakudou no Juukyuu: Kouzen Fuuin
+### Bakudou no Juukyuu: Kouzen Fuuin
 
-Bakudou de Rank D, Exclusivo
+### Bakudou de Rank D, Exclusivo
 
 Encantamento: Montanhas se ergam e aprisionem a ameaça, selando-a sob o peso do céu!
 
@@ -404,9 +384,9 @@ Se o alvo tentar escapar ou receber ajuda de outros, cada pilar possui pontos de
 
 Reiatsu: Você gasta 10 ponto de Reiatsu para utilizar este Kido.
 
-Bakudou no Nijuu: Kage Tsuru
+### Bakudou no Nijuu: Kage Tsuru
 
-Bakudou de Rank D, Exclusivo
+### Bakudou de Rank D, Exclusivo
 
 Encantamento: Sombra, envolva, guie e esconda! Requisito: Ação Jogada de Ataque: Automático Alcance: 9 metros Velocidade: Concentração até 1 minuto, Encantamento Normal
 
@@ -414,9 +394,9 @@ O Shinigami invoca uma sombra densa e flutuante que envolve uma área de 4,5 met
 
 Reiatsu: Você gasta 12 ponto de Reiatsu para utilizar este Kido.
 
-Bakudou no Nijuuichi: Sekienton
+### Bakudou no Nijuuichi: Sekienton
 
-Bakudou de Rank C, Bleach
+### Bakudou de Rank C, Bleach
 
 Encantamento: Pó vermelho, ergue-te além das planícies! Ó Senhor, que meus olhos desapareçam aos seus. Perdoe meu uso e abençoe minha fuga!
 
@@ -428,9 +408,9 @@ Ao conjurar este Bakudou, você pode tentar ficar furtivo imediatamente, utiliza
 
 Reiatsu: Você gasta 12 ponto de Reiatsu para utilizar este Kido.
 
-Bakudou no Nijuuni: Seishin Heiwa
+### Bakudou no Nijuuni: Seishin Heiwa
 
-Bakudou de Rank C, Exclusivo
+### Bakudou de Rank C, Exclusivo
 
 Encantamento: Que o vento leve o terror, que o espírito encontre repouso. Que a chama da coragem arda no coração e dissipe a sombra do medo!
 
@@ -442,9 +422,9 @@ Além disso, por 1 minuto, as criaturas afetadas ganham vantagem em testes de re
 
 Reiatsu: Você gasta 8 pontos de Reiatsu para utilizar este Kido. Para cada 3 pontos de Reiatsu adicionais gastos, você pode escolher mais uma criatura dentro do alcance.
 
-Bakudou NO Nijuusan: Keikai no Mon
+### Bakudou no Nijuusan: Keikai no Mon
 
-Bakudou de Rank C, Exclusivo
+### Bakudou de Rank C, Exclusivo
 
 Encantamento: Que meus olhos nunca durmam, que meus ouvidos não se fechem. Que o véu da ilusão não me cegue, nem o engano me confunda. Ó barreira da alma desperta, vigia o caminho, sente o toque, e que tua voz silenciosa ecoe em meu espírito!
 
@@ -456,9 +436,9 @@ Durante a conjuração, você pode designar criaturas específicas que não disp
 
 Reiatsu: Você gasta 6 pontos de Reiatsu para utilizar este Kido. Para cada 3 pontos de Reiatsu adicionais gastos, o alcance da área protegida aumenta em 1,5 metro, ou a duração se estende por mais 4 horas.
 
-Bakudou NO Nijuuyon: Kamen no Utage
+### Bakudou no Nijuuyon: Kamen no Utage
 
-Bakudou de Rank C, Exclusivo
+### Bakudou de Rank C, Exclusivo
 
 Encantamento: Espírito que reflete, névoa que cobre. Que o rosto visto se torne esquecimento,e a essência velada se confunda ao olhar. Pela vontade que engana o inimigo, vistam-me as faces mil da ilusão!
 
@@ -466,9 +446,9 @@ Requisito: Ação Completa Jogada de Ataque: Automático Alcance: 9 metros Veloc
 
 Reiatsu: Você gasta 10 pontos de Reiatsu para utilizar este Kido.
 
-Bakudou NO Nijuugo: Joushin
+### Bakudou no Nijuugo: Joushin
 
-Bakudou de Rank C, Exclusivo
+### Bakudou de Rank C, Exclusivo
 
 Encantamento: Luz que envolve o fiel, muralha que nasce da alma.Erga-se contra a tormenta, firme e inabalável. Que o espírito se erga acima da dor e do medo!
 
@@ -478,9 +458,9 @@ O aprimoramento é desfeito se o Shinigami que conjurou perder a concentração 
 
 Reiatsu: Você gasta 12 pontos de Reiatsu para utilizar este Kido.
 
-Bakudou no Nijuuroku: Kyokkou
+### Bakudou no Nijuuroku: Kyokkou
 
-Bakudou de Rank C, Bleach
+### Bakudou de Rank C, Bleach
 
 Encantamento: Oh, seres da luz, majestosa divindade dos homens, mostrai-me vosso brilho para que eu possa cegar meus inimigos e aplicar-lhes a justiça divina do juízo final! Requisito: Ação Jogada de Ataque: Automático Alcance: Pessoal Velocidade: 10 minutos, Encantamento Lento Você manipula a luz ao seu redor, criando uma distorção de Reiatsu que dobra a luminosidade e oculta
 
@@ -490,9 +470,9 @@ Este Bakudou não pode ser utilizado em combate e você não pode se mover utili
 
 Reiatsu: Você gasta 12 pontos de Reiatsu para utilizar este Kido.
 
-Bakudou NO Nijuunana: Seishin Tate
+### Bakudou no Nijuunana: Seishin Tate
 
-Bakudou de Rank C, Exclusivo
+### Bakudou de Rank C, Exclusivo
 
 Encantamento: Que o fluxo da alma se una e a essência da vida forme um muro entre a dor e a existência. Ergam-se, escudos da alma, e defendam aqueles que caminham sob minha luz!
 
@@ -504,9 +484,9 @@ A aura espiritual é visível como uma película tênue de energia, que se rompe
 
 Reiatsu: Você gasta 10 pontos de Reiatsu para utilizar este Kido.
 
-Bakudou NO Nijuuhachi: Kanjou no Tobari
+### Bakudou no Nijuuhachi: Kanjou no Tobari
 
-Bakudou de Rank C, Exclusivo
+### Bakudou de Rank C, Exclusivo
 
 Encantamento: Oh névoa dos sentimentos, adormeça o ódio, envolva o coração em tranquilidade e conduza o espírito à harmonia. Que minha voz seja o fio que prende a alma, e que a vontade se curve diante da emoção! Requisito: Ação Jogada de Ataque: Automático Alcance: 6 metros Velocidade: Instantânea, Encantamento Lento
 
@@ -516,9 +496,9 @@ Enquanto estiver sob esse efeito, a criatura afetada vê o conjurador com admira
 
 Reiatsu: Você gasta 10 pontos de Reiatsu para utilizar este Kido.
 
-Bakudou NO Nijuukyuu: Satori
+### Bakudou no Nijuukyuu: Satori
 
-Bakudou de Rank C, Exclusivo
+### Bakudou de Rank C, Exclusivo
 
 Encantamento: Ó correntes da energia espiritual, vibrem em sintonia com minha vontade. Revelai o fluxo oculto, desvendai o véu que esconde as artes do inimigo. Que minha visão toque o invisível e traga à luz os segredos do Kido!
 
@@ -526,9 +506,9 @@ Requisito: Ação Jogada de Ataque: Automático Alcance: 18 metros Velocidade: I
 
 Reiatsu: Você gasta 8 pontos de Reiatsu para utilizar este Kido, podendo gastar 2 pontos adicionais para aumentar o alcance em 3 metros por ponto extra.
 
-Bakudou NO Sanjuu: Shitotsu Sansen
+### Bakudou no Sanjuu: Shitotsu Sansen
 
-Bakudou de Rank C, Bleach
+### Bakudou de Rank C, Bleach
 
 Encantamento: Três divinos, perfurem o mal dividido! Encarem as consequências do símbolo triangular, que minhas mãos traçam no ar,lançando suas forças contra aqueles que desafiam a justiça!
 
@@ -538,9 +518,9 @@ O Shinigami traça um triângulo no ar com suas mãos, e de cada vértice emerge
 
 No início do próximo turno da criatura, ela pode realizar um Teste de Resistência de Força para tentar se libertar, e novamente nos turnos seguintes dela. Reiatsu: Você gasta 10 pontos de Reiatsu para conjurar este Kido.
 
-Bakudou no Sanjuuichi: Kido Shoumei
+### Bakudou no Sanjuuichi: Kido Shoumei
 
-Bakudou de Rank C, Exclusivo
+### Bakudou de Rank C, Exclusivo
 
 Encantamento: Ó correntes espirituais que selam e prendem,ouçam minha vontade e dissolvam o poder do inimigo!Que todo Kido que se ergue em oposição à justiça seque e se desfaça diante da minha mão!
 
@@ -552,17 +532,17 @@ O conjurador do Kido deve estar no mesmo ambiente, se ele não estiver o Kido de
 
 Reiatsu: Você gasta 12 pontos de Reiatsu para conjurar este Kido. Para cada 3 pontos adicionais de Reiatsu gastos, você aumenta o bônus do teste de acerto em +1.
 
-Bakudou no Sanjuuni: Reijuu
+### Bakudou no Sanjuuni: Reijuu
 
-Bakudou de Rank C, Exclusivo
+### Bakudou de Rank C, Exclusivo
 
 Encantamento: Ergam-se muralhas de reiatsu e protejamme de todo ataque! Requisito: Reação Jogada de Ataque: Automático Alcance: Pessoal Velocidade: Instantânea, Encantamento Rápido O Shinigami quando for atacado levanta a mão invocando rapidamente um escudo de reiatsu ao seu redor, envolvendo todo o corpo com energia espiritual concentrada. Esse escudo concede +5 na Classe de Resistência contra o ataque que disparou a reação.
 
 Reiatsu: Você gasta 8 pontos de Reiatsu para conjurar este Kido.
 
-Bakudou no Sanjuusan: Sokuheki
+### Bakudou no Sanjuusan: Sokuheki
 
-Bakudou de Rank C, Exclusivo
+### Bakudou de Rank C, Exclusivo
 
 Encantamento: Que o caminho se feche e a força se dobre diante de mim!
 
@@ -572,17 +552,17 @@ Quando uma criatura começar a se deslocar o Shinigami projeta uma barreira de r
 
 Reiatsu: Você gasta 9 pontos de Reiatsu para utilizar este Kido.
 
-Bakudou no Sanjuuyon: Kekkai
+### Bakudou no Sanjuuyon: Kekkai
 
-Bakudou de Rank C, Exclusivo
+### Bakudou de Rank C, Exclusivo
 
 Encantamento: Ó barreiras espirituais que cintilam entre mundos, erguei-vos para proteger este corpo da fúria inimiga, repelindo ataques e dissipando o perigo! Requisito: Ação Bônus Jogada de Ataque: Automático Alcance: 9 metros metros Velocidade: Concentração até 10 minutos, Encantamento Normal O Shinigami projeta um campo de reiatsu cintilante ao redor de uma criatura à sua escolha dentro do alcance. Este campo dura até 10 minutos, ou enquanto o usuário manter a concentração, e concede à criatura um bônus de +2 na Classe de Resistência, tornando-a mais difícil de atingir ataques e habilidades inimigas.
 
 Reiatsu: Você gasta 10 pontos de Reiatsu para utilizar este Kido. E pode aprimorar esse Kido, adicionando mais uma criatura com o bônus de CR pra cada 10 de pontos de reiatsu adicionais gastos.
 
-Bakudou no Sanjuugo: Ankoku En
+### Bakudou no Sanjuugo: Ankoku En
 
-Bakudou de Rank C, Exclusivo
+### Bakudou de Rank C, Exclusivo
 
 Encantamento: Ó trevas eternas que habitam além da luz, envolvam este espaço e o tornem obscuro para os olhos dos indignos!
 
@@ -590,9 +570,9 @@ Requisito: Ação Jogada de Ataque: Automático Alcance: Esfera de 4,5 metros (A
 
 Reiatsu: Você gasta 8 pontos de Reiatsu para utilizar este Kido.
 
-Bakudou no Sanjuuroku: Koumyou Shou
+### Bakudou no Sanjuuroku: Koumyou Shou
 
-Bakudou de Rank C, Exclusivo
+### Bakudou de Rank C, Exclusivo
 
 Encantamento: Ó trevas eternas que habitam além da luz, envolvam este espaço e o tornem obscuro para os olhos dos indignos!
 
@@ -600,9 +580,9 @@ Requisito: Ação Jogada de Ataque: Automático Alcance: Cone de 6 metros Veloci
 
 Reiatsu: Você gasta 7 pontos de Reiatsu para utilizar este Kido.
 
-Bakudou no Sanjuunana: Tsuriboshi
+### Bakudou no Sanjuunana: Tsuriboshi
 
-Bakudou de Rank C, Bleach
+### Bakudou de Rank C, Bleach
 
 Encantamento: A noite cai em total escuridão, trazendo desgraças ou felicidade. A luz traz o caminho da esperança. A estrela agora será minhas mãos, assim podemos segurar o ódio e a insegurança!
 
@@ -614,9 +594,9 @@ O colchão de reiatsu permanece ativo por 1 minuto ou até que você o desfaça 
 
 Reiatsu: Você gasta 5 pontos de Reiatsu para utilizar este Kido. Para cada 2 pontos de Reiatsu adicionais gastos, você aumenta o raio da esfera em 6 metros.
 
-Bakudou no Sanjuuhachi: Teikou
+### Bakudou no Sanjuuhachi: Teikou
 
-Bakudou de Rank C, Exclusivo
+### Bakudou de Rank C, Exclusivo
 
 Encantamento: Correntes invisíveis da justiça, ouçam minha ordem e não permitam que os inimigos escapem! Prendam braços e pernas, limitem seus movimentos e contenham a fúria que ousa desafiar a ordem! Que o poder da lei espiritual se manifeste em cada fio que os envolve, restringindo sua força e imobilizando sua vontade, até que o equilíbrio seja restabelecido e a desordem seja corrigida!
 
@@ -628,9 +608,9 @@ Faça um ataque à distância com Kido, se acertar, a criatura alvo deve realiza
 
 Reiatsu: Você gasta 5 pontos de Reiatsu para utilizar este Kido. Para cada 2 pontos de Reiatsu adicionais gastos, você aumenta o raio da esfera em 6 metros.
 
-Bakudou no no Sanjuukyuu: Enkosen
+### Bakudou no no Sanjuukyuu: Enkosen
 
-Bakudou de Rank C, Bleach
+### Bakudou de Rank C, Bleach
 
 Encantamento: Zanjutsu e Reiatsu, duas artes para a luta, gritai sua fúria de reiatsu onde se combate o Zanjutsu mais forte, um escudo condensado eu ponho sobre isto! Requisito: Reação Jogada de Ataque: Automático Alcance: Pessoal Velocidade: Instantânea, Encantamento Rápido
 
@@ -640,9 +620,9 @@ Você não pode defender ataques com dano Psíquico, com esse Bakudou.
 
 Reiatsu: Você gasta 10 pontos de Reiatsu para utilizar este Kido. Para cada 5 pontos de Reiatsu adicionais gastos, você aumenta em 10 o valor de dano reduzido pelo escudo.
 
-Bakudou no Shijuu: Kurokabe
+### Bakudou no Shijuu: Kurokabe
 
-Bakudou de Rank C, Exclusivo
+### Bakudou de Rank C, Exclusivo
 
 Encantamento: Sombras densas, ergam-se diante de mim e construam um muro que detenha a fúria dos inimigos! Que nada possa atravessar esta barreira, e que o caos seja contido por minha ordem!
 
@@ -654,9 +634,9 @@ Todas as criaturas que tentarem atravessar o muro devem realizar um Teste de Res
 
 Reiatsu: Você gasta 10 pontos de Reiatsu para utilizar este Kido.
 
-Bakudou no Shijuuichi: Kouryuu
+### Bakudou no Shijuuichi: Kouryuu
 
-Bakudou de Rank B, Exclusivo
+### Bakudou de Rank B, Exclusivo
 
 Encantamento: Ó fluxo invisível que percorre corpo e espírito, eu ordeno que cesse! Que a corrente de Reiatsu seja interrompida, que a energia acumulada se disperse e que toda força reunida retorne ao vazio!
 
@@ -666,9 +646,9 @@ O usuário dispara uma corrente de Reiatsu que desestabiliza o fluxo espiritual 
 
 Reiatsu: Você gasta 13 de Reiatsu para utilizar este Kidou. Para cada 4 Reiatsu adicionais gastos, aumente a CD do Teste de Resistência de Espírito em +1, até um máximo de +5.
 
-Bakudou no Yonjuuni: Kuukan no Kusari
+### Bakudou no Yonjuuni: Kuukan no Kusari
 
-Bakudou de Rank B, Exclusivo
+### Bakudou de Rank B, Exclusivo
 
 Encantamento: Céu vazio que separa todas as coisas, distorça o espaço ao redor daquele que ousa atravessar seus limites e faça todo caminho retornar ao seu ponto de origem!
 
@@ -680,9 +660,9 @@ O efeito permanece até o início do próximo turno do usuário.
 
 Reiatsu: Você gasta 14 de Reiatsu para utilizar este Kidou. Para cada 4 Reiatsu adicionais gastos, aumente a CD do Teste de Resistência de Espírito em +1, até um máximo de +5.
 
-Bakudou no Yonjuusan: Meikyuu
+### Bakudou no Yonjuusan: Meikyuu
 
-Bakudou de Rank B, Exclusivo
+### Bakudou de Rank B, Exclusivo
 
 Encantamento: Ó mundo de mil caminhos, confunda os sentidos daquele que está diante de mim! Que o próximo passo jamais encontre o caminho que seus olhos procuram!
 
@@ -692,9 +672,9 @@ estejam a mais de 3 metros dele, sofrendo desvantagem em ataques e testes de Per
 
 Reiatsu: Você gasta 14 de Reiatsu para utilizar este Kidou.
 
-Bakudou no Yonjuuyon: Ten’i
+### Bakudou no Yonjuuyon: Ten’i
 
-Bakudou de Rank B, Exclusivo
+### Bakudou de Rank B, Exclusivo
 
 Encantamento: Ó força que percorre todas as coisas, abandone teu curso e siga o caminho que eu determino! Que aquilo que busca me atingir seja conduzido para longe de seu destino!
 
@@ -708,9 +688,9 @@ Restrições: Este Kidou só pode ser utilizado uma vez por rodada e que não ca
 
 Reiatsu: Você gasta 18 de Reiatsu para utilizar este Kidou. Para cada 2 Reiatsu adicionais, aumente o alcance da criatura que você quer proteger em 3 metros.
 
-Bakudou no Yonjuugo: Seishin no Shirushi
+### Bakudou no Yonjuugo: Seishin no Shirushi
 
-Bakudou de Rank B, Exclusivo
+### Bakudou de Rank B, Exclusivo
 
 Encantamento: Espírito que deixa sua marca no mundo, revele tua presença aos meus sentidos! Que nenhum véu esconda aquele que minha percepção procura! Requisito: Ação Jogada de Ataque: Automático Alcance: 18 metros Velocidade: Instantânea, Encantamento Lento
 
@@ -720,9 +700,9 @@ A marca não revela a localização exata do alvo, nem atravessa efeitos que ocu
 
 Reiatsu: Você gasta 15 de Reiatsu para utilizar este Kidou.
 
-Bakudou no Yonjuuroku: Kukan Ido
+### Bakudou no Yonjuuroku: Kukan Ido
 
-Bakudou de Rank B, Exclusivo
+### Bakudou de Rank B, Exclusivo
 
 Encantamento: Ó espaço que separa todos os caminhos, dobre teus limites e aproxime aquilo que está distante! Que a distância entre dois pontos deixe de existir! Requisito: Ação Jogada de Ataque: Automático Alcance: 24 metros Velocidade: Instantânea, Encantamento Lento
 
@@ -730,9 +710,9 @@ O usuário dobra brevemente o espaço, permitindo que ele e uma criatura de tama
 
 Reiatsu: Você gasta 15 de Reiatsu para utilizar este Kidou.
 
-Bakudou no Yonjuunana: Michibiki
+### Bakudou no Yonjuunana: Michibiki
 
-Bakudou de Rank B, Exclusivo
+### Bakudou de Rank B, Exclusivo
 
 Encantamento: Corpo que se move sob o comando da vontade, abandone teu próprio caminho! Que teus passos sigam a direção que eu determinar!
 
@@ -742,9 +722,9 @@ O usuário assume brevemente o controle dos movimentos de uma criatura voluntár
 
 O Kidou não remove nem ignora condições que impeçam fisicamente o movimento. Caso o alvo esteja Preso, Agarrado ou sob qualquer outro efeito que restrinja seu deslocamento, ele continua sujeito a essas limitações. Reiatsu: Você gasta 13 de Reiatsu para utilizar este Kidou.
 
-Bakudou no Yonjuuhachi: Seishin Kekkai
+### Bakudou no Yonjuuhachi: Seishin Kekkai
 
-Bakudou de Rank B, Exclusivo
+### Bakudou de Rank B, Exclusivo
 
 Encantamento: Espírito que permanece firme diante da adversidade, fortaleça tua vontade e rejeite toda força que busca dominar teu corpo!
 
@@ -756,9 +736,9 @@ Este Kidou não remove condições que o alvo já possua.
 
 Reiatsu: Você gasta 13 de Reiatsu para utilizar este Kidou. Para cada 3 Reiatsu adicionais, você pode proteger uma criatura adicional que esteja a até 3 metros do alvo original.
 
-Bakudou no Yonjuukyuu: Kekkai no Tate
+### Bakudou no Yonjuukyuu: Kekkai no Tate
 
-Bakudou de Rank B, Exclusivo
+### Bakudou de Rank B, Exclusivo
 
 Encantamento: Muralha invisível que separa o mundo, erga-se diante daqueles que protegerei! Que nenhuma força atravesse teu domínio!
 
@@ -770,9 +750,9 @@ A barreira desaparece após absorver o ataque.
 
 Reiatsu: Você gasta 17 de Reiatsu para utilizar este Kidou. Para cada 4 Reiatsu adicionais, aumente os Pontos de Vida da barreira em 10.
 
-Bakudou no Gojuu: Shingan
+### Bakudou no Gojuu: Shingan
 
-Bakudou de Rank B, Exclusivo
+### Bakudou de Rank B, Exclusivo
 
 Encantamento: Ó olhos que enxergam além daquilo que é mostrado, revelem o fluxo invisível que percorre todos os seres e mostrem a origem de cada poder!
 
@@ -782,9 +762,9 @@ Se for utilizada como reação, o usuário recebe +5 na sua CR ou vantagem no te
 
 Reiatsu: Você gasta 10 de Reiatsu para utilizar este Kidou.
 
-Bakudou no Gojuuichi: Saimin Kekkai
+### Bakudou no Gojuuichi: Saimin Kekkai
 
-Bakudou de Rank B, Exclusivo
+### Bakudou de Rank B, Exclusivo
 
 Encantamento: Força que repousa sobre todas as coisas, desça sobre aquele que ousa resistir! Comprima seu corpo, silencie seus movimentos e faça-o permanecer onde está!
 
@@ -794,9 +774,9 @@ O usuário estende a mão na direção do alvo e manifesta uma poderosa pressão
 
 Reiatsu: Você gasta 15 de Reiatsu para utilizar este Kidou. Para cada 3 Reiatsu adicionais, aumente o dano causado pela contenção em 1d8.
 
-Bakudou no Gojuuni: Reishi no Kusari
+### Bakudou no Gojuuni: Reishi no Kusari
 
-Bakudou de Rank B, Exclusivo
+### Bakudou de Rank B, Exclusivo
 
 Encantamento: Fluxo espiritual que une todas as coisas, estabeleça entre estes corpos um único caminho! Que nenhuma distância seja capaz de ocultar aquele que foi marcado!
 
@@ -804,9 +784,9 @@ Requisito: Ação Jogada de Ataque: Acerto Alcance: Toque Velocidade: 1 hora, En
 
 O shinigami toca em uma criatura aliada que possa ver e estabelece uma ligação de Reiatsu entre si e o alvo. Enquanto o efeito durar, o usuário sabe exatamente a localização, direção e distância que o separa da criatura, mesmo que ela esteja fora de seu campo de visão ou escondida por obstáculos. Essa percepção permanece enquanto ambos estiverem no mesmo plano de existência. Reiatsu: Você gasta 10 de Reiatsu para utilizar este Kidou.
 
-Bakudou no Gojuusan: Kekkai no Kabe
+### Bakudou no Gojuusan: Kekkai no Kabe
 
-Bakudou de Rank B, Exclusivo
+### Bakudou de Rank B, Exclusivo
 
 Encantamento: Barreira que separa o protegido do mundo exterior, erga-se e impeça que qualquer força atravesse teus limites!
 
@@ -816,9 +796,9 @@ espiritual que delimita uma área de 6 metros de raio, com origem em um ponto qu
 
 Reiatsu: Você gasta 16 de Reiatsu para utilizar este Kidou.
 
-Bakudou no Gojuuyon: TsuushinKA
+### Bakudou no Gojuuyon: Tsuushinka
 
-Bakudou de Rank B, Exclusivo
+### Bakudou de Rank B, Exclusivo
 
 Encantamento: Fios invisíveis que unem mente e espírito, estabeleçam um único caminho entre aqueles que compartilham minha vontade!
 
@@ -830,9 +810,9 @@ A comunicação transmite palavras, mas não permite compartilhar imagens, memó
 
 Reiatsu: Você gasta 10 de Reiatsu para utilizar este Kidou.
 
-Bakudou no Gojuugo: Jakuten
+### Bakudou no Gojuugo: Jakuten
 
-Bakudou de Rank B, Exclusivo
+### Bakudou de Rank B, Exclusivo
 
 Encantamento: Olhos que enxergam além daquilo que é mostrado, revelem aquilo que permanece oculto e concedam-me um vislumbre da verdadeira natureza daquele que observo!
 
@@ -840,9 +820,9 @@ Requisito: Ação Bônus Jogada de Ataque: Automático Alcance: Pessoal Velocida
 
 O usuário leva dois dedos até os próprios olhos e concentra Reiatsu em sua visão, tentando interpretar as características espirituais de uma criatura que possa ver. Após utilizar o Kidou, role 1d6. Se o resultado for par, o usuário consegue perceber uma informação relevante sobre a criatura, revelada pelo Mestre, como uma resistência, vulnerabilidade, imunidade, condição, habilidade ou outra característica que o Mestre considere pertinente. Se o resultado for ímpar, o fluxo espiritual não pode ser interpretado e nenhuma informação é obtida. Reiatsu: Você gasta 5 de Reiatsu para utilizar este Kidou.
 
-Bakudou no Gojuuroku: Kakushi
+### Bakudou no Gojuuroku: Kakushi
 
-Bakudou de Rank B, Exclusivo
+### Bakudou de Rank B, Exclusivo
 
 Encantamento: Silencie o fluxo espiritual e esconda aqueles que repousam sob teu véu. Que seus passos
 
@@ -854,9 +834,9 @@ O usuário ergue uma das mãos e cria um cubo de ocultação espiritual de 6 met
 
 Técnicas utilizadas dentro do cubo também têm seu fluxo espiritual ocultado, impedindo que sua origem seja percebida por aqueles que estejam fora dele. Quando a duração estiver prestes a terminar, o usuário pode gastar 5 pontos de Reiatsu para sustentar o Kidou por mais 10 minutos, mantendo sua Concentração. Reiatsu: Você gasta 17 de Reiatsu para utilizar este Kidou. Para cada 3 Reiatsu adicionais, aumente cada lado do cubo em 3 metros.
 
-Bakudou no Gojuunana: Fuuin no Kyoukai
+### Bakudou no Gojuunana: Fuuin no Kyoukai
 
-Bakudou de Rank B, Exclusivo
+### Bakudou de Rank B, Exclusivo
 
 Encantamento: Este caminho está selado. Nenhum passo, corpo ou força espiritual ultrapassará os limites que determinei!
 
@@ -868,9 +848,9 @@ O selo não impede ataques, técnicas ou objetos de atravessarem seus limites.
 
 Reiatsu: Você gasta 17 de Reiatsu para utilizar este Kidou. Para cada 4 Reiatsu adicionais, aumente cada lado do selo em 1,5 metros.
 
-Bakudou no Gojuuhachi: Kakushitsuijaku
+### Bakudou no Gojuuhachi: Kakushitsuijaku
 
-Bakudou de Rank B, Bleach
+### Bakudou de Rank B, Bleach
 
 Encantamento: Os céus conhecem todos os caminhos. Estrelas, reúnam-se e revelem o paradeiro daquele cujo Reiatsu procuro!
 
@@ -882,9 +862,9 @@ O rastreamento pode ser impedido por técnicas ou barreiras capazes de ocultar o
 
 Reiatsu: Você gasta 30 de Reiatsu para utilizar este Kidou.
 
-Bakudou no Gojuukyuu: Sanki Kousoku
+### Bakudou no Gojuukyuu: Sanki Kousoku
 
-Bakudou de Rank B, Exclusivo
+### Bakudou de Rank B, Exclusivo
 
 Encantamento: Correntes invisíveis, unam aqueles que se encontram diante de mim! Prendam seus corpos, interrompam seus passos e façam-nos permanecer onde estão!
 
@@ -894,9 +874,9 @@ O usuário estende ambas as mãos e libera fios de Reiatsu que se espalham pelo 
 
 Reiatsu: Você gasta 17 de Reiatsu para utilizar este Kidou. Para cada 4 Reiatsu adicionais, você pode afetar 1 criatura adicional.
 
-Bakudou no Rokujou: Kyoumon
+### Bakudou no Rokujou: Kyoumon
 
-Bakudou de Rank B, Bleach
+### Bakudou de Rank B, Bleach
 
 Encantamento: Os céus conhecem todos os caminhos. Estrelas, reúnam-se e revelem o paradeiro daquele cujo Reiatsu procuro!
 
@@ -912,9 +892,9 @@ Ataques realizados por criaturas que estejam dentro do cubo destroem a barreira 
 
 No seu turno, quando o cubo tiver perdido Pontos de Vida, o usuário pode utilizar sua Ação Bônus e gastar 5 de Reiatsu para recuperar 15 Pontos de Vida da barreira. Reiatsu: Você gasta 18 de Reiatsu para utilizar este Kidou.
 
-Bakudou no Rokujuuichi: Rikujoukourou
+### Bakudou no Rokujuuichi: Rikujoukourou
 
-Bakudou de Rank A, Bleach
+### Bakudou de Rank A, Bleach
 
 Encantamento: Carruagem do trovão. Ponte da roda que gira. Com a luz divida-o em seis!
 
@@ -926,9 +906,9 @@ Se acertar, a criatura recebe as condições Paralisado e Caído. Ao ser atingid
 
 No início de cada turno, a criatura pode realizar um Teste de Resistência de Força para tentar romper os pilares de luz. Em caso de sucesso, ela se liberta do Bakudou e encerra as condições causadas por ele. Reiatsu: Você gasta 22 de Reiatsu para utilizar este Kidou.
 
-Bakudou no Rokujuuni: Hyapporankan
+### Bakudou no Rokujuuni: Hyapporankan
 
-Bakudou de Rank A, Bleach
+### Bakudou de Rank A, Bleach
 
 Encantamento: Prenda esse demonio indesejável, purifique sua alma, use a luz para limpar a grande descarga de maldade presente nesse local, materialize sua lança, prenda o mal!
 
@@ -936,9 +916,9 @@ Requisito: Ação Jogada de Ataque: Acerto Alcance: 12 metros Velocidade: Até 1
 
 Reiatsu: Você gasta 22 de Reiatsu para utilizar este Kidou. Para cada 4 Reiatsu adicionais, você adiciona 1d10 de dano.
 
-Bakudou no Rokujuusan: Sajou Sabaku
+### Bakudou no Rokujuusan: Sajou Sabaku
 
-Bakudou de Rank A, Bleach
+### Bakudou de Rank A, Bleach
 
 Encantamento: Os demônios já não podem mais agir com a força do dominador. Correntes, prendam seu corpo e submetam sua alma! Já não se pode mais mover; então, caia em desespero!
 
@@ -952,9 +932,9 @@ No início de cada um de seus turnos, a criatura pode realizar um Teste de Resis
 
 Reiatsu: Você gasta 26 de Reiatsu para utilizar este Kidou.
 
-Bakudou no Rokujuyon: Shinshoku Ryoiki
+### Bakudou no Rokujuyon: Shinshoku Ryoiki
 
-Bakudou de Rank A, Exclusivo
+### Bakudou de Rank A, Exclusivo
 
 Encantamento: Que o fogo desperte no coração deste domínio! Prendam-se os passos daqueles que ousam permanecer em seu interior, e que toda força seja arrastada para o centro da chama!
 
@@ -972,9 +952,9 @@ A área permanece por 1 minuto, enquanto o usuário mantiver Concentração.
 
 Reiatsu: Você gasta 27 de Reiatsu para utilizar este Kidou. Para cada 5 Reiatsu adicionais, aumente o raio da área em 1,5 metros.
 
-Bakudou no Rokujugou: Reien
+### Bakudou no Rokujugou: Reien
 
-Bakudou de Rank A, Exclusivo
+### Bakudou de Rank A, Exclusivo
 
 Encantamento: Que o fogo desperte no coração deste domínio! Prendam-se os passos daqueles que ousam permanecer em seu interior, e que toda força seja arrastada para o centro da chama!
 
@@ -988,9 +968,9 @@ Uma criatura que tenha sido alvo deste Kidou recebe vantagem no Teste de Resist�
 
 Reiatsu: Você gasta 28 de Reiatsu para utilizar este Kidou.
 
-Bakudou no Rokujuuroku: Shouheki
+### Bakudou no Rokujuuroku: Shouheki
 
-Bakudou de Rank A, Exclusivo
+### Bakudou de Rank A, Exclusivo
 
 Encantamento: Rompam-se as defesas diante daquele que escolhi! Que sua força atravesse carne, aço e Reiatsu, e que nenhum obstáculo permaneça diante de seus golpes! Requisito: Ação Jogada de Ataque: Automático Alcance: 18 metros Velocidade: Concentração até 1 minuto, Encantamento Rápido O usuário escolhe uma criatura aliada dentro do alcance e envolve seu corpo em uma camada de Reiatsu.
 
@@ -998,9 +978,9 @@ Enquanto o efeito durar, sempre que a criatura causar dano, ela causa +10 de dan
 
 Reiatsu: Você gasta 22 de Reiatsu para utilizar este Kidou.
 
-Bakudou no Rokujuuroku: Seimei Kekkai
+### Bakudou no Rokujuuroku: Seimei Kekkai
 
-Bakudou de Rank A, Exclusivo
+### Bakudou de Rank A, Exclusivo
 
 Encantamento: Não tombarás enquanto minha vontade permanecer sobre ti! Que tua alma permaneça presa ao corpo, e que a morte seja afastada de teu caminho! Requisito: Ação Jogada de Ataque: Automático Alcance: 9 metros Velocidade: Até 1 minuto, Encantamento Lento
 
@@ -1012,9 +992,9 @@ Você só pode manter esse Kidou em uma criatura por vez.
 
 Reiatsu: Você gasta 25 de Reiatsu para utilizar este Kidou.
 
-Bakudou no Rokujuuhachi: Fuuin
+### Bakudou no Rokujuuhachi: Fuuin
 
-Bakudou de Rank A, Exclusivo
+### Bakudou de Rank A, Exclusivo
 
 Encantamento: Fechem-se os caminhos do espírito! Que o poder daquele que enfrento seja silenciado, que sua força encontre uma barreira e que nenhuma técnica escape deste selo!
 
@@ -1024,9 +1004,9 @@ A criatura pode repetir o Teste de Resistência de Espírito no final de cada um
 
 Reiatsu: Você gasta 23 de Reiatsu para utilizar este Kidou.
 
-Bakudou no Rokujuuhachi: Keimusho Mugen
+### Bakudou no Rokujuuhachi: Keimusho Mugen
 
-Bakudou de Rank A, Exclusivo
+### Bakudou de Rank A, Exclusivo
 
 Encantamento: Fechem-se os caminhos do espírito! Que o poder daquele que enfrento seja silenciado, que sua força encontre uma barreira e que nenhuma técnica escape deste selo!
 
@@ -1046,9 +1026,9 @@ A prisão possui 60 Pontos de Vida e Redução de Dano 10.
 
 Reiatsu: Você gasta 25 de Reiatsu para utilizar este Kidou.
 
-Bakudou no Nanajuu: Tsuihou
+### Bakudou no Nanajuu: Tsuihou
 
-Bakudou de Rank A, Exclusivo
+### Bakudou de Rank A, Exclusivo
 
 Encantamento: Que o espírito rejeitado abandone este mundo! Que os caminhos entre os planos se abram e que aquele que não pertence a este lugar seja lançado para além de seus limites!
 
@@ -1064,9 +1044,9 @@ O efeito termina imediatamente se o usuário perder a concentração. [Central 4
 
 Reiatsu: Você gasta 25 de Reiatsu para utilizar este Kidou.
 
-Bakudou no Nanajuuichi: Kekkai Ryouiki
+### Bakudou no Nanajuuichi: Kekkai Ryouiki
 
-Bakudou de Rank A, Exclusivo
+### Bakudou de Rank A, Exclusivo
 
 Encantamento: Separem-se os caminhos deste mundo! Que o espaço se feche ao nosso redor e que nenhum auxílio atravesse estes limites! Dentro deste domínio, somente nós dois permaneceremos!
 
@@ -1084,9 +1064,9 @@ A criatura pode repetir o Teste de Resistência de Espírito no final de cada um
 
 Reiatsu: Você gasta 19 de Reiatsu para utilizar este Kidou.
 
-Bakudou no Nanajuuni: Shinjitsu no Tobari
+### Bakudou no Nanajuuni: Shinjitsu no Tobari
 
-Bakudou de Rank A, Exclusivo
+### Bakudou de Rank A, Exclusivo
 
 Encantamento: Caiam os véus que escondem a verdade! Que nenhuma mentira encontre abrigo dentro deste domínio, e que toda palavra seja revelada diante daqueles que buscam a verdade!
 
@@ -1100,9 +1080,9 @@ Além disso, ilusões e efeitos que alterem a aparência ou a voz de uma criatur
 
 Reiatsu: Você gasta 19 de Reiatsu para utilizar este Kidou.
 
-Bakudou no Nanajuusan: Tozansho
+### Bakudou no Nanajuusan: Tozansho
 
-Bakudou de Rank A, Bleach
+### Bakudou de Rank A, Bleach
 
 Encantamento: Oh grande protetor, crie a base de 4 pontas e suba até o topo do infinito, onde se consegue ajuda e proteção divina!
 
@@ -1110,9 +1090,9 @@ Requisito: Reação Jogada de Ataque: Automático Alcance: 18 metros Velocidade:
 
 Reiatsu: Você gasta 22 de Reiatsu para utilizar este Kidou.
 
-Bakudou no Nanajuuyon: Inochi no Kizuna
+### Bakudou no Nanajuuyon: Inochi no Kizuna
 
-Bakudou de Rank A, Exclusivo
+### Bakudou de Rank A, Exclusivo
 
 Encantamento: Que minha alma se una à tua! Que aquilo que te alcançar também encontre meu corpo, e que nenhuma ferida seja capaz de romper o vínculo que estabeleci!
 
@@ -1126,9 +1106,9 @@ O vínculo termina imediatamente se o usuário ou a criatura estiverem a mais de
 
 Reiatsu: Você gasta 25 de Reiatsu para utilizar este Kidou.
 
-Bakudou no Nanajuugo: Gochuu Tekkan
+### Bakudou no Nanajuugo: Gochuu Tekkan
 
-Bakudou de Rank A, Bleach
+### Bakudou de Rank A, Bleach
 
 Encantamento: Muralha de areia metálica, torre feita de ódio, forje ferro derretido e termine em silêncio! Requisito: Ação ou Reação Jogada de Ataque: Acerto Alcance: 18 metros Velocidade: Instantânea, Encantamento Rápido
 
@@ -1140,13 +1120,13 @@ No início de cada turno, a criatura pode realizar um Teste de Resistência de F
 
 Reiatsu: Você gasta 24 de Reiatsu para utilizar este Kidou.
 
-Bakudou no Nanajuuroku: Ten’i Rakuin
+### Bakudou no Nanajuuroku: Ten’i Rakuin
 
-Bakudou de Rank A,Exclusivo
+### Bakudou de Rank A,exclusivo
 
 Encantamento: O caminho já está traçado. Retorne ao ponto onde esteve e reconheça novamente o lugar que teus passos abandonaram!
 
-Requisito: Reação Jogada de Ataque: Automático
+### Requisito: Reação Jogada de Ataque: Automático
 
 Alcance: 18 metros Velocidade: Instantânea, Encantamento Rápido
 
@@ -1160,9 +1140,9 @@ Uma criatura que obtiver sucesso no teste fica imune aos efeitos deste Kidou por
 
 Reiatsu: Você gasta 22 de Reiatsu para utilizar este Kidou.
 
-Bakudou no Nanajuunana: Tenteikuura
+### Bakudou no Nanajuunana: Tenteikuura
 
-Bakudou de Rank A, Bleach
+### Bakudou de Rank A, Bleach
 
 Encantamento: A rede preta e branca! 22 pontes! 66 coroas e cinturões, persiga, trovão distante, cume afiado, terra envolta, noite que se esconde, mar de nuvens, formação azul, complete o círculo e alcance os céus! Requisito: Ação Jogada de Ataque: Acerto Alcance: Especial Velocidade: Instantânea, Encantamento Lento
 
@@ -1174,9 +1154,9 @@ A mensagem pode conter apenas palavras, não podendo transmitir imagens, memóri
 
 Reiatsu: Você gasta 10 de Reiatsu para utilizar este Kidou.
 
-Bakudou no Nanajuuhachi: Reiatsu Shoumei
+### Bakudou no Nanajuuhachi: Reiatsu Shoumei
 
-Bakudou de Rank A, Exclusivo
+### Bakudou de Rank A, Exclusivo
 
 Encantamento: Que o Reiatsu se revele e se eleve! Que a energia espiritual preencha este domínio, fortaleça aqueles que lutam ao meu lado e faça cada Kidou encontrar seu alvo!
 
@@ -1190,9 +1170,9 @@ O benefício permanece enquanto a criatura estiver dentro da área.
 
 Reiatsu: Você gasta 15 de Reiatsu para utilizar este Kidou.
 
-Bakudou no Nanajuukyuu: Kuyou Shibari
+### Bakudou no Nanajuukyuu: Kuyou Shibari
 
-Bakudou de Rank A, Bleach
+### Bakudou de Rank A, Bleach
 
 Encantamento: Sem encantamento!
 
@@ -1208,9 +1188,9 @@ Você também pode utilizar este Kidou como Reação quando outra criatura aplic
 
 Reiatsu: Você gasta 25 de Reiatsu para utilizar este Kidou. Para cada 4 Reiatsu adicionais gastos, aumente a CD do Teste de Resistência de Espírito em +1, até um máximo de +5.
 
-Bakudou no Hachijuu: Kakurega
+### Bakudou no Hachijuu: Kakurega
 
-Bakudou de Rank A, Bleach
+### Bakudou de Rank A, Bleach
 
 Encantamento: Sem encantamento!
 
@@ -1228,9 +1208,9 @@ A estrutura possui 50 Pontos de Vida.
 
 Reiatsu: Você gasta 10 de Reiatsu para utilizar este Kidou. Para cada 2 Reiatsu adicionais gastos, aumente a duração em 2 horas, até o máximo de 24 horas.
 
-Bakudou no Hachijuuichi: Danku
+### Bakudou no Hachijuuichi: Danku
 
-Bakudou de Rank S, Bleach
+### Bakudou de Rank S, Bleach
 
 Encantamento: Sem encantamento!
 
@@ -1242,9 +1222,9 @@ Hadou de ataque com numeração igual ou inferior a 81 são automaticamente dest
 
 Reiatsu: Você gasta 30 de Reiatsu para utilizar este Kidou. Para cada 5 Reiatsu adicionais gastos, aumente os Pontos de Vida da barreira em 15, até o máximo de mais 75.
 
-Bakudou no Hachijuu-ni: Reishi Kassei
+### Bakudou no Hachijuu-ni: Reishi Kassei
 
-Bakudou de Rank S, Exclusivo
+### Bakudou de Rank S, Exclusivo
 
 Encantamento: Reishi que preenche os céus e a terra, abandone aquele que ousa dominar-te! Que todo poder espiritual retorne ao seu estado primordial e que minha vontade seja o único caminho!
 
@@ -1260,9 +1240,9 @@ O Reiatsu roubado flui diretamente para o corpo do usuário, sendo absorvido por
 
 Reiatsu: Você gasta 30 de Reiatsu para utilizar este Bakudou.
 
-Bakudou no Hachijuu-san: Kakuremi
+### Bakudou no Hachijuu-san: Kakuremi
 
-Bakudou de Rank S, Exclusivo
+### Bakudou de Rank S, Exclusivo
 
 Encantamento: Fechem-se os olhos deste mundo! Que nenhum olhar espiritual alcance aquilo que escondi, que nenhum Reiatsu revele sua presença e que o tempo deixe de tocar aquele que repousa em meu domínio!
 
@@ -1274,9 +1254,9 @@ O Bakudou também termina imediatamente se o alvo sofrer ou causar qualquer dano
 
 Reiatsu: Você gasta 20 de Reiatsu para utilizar este Bakudou.
 
-Bakudou no Hachijuu-yon: Jikan Kekkai
+### Bakudou no Hachijuu-yon: Jikan Kekkai
 
-Bakudou de Rank S, Exclusivo
+### Bakudou de Rank S, Exclusivo
 
 Encantamento: Que o tempo perca seu caminho! Separemse os instantes, alonguem-se os momentos e que aqueles que estiverem diante de mim sintam o peso de cada segundo!
 
@@ -1286,9 +1266,9 @@ Toda criatura dentro da área deve realizar um Teste de Resistência de Constitu
 
 realizada para uma ação, ataque, teste ou outra finalidade. Uma criatura que obtiver sucesso no teste não sofre os efeitos do Bakudou. Ao final de cada um de seus turnos, uma criatura Enfraquecida pode realizar novamente o Teste de Resistência de Constituição. Em caso de sucesso, ela deixa de estar Enfraquecida. Reiatsu: Você gasta 35 de Reiatsu para utilizar este Bakudou. Para cada 5 Reiatsu adicionais gastos, aumente o alcance em 3 metros.
 
-Bakudou no Hachijuu-go: Enkaku
+### Bakudou no Hachijuu-go: Enkaku
 
-Bakudou de Rank S, Exclusivo
+### Bakudou de Rank S, Exclusivo
 
 Encantamento: Que a distância se estenda além dos limites deste mundo! Alonguem-se os caminhos, afastemse os destinos e que aquilo que busca alcançar seu alvo jamais encontre um caminho direto!
 
@@ -1300,9 +1280,9 @@ Até o início do próximo turno do usuário, qualquer ataque ou técnica que te
 
 Além disso, sempre que a criatura for atingida por um ataque ou técnica à distância, ela pode realizar um Teste de Resistência de Destreza. Em caso de sucesso, o efeito da técnica é parcialmente desviado pela distorção espacial e o dano sofrido é reduzido pela metade. Reiatsu: Você gasta 25 de Reiatsu para utilizar este Kidou.
 
-Bakudou no Hachijuu-roku: Mugen Kagami
+### Bakudou no Hachijuu-roku: Mugen Kagami
 
-Bakudou de Rank S, Exclusivo
+### Bakudou de Rank S, Exclusivo
 
 Encantamento: Que todo olhar encontre aquilo que procura! Ergam-se os reflexos do espírito, multipliquemse os caminhos e que aquele que me enfrenta não saiba mais qual deles é verdadeiro!
 
@@ -1316,9 +1296,9 @@ Em caso de sucesso no Teste de Resistência, o alvo não sofre nenhum efeito.
 
 Reiatsu: Você gasta 28 de Reiatsu para utilizar este Kidou.
 
-Bakudou no Hachijuu-nana: Tamashii Bunri
+### Bakudou no Hachijuu-nana: Tamashii Bunri
 
-Bakudou de Rank S, Exclusivo
+### Bakudou de Rank S, Exclusivo
 
 Encantamento: Corpo e alma, que caminham unidos, separem-se por um instante! Que a carne avance enquanto o espírito permanece para trás, e que nenhum dos dois encontre força no outro!
 
@@ -1330,9 +1310,9 @@ Em caso de falha, até o início do próximo turno do usuário, a criatura fica 
 
 Reiatsu: Você gasta 30 de Reiatsu para utilizar este Kido.
 
-Bakudou no Hachijuu-hachi: Gokan Fuin
+### Bakudou no Hachijuu-hachi: Gokan Fuin
 
-Bakudou de Rank S, Exclusivo
+### Bakudou de Rank S, Exclusivo
 
 Encantamento: Que o Reiatsu envolva aqueles que permanecem diante de mim! Cubram seus corpos, fortaleçam suas almas e que nenhuma força seja capaz de romper esta proteção!
 
@@ -1344,9 +1324,9 @@ Os Pontos de Vida Temporários concedidos por este Bakudou permanecem até serem
 
 Reiatsu: Você gasta 40 de Reiatsu para utilizar este Kido. Para cada 5 Reiatsu adicionais gastos, aumente o total de Pontos de Vida Temporários concedidos em 20.
 
-Bakudou no Kyuujuu: Boukyaku
+### Bakudou no Kyuujuu: Boukyaku
 
-Bakudou de Rank S, Exclusivo
+### Bakudou de Rank S, Exclusivo
 
 Encantamento: Repouse, alma atormentada, e permita que aquilo que teus olhos viram encontre o silêncio. Que a lembrança se desfaça, que o medo abandone teu coração e que aquilo que não pertence ao mundo dos mortais seja esquecido!
 
@@ -1364,9 +1344,9 @@ Quando o processo termina, a nova memória se torna permanente. Entretanto, o mo
 
 Reiatsu: Você gasta 40 de Reiatsu para utilizar este Kido.
 
-Bakudou no Kyuujuu: Keimusho Mugen
+### Bakudou no Kyuujuu: Keimusho Mugen
 
-Bakudou de Rank S, Exclusivo
+### Bakudou de Rank S, Exclusivo
 
 Encantamento: Ó almas corrompidas pelo vazio, seus caminhos terminam aqui! Fechem-se os céus, cerremse os abismos e que as correntes de Reiatsu envolvam aqueles que ousam atravessar este domínio! Não haverá fuga, não haverá passagem, não haverá retorno!
 
@@ -1388,9 +1368,9 @@ O usuário não pode ser afetado pela própria prisão, podendo entrar e sair a 
 
 Reiatsu: Você gasta 35 de Reiatsu para utilizar este Kido. Para cada 5 Reiatsu adicionais, você pode afetar 1 Hollow adicional, até o máximo de 10 Hollows.
 
-Bakudou no Kyuujuuichi: Jikan Teishi
+### Bakudou no Kyuujuuichi: Jikan Teishi
 
-Bakudou de Rank SS, Exclusivo
+### Bakudou de Rank Ss, Exclusivo
 
 Encantamento: Que o instante seja interrompido diante da minha vontade! Cessem os passos, silenciem os movimentos e permaneça imóvel aquilo que ousa desafiar o fluxo deste mundo!
 
@@ -1402,9 +1382,9 @@ No final de cada turno, a criatura pode realizar novamente o Teste de Resistênc
 
 Reiatsu: Você gasta 30 de Reiatsu para utilizar este Kido.
 
-Bakudou no Kyuujuuni: Seishin Shouheki
+### Bakudou no Kyuujuuni: Seishin Shouheki
 
-Bakudou de Rank SS, Exclusivo
+### Bakudou de Rank Ss, Exclusivo
 
 Encantamento: Ergam-se os limites que nenhum espírito pode atravessar! Que o Reiatsu se torne muralha, que toda força hostil seja repelida e que aqueles sob minha proteção permaneçam intocados!
 
@@ -1414,9 +1394,9 @@ O usuário cria uma grande área de proteção espiritual com 9 metros de raio, 
 
 Além disso, criaturas dentro da área possuem vantagem em Testes de Resistência contra Kidou realizados por criaturas que estejam fora dela. Reiatsu: Você gasta 35 de Reiatsu para utilizar este Kido.
 
-Bakudou no Kyuujuusan: Unmei Shihai
+### Bakudou no Kyuujuusan: Unmei Shihai
 
-Bakudou de Rank SS, Exclusivo
+### Bakudou de Rank Ss, Exclusivo
 
 Encantamento: Que o futuro se revele diante daqueles que lutam ao meu lado! Que os caminhos ainda não percorridos se curvem à minha vontade e que o destino conceda a eles o resultado que desejo!
 
@@ -1430,9 +1410,9 @@ Uma criatura só poder ter um resultado alterado por vez e o efeito permanece po
 
 Reiatsu: Você gasta 30 de Reiatsu para utilizar este Kido.
 
-Bakudou no Kyuujuuyon: Shihai
+### Bakudou no Kyuujuuyon: Shihai
 
-Bakudou de Rank SS, Exclusivo
+### Bakudou de Rank Ss, Exclusivo
 
 Encantamento: Curva-te diante da minha vontade! Que teu espírito reconheça minha voz, que teus pensamentos se submetam ao meu comando e que teu corpo obedeça àquilo que tua alma jamais ousaria recusar!
 
@@ -1454,9 +1434,9 @@ caso de sucesso. O alvo possui Vantagem nesse teste se o dano tiver sido causado
 
 Reiatsu: Você gasta 40 de Reiatsu para utilizar este Kidou. Para cada 5 Reiatsu adicionais, aumente a duração em 1 minuto, até o máximo de 10 minutos.
 
-Bakudou no Kyuujuugo: Shisoukeppu
+### Bakudou no Kyuujuugo: Shisoukeppu
 
-Bakudou de Rank SS, Bleach
+### Bakudou de Rank Ss, Bleach
 
 Encantamento: Não possui. Este Kidou exige um procedimento ritualístico antes de sua execução Requisito: Ação Especial, realizado por dois usuários que conhcem o kido Jogada de Ataque: Automático Alcance: Toque Velocidade: Instantânea, Encantamento Lento
 
@@ -1466,9 +1446,9 @@ O alvo é então aprisionado permanentemente, sendo removido do mundo físico e 
 
 Reiatsu: Cada usuário gasta 50 de Reiatsu para completar o ritual.
 
-Bakudou no Kyuujuuroku: Keikaigi
+### Bakudou no Kyuujuuroku: Keikaigi
 
-Bakudou de Rank SS, Bleach
+### Bakudou de Rank Ss, Bleach
 
 Encantamento: Não possui Requisito: Ação Completa Jogada de Ataque: Automático Alcance: Toque Velocidade: Instantânea, Encantamento Lento
 
@@ -1478,9 +1458,9 @@ concentração durante todo o ritual, não sendo criada imediatamente após o in
 
 Reiatsu: Você gasta 50 de Reiatsu para utilizar este Kidou.
 
-Bakudou no Kyuujuunana: Jikanteishi
+### Bakudou no Kyuujuunana: Jikanteishi
 
-Bakudou de Rank SS, Bleach
+### Bakudou de Rank Ss, Bleach
 
 Encantamento: Proibição, de uma passagem tranversal para a outra, haja tempo para tudo, deuses parem o tempo onde tudo atrapalha e permaneça assim até minha punição vim por liberar seu grande poder!
 
@@ -1504,9 +1484,9 @@ O usuário não pode se afastar para além dos 300 metros da área criada pelo K
 
 Reiatsu: Você gasta 60 de Reiatsu para utilizar este Kidou.
 
-Bakudou no Kyuujuuhachi: Kuukanten’i
+### Bakudou no Kyuujuuhachi: Kuukanten’i
 
-Bakudou de Rank SS, Bleach
+### Bakudou de Rank Ss, Bleach
 
 Encantamento: Ida e vinda, onde a existência encontra seus limites, onde o céu toca o inferno, onde o mundo se estende além de seus caminhos. Lugares onde não é preciso andar, lugares onde nenhuma distância pode impedir o encontro. Desloque!
 
@@ -1518,9 +1498,9 @@ Criaturas e objetos não são considerados teleportados individualmente. O que �
 
 Reiatsu: Você gasta 65 de Reiatsu para utilizar este Kidou. Para cada 10 Reiatsu adicionais, aumente o raio da área deslocada em 3 metros.
 
-Bakudou no Kyuujuukyuu: Kin
+### Bakudou no Kyuujuukyuu: Kin
 
-Bakudou de Rank SS, Bleach
+### Bakudou de Rank Ss, Bleach
 
 Encantamento: Sem encantamento Requisito: Ação Jogada de Ataque: Automático Alcance: 18 metros Velocidade: Instantânea, Encantamento Lento
 
@@ -1532,9 +1512,9 @@ No final de cada turno, a criatura pode repetir o Teste de Resistência de Forç
 
 Reiatsu: Você gasta 50 de Reiatsu para utilizar este Kidou.
 
-Bakudou no Kyuujuukyuu: Bankin
+### Bakudou no Kyuujuukyuu: Bankin
 
-Bakudou de Rank SS, Bleach
+### Bakudou de Rank Ss, Bleach
 
 Encantamento: Sem encantamento Requisito: Ação Jogada de Ataque: Automático Alcance: 18 metros Velocidade: Instantânea, Encantamento Lento
 
@@ -1564,29 +1544,21 @@ Hadou é classificado em níveis, do 1 ao 99, com níveis mais altos indicando t
 
 Abaixo a lista de Hadous, classificados de D a S.
 
-CLASSIFICAÇÃO D • • • • • • • • • • • • • • • • • • • •
+## Classificação D
 
 1º Hadou: Shou (Bleach) 2º Hadou: Ken 3° Hadou: Kaze no Tenshou 4º Hadou: Byakurai (Bleach) 5º Hadou: Tenshi kori 6º Hadou: Hono Yari 7º Hadou: Raiu Heki 8º Hadou: Akuma no Koe 9º Hadou: Kageho 10º Hadou: Hikari no Dangan 11º Hadou: Tsuzuri Raiden (Bleach) 12º Hadou: Tasogare no Yaiba 13º Hadou: Hoshi Kuzure 14º Hadou: Seishin Hari 15º Hadou: Kaze no Yaiba 16º Hadou: Dangan Reppa 17º Hadou: Hakai Kyōmei 18º Hadou: Kori no Hagane 19º Hadou: Shinjitsu no Kizu 20º Hadou: Shoutenkyu (Bleach)
-
-• • • • • • • • • • • • • • • • • • • •
 
 21º Hadou: Raikoha 22º Hadou: Enjin Gekishin 23° Hadou: Kiba Homura 24º Hadou: Koryuha 25º Hadou: Hosenka 26º Hadou: Raijin no Ya 27º Hadou: Kokaku Senpu 28º Hadou: Seishin Kyomei 29º Hadou: Goenzai (Bleach) 30º Hadou: Hyorinmaru 31º Hadou: Shakkahou (Bleach) 32º Hadou: Oukasen (Bleach) 33º Hadou: Soukatsui (Bleach) 34º Hadou: Kongoubaku (Bleach) 35º Hadou: Dokukami 36º Hadou: Kokoro Satsu 37º Hadou: Toki Satsu 38º Hadou: Oto Satsu 39º Hadou: Denki 40º Hadou: Hyoketsu
 
 ## Classificação C
 
-CLASSIFICAÇÃO B • • • • • • • • • • • • • • • • • • • •
+## Classificação B
 
 41º Hadou: Kosenko 42º Hadou: Raikoha 43° Hadou: Sokkekka 44º Hadou: Hikari no Senkou 45º Hadou: Jishin Reimei 46º Hadou: Komyosen 47º Hadou: Enraimei no Tate 48º Hadou: Toki no Kizu 49º Hadou: Gakirekkou (Bleach) 50º Hadou: Shinkuha 51º Hadou: Ennetsu Jigoku 52º Hadou: Kuroikiba 53º Hadou: Shirotenrai 54º Hadou: Haien (Bleach) 55º Hadou: Seiketsu 56º Hadou: Retsugaikou 57º Hadou: Seikyouketsu 58º Hadou: Tenran (Bleach) 59º Hadou: Shinku Tenshou 60º Hadou: Bakuhatsu Enbu
 
-• • • • • • • • • • • • • • • • • • • •
-
 61º Hadou: Seiren Kozan 62º Hadou: Hyouketsu Ryouran 63° Hadou: Raikouhou (Bleach) 64º Hadou: Seikatsu no Kekkai 65º Hadou: Chijo Bankotsu 66º Hadou: Karyuu Tenka 67º Hadou: Jikan Dangan 68º Hadou: Dokuga no Korin 69º Hadou: Hikari no Senkou 70º Hadou: Kori no Raiten 71º Hadou: Shinko Hoko 72º Hadou: Hono no Tsubasa 73º Hadou: Souren Soukatsui (Bleach) 74º Hadou: Seikoko 75º Hadou: Hokai Ryujin 76º Hadou: Seiketsu Shiryu 77º Hadou: Toki no Senko 78º Hadou: Zangerin (Bleach) 79º Hadou: Kaminari 80º Hadou: Kagutsuchi
 
-• • • • • • • • • •
-
 81º Hadou: Jiku no Tatsumaki 82º Hadou: Ennetsu Jigoku 83° Hadou: Kaminari no Korin 84º Hadou: Kosen 85º Hadou: Tenshi no Hikari 86º Hadou: Kesshou Sokatsu 87º Hadou: Hyosetsu 88º Hadou: Hiriougeki Zoku Shinten Reihou (Bleach) 89º Hadou: Shinri Shien 90º Hadou: Kurohitsugi (Bleach)
-
-• • • • • • • • •
 
 91º Hadou: Senjuu Kouten Taiho (Bleach) 92º Hadou: Hikari no Tairiku 93º Hadou: Enkakyuu 94º Hadou: Dokukesshou 95º Hadou: Reitetsu 96º Hadou: Ittoukasou (Bleach) 97º Hadou: Raikaryuu 98º Hadou: Honokai 99º Hadou: Goryutenmetsu (Bleach)
 
@@ -1594,11 +1566,11 @@ CLASSIFICAÇÃO B • • • • • • • • • • • • • • • �
 
 ## Classificação S
 
-Rank SS
+### Rank Ss
 
-HADOU no Ichi: Shou
+### Hadou no Ichi: Shou
 
-Hadou de Rank D, Bleach
+### Hadou de Rank D, Bleach
 
 Encantamento: Oh, poderosas palavras dos seres superiores, oh entidades divinas que tudo sabem que tudo veem, mostrem a dor aos descrestes, o poder infinito da alma!
 
@@ -1606,9 +1578,9 @@ Requisito: Ação Jogada de Ataque: Acerto Alcance: 6 metros Velocidade: Instant
 
 Reiatsu: Você gasta 3 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 1 pontos de Reiatsu adicionais gastos, você adiciona 1d4 de dano extra.
 
-HADOU no Ni: ken
+### Hadou no Ni: Ken
 
-Hadou de Rank D, Exclusivo
+### Hadou de Rank D, Exclusivo
 
 Encantamento: Poder do fogo, chama da coragem, espiral do mundo, Chama Circular nos Dedos! Luz inquebrável, residindo no calor da alma! Fluxo constante, das chamas que nunca se apagam, chamas amarelas envolva meus dedos e queime meus inimigos!
 
@@ -1620,21 +1592,21 @@ Esse hadou pode ser utilizado para acender um papel ou um objeto pequeno, como u
 
 Reiatsu: Você gasta 3 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 2 pontos de Reiatsu adicionais gastos, você adiciona 1d6 de dano extra.
 
-Hadou no San: Kaze no Tenshou
+### Hadou no San: Kaze no Tenshou
 
-Hadou de Rank D, Exclusivo
+### Hadou de Rank D, Exclusivo
 
 Encantamento: Deuses dos céus, deusas do trovão, dragão celeste, velocidade instantânea! Todas as almas, reúnamse! Ascensão Celestial do Vento! Requisito: Ação Jogada de Ataque: Automático Alcance: Cone de 6 metros
 
-Velocidade: Instantânea, Encantamento Normal
+### Velocidade: Instantânea, Encantamento Normal
 
 O Shinigami estende a palma da mão na direção desejada, canalizando sua reiatsu para criar um poderoso vento em forma de cone de 6 metros a partir de você. Este vento causa 2d8 de dano cortante. Todas as criaturas dentro do cone devem realizar um Teste de Resistência de Destreza, sofrendo todo dano se falhar ou metade dele se obtiver sucesso.
 
 Reiatsu: Você gasta 3 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 2 pontos de Reiatsu adicionais gastos, você adiciona mais uma criatura como alvo.
 
-Hadou no Yon: BYAKURAI
+### Hadou no Yon: Byakurai
 
-Hadou de Rank D, Bleach
+### Hadou de Rank D, Bleach
 
 Encantamento: Oh, dominador! A máscara de carne e sangue, todas as formas, bata suas asas! Aqueles que foram coroados com o nome “homem”. A luz que parte ao meio sonhos e esperanças! Uma nova luz aparecerá e acabará perfurando as trevas!
 
@@ -1644,9 +1616,9 @@ O Shinigami aponta um dedo para frente e gera um trovão branco que se estende a
 
 Reiatsu: Você gasta 6 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 3 pontos de Reiatsu adicionais gastos, você adiciona 1d10 de dano extra.
 
-Hadou no go: Tenshi kori
+### Hadou no Go: Tenshi Kori
 
-Hadou de Rank D, Exclusivo
+### Hadou de Rank D, Exclusivo
 
 Encantamento: Oh, dominador! A máscara de carne e sangue, todas as formas, bata suas asas! Aqueles que foram coroados com o nome “homem”. A luz que parte ao meio sonhos e esperanças!
 
@@ -1654,9 +1626,9 @@ Requisito: Ação Jogada de Ataque: Acerto Alcance: 9 metros Velocidade: Instant
 
 Reiatsu: Você gasta 2 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 2 pontos de Reiatsu adicionais gastos, você adiciona 1d8 de dano extra.
 
-Hadou no Roku: Hono Yari
+### Hadou no Roku: Hono Yari
 
-Hadou de Rank D, Exclusivo
+### Hadou de Rank D, Exclusivo
 
 Encantamento: Chamas indomáveis, ergam-se como uma lança voraz! Atravessai o céu e queimai tudo em vosso caminho!
 
@@ -1664,9 +1636,9 @@ Requisito: Ação Jogada de Ataque: Acerto Alcance: 6 metros Velocidade: Instant
 
 Reiatsu: Você gasta 3 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 3 pontos de Reiatsu adicionais gastos, você adiciona 1d10 de dano extra.
 
-Hadou no Shichi: Raiu Heki
+### Hadou no Shichi: Raiu Heki
 
-Hadou de Rank D, Exclusivo
+### Hadou de Rank D, Exclusivo
 
 Encantamento: Céus tempestuosos, trazei o trovão que despedaça! De vossa fúria, erguei uma muralha de força implacável!
 
@@ -1676,9 +1648,9 @@ O Shinigami invoca uma pequena onda de raios ao seu redor, criando uma barreira 
 
 Reiatsu: Você gasta 4 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 2 pontos de Reiatsu adicionais gastos, você adiciona 1d6 de dano extra.
 
-Hadou no Hachi: Akuma no Koe
+### Hadou no Hachi: Akuma no Koe
 
-Hadou de Rank D, Exclusivo
+### Hadou de Rank D, Exclusivo
 
 Encantamento: Som sombrio que rasga os céus, espalhe o caos e a discórdia! Que vossa melodia destrua e ecoe nos corações dos fracos!
 
@@ -1690,9 +1662,9 @@ metade do dano e não ficam ensurdecidas.
 
 Reiatsu: Você gasta 4 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 2 pontos de Reiatsu adicionais gastos, você adiciona 1d6 de dano extra.
 
-Hadou no Kyuu: Kageho
+### Hadou no Kyuu: Kageho
 
-Hadou de Rank D, Exclusivo
+### Hadou de Rank D, Exclusivo
 
 Encantamento: Das profundezas onde a luz não alcança, ergam-se as sombras! Converge e destrói com o peso do vazio eterno!
 
@@ -1702,9 +1674,9 @@ Uma esfera densa de reiatsu sombrio forma-se em suas mãos e é disparada com fo
 
 Reiatsu: Você gasta 4 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 2 pontos de Reiatsu adicionais gastos, você adiciona 1d6 de dano extra.
 
-Hadou no Juu: Hikari no Dangan
+### Hadou no Juu: Hikari no Dangan
 
-Hadou de Rank D, Exclusivo
+### Hadou de Rank D, Exclusivo
 
 Encantamento: Luz divina que atravessa a escuridão, torne-se uma lança veloz! Penetre o destino com sua radiância implacável!
 
@@ -1714,9 +1686,9 @@ O Shinigami cria um projétil de luz concentrada em sua mão e o dispara em linh
 
 Reiatsu: Você gasta 3 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 2 pontos de Reiatsu adicionais gastos, você adiciona 1d8 de dano extra.
 
-Hadou no JYuuichi: Tsuzuri Raiden
+### Hadou no Jyuuichi: Tsuzuri Raiden
 
-Hadou de Rank D, Bleach
+### Hadou de Rank D, Bleach
 
 Encantamento: Venha a mim a energia da alma, aquele que crê em si mesmo poderá alcançar o infinito...Oh bestas dos relâmpagos, seres que comandam o universo, transforme minha força em raios e usem-na como instrumento da justiça!
 
@@ -1726,17 +1698,17 @@ corrente elétrica no mesmo. Se outra criatura tocar no objeto até o início do
 
 Reiatsu: Você gasta 5 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 1 pontos de Reiatsu adicionais gastos, você adiciona 1d4 de dano extra.
 
-Hadou no JuNI: Tasogare no Yaiba
+### Hadou no Juni: Tasogare no Yaiba
 
-Hadou de Rank D, Exclusivo
+### Hadou de Rank D, Exclusivo
 
 Encantamento: Brumas do horizonte oculto, afiadas pela ira dos esquecidos! Rasguem a carne e a alma! Requisito: Ação Jogada de Ataque: Acerto Alcance: 9 metros em Linha Velocidade: Instantânea, Encantamento Rápido Você conjura uma lâmina feita de reiatsu obscurecido que corta o ar e perfura o inimigo. Realize um ataque à distância com Kido. Se acertar, a criatura sofre 2d10 de dano de Energia.
 
 Reiatsu: Você gasta 3 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 3 pontos de Reiatsu adicionais gastos, você adiciona 1d10 de dano extra.
 
-Hadou no Juusan: Hoshi Kuzure
+### Hadou no Juusan: Hoshi Kuzure
 
-Hadou de Rank D, Exclusivo
+### Hadou de Rank D, Exclusivo
 
 Encantamento: Estrelas em agonia, sussurrem a queda dos céus! Deixem cair sua fúria incandescente! Requisito: Ação Jogada de Ataque: Acerto Alcance: 18 metros em Linha Velocidade: Instantânea, Encantamento Normal
 
@@ -1744,9 +1716,9 @@ Você invoca uma pequena esfera de reiatsu dourado que explode em uma rajada de 
 
 Reiatsu: Você gasta 3 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 3 pontos de Reiatsu adicionais gastos, você adiciona 1d10 de dano extra.
 
-Hadou no Juuyon: Seishin Hari
+### Hadou no Juuyon: Seishin Hari
 
-Hadou de Rank D, Exclusivo
+### Hadou de Rank D, Exclusivo
 
 Encantamento: Estilhaços da alma! Que vossas pontas perfurem a carne, o foco e o destino!
 
@@ -1758,9 +1730,9 @@ cada uma delas. Se acertar, cada alvo sofre 1d8 de dano de Fogo e deve realizar 
 
 Reiatsu: Você gasta 5 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 3 pontos de Reiatsu adicionais gastos, você adiciona 1d8 de dano extra a todos os alvos.
 
-Hadou no Juugo: Kaze no Yaiba
+### Hadou no Juugo: Kaze no Yaiba
 
-Hadou de Rank D, Exclusivo
+### Hadou de Rank D, Exclusivo
 
 Encantamento: Ventos errantes, cortem os céus e dividam o mundo! Tornem-se lâminas invisíveis e ceifem o inimigo!
 
@@ -1770,9 +1742,9 @@ Você dispara uma rajada afiada de vento condensado em reiatsu que corta tudo em
 
 Reiatsu: Você gasta 4 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 3 pontos de Reiatsu adicionais gastos, você adiciona 1d6 de dano extra.
 
-Hadou no Juuroku: Dangan Reppa
+### Hadou no Juuroku: Dangan Reppa
 
-Hadou de Rank D, Exclusivo
+### Hadou de Rank D, Exclusivo
 
 Encantamento: Foco absoluto, força concentrada! Que a pressão se solidifique e a fúria se liberte em forma de destruição!
 
@@ -1782,9 +1754,9 @@ Você comprime sua reiatsu em uma bala espiritual densa e veloz que atravessa de
 
 Reiatsu: Você gasta 3 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 3 pontos de Reiatsu adicionais gastos, você adiciona 1d10 de dano extra.
 
-Hadou no Juunana: Hakai Kyomei
+### Hadou no Juunana: Hakai Kyomei
 
-Hadou de Rank D, Exclusivo
+### Hadou de Rank D, Exclusivo
 
 Encantamento: Vibrem, ecos da alma! Estilhacem carne, reiatsu e razão! Que a ruína ressoe por entre os ossos! Requisito: Ação Jogada de Ataque: Automático Alcance: Explosão de 3 metros de raio centrada em um ponto a sua escolha dentro de 9 metros de você Velocidade: Instantânea, Encantamento Normal
 
@@ -1794,9 +1766,9 @@ e a libera em uma onda sonora espiritual que reverbera com violência. Todas as 
 
 Reiatsu: Você gasta 3 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 3 pontos de Reiatsu adicionais gastos, você adiciona 1d8 de dano extra.
 
-Hadou no Juuhachi: Kori no Hagane
+### Hadou no Juuhachi: Kori no Hagane
 
-Hadou de Rank D, Exclusivo
+### Hadou de Rank D, Exclusivo
 
 Encantamento: Silêncio da neve, dureza do aço! Que o frio se condense em lâmina, e quebre o espírito com sua mordida gelada!
 
@@ -1804,9 +1776,9 @@ Requisito: Ação Jogada de Ataque: Acerto Alcance: 9 metros Velocidade: Instant
 
 Você forma uma lança de reiatsu congelante que é disparada contra um inimigo, girando com precisão letal. Realize um ataque à distância com Kido. Se acertar, o alvo sofre 1d8 de dano de Frio e deve realizar um teste de Resistência de Constituição. Se falhar, o deslocamento dela é reduzida pela metade até o final do próximo turno. Reiatsu: Você gasta 5 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 3 pontos de Reiatsu adicionais gastos, você adiciona 1d10 de dano extra.
 
-Hadou no Juukyuu: Shinjitsu no Kizu
+### Hadou no Juukyuu: Shinjitsu no Kizu
 
-Hadou de Rank D, Exclusivo
+### Hadou de Rank D, Exclusivo
 
 Encantamento: Mentiras tecem véus sobre a alma, fingindo proteção... Mas eu os rasgo, um por um! Ouçam, espíritos do vazio! Que a lâmina da lucidez penetre a mente entorpecida! Revelem o que se esconde! Despi a alma de sua máscara, e deixai que o corte da verdade sangrante traga a ruína!
 
@@ -1816,9 +1788,9 @@ Você conjura uma lâmina de reiatsu invisível que atinge diretamente a mente d
 
 Reiatsu: Você gasta 3 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 3 pontos de Reiatsu adicionais gastos, você adiciona 1d8 de dano extra.
 
-Hadou no Nijuu: Shoutenkyo
+### Hadou no Nijuu: Shoutenkyo
 
-Hadou de Rank D, Bleach
+### Hadou de Rank D, Bleach
 
 Encantamento: Grande esfera mística, conjurai sua força e impedirei a evolução repentina do mal sobre nosso mundo, brilho azul, esmague e prenda!
 
@@ -1826,9 +1798,9 @@ Requisito: Ação Jogada de Ataque: Acerto Alcance: 12 metros Velocidade: Instan
 
 O usuário estende a palma da mão e lança uma esfera azul de energia espiritual condensada contra uma criatura dentro do alcance, realizando um ataque à distância com Kido. Ao atingir o alvo, a esfera explode em uma onda de reiatsu que impacta corpo muito forte. Se o ataque acertar, a criatura sofre 2d10 de dano de Energia e deve realizar um Teste de Resistência de Constituição. Em caso de falha, ela ficará Atordoada até o final do próximo turno dela. Em caso de acerto crítico com esse hadou, a criatura falha automaticamente no Teste de Resistência de Constituição. Reiatsu: Você gasta 6 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 3 pontos de Reiatsu adicionais gastos, você adiciona 1d10 de dano extra.
 
-Hadou no Nijuuichi: Raikoha
+### Hadou no Nijuuichi: Raikoha
 
-Hadou de Rank C, Exclusivo
+### Hadou de Rank C, Exclusivo
 
 Encantamento: Oh trovão que dança nos céus, irrompa e consuma!
 
@@ -1836,23 +1808,23 @@ Requisito: Ação Jogada de Ataque: Automático Alcance: Linha de 6 metros e 1,5
 
 O shinigami canaliza sua reiatsu em um relâmpago concentrado na palma da mão, liberando uma poderosa onda elétrica em linha reta que avança como uma explosão de trovões. A técnica forma uma linha de 6 metros de comprimento e 1,5 metro de largura à sua frente. Todas as criaturas na área devem realizar um Teste de Resistência de Destreza. Em caso de falha, sofrem 4d8 de dano Elétrico e perdem 3 metros de deslocamento até o início do seu próximo turno. Se passarem no teste, sofrem metade do dano e não perdem deslocamento. Reiatsu: Você gasta 8 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 5 pontos de Reiatsu adicionais gastos, você adiciona 2d8 de dano extra.
 
-Hadou no Nijuni: Enjin Gekishin
+### Hadou no Nijuni: Enjin Gekishin
 
-Hadou de Rank C, Exclusivo
+### Hadou de Rank C, Exclusivo
 
 Encantamento: agulhas ancestrais, unam-se no calor da ruína! Ó fogo que jaz sob a terra, desperte em fúria e destruição! Cercai os ímpios com muralhas flamejantes, Sacudi a terra com o rugido do inferno! Que não reste carne, que não reste osso!
 
 Requisito: Ação Jogada de Ataque: Automático Alcance: 9 metros
 
-Velocidade: Instantânea, Encantamento Lento
+### Velocidade: Instantânea, Encantamento Lento
 
 O usuário traça um selo flamejante no ar com a ponta dos dedos, invocando um círculo ardente que se forma sob os pés de até três criaturas em um raio de 9 metros. Num instante, uma explosão ígnea irrompe do chão, engolindo os alvos em chamas. Cada criatura escolhida deve realizar um Teste de Resistência de Destreza. Se falhar, sofre 3d6 de dano de Fogo e deve realizar um novo Teste de Resistência de Constituição. Se falhar novamente, recebe a condição “Queimado”. Caso passe no Teste de Destreza inicial, sofre apenas metade do dano e não recebe a condição.
 
 Reiatsu: Você gasta 9 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 5 pontos de Reiatsu adicionais gastos, você adiciona 2d6 de dano extra.
 
-Hadou no Nijusan: Kiba Homura
+### Hadou no Nijusan: Kiba Homura
 
-Hadou de Rank C, Exclusivo
+### Hadou de Rank C, Exclusivo
 
 Encantamento: Fogo que corta e devora, crave teus dentes em carne e espírito!
 
@@ -1862,9 +1834,9 @@ O Shinigami estende a mão à frente e invoca uma língua de fogo espiritual que
 
 Reiatsu: Você gasta 10 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 5 pontos de Reiatsu adicionais gastos, você adiciona 2d6 de dano de Fogo extra.
 
-Hadou no Nijuyon: Koryuha
+### Hadou no Nijuyon: Koryuha
 
-Hadou de Rank C, Exclusivo
+### Hadou de Rank C, Exclusivo
 
 Encantamento: Espírito que dorme nas estrelas, ascenda em chamas de pureza e devore as sombras! Que tua luz se torne lâmina, que teu rugido seja julgamento, e que todo o mal desapareça diante da maré sagrada!
 
@@ -1876,9 +1848,9 @@ Em caso de sucesso, sofrem metade do dano e não ficam cegas.
 
 Reiatsu: Você gasta 10 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 6 pontos de Reiatsu adicionais gastos, você adiciona 2d8 de dano de Luz.
 
-Hadou no Nijugo: Hosenka
+### Hadou no Nijugo: Hosenka
 
-Hadou de Rank C, Exclusivo
+### Hadou de Rank C, Exclusivo
 
 Encantamento: Pétalas do fogo, abram-se e floresçam em mil chamas! Queimem o ar, destruam o inimigo! Requisito: Ação Jogada de Ataque: Acerto Alcance: 18 metros Velocidade: Instantânea, Encantamento Lento O Shinigami concentra o Reiatsu nas mãos e o molda em diversas pétalas de fogo espiritual, que giram e cintilam como uma flor prestes a desabrochar. Ao lançar o encantamento, as pétalas se dispersam em chamas, atingindo os inimigos à distância com precisão devastadora.
 
@@ -1886,9 +1858,9 @@ Realize uma jogada de ataque de Kido contra até três criaturas dentro do alcan
 
 Reiatsu: Você gasta 9 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 7 pontos de Reiatsu adicionais gastos, você adiciona 2d10 de dano de Fogo extra.
 
-Hadou no Nijuroku: Raijin no Ya
+### Hadou no Nijuroku: Raijin no Ya
 
-Hadou de Rank C, Exclusivo
+### Hadou de Rank C, Exclusivo
 
 Encantamento: Trovão que rasga o firmamento, ouça meu comando! Que teu rugido se torne flecha e teu clarão, destruição!
 
@@ -1896,9 +1868,9 @@ Requisito: Ação Jogada de Ataque: Acerto Alcance: 36 metros Velocidade: Instan
 
 Reiatsu: Você gasta 10 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 6 pontos de Reiatsu adicionais gastos, você adiciona 2d8 de dano Elétrico extra.
 
-Hadou no Nijunana: Kokaku Senpu
+### Hadou no Nijunana: Kokaku Senpu
 
-Hadou de Rank C, Exclusivo
+### Hadou de Rank C, Exclusivo
 
 Encantamento: Ventos cortantes, rugi e devaste tudo que ousar resistir! Levantai a fúria que rasga os céus! Requisito: Ação Jogada de Ataque: Automático Alcance: Cone de 12 metros Velocidade: Instantânea, Encantamento Rápido
 
@@ -1908,9 +1880,9 @@ Todas as criaturas na área devem realizar um Teste de Resistência de Força. E
 
 Reiatsu: Você gasta 8 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 5 pontos de Reiatsu adicionais gastos, você adiciona 2d6 de dano de Energia extra.
 
-Hadou no Nijuhachi: Seishin Kyomei
+### Hadou no Nijuhachi: Seishin Kyomei
 
-Hadou de Rank C, Exclusivo
+### Hadou de Rank C, Exclusivo
 
 Encantamento: Espíritos do vento e da terra, ouçam minha voz! Que seu poder purifique e derrube todos os inimigos!
 
@@ -1920,9 +1892,9 @@ O Shinigami concentra o Reiatsu ao redor de seu corpo e canaliza energia espirit
 
 Reiatsu: Você gasta 7 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 5 pontos de Reiatsu adicionais gastos, você adiciona 2d6 de dano de Energia extra.
 
-Hadou no Nijuukyuu: Goenzai
+### Hadou no Nijuukyuu: Goenzai
 
-Hadou de Rank C, Bleach
+### Hadou de Rank C, Bleach
 
 Encantamento: Chamas imperdoáveis, proteja seus aliados e afete seus inimigos, espalhando as chamas em um círculo divino, nenhum escapará, suba até o infinito! Requisito: Reação Jogada de Ataque: Automático Alcance: Esfera de 6 metros (ponto de origem: você) Velocidade: Instantânea, Encantamento Rápido
 
@@ -1932,9 +1904,9 @@ Todas as criaturas na área devem realizar um Teste de Resistência de Destreza.
 
 Reiatsu: Você gasta 7 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 5 pontos de Reiatsu adicionais gastos, você adiciona 2d6 de dano de Fogo extra.
 
-Hadou no Sanjuichi: Hyorinmaru
+### Hadou no Sanjuichi: Hyorinmaru
 
-Hadou de Rank C, Exclusivo
+### Hadou de Rank C, Exclusivo
 
 Encantamento: Frio cortante, aprisione e congele todos os que desafiam minha vontade, que o gelo consuma corpo e espírito!
 
@@ -1946,9 +1918,9 @@ Todas as criaturas na área devem realizar um Teste de Resistência de Constitui
 
 Reiatsu: Você gasta 8 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 5 pontos de Reiatsu adicionais gastos, você adiciona 2d6 de dano de Frio extra.
 
-Hadou no Sanjuuichi: Shakkahou
+### Hadou no Sanjuuichi: Shakkahou
 
-Hadou de Rank C, Bleach
+### Hadou de Rank C, Bleach
 
 Encantamento: Oh, dominador! A máscara de carne e sangue, todas as formas, bata suas asas! Aqueles que foram coroados com o nome “homem”. Chama ardente e guerra turbulenta, separa os oceanos, se eleva e cai, caminha em frente em direção ao sul!
 
@@ -1960,9 +1932,9 @@ todas as criaturas na linha de ataque. Em um acerto, cada alvo sofre 7d12 de dan
 
 Reiatsu: Você gasta 12 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 7 pontos de Reiatsu adicionais gastos, você adiciona 2d12 de dano de Fogo extra.
 
-Hadou no Sanjuuni: Oukasen
+### Hadou no Sanjuuni: Oukasen
 
-Hadou de Rank C, Bleach
+### Hadou de Rank C, Bleach
 
 Encantamento: Desconhecido Requisito: Ação Jogada de Ataque: Acerto Alcance: Linha de 30 metros Velocidade: Instantânea, Encantamento Rápido
 
@@ -1972,9 +1944,9 @@ Realize uma jogada de ataque de Kido contra todas as criaturas na linha de ataqu
 
 Reiatsu: Você gasta 9 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 7 pontos de Reiatsu adicionais gastos, você adiciona 2d10 de dano de Luz extra.
 
-Hadou no Sanjuusan: Soukatsui
+### Hadou no Sanjuusan: Soukatsui
 
-Hadou de Rank C, Bleach
+### Hadou de Rank C, Bleach
 
 Encantamento: Ó senhor! Máscara de carne e osso, bater de asas, vós que carregais o nome de Homem! Verdade e temperança, sobre esta muralha imaculada de sonhos, desencadeai apenas levemente a fúria de vossas garras! Requisito: Ação Jogada de Ataque: Acerto Alcance: 30 metros Velocidade: Instantânea, Encantamento Normal
 
@@ -1984,9 +1956,9 @@ Realize uma jogada de ataque de Kido contra o alvo. Em um acerto, ele sofre 6d10
 
 Reiatsu: Você gasta 12 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 8 pontos de Reiatsu adicionais gastos, você adiciona 2d10 de dano de Energia extra.
 
-Hadou no Sanjuuyon: Kongoubaku
+### Hadou no Sanjuuyon: Kongoubaku
 
-Hadou de Rank C, Bleach
+### Hadou de Rank C, Bleach
 
 Encantamento: Ó senhor! Máscara de carne e osso, bater de asas, vós que carregais o nome de Homem! Verdade e temperança, sobre esta muralha imaculada de sonhos, desencadeai apenas levemente a fúria de vossas garras! Requisito: Ação Jogada de Ataque: Acerto Alcance: Linha de 18 metros Velocidade: Instantânea, Encantamento Normal
 
@@ -1996,9 +1968,9 @@ Realize uma jogada de ataque de Kido contra o alvo. Em um acerto, ele sofre 8d6 
 
 Reiatsu: Você gasta 9 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 5 pontos de Reiatsu adicionais gastos, você adiciona 2d6 de dano de Fogo extra.
 
-Hadou no Sanjugo: Dokukami
+### Hadou no Sanjugo: Dokukami
 
-Hadou de Rank C, Exclusivo
+### Hadou de Rank C, Exclusivo
 
 Encantamento: Névoa venenosa, penetre na carne e na mente do inimigo! Que o veneno espiritual corrompa cada fibra de seu corpo e envenene sua força vital! Requisito: Ação Jogada de Ataque: Acerto Alcance: 18 metros Velocidade: Instantânea, Encantamento Lento Uma bruma verde surge do Reiatsu do Shinigami, contorcendo-se como serpentes etéreas enquanto se adensa no ar. Com um movimento preciso, ele lança a névoa em direção ao inimigo; cada partícula carrega veneno espiritual que corrói corpo e mente.
 
@@ -2006,13 +1978,13 @@ Realize uma jogada de ataque de Kido contra o alvo. Em um acerto, ele sofre 5d10
 
 Reiatsu: Você gasta 10 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 7 pontos de Reiatsu adicionais gastos, você adiciona 2d10 de dano de Veneno extra.
 
-Hadou no Sanjuuroku: Kokoro Satsu
+### Hadou no Sanjuuroku: Kokoro Satsu
 
-Hadou de Rank C, Exclusivo
+### Hadou de Rank C, Exclusivo
 
 Encantamento: Sombras da mente, invadam o coração do inimigo! Que o terror da própria consciência se torne sua prisão e que a dor invisível destrua seu equilíbrio! Requisito: Ação Jogada de Ataque: Automático Alcance: 15 metros
 
-Velocidade: Instantânea, Encantamento Lento
+### Velocidade: Instantânea, Encantamento Lento
 
 O Shinigami concentra seu Reiatsu em ondas que vibram com pensamentos e memórias distorcidas, projetando diretamente sobre uma criatura específica. As ondas golpeiam a mente do alvo, causando distúrbios psíquicos imediatos e intensos.
 
@@ -2020,9 +1992,9 @@ O alvo deve realizar um Teste de Resistência de Inteligência. Em caso de falha
 
 Reiatsu: Você gasta 10 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 6 pontos de Reiatsu adicionais gastos, você adiciona 2d10 de dano Psíquico extra.
 
-Hadou no Sanjuunana: Toki Satsu
+### Hadou no Sanjuunana: Toki Satsu
 
-Hadou de Rank C, Exclusivo
+### Hadou de Rank C, Exclusivo
 
 Encantamento: Correntes do tempo, prendam e dilacerem o fluxo da existência! Que cada instante do inimigo se torne uma eternidade de dor e desordem!
 
@@ -2030,9 +2002,9 @@ Requisito: Ação Jogada de Ataque: Acerto Alcance: 9 metros Velocidade: Instant
 
 Realize uma jogada de ataque de Kido contra o alvo. Em um acerto, ele sofre 3d10 de dano Temporal, até o início do próximo turno do Shinigami, a movimentação máxima por turno da criatura é reduzida para 3 metros, como se o tempo ao seu redor estivesse desacelerado. Reiatsu: Você gasta 7 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 6 pontos de Reiatsu adicionais gastos, você adiciona 2d10 de dano Temporal extra.
 
-Hadou no Sanjuuhachi: Oto Satsu
+### Hadou no Sanjuuhachi: Oto Satsu
 
-Hadou de Rank C, Exclusivo
+### Hadou de Rank C, Exclusivo
 
 Encantamento: Estrondo espiritual, quebre os ossos e a mente do inimigo! Que o rugido do além reverbere em sua carne e desfaleça sua vontade!
 
@@ -2040,9 +2012,9 @@ Requisito: Ação Jogada de Ataque: Automático Alcance: Linha de 9 metros Veloc
 
 Reiatsu: Você gasta 8 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 5 pontos de Reiatsu adicionais gastos, você adiciona 2d6 de dano Sonoro extra.
 
-hadou no Sanjuukyuu: Denki
+### Hadou no Sanjuukyuu: Denki
 
-Hadou de Rank C, Exclusivo
+### Hadou de Rank C, Exclusivo
 
 Encantamento: Raios da alma, consuma e paralise seus inimigos! Que a tempestade elétrica do além percorra cada corpo e destrua sua resistência!
 
@@ -2050,9 +2022,9 @@ Requisito: Ação Jogada de Ataque: Automático Alcance: Cone de 6 metros Veloci
 
 O Shinigami levanta as mãos e seu Reiatsu vibra como relâmpagos contidos. Faíscas espirituais saltam de suas mãos e se espalham em um cone à sua frente, atingindo todas as criaturas na área. A descarga elétrica espiritual percorre seus corpos, causando choque e desorientação. Cada criatura na área deve realizar uma jogada de resistência de Constituição. Em caso de falha, sofre 4d8 de dano Elétrico e recebe a condição Eletrificado. Em caso de sucesso, sofre metade do dano e não recebe a condição. Reiatsu: Você gasta 7 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 6 pontos de Reiatsu adicionais gastos, você adiciona 2d8 de dano Elétrico extra.
 
-Hadou no Yonjuu: Hyoketsu
+### Hadou no Yonjuu: Hyoketsu
 
-Hadou de Rank C, Exclusivo
+### Hadou de Rank C, Exclusivo
 
 Encantamento: Geada do além, aprisione e esmague! Que o frio eterno consuma a força e a vontade de meus inimigos!
 
@@ -2064,23 +2036,23 @@ Realize uma jogada de ataque de Kido contra o alvo. Em um acerto, ele sofre 5d12
 
 Reiatsu: Você gasta 10 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 8 pontos de Reiatsu adicionais gastos, você adiciona 2d10 de dano de Frio extra.
 
-Hadou no Yonjuuichi: Kosenko
+### Hadou no Yonjuuichi: Kosenko
 
-Hadou de Rank B, Exclusivo
+### Hadou de Rank B, Exclusivo
 
 Encantamento: Raios da mente, dispersai a carne e a razão! Que a energia espiritual corroa e quebre a resistência do inimigo!
 
 Requisito: Ação Jogada de Ataque: Acerto Alcance: 9 metros
 
-Velocidade: Instantânea, Encantamento Normal
+### Velocidade: Instantânea, Encantamento Normal
 
 O Shinigami concentra seu Reiatsu em seus olhos, e uma onda de energia psíquica intensa dispara em direção a uma criatura específica, visando desestabilizar seu corpo e mente. A energia percorre nervos e pensamentos, causando dor e confusão.
 
 Realize uma jogada de ataque de Kido contra o alvo. Em um acerto, ele sofre 6d8 de dano Psíquico. Reiatsu: Você gasta 14 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 9 pontos de Reiatsu adicionais gastos, você adiciona 3d8 de dano Psíquico extra.
 
-Hadou no Yonjuuni: Raikoha
+### Hadou no Yonjuuni: Raikoha
 
-Hadou de Rank B, Exclusivo
+### Hadou de Rank B, Exclusivo
 
 Encantamento: Relâmpago do espírito, fende a carne e queime a alma! Que a tempestade percorra o corpo do inimigo e consuma sua força!
 
@@ -2090,9 +2062,9 @@ O Shinigami concentra seu Reiatsu em suas mãos, e faíscas elétricas espiritua
 
 Realize uma jogada de ataque de Kido contra o alvo. Em um acerto, ele sofre 7d12 de dano Elétrico. Reiatsu: Você gasta 14 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 8 pontos de Reiatsu adicionais gastos, você adiciona 2d12 de dano Elétrico extra.
 
-Hadou no Yonjuusan: Sokekka
+### Hadou no Yonjuusan: Sokekka
 
-Hadou de Rank B, Exclusivo
+### Hadou de Rank B, Exclusivo
 
 Encantamento: Chamas negras da destruição, corroa corpo e espírito!
 
@@ -2102,23 +2074,23 @@ O Shinigami concentra seu Reiatsu e libera uma corrente de energia espiritual co
 
 Reiatsu: Você gasta 14 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 9 pontos de Reiatsu adicionais gastos, você adiciona 3d6 de dano Corrosivo extra.
 
-Hadou no Yonjuuyon: Hikari no Senkou
+### Hadou no Yonjuuyon: Hikari no Senkou
 
-Hadou de Rank B, Exclusivo
+### Hadou de Rank B, Exclusivo
 
 Encantamento: Raios da luz espiritual, ceguem e queimem, ilumine e destrua os inimigos! Que a pura energia luminosa rasgue e purifique o campo de batalha! Requisito: Ação Jogada de Ataque: Automático Alcance: Cone de 9 metros Velocidade: Instantânea, Encantamento Normal O Shinigami traça um símbolo complexo no ar com dois dedos, canalizando seu Reiatsu através do gesto. Ao completar o sinal, uma rajada de energia espiritual luminosa em forma de cone dispara à sua frente, atingindo todos no caminho. Todas as criaturas na área devem realizar um Teste de Resistência de Constituição, falhando sofrem 8d10 de dano de Luz.
 
 Reiatsu: Você gasta 16 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 11 pontos de Reiatsu adicionais gastos, você adiciona 3d10 de dano de Luz extra.
 
-Hadou no Yonjuugo: Jishin Reimei
+### Hadou no Yonjuugo: Jishin Reimei
 
-Hadou de Rank B, Exclusivo
+### Hadou de Rank B, Exclusivo
 
 Encantamento: Espírito da terra e do trovão, desperte sob meus pés! Que o rugido do amanhecer abale os alicerces do mundo!
 
 Requisito: Ação Jogada de Ataque: Automático Alcance: Esfera de 6 metros (centrada em um ponto no chão a até 12 metros de você)
 
-Velocidade: Instantânea, Encantamento Rápido
+### Velocidade: Instantânea, Encantamento Rápido
 
 O Shinigami bate o punho contra o solo, liberando uma poderosa descarga de Reiatsu que se propaga como rachaduras brilhantes e vibrantes, acompanhadas por um rugido trovejante. A terra e o ar tremem conforme a energia espiritual explode em uma mistura de luz dourada e trovões.
 
@@ -2126,9 +2098,9 @@ Todas as criaturas na área devem realizar um Teste de Resistência de Força. E
 
 Reiatsu: Você gasta 13 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 9 pontos de Reiatsu adicionais gastos, você adiciona 2d8 de dano Elétrico extra e 2d8 de dano Sonoro extra.
 
-Hadou no Yonjuuroku: Komyosen
+### Hadou no Yonjuuroku: Komyosen
 
-Hadou de Rank B, Exclusivo
+### Hadou de Rank B, Exclusivo
 
 Encantamento: Luz pura e infinita, manifeste-te em mil lanças e atravessa as sombras! Que tua radiância purifique e destrua!
 
@@ -2140,9 +2112,9 @@ Realize uma jogada de ataque de Kido contra toda as criaturas na linha. Em um ac
 
 Reiatsu: Você gasta 16 pontos de Reiatsu para utilizar este Kidō e pode aumentar seu poder. Para cada 9 pontos de Reiatsu adicionais gastos, você adiciona 3d8 de dano de Luz extra.
 
-Hadou no Yonjuunana: Enraimei no Tate
+### Hadou no Yonjuunana: Enraimei no Tate
 
-Hadou de Rank B, Exclusivo
+### Hadou de Rank B, Exclusivo
 
 Encantamento: Céus trovejantes, ouçam meu chamado! Que o rugido dos relâmpagos forme o escudo que destrói, o brilho que consome, o trovão que renasce!
 
@@ -2156,9 +2128,9 @@ Além disso, as criaturas que falharem no teste devem realizar um Teste de Resis
 
 Reiatsu: Você gasta 18 pontos de Reiatsu para utilizar este Kidō e pode aumentar seu poder. Para cada 11 pontos de Reiatsu adicionais gastos, você adiciona 3d10 de dano Elétrico extra.
 
-Hadou no Yonjuuhachi: Toki no Kizu
+### Hadou no Yonjuuhachi: Toki no Kizu
 
-Hadou de Rank B, Exclusivo
+### Hadou de Rank B, Exclusivo
 
 Encantamento: Corrente do tempo que a tudo consome, corte o instante e destrua o amanhã! Que o corpo pereça sob o peso dos segundos que jamais voltam!
 
@@ -2172,9 +2144,9 @@ linha do tempo de seu corpo e o força a vivenciar séculos em segundos.
 
 Reiatsu: Você gasta 17 pontos de Reiatsu para utilizar este Kidō e pode aumentar seu poder. Para cada 8 pontos de Reiatsu adicionais gastos, você adiciona 3d8 de dano Temporal extra.
 
-Hadou no Yonjuukyuu: Gakirekkou
+### Hadou no Yonjuukyuu: Gakirekkou
 
-Hadou de Rank B, Bleach
+### Hadou de Rank B, Bleach
 
 Encantamento: Variâncias do universo, peguem a lanterna da sabedoria! Com toda a soberania, mergulhem o cavaleiro e sua lança na taça do maravilhoso paraíso! Requisito: Ação Jogada de Ataque: Automático Alcance: Linha de 18 metros e 3 metros de largura Velocidade: Instantânea, Encantamento Lento
 
@@ -2184,9 +2156,9 @@ Todas as criaturas em uma linha de 18 metros devem realizar um teste de resistê
 
 Reiatsu: Você gasta 17 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 8 pontos de Reiatsu adicionais gastos, adicione 3d6 de dano de Energia extra.
 
-Hadou no Gojuu: Shinkuha
+### Hadou no Gojuu: Shinkuha
 
-Hadou de Rank B, Exclusivo
+### Hadou de Rank B, Exclusivo
 
 Encantamento: Vácuo sem forma, que tudo consome! Rasgue o ar e devore a matéria, que o silêncio se torne lâmina e o nada seja meu aliado!
 
@@ -2196,9 +2168,9 @@ O Shinigami reúne seu reiatsu diante de si, moldando-o em uma lâmina translúc
 
 Reiatsu: Você gasta 15 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 11 pontos de Reiatsu adicionais gastos, adicione 3d10 de dano Sonoro extra.
 
-Hadou no Gojuuichi: Ennetsu Jigoku
+### Hadou no Gojuuichi: Ennetsu Jigoku
 
-Hadou de Rank B, Exclusivo
+### Hadou de Rank B, Exclusivo
 
 Encantamento: Fogo eterno que nasce das profundezas! Queime o pecado e purifique a matéria. Que até as cinzas temam teu nome!
 
@@ -2212,9 +2184,9 @@ Esse pilar de chamas tem a altura de 6 metros.
 
 Reiatsu: Você gasta 17 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 8 pontos de Reiatsu adicionais gastos, adicione 3d8 de dano de Fogo extra.
 
-Hadou no Gojuuni: Kuroikiba
+### Hadou no Gojuuni: Kuroikiba
 
-Hadou de Rank B, Exclusivo
+### Hadou de Rank B, Exclusivo
 
 Encantamento: Presas da noite eterna, dilacerem carne e espírito! Que o medo se torne forma e o desespero, lâmina!
 
@@ -2228,23 +2200,23 @@ Reiatsu: Você gasta 16 pontos de Reiatsu para utilizar este Kido e pode aumenta
 
 Hadou no Gojuusan:
 
-Hadou de Rank B, Exclusivo
+### Hadou de Rank B, Exclusivo
 
 Encantamento: Raios divinos, desçam dos céus e iluminem o campo de batalha! Que a fúria do trovão caia sobre os ímpios e purifique suas almas em luz e som!
 
-Requisito: Ação Jogada de Ataque: Automático
+### Requisito: Ação Jogada de Ataque: Automático
 
 Alcance: Esfera de 6 metros (até 18 metros de distância do usuário)
 
-Velocidade: Instantânea, Encantamento Lento
+### Velocidade: Instantânea, Encantamento Lento
 
 O Shinigami junta ambas as mãos diante de si, canalizando seu reiatsu em um poderoso selo espiritual branco. Num gesto concentrado, ele libera relâmpagos espirituais que descem do céu, atingindo o ponto escolhido e explodindo em um rugido ensurdecedor. A descarga se espalha em ondas elétricas que castigam todos ao redor do impacto. Todas as criaturas na área devem realizar um teste de resistência de Destreza. Em uma falha, sofrem 8d10 de dano Elétrico; em um sucesso, sofrem metade do dano.
 
 Reiatsu: Você gasta 17 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 10 pontos de Reiatsu adicionais gastos, adicione 3d10 de dano Elétrico extra.
 
-Hadou no Gojuuyon: Haien
+### Hadou no Gojuuyon: Haien
 
-Hadou de Rank B, Bleach
+### Hadou de Rank B, Bleach
 
 Encantamento:
 
@@ -2254,9 +2226,9 @@ O Shinigami concentra todo seu reiatsu em uma explosão de energia espiritual ro
 
 Reiatsu: Você gasta 18 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 12 pontos de Reiatsu adicionais gastos, adicione 3d12 de dano de Fogo extra.
 
-Hadou no Gojuugoon: Seiketsu
+### Hadou no Gojuugoon: Seiketsu
 
-Hadou de Rank B, Exclusivo
+### Hadou de Rank B, Exclusivo
 
 Encantamento: Brilho cortante da pureza, que a luz espiritual fenda a carne e o espírito! Rasgue a escuridão e purifique tudo em seu caminho!
 
@@ -2266,9 +2238,9 @@ O Shinigami concentra seu reiatsu na mão, moldando uma lâmina de energia lumin
 
 Reiatsu: Você gasta 15 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 11 pontos de Reiatsu adicionais gastos, adicione 3d10 de dano de Luz extra.
 
-Hadou no Gojuuroku: Retsugaikou
+### Hadou no Gojuuroku: Retsugaikou
 
-Hadou de Rank B, Exclusivo
+### Hadou de Rank B, Exclusivo
 
 Encantamento: Fragmentos cortantes do espírito, que a energia se parta e perfure o corpo! Espalhe o caos sobre aqueles que ousam enfrentar-me!
 
@@ -2280,9 +2252,9 @@ Cada criatura na área deve realizar um Teste de Resistência de Constituição.
 
 Reiatsu: Você gasta 15 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 9 pontos de Reiatsu adicionais gastos, adicione 3d8 de dano de Elétrico extra.
 
-Hadou no Gojuunana: Seikyouketsu
+### Hadou no Gojuunana: Seikyouketsu
 
-Hadou de Rank B, Exclusivo
+### Hadou de Rank B, Exclusivo
 
 Encantamento: Correntes espirituais densas, que a mente e o corpo se prendam! Que os grilhões da energia dominem o adversário e limitem sua liberdade! Requisito: Ação Jogada de Ataque: Acerto Alcance: Toque Velocidade: Instantânea, Encantamento Lento
 
@@ -2292,9 +2264,9 @@ Realize uma jogada de ataque de Kido contra o alvo. Em um acerto, ele sofre 8d12
 
 Reiatsu: Você gasta 16 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 9 pontos de Reiatsu adicionais gastos, adicione 3d8 de dano de Veneno extra.
 
-Hadou no Gojuuhachi: Tenran
+### Hadou no Gojuuhachi: Tenran
 
-Hadou de Rank B, Bleach
+### Hadou de Rank B, Bleach
 
 Encantamento:
 
@@ -2308,9 +2280,9 @@ Cada criatura na área deve realizar um Teste de Resistência de Destreza. Em ca
 
 Reiatsu: Você gasta 15 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 9 pontos de Reiatsu adicionais gastos, adicione 3d8 de dano de Energia extra.
 
-Hadou no Gojuukyuu: Shinku Tenshou
+### Hadou no Gojuukyuu: Shinku Tenshou
 
-Hadou de Rank B, Exclusivo
+### Hadou de Rank B, Exclusivo
 
 Encantamento: Correntes de luz purificadora, rasguem a carne e a alma, que a escuridão seja esmagada pela justiça espiritual!
 
@@ -2320,9 +2292,9 @@ Cada criatura na esfera realiza um Teste de Resistência de Constituição. Em c
 
 Reiatsu: Você gasta 18 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 9 pontos de Reiatsu adicionais gastos, adicione 3d8 de dano de Luz extra.
 
-Hadou no Rokujuu: Bakuhatsu Enbu
+### Hadou no Rokujuu: Bakuhatsu Enbu
 
-Hadou de Rank B, Exclusivo
+### Hadou de Rank B, Exclusivo
 
 Encantamento: Dança explosiva do caos espiritual, que o chão e o ar se tornem palco da destruição!
 
@@ -2334,9 +2306,9 @@ Realize uma jogada de ataque de Kido contra todas as criaturas na área. Em um a
 
 Reiatsu: Você gasta 15 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 9 pontos de Reiatsu adicionais gastos, adicione 3d8 de dano de Energia extra.
 
-Hadou no Rokujuuichi: Seiren Kozan
+### Hadou no Rokujuuichi: Seiren Kozan
 
-Hadou de Rank A, Exclusivo
+### Hadou de Rank A, Exclusivo
 
 Encantamento: Flor que nasce da ruína, incendeia o mal que corrompe! Que tuas pétalas flamejantes consumam a impureza e deixem apenas cinzas de redenção! Requisito: Ação Jogada de Ataque: Automático Alcance: Esfera de 9 metros (até 36 metros de você) Velocidade: Instantânea, Encantamento Normal
 
@@ -2350,7 +2322,7 @@ Reiatsu: Você gasta 21 pontos de Reiatsu para utilizar este Kido e pode aumenta
 
 Hadou no Rokujuuni:
 
-Hadou de Rank A, Exclusivo
+### Hadou de Rank A, Exclusivo
 
 Encantamento: Silêncio das neves eternas, cubra o mundo com teu véu gelado! Que o frio absoluto consuma a fúria e transforme o caos em cristal!
 
@@ -2364,9 +2336,9 @@ Reiatsu: Você gasta 21 pontos de Reiatsu para utilizar este
 
 Kido e pode aumentar seu poder. Para cada 9 pontos de Reiatsu adicionais gastos, adicione 3d8 de dano de Fogo extra.
 
-Hadou no Rokujuusan: Raikouhou
+### Hadou no Rokujuusan: Raikouhou
 
-Hadou de Rank A, Bleach
+### Hadou de Rank A, Bleach
 
 Encantamento: Salpique os ossos da besta! Torre afiada, cristal vermelho, círculo de aço. Mova-se e faça o vento. Pare e traga a tranquilidade. O som das lanças hostis preenche o castelo vazio!
 
@@ -2380,15 +2352,15 @@ As criaturas atingidas devem realizar um teste de resistência de Constituição
 
 Reiatsu: Você gasta 25 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 11 pontos de Reiatsu adicionais gastos, adicione 4d10 de dano Elétrico extra.
 
-Hadou no Rokujuuyon: Seikatsu no Kekkai
+### Hadou no Rokujuuyon: Seikatsu no Kekkai
 
-Hadou de Rank A, Exclusivo
+### Hadou de Rank A, Exclusivo
 
 Encantamento: Vida que pulsa no caos, torne-se lâmina e escudo! Que tua luz corte o firmamento e reduza a existência à pura energia!
 
 Requisito: Ação Jogada de Ataque: Acerto Alcance: Esfera de 6 metros (centrada em um ponto a até 12 metros de você)
 
-Velocidade: Instantânea, Encantamento Normal
+### Velocidade: Instantânea, Encantamento Normal
 
 O Shinigami ergue ambas as mãos e faz o ar vibrar com energia espiritual concentrada. Um símbolo de seis pontas surge no chão, emanando uma luz intensa que cresce até explodir em um clarão purificador. Dentro da esfera luminosa, tudo é envolto por uma força destrutiva que consome corpo e alma, deixando apenas o eco espiritual queimando no ar.
 
@@ -2398,9 +2370,9 @@ Reiatsu: Você gasta 21 pontos de Reiatsu para utilizar
 
 este Kido e pode aumentar seu poder. Para cada 9 pontos de Reiatsu adicionais gastos, adicione 3d6 de dano de Luz extra.
 
-Hadou no Rokujuugo: Chijo Bankotsu
+### Hadou no Rokujuugo: Chijo Bankotsu
 
-Hadou de Rank A, Exclusivo
+### Hadou de Rank A, Exclusivo
 
 Encantamento: Terra que sustenta o peso dos mundos, desperte tua fúria! Rompa o chão e esmague carne e espírito sob o peso da destruição!
 
@@ -2410,9 +2382,9 @@ O Shinigami finca o pé no solo e canaliza seu Reiatsu diretamente para o chão.
 
 Reiatsu: Você gasta 25 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 11 pontos de Reiatsu adicionais gastos, adicione 3d12 de dano de Energia extra.
 
-Hadou no Rokujuuroku: Karyuu Tenka
+### Hadou no Rokujuuroku: Karyuu Tenka
 
-Hadou de Rank A, Exclusivo
+### Hadou de Rank A, Exclusivo
 
 Encantamento: Ó chama que rasga os céus, desperte em forma de dragão! Abras os ventos, consuma o firmamento, que o mundo queime sob teu rugido!
 
@@ -2422,13 +2394,13 @@ Todas as criaturas na linha devem realizar um Teste de Resistência de Constitui
 
 Reiatsu: Você gasta 22 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 9 pontos de Reiatsu adicionais gastos, adicione 3d8 de dano de Energia extra.
 
-Hadou no Rokujuunana: Jikan Dangai
+### Hadou no Rokujuunana: Jikan Dangai
 
-Hadou de Rank A, Exclusivo
+### Hadou de Rank A, Exclusivo
 
 Encantamento: Ó ponte quebrada entre o ontem e o amanhã, que o fluxo do tempo se condense e destrua! Rompe o instante e apaga o futuro!
 
-Requisito: Ação
+### Requisito: Ação
 
 Jogada de Ataque: Acerto Alcance: 24 metros Velocidade: Instantânea, Encantamento Rápido
 
@@ -2438,9 +2410,9 @@ Realize uma jogada de ataque de Kido à distância contra uma criatura dentro do
 
 Reiatsu: Você gasta 25 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 9 pontos de Reiatsu adicionais gastos, adicione 3d8 de dano Temporal extra.
 
-Hadou no Rokujuuhachi: Dokuga no Korin
+### Hadou no Rokujuuhachi: Dokuga no Korin
 
-Hadou de Rank A, Exclusivo
+### Hadou de Rank A, Exclusivo
 
 Encantamento: Que o veneno espiritual se espalhe, corroa a carne e debilite os corações!
 
@@ -2448,9 +2420,9 @@ Requisito: Ação Jogada de Ataque: Acerto Alcance: Toque Velocidade: Instantân
 
 Reiatsu: Você gasta 22 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 11 pontos de Reiatsu adicionais gastos, adicione 3d10 de dano de Veneno extra.
 
-Hadou no Rokujuukyuu: Hikari no Senkou
+### Hadou no Rokujuukyuu: Hikari no Senkou
 
-Hadou de Rank A, Exclusivo
+### Hadou de Rank A, Exclusivo
 
 Encantamento: Ó luz pura, rasgue as sombras e cega aqueles que ousam desafiar a justiça!
 
@@ -2464,9 +2436,9 @@ Realize uma jogada de ataque de Kido contra a criatura. Em um acerto, ela sofre 
 
 Reiatsu: Você gasta 23 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 12 pontos de Reiatsu adicionais gastos, adicione 3d10 de dano de Luz extra.
 
-Hadou no Nanajuu: Kori no Raiten
+### Hadou no Nanajuu: Kori no Raiten
 
-Hadou de Rank A, Exclusivo
+### Hadou de Rank A, Exclusivo
 
 Encantamento: Águas do inverno eterno, lancem seu frio implacável sobre meus inimigos!
 
@@ -2478,23 +2450,23 @@ Cada criatura atingida sofre 10d10 de dano de Frio e deve realizar um Teste de R
 
 Reiatsu: Você gasta 25 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 11 pontos de Reiatsu adicionais gastos, adicione 3d10 de dano de Frio extra.
 
-Hadou no Nanajuuichi: Shinko Hoko
+### Hadou no Nanajuuichi: Shinko Hoko
 
-Hadou de Rank A, Exclusivo
+### Hadou de Rank A, Exclusivo
 
 Encantamento: Ouçam, reinos da existência e do vazio! Que o rugido do meu espírito ecoe através do tempo e da matéria! Ondas de destruição, somam-se e lancem a ruína sobre os inimigos! Que os corpos tremam e as almas vacilem!
 
 Requisito: Ação Jogada de Ataque: Automático Alcance: Esfera de 9 metros (centrada em um ponto a até 36 metros de você)
 
-Velocidade: Instantânea, Encantamento Lento
+### Velocidade: Instantânea, Encantamento Lento
 
 O Shinigami concentra sua energia espiritual nas palmas das mãos e a dispara em forma de uma esfera sonora luminosa que explode ao tocar o solo. A explosão cria uma onda concussiva que atinge todas as criaturas na área. Cada criatura deve realizar um Teste de Resistência de Constituição. Em caso de falha, sofre 11d6 de dano Sonoro, em caso de sucesso, sofre metade do dano.
 
 Reiatsu: Você gasta 22 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 8 pontos de Reiatsu adicionais gastos, adicione 3d6 de dano Sonoro extra.
 
-Hadou no Nanajuusann: Hono no Tsubasa
+### Hadou no Nanajuusann: Hono no Tsubasa
 
-Hadou de Rank A, Exclusivo
+### Hadou de Rank A, Exclusivo
 
 Encantamento: Chamas do inferno, ouçam minha ordem! As asas ardentes do destino se abram e consumam a carne e o espírito dos inimigos!
 
@@ -2504,9 +2476,9 @@ Realize uma jogada de ataque de Kido contra o alvo. Em um acerto, ele sofre 12d8
 
 Reiatsu: Você gasta 23 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 8 pontos de Reiatsu adicionais gastos, adicione 3d8 de dano de Fogo extra.
 
-Hadou no NanajuuSAN: Soren Sokatsui
+### Hadou no Nanajuusan: Soren Sokatsui
 
-Hadou de Rank A, Bleach
+### Hadou de Rank A, Bleach
 
 Encantamento: Ó, Lorde, Máscara de carne e sangue, toda criação, agitação das asas, tu que usas o nome de Homem! Sobre a parede da chama azul, crave a Lótus Gêmea.No abismo do desespero, à espera do paraíso distante! Requisito: Acerto Jogada de Ataque: Acerto Alcance: Linha de 18 metros Velocidade: Instantânea, Encantamento Lento O Shinigami concentra uma quantidade colossal de Reiatsu em ambas as mãos, formando um feixe puro de energia espiritual azul. Ele aponta o feixe diretamente para uma criatura inimiga, queimando sua energia espiritual e corpo com um poder devastador.
 
@@ -2514,9 +2486,9 @@ Realize uma jogada de ataque de Kido contra a criatura. Em um acerto, ela sofre 
 
 Reiatsu: Você gasta 23 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 12 pontos de Reiatsu adicionais gastos, adicione 3d12 de dano de Energia extra.
 
-Hadou no Nanajuuyon: Seikoko
+### Hadou no Nanajuuyon: Seikoko
 
-Hadou de Rank A, Exclusivo
+### Hadou de Rank A, Exclusivo
 
 Encantamento: Ó luz eterna que corta a escuridão, purifique a carne e o espírito! Que a energia luminosa se concentre e arrase todos que se interpuserem!
 
@@ -2530,9 +2502,9 @@ Realize uma jogada de ataque de Kido contra a criatura. Em um acerto, ela sofre 
 
 Reiatsu: Você gasta 25 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 11 pontos de Reiatsu adicionais gastos, adicione 3d10 de dano de Luz extra.
 
-Hadou no Nanajuugo: Hokai Ryujin
+### Hadou no Nanajuugo: Hokai Ryujin
 
-Hadou de Rank A, Exclusivo
+### Hadou de Rank A, Exclusivo
 
 Encantamento: Espírito do abismo, desperta teu poder antigo! Correntes de energia venenosas, rasguem carne e espírito, e que o veneno da minha vontade se espalhe pelo campo de batalha!
 
@@ -2542,9 +2514,9 @@ Realize uma jogada de ataque de Kido contra o alvo. Em um acerto, ele sofre 10d8
 
 Reiatsu: Você gasta 22 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 9 pontos de Reiatsu adicionais gastos, adicione 3d8 de dano de Veneno extra.
 
-Hadou no Nanajuuroku: Seiketsu Shiryu
+### Hadou no Nanajuuroku: Seiketsu Shiryu
 
-Hadou de Rank A, Exclusivo
+### Hadou de Rank A, Exclusivo
 
 Encantamento: Espírito do abismo, desperta teu poder antigo! Correntes de energia venenosas, rasguem carne e espírito, e que o veneno da minha vontade se espalhe pelo campo de batalha!
 
@@ -2552,9 +2524,9 @@ Requisito: Ação Jogada de Ataque: Automático Alcance: Linha de 6 metros Veloc
 
 Reiatsu: Você gasta 24 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 11 pontos de Reiatsu adicionais gastos, adicione 2d10 de dano Psíquico extra.
 
-Hadou no Nanajuunana: Toki no Senko
+### Hadou no Nanajuunana: Toki no Senko
 
-Hadou de Rank A, Exclusivo
+### Hadou de Rank A, Exclusivo
 
 Encantamento: Correntes invisíveis do tempo, rasguem o instante e consuma a linha da existência!
 
@@ -2566,9 +2538,9 @@ Realize uma jogada de ataque de Kido contra o alvo. Em um acerto, ele sofre 12d1
 
 Reiatsu: Você gasta 25 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 11 pontos de Reiatsu adicionais gastos, adicione 3d10 de dano Temporal extra.
 
-Hadou no Nanajuuhachi: Zangerin
+### Hadou no Nanajuuhachi: Zangerin
 
-Hadou de Rank A, Bleach
+### Hadou de Rank A, Bleach
 
 Encantamento: Corte das flores espirituais, que sua lâmina de energia rasgue o inimigo e deixe a pétala da destruição florescer!
 
@@ -2580,9 +2552,9 @@ Realize uma jogada de ataque de Kido contra o alvo. Em um acerto, ele sofre 10d1
 
 Reiatsu: Você gasta 25 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 12 pontos de Reiatsu adicionais gastos, adicione 3d12 de dano de Energia extra.
 
-Hadou no Nanajuukyuu: Kaminari
+### Hadou no Nanajuukyuu: Kaminari
 
-Hadou de Rank A, Exclusivo
+### Hadou de Rank A, Exclusivo
 
 Encantamento: Raios do céu, rasguem a terra e queimem os inimigos! Que a tempestade espiritual destrua tudo em seu caminho!
 
@@ -2590,9 +2562,9 @@ Requisito: Ação Jogada de Ataque: Automático Alcance: Esfera de 9 metros (At�
 
 o ponto escolhido, iluminando o campo de batalha e espalhando faíscas por todos os lados. Todas as criaturas dentro da esfera devem realizar um teste de resistência de Constituição, em caso de falha, sofrem 12d8 de dano Elétrico e ficam com a condição Eletrificado. Em caso de sucesso, sofrem metade do dano e não ficam eletrificados. Reiatsu: Você gasta 19 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 8 pontos de Reiatsu adicionais gastos, adicione 3d8 de dano de Elétrico extra.
 
-Hadou no Hachijuu: Kagutsuchi
+### Hadou no Hachijuu: Kagutsuchi
 
-Hadou de Rank A, Exclusivo
+### Hadou de Rank A, Exclusivo
 
 Encantamento: Céus em chamas, escutem minha vontade! Que o magma incandescente consuma os inimigos e purifique este campo de batalha!
 
@@ -2602,9 +2574,9 @@ Todas as criaturas na área devem realizar um teste de resistência de Constitui
 
 Reiatsu: Você gasta 23 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 11 pontos de Reiatsu adicionais gastos, adicione 3d10 de dano de Fogo extra.
 
-Hadou no Hachijuuichi: Jiku no Tatsumaki
+### Hadou no Hachijuuichi: Jiku no Tatsumaki
 
-Hadou de Rank S, Exclusivo
+### Hadou de Rank S, Exclusivo
 
 Encantamento: Ó fios que tecem os séculos, dobrem-se diante da minha vontade! Relógios do destino, parem seu giro! Que o instante eterno se parta e o mundo se curve diante do caos do tempo!
 
@@ -2616,9 +2588,9 @@ Todas as criaturas na área devem realizar um teste de resistência de Constitui
 
 Reiatsu: Você gasta 27 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 16 pontos de Reiatsu adicionais gastos, adicione 4d12 de dano Temporal extra.
 
-Hadou no Hachijuuni: Ennetsu Jigoku
+### Hadou no Hachijuuni: Ennetsu Jigoku
 
-Hadou de Rank S, Exclusivo
+### Hadou de Rank S, Exclusivo
 
 Encantamento: Ó fogo primordial, nascido antes do tempo, queimaste os céus quando o mundo ainda dormia! Pena sagrada do sol, herdeira da chama divina, que tua luz rasgue os céus e devore a terra! Do nascer ao crepúsculo, que tua ira purifique o que é impuro!
 
@@ -2630,9 +2602,9 @@ O conjurador pode utilizar sua ação bônus após utilizar esse Hadou pra conju
 
 Reiatsu: Você gasta 28 pontos de Reiatsu para conjurar este Kido e pode aumentar seu poder. Para cada 15 pontos de Reiatsu adicionais gastos, adicione 4d10 de dano de Fogo extra.
 
-Hadou no Hachijuusan:: Kaminari no Korin
+### Hadou no Hachijuusan:: Kaminari no Korin
 
-Hadou de Rank S, Exclusivo
+### Hadou de Rank S, Exclusivo
 
 Encantamento: Ó trovões que rasgam os céus! Despertem do silêncio eterno e respondam ao chamado do julgamento! Que o relâmpago divino desça, cortando o ar e esmagando a terra! Deem forma ao poder dos deuses e destruam tudo o que desafia sua luz!
 
@@ -2648,9 +2620,9 @@ Essa área de 12 metros permanece com energia estática por 1 minuto, todas as c
 
 Reiatsu: Você gasta 30 pontos de Reiatsu para conjurar este Kido e pode aumentar seu poder. Para cada 15 pontos de Reiatsu adicionais gastos, adicione 4d10 de dano Elétrico extra.
 
-Hadou no Hachijuuyon: Kosen
+### Hadou no Hachijuuyon: Kosen
 
-Hadou de Rank S, Exclusivo
+### Hadou de Rank S, Exclusivo
 
 Encantamento: Do silêncio nasce o som, e do som, o poder! Vibra, ó ar, rompe o véu da matéria e canta o juízo dos ecos! Que a minha voz seja a lâmina que corta a alma e o corpo. E que o grito da verdade destrua a mentira da forma!
 
@@ -2662,9 +2634,9 @@ Realize uma jogada de ataque de Kido contra uma criatura a até 18 metros. Em um
 
 Reiatsu: Você gasta 26 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 13 pontos de Reiatsu adicionais gastos, adicione 4d10 de dano Sonoro extra.
 
-Hadou no HachijUUgo: Tenshi no Hikari
+### Hadou no Hachijuugo: Tenshi no Hikari
 
-Hadou de Rank A, Exclusivo
+### Hadou de Rank A, Exclusivo
 
 Encantamento: Brilha, ó pureza que rasga as trevas! Que tua luz julgue o coração e queime a mentira! Que as sombras se prostrem diante do sagrado!
 
@@ -2682,9 +2654,9 @@ As criaturas que falharem no teste de resistência tornam-se vulneráveis a dano
 
 Reiatsu: Você gasta 31 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 12 pontos de Reiatsu adicionais gastos, adicione 4d8 de dano de Luz extra.
 
-Hadou no Hachijuuroku: Kesshou Sokatsu
+### Hadou no Hachijuuroku: Kesshou Sokatsu
 
-Hadou de Rank S, Exclusivo
+### Hadou de Rank S, Exclusivo
 
 Encantamento: Ó veneno da essência espiritual, flua e corrompa a carne e o espírito! Rasgue a armadura, dissolva a mentira, destrua o coração do orgulho e enfraqueça a mente dos arrogantes! Que a corrupção reine sobre todos os que ousarem me desafiar e que a podridão do mundo se manifeste neste toque mortal! Requisito: Ação Jogada de Ataque: Acerto Alcance: Toque Velocidade: Instantânea, Encantamento Lento
 
@@ -2694,9 +2666,9 @@ Você pode utilizar sua ação bônus para realizar um segundo ataque, aonde a c
 
 Reiatsu: Você gasta 26 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 11 pontos de Reiatsu adicionais gastos, adicione 4d6 de dano Corrosivo extra.
 
-Hadou no Hachijuunana: Hyosetsu
+### Hadou no Hachijuunana: Hyosetsu
 
-Hadou de Rank S, Exclusivo
+### Hadou de Rank S, Exclusivo
 
 Encantamento: Gélido espírito do norte, ouça minha vontade e congele a vida em seu caminho! Transforme o calor em cristal, a carne em gelo e o espírito em solidão eterna! Que a tempestade congelante rasgue o corpo e paralise o coração de todos os que se interpuserem! Requisito: Ação Jogada de Ataque: Automático Alcance: Esfera de 9 metros (Até 36 metros do usuário) Velocidade: Instantânea, Encantamento Normal
 
@@ -2710,9 +2682,9 @@ Você pode escolher atacar diretamente os pontos de reiatsu da criatura ao invé
 
 Reiatsu: Você gasta 30 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 15 pontos de Reiatsu adicionais gastos, adicione 4d8 de dano de Frio extra.
 
-Hadou no Hachijuuhachi: Shinten Reihou
+### Hadou no Hachijuuhachi: Shinten Reihou
 
-Hadou de Rank S, Bleach
+### Hadou de Rank S, Bleach
 
 Encantamento: Pelos poderes da terra, levantem sua ordem e controlem o dragão, cuja força se espalha dividindo o mundo em seis formas: Água, Terra, Fogo, Vento, Luz e Trevas! Que a luz se condense e a energia se amplie como um canhão, que a ira da terra esteja ao meu comando como um terremoto. Fúria dos ventos, desespero do fogo, forças da água, impacto das trevas, apareçam!
 
@@ -2726,9 +2698,9 @@ O impacto desse Hadou é tão poderoso que a criatura atingida, fica paralisada 
 
 Reiatsu: Você gasta 32 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 16 pontos de Reiatsu adicionais gastos, adicione 4d12 de dano de Energia extra.
 
-Hadou no Hachijuukyuu: Shinri Shien
+### Hadou no Hachijuukyuu: Shinri Shien
 
-Hadou de Rank S, Exclusivo
+### Hadou de Rank S, Exclusivo
 
 Encantamento: Espíritos da mente, ouçam minha vontade! Que a consciência dos inimigos se dobre e que suas mentes sejam dilaceradas pelas correntes invisíveis do pensamento! Que o terror mental os consuma e a razão se quebre!
 
@@ -2740,9 +2712,9 @@ Todas as criaturas na área devem realizar um Teste de Resistência de Inteligê
 
 Reiatsu: Você gasta 26 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 15 pontos de Reiatsu adicionais gastos, adicione 4d10 de dano Psíquico extra.
 
-Hadou no Kyuujuu: Kurohitsugi
+### Hadou no Kyuujuu: Kurohitsugi
 
-Hadou de Rank S, Bleach
+### Hadou de Rank S, Bleach
 
 Encantamento: Limite de milhares, toque proibido nas trevas, reflita o azul do destino! Que a estrada de luz aqueça as chamas, que o vento inflame as brasas e que o tempo nos una! Quando todos ouvirem minha ordem, bala de luz, oito corpos, nove itens, livro dos céus, tesouro mórbido, grande roda, torre da fortaleza cinza, objetivo distante de dispersão luminosa e pura, ativem-se! Requisito: Ação Completa Jogada de Ataque: Automático Alcance: 36 metros Velocidade: Instantânea, Encantamento Rápido
 
@@ -2752,13 +2724,13 @@ A reiatsu da criatura acertada pelo Kurohitsugi fica selada nas próprias mãos 
 
 Reiatsu: Você gasta 36 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 16 pontos de Reiatsu adicionais gastos, adicione 4d12 de dano Temporal extra.
 
-Curiosidade Kurohitsugi
+### Curiosidade Kurohitsugi
 
 Kurohitsugi foi utilizado apenas por uma pessoa em todo o mangá de Bleach: Aizen Sōsuke. Inicialmente, ele usou apenas uma fração do poder do Hadou, e posteriormente o aplicou contra Ichigo Kurosaki com todo o seu encantamento e imenso poder. Sendo capaz de derrotar capitães com apenas um uso desse Hadou.
 
-Hadou no Kyuujuuichi: Senjuu Kouten Taiho
+### Hadou no Kyuujuuichi: Senjuu Kouten Taiho
 
-Hadou de Rank SS, Bleach
+### Hadou de Rank Ss, Bleach
 
 Encantamento: Há mil mãos de distância... A mão da escuridão fora do alcance. O arqueiro do paraíso que não pode ser visto. Estrada que ilumina o caminho. Vento que acende as brasas. Reúnam-se sem hesitar. Olhem para onde eu aponto. Balas de luz, oito corpos, nove raios, caminhos do céu, tesouros doentes, rodas da imensidão, canhões cinza. A distância, o arco se contraem e desaparecem na luz!
 
@@ -2770,9 +2742,9 @@ Efeitos adicionais por número de feixes que acertarem: • 1-2 feixes: A criatu
 
 Reiatsu: Você gasta 36 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 10 pontos de Reiatsu adicionais gastos, adicione 2d10 de dano de Energia extra por feixe.
 
-Hadou no Kyuujuuni: Hikari no Tairiku
+### Hadou no Kyuujuuni: Hikari no Tairiku
 
-Hadou de Rank SS, Exclusivo
+### Hadou de Rank Ss, Exclusivo
 
 Encantamento: Ó céus que brilham eternamente, que minha vontade se torne farol! Que a luz incontida desça e cegue os inimigos, abrindo caminho para a justiça e o poder supremo!
 
@@ -2784,9 +2756,9 @@ espiritual também causa cegueira temporária até o final do próximo turno del
 
 Reiatsu: Você gasta 30 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 12 pontos de Reiatsu adicionais gastos, adicione 4d6 de dano de Luz extra por feixe.
 
-Hadou no Kyuuusan: Enkakyuu
+### Hadou no Kyuuusan: Enkakyuu
 
-Hadou de Rank SS, Exclusivo
+### Hadou de Rank Ss, Exclusivo
 
 Encantamento: Chamas infinitas, atiçai-se à minha vontade! Consumam carne, espírito e reiatsu, que nada escape à fúria do fogo!
 
@@ -2798,9 +2770,9 @@ Faça um ataque com Kido, acertando o alvo primário sofre 10d10 de dano de Fogo
 
 Reiatsu: Você gasta 26 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 14 pontos de Reiatsu adicionais gastos, adicione 4d10 de dano de Energia extra.
 
-Hadou no Kyuuuyon: Dokukesshou
+### Hadou no Kyuuuyon: Dokukesshou
 
-Hadou de Rank SS, Exclusivo
+### Hadou de Rank Ss, Exclusivo
 
 Encantamento: Serpentes invisíveis, espalhem-se pelo corpo e corrompam a essência! Veneno que consome carne e espírito, manifestem minha vontade! Requisito: Ação Jogada de Ataque: Acerto Alcance: Linha de 18 metros Velocidade: Instantânea, Encantamento Normal
 
@@ -2810,9 +2782,9 @@ Todas as criaturas na área devem realizar um Teste de Resistência de Constitui
 
 Reiatsu: Você gasta 26 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 16 pontos de Reiatsu adicionais gastos, adicione 4d12 de dano de Energia extra.
 
-Hadou no Kyuuuroku: Reitetsu
+### Hadou no Kyuuuroku: Reitetsu
 
-Hadou de Rank SS, Exclusivo
+### Hadou de Rank Ss, Exclusivo
 
 Encantamento: Espíritos do inverno eterno, ouçam minha ordem! Que a torrente gelada se projete e aprisione os inimigos, Congelando carne, espírito e vontade! Requisito: Ação Jogada de Ataque: Acerto Alcance: Cone de 12 metros de comprimento Velocidade: Instantânea, Encantamento Rápido
 
@@ -2820,9 +2792,9 @@ O Shinigami traça um símbolo complexo no ar com ambas as mãos, condensando se
 
 Reiatsu: Você gasta 28 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 15 pontos de Reiatsu adicionais gastos, adicione 4d10 de dano de Frio extra.
 
-Hadou no Kyuujuuroku: Ittoukasou
+### Hadou no Kyuujuuroku: Ittoukasou
 
-Hadou de Rank SS, Bleach
+### Hadou de Rank Ss, Bleach
 
 Encantamento:
 
@@ -2836,9 +2808,9 @@ Reiatsu: Você gasta 55 pontos de Reiatsu para utilizar este Kido.
 
 Curiosidade IttouKasou Esse Hadou é considerado um dos Hadous proibidos, mesmo não estando oficialmente na lista. Não porque a Central 46 vá atrás de você, mas sim porque ele utiliza o próprio corpo do Shinigami como catalisador. Conhecido como Hadou do Sacrifício, ele é capaz de destruir tudo ao redor, porém causa a perda permanente de uma parte do corpo.
 
-Hadou no Kyuuuhachi: Raikaryuu
+### Hadou no Kyuuuhachi: Raikaryuu
 
-Hadou de Rank SS, Exclusivo
+### Hadou de Rank Ss, Exclusivo
 
 Encantamento: Ó céus e tempestades, atendam ao meu chamado! Das sombras da tempestade, ergue-se o tigre relampejante!
 
@@ -2848,9 +2820,9 @@ O Shinigami junta ambas as mãos fazendo menção a boca de um tigre, e atrás d
 
 Reiatsu: Você gasta 25 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 16 pontos de Reiatsu adicionais gastos, adicione 4d12 de dano Elétrico extra.
 
-Hadou no KyuuuHACHI: Honokai
+### Hadou no Kyuuuhachi: Honokai
 
-Hadou de Rank SS, Exclusivo
+### Hadou de Rank Ss, Exclusivo
 
 Encantamento: Ó essência ígnea das eras adormecidas, desperte! Das profundezas do tempo, acendam-se as brasas ancestrais! Que a chama negra e vermelha consuma o corpo profano e purifique a alma corrompida! Do coração da criação até o ápice da destruição, incinere, transforme em cinza e nada deixe!
 
@@ -2862,9 +2834,9 @@ Faça um ataque com Kido, acertando o alvo sofre 15d10 de dano de Fogo e entra e
 
 Reiatsu: Você gasta 32 pontos de Reiatsu para utilizar este Kido e pode aumentar seu poder. Para cada 15 pontos de Reiatsu adicionais gastos, adicione 4d10 de dano de Fogo extra.
 
-Hadou no Kyujukyu: Goryutenmetsu
+### Hadou no Kyujukyu: Goryutenmetsu
 
-Hadou de Rank SS, Bleach
+### Hadou de Rank Ss, Bleach
 
 Encantamento:
 
@@ -2890,7 +2862,7 @@ Como regra opcional, o Mestre pode optar por não permitir que qualquer Shinigam
 
 hAKUDA
 
-Bukkomi Dogeza Técnica de Hakuda, Bleach
+### Bukkomi Dogeza Técnica de Hakuda, Bleach
 
 Hakuda é um estilo de combate corpo a corpo dos Shinigami que incorpora diversas artes marciais. Neste estilo, o praticante está desarmado e utiliza apenas o corpo como arma. Ataques de alta velocidade e força são utilizados para sobrepujar o oponente. Hakuda é um dos quatro estilos de luta básicos dos Shinigami e existe grandes Shinigamis que se especializam apenas no uso de Hakuda para o combate como Yoruichi Shihoin que com apenas esse estilo, ela se tornou uma das Shinigamis mais fortes que já existiu. As técnicas de Hakuda são uma evolução do ataque desarmado de um Shinigami. Essas técnicas têm um custo de reiatsu, pois demandam muito do Shinigami para serem executadas. Isso pode levar o Shinigami a um desgaste muito rapidamente, portanto, devem ser usadas com sabedoria. Elas não possuem classificação, sendo livres para escolha caso você possua uma habilidade que permita selecioná-las. Como não possuem classificações, elas evoluem junto com o usuário, já que o dano desarmado é quase sempre somado ao dano da técnica.
 
@@ -2906,43 +2878,43 @@ Combo
 
 Aqui está a lista de técnicas de Hakuda que você pode escolher.
 
-LISTA DE TÉCNICAS DE HAKUDA • • • • • • • • • • • • • • • • • • • •
+## Lista de Técnicas de Hakuda
 
 Bukkomi Dogeza Chikangoroshi Savate Drop Kick Force Punch Force Kick Gatling Mad-Stomping Ikkotsu Kagamibiraki Kazaguruma Oni Dekopin Panty-Flash Tornado Raioken Sandbag Beat Sokotsu Super Kick Taketonbo Takigoi Tessho Tsukiyubi Tsurigaki
 
 Se você está estiver se deslocando você pode utilizar essa técnica para deslizar em uma direção ganhando 6 metros de deslocamento adicional. Se você atacar uma criatura logo depois de deslizar, você recebe mais 1d8 de dano ao seu próximo ataque desarmado.
 
-Chikangoroshi Savate Técnica de Hakuda, Bleach
+### Chikangoroshi Savate Técnica de Hakuda, Bleach
 
 Requisito: Combo Jogada de Ataque: Acerto Alcance: Corpo-a-corpo Velocidade: Instantânea Reiatsu: Você gasta 10 pontos de reiatsu
 
 ## Drop Kick
 
-Técnica de Hakuda, Bleach
+### Técnica de Hakuda, Bleach
 
 Requisito: Ação Jogada de Ataque: Acerto Alcance: Corpo-a-corpo Velocidade: Instantânea Reiatsu: Você gasta 12 pontos de reiatsu
 
 O usuário salta sobre a criatura alvo e, com os dois pés, desfere um golpe poderoso. Faça um ataque com técnica de Hakuda. Se acertar, a criatura sofre um número de dados d10 igual ao seu bônus de proficiência + seu ataque corpo-a-corpo desarmado em dano dano de concussão. A criatura deve então realizar um Teste de Resistência de Constituição. Se falhar, o próximo ataque dela será com desvantagem.
 
-Force punch Técnica de Hakuda, Bleach
+### Force Punch Técnica de Hakuda, Bleach
 
 Requisito: Combo Jogada de Ataque: Acerto Alcance: Corpo-a-corpo Velocidade: Instantânea Reiatsu: Você gasta 10 pontos de reiatsu
 
 O usuário analisa o alvo e desfere um soco com muita força em um ponto específico vulnerável da criatura. Faça um ataque com técnica de Hakuda. Se acertar, a criatura sofre 1d10 de dano + seu dano corpo-a-corpo desarmado em dano dano de concussão. Se a criatura for de tamanho grande ou menor, você a empurra para trás 1,5 metros.
 
-Force KICK Técnica de Hakuda, Bleach
+### Force Kick Técnica de Hakuda, Bleach
 
 Requisito: Ação Jogada de Ataque: Automático Alcance: Linha de 6 metros Velocidade: Instantânea Reiatsu: Você gasta 8 pontos de reiatsu
 
 O usuário realiza um chute muito poderoso na direção de uma criatura em uma linha reta de 6 metros, fazendo o usuário parar no final dessa linha ou em uma criatura que acertou. Todas as criaturas que estiverem dentro dessa linha devem realizar um Teste de Resistência de Destreza, a criatura mais próxima do usuário que falhar recebe o dano de 4d6 de dano de concussão + seu dano corpo-a-corpo desarmado.
 
-Gatling Mad-Stomping Técnica de Hakuda, Bleach
+### Gatling Mad-stomping Técnica de Hakuda, Bleach
 
 Requisito: Ação Jogada de Ataque: Acerto Alcance: Corpo-a-corpo Velocidade: Instantânea Reiatsu: Você gasta 10 pontos de reiatsu
 
 Você pula e acertar três chutes em uma criatura alvo. Faça um ataque com técnica de Hakuda três vezes. Cada ataque se acertar causa 1d4 de dano de concussão + seu dano corpo-a-corpo desarmado. Se você acertar os três ataques a criatura é empurrada 6 metros para atrás, se ela bater em uma superfice sólida, ela recebe 2d4 de dano de Concussão adicional.
 
-IKKOTSU Técnica de Hakuda, Bleach
+### Ikkotsu Técnica de Hakuda, Bleach
 
 Requisito: Reação Jogada de Ataque: Acerto Alcance: Corpo-a-corpo Velocidade: Instantânea Reiatsu: Você gasta 15 pontos de reiatsu
 
@@ -2950,7 +2922,7 @@ Quando não estiver empunhando sua Zanpakutou e uma criatura estiver vindo em li
 
 No entanto essa técnica pode ser uma faca de dois gumes, porque se você errar esse ataque, você fica indefeso e esse ataque que a criatura estiver fazendo contra você será feito com vantagem. E se ela acertar, você ficará vulnerável para esse ataque ao dano que ela causar, sofrendo o dobro do dano normalmente recebido. Alternativamente você pode utilizar essa técnica gastando 25 pontos de reiatsu e se você errar o ataque, o ataque da criatura não será feito com vantagem mas você ainda sofrerá o dano dobrado.
 
-Kagamibiraki Técnica de Hakuda, Bleach
+### Kagamibiraki Técnica de Hakuda, Bleach
 
 Requisito: Ação Jogada de Ataque: Acerto Alcance: Corpo-a-corpo Velocidade: Instantânea Reiatsu: Você gasta 20 pontos de reiatsu
 
@@ -2958,15 +2930,15 @@ Essa é uma técnica brutal utilizada apenas por alguns Shinigamis, pois até en
 
 Se o mestre decidir que a criatura não pode perder o membro, ela sofrerá o dobro do dano, que não pode ser reduzido por resistência.
 
-Kazaguruma Técnica de Hakuda, Bleach
+### Kazaguruma Técnica de Hakuda, Bleach
 
 Requisito: Combo Jogada de Ataque: Acerto Alcance: Corpo-a-corpo Velocidade: Instantânea Reiatsu: Você gasta 8 pontos de reiatsu
 
 Você realiza um ataque contra uma criatura voltado a empurrar ela. Faça um ataque com técnica de Hakuda. Se acertar a criatura deve realizar um Teste de Resistência de Força, se ela falhar ela é empurrada 12 metos para atrás. Essa técnica não causa dano, mas se a criatura bater em uma estrutura maior do que ela, ela sofre 2d8 de dano de Concussão.
 
-Oni Dekopin
+### Oni Dekopin
 
-Técnica de Hakuda, Bleach
+### Técnica de Hakuda, Bleach
 
 Requisito: Ação Jogada de Ataque: Acerto Alcance: Linha de 12 metros Velocidade: Instantânea Reiatsu: Você gasta 7 pontos de reiatsu
 
@@ -2974,13 +2946,13 @@ O usuário puxa um de seus dedos para trás, mira em uma criatura e depois solta
 
 Utilizando +5 pontos de reiatsu, o usuário pode fazer a criatura ser arremessada 4,5 metros para trás se ela falhar em um Teste de Resistência de Força.
 
-Panty-Flash Tornado
+### Panty-flash Tornado
 
 ## Sokotsu
 
-Técnica de Hakuda, Bleach
+### Técnica de Hakuda, Bleach
 
-Técnica de Hakuda, Bleach
+### Técnica de Hakuda, Bleach
 
 Requisito: Ação Jogada de Ataque: Acerto Alcance: Corpo-a-corpo Velocidade: Instantânea Reiatsu: Você gasta 12 pontos de reiatsu
 
@@ -2990,7 +2962,7 @@ Você faz um espacate rotativo de cabeça para baixo e acerta diversos chutes em
 
 Por exemplo, se você tiver +3 de bônus de proficiência, então você realiza três chutes, mas se errar o segundo chute, não executa o terceiro.
 
-Raioken Técnica de Hakuda, Bleach
+### Raioken Técnica de Hakuda, Bleach
 
 Requisito: Ação Jogada de Ataque: Acerto Alcance: Cone de 3 metros Velocidade: Instantânea Reiatsu: Você gasta 12 pontos de reiatsu
 
@@ -2998,7 +2970,7 @@ Você escolhe uma direção e começa a realizar uma metralhadora de socos sem p
 
 Você pode utilizar mais 6 pontos de reiatsu e sua ação bônus juntamente com a ação dessa técnica para intensificar ainda mais essa técnica, adicionando metade do seu bônus de proficiência em dados d8 adicionais ao dano.
 
-Sandbag Beat Técnica de Hakuda, Bleach
+### Sandbag Beat Técnica de Hakuda, Bleach
 
 Requisito: Ação Jogada de Ataque: Acerto Alcance: Corpo-a-corpo Velocidade: Instantânea Reiatsu: Você gasta 8 pontos de reiatsu
 
@@ -3008,7 +2980,7 @@ A criatura deve realizar um Teste de Resistência de Constituição. Se falhar, 
 
 Você se aproxima do alvo, junta os dois braços atrás das costas e desfere um único golpe focado para quebrar a desefa do inimigo. Faça um ataque com técnica de Hakuda. Se acertar, a criatura sofre um número de dados d12 igual ao seu bônus de proficiência + seu ataque corpo-a-corpo desarmado em dano dano de concussão. Além disso, a criatura deve realizar um Teste de Resistência de Constituição caso falhe a classe de resistência dela é reduzida em 5 até o início do próximo turno dela.
 
-super kick Técnica de Hakuda, Bleach
+### Super Kick Técnica de Hakuda, Bleach
 
 Requisito: Combo Jogada de Ataque: Acerto Alcance: Corpo-a-corpo Velocidade: Instantânea Reiatsu: Você gasta 12 pontos de reiatsu
 
@@ -3016,7 +2988,7 @@ Você realiza um chute tão forte que levanta a criatura no ar. Faça um ataque 
 
 No seu próximo ataque no mesmo turno em que você levantou a criatura, você tem vantagem no acerto e no dano contra essa mesma criatura.
 
-Taketonbo Técnica de Hakuda, Bleach
+### Taketonbo Técnica de Hakuda, Bleach
 
 Requisito: Ação Jogada de Ataque: Acerto Alcance: Corpo-a-corpo Velocidade: Instantânea Reiatsu: Você gasta 15 pontos de reiatsu
 
@@ -3024,13 +2996,13 @@ Você agarra o braço da criatura e a gira no ar assim fazendo a criatura cair n
 
 Se a criatura tiver um Nível de Desafio ou Nível de Personagem menor que o seu, você consegue atacar os pontos de reiatsu dela. O mestre deve informar se ela é ou não de nível inferior ao seu após você acertar a técnica. A criatura deve realizar um Teste de Resistência de Espírito. Se ela falhar, você limita o uso de reiatsu dela, fazendo com que ela fique com as condições “Distorcido” e “Esgotado” até o final do próximo turno dela.
 
-Takigoi Técnica de Hakuda, Bleach
+### Takigoi Técnica de Hakuda, Bleach
 
 Requisito: Reação Jogada de Ataque: Acerto Alcance: Corpo-a-corpo Velocidade: Instantânea Reiatsu: Você gasta 20 pontos de reiatsu
 
 Quando você for atacado com um ataque corpo-a-corpo desarmado, você pode antecipar os ataques da criatura e abrir a defesa dela para tentar acertá-la. Utilizando sua reação quando for atacado corpo-a-corpo desarmado, faça um Teste de Preparo Físico contra o resultado do acerto da criatura. Se você passar no teste, esse ataque da criatura é cancelado e você pode realizar um único ataque corpo-a-corpo desarmado.
 
-TESSHO Técnica de Hakuda, Bleach
+### Tessho Técnica de Hakuda, Bleach
 
 Requisito: Combo Jogada de Ataque: Acerto Alcance: Corpo-a-corpo Velocidade: Instantânea Reiatsu: Você gasta 10 pontos de reiatsu
 
@@ -3038,13 +3010,13 @@ Você abre a palma da sua mão e realiza um golpe forte em uma parte da criatura
 
 Tsukiyubi
 
-Técnica de Hakuda, Bleach
+### Técnica de Hakuda, Bleach
 
 Requisito: Ação Jogada de Ataque: Acerto Alcance: Corpo-a-corpo Velocidade: Instantânea Reiatsu: Você gasta 15 pontos de reiatsu
 
 Você toca a criatura com dois dedos e realiza um disparo de energia que a arremessa para longe. Faça um ataque com a técnica de Hakuda. Se acertar, a criatura sofre um dano de energia equivalente a um número de dados d6 igual ao seu bônus de proficiência + seu modificador de ataque corpo-a-corpo desarmado. Além disso, ela é arremessada para trás, voando 6 metros.
 
-Tsurigaki Técnica de Hakuda, Bleach
+### Tsurigaki Técnica de Hakuda, Bleach
 
 Requisito: Reação Jogada de Ataque: Acerto Alcance: Corpo-a-corpo Velocidade: Instantânea Reiatsu: Você gasta 15 pontos de reiatsu
 
@@ -3056,17 +3028,17 @@ Técnicas de rEISHi As técnicas de Reishi são habilidades utilizadas pelos Qui
 
 As Técnicas de Reishi possuem um requisito específico chamado “Equipamentos”, que determina quais equipamentos o usuário deve possuir para executar a técnica. Por exemplo, a técnica Gritz exige o uso de um Gintou para ser realizada.
 
-Aprimorando e personalizando
+### Aprimorando e Personalizando
 
 Assim como os Shinigamis utilizam Kido em combate, os Quincy utilizam suas Técnicas de Reishi, que também podem ser aprimoradas. Toda Técnica de Reishi que permite aprimoramentos segue as mesmas regras de aprimoramento dos Kido.
 
 Além disso, você como um Quincy pode personalizar a aparência visual de suas Técnicas de Reishi, adaptando-as ao seu estilo de combate e à sua identidade. Por exemplo, um Quincy que cria flechas de Reishi pode alterar sua aparência para que a técnica manifeste espadas em vez de flechas, desde que essa mudança seja apenas visual e não altere os efeitos ou as regras da técnica.
 
-Lista de Técnicas de Reishi
+### Lista de Técnicas de Reishi
 
 Aqui está a lista de Técnicas de Reishi que você pode escolher.
 
-Primeiro nível • • • • • • •
+### Primeiro Nível
 
 Blue Flames (Bleach) Disparo Explosivo Flechas de Reishi Gritz (Bleach)
 
@@ -3074,35 +3046,27 @@ Heizen (Bleach)
 
 Lança de Reishi Wolke (Bleach)
 
-• • • • • •
-
 Blut Arterie (Bleach) Blut Vene (Bleach) Licht Klinge Klavier (Bleach)
 
 Materialização Ransotengai (Bleach)
 
-• •
-
 Blue Burst Blut Vene Anhaben (Bleach)
 
-segundo nível
+### Segundo Nível
 
-Terceiro nível
-
-• • • •
+### Terceiro Nível
 
 Grande Lança de Reishi Prisão de Reishi Shadow (Bleach)
 
 Sprenger (Bleach)
 
-• • • • • •
-
 Blitz Geschoss Blue Pillar Chuva de Heilig Pfeil Heilig Pfeil Erobern (Bleach) Kirchenlied: Sankt Zwinger (Bleach) Qual Kreis (Bleach)
 
-Quarto nível
+### Quarto Nível
 
 ## Blue Flames
 
-Primeiro Nível, Bleach
+### Primeiro Nível, Bleach
 
 Requisito: Ação Jogada de Ataque: Acerto Equipamento:
 
@@ -3116,11 +3080,11 @@ Reiatsu: Você gasta 5 pontos de Reiatsu para utilizar esta Técnica de Reishi. 
 
 ## Disparo Explosivo
 
-Primeiro Nível, Exclusiva
+### Primeiro Nível, Exclusiva
 
 Requisito: Ação Bônus Jogada de Ataque: Automático Equipamento:
 
-Alcance: Pessoal Velocidade: Instantanêa
+### Alcance: Pessoal Velocidade: Instantanêa
 
 Quando você realizar um disparo com uma arma de ataque à distância, poderá criar um projétil explosivo que, ao atingir o alvo, provoca uma explosão em um raio de 3 metros. Todas as criaturas na área, incluindo o alvo atingido, devem realizar um teste de resistência de Destreza, se você atingiu a criatura com o disparo ela fará o teste com desvantagem. Em caso de falha, sofrem 2d6 de dano de Energia ou o dano causado pela arma, o que for maior. Esta técnica também pode ser utilizada em outras Técnicas de Reishi ou habilidades Quincy, desde que potencialize um projétil disparado.
 
@@ -3130,9 +3094,9 @@ Reiatsu: Você gasta 2 pontos de Reiatsu para utilizar esta Técnica de Reishi. 
 
 ## Heizen
 
-Primeiro Nível, Exclusiva
+### Primeiro Nível, Exclusiva
 
-Primeiro Nível, Bleach
+### Primeiro Nível, Bleach
 
 Requisito: Ação Jogada de Ataque: Acerto Equipamento:
 
@@ -3150,7 +3114,7 @@ Reiatsu: Você gasta 3 pontos de Reiatsu para cada flecha criada por esta Técni
 
 ## Gritz
 
-Primeiro Nível, Bleach
+### Primeiro Nível, Bleach
 
 Requisito: Ação Jogada de Ataque: Acerto Equipamento: Gintou Alcance: 9 metros Velocidade: Indeterminado
 
@@ -3172,7 +3136,7 @@ Reiatsu: Você gasta 10 pontos de Reiatsu para cada gintou ao utilizar esta Téc
 
 ## Lança de Reishi
 
-Primeiro Nível, Exclusiva
+### Primeiro Nível, Exclusiva
 
 Requisito: Ação Jogada de Ataque: Acerto Equipamento:
 
@@ -3184,7 +3148,7 @@ Reiatsu: Você gasta 8 pontos de Reiatsu para utilizar esta Técnica de Reishi. 
 
 ## Wolke
 
-Primeiro Nível, Bleach
+### Primeiro Nível, Bleach
 
 Requisito: Ação Jogada de Ataque: Automático Equipamento: Gintou Alcance: Pessoal Velocidade: Instantanêa
 
@@ -3194,7 +3158,7 @@ Alternativamente, enquanto estiver caindo, você pode utilizar o Wolke para redu
 
 ## Blut Arterie
 
-Segundo Nível, Bleach
+### Segundo Nível, Bleach
 
 Requisito: Ação Bônus Jogada de Ataque: Automático Equipamento:
 
@@ -3208,7 +3172,7 @@ Reiatsu: Você gasta 10 pontos de Reiatsu para utilizar essa Técnica de Reishi.
 
 ## Blut Vene
 
-Segundo Nível, Bleach
+### Segundo Nível, Bleach
 
 Requisito: Ação Bônus Jogada de Ataque: Automático Equipamento:
 
@@ -3222,7 +3186,7 @@ Reiatsu: Você gasta 10 pontos de Reiatsu para utilizar essa Técnica de Reishi.
 
 ## Licht Klinge
 
-Segundo Nível, Exclusivo
+### Segundo Nível, Exclusivo
 
 Requisito: Ação Bônus Jogada de Ataque: Automático Equipamento: Arma Corpo a Corpo Alcance: Pessoal Velocidade: Instantanêa
 
@@ -3234,7 +3198,7 @@ Reiatsu: Você gasta 5 pontos de Reiatsu para utilizar essa Técnica de Reishi e
 
 ## Klavier
 
-Segundo Nível, Bleach
+### Segundo Nível, Bleach
 
 Requisito: Ação Jogada de Ataque: Acerto Equipamento: Arma a Distância Alcance: 9 metros Velocidade: Instantanêo
 
@@ -3244,11 +3208,11 @@ Reiatsu: Você gasta 15 pontos de Reiatsu para utilizar esta Técnica de Reishi.
 
 ## Materialização
 
-Segundo Nível, Bleach
+### Segundo Nível, Bleach
 
 Requisito: Ação Bônus Jogada de Ataque: Automático Equipamento:
 
-Alcance: Pessoal Velocidade: Instantanêa
+### Alcance: Pessoal Velocidade: Instantanêa
 
 Você reúne partículas de Reishi e materializa uma arma à sua escolha do Arsenal Quincy em suas mãos. A arma permanece materializada por 1 minuto, após o qual se desfaz em partículas de Reishi. Você pode desfazê-la antes do término da duração, sem gastar uma ação.
 
@@ -3256,7 +3220,7 @@ Reiatsu: Você gasta 15 pontos de Reiatsu para utilizar esta Técnica de Reishi.
 
 ## Ransotengai
 
-Segundo Nível, Bleach
+### Segundo Nível, Bleach
 
 Requisito: Ação Bônus Jogada de Ataque: Automático Equipamento:
 
@@ -3272,7 +3236,7 @@ Reiatsu: Você gasta 15 pontos de Reiatsu para utilizar esta Técnica de Reishi.
 
 ## Blue Burst
 
-Segundo Nível, Exclusiva
+### Segundo Nível, Exclusiva
 
 Requisito: Ação Jogada de Ataque: Automático Equipamento:
 
@@ -3284,11 +3248,11 @@ Reiatsu: Você gasta 25 pontos de Reiatsu para utilizar esta Técnica de Reishi.
 
 ## Blut Vene Anhaben
 
-Terceiro Nível, Bleach
+### Terceiro Nível, Bleach
 
 Requisito: Reação Jogada de Ataque: Automático Equipamento:
 
-Alcance: Pessoal Velocidade: Instantanêa
+### Alcance: Pessoal Velocidade: Instantanêa
 
 Ao ser atingido por um ataque, você faz o Reishi fluir intensamente por seus vasos sanguíneos e o libera ao redor, criando um domo defensivo de Reishi com 3 metros de raio. Todas as criaturas dentro do domo ficam protegidas contra o ataque que ativou a técnica, reduzindo o dano recebido em um valor igual a cinco vezes o seu nível de personagem + seu atributo-chave de Técnicas de Reishi. Essa redução se aplica a todas as criaturas protegidas, incluindo você.
 
@@ -3296,7 +3260,7 @@ Reiatsu: Você gasta 20 pontos de Reiatsu para utilizar esta Técnica de Reishi.
 
 ## Grande Lança de Reishi
 
-Terceiro Nível, Exclusiva
+### Terceiro Nível, Exclusiva
 
 Requisito: Ação Jogada de Ataque: Automático Equipamento:
 
@@ -3310,7 +3274,7 @@ Reiatsu: Você gasta 18 pontos de Reiatsu para utilizar esta Técnica de Reishi.
 
 ## Prisão de Reishi
 
-Terceiro Nível, Exclusiva
+### Terceiro Nível, Exclusiva
 
 Requisito: Ação Jogada de Ataque: Automático Equipamento:
 
@@ -3322,11 +3286,11 @@ No final de cada turno, a criatura pode gastar 15 pontos de Reiatsu para realiza
 
 ## Shadow
 
-Terceiro Nível, Bleach
+### Terceiro Nível, Bleach
 
 Requisito: 10 minutos Jogada de Ataque: Automático Equipamento:
 
-Alcance: Pessoal Velocidade: Instantanêa
+### Alcance: Pessoal Velocidade: Instantanêa
 
 Você expande sua sombra e a transforma em uma passagem dimensional, permitindo atravessar as sombras para alcançar outros locais e dimensões. Para utilizar essa técnica, você deve conhecer o destino desejado e dedicar 10 minutos de concentração total à abertura da passagem, sem realizar outras atividades durante esse período. A travessia reduz pela metade o tempo que normalmente seria necessário para chegar ao destino. Ao alcançar o local desejado, você pode sair da dimensão sombria instantaneamente. No entanto, uma vez iniciada a travessia, você não pode mudar o destino nem retornar pelo caminho percorrido.
 
@@ -3336,7 +3300,7 @@ Reiatsu: Você gasta 25 pontos de Reiatsu para cada criatura transportada por es
 
 ## Sprenger
 
-Terceiro Nível, Bleach
+### Terceiro Nível, Bleach
 
 Requisito: Ação Completa Jogada de Ataque: Automático Equipamento: Cinco Seele Schneider e um Gintou Alcance: Pessoal Velocidade: Instantanêa
 
@@ -3348,7 +3312,7 @@ Reiatsu: Você gasta 10 pontos de Reiatsu para utilizar esta Técnica de Reishi.
 
 ## Blitz Geschoss
 
-Quarto Nível, Exclusiva
+### Quarto Nível, Exclusiva
 
 Requisito: Ação Jogada de Ataque: Automático Equipamento:
 
@@ -3368,7 +3332,7 @@ Reiatsu: Você gasta 10 pontos de Reiatsu para utilizar esta Técnica de Reishi.
 
 ## Blue Pillar
 
-Quarto Nível, Exclusiva
+### Quarto Nível, Exclusiva
 
 Requisito: Ação Jogada de Ataque: Automático Equipamento:
 
@@ -3384,7 +3348,7 @@ Reiatsu: Você gasta 30 pontos de Reiatsu para utilizar esta Técnica de Reishi.
 
 ## Chuva de Heiling Pfeil
 
-Quarto Nível, Exclusiva
+### Quarto Nível, Exclusiva
 
 Requisito: Ação Jogada de Ataque: Acerto Equipamento:
 
@@ -3400,9 +3364,9 @@ Reiatsu: Você gasta 30 pontos de Reiatsu para utilizar esta Técnica de Reishi.
 
 ## Qual Kreis
 
-Quarto Nível, Bleach
+### Quarto Nível, Bleach
 
-Quarto Nível, Bleach
+### Quarto Nível, Bleach
 
 Requisito: Ação Completa Jogada de Ataque: Acerto Equipamento:
 
@@ -3420,7 +3384,7 @@ Reiatsu: Você gasta 40 pontos de Reiatsu para utilizar esta Técnica de Reishi.
 
 ## Kirchenlied: Sankt Zwinger
 
-Quarto Nível, Bleach
+### Quarto Nível, Bleach
 
 Requisito: Ação Jogada de Ataque: Automático Equipamento:
 
@@ -3440,7 +3404,7 @@ Qualquer criatura pode atacar os arcos para tentar interromper o bombardeio. Cad
 
 Reiatsu: Você gasta 30 pontos de Reiatsu para utilizar esta Técnica de Reishi.
 
-Yhwach, o Mestre do reishi
+### Yhwach, o Mestre do Reishi
 
 Embora os Quincy sejam conhecidos por utilizar arcos e flechas espirituais, Yhwach demonstra que a manipulação do Reishi vai muito além das armas convencionais. Ele consegue disparar Heilig Pfeil diretamente da ponta do dedo, sem precisar de um arco. Essa habilidade também aparece em Heilig Pfeil Erobern, uma técnica que libera uma saraivada de flechas capaz de destruir um corpo tão resistente quanto o de Genryūsai Yamamoto e abrir uma enorme cratera no local do impacto.
 

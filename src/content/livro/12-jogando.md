@@ -4,7 +4,7 @@ Neste capítulo, você encontrará todas as regras necessárias para jogar Soul 
 
 O capítulo será dividido em duas partes: a primeira é focada no role-playing, ajudando você a interpretar um personagem no mundo de Bleach e abordando principalmente o que acontece fora dos combates. Já a segunda parte é dedicada exclusivamente às regras de combate, explicando tudo que você pode fazer durante uma luta, com diretrizes específicas para garantir que o combate seja justo tanto para o Mestre quanto para os jogadores. Mas lembre-se: o jogador sempre pode tentar improvisar uma ação e sair do roteiro. Não se limite a seguir as regras de forma mecânica, use sua criatividade para criar combates épicos e momentos inesquecíveis!
 
-PAPEL DO JOGADOr
+### Papel do Jogador
 
 Quase toda interação em uma sessão de Soul Society RPG começa com o mestre estabelecendo uma cena.
 
@@ -36,11 +36,11 @@ Além disso, o tom da narrativa é sempre estabelecido pelo mestre. Dependendo d
 
 Em Soul Society RPG, interpretar um personagem significa viver o mundo de Bleach: sentir o peso da zanpakutou em suas mãos, reconhecer o pulsar de uma reiatsu distante e agir diante das ameaças que cercam a Soul Society. A cada cena, você constrói, junto aos outros jogadores, uma história que poderia ser cantada entre as muralhas da Seireitei.
 
-O Poder reflete a Alma
+### O Poder Reflete a Alma
 
 Em Bleach, muitos personagens têm suas personalidades refletidas no poder que usam. Por exemplo, Zaraki Kenpachi, que vive para lutar, tem uma Zanpakutou que nem sequer precisa liberar para ser mortal. Já Byakuya Kuchiki, calmo e orgulhoso, luta com pétalas de cerejeira, um símbolo de beleza fria e controle absoluto. Em Bleach, o jeito de ser é tão importante quanto a força!
 
-Interpretando seu PErsonagem
+### Interpretando Seu Personagem
 
 Interpretar é assumir o papel de outro ser, moldando seus pensamentos, atitudes e palavras. No Soul Society RPG, é você quem decide como seu personagem enxerga o mundo, como reage aos desafios e como se expressa para aliados e inimigos.
 
@@ -50,13 +50,13 @@ Existem dois jeitos principais de interpretar: o descritivo e o ativo. Na aborda
 
 O importante é deixar seu personagem brilhar, seja nas conversas nos corredores da Seireitei ou em meio às batalhas contra os inimigos da Soul Society.
 
-Abordagem Descritiva
+### Abordagem Descritiva
 
 Na abordagem descritiva, você compartilha com o Mestre e os outros jogadores as ações e pensamentos do seu personagem de forma detalhada, descrevendo como ele age e se comporta no mundo de Bleach. Imagine que seu personagem está diante de uma situação tensa — como uma reunião no Gotei 13 ou uma perseguição por um Hollow. Você pode descrever algo como: “Kaito cruza os braços, a expressão séria, e lança um olhar desafiador para o Capitão, antes de se afastar lentamente, pronto para agir, caso a situação piore.”
 
 Aqui, o importante é transmitir as intenções e emoções do seu personagem, mostrando como ele lida com o que acontece ao seu redor. Não se preocupe em ser perfeito, apenas descreva o que vem à sua mente de forma que o Mestre e os outros jogadores sintam a essência do seu personagem e da cena.
 
-Abordagem ATIVA
+### Abordagem Ativa
 
 Na abordagem ativa, você não apenas descreve as ações de seu personagem, mas as vivencia e as transmite de maneira mais envolvente. É como um ator assumindo totalmente o papel, usando a voz e até mesmo a linguagem corporal de seu personagem. Essa abordagem traz mais imersão ao jogo, mas, ainda assim, você precisa descrever ações que não podem ser fisicamente representadas.
 
@@ -90,13 +90,13 @@ Qualquer personagem pode fazer Descansos Curtos durante o dia para se recuperar 
 
 Um descanso curto significa que o personagem está fazendo uma breve pausa para se recuperar, recuperando metade dos seus pontos de vida e reiatsu totais. Por exemplo, se o personagem possui 100 pontos de vida no total, ele recuperará 50 pontos de vida adicionais aos que já possui, e o mesmo vale para os pontos de reiatsu. O descanso curto dura 10 minutos, e os personagens tem dois descansos curtos que podem ser feitos entre descansos longos.
 
-DESCANSO Longo
+### Descanso Longo
 
 Um descanso longo é o tempo que o personagem tira para se recuperar por completo, restaurando o corpo, a mente e a alma. Quando termina um descanso longo, o personagem recupera todos os seus pontos de vida, todos os seus pontos de reiatsu e também recarrega as habilidades que dependem desse tipo de pausa. Algumas condições temporárias, como Sangramento ou Atordoado, também podem ser removidas, se o mestre permitir.
 
 Esse descanso leva 8 horas seguidas, durante as quais o personagem deve dormir ou pelo menos ficar em repouso, podendo fazer um descanso longo a cada 24 horas. Para isso, precisa começar o descanso com pelo menos 1 ponto de vida. Ele pode fazer coisas leves nesse período, como conversar, ler ou montar guarda por no máximo 2 horas, mas nada que exija esforço físico ou uso intenso dos poderes espirituais.
 
-Espírito de Jogo
+### Espírito de Jogo
 
 Em Soul Society RPG, lembre-se: seu personagem não é você. Nenhuma derrota em combate, falha em testes ou reviravolta na história diminui suas conquistas pessoais. Da mesma forma, a maior vitória de um personagem existe apenas dentro da ficção do jogo.
 
@@ -114,11 +114,7 @@ O combate ocorre em uma série de rodadas. Uma rodada é o tempo necessário par
 
 ## Resumo de Um Turno
 
-Um turno é o que a criatura pode fazer na vez dela na ordem de combate, todas as criaturas possuem uma Ação, Ação Bônus, Deslocamento e Reação. •
-
-•
-
-• •
+Um turno é o que a criatura pode fazer na vez dela na ordem de combate, todas as criaturas possuem uma Ação, Ação Bônus, Deslocamento e Reação.
 
 Ação: A ação de um personagem é uma atividade que ele ou uma criatura pode realizar durante seu turno em combate. Existem diversos tipos de ações que podem ser realizadas, como Atacar, Esquivar, Ajudar, Preparar uma Ação, entre outras. Um personagem tem direito a apenas uma Ação por turno. • Ataque Extra: A característica de classe chamada “Ataque Extra” não concede mais ações ao personagem durante o turno, mas sim mais ataques com a Ação “Atacar”, aumentando assim o número de golpes que a criatura pode realizar em um turno. Ação Bônus: Uma Ação Bônus é um tipo especial de ação que um personagem pode realizar em seu turno, além da ação normal e do movimento. Algumas habilidades, feitiços ou características de classe permitem que um personagem realize uma ação bônus. A especificidade do que pode ser feito como uma ação bônus depende da descrição das habilidades ou feitiços que a concedem.
 
@@ -164,7 +160,7 @@ Por exemplo, se um Shinigami se esconder de um Hollow e o atacar furtivamente qu
 
 Se um dos lados quiser fazer um ataque de surpresa, ele deve primeiro se esconder, ficando furtivo. Para isso, deve ser feito um Teste de Furtividade (Destreza), ou, se o Mestre achar mais apropriado, um Teste de Suprimir Reiatsu (Espírito), dependendo da ocasião, ou ambos. A outra criatura deve então fazer um teste resistido de Percepção ou Percepção de Reiatsu. O Mestre também pode usar valores passivos para determinar se alguém perceberá o personagem furtivo.
 
-SEU Turno
+### Seu Turno
 
 No seu turno, você pode realizar uma Ação, uma Ação Bônus e se Deslocar. Se você tiver uma habilidade de classe que permita utilizar sua Reação durante o seu turno, você também poderá usá-la. A Ação é o foco principal do seu turno, e há várias coisas que você pode fazer com ela. A ação mais comum é Atacar, especialmente quando você está frente a frente com o inimigo em combate. No entanto, caso não possa atacar, você pode utilizar alguma habilidade de classe, Defender ou Esquivar também seria uma opção viavél, ou até mesmo ajudar seus aliados. Seu turno é muito importante, e a seguir veremos o que você pode fazer nele.
 
@@ -226,7 +222,7 @@ Quando você utilizar essa ação e estiver escondido você chamará a atenção
 
 Quando você quiser utilizar um objeto do cenário ou utilizar um objeto que não seja uma arma (Zanpakutou ou Arma Quincy) você deverá utilizar essa ação de Usar um Objeto. Por exemplo você quer pegar uma rocha do chão e arremessar no inimigo, você deve utilizar a ação e o mestre defini se é possível e oque vai acontecer.
 
-Usar uma Habilidade ou característica
+### Usar Uma Habilidade Ou Característica
 
 Algumas habilidades e características de classes, ou até mesmo a liberação da sua Zanpakutou, exigem uma ação para serem utilizadas.
 
@@ -272,15 +268,13 @@ Uma Zanpakutou liberada não pode ser guardada, a menos que uma habilidade diga 
 
 Se o seu personagem estiver caído no chão, levantar-se custará apenas uma Ação Livre. Por exemplo, se você receber um golpe muito forte e o Mestre descrever que caiu no chão devido à força do golpe, então, no seu turno, você poderá se levantar livremente.
 
-AÇão Completa
+### Ação Completa
 
 Uma Ação Completa é um tipo de ação que exige a total concentração do personagem, consumindo todas as outras ações do seu turno, incluindo “Ação”, “Ação Bônus”, “Deslocamento” e “Reação”. Ao realizar uma Ação Completa, você utiliza todas essas ações do turno, mas ainda poderá executar ações livres.
 
-realizando um ataque
+### Realizando Um Ataque
 
-Para realizar um ataque, você deve utilizar a Ação Atacar, conforme mencionado anteriormente, e seguir uma estrutura específica. •
-
-• •
+Para realizar um ataque, você deve utilizar a Ação Atacar, conforme mencionado anteriormente, e seguir uma estrutura específica.
 
 Primeiro Passo: Escolha um alvo para o seu ataque, dentro do seu alcance. Se sua arma for corpo a corpo, você deverá se aproximar da criatura, enquanto armas à distância têm um alcance que deve ser respeitado. Após isso faça a jogada de ataque.
 
@@ -318,7 +312,7 @@ ALCANCE DE UM ATAQUE O alcance de uma arma, seja ela uma Zanpakutou ou uma Arma 
 
 Algumas armas possuem um alcance maior que 1,5 metros, como uma Arma Quincy com a propriedade “Distância”. Essas armas podem ter alcances enormes, e, se você utilizar uma delas, não pode realizar um ataque além do alcance máximo especificado.
 
-Jogando com Duas Armas
+### Jogando com Duas Armas
 
 Quando você estiver empunhando duas armas, como uma Zanpakutou dupla ou uma Arma Quincy com a propriedade “Dupla”, ao atacar, você causará o dano de ambas as armas na rolagem de dano. Se cada arma tiver um atributo diferente, você deve escolher um dos atributos para somar à jogada de ataque e dano.
 
@@ -338,7 +332,7 @@ Se a jogada de ataque com o d20 resultar em 1, o ataque erra, independentemente 
 
 Normalmente, um crítico ocorre com um 20 no d20, mas algumas classes e armas permitem que seu crítico seja melhorado, aumentando a margem. Por exemplo, o Arco Longo Quincy tem a margem de crítico em 19, permitindo que você consiga um crítico ao tirar 19 na rolagem do d20. Algumas Zanpakutous também melhoram o crítico, como a Bankai da Minazuki, que aumenta a margem de crítico para 18.
 
-ampliando um crítico
+### Ampliando Um Crítico
 
 Se você possuir uma característica que aumente sua margem de crítico e não estiver especificada uma margem, como 19-20 ou 18-20, sua margem de crítico será aumentada. Por exemplo, se seu crítico normalmente ocorre com um resultado 20 no d20 e você tem uma característica que aumenta em 1, você critará com um resultado 19 no d20.
 
@@ -350,9 +344,7 @@ MANOBras Durante uma luta, com a ação “Atacar” você pode realizar alguams
 
 Quando você estiver lutando com uma criatura e acertar um ataque, pode optar por abrir mão do dano para tentar agarrar a criatura. Para isso, você deve realizar um Teste de Preparo Físico (Força) resistido por um Teste de Preparo Físico (Força) ou um Teste de Acrobacia (Destreza) da criatura. Se você obtiver sucesso, a criatura ficará com a condição “Agarrada”, conforme descrito no Capítulo de Condições.
 
-Você só pode agarrar uma criatura de tamanho menor ou apenas uma categoria maior que a sua e deve estar dentro do seu alcance corpo a corpo. •
-
-•
+Você só pode agarrar uma criatura de tamanho menor ou apenas uma categoria maior que a sua e deve estar dentro do seu alcance corpo a corpo.
 
 Escapando de um Agarrão: Uma criatura vítima de um agarrão pode usar uma ação para tentar escapar. Para isso, ela precisa ter sucesso em um Teste de Preparo Físico (Força) ou Teste de Acrobacia (Destreza), resistido por um Teste de Preparo Físico (Força) de quem a está agarrando.
 
@@ -390,7 +382,7 @@ cobertura
 
 Quando você estiver atrás de um objeto ou criatura de tamanho maior que o seu (conforme destacado na seção de Movimento e Posição) em relação à visão limpa do atacante, você recebe cobertura, o que adiciona +3 à sua Classe de Resistência. Por exemplo, se uma criatura se esconder atrás de uma estrutura e você não tiver uma visão clara dela, ela receberá +3 na Classe de Resistência, o mesmo vale se você estiver se escondendo. A visão clara da criatura é determinada pelo Mestre. Se uma criatura estiver te proporcionando cobertura com o corpo dela e um ataque possuir uma área de efeito passando primeiro pela criatura, o Mestre pode decidir que você receberá alguma vantagem se o ataque possuir algum tipo de teste.
 
-Dano, Vitalidade e Cura
+### Dano, Vitalidade e Cura
 
 Durante um combate, receber golpes e sofrer dano é algo comum. Um Shinigami quase sempre sai ferido de uma batalha contra um Hollow, muitas vezes lutando até o limite de suas forças. Toda criatura que acerta um ataque causa dano, e existem diferentes tipos de danos que podem ser infligidos. Da mesma forma, é possível que uma criatura seja curada durante um combate, recuperando parte de sua força e continuando a luta.
 
@@ -402,21 +394,21 @@ O tipo de dano que eles causam estará especificado na descrição da habilidade
 
 Quando for rolar o dano, você deverá fazê-lo apenas uma vez e somar os bônus. Por exemplo, ao usar uma arma, você adicionará o atributo relevante e outros bônus apenas uma vez. Se estiver utilizando uma técnica ou feitiço que acerta uma área, você deve rolar o dano uma vez e aplicá-lo a todas as criaturas dentro da área afetada pela habilidade.
 
-MuLTIPLICADOR DE CRÍTICO
+### Multiplicador de Crítico
 
 Algumas armas e habilidades permitem que você aumente o multiplicador de crítico. Normalmente, você rolará os dados do crítico duas vezes, mas essas armas e habilidades permitem que você aumente o multiplicador de duas vezes para mais, com um máximo de x4. Por exemplo, o Arco Longo dos Quincys aumenta o multiplicador para x3, o que significa que, se você causar um crítico com ele, você jogará os dados de dano três vezes. Se o ataque normal dele causa 1d8 de dano perfurante, ao realizar um crítico, será 3d8, pois você jogará os dados três vezes.
 
 Você só utilizará o multiplicador de crítico quando o objeto que amplia seu multiplicador estiver envolvido na sua jogada de ataque. Caso ele não esteja, o multiplicador não será aplicado. Por exemplo, se você estiver usando uma Zanpakutou com um multiplicador de crítico de x3, mas utilizar um Kido que não envolva a Zanpakutou, você não causará o crítico em x3, e o crítico será feito normalmente em x2.
 
-Tipos de dano
+### Tipos de Dano
 
 Cada ataque causa um tipo de dano, que pode ser dividido em duas categorias: Danos Físicos e Danos Esotéricos. Essas categorias possuem regras específicas, mas não para cada tipo de dano individualmente.
 
 Os tipos de dano são importantes ao considerar as resistências ou imunidades de uma criatura a determinados tipos de dano, assim como se uma criatura tem vulnerabilidade a algum dano, como veremos mais adiante no capítulo.
 
-Dano físico
+### Dano Físico
 
-Os danos físicos são geralmente causados por ataques com armas ou ataques desarmados. Se uma criatura sofrer uma quantidade significativa de dano físico em um único golpe, ela ficará com a condição “Sangrando”. O Mestre decide a quantidade de dano necessária para isso ocorrer (sugestão para os Mestres: 20% dos Pontos de Vida da criatura). • • •
+Os danos físicos são geralmente causados por ataques com armas ou ataques desarmados. Se uma criatura sofrer uma quantidade significativa de dano físico em um único golpe, ela ficará com a condição “Sangrando”. O Mestre decide a quantidade de dano necessária para isso ocorrer (sugestão para os Mestres: 20% dos Pontos de Vida da criatura).
 
 Concussão: Ataques desarmados, golpes com martelos, ou até mesmo uma queda de grande altura, causar dano por impacto é um dano de concussão.
 
@@ -424,7 +416,7 @@ Cortante: Uma espada que corta seus inimigos, como uma Zanpakutou ou um Machado 
 
 Perfurante: Ataques de perfuração e empalação, causam dano perfurante.
 
-Dano Esotéricos
+### Dano Esotéricos
 
 ## Resistência
 
@@ -433,16 +425,6 @@ Os danos esotéricos são causados por todos os tipos de dano que não se encaix
 Quando você possuir resistência a um tipo de dano, o dano recebido será reduzido pela metade, após aplicar todos os bônus ao dano. Por exemplo, se você tem resistência a dano de Fogo e recebe 30 de dano de Fogo, você reduzirá esse valor pela metade, recebendo assim 15 de dano de Fogo. Se você possuir tanto resistência quanto redução de dano ao mesmo tipo de dano, primeiro aplique a redução de dano e depois a resistência. Seguindo o exemplo do dano de Fogo: se você tem resistência a dano de Fogo e também possui 10 de redução de dano de Fogo, ao receber 30 de dano de Fogo, você primeiro subtrai os 10 de redução de dano, resultando em 20 de dano de Fogo. Em seguida, aplica-se a resistência, que reduzirá pela metade esses 20 de dano, fazendo com que você receba 10 pontos de dano de Fogo.
 
 Resistência é algo que você possui ou não, você não acumula duas resistências ao mesmo tipo de dano. Por exemplo, você não pode ter resistência duas vezes ao dano de Fogo. Mas se estiver protegido por uma habilidade que conceda resistência a todo tipo de dano, sem especificar um tipo de dano ao qual você já possui resistência, primeiramente será aplicada redução de dano se você possuir e depois o dano será reduzido pela metade duas vezes.
-
-• • • • • •
-
-•
-
-•
-
-•
-
-•
 
 Corrosivo: Dano causado por ácido e por substâncias corrosivas.
 
@@ -494,7 +476,7 @@ Sempre que uma criatura sofrer dano, esse valor é subtraído de seus pontos de 
 
 Quando seu personagem sofrer danos suficientes para reduzir seus pontos de vida a 0, ele ficará inconsciente e poderá morrer ou, em alguns casos, morrer instantaneamente.
 
-MORTE INSTaNTâNEA
+### Morte Instantânea
 
 Quando um personagem receber um dano massivo igual ao seu valor máximo de pontos de vida, ele morrerá instantaneamente. Por exemplo, se seu personagem possui 50 pontos de vida máxima e recebe 50 de dano, ele morrerá instantaneamente, independentemente da quantidade de pontos de vida atual.
 
@@ -511,10 +493,6 @@ Se o personagem for reduzido a 0 pontos de vida, no início de cada turno ele de
 Para sobreviver, você precisa obter três sucessos, mas se acumular três fracassos, o personagem morrerá. Para determinar isso, jogue um d20: se o resultado for 10 ou mais, você obtém um sucesso, caso contrário você fracassa. Um sucesso ou um fracasso, por si só, não tem efeito imediato. Quando você alcançar o terceiro sucesso, o personagem se Estabiliza, veremos oque é estabilizar a seguir. Com o terceiro fracasso, o personagem morre. Sucessos e fracassos não precisam ser consecutivos. Você deve manter ambos os fracassos e sucesso anotados até alcançar três de um mesmo tipo.
 
 O mestre pode manter os fracassos do teste de um personagem até que ele realize um descanso longo, mas deve respeitar as regras da Ação Estabilizar.
-
-•
-
-•
 
 Rolando 1 ou 20 no teste contra morte: Quando você faz um teste contra a morte e obtém um 1 no d20, isso conta como dois fracassos no teste. Se você obtiver um 20 no d20, o personagem recupera 1 ponto de vida e acorda.
 
@@ -566,7 +544,7 @@ Quando uma criatura recebe qualquer tipo de cura ou recuperação, os pontos de 
 
 Itens também podem recuperar pontos de vida e reiatsu e seguem as mesmas regras descritas acima.
 
-Movimento e posição
+### Movimento e Posição
 
 O campo de batalha é um espaço dinâmico, onde a agilidade, a estratégia e o posicionamento são cruciais para a vitória. Os Shinigamis, Quincys ou outras entidades espirituais, utilizam suas habilidades de movimento para se deslocarem rapidamente, evitarem ataques e encontrarem a posição ideal para realizar golpes decisivos.
 
@@ -608,7 +586,7 @@ Se você tem mais de um tipo de deslocamento, como o deslocamento de caminhada e
 
 Você também pode trocar um tipo de deslocamento por outro. Se você tiver deslocamento de voo e de caminhada, pode trocar o de voo por caminhada, mas receberá apenas metade do deslocamento que trocou. Por exemplo, se você tem 9 metros de caminhada e optou por trocar para voo, receberá 4,5 metros de voo. No entanto, só pode fazer essa troca se tiver o deslocamento máximo disponível, ou seja, não pode se mover e depois trocar. Você também só pode trocar para um deslocamento que você possui, por exemplo, se você não tem deslocamento de voo você não pode trocar para voo.
 
-Deslocamento Instântaneo
+### Deslocamento Instântaneo
 
 Todas as classes possuem um tipo de Deslocamento Instantâneo, como o Shunpo dos Shinigamis, o Sonido dos Hollows e o Hirenkyaku dos Quincys. Essas habilidades de deslocamento possuem regras próprias descritas nas classes, nas quais elas se diferenciam entre as classes do mesmo tipo. Por exemplo, a classe Combatente possui o Shunpo, enquanto a classe Lutador tem o Shunpo Aprimorado, que é uma versão melhorada do Shunpo. Sempre que você utilizar o Deslocamento Instantâneo, receberá vantagem no próximo ataque ou habilidade. Por exemplo, se você usar o Shunpo e, em seguida, utilizar a técnica Getsuga Tenshou da Zanpakutou Zangetsu, terá vantagem na rolagem de acerto, mas apenas para habilidades e ataques que requerem um acerto. Assim como na seção “Quebrando seu Movimento”, você pode realizar a Ação de Ataque, fazer um ataque, e se tiver mais ataques no turno, pode usar um Deslocamento Instantâneo para realizar o próximo ataque com vantagem. Por exemplo, se você é um Quincy, realiza a Ação de Ataque com seu Arco Longo, dispara o primeiro golpe, utiliza o Hirenkyaku e tem vantagem nesse próximo ataque, enquanto o terceiro ataque é realizado normalmente.
 
@@ -676,7 +654,7 @@ Ichigo se desloca 9 metros e Rukia 7,5 metros até o Hollow para flanquear e rea
 
 TAMANHO DE CRIATURA Cada criatura possui um tamanho diferente, e isso influencia o espaço que ela ocupa no tabuleiro. A tabela de Categorias de Tamanho, mostrará qual categoria a partir da altura do seu personagem.
 
-Categorias de Tamanho Tamanho
+### Categorias de Tamanho Tamanho
 
 Altura
 
@@ -700,7 +678,7 @@ De 3,01 metros até 4,50 metros De 4,51 metros até 10 metros
 
 Como no exemplo de tabuleiro da pagina anterior uma criatura Grande irá ocupar Quatro quadrados e quanto maior a criatura mais ela ocupará. Na tabela abaixo você saberá quanto seu personagem irá ocupar no tabuleiro a partir do tamanho do personagem.
 
-OCUPAÇÃO NO TABULEIro Tamanho
+### Ocupação no Tabuleiro Tamanho
 
 ## Espaço
 
@@ -726,7 +704,7 @@ Imenso
 
 Um
 
-Quatro Nove
+### Quatro Nove
 
 Dezesseis
 

@@ -54,8 +54,6 @@ O dado de vinte faces, conhecido como d20, é o mais importante no jogo, sendo u
 
 Há mais uma regra geral que você precisa saber desde o início. Sempre que você dividir um número no jogo e o resultado for uma fração, arredonde para baixo, mesmo que a fração seja maior que a metade.
 
-• • • •
-
 Etapa 1: O jogador informa ao mestre que deseja empurrar uma grande rocha.
 
 Etapa 2: O mestre solicita que o jogador faça um Teste de Força.
@@ -64,21 +62,13 @@ Etapa 3: O jogador lança o d20 e adiciona os bônus ao número rolado e informa
 
 Para determinar se o personagem obteve sucesso na ação, o resultado da rolagem do dado d20 deve ser igual ou maior que a dificuldade estipulada pelo mestre, essa dificuldade é chamada de Classe de Dificuldade (CD). Por exemplo, se o mestre definiu a dificuldade como 10 e o jogador tirou 10 no dado d20, então o jogador obteve sucesso.
 
-BÔNUS NA rolagem
+### Bônus na Rolagem
 
 Quando você realizar um Teste ou uma Jogada de Ataque, você utilizará bônus, esses bônus são somados ao seu resultado no d20. Como no exemplo citado antes, realizar um Teste de Força, você adicionará o atributo de força ao resultado, como também se você for proficiênte, você também irá adicionar o bônus de proficiencia.
 
 ## Termos Importantes do Rpg
 
-No Soul Society RPG, você encontrará vários termos importantes e abreviações, para o melhor entendimento do livro você deve ter um breve conhecimento sobre eles. •
-
-•
-
-•
-
-• •
-
-•
+No Soul Society RPG, você encontrará vários termos importantes e abreviações, para o melhor entendimento do livro você deve ter um breve conhecimento sobre eles.
 
 ## Crítico
 
@@ -86,19 +76,11 @@ Em um combate contra um Hollow ou mesmo em uma conversa, os personagens ocasiona
 
 Quando um personagem rola um 20 no d20, ele obtém sucesso no desafio, mesmo que o resultado da rolagem do d20 somado aos Bônus não seja suficiente para passar no teste. Por outro lado, se o personagem rolar um 1 no d20, ele falhará automaticamente, e o Mestre pode decidir se algo de ruim acontecerá com o personagem.
 
-• •
-
-•
-
-•
-
 ## Vantagem e Desvantagem
 
 Quando você realizar uma rolagem, um teste ou uma jogada de ataque, você pode ter vantagem ou desvantagem nessa ação. Se você tiver alguma característica ou o mestre lhe conceder vantagem, você rolará o d20 duas vezes e ficará com o maior resultado dos dois dados. Se você tiver desvantagem, você rolará dois d20 também, mas ficará com o menor resultado.
 
 Vantagem e desvantagem não se acumulam, ou seja, você pode ter apenas uma vantagem ou desvantagem, não somando mais de uma.
-
-•
 
 Criatura: Uma criatura pode ser um personagem, como um Hollow, um Shinigami, um aliado ou até mesmo um inimigo. Quando uma habilidade atingir uma ou mais criaturas, todas elas serão afetadas, inclusive os aliados. Aliado: Um aliado, ou criatura aliada, é uma criatura que não é hostil a você. Pode ser um membro do seu próprio grupo, como outros jogadores, ou um NPC que está ajudando você.
 
@@ -120,22 +102,6 @@ Turno e Rodada: Um turno refere-se a uma única rodada de ações que um persona
 
 Atributos: Cada criatura possui seis atributos: Força, Destreza, Constituição, Inteligência, Sabedoria e Espirito. Cada um desses atributos representa uma medida de habilidade ou característica específica da criatura, como se uma criatura possúi uma vitalidade boa, seu valor de constituição é alto.
 
-•
-
-•
-
-•
-
-•
-
-•
-
-•
-
-•
-
-•
-
 Pontos de Vida (PV): São uma representação numérica da saúde e vigor de um personagem ou criatura. Eles indicam quanto dano um personagem pode sofrer antes de ficar incapacitado ou morrer. À medida que um personagem recebe danos em combate ou por outras circunstâncias, seus pontos de vida são reduzidos. Quando os pontos de vida de um personagem chegam a zero ou menos, o personagem fica inconsciente e pode morrer.
 
 Pontos de Reiatsu (PR): São uma representação numérica da energia espiritual de um personagem ou criatura. Eles indicam quanto um personagem consegue utilizar de poder, como manter uma Shikai e Bankai ativa ou utilizar grandes quantidades de Kido. Cada habilidade que o personagem utilizar terá um custo de pontos de reiatsu e quando um personagem zerar seus pontos de reaitsu ele ficará com a condição “Esgotado”. Classe de Resistência (CR): É o valor numérico que representa defesa de uma criatura. Quanto maior a CR, mais difícil é para um atacante acertar o alvo. Para acertar um ataque em uma criatura, o atacante deve rolar um número igual ou maior que a CR dessa criatura.
@@ -149,20 +115,6 @@ Teste de Resistência: Um Teste de Resistência representa a tentativa de resist
 Crítico em Combate: Quando você atacar uma criatura e rolar um 20 no d20, você realizará um acerto crítico. Esse acerto crítico faz com que seu dano seja devastador, onde você dobrará todos os dados de dano dessa jogada.
 
 Crítico Ampliado: Se você possuir uma característica que aumente sua margem de crítico e não estiver especificada uma margem, como 19-20 ou 18-20, sua margem de crítico será aumentada. Por exemplo, se seu crítico normalmente ocorre com um resultado 20 no d20 e você tem uma característica que aumenta em 1, você critará com um resultado 19 no d20. Se você já possuir um crítico melhorado e receber um aumento na margem, o aumento ocorrerá a partir do crítico melhorado. Por exemplo, se você tiver um crítico melhorado em 19-20 e adquirir uma característica que aumenta em 1, seu crítico será 18-20.
-
-•
-
-•
-
-•
-
-•
-
-•
-
-•
-
-•
 
 Crítico Superior: Um acerto crítico em uma jogada de ataque contra uma criatura dobra seus dados de dano, mas algumas habilidades, características de classe e certas armas (como Zanpakutou e Armas dos Quincys) ampliam a quantidade de dados rolados. Quando uma habilidade menciona um crítico x3, você rolará o número de dados da jogada de dano três vezes, e quando especificado x4, quatro vezes. Por exemplo, se estiver utilizando um Arco Longo de Quincy que causa 1d8 de dano perfurante e realizar um acerto crítico, normalmente você causaria 2d8 de dano, dobrando os dados. No entanto, o Arco Longo tem um crítico x3, então você triplicará o d8, resultando em 3d8 de dano perfurante com o crítico do Arco Longo.
 
@@ -184,21 +136,19 @@ Vamos à aventura, mas primeiro que tal relembrarmos um pouco do universo de ble
 
 REISHI Reishi são as partículas fundamentais que constituem todas as coisas espirituais. Isso inclui os corpos espirituais dos Hollows e Shinigamis, bem como os planos de existência Hueco Mundo e Soul Society em sua totalidade. O Reishi é invisível para os mortais (como os humanos, com exceção dos sensitivos), mas pode interagir com a matéria física e produzir efeitos tangíveis. Também há uma certa quantidade de Reishi no Mundo Humano, sendo que áreas mais naturais tendem a ter concentrações maiores. Os Quincys coletam esse Reishi para utilizá-lo em combate na forma de Reiryoku, enquanto os Shinigamis o usam para se manter no ar, dando a impressão de que estão voando.
 
-Reiryoku e reiatsu
+### Reiryoku e Reiatsu
 
 Reiryoku, ou energia espiritual, é o poder derivado da sensibilidade espiritual e da força de vontade do usuário, e é mensurado em quantidade. A quantidade de reiryoku é um indicador direto do potencial de um ser: quanto maior a quantidade de reiryoku, mais poderosa a criatura pode ser. Essa energia é utilizada por seres espirituais, como gikon, almas e hollows, além de ser empregada por certos seres humanos, incluindo médiuns, fullbringers e quincys.
 
 Por outro lado a Reiatsu é a manifestação da potência da Reiryoku de uma criatura, e também pode ser chamada de Pressão Espiritual. Basicamente, é o poder da criatura e como ela o controla para realizar ataques poderosos. O Reiryoku é o potencial, enquanto a Reiatsu é a energia em uso. Em geral, aqueles com altos níveis de Reiryoku frequentemente têm níveis elevados de Reiatsu também. No entanto, um guerreiro habilidoso pode superar uma pessoa com maior energia espiritual se tiver uma pressão espiritual superior, alcançada através de um maior controle sobre sua própria energia espiritual.
 
-REIATSU no soul society RPG
+### Reiatsu no Soul Society Rpg
 
 A divisão entre Reiryoku e Reiatsu foi unificada no Soul Society RPG para fins de simplificação. Embora isso possa ser abordado em campanhas, tratamos como uma combinação de quantidade e poder, ao invés de separarmos os dois conceitos, unificando tudo em um único nome, utilizando “Reiatsu” que é o termo mais famoso no fandom de Bleach.
 
-OCENÁrio de bleach
+### Ocenário de Bleach
 
-cenário de Bleach é vasto e complexo. No início, tudo um único mundo, chamado de Mundo Primordial que era o caos, aonde todas as existências viviam juntas em batalhas infinitas, até que um ser quase divino separou o mundo em três dimensões principais: Soul Society, Hueco Mundo e o Mundo Humano. Essa intervenção transformou o mundo primordial em uma estrutura harmoniosa, adequada para a vida e a ordem, dando um lugar para cada tipo de existência. Esse ser, é conhecido como o Rei das Almas, ele é eixo central de todas as dimensões e também o que sustenta a existência delas. •
-
-• •
+cenário de Bleach é vasto e complexo. No início, tudo um único mundo, chamado de Mundo Primordial que era o caos, aonde todas as existências viviam juntas em batalhas infinitas, até que um ser quase divino separou o mundo em três dimensões principais: Soul Society, Hueco Mundo e o Mundo Humano. Essa intervenção transformou o mundo primordial em uma estrutura harmoniosa, adequada para a vida e a ordem, dando um lugar para cada tipo de existência. Esse ser, é conhecido como o Rei das Almas, ele é eixo central de todas as dimensões e também o que sustenta a existência delas.
 
 Soul Society: Um paraíso espiritual onde as Almas purificadas vivem e os shinigamis governam, garantindo a ordem e a purificação das almas corrompidas.
 
@@ -222,7 +172,7 @@ alma
 
 reishi
 
-HOLLOW PLUS
+## Hollow Plus
 
 ## Humano
 
@@ -260,7 +210,7 @@ Para se tornar um shinigami, uma alma deve possuir um elevado nível de reiryoku
 
 ## Sereitei
 
-A Seireitei é a região central da Soul Society. Ela serve como o coração administrativo, militar e cultural da Soul Society. Cercada por muralhas altas e robustas em forma de um grande círculo, a Seireitei é protegida por uma barreira espiritual poderosa e possui quatro portões que dão diretamente para Rukongai: o portão Norte, Leste, Oeste e Sul. Esses portões são guardados pelos Grandes Guardiões e também são protegidos pelas divisões de shinigamis. A Seireitei tem repartições internas e, além de ser a moradia dos Shinigamis, é também o local de seus treinamentos. O capítulo da Seireitei detalha mais sobre como a Seireitei é dividida e suas hierarquias, mas os pontos que não são abordados lá serão destacados aqui, e teremos um breve resumo do que é abordado no capítulo também. •
+A Seireitei é a região central da Soul Society. Ela serve como o coração administrativo, militar e cultural da Soul Society. Cercada por muralhas altas e robustas em forma de um grande círculo, a Seireitei é protegida por uma barreira espiritual poderosa e possui quatro portões que dão diretamente para Rukongai: o portão Norte, Leste, Oeste e Sul. Esses portões são guardados pelos Grandes Guardiões e também são protegidos pelas divisões de shinigamis. A Seireitei tem repartições internas e, além de ser a moradia dos Shinigamis, é também o local de seus treinamentos. O capítulo da Seireitei detalha mais sobre como a Seireitei é dividida e suas hierarquias, mas os pontos que não são abordados lá serão destacados aqui, e teremos um breve resumo do que é abordado no capítulo também.
 
 ## Soul Society
 
@@ -270,15 +220,7 @@ almas
 
 São seres espirituais que residem na Soul Society. A maioria das almas seja composta por humanos que faleceram no mundo humano, também é possível que novas almas nasçam diretamente na Soul Society. Normalmente uma Alma não consegue controlar seu Reiryoku.
 
-•
-
 A Gotei 13 é a principal organização militar da Soul Society. Composta por treze divisões, cada uma liderada por um capitão e um vice-capitão, a Gotei 13 é responsável por manter a ordem e a paz na Soul Society, proteger o mundo dos vivos contra Hollows, e realizar missões de combate e investigação. Cada divisão tem suas próprias especialidades e funções, como combate, cura, pesquisa e desenvolvimento. A Gotei 13 é uma força vital na luta contra ameaças externas e internas, trabalhando sob a liderança do Capitão-Comandante. A Central 46 é uma entidade governamental na Soul Society. Ela é composta por 40 Sábios e 6 Juízes, que são responsáveis por tomar decisões judiciais e administrativas de alta importância. A Central 46 delibera sobre questões legais, julga crimes e decreta sentenças, além de criar e implementar leis que regem a Soul Society. Suas decisões são finais e incontestáveis, tornando-os a autoridade suprema em questões de governança e justiça. A Central 46 atua de forma isolada, dentro de um complexo altamente protegido.
-
-•
-
-•
-
-• •
 
 O Kido Corps é uma organização especializada dentro da Soul Society. Esta força é dedicada ao estudo, desenvolvimento e uso do Kido, que são técnicas baseadas em feitiços utilizadas pelos Shinigamis. O Kido é dividido em dois principais tipos: Hado (caminho da destruição), que são feitiços ofensivos, e Bakudo (caminho da restrição), que são feitiços defensivos e de aprisionamento. O Kido Corps é responsável por treinar Shinigamis no uso dessas técnicas avançadas, bem como por realizar pesquisas para desenvolver novos feitiços e melhorar os existentes. Eles também auxiliam a Gotei 13 em batalhas e missões onde o uso de Kido é essencial. A organização é liderada por um comandante e é composta por membros altamente qualificados que demonstram grande proficiência em Kido.
 
@@ -296,7 +238,7 @@ Grande Prisão Subterrânea Central é uma prisão subterrânea onde Shinigami q
 
 É uma dimensão separada, mas ainda dentro da Soul Society, onde reside o Rei das Almas e também a Divisão 0, que são os protetores do Rei. A Divisão 0 é composta por ex-capitães da Gotei 13 que tiveram uma grande influência e foram convidados a se tornar seus guardas. Para acessar essa dimensão, é necessário ter permissão da Divisão 0 ou usar a chave real. O palácio é uma grande estrutura cilíndrica central onde o Rei reside, e ao redor existem cinco grandes círculos com pequenas cidades. Cada um desses círculos é habitado por um dos capitães da Divisão 0 e seus subordinados.
 
-Schatten Bereich
+### Schatten Bereich
 
 É uma dimensão separada dentro da Soul Society criada por Yhwach após a derrota dos Quincys. Ela tem praticamente o tamanho da Soul Society, mas permanece nas sombras, onde os Shinigamis não podem detectar os Quincys. Dentro dessa dimensão gigante, existe um palácio onde Yhwach e os Wandenreich têm sua sede. O nome desse palácio é Silbern, é um edifício grande, todo coberto de gelo, e possui uma grande cidade ao seu redor.
 
@@ -308,9 +250,7 @@ Para transitar pelo Senkaimon, é necessário um Jigokucho, uma borboleta de asa
 
 Quando o Senkaimon aparece no mundo humano, ele pode manifestar-se em quase qualquer local. Nesses casos, o Senkaimon assume a forma de uma tradicional sala de espera japonesa, acessível por um Shoji. Para abrilo, é preciso usar um Zanpakuto como chave. O método consiste em posicionar a Zanpakuto diante do usuário e, em seguida, inseri-lo na área espacial desejada onde se quer que o Senkaimon apareça, girando a espada como se fosse uma chave. O vinco da porta então surge e se abre completamente, revelando outra porta além da qual o Jigokucho se torna visível.
 
-Alguns intrusos utilizam outros métodos para entrarem na Soul Society que são métodos mais perigosos sendo eles: •
-
-•
+Alguns intrusos utilizam outros métodos para entrarem na Soul Society que são métodos mais perigosos sendo eles:
 
 Reishi Henkan-Ki: Máquinas de conversão de partículas espirituais usadas para transformar Kishi que é o Corpo Humano em Reishi, permitindo assim a entrada de um humano na Soul Society. Em outras palavras ele converte seres físicos em Almas ou Reishi. Tenkai Ketchu: Uma variação do Senkaimon que utiliza quatro pilares gigantes posicionados em cada canto para substituir o espaço interno por outro espaço alternativo. Essa configuração permite a troca de dimensões dentro do portão.
 
@@ -374,7 +314,7 @@ Embora inicialmente se acreditasse que o Hogyoku possuía apenas o poder de cont
 
 Conseguiu relembrar os pontos mais importantes de cada parte do universo de Bleach? Se não, não tem problema. Durante o livro, você encontrará inúmeras descrições de cada elemento e adaptações para o Soul Society RPG. Lembre-se de voltar aqui para esclarecer qualquer dúvida ou, se preferir, ler o mangá e assistir ao anime novamente para manter tudo fresco na sua mente é com você. E agora sim, vamos a aventura!
 
-DIMENSÕES de bleach
+### Dimensões de Bleach
 
 Deslocamento entre as dimensões 1.
 

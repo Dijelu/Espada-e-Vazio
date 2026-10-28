@@ -20,11 +20,11 @@ Como uma organização militar, a Gotei 13 possui uma hierarquia muito forte que
 
 46. Existe a hierarquia nomeada como veremos a seguir, mas também há a hierarquia por números dentro de cada divisão, variando de 1 a 20, com a exclusão do capitão nessa contagem.
 
-capitão comandante
+### Capitão Comandante
 
 O Capitão Comandante e também Capitão da Primeira Divisão, é o líder supremo da Gotei 13, responsável por supervisionar as operações gerais da Gotei 13, Onmitsukido e Kido Corps, além de manter o bem-estar de toda a Soul Society. O único poder que está acima do Capitão Comandante é a Central 46, porém, não é uma relação unilateral de ordens, aonde o Capitão Comandante é um ativo e pode não acatar as ordens dadas.
 
-capitão de divisão
+### Capitão de Divisão
 
 Um capitão de divisão é o líder de uma das treze divisões, geralmente sendo shinigamis muito respeitados e extremamente poderosos, cuidando de toda sua divisão da maneira que achar melhor, nomeando seus tenentes como desejar. Todos os capitães têm acesso ao Shikai e Bankai e conseguem utilizá-los de maneira habilidosa.
 
@@ -40,7 +40,7 @@ Tenente, ou Vice-Capitão, é um dos oficiais executivos de sua divisão escolhi
 
 Abaixo do capitão, há numerações dentro da divisão, variando de 1 a 20. Quanto maior for o poder ou influência dentro da divisão, maior a autoridade que o capitão pode conceder ao designar a numeração, e os números mais altos têm autoridade sobre os números mais baixos. Abaixo do número vinte, não existem numerações e todos são considerados apenas membros da divisão, sem patentes.
 
-escolhendo sua divisão
+### Escolhendo Sua Divisão
 
 Quando você escolher sua classe de shinigami, você deve selecionar a qual divisão seu personagem foi designado. E Cada divisão tem um objetivo e uma função específica, mas o personagem não precisa necessariamente compartilhar o mesmo objetivo de sua divisão, podendo ter outros interesses. Por exemplo, é possível pertencer à 11ª Divisão e não ter uma grande afinidade por batalhas.
 
@@ -48,7 +48,7 @@ Ao escolher uma divisão, você receberá uma característica de divisão e deve
 
 Gotei 13
 
-Primeira DIVISÃO
+### Primeira Divisão
 
 Shinigamis Famosos: Genryuusai Yamamoto, Kyoraku Shunsui, Nanao Ise.
 
@@ -58,45 +58,45 @@ CARACTERÍSTICAs DA DIVISÃO:
 
 Divisão
 
-Características de divisão
+### Características de Divisão
 
 Primeira
 
-Conduta Exemplar - Exemplo
+### Conduta Exemplar - Exemplo
 
 Quarta
 
-Curandeiro - Especialista em Cura
+### Curandeiro - Especialista em Cura
 
 2.
 
 Sétima
 
-Atenção Dobrada - Descanso Melhorado
+### Atenção Dobrada - Descanso Melhorado
 
 ## Segunda Divisão
 
 Décima
 
-Encorajar - Planejamento
+### Encorajar - Planejamento
 
-Segunda Terceira Quinta Sexta
+### Segunda Terceira Quinta Sexta
 
-Oitava Nona
+### Oitava Nona
 
-Décima Primeira Décima Segunda Décima Terceira
+### Décima Primeira Décima Segunda Décima Terceira
 
-Assassinar - Infiltração
+### Assassinar - Infiltração
 
-Rastejar - Passar Informação
+### Rastejar - Passar Informação
 
 1.
 
-Aprendizado - Grimório Perseguir - Prender
+### Aprendizado - Grimório Perseguir - Prender
 
 Ajudante - Mestre das Periciais Controles de Danos - Intelecto Combate Feroz - Berserk Cientista - Estudos
 
-Reconhecimento - União
+### Reconhecimento - União
 
 Conduta Exemplar: Sua conduta como shinigami é um exemplo, você foi o aluno exemplar de sua classe na academia de shinigami. Você recebe vantagem em testes de história e não esquece de nenhuma informação.
 
@@ -112,7 +112,7 @@ ASSASSINAR: Se você atacar uma criatura que está “Surpresa”, seu ataque co
 
 Infiltração: Quando você utilizar a ação “Esconder”, você somará 1d4 ao resultado da soma em combate e, quando estiver fora de combate, você somará 1d8 ao resultado.
 
-TErceira DIVISÃO
+### Terceira Divisão
 
 Shinigamis Famosos: Gin Ichimaru, Rojuro Otoribashi, Kinroku Izuhara.
 
@@ -126,9 +126,9 @@ RASTrEAR: Você tem vantagem em testes de perícia para rastrear uma criatura co
 
 PASSAR INFORMAÇÃO: Você conhece o Bakudou número 77: Tenteikuura e pode utilizá-lo mesmo não possuindo acesso ao rank do Bakudou, e ele custará metade do custo de reiatsu.
 
-Quarta DIVISÃO
+### Quarta Divisão
 
-Sétima DIVISÃO
+### Sétima Divisão
 
 A quarta divisão é focada em dar suporte ao seu time, utilizando a cura em seus aliados, tornando grandes médicos na Soul Society e também cuidam das tarefas domesticas da Gotei 13. Ao escolher a quarta divisão você recebe a característica da divisão.
 
@@ -144,7 +144,7 @@ MÉDICO: Você consegue utilizar kido curativos recebendo o talento da classe Su
 
 ESPECIALISTA EM CURA: Quando você utilizar um Kido de Cura e ele envolver rolagens de dados para determinar a quantidade de cura concedida a uma criatura, você pode rolar os dados com vantagem e escolher o resultado mais alto.
 
-Quinta DIVISÃO
+### Quinta Divisão
 
 Shinigamis Famosos: Shinji Hirako, Sosuke Aizen, Obana Danjiro.
 
@@ -156,7 +156,7 @@ CARACTERÍSTICAs DA DIVISÃO: 1.
 
 2.
 
-Oitava DIVISÃO
+### Oitava Divisão
 
 Shinigamis Famosos: Shunsui Kyoraku, Lisa Yadomaru, Katoribatsu Unsai.
 
@@ -172,7 +172,7 @@ APRENDIZADO: Você pode escolher um Bakudou ou Hadou de Rank D (1–20) para us�
 
 GRIMÓRIO: Quando você tiver que escolher um novo Kido e ele for de um nível superior ao que você tem, você pode escolher dois Kido ao invés de um. Por exemplo, se você ganhou um nível de classe e pode escolher um Kido de Rank-C e for a primeira vez que você escolher de Rank-C, você pode escolher dois ao invés de um.
 
-Sexta DIVISÃO
+### Sexta Divisão
 
 Shinigamis Famosos: Byakuya Kuchiki, Renji Abarai, Ginrei Kuchiki.
 
@@ -188,7 +188,7 @@ Ajudante: Quando um aliado estiver realizando um teste e estiver até 3 metros d
 
 MESTRE DAS PERICIAIS: Quando precisar realizar um teste com uma perícia, você pode utilizar 3 pontos de reiatsu para se tornar proficiente com ela para esse teste.
 
-nONA DIVISÃO
+### Nona Divisão
 
 Shinigamis Famosos: Kensei Muguruma, Kaname Tosen, Shuhei Hisagi.
 
@@ -206,9 +206,9 @@ DESCANSO MELHORADO: Quando realizar um descanso curto ou longo, você precisa ap
 
 controle de danos: Quando você estiver em uma situação de perigo constante, você pode utilizar sua ação para criar um plano e, até o final do seu próximo turno, tudo que você fizer e todos os aliados que possam te ouvir recebem +2 em todas as suas ações, mas você só pode utilizar essa ação uma vez por situação, como um combate, ou uma perseguição. Intelecto: Escolha duas perícias que utilizem o atributo de inteligência, essas duas pericias você adiciona o dobro do atributo de inteligência a essa perícia e uma vez por dia quando você realizar um Teste de Resistência de Inteligência você pode jogar ele com vantagem.
 
-Décima DIVISÃO
+### Décima Divisão
 
-Décima SEGUNDA DIVISÃO
+### Décima Segunda Divisão
 
 A Décima Divisão é especializada em organizar grandes operações com muitos shinigamis. Ao escolher a décima divisão você pode escolher uma entre as características da divisão.
 
@@ -238,7 +238,7 @@ CARACTERÍSTICAs DA DIVISÃO: 1. 2.
 
 CIENTISTA: Você recebe o treinamento “Cientista” do eSTUDOS: Ao enfrentar um inimigo ou descobrir suas habilidades, você consegue estudar as habilidades dele. Em pelo menos um dia estudando, o mestre pode revelar alguma fraqueza do inimigo, como por exemplo a fraqueza da Shikai ou Bankai da Zanpakutou do inimigo.
 
-Décima Terceira DIVISÃO
+### Décima Terceira Divisão
 
 Shinigamis Famosos: Rukia Kuchiki, Jushiro Ukitake, Kaien Shiba.
 
@@ -262,21 +262,21 @@ Características
 
 -
 
-Primeira Divisão
+### Primeira Divisão
 
 d2
 
-Quarta Divisão
+### Quarta Divisão
 
 d2
 
 Segunda Divisão Terceira Divisão Quinta Divisão Sexta Divisão
 
-Sétima Divisão
+### Sétima Divisão
 
-Décima Divisão
+### Décima Divisão
 
-Oitava Divisão Nona Divisão
+### Oitava Divisão Nona Divisão
 
 Décima Primeira Divisão Décima Segunda Divisão Décima Terceira Divisão
 
@@ -294,7 +294,7 @@ d2
 
 A primeira divisão é especial porque o Capitão da primeira divisão também é o capitão da Gotei 13. Todos os shinigamis que ingressam nesta divisão são considerados modelos para as outras, então para entrar nela, você deve ser indicado ou escolhido pelo próprio capitão. Se você optar por escolher a divisão aleatoriamente e desejar ingressar na primeira divisão também, pode lançar um dado D20. Se o resultado for 19 ou 20, você pode entrar na primeira divisão.
 
-regra dois: Mestre decide
+### Regra Dois: Mestre Decide
 
 Em campanhas não convencionais, onde os jogadores iniciam com a classe alternativa “Aprendiz Shinigami”, o personagem começa sem uma classe definida e ainda está na Academia de Shinigamis, onde está passando pela fase de estudos para se tornar um Shinigami. Após se formar na academia o mestre decidirá em qual divisão o Shinigami será colocado, baseando-se nos feitos na academia e na personalidade do personagem.
 
@@ -336,7 +336,7 @@ U Emblema de Shinigami: Quando se torna um Shinigami Substituto, você recebe um
 
 Você pode permanecer na forma de Shinigami indefinidamente, mas ainda continua envelhecendo e precisa se alimentar, ao contrário de uma Alma. No entanto, você pode retornar à sua forma humana com uma Ação Livre.
 
-O Caminho do Shinigami Substituto
+### O Caminho do Shinigami Substituto
 
 Você pode ter a permissão da Central 46 ou não. Se não a tiver, você se transforma a partir de outro Shinigami que cedeu seus poderes a você, atravessando seu corpo com sua Zanpakutou com a finalidade de transformá-lo por algum motivo.
 
@@ -348,7 +348,7 @@ ONMiTSUKIDO O Onmitsukido é uma organização especializada em operações secr
 
 Como membro do Onmitsukidō, você recebe ordens apenas do Capitão e do Tenente da 2ª Divisão da Gotei 13. Outros Capitães podem lhe dar instruções, mas você decide se irá segui-las ou não, exceto quando a ordem partir do Capitão-Comandante das 13 Divisões. E você tem acesso a rede de informação do Onmtsukido, o mestre pode revelar informações que eles possam ter.
 
-UNIFORME OnmitsukidO
+### Uniforme Onmitsukido
 
 Kido Corps A Kido Corps é uma organização especializada no estudo e na utilização do Kido. Seus membros são responsáveis pela criação de barreiras, selos e técnicas espirituais utilizadas para proteger a Seireitei, conter ameaças e auxiliar outras divisões em diferentes situações.
 
@@ -358,7 +358,7 @@ Embora a Kido Corps possua uma estrutura própria, muitos de seus membros també
 
 A organização também mantém especialistas capazes de desenvolver e manter técnicas complexas de Kido, como barreiras destinadas a ocultar áreas, impedir a passagem de criaturas ou restringir o movimento de inimigos. Por isso, seus membros são frequentemente chamados quando uma situação exige conhecimento especializado em artes espirituais.
 
-Especialista em kido
+### Especialista em Kido
 
 Você pode aprender um Kido de um Rank superior ao seu atual Rank de acesso. Por exemplo, se você possui acesso a Kidos de Rank C, pode escolher livremente um Kido de Rank B para aprender. Você pode escolher apenas um Kido de Rank superior para cada Rank de acesso.
 
@@ -366,7 +366,7 @@ Os membros do Onmitsukido utilizam uniformes próprios, desenvolvidos para favor
 
 Ao fazer parte do Onmitsukidō, você pode utilizar essa farda para representar sua ligação com a organização e sua especialização em operações secretas.
 
-Técnica: SHUNPO ILUSÓRIO
+### Técnica: Shunpo Ilusório
 
 Quando utilizar o Shunpo, você pode gastar 10 pontos de Reiatsu para criar 3 clones espalhados pelo campo de batalha, a até 9 metros de você, que duram até o início do seu próximo turno.
 
@@ -394,13 +394,13 @@ Se você escolheu a Origem Alma e a variação Nobre, poderá escolher uma famí
 
 Todo Shinigami participa de uma força militar, mesmo sendo de uma família nobre, mesmo que você escolher a característica da família nobre, você ainda será de uma força militar.
 
-Famílias Nobres Maiores
+### Famílias Nobres Maiores
 
 Originalmente chamadas de Cinco Grandes Famílias Nobres, agora reduzidas a quatro, são as famílias mais influentes da Soul Society, possuindo grande poder e renome. Elas se tornaram as Grandes Famílias por terem sido responsáveis por selar e fragmentar o Rei das Almas, devido à destruição e ao desequilíbrio que ele causava no mundo espiritual. Com essa divisão, foram criadas as dimensões: Soul Society, Mundo Humano e Hueco Mundo. Desde então, o papel do Rei das Almas passou a ser o de sustentar esses mundos, a partir dos fragmentos de seu corpo, atuando como o centro silencioso da estabilidade, enquanto sua proteção ficou a cargo da Divisão Zero, a guarda suprema criada sob ordens diretas das Grandes Famílias.
 
 Você pode escolher entre três das cinco famílias nobres original, que estão listadas a seguir.
 
-四大貴族 Família KuchiKi
+### 四大貴族 Família Kuchiki
 
 Rukia Kuchiki, Byakuya Kuchiki e Ginrea Kuchiki. Com cabelos lisos e pretos, e um ar de liderança, até mesmo um pouco esnobe, ostentando seus Kenseikan, que simboliza sua nobreza, e um lenço no pescoço, cujo valor supera o de várias mansões na Seireitei, a família Kuchiki representa de forma emblemática o que é ser um nobre, especialmente um membro de uma das grandes famílias. A família Kuchiki é responsável por preservar a história da Soul Society e detém grande influência e riqueza, ocupando altos cargos dentro da força militar e exercendo forte poder na Central 46.
 
@@ -410,7 +410,7 @@ CARACTERÍSTICA Da FAMÍLIA KUCHIKI: 1.
 
 Reiatsu refinada: Desde pequeno, um membro da família Kuchiki treina sua reiatsu para refiná-la ao máximo, alcançando um domínio extraordinário sobre ela. Sempre que gastar pontos de reiatsu para usar uma habilidade, role 1d4 e diminua o resultado do custo. O custo de reiatsu não pode ser reduzido a zero, se isso acontecer, ele custará 1 ponto de reiatsu.
 
-Família Shiba
+### Família Shiba
 
 Kaien Shiba, Kukaku Shiba e Isshin Shiba.
 
@@ -420,13 +420,13 @@ CARACTERÍSTICA Da FAMÍLIA Shiba: 1.
 
 Legado de família: Alguns membros dessa família herdam uma técnica de Zanpakutou: o Getsuga Tenshou, descrito abaixo. Você pode utilizar essa técnica mesmo que ainda não tenha acesso à sua Shikai ou Bankai. O Getsuga Tenshou absorve as propriedades da sua Zanpakutou, se ela for do tipo elemental, o ataque causará dano do mesmo tipo de elemento. Se você possuir acesso à Bankai e utilizar o Getsuga Tenshou com a Bankai ativa, adicione +5 dados de dano.
 
-Técnica: GETSUGA TENSHOU
+### Técnica: Getsuga Tenshou
 
 Você canaliza a energia espiritual em sua arma e desfere um poderoso ataque à distância com a sua Zanpakutou criando um poderoso golpe.
 
 Utilizando sua ação e 15 pontos de reiatsu faça um ataque à distância com vantagem contra um alvo em até 18 metros de distância em linha. Se acertar, o alvo sofre 5d8 de dano de energia + atributo de espírito.
 
-Família Shihoin
+### Família Shihoin
 
 Yoruichi Shihoin, Chika Shihoin e Yushiro Shihoin. A família Shihouin é composta por membros marcantes, conhecidos por seus cabelos rouxos e pele morena. Eles são tão poderosos quanto carismáticos. Por tradição, o líder da família também comanda a Onmitsukido, liderando a organização desde os primórdios da Seireitei. Caso o líder da família conquiste uma capitania no Gotei 13, a Onmitsukido passa a atuar sob essa capitania.
 
@@ -438,7 +438,7 @@ Transformação animal: Você é capaz de se transformar em um animal de pequeno
 
 Todos os itens que estiverem com você, incluindo sua Zanpakutou e roupas, são assimilados à sua forma animal.
 
-Família Tsunayashiro
+### Família Tsunayashiro
 
 Kakyo Tsunayashiro e Tokinada Tsunayashiro.
 
@@ -478,7 +478,7 @@ CÓPIA A Enrakyoten possui o poder de copiar as habilidades de outras Zanpakutou
 
 Você pode copiar apenas a Shikai das Zanpakutous, não sendo possível copiar Bankais.
 
-Liberando o poder
+### Liberando o Poder
 
 Quando quiser utilizar o poder de uma Zanpakutou copiada, você deve realizar uma nova liberação, desta vez liberando a Zanpakutou copiada. Para isso, deve gastar a quantidade de pontos de reiatsu necessária para liberar a Zanpakutou original, além de pagar metade desse valor em pontos de vida. Se, ao tentar liberar outra Zanpakutou, seus pontos de vida forem reduzidos a 0, a liberação falha e você permanece com 0 pontos de vida.
 

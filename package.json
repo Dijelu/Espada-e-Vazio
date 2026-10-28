@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
-    "livro": "python3 scripts/build-book.py"
+    "livro": "python3 scripts/build-book.py && python3 scripts/limpar-livro.py"
   },
   "dependencies": {
     "minisearch": "^7.1.0",

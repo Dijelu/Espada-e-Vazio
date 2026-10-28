@@ -4,11 +4,11 @@ Omundo de Bleach é cheio de perigos. Hollows, Shinigami, Quincys, Arrancar e ou
 
 Este capítulo apresenta as regras para criar e utilizar ameaças durante uma aventura. Aqui, o Mestre encontrará regras para construir suas próprias ameaças, modificar fichas existentes e utilizar ameaças prontas em suas sessões.
 
-Construindo combates
+### Construindo Combates
 
 O combate é uma das principais formas de conflito em Bleach. Durante uma aventura, os personagens podem enfrentar uma única ameaça, grupos de inimigos ou adversários poderosos capazes de mudar completamente o rumo de uma batalha.
 
-Nível de Desafio
+### Nível de Desafio
 
 O Nível de Desafio (ND) representa o poder de uma ameaça e serve como referência para determinar quais personagens ela foi criada para enfrentar.
 
@@ -42,7 +42,7 @@ Um duelo entre dois personagens pode ser mais importante para a história do que
 
 O ND continua sendo uma referência importante, mas não precisa impedir que a história tenha momentos extraordinários.
 
-Construindo o Confronto
+### Construindo o Confronto
 
 Para construir um combate, primeiro considere o nível dos personagens e a quantidade de participantes.
 
@@ -56,7 +56,7 @@ Essa relação serve como referência para um combate equilibrado. A composiçã
 
 O Mestre também pode escolher deliberadamente uma ameaça acima ou abaixo dessa referência quando isso fizer sentido para a cena.
 
-Composição do Grupo
+### Composição do Grupo
 
 Nem todos os grupos possuem o mesmo poder.
 
@@ -72,7 +72,7 @@ As circunstâncias também podem mudar a dificuldade. Personagens feridos ou sem
 
 Da mesma forma, o Mestre pode criar situações que favoreçam ou prejudiquem os inimigos.
 
-Experiência dos Jogadores
+### Experiência dos Jogadores
 
 A experiência dos jogadores também influencia o resultado de um combate.
 
@@ -80,7 +80,7 @@ Jogadores que conhecem bem seus personagens e trabalham em equipe podem enfrenta
 
 O ND é uma referência para o Mestre, não uma garantia de que um combate terá sempre a mesma dificuldade.
 
-Criando uma Ameaça
+### Criando Uma Ameaça
 
 O Mestre pode utilizar as ameaças prontas deste capítulo ou criar suas próprias ameaças para representar personagens, criaturas e inimigos que não possuem uma ficha definida. Para criar uma ameaça, siga as etapas abaixo: 1. 2. 3. 4. 5. 6. 7. 8.
 
@@ -108,7 +108,7 @@ O primeiro passo é determinar a categoria da ameaça. Cada categoria possui reg
 
 Neste capítulo, as categorias são Hollow, Shinigami, Quincy. Cada uma possui características próprias que representam sua forma de combate e seu nível de poder.
 
-Solo ou Raid
+### Solo Ou Raid
 
 Depois de escolher a categoria, determine se a ameaça será Solo ou Raid.
 
@@ -118,7 +118,7 @@ Uma ameaça Raid é criada para enfrentar um grupo de quatro a cinco personagens
 
 Essa escolha deve ser feita antes de determinar os valores da ameaça, pois cada formato possui regras próprias para distribuir atributos e calcular seus valores.
 
-Nível de Desafio
+### Nível de Desafio
 
 O Nível de Desafio determina o poder geral da ameaça e serve como referência para definir seus valores. Como regra geral, utilize o nível dos personagens como base pra definir o ND da criatura. Uma ameaça Solo criada para enfrentar um personagem de 5º nível, por exemplo, normalmente deve possuir ND 5. Da mesma forma, uma ameaça Raid criada para enfrentar um grupo de personagens de 5º nível normalmente deve possuir ND 5. O ND não determina sozinho todas as características da ameaça. Cada categoria e formato possui seus próprios valores e regras.
 
@@ -130,7 +130,7 @@ Esses pontos podem ser distribuídos entre Força, Destreza, Constituição, Int
 
 Uma ameaça não precisa possuir valores altos em todos os atributos. Distribua os pontos de acordo com a forma como ela deverá atuar em combate. Um inimigo focado em combate físico pode concentrar seus pontos em Força, Constituição e Destreza, enquanto um inimigo especializado em Kido pode priorizar Inteligência e Espírito.
 
-Valores Base de pv e pr
+### Valores Base de Pv e Pr
 
 Cada categoria possui também valores base de Pontos de Vida (PV) e Pontos de Reiatsu (PR) determinados pelo ND, que estão descritas nas tabelas.
 
@@ -142,9 +142,9 @@ Para calcular os valores finais de uma criatura Solo, some ao PV Base o valor de
 
 nd
 
-pv BASE
+### Pv Base
 
-Pr BASE
+### Pr Base
 
 Atributos
 
@@ -152,17 +152,17 @@ Atributos
 
 nd
 
-pv BASE
+### Pv Base
 
-Pr BASE
+### Pr Base
 
 Atributos
 
 nd
 
-pv BASE
+### Pv Base
 
-Pr BASE
+### Pr Base
 
 Atributos
 
@@ -190,7 +190,7 @@ dIFÍCIL
 
 Hollow
 
-Shinigami Quincy
+### Shinigami Quincy
 
 Esses valores servem como uma base sólida, especialmente no início das campanhas. Em níveis mais altos, porém, a CR pode depender dos bônus de acerto dos jogadores. Nesses casos, o Mestre pode utilizar um método alternativo para defini-la.
 
@@ -212,7 +212,7 @@ Cr
 
 Atributos
 
-Hollow Comum
+### Hollow Comum
 
 -
 
@@ -232,7 +232,7 @@ Arrancar
 
 Adjuchas
 
-Vasto Lorde
+### Vasto Lorde
 
 +3
 
@@ -260,7 +260,7 @@ Tenente
 
 Capitão
 
-Capitão Comandante
+### Capitão Comandante
 
 +3
 
@@ -312,7 +312,7 @@ Para criar uma ameaça Raid, multiplique o PV da ameaça Solo por 4 e, em seguid
 
 Uma ameaça Raid recebe pontos de atributo adicionais de acordo com seu ND. Consulte a tabela abaixo para determinar a quantidade de pontos disponíveis. Nível de desafio
 
-Atributos aDicional
+### Atributos Adicional
 
 1-5
 
@@ -338,7 +338,7 @@ Use as ameaças prontas deste capítulo como referência. O Mestre também pode 
 
 Assim como outras criaturas, as Ameaças possuem proficiência. Porém, em vez de possuir um valor separado, a proficiência de uma Ameaça é igual ao seu ND e é adicionada ao resultado de ataques, testes de perícia e Testes de Resistência nos quais ela seja proficiente.
 
-Experiência e recompensas
+### Experiência e Recompensas
 
 Superar desafios é uma parte importante da jornada dos personagens. Ao enfrentar ameaças, concluir objetivos e participar de acontecimentos importantes, os personagens podem receber Experiência e outras recompensas que representam seu crescimento e suas conquistas ao longo da aventura.
 
@@ -364,7 +364,7 @@ Ao derrotar uma ameaça que possua um poder, característica ou habilidade marca
 
 Como regra geral, ameaças com Nível de Desafio inferior ao nível do personagem não concedem Essências, a menos que tenham representado um desafio significativo ou possuam alguma característica especialmente relevante para a história.
 
-Outras Recompensas
+### Outras Recompensas
 
 Nem toda recompensa precisa ser mecânica. O Mestre pode recompensar os personagens com qualquer coisa que faça sentido para a aventura, para a ameaça enfrentada ou para a história do personagem.
 
@@ -378,7 +378,7 @@ O Mestre não precisa limitar as recompensas às opções apresentadas neste cap
 
 Ameaças prontas Nesta seção do capítulo, você encontrará diversas Ameaças prontas para utilizar em suas campanhas. Como já foi dito no capítulo, você pode adaptar as fichas de acordo com as necessidades da sua campanha. Se você for um Mestre iniciante, também pode utilizá-las da forma como estão e ir fazendo ajustes conforme adquirir mais experiência. O mais importante é se divertir durante a criação e condução dos combates e garantir que seus jogadores também estejam se divertindo.
 
-Adaptando ameaças
+### Adaptando Ameaças
 
 Você pode querer utilizar uma ficha de Ameaça pronta, mas ela pode não estar no Nível de Desafio ideal para seus jogadores. Nesse caso, você pode aumentar ou diminuir o ND utilizando as tabelas de criação de Ameaças.
 
@@ -390,15 +390,15 @@ As habilidades e características da Ameaça também podem ser ajustadas quando 
 
 Hollows
 
-grupo DE hollowS
+### Grupo de Hollows
 
 Hollows comuns são espíritos corrompidos consumidos pela fome e pelo instinto predatório. Seus corpos são deformados, com pele pálida ou acinzentada e membros longos demais, enquanto uma máscara óssea às vezes rachada ou com feições monstruosas cobre o rosto por completo. Sem lembranças de quem foram, agem apenas movidos pela necessidade de devorar energia espiritual para aliviar o vazio interior. Movem-se pelas sombras com passos animalescos, atraídos por emoções intensas ou qualquer fonte de reiatsu. Embora não sejam organizados nem inteligentes, sua ferocidade imprevisível faz de cada encontro um perigo real, e até mesmo Shinigami iniciantes aprendem cedo que subestimar um Hollow pode custar caro.
 
 hollow COMUM Hollow solo Médio Atributos:
 
-FOR
+## For
 
-DES
+## Des
 
 dESL
 
@@ -406,17 +406,17 @@ cr
 
 9m 12
 
-CON
+## Con
 
-INT
+## Int
 
 PV
 
-SAB
+## Sab
 
 PR
 
-ESP
+## Esp
 
 TRAÇOS Percepção Passiva: 11. (10 + Sabedoria + ND) Percepção Espiritual Passiva: 13. (10 + Espírito + ND)
 
@@ -442,27 +442,27 @@ Apesar de cada Hollow individual ser fraco e facilmente derrotado por um Shiniga
 
 Hollow raid Enorme Atributos:
 
-FOR
+## For
 
-DES
+## Des
 
 dESL
 
 9m
 
-CON
+## Con
 
-INT
+## Int
 
 cr
 
 PV
 
-SAB
+## Sab
 
 PR
 
-ESP
+## Esp
 
 TRAÇOS Percepção Passiva: 11. (10 + Sabedoria + ND) Percepção Espiritual Passiva: 13. (10 + Espírito + ND) Teste de Resistência: Força e Destreza (ND + Atributo)
 
@@ -500,51 +500,51 @@ Gillian Um Gillian, ou Menos Grande, é uma figura colossal formada pela fusão 
 
 Hollow solo Enorme Atributos:
 
-FOR
+## For
 
-DES
+## Des
 
 dESL
 
 6m
 
-CON
+## Con
 
-INT
+## Int
 
 cr
 
 PV
 
-SAB
+## Sab
 
 PR
 
-ESP
+## Esp
 
 GRUPO GILLIAN Hollow raid Imenso Atributos:
 
-FOR
+## For
 
-DES
+## Des
 
 dESL
 
 6m
 
-CON
+## Con
 
-INT
+## Int
 
 cr
 
 PV
 
-SAB
+## Sab
 
 PR
 
-ESP
+## Esp
 
 TRAÇOS Percepção Passiva: 13. (10 + Sabedoria + ND) Percepção Espiritual Passiva: 17. (10 + Espírito + ND) Teste de Resistência: Força e Constituição
 
@@ -596,15 +596,15 @@ Técnica: Cero em Massa (10 PR - Ação): O Grupo de Gillians dispara um Cero ma
 
 ADJUCHAS Hollow Solo Médio Atributos:
 
-FOR
+## For
 
-DES
+## Des
 
 12m
 
-CON
+## Con
 
-INT
+## Int
 
 cr
 
@@ -612,23 +612,21 @@ PV
 
 PR
 
-SAB
+## Sab
 
-ESP
+## Esp
 
 TRAÇOS Percepção Passiva: 18. (10 + Sabedoria + ND) Percepção Espiritual Passiva: 23. (10 + Espírito + ND) Hierro: Resistência a danos Físicos.
 
-Redução de Dano: 5 dano Físico e 5 dano Esotérico. Teste de Resistência: Destreza e Inteligência Perícias Escolha 6 perícias para o Adjuchas ser treinado, somando ND a testes. Abaixo, sugestões de perícias: • • •
+Redução de Dano: 5 dano Físico e 5 dano Esotérico. Teste de Resistência: Destreza e Inteligência Perícias Escolha 6 perícias para o Adjuchas ser treinado, somando ND a testes. Abaixo, sugestões de perícias:
 
-Determinação Durabilidade Percepção
+### Determinação Durabilidade Percepção
 
 Adjuchas
 
 dESL
 
-• • •
-
-Percepção Espíritual Preparo Físico Suprimir Reiatsu
+### Percepção Espíritual Preparo Físico Suprimir Reiatsu
 
 CARACTERÍSTICAS Corpo Ágil: O Adjuchas pode utilizar a ação Desengajar como ação bônus.
 
@@ -652,13 +650,9 @@ São seres que preferem agir sozinhos, movidos por ambição, instinto de sobrev
 
 Mesmo individualistas, Adjuchas sabem muito bem quando sua força é suficiente para vencer. Muitos possuem poder para enfrentar um capitão do Gotei 13, tornandoos inimigos extremamente perigosos e dignos de atenção imediata de qualquer Shinigami que cruze seu caminho.
 
-Características animais
+### Características Animais
 
-Um Adjuchas pode assumir traços inspirados em animais, como visto em Grimmjow Jaegerjaquez, que lembrava uma pantera. Abaixo, você pode escolher uma característica animal para o Adjuchas, embora isso não seja obrigatório. •
-
-•
-
-•
+Um Adjuchas pode assumir traços inspirados em animais, como visto em Grimmjow Jaegerjaquez, que lembrava uma pantera. Abaixo, você pode escolher uma característica animal para o Adjuchas, embora isso não seja obrigatório.
 
 Ataques
 
@@ -673,8 +667,6 @@ Técnica: Cero (15 PR - Ação): O Adjuchas dispara um Cero massivo e instável 
 ## Reação
 
 Contra-Ataque: Quando uma criatura acertar o Adjuchas com um ataque corpo a corpo, o Adjuchas pode realizar um ataque focado contra ela.
-
-•
 
 Canino: O Adjuchas possui presas poderosas capazes de esmagar armaduras espirituais. Ele ganha o ataque Mordida Brutal, causando 2d10 + Força de dano cortante, e qualquer criatura atingida deve realizar um teste de Constituição CD 17 ou fica amedrontada até o fim do próximo turno do Adjuchas.
 
@@ -696,9 +688,9 @@ Não existe um único padrão para determinar como um Vasto Lorde deve ser. Sua 
 
 VASTO LORDE Hollow Solo Médio Atributos:
 
-FOR
+## For
 
-DES
+## Des
 
 dESL
 
@@ -706,9 +698,9 @@ cr
 
 12m 28
 
-CON
+## Con
 
-INT
+## Int
 
 PV
 
@@ -720,19 +712,17 @@ O Vasto Lord no turno dele pode usar uma ação ou pode utilizar a ação especi
 
 420 240
 
-SAB
+## Sab
 
-ESP
+## Esp
 
 TRAÇOS Percepção Passiva: 22. (10 + Sabedoria + ND) Percepção Espiritual Passiva: 32. (10 + Espírito + ND) Hierro: Resistência a danos Físicos.
 
-Redução de Dano: 0 dano Físico e 10 dano Esotérico. Teste de Resistência: Força, Inteligência e Espiríto. Perícias Escolha 8 perícias para o Vasto Lord ser treinado, somando ND a testes. Abaixo, sugestões de perícias: • • • •
+Redução de Dano: 0 dano Físico e 10 dano Esotérico. Teste de Resistência: Força, Inteligência e Espiríto. Perícias Escolha 8 perícias para o Vasto Lord ser treinado, somando ND a testes. Abaixo, sugestões de perícias:
 
-Determinação Durabilidade Intimidação Natureza
+### Determinação Durabilidade Intimidação Natureza
 
-• • • •
-
-Percepção Percepção Espíritual Preparo Físico Reiatsu
+### Percepção Percepção Espíritual Preparo Físico Reiatsu
 
 CARACTERÍSTICAS Aura Predatória: A simples existência de um Vasto Lorde é uma sentença de morte para seres espirituais mais fracos. Sempre que o Vasto Lorde entra em combate, ele utiliza “Liberar Reiatsu” como ação livre, sem custo (CD igual 10 + Nível de Desafio + Espírito). Coroa da Desolação: A presença espiritual de um Vasto Lorde é sufocante. Criaturas que comecem o turno a até 6 metros dele devem fazer um teste de Resistência de Espírito (CD igual 10 + Nível de Desafio + Espírito) ou sofrem 3d10 de dano psíquico e ficam com desvantagem no próximo ataque que realizarem contra o Vasto Lorde. Criaturas com ND Inferior a do Vasto Lord falham automaticamente no teste.
 
@@ -756,7 +746,7 @@ Contra-Ataque: Quando uma criatura acertar o Vasto Lord com um ataque corpo a co
 
 Técnica: Reação Cero (30 PR): Quando for alvo de um ataque à distância, o Vasto Lord pode utilizar o Cero para se proteger e tentar causar dano ao inimigo. Ele reduz o dano do ataque pelo valor rolado nos dados do Cero. Se o dano excedente for maior que zero, a criatura pode realizar o Teste de Resistência de Constituição para evitar o dano. Se obtiver sucesso, não sofre dano, se falhar, sofre o dano excedente.
 
-Ação Suprema
+### Ação Suprema
 
 Resistência Suprema: Duas vezes por combate, o Vasto Lord pode passar automaticamente em um Teste de Resistência.
 
@@ -768,9 +758,9 @@ Arrancar
 
 Hollow Shinigami Solo Médio Atributos:
 
-FOR
+## For
 
-DES
+## Des
 
 dESL
 
@@ -778,9 +768,9 @@ cr
 
 15m 32
 
-CON
+## Con
 
-INT
+## Int
 
 PV
 
@@ -792,19 +782,17 @@ O Arrancar pode realizar quatro ataques quando utilizar a ação Atacar:
 
 504 280
 
-SAB
+## Sab
 
-ESP
+## Esp
 
 TRAÇOS Percepção Passiva: 24. (10 + Sabedoria + ND) Percepção Espiritual Passiva: 34. (10 + Espírito + ND) Hierro: Resistência a danos Físicos.
 
-Redução de Dano: 10 dano Físico e 10 dano Esotérico. Teste de Resistência: Força, Constituição e Espiríto Perícias Escolha 8 perícias para o Arrancar ser treinado, somando ND a testes. Abaixo, sugestões de perícias: • • • •
+Redução de Dano: 10 dano Físico e 10 dano Esotérico. Teste de Resistência: Força, Constituição e Espiríto Perícias Escolha 8 perícias para o Arrancar ser treinado, somando ND a testes. Abaixo, sugestões de perícias:
 
-Determinação Durabilidade Intimidação Natureza
+### Determinação Durabilidade Intimidação Natureza
 
-• • • •
-
-Percepção Percepção Espíritual Preparo Físico Reiatsu
+### Percepção Percepção Espíritual Preparo Físico Reiatsu
 
 CARACTERÍSTICAS Destruidor de Escudos: Os ataques do Arrancar ignoram 10 pontos de Redução de Dano.
 
@@ -834,7 +822,7 @@ Resurrección
 
 O Arrancar é capaz de liberar seu poder selado a partir da sua Ressurrección, permitindo que ele retorne à essência de suas habilidades Hollow e manifeste sua verdadeira forma de combate. Ele pode ativar ela usando sua Ação. Enquanto estiver nessa forma, o Arrancar pode utilizar as habilidades de sua Ressurrección. Ele permanece transformado até ser derrotado ou até utilizar uma Ação Livre para encerrar a transformação.
 
-Ação Suprema
+### Ação Suprema
 
 Resistência Suprema: Duas vezes por combate, o Arrancar pode passar automaticamente em um Teste de Resistência.
 
@@ -860,7 +848,7 @@ A Resurrección é liberada quando o Arrancar concentra sua energia e pronuncia 
 
 Nessa forma, todos os seus atributos são intensificados, recebendo 5 pontos adicionais em cada atributo, podendo ultrapassar o limite normal de atributos. Além disso, seu deslocamento pode ser utilizado como deslocamento de voo.
 
-Luz de la Luna
+### Luz de La Luna
 
 O Arrancar pode utilizar sua Ação Bônus e gastar 20 Pontos de Reiatsu para criar uma lança de energia verde. Ele pode utilizá-la em seus ataques, causando 3d10 + Força ou Destreza de dano de energia, com uma jogada de ataque igual a ND + Força ou Destreza.
 
@@ -876,7 +864,7 @@ Se você atingir uma criatura com seu Cero, ou se ela falhar em um Teste de Resi
 
 Shinigamis
 
-Tenente Shinigami
+### Tenente Shinigami
 
 Os Shinigamis são as forças armadas espirituais da Soul Society, responsáveis por manter o equilíbrio entre os mundos e garantir que as almas sigam seu fluxo natural. Treinados nas artes da Zanpakutou, do Kido e do combate espiritual, eles variam em poder e personalidade, podendo ser sentinelas rígidos, guerreiros ferozes ou prodígios capazes de feitos extraordinários.
 
@@ -886,27 +874,27 @@ Shinigami
 
 Shinigami solo Médio Atributos:
 
-FOR
+## For
 
-DES
+## Des
 
 dESL
 
 9m
 
-CON
+## Con
 
-INT
+## Int
 
 cr
 
 PV
 
-SAB
+## Sab
 
 PR
 
-ESP
+## Esp
 
 TRAÇOS Percepção Passiva: 11. (10 + Sabedoria + ND) Percepção Espiritual Passiva: 13. (10 + Espírito + ND)
 
@@ -926,7 +914,7 @@ Katana (Crítico 19 x2): Ataque Corpo a Corpo com Arma: ND + Destreza para ating
 
 Kido
 
-Escolha Kido da lista de Bakudou ou Hadou (Rank D), um número igual ao atributo de Inteligência. Para realizar ataques com esses Kido, utilize o atributo de Inteligência, somando ND + Inteligência no acerto. A CD para resistir a esses Kido é igual a 10 + metade do ND (arredondado para baixo) + Inteligência. Sugestões de Kido: • • •
+Escolha Kido da lista de Bakudou ou Hadou (Rank D), um número igual ao atributo de Inteligência. Para realizar ataques com esses Kido, utilize o atributo de Inteligência, somando ND + Inteligência no acerto. A CD para resistir a esses Kido é igual a 10 + metade do ND (arredondado para baixo) + Inteligência. Sugestões de Kido:
 
 1º Bakudou: Sai 8º Bakudou: Seki 1º Hadou: Shou
 
@@ -934,35 +922,33 @@ REAÇÃO O Shinigami pode utilizar uma reação lançando um Kido, como no exemp
 
 Shinigami solo Médio Atributos:
 
-FOR
+## For
 
-DES
+## Des
 
 dESL
 
 9m
 
-CON
+## Con
 
-INT
+## Int
 
 cr
 
 PV
 
-SAB
+## Sab
 
 PR
 
-ESP
+## Esp
 
-TRAÇOS Percepção Passiva: 17. (10 + Sabedoria + ND) Percepção Espiritual Passiva: 14. (10 + Espírito + ND) Teste de Resistência: Força e Espiríto Perícias Escolha 6 perícias para o Tenente Shinigami ser treinado, somando ND a testes. Abaixo, sugestões de perícias: • • •
+TRAÇOS Percepção Passiva: 17. (10 + Sabedoria + ND) Percepção Espiritual Passiva: 14. (10 + Espírito + ND) Teste de Resistência: Força e Espiríto Perícias Escolha 6 perícias para o Tenente Shinigami ser treinado, somando ND a testes. Abaixo, sugestões de perícias:
 
-Conhecimento Durabilidade Investigação
+### Conhecimento Durabilidade Investigação
 
-• • •
-
-Percepção Percepção Espíritual Suprimir Reiatsu
+### Percepção Percepção Espíritual Suprimir Reiatsu
 
 CARACTERÍSTICAS Característica Adicional: O Tenente Shinigami recebe um talento ou caracteristica de uma Classe. O talento sugerido é “Domínio Temporário” da classe Especialista. Shunpo: O Tenente Shinigami pode utilizar Shunpo, seguindo a versão sugerida da classe Especialista.
 
@@ -978,13 +964,11 @@ Katana (Crítico 19 x2): Ataque Corpo a Corpo com Arma: ND + Força para atingir
 
 Kido
 
-Escolha Kido da lista de Bakudou ou Hadou (Rank D), um número igual ao atributo de Sabedoria + ND. Para realizar ataques com esses Kido, utilize o atributo de Sabedoria, somando ND + Sabedoria no acerto. A CD para resistir a esses Kido é igual a 10 + metade do ND (arredondado para baixo) + Sabedoria. Abaixo Sugestões de Kido: • • •
+Escolha Kido da lista de Bakudou ou Hadou (Rank D), um número igual ao atributo de Sabedoria + ND. Para realizar ataques com esses Kido, utilize o atributo de Sabedoria, somando ND + Sabedoria no acerto. A CD para resistir a esses Kido é igual a 10 + metade do ND (arredondado para baixo) + Sabedoria. Abaixo Sugestões de Kido:
 
 1º Bakudou: Sai 8º Bakudou: Seki 9º Bakudou: Geki
 
 Zanpakutou
-
-• • •
 
 4º Hadou: Byakurai 9º Hadou: Kageho 20º Hadou: Shoutenkyu
 
@@ -1002,9 +986,9 @@ A hierarquia de cada divisão conta com oficiais numerados de 1 a 20, logo abaix
 
 Tenente Shinigami Shinigami raid Médio Atributos:
 
-FOR
+## For
 
-DES
+## Des
 
 dESL
 
@@ -1012,25 +996,23 @@ cr
 
 9m 19
 
-CON
+## Con
 
-INT
+## Int
 
 PV
 
-SAB
+## Sab
 
 PR
 
-ESP
+## Esp
 
-TRAÇOS Percepção Passiva: 16. (10 + Sabedoria + ND) Percepção Espiritual Passiva: 17. (10 + Espírito + ND) Teste de Resistência: Força e Espiríto (ND + Atributo) Perícias Escolha 6 perícias para o Tenente Shinigami ser treinado, somando ND a testes. Abaixo, sugestões de perícias: • • •
+TRAÇOS Percepção Passiva: 16. (10 + Sabedoria + ND) Percepção Espiritual Passiva: 17. (10 + Espírito + ND) Teste de Resistência: Força e Espiríto (ND + Atributo) Perícias Escolha 6 perícias para o Tenente Shinigami ser treinado, somando ND a testes. Abaixo, sugestões de perícias:
 
-Conhecimento Determinação Intimidação
+### Conhecimento Determinação Intimidação
 
-• • •
-
-Percepção Preparo Físico Velocidade
+### Percepção Preparo Físico Velocidade
 
 CARACTERÍSTICAS Característica Adicional: O Tenente Shinigami recebe um talento ou caracteristica de uma Classe. O talento sugerido é “Desvio Instintivo” da classe Combatente. Impacto de Reiatsu: Quando o Tenente acertar uma criatura com sua Zanpakutou, pode utilizar 4 pontos de reiatsu para causar 2d4 de dano de energia adicional, além do dano normal da arma. O dano extra pode ser aumentado em 1d4 para cada 2 pontos de reiatsu adicionais gastos, até um máximo de 5d4.
 
@@ -1048,7 +1030,7 @@ As fichas de Tenente Solo e Tenente Raid ambos são considerados Tenentes padrã
 
 Tenentes são, portanto, líderes essenciais dentro das Divisões: combatentes habilidosos e figuras de autoridade que sustentam a estrutura da Gotei 13 e enfrentam ameaças espirituais com muita força.
 
-Diretriz de Identidade de Divisão
+### Diretriz de Identidade de Divisão
 
 Ao criar um NPC Shinigami, você pode escolher uma divisão para ele, tornando o personagem mais integrado ao mundo e à hierarquia da Soul Society. A partir dessa escolha, é possível atribuir uma característica típica da divisão ou até mesmo conceder uma característica de classe. Por exemplo: um Shinigami da Quarta Divisão pode receber a subclasse Curandeiro da classe Suporte, tornando-se um médico.
 
@@ -1060,11 +1042,9 @@ Uchigatana (Crítico 19): Ataque Corpo a Corpo com Arma: ND + Força para atingi
 
 Kido
 
-Escolha Kido da lista de Bakudou ou Hadou (Rank D), um número igual ao atributo de Espírito + ND. Para realizar ataques com esses Kido, utilize o atributode Espírito, somando ND + Espírito no acerto. A CD para resistir a esses Kido é igual a 10 + metade do ND (arredondado para baixo) + Espírito. Sugestões de Kido: • • • •
+Escolha Kido da lista de Bakudou ou Hadou (Rank D), um número igual ao atributo de Espírito + ND. Para realizar ataques com esses Kido, utilize o atributode Espírito, somando ND + Espírito no acerto. A CD para resistir a esses Kido é igual a 10 + metade do ND (arredondado para baixo) + Espírito. Sugestões de Kido:
 
 1º Bakudou: Sai 8º Bakudou: Seki 9º Bakudou: Geki 12º Bakudou: Fushibi
-
-• • • •
 
 4º Hadou: Byakurai 9º Hadou: Kageho 20º Hadou: Shoutenkyu 33º Hadou: Soukatsui
 
@@ -1084,9 +1064,9 @@ Seja como antagonistas, aliados temporários, mentores ou obstáculos intranspon
 
 Capitão shinigami Shinigami Solo Médio Atributos:
 
-FOR
+## For
 
-DES
+## Des
 
 dESL
 
@@ -1094,25 +1074,23 @@ cr
 
 12m 25
 
-CON
+## Con
 
-INT
+## Int
 
 PV
 
-SAB
+## Sab
 
 PR
 
-ESP
+## Esp
 
-TRAÇOS Percepção Passiva: 22. (10 + Sabedoria + ND) Percepção Espiritual Passiva: 24. (10 + Espírito + ND) Redução de Dano: 5 dano Físico e 5 dano Esotérico Teste de Resistência: Destreza e Inteligência Perícias Escolha 8 perícias para o Capitão Shinigami ser treinado, somando ND a testes. Abaixo, sugestões de perícias: • • • •
+TRAÇOS Percepção Passiva: 22. (10 + Sabedoria + ND) Percepção Espiritual Passiva: 24. (10 + Espírito + ND) Redução de Dano: 5 dano Físico e 5 dano Esotérico Teste de Resistência: Destreza e Inteligência Perícias Escolha 8 perícias para o Capitão Shinigami ser treinado, somando ND a testes. Abaixo, sugestões de perícias:
 
-Conhecimento Determinação Durabilidade Intimidação
+### Conhecimento Determinação Durabilidade Intimidação
 
-• • • •
-
-Nobreza Percepção Percepção Espíritual Preparo Físico
+### Nobreza Percepção Percepção Espíritual Preparo Físico
 
 CARACTERÍSTICAS Autoridade Espiritual: A presença de um Capitão é sufocante para criaturas comuns. Criaturas que dependem de reiatsu percebem imediatamente a pressão esmagadora. Sempre que o Capitão entrar em combate ele utiliza a ação “Liberar Reiatsu” com uma ação livre (CD igual 10 + Nível de Desafio + Espírito). Característica Adicional (2x): O Capitão Shinigami recebe dois talentos ou caracteristicas de uma Classe. Os talentos sugeridos é “Análise” da classe Suporte e “Estilo Veloz” da classe Lutador.
 
@@ -1130,11 +1108,9 @@ Katana (Crítico 19 - x3): Ataque Corpo a Corpo com Arma: ND + Destreza para ati
 
 Kido
 
-Escolha Kido da lista de Bakudou ou Hadou (Rank D-A), um número igual ao atributo de Inteligência + ND. Para realizar ataques com esses Kido, utilize o atributo de Inteligência, somando ND + Inteligência no acerto. A CD para resistir a esses Kido é igual a 10 + metade do ND (arredondado para baixo) + Inteligência. Sugestões de Kido: • • • •
+Escolha Kido da lista de Bakudou ou Hadou (Rank D-A), um número igual ao atributo de Inteligência + ND. Para realizar ataques com esses Kido, utilize o atributo de Inteligência, somando ND + Inteligência no acerto. A CD para resistir a esses Kido é igual a 10 + metade do ND (arredondado para baixo) + Inteligência. Sugestões de Kido:
 
 9º Bakudou: Geki 12º Bakudou: Fushibi 26º Bakudou: Kyokkou 39º Bakudou: Enkosen
-
-• • • •
 
 4º Hadou: Byakurai 20º Hadou: Shoutenkyu 33º Hadou: Soukatsui 63° Hadou: Raikouhou
 
@@ -1150,9 +1126,9 @@ O Shinigami pode utilizar uma reação lançando um Kido ou utilizando uma carac
 
 Capitão shinigami Shinigami raid Médio Atributos:
 
-FOR
+## For
 
-DES
+## Des
 
 dESL
 
@@ -1160,9 +1136,9 @@ cr
 
 12m 27
 
-CON
+## Con
 
-INT
+## Int
 
 PV
 
@@ -1174,17 +1150,15 @@ O Shinigami pode realizar três ataques quando utilizar a ação Atacar:
 
 1070 460
 
-SAB
+## Sab
 
-ESP
+## Esp
 
-TRAÇOS Percepção Passiva: 24. (10 + Sabedoria + ND) Percepção Espiritual Passiva: 26. (10 + Espírito + ND) Redução de Dano: 10 dano Físico e 10 dano Esotérico Teste de Resistência: Força,Constituição e Espiríto Perícias Escolha 8 perícias para o Capitão Shinigami ser treinado, somando ND a testes. Abaixo, sugestões de perícias: • • • •
+TRAÇOS Percepção Passiva: 24. (10 + Sabedoria + ND) Percepção Espiritual Passiva: 26. (10 + Espírito + ND) Redução de Dano: 10 dano Físico e 10 dano Esotérico Teste de Resistência: Força,Constituição e Espiríto Perícias Escolha 8 perícias para o Capitão Shinigami ser treinado, somando ND a testes. Abaixo, sugestões de perícias:
 
-Conhecimento Determinação Durabilidade Intimidação
+### Conhecimento Determinação Durabilidade Intimidação
 
-• • • •
-
-Nobreza Percepção Percepção Espíritual Preparo Físico
+### Nobreza Percepção Percepção Espíritual Preparo Físico
 
 CARACTERÍSTICAS Autoridade Espiritual: A presença de um Capitão é sufocante para criaturas comuns. Criaturas que dependem de reiatsu percebem imediatamente a pressão esmagadora. Sempre que o Capitão entrar em combate ele utiliza a ação “Liberar Reiatsu” com uma ação livre (CD igual 10 + Nível de Desafio + Espírito). Característica Adicional (2x): O Capitão Shinigami recebe dois talentos ou caracteristicas de uma Classe. Os talentos sugeridos é “Análise” da classe Suporte e “Estilo Veloz” da classe Lutador.
 
@@ -1204,11 +1178,9 @@ Katana (Crítico 18 - x3): Ataque Corpo a Corpo com Arma: ND + Força para ating
 
 Kido
 
-Escolha Kido da lista de Bakudou ou Hadou (Rank D-A), um número igual ao atributo de Inteligência + ND. Para realizar ataques com esses Kido, utilize o atributo de Espírito, somando ND + Espírito no acerto. A CD para resistir a esses Kido é igual a 10 + metade do ND (arredondado para baixo) + Espírito. Sugestões de Kido: • • • •
+Escolha Kido da lista de Bakudou ou Hadou (Rank D-A), um número igual ao atributo de Inteligência + ND. Para realizar ataques com esses Kido, utilize o atributo de Espírito, somando ND + Espírito no acerto. A CD para resistir a esses Kido é igual a 10 + metade do ND (arredondado para baixo) + Espírito. Sugestões de Kido:
 
 9º Bakudou: Geki 12º Bakudou: Fushibi 26º Bakudou: Kyokkou 39º Bakudou: Enkosen
-
-• • • •
 
 4º Hadou: Byakurai 20º Hadou: Shoutenkyu 33º Hadou: Soukatsui 63° Hadou: Raikouhou
 
@@ -1222,7 +1194,7 @@ O Capitão Shinigami é capaz de liberar a Bankai de sua Zanpakutou. Ele pode at
 
 O Shinigami pode utilizar uma reação lançando um Kido ou utilizando uma característica da sua Zanpakutou.
 
-Ação Suprema
+### Ação Suprema
 
 Corte Devastador: Duas vezes por rodada, quando uma criatura dentro do alcance da arma realizar um ataque contra ele, o Capitão pode realizar um ataque com sua Zanpakutou contra essa criatura. Caso utilize sua reação contra o mesmo ataque, ele não poderá ativar Corte Devastador.
 
@@ -1238,9 +1210,9 @@ Soldat
 
 Quincy solo Médio Atributos:
 
-FOR
+## For
 
-DES
+## Des
 
 dESL
 
@@ -1248,17 +1220,17 @@ cr
 
 9m 14
 
-CON
+## Con
 
-INT
+## Int
 
 PV
 
-SAB
+## Sab
 
 PR
 
-ESP
+## Esp
 
 TRAÇOS Percepção Passiva: 13. (10 + Sabedoria + ND) Percepção Espiritual Passiva: 13. (10 + Espírito + ND) Reishi: Durante o combate recupera ND em pontos de reiatsu no começo do turno.
 
@@ -1288,11 +1260,11 @@ Rukia sempre carregou um misto de humildade e insegurança, tentando equilibrar 
 
 Ao longo da história, Rukia passa de uma shinigami que duvidava de si mesma para alguém confiante, poderosa e emocionalmente firme. Ela é leal aos amigos, corajosa, direta e, às vezes, surpreendentemente engraçada, mostrando que por trás da postura elegante existe uma jovem com muita personalidade. Com o tempo, ela se torna Capitã do 13º Esquadrão, provando que sua determinação e coração são tão fortes quanto seu poder.
 
-KUCHIKI rukia Bankai dESL
+### Kuchiki Rukia Bankai Desl
 
-FOR
+## For
 
-DES
+## Des
 
 PV
 
@@ -1302,17 +1274,17 @@ Shinigami Médio Iconico Atributos:
 
 cr
 
-CON
+## Con
 
-INT
+## Int
 
 PR
 
 920 864
 
-SAB
+## Sab
 
-ESP
+## Esp
 
 TRAÇOS Percepção Passiva: 26.
 
@@ -1320,11 +1292,9 @@ Percepção Espiritual Passiva: 26.
 
 Resistência a Dano: Frio Testes de Resistência: Destreza e Inteligência
 
-Perícias Kuchiki Rukia é treinada em diversas péricias, listada abaixo: • • • • •
+Perícias Kuchiki Rukia é treinada em diversas péricias, listada abaixo:
 
-Conhecimento Determinação Intuição Investigação História
-
-• • • • •
+### Conhecimento Determinação Intuição Investigação História
 
 Nobreza Percepção Percepção Espíritual Preparo Físico Reiatsu
 
@@ -1348,11 +1318,9 @@ Katana (Crítico 19 - x2): Ataque Corpo a Corpo com Arma: ND + Destreza para ati
 
 Kido
 
-Para realizar ataques com Kido, utilize o atributo de Inteligência, somando ND + Inteligência no acerto. A CD para resistir a esses Kido é igual a 10 + metade do ND (arredondado para baixo) + Inteligência. Kido conhecidos: • • •
+Para realizar ataques com Kido, utilize o atributo de Inteligência, somando ND + Inteligência no acerto. A CD para resistir a esses Kido é igual a 10 + metade do ND (arredondado para baixo) + Inteligência. Kido conhecidos:
 
 1º Bakudou: Sai 9º Bakudou: Geki 61º Bakudou: Rikujyou Kouro
-
-• • • •
 
 4º Hadou: Byakurai 31º Hadou: Shakkahou 33º Hadou: Soukatsui 73° Hadou: Souren Soukatsui
 
@@ -1364,7 +1332,7 @@ O acerto das técnicas da Zanpakutou, use d20 + Nível de Desafio + atributo de 
 
 A Rukia pode utilizar uma reação lançando um Kido ou utilizando uma característica da sua Zanpakutou.
 
-Ação suprema
+### Ação Suprema
 
 Resistência Suprema: Três vezes por combate, a Rukia pode passar automaticamente em um Teste de Resistência.
 
@@ -1378,11 +1346,11 @@ Sua Zanpakutou, Zangetsu, acompanha essa jornada, servindo como símbolo do seu 
 
 A versão icônica representada pela ficha deste livro é o Ichigo Visored, logo após sua batalha contra Ulquiorra, momento em que ele alcança uma das formas mais impactantes e lembradas por todos os fãs.
 
-Ichigo Visored
+### Ichigo Visored
 
-FOR
+## For
 
-DES
+## Des
 
 cr
 
@@ -1392,9 +1360,9 @@ Shinigami Médio Iconico Atributos:
 
 dESL
 
-CON
+## Con
 
-INT
+## Int
 
 PV
 
@@ -1402,9 +1370,9 @@ PR
 
 1116 956
 
-SAB
+## Sab
 
-ESP
+## Esp
 
 TRAÇOS Percepção Passiva: 26.
 
@@ -1412,13 +1380,11 @@ Percepção Espiritual Passiva: 26.
 
 Resistência a Dano: Energia Teste de Resistência: Força, Constituição e Espiríto
 
-Perícias Kurosaki Ichigo é treinado em diversas péricias, listada abaixo: • • •
+Perícias Kurosaki Ichigo é treinado em diversas péricias, listada abaixo:
 
-Determinação Durabilidade Intimidação
+### Determinação Durabilidade Intimidação
 
-• • •
-
-Preparo Físico Reiatsu Velocidade
+### Preparo Físico Reiatsu Velocidade
 
 CARACTERÍSTICAS Impacto de Reiatsu: Quando Ichigo atacar uma criatura com a Zangetsu, ele pode utilizar 10 pontos de reiatsu para causar 2d10 de dano de energia adicional, além do dano normal da arma. O dano extra pode ser aumentado em 1d10 para cada 5 pontos de reiatsu adicionais gastos, até um máximo de 6d10 de dano extra.
 
@@ -1446,7 +1412,7 @@ Visored
 
 Ichigo consegue colocar a máscara Hollow com uma ação bônus e pode mantê-la por 1 minuto. Enquanto estiver com a máscara, ele recebe um aumento significativo de poder. Ganha 300 pontos de PV e PR temporários, todas as técnicas da Zanpakutou recebem 6 dados extras em vez dos 3 concedidos por “Técnicas Dominadas”, e seus ataques com a Zanpakutou causam 3 dados adicionais de dano.
 
-Ação suprema
+### Ação Suprema
 
 Resistência Suprema: Três vezes por combate, a Rukia pode passar automaticamente em um Teste de Resistência.
 
@@ -1476,17 +1442,17 @@ For = Força Int = Inteligência Des = Destreza Sab = Sabedoria Con = Constitui�
 
 sub-classe
 
-CLASSE ORIGEM
+## Classe Origem
 
 ## Soul Society
 
-Prof = Proficiência
+### Prof = Proficiência
 
 Variação
 
-Nome do Personagem
+### Nome do Personagem
 
-NÍVEL experiência
+### Nível Experiência
 
 ## Deslocamento
 
@@ -1498,31 +1464,31 @@ Prof
 
 ## Percepção Espiritual Passiva
 
-ATRIBUTOS FORÇA
+## Atributos Força
 
 ## Testes de Resistência
 
 ## Percepção Passiva
 
-BÔNUS DE PROFICIÊNCIA inteligência
+### Bônus de Proficiência Inteligência
 
 ## Sabedoria
 
 rpg
 
-Outros Total
+### Outros Total
 
-FORÇA DESTREZA
+## Força Destreza
 
 espírito
 
-constituição Inteligência SABEDORIA espírito
+### Constituição Inteligência Sabedoria Espírito
 
-PERÍCIAS Prof
+### Perícias Prof
 
-Outros Total
+### Outros Total
 
-tESTES CONTRA MORTE
+### Testes Contra Morte
 
 Atributo
 
@@ -1552,7 +1518,7 @@ des
 
 história
 
-SAB
+## Sab
 
 ## Intimidação
 
@@ -1560,7 +1526,7 @@ esp
 
 ## Intuição
 
-SAB
+## Sab
 
 investigação
 
@@ -1572,7 +1538,7 @@ esp
 
 medicina
 
-SAB
+## Sab
 
 ## Natureza
 
@@ -1584,9 +1550,9 @@ int
 
 ## Percepção
 
-SAB
+## Sab
 
-PERCEPÇÃO espiritual
+### Percepção Espiritual
 
 esp
 
@@ -1594,9 +1560,9 @@ esp
 
 esp
 
-preparo físico
+### Preparo Físico
 
-FOR
+## For
 
 ## Prestidigitação
 
@@ -1606,21 +1572,21 @@ des
 
 esp
 
-suprimir REIATSU
+### Suprimir Reiatsu
 
 esp
 
 sobrevivência
 
-SAB
+## Sab
 
 ## Velocidade
 
-FOR
+## For
 
 ## Equipamentos
 
-Pontos de vida Total
+### Pontos de Vida Total
 
 sUCESSOs
 
@@ -1634,43 +1600,43 @@ Atual
 
 Anotações
 
-PV TEMPORÁRIOs
+### Pv Temporários
 
-Pontos de reiatsu
+### Pontos de Reiatsu
 
 Total
 
 Atual
 
-PR TEMPORÁRIOs
+### Pr Temporários
 
-efeitos negativos Turnos Dano
+### Efeitos Negativos Turnos Dano
 
 Condição
 
-ATAQUES Nome
+### Ataques Nome
 
 Requisito
 
 Acerto
 
-Dano/Tipo de Dano
+### Dano/tipo de Dano
 
-Habilidades de origem
+### Habilidades de Origem
 
-ESSÊNCIAS ESpirituais Nome
+### Essências Espirituais Nome
 
 Etapa
 
 Resumo
 
-Características de classe
+### Características de Classe
 
-TÉCNICAS E Feitiços
+### Técnicas e Feitiços
 
-Outras Características
+### Outras Características
 
-FIM
+## Fim
 
 Após quase dois anos de dedicação intensa, incontáveis noites em claro e muito aprendizado, finalmente apresento este RPG com imenso orgulho. Cada página carrega minha paixão pelo universo dos RPGs fandom e o desejo de ver produções brasileiras alcançando um novo patamar de qualidade.
 
@@ -1678,4 +1644,4 @@ Minha esperança é que este livro abra novas portas para mim como criador, e qu
 
 Dedico este RPG a todos que esperaram com paciência durante esse processo e acreditaram no projeto. Até a próxima.
 
-Soul Society RPG
+### Soul Society Rpg

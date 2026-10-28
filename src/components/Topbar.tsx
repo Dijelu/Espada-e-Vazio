@@ -28,7 +28,7 @@ export default function Topbar({ onBuscar }: { onBuscar: () => void }) {
         onClick={alternar}
         aria-label={tema === "dark" ? "Mudar para o modo claro" : "Mudar para o modo escuro"}
       >
-        <img src={tema === "dark" ? "/art/sym-flame.jpg" : "/art/sym-mask.jpg"} alt="" />
+        <img src={tema === "dark" ? "/art/sym-flame.png" : "/art/sym-mask-preto.png"} alt="" />
       </button>
     </header>
   );

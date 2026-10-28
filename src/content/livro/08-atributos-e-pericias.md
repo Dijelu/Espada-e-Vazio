@@ -16,9 +16,9 @@ O mestre pode pedir para que os jogadores realizem testes para determinar o suce
 
 Os testes possuem diferentes dificuldades, onde o mestre decide qual será a dificuldade do teste, representada pela Classe de Dificuldade (CD).
 
-Dificuldade Muito Fácil
+### Dificuldade Muito Fácil
 
-classe de dificuldade
+### Classe de Dificuldade
 
 Fácil
 
@@ -28,9 +28,9 @@ Moderado
 
 Desafiador
 
-Muito Difícil
+### Muito Difícil
 
-Quase Impossível Épico
+### Quase Impossível Épico
 
 Lendário
 
@@ -42,11 +42,11 @@ Um teste resistido é usado para determinar o sucesso de uma ação quando duas 
 
 Por exemplo, imagine uma cena em que um personagem está tentando empurrar uma porta trancada enquanto outro personagem está do outro lado tentando mantê-la fechada. Nesse caso, ambos os personagens fariam uma rolagem, um utilizando sua força para empurrar a porta e o outro utilizando sua força para segurá-la. Os resultados das rolagens seriam então comparados, e o personagem com o resultado mais alto determinaria o resultado da ação: se o que está tentando abrir a porta obter um resultado mais alto, ele conseguirá abri-la; se o que está tentando mantê-la fechada obtiver um resultado mais alto, ele conseguirá mantê-la fechada.
 
-testes em grupo
+### Testes em Grupo
 
 Às vezes, quando um personagem quiser ajudar outro em um teste, ou quando todos os personagens desejarem realizar o mesmo teste, o Mestre pode solicitar um Teste em Grupo. Este teste consiste no personagem com o maior atributo para o teste realize a rolagem, adicionando um bônus de +2 para cada personagem que esteja auxiliando no teste.
 
-vantagem e desvantagem
+### Vantagem e Desvantagem
 
 Às vezes uma habilidade concede vantagem ou desvantagem em um teste de perícia, teste de resistência ou jogada de ataque. Quando isso acontecer, você deve rolar um novo d20 ao realizar a jogada. Se estiver com vantagem, utilize o valor mais alto entre os dois d20 rolados. Por exemplo, se você rolar um 15 em um d20 e um 10 no outro, considere o 15 como o valor em vantagem. Por outro lado, se estiver com desvantagem, utilize o valor mais baixo entre os dois d20 rolados. Por exemplo, no caso acima, você usaria o 10, pois é o menor número entre os dois dados rolados.
 

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import MiniSearch from "minisearch";
 import { capitulos, carregarCapitulo, secoes } from "../content/livro";
 
-interface Doc {
+export interface Doc {
   id: string;
   slug: string;
   secao: string;
@@ -16,7 +16,7 @@ const norm = (s: string) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCa
 
 let indice: Promise<{ ms: MiniSearch<Doc>; docs: Map<string, Doc> }> | null = null;
 
-function montar() {
+export function montar() {
   if (!indice) {
     indice = (async () => {
       const docs: Doc[] = [];
@@ -50,7 +50,7 @@ function montar() {
   return indice;
 }
 
-function trecho(texto: string, q: string): string {
+export function trecho(texto: string, q: string): string {
   const t = texto.replace(/\s+/g, " ");
   const n = norm(t);
   const termos = norm(q).split(/\s+/).filter(Boolean);

@@ -14,7 +14,7 @@ Antes de um Shinigami conseguir fazer a ligação e se comunicar com seu lado es
 
 Os Shinigamis devem permanecer em posse da Asauchi o tempo todo após receber ela para imprimir parte de sua alma nela. A Asauchi são diferentes das armas normais, aonde tem a capacidade de enviar os mortos para a Soul Society, essa técnica se chama Konso, onde se foram bons em vida, ou para o inferno se foram pessoas más. Quando um Shinigami mata um Hollow com sua Asauchi e Zanpakutou, eles purificam seus pecados, transformando o Hollow novamente em uma alma, chamando esse ato de sublimação.
 
-Escolhendo uma asauchi
+### Escolhendo Uma Asauchi
 
 Cada Asauchi, quando recebida pelo Shinigami, tem a forma de uma katana. Com o tempo, ela se transforma na forma mais adequada para o Shinigami, e essa transformação pode durar meses ou ocorrer imediatamente, isso depende do quanto o shinigami consegue imprimir sua alma na Asauchi. Ao escolher uma classe de Shinigami, você pode definir a forma que sua Asauchi tomará, conforme listado na tabela a seguir.
 
@@ -40,9 +40,9 @@ Tachi
 
 Destreza/Força
 
-Wakizashi Katana
+### Wakizashi Katana
 
-Uchigatana Nodachi
+### Uchigatana Nodachi
 
 1d6
 
@@ -84,9 +84,9 @@ ZanpaKutou
 
 Como já mencionado, quando um Shinigami consegue imprimir sua alma na Asauchi, ela se torna uma Zanpakutou, ganhando poderes da alma do Shinigami. Cada Zanpakutou é única e não existe uma igual à outra, com poderes muito únicos. No entanto, alguns Shinigamis da mesma família podem compartilhar uma mesma técnica, mesmo que suas Zanpakutous sejam diferentes. Nessa seção você descobrirá todas as regras para escolha e uso das Zanpakutous.
 
-Categoria das zanpakutous
+### Categoria das Zanpakutous
 
-Primeiro antes de escolher sua Zanpakutou você deve saber que existe uma infinidade de Zanpakutous, igual à quantidade de Shinigamis existentes. E elas são divididas em categorias , que servem para classificá-las, conforme listado abaixo: • • • •
+Primeiro antes de escolher sua Zanpakutou você deve saber que existe uma infinidade de Zanpakutous, igual à quantidade de Shinigamis existentes. E elas são divididas em categorias , que servem para classificá-las, conforme listado abaixo:
 
 Combate: Zanpakutous voltadas para o combate físico. Elemental: Zanpakutous associadas a um elemento da natureza, como água, fogo, gelo, vento ou trovão. Kido: Zanpakutous que possuem uma habilidade especial, geralmente relacionada a técnicas espirituais. Especial: Zanpakutous que não se encaixam em nenhuma das categorias anteriores.
 
@@ -110,13 +110,13 @@ BANKAI A Bankai é o estágio mais poderoso da Zanpakutou, representando o segun
 
 A liberação da Bankai exige um custo inicial de pontos de Reiatsu e, assim como a Shikai, algumas Bankais podem ter seu tempo de ativação ampliado, enquanto outras não podem ser estendidas. Uma Bankai normalmente dura 1 minuto e é necessário utilizar novamente a Reiatsu para mantê-la ativa após esse tempo.
 
-Escolhendo uma Zanpakutou
+### Escolhendo Uma Zanpakutou
 
 Quando sua classe permitir que você escolha uma Zanpakutou, você pode selecionar uma da lista de Zanpakutous abaixo ou criar sua própria Zanpakutou seguindo os passos no final desse capítulo. Criar sua própria Zanpakutou é mais indicado, mas deve ser feito por jogadores e mestres experientes.
 
 Você se torna proficiente com a sua Zanpakutou quando a escolhe e mantém o mesmo atributo da Asauchi para jogadas de ataque (acerto), como também o peso dela, mas não mantém a margem de crítico e dano, que são definidos pela Zanpakutou. Zanpakutous que não indicam qual a margem de crítico que possuem, tem o crítico normal em 20.
 
-Lista de ZanpaKutous Nome
+### Lista de Zanpakutous Nome
 
 Dano
 
@@ -128,21 +128,21 @@ Gonryomaru
 
 Elemental (Trovão)
 
-Katen Kyokotsu
+### Katen Kyokotsu
 
 Kido
 
-Hozukimaru Hyorinmaru Minazuki
+### Hozukimaru Hyorinmaru Minazuki
 
 Nozarashi
 
 Combate
 
-Elemental (Gelo) Kido
+### Elemental (gelo) Kido
 
 Combate
 
-Ryuujin Jakka
+### Ryuujin Jakka
 
 Elemental (Fogo)
 
@@ -152,13 +152,13 @@ Especial
 
 Sakanade
 
-Sode no Shirayuki Shinso
+### Sode no Shirayuki Shinso
 
 Suzumebashi
 
 Kido
 
-Elemental (Gelo) Especial Especial
+### Elemental (gelo) Especial Especial
 
 Tachikaze
 
@@ -190,11 +190,11 @@ TÉCNICA: Nake Benihime O usuário lança uma onda de reiatsu carmesim muito sem
 
 Você pode utilizar esta técnica quando for atacado com um Cero para cancelar ele, usando sua reação e 10 pontos de reiatsu, você e a criatura devem rolar um d20, quem tirar o número maior vence. Se você tirar o número maior, o Cero é cancelado. Você rolará o d20 com vantagem.
 
-TÉCNICA: Chikasumi no Tate
+### Técnica: Chikasumi no Tate
 
 Quando for atacado, você pode criar um escudo triangular de reiatsu carmesim na sua frente, usando sua reação e 5 pontos de reiatsu para reduzir 3d10 de dano do ataque que você receberia. Você pode intensificar esse escudo, adicionando 1d10 de redução de dano para cada 3 pontos de reiatsu adicionais, com um máximo de 15d10.
 
-TÉCNICA: Kamisori Benihime
+### Técnica: Kamisori Benihime
 
 BENEHIME Benehime é uma das Zanpakutous mais completas em termos de técnicas, sendo muito elegante. Seu espírito é uma mulher de cabelos longos que não é muito amigável com o usuário.
 
@@ -204,7 +204,7 @@ Categoria: Benehime tem a categoria de Zanpakutou do tipo Kido.
 
 A forma Shikai, quando liberada, exige que seu nome seja dito, que é “Benehime”. Quando atinge o estágio de Shikai, ela se torna uma espada reta com uma lâmina quadrada e uma guarda que se estende ao longo da lâmina, sendo uma Shikai extremamente elegante e bela. Para liberá-la, é preciso utilizar 10 pontos de Reiatsu na sua ativação, permanecendo ativa por 1 minuto. Após esse tempo, é necessário utilizar os pontos de Reiatsu novamente para mantê-la ativa.
 
-Elegância CARMESIm
+### Elegância Carmesim
 
 Após liberar a Shikai, ela assume a forma dessa espada elegante, como já mencionado, e seus ataques com a Benehime causam 1d10 de dano cortante ou de energia, à sua escolha. Sua margem de crítico com a Benehime se torna 19-20.
 
@@ -214,17 +214,17 @@ Toda a reiatsu do usuário se torna carmesim após liberar a Benehime, e isso fa
 
 O usuário lança uma quantidade de reiatsu extremamente cortante em direção a uma criatura, muito semelhante ao Nake, mas causando dano cortante. Usando sua ação e 10 pontos de reiatsu, você lança um corte de energia em uma criatura que esteja até 18 metros de você. Se acertar, causará 7d12 de dano cortante + duas vezes seu atributo de Zanpakutou.
 
-TÉCNICA: Tsuppane, Benihime
+### Técnica: Tsuppane, Benihime
 
 Após observar uma habilidade de uma criatura especificada como técnica, o mestre pode informá-lo. Você pode fazer um teste de Sabedoria com a dificuldade definida pelo mestre. Se obtiver sucesso, você aprende a anular a técnica da criatura fazendo um círculo de reiatsu carmesim. Usando sua reação e 15 pontos de reiatsu, você pode anular uma técnica para a qual tenha passado no teste. No entanto, a técnica precisa ser direcionada a você e ter apenas você como alvo.
 
 Uma técnica anulada ainda custará os pontos de reiatsu da criatura que a lançou, mas não causará dano em você.
 
-TÉCNICA: Shibari, Benihime
+### Técnica: Shibari, Benihime
 
 O usuário cria uma rede de reiatsu carmesim e tenta prender uma criatura dentro dela, imobilizando-a. Com sua ação e 10 pontos de reiatsu, você cria essa rede em uma direção. Ela tem 9 metros de comprimento por 3 metros de largura e é lançada com o ponto de origem em você. Todas as criaturas dentro dessa área devem realizar um Teste de Resistência de Destreza. Se falharem, ficarão presas com a condição “Preso - Com todos os membros aprisionados”. No início do turno da criatura presa, ela pode realizar um Teste de Resistência de Força para tentar se soltar.
 
-TÉCNICA: Shibari, Benihime
+### Técnica: Shibari, Benihime
 
 Com uma ação bônus e 10 pontos de reiatsu, após prender as criaturas na técnica “Shibari” ou nos turnos seguintes, você pode fincar a Benehime na rede e criar uma explosão de reiatsu, causando 9d10 de dano de Energia em todas as criaturas presas na rede.
 
@@ -234,7 +234,7 @@ A Bankai é ativada quando o comando “Bankai” e o verdadeiro nome dela, “K
 
 O usuário após liberar a Bankai sua Zanpakutou se torna a forma da sua Asauchi mas com o dano e margem de crítico igual a habilidade “Elegância Carmesim” da Shikai.
 
-Área de Influência
+### Área de Influência
 
 O controle da Kannonbiraki Benihime Aratame se estende por uma área de 36 metros centrado no usuário aonde todas as criaturas que estão dentro dessa área podem ser afetadas pelas técnicas da Bankai.
 
@@ -246,7 +246,7 @@ Quando a Bankai está ativada, o usuário consegue cortar qualquer coisa dentro 
 
 O usuário da Benehime, quando a Bankai está ativada, você consegue reconstruir a si mesmo ou a outras criaturas dentro da área de influência da Bankai, usando fios para costurar as áreas feridas. Com uma ação livre em seu turno e 10 pontos de reiatsu, o usuário cura um número de dados d10 igual ao dobro do seu bônus de proficiência em si mesmo ou pode curar outra criatura dentro da área de influência. Você só pode curar uma criatura por turno, sempre no início do seu turno com essa ação livre. Se você estiver incapacitado devido a ferimentos como uma perna quebrada ou cegueira, pode curar esses ferimentos e recuperar a funcionalidade utilizando essa cura.
 
-TÉCNICA: otimizar
+### Técnica: Otimizar
 
 Dentro da área de influência da Bankai, o usuário pode otimizar algum ataque ou ação que uma criatura, ou ele próprio, esteja realizando. Utilizando sua ação bônus e 5 pontos de reiatsu, você pode aumentar a eficácia de uma ação, concedendo vantagem nela, ou pode intensificar uma técnica ou ataque seu ou de uma criatura, reconstruindo o corpo. Isso adiciona um número de dados de dano igual ao seu bônus de proficiência a cada turno seu ou da criatura que você otimizou.
 
@@ -262,7 +262,7 @@ TÉCNICA: TROVÃO A Gonryomaru pode controlar eletricidade como quiser, sendo ca
 
 Se a criatura receber essa técnica pela primeira vez no combate, ela deve realizar um Teste de Resistência de Constituição para evitar ficar “Paralisada” até o final do próximo turno dela. Após isso, a criatura se torna imune a essa condição durante o restante deste combate. No entanto, se uma nova iniciativa for rolada, a condição pode afetá-la novamente.
 
-TÉCNICA: Tempestade
+### Técnica: Tempestade
 
 Gonryomaru Gonryomaru é uma Zanpakutou que assume a forma de uma rapieira, sendo uma das poucas Zanpakutous elementais do trovão. Seu espírito parece ser o de um homem que é um ronin ou um viajante.
 
@@ -330,7 +330,7 @@ Quando você atingir 60%, com sua ação bônus, você consegue imbuir a Ryumon 
 
 TÉCNICA: hyorinmaru Com uma ação e 8 pontos de reiatsu, o usuário libera um dragão chinês de gelo que tem o mesmo nome da Zanpakutou e que se move em direção a uma criatura em linha reta por até 9 metros. Realize um ataque à distância contra uma criatura que, se for acertada, sofre 5d10 de dano de Frio e deve realizar um Teste de Resistência de Constituição. Em caso de falha, a criatura recebe a condição “Congelado” por dois turnos.
 
-TÉCNICA: Rokui Hyoketsujin
+### Técnica: Rokui Hyoketsujin
 
 Hyorinmaru Hyorinmaru é a Zanpakutou mais forte de seu elemento, gelo. Ela controla o clima ao seu redor e congela seus inimigos apenas com seus golpes. A forma espiritual de Hyorinmaru é um dragão chinês de gelo.
 
@@ -344,7 +344,7 @@ A forma Shikai, quando liberada, exige que seu nome seja dito, que é “Hyorinm
 
 Quando você libera sua Shikai, todos os seus ataques causam um dano adicional de frio, totalizando 1d10 de dano de Frio adicional. Além disso, você pode congelar pequenas quantidades de água ao seu redor com uma ação bônus e o clima fica gelado por toda a sua volta. Se você realizar um acerto crítico você ativa a habilidade “Hyorinmaru” descrita logo abaixo sem o custo de reiatsu direcionado a criatura que você atacou
 
-TÉCNICA: RYOjin HYOheki
+### Técnica: Ryojin Hyoheki
 
 Quando você for acertado, pode usar sua Reação e 5 pontos de reiatsu para criar uma parede de gelo fina para se proteger, reduzindo o dano em 2d10 + seu nível de classe em pontos.
 
@@ -366,7 +366,7 @@ Além disso qualquer criatura de até ND 3 ou objeto em um raio de 9 metros, rec
 
 ## Técnica: Ryusenka
 
-TÉCNICA: Hyoten Hyakkaso
+### Técnica: Hyoten Hyakkaso
 
 Com uma ação e 12 pontos de reiatsu, você avança em um ataque contra uma criatura, realizando um golpe com sua Zanpakutou. Se acertar, você causa 12d10 de dano de Frio. A criatura deve então realizar um Teste de Resistência de Constituição para evitar ficar com a condição “Congelado” por dois turnos.
 
@@ -378,7 +378,7 @@ As criaturas congelados ficam com a condição por 1 minuto e no início do turn
 
 A técnica permanece ativa por 5 turnos no campo de batalha ou até o término da sua Bankai. Importante ressaltar que esta técnica não afeta você, e todas as criaturas dentro da área devem realizar o teste de destreza no início de cada turno após a ativação, ou sofreram o dano e congelaram, mas as criaturas que estão congeladas não precisam realizar o teste de destreza para desviar da chuva de gelo e criaturas que já foram congeladas não podem mais ser congeladas por essa técnica mais ainda sofreram o dano se falhar no testes de resistência de Destreza.
 
-TÉCNICA: Sennen Hyoro
+### Técnica: Sennen Hyoro
 
 Com uma ação, você cria quatro pilares de gelo, posicionando-os a 15 metros de você em uma formação que se assemelha a um símbolo de cruz: um à sua frente, outro atrás, e os outros nos lados direito e esquerdo. Cada pilar possui 3 metros de diâmetro e 9 metros de altura. Essa formação prende você e todas as criaturas que estiverem dentro da área. Se a criatura tentar sair, um pilar mais próximo se movimentará em direção a ela, exigindo um acerto com uma técnica. Se o acerto for bem-sucedido, o pilar causa 4d10 de dano de Frio e retira o deslocamento da criatura até o final do próximo turno dela. Para manter esses pilares ativos, você deve permanecer dentro da área de 15 metros. Após o encontro de um pilar com uma criatura, os demais pilares são desfeitos.
 
@@ -388,13 +388,13 @@ Se você sair da área onde os pilares foram conjurados, eles serão desfeitos. 
 
 Alternativamente, com sua ação em um turno subsequente à conjuração dos pilares, você pode direcionar todos os pilares para uma criatura dentro da área da técnica. Realize um ataque com técnica para cada um dos pilares, causando 4d10 de dano de Frio em cada um. Se acertar mais de um pilar, a criatura perde todo o deslocamento.
 
-TÉCNICA: Guncho Tsurara
+### Técnica: Guncho Tsurara
 
 Com uma ação bônus e 15 pontos de reiatsu, você pode conjurar punhais de gelo com sua Zanpakutou, fazendo-os flutuar ao seu lado. Dentro dos próximos dois turnos, você pode, com uma ação, disparar esses punhais de gelo em direção a uma criatura, realizando um acerto com técnica à distância e causando 5d10 de dano Perfurante.
 
 Se a criatura estiver congelada, você pode disparar esses punhais com vantagem, e a margem de crítico se torna 18-20. Eles perfuram o gelo, causando consideravelmente mais dano devido à imobilidade da criatura. Nesse caso, o dano é de 10d10 de dano Perfurante, ignorando resistência ao dano. Se a criatura for imune ao dano perfurante, ela sofre o dano como se fosse resistente a ele.
 
-TÉCNICA: Hyoryu Senbi
+### Técnica: Hyoryu Senbi
 
 Com uma ação e o custo de 15 pontos de reiatsu, você libera uma quantidade gigantesca de gelo da ponta de sua Zanpakutou em um cone de 18 metros. Causando 12d6 de dano de Frio em todas as criaturas dentro do cone da técnica. Essas criaturas devem realizar um Teste de Resistência de Destreza, sofrendo o dano total em caso de falha ou metade dele em caso de sucesso.
 
@@ -612,7 +612,7 @@ TÉCNICAS APRIMORADAS Você pode utilizar qualquer habilidade que esteja descrit
 
 Todas as técnicas da Shikai que causem condição agora passam a garantir a condição de “Queimado” se elas acertarem
 
-Nishi: Zanjitsu Gokui
+### Nishi: Zanjitsu Gokui
 
 Com essa habilidade, seu corpo fica coberto por chamas a uma temperatura de 15 milhões de graus. Toda criatura que terminar o turno dela ou começar o turno a até 9 metros de você sofre 4d10 de dano de fogo.
 
@@ -620,7 +620,7 @@ Se uma criatura for reduzida a 0 pontos de vida estando a até 6 metros de você
 
 Todas as criaturas que possuírem ND igual a duas vezes seu bônus de proficiência ou menor caem a 0 pontos de vida e morrem queimadas instantaneamente se chegarem a 9 metros de você.
 
-TÉCNICA: Kita, Tenchi Kaijin
+### Técnica: Kita, Tenchi Kaijin
 
 Você libera as chamas de sua Bankai a uma velocidade incrível a partir da lâmina. Utilizando sua ação e 20 pontos de reiatsu, faça um ataque à distância contra um alvo a até 21 metros de distância em linha reta. Em caso de acerto, o alvo sofre 15d10 de dano de Fogo.
 
@@ -642,27 +642,27 @@ Quando você executar um Quincy ou Shinigami com sua Bankai, deve fazer a contag
 
 Para qualquer teste que o Morto Vivo tenha que fazer você irá utilizar apenas o Atributo para o teste.
 
-Morto-Vivo Atributos
+### Morto-vivo Atributos
 
-FOR
+## For
 
-DES
+## Des
 
 dESL
 
 9m
 
-CON
+## Con
 
-INT
+## Int
 
-SAB
+## Sab
 
 cr
 
 PV
 
-ESP
+## Esp
 
 Passivas Aura de Medo: Quando os mortos-vivos são invocados pela primeira vez, todas as criaturas até 36 metros deles, devem realizar um Teste de Sabedoria. Se falhar, ficará com a condição “Amedrontado” em relação ao usuário da Bankai, se uma criatura conheceu um dos mortos vivos quando ele estava vivo, ela fará o teste de resistência com desvantagem. A criatura que falhou no teste pode repetir o teste no início de cada um dos seus turnos, mas agora deve realizar um Teste de Determinação para tentar se livrar da condição de Amedrontado.
 
@@ -758,7 +758,7 @@ Esse domo criado tem um raio de 12 metros, centrado onde o usuário ativou essa 
 
 Você desativará essa forma “Senkei” se utilizar a técnica “Ikka Senjinka”, desativar a Bankai ou com uma ação voltar para forma “Flor de Sakura”.
 
-TÉCNICA: Ikka Senjinka
+### Técnica: Ikka Senjinka
 
 Com a forma “Senkei” ativada, você pode direcionar todas as Zanpakutous do domo em uma única criatura, criando um ataque colossal. Com uma ação e 20 pontos de reiatsu, o usuário realiza um ataque à distância com a Zanpakutou em uma criatura que esteja até 18 metros de distância, se acertar irá causar 15d10 de dano mais o dano da habilidade “Dilacerar” com o máximo de dados possível.
 
@@ -766,7 +766,7 @@ HABILIDADES SECretas Muitos usuários de Shikai ou Bankai preferem não utilizar
 
 Como veremos abaixo, a Senbonzakura possui uma habilidade escondida que seu usuário, Byakuya Kuchiki, não utiliza porque a considera uma desonra, assim como a verdadeira forma de sua própria Bankai.
 
-TÉCNICA: shukei hakuteiken
+### Técnica: Shukei Hakuteiken
 
 O usuário, com a forma “Senkei” ativada, desfaz essa forma condensando todas as lâminas em seu corpo. As lâminas tornam-se brancas, formando duas asas no usuário e criando uma única lâmina branca e muito condensada com praticamente todas as lâminas da Bankai.
 
@@ -802,11 +802,11 @@ Quando liberada Wakizashi tem seu dano aumentado para 1d10 de dano cortante, com
 
 Com uma ação e utilizando 15 pontos de reiatsu, você segura firmemente sua zanpakutou junto ao peito, concentrando uma grande quantidade de força e intensificando a perfuração. Realize um ataque com sua zanpakutou, e se acertar, cause 10d10 de dano perfurante. A criatura atingida deve realizar um Teste de Resistência de Força. Se falhar, a criatura é empurrada 18 metros para trás. Se ela colidir com um objeto sólido de tamanho médio ou grande, sofrerá 6d6 de dano de concussão adicional.
 
-TÉCNICA: BUTO renjin
+### Técnica: Buto Renjin
 
 Após utilizar a técnica “Buto”, você pode, com uma ação bônus e utilizando 25 pontos de reiatsu, realizar a técnica “Buto” novamente em mais dois novos ataques. Esses ataques podem ser direcionados para a mesma criatura que foi atacada originalmente ou em outras criaturas. Se você optar por realizar o ataque na mesma criatura que foi atingida anteriormente, você tem vantagem no acerto, mas não empurra a criatura.
 
-TÉCNICA: Korose
+### Técnica: Korose
 
 Este é o verdadeiro poder de sua Bankai, não de se expandir, mas de se transformar em pó tão rapidamente que parece uma expansão aos olhos dos outros. Após acertar a técnica “Buto” como um crítico, com uma ação bônus e 25 pontos de reiatsu, você pode introduzir parte da zanpakutou dentro da criatura, envenenando-a. Com uma ação em um turno subsequente, até 1 minuto depois, você pode fazer esse pó desintegrar a criatura, causando sua morte. Se, por alguma razão determinada pelo mestre, a criatura não puder morrer, você inflige 15d10 de dano cortante.
 
@@ -814,7 +814,7 @@ TÉCNICA: JUUHAKU Com uma ação e 5 pontos de Reiatsu, o usuário cria um rastr
 
 Uma criatura congelada pode realizar um teste de resistência de Força no início de cada um de seus turnos para tentar se libertar do congelamento.
 
-TÉCNICA: Some No Mai Tsukishiro
+### Técnica: Some no Mai Tsukishiro
 
 Como uma dança, o usuário realiza um corte com a Zanpakutou no ar, criando um pilar de gelo perto de você. Com uma ação e 5 pontos de reiatsu, você pode criar esse pilar em um local à sua escolha, a até 6 metros de distância. O pilar gera uma esfera de gelo com 3 metros de raio e 30 metros de altura, congelando tudo dentro dessa esfera. Todas as criaturas dentro dessa área devem realizar um teste de resistência de Constituição. Aquelas que falharem sofrem 5d8 + o seu atributo de técnica de Zanpakutou em dano de Frio, enquanto as que obtiverem sucesso sofrem metade desse dano.
 
@@ -834,7 +834,7 @@ Quando você libera sua Sode no Shirayuki, cria-se uma onda de gelo que se esten
 
 Com uma ação e 10 pontos de Reiatsu, o usuário perfura o chão à sua frente quatro vezes, criando esporos de gelo, e dispara com tudo uma onda de gelo para frente em um cone de 12 metros, causando 6d8 + metade do seu nível de personagem (arredondando para cima) de dano de Frio. Todas as criaturas dentro da área da técnica deve realizar um teste de resistência de Destreza, sofrendo todo o dano se falhar ou metade do dano se obtiver sucesso. Se a criatura falhar no primeiro teste, ela deve realizar um segundo teste de Constituição para não receber a condição “Congelado” até o final do próximo turno dela.
 
-TÉCNICA: Some No Mai SHIRAFUNE
+### Técnica: Some no Mai Shirafune
 
 Com uma ação bônus e 3 pontos de Reiatsu, o usuário infunde gelo em sua Zanpakutou, aumentando o dano da beleza gélida para 2d10. No entanto, você deve manter a concentração e gastar 3 pontos de Reiatsu a cada turno ativo após o primeiro turno.
 
@@ -904,7 +904,7 @@ técnica: lâmina voadora Você corta o ar com a Tachikaze criando uma lâmina d
 
 Após acertar a criatura, o corte explode em reiatsu, causando 3d8 de dano de energia. A criatura deve realizar um Teste de Resistência de Constituição, recebendo todo o dano de energia em caso de falha ou a metade dele em caso de sucesso.
 
-técnica: Bakudantsuki
+### Técnica: Bakudantsuki
 
 Com uma ação e 15 pontos de reiatsu você infunde uma grande quantidade de energia na Tachikaze, envolvendo sua mão com essa energia. Realize um ataque com a Tachikaze, se acertar causa uma explosão de reiatsu ocorre ao contato com a criatura, causando 7d8 de dano de Energia + sua força ou destreza a sua escolha.
 
@@ -956,7 +956,7 @@ A forma Shikai, quando liberada, exige que seu nome seja dito, que é “Tenken�
 
 Quando a Shikai é ativada, a Zanpakutou mantém sua Asauchi, mantendo o mesmo dano dessa forma Asauchi, mas sua margem de crítico se torna 19-20.
 
-TÉCNICA: Espectro do Colosso
+### Técnica: Espectro do Colosso
 
 Quando você realizar um ataque, pode fazer com que uma parte fantasma gigante ataque a mesma criatura. Ao realizar um ataque físico com Zanpakutou ou Hakuda, você pode gastar 2 pontos de reiatsu para que o membro fantasma repita seu ataque, causando 3d10 de dano do mesmo tipo que você causou. Não é necessário rolar acerto para esse ataque adicional, se você acertar o primeiro ataque, o ataque do fantasma também acertará.
 
@@ -968,11 +968,11 @@ Ataques
 
 Cada ataque que você realizar o Samurai irá fazer também, imitando seu movimento, aonde criará uma onda de destruição à sua frente, causando dano triplicado em objetos. O samurai causará dano em um cone de 18 metros a partir dele com cada ataque, infligindo 7d12 de dano cortante com a Zanpakutou ou pode realizar ataques com Hakuda também, que causará o mesmo dano mas do tipo de Concussão. Faça apenas um acerto com vantagem para todas as criaturas dentro do cone que você deseja atacar.
 
-Laços do Protetor
+### Laços do Protetor
 
 O samurai é imenso e protege o usuário, que permanecerá com o samurai constantemente, não podendo ser separados. Com isso, o usuário recebe um bônus de +5 na Classe de Resistência enquanto o Bankai estiver ativa. No entanto, o samurai e o usuário compartilham os mesmos Pontos de Vida e Classe de Resistência. Se o samurai for atacado, o usuário também sofrerá o dano, e todo ataque feito contra o Samurai será realizado com vantagem.
 
-Vida Conectada
+### Vida Conectada
 
 A Bankai e o usuário compartilham uma conexão extremamente forte: quando o usuário está ferido, a Bankai também sofre dano, porém, se o usuário se cura, a Bankai também é restaurada. Essa Bankai é dificilmente quebrada porque o usuário e ela compartilham o mesmo corpo.
 
@@ -992,11 +992,11 @@ Categoria: Zabimaru tem a categoria de Zanpakutou do tipo Combate.
 
 A forma Shikai, quando liberada, exige que seu nome seja dito, que é “Zabimaru”. Quando atinge o estágio de Shikai, ela se torna uma espada segmentada em seis partes, cada uma dividida por uma lâmina em forma de picareta, cada segmento aumenta de tamanho a partir do punho da lâmina. Para liberá-la, é preciso utilizar 8 pontos de Reiatsu na sua ativação, permanecendo ativa até você realizar um descanso curto ou longo ou até que você a desative com uma ação livre.
 
-Chicote Segmentado
+### Chicote Segmentado
 
 Quando liberada, a Zabimaru toma a forma de uma espada segmentada. Essas partes podem se separar, mas permanecem conectadas por tipo um elástico de metal, funcionando como um chicote bruto, porém muito maleável e eficaz. Seu dano com a Zabimaru se torna 1d10 de dano cortante ou perfurante, à escolha do usuário, e tem um alcance de 4,5 metros, contando como ataque corpo-acorpo com arma.
 
-Intensificação de Reiatsu
+### Intensificação de Reiatsu
 
 Você pode intensificar um ataque, imbuindo reiatsu na Zabimaru. Com a ação bônus e 1 ponto de reiatsu, o usuário pode adicionar 1d10 de dano de Energia ao ataque.
 
@@ -1006,7 +1006,7 @@ Uma Bankai que estende o alcance da Shikai significativamente, transformando a Z
 
 Com a Bankai liberada, o alcance da Zabimaru aumenta significativamente, passando para 12 metros. O dano causado por ela se torna 4d12 de dano perfurante. A serpente fica constantemente circulando ao redor do usuário com seu corpo gigante, fazendo com que o usuário fique quase completamente coberto. Dessa forma, o usuário ganha um bônus na sua Classe de Resistência igual ao seu bônus de proficiência.
 
-TÉCNICA: HikOtsu TaihO
+### Técnica: Hikotsu Taiho
 
 A serpente se acende em reiatsu e dispara uma grande bola de energia de sua boca, que acerta uma criatura em linha reta até 18 metros de distância. Faça um ataque à distância com a Zanpakutou contra a criatura. Se acertar, você causará 15d12 de dano de Energia.
 
@@ -1044,19 +1044,19 @@ O usuário se torna muito mais veloz e forte do que o normal, e toda sua reiatsu
 
 Como sua reiatsu se torna totalmente negra, ela passa a ignorar qualquer resistência e imunidade que o alvo possa ter a dano de energia. Você também consegue utilizar a habilidade “Embuir” da Shikai, causando 3d10 de dano.
 
-Técnica: GETSUGA TENSHOU NEGRO
+### Técnica: Getsuga Tenshou Negro
 
 Agora você canaliza a energia espiritual negra em sua arma e desfere um poderoso ataque à distância com a Zangetsu. Utilizando sua ação e 15 pontos de reiatsu faça um ataque à distância com vantagem contra um alvo em até 36 metros de distância em linha. Em um acerto, o alvo sofre 14d12 de dano de energia.
 
 Você também consegue utilizar o Getsu Tenshou cocentrado, quando você realizar um ataque corpo a corpo com a Zangetsu, antes de saber se o ataque acertou, com sua ação bônus e 7 pontos de reiatsu você adiciona 7d12 de dano de Energia ao ataque.
 
-Técnica: GETSUGA TENSHOU DISPERSO
+### Técnica: Getsuga Tenshou Disperso
 
 Agora você canaliza a energia espiritual negra em sua arma e desfere um poderoso ataque à distância com a Zangetsu, mas focando em diversos inimigos agora. Utilizando sua ação e 15 pontos de reiatsu, você canaliza seu golpe em um cone de 9 metros de comprimento a partir de você, causando 12d8 de dano de energia. Toda criatura dentro da área do Getsuga Tenshou deve realizar um Teste de Resistência de Destreza, sofrendo todo o dano se falhar ou metade dele se obtiver sucesso.
 
 ZANPAKUTOUS INCOMPLETAS Muitas Zanpakutous não são conhecidas por completo, sendo conhecidas apenas algumas partes de seus poderes, como apenas algumas habilidades da Shikai. Essas Zanpakutous também podem ser escolhidas por você ao criar seu personagem, mas ao longo da campanha você poderá criar outras habilidades para elas, bem como uma Bankai.
 
-Lista de Zanpakutous Incompletas NOME
+### Lista de Zanpakutous Incompletas Nome
 
 ## Ccategoria
 
@@ -1064,7 +1064,7 @@ Lista de Zanpakutous Incompletas NOME
 
 ## Ccategoria
 
-Arazome Shigure
+### Arazome Shigure
 
 Kido
 
@@ -1076,13 +1076,13 @@ Gegetsuburi
 
 Combate
 
-Sanpo Kenju
+### Sanpo Kenju
 
-Daichimaru Engetsu
+### Daichimaru Engetsu
 
-Haguro Tonbo Haineko
+### Haguro Tonbo Haineko
 
-Hisagomaru Kubiriki Orochi Kyoka Suigetsu
+### Hisagomaru Kubiriki Orochi Kyoka Suigetsu
 
 Elemental (Pedra)
 
@@ -1090,21 +1090,21 @@ Nejibana
 
 Combate
 
-Sougyo no Kotowari
+### Sougyo no Kotowari
 
-Elemental (Fogo) Especial Kido
+### Elemental (fogo) Especial Kido
 
-Combate Kido
+### Combate Kido
 
-Ruri’iro Kujaku
+### Ruri’iro Kujaku
 
 Tobiume
 
-Tsuchinamazu Tengumaru
+### Tsuchinamazu Tengumaru
 
-Elemental (Água) Kido
+### Elemental (água) Kido
 
-Combate Kido
+### Combate Kido
 
 Elemental (Fogo)
 
@@ -1158,7 +1158,7 @@ Categoria: Engetsu tem a categoria de Zanpakutou do tipo Elemental de Fogo.
 
 A forma Shikai, quando liberada, exige que seu nome seja dito, que é “Engetsu”. Quando atinge o estágio de Shikai, a Zanpakutou não muda mas sim sua lâmina arde em chamas, mantendo sua forma de Asauchi. Seu dano com a Engetsu permanece o mesmo da forma Asauchi, mas você adiciona 2d10 de dano de fogo e sua margem de crítico passa a ser 18-20. Para liberá-la, é preciso utilizar 10 pontos de Reiatsu na sua ativação, permanecendo ativa por 1 minuto. Após esse tempo, é necessário utilizar os pontos de Reiatsu novamente para mantê-la ativa.
 
-Técnica: GETSUGA TENSHOU FLAMEJANTE
+### Técnica: Getsuga Tenshou Flamejante
 
 Com uma ação e 10 pontos de reiatsu, você canaliza chamas na Engetsu e dispara um ataque à distância em uma criatura até 18 metros com um poder de fogo muito intenso. Faça uma jogada de ataque à distância com a Zanpakutou, se acertar, você causará 6d10 + duas vezes seu atributo de Espírito como dano de fogo na criatura. A criatura atingida recebe a condição “Queimado”.
 
@@ -1172,13 +1172,13 @@ Categoria: Gegetsuburi tem a categoria de Zanpakutou do tipo de Combate.
 
 A forma Shikai, quando liberada, exige que seu nome seja dito, que é “Gegetsubiri”. Ao atingir o estágio de Shikai, a Zanpakutou se transforma em uma bola de metal com espinhos longos, presa a uma corrente que está atada à mão do usuário. Para liberá-la, é preciso utilizar 6 pontos de Reiatsu na sua ativação, permanecendo ativa por 1 minuto. Após esse tempo, é necessário utilizar os pontos de Reiatsu novamente para mantê-la ativa.
 
-Estrela de Ferro
+### Estrela de Ferro
 
 Na forma liberada da Shikai, seus ataques com a Gegetsuburi causam 2d10 de dano perfurante e têm um alcance de 9 metros, não sendo considerados ataques à distância, mas sim corpo a corpo com arma.
 
 Usando sua reação, você pode utilizar a Gegetsuburi para se defender de um ataque corpo a corpo contra você, reduzindo 3d10 de dano.
 
-Haguro Tonbo
+### Haguro Tonbo
 
 Haguro Tonbo é uma classica Zanpakutou da categoria de Combate, possuindo apenas um objetivo, aumenta o poder do usuário e também sua distância de combate.
 
@@ -1188,7 +1188,7 @@ Categoria: Haguro Tonbo tem a categoria de Zanpakutou do tipo de Combate.
 
 A forma Shikai, quando liberada, exige que seu nome seja dito, que é “Haguro Tonbo”. O usuário gira a Zanpakutou ao redor do corpo, fazendo com que ela se transforme em uma arma de haste enorme, com uma lâmina semelhante como uma pá de monge, com uma bola de metal atrás para dar sustentação de peso. Para liberá-la, é preciso utilizar 5 pontos de Reiatsu na sua ativação, permanecendo ativa por 1 minuto. Após esse tempo, é necessário utilizar os pontos de Reiatsu novamente para mantê-la ativa.
 
-Libélula de Ferro
+### Libélula de Ferro
 
 Ao usar a Haguro Tonbo, você causa com ela 1d12 de dano cortante ou perfurante, à sua escolha, e possui um alcance de 4,5 metros com ela.
 
@@ -1210,7 +1210,7 @@ A forma Shikai, quando liberada, exige que seu nome seja dito, que é “Haineko
 
 O usuário da Haineko consegue controlar essa névoa, que é formada por lâminas minúsculas, podendo acertar criaturas à distância. Você pode realizar ataques à distância com a Zanpakutou até 9 metros, causando 2d10 de dano cortante.
 
-TÉCNICA: nEKO rinbu
+### Técnica: Neko Rinbu
 
 O usuário faz com que a Haineko envolva uma criatura e a atinja de todos os lados em forma de um tornado cortante. Com uma ação e 5 pontos de reiatsu, faça um ataque contra uma criatura que esteja até 9 metros, se acertar, você causa 5d10 de dano cortante.
 
@@ -1240,7 +1240,7 @@ Na forma liberada, a Hisagomaru se torna esse pequeno bisturi, e seus ataques co
 
 Quando você escolher a Hisagomaru, você poderá absorver danos que uma criatura sofreu e converter essa energia para a Zanpakutou. Você pode absorver dano igual a 5 vezes o seu nível de classe. Para isso, você deve tocar a Zanpakutou na criatura usando sua ação, convertendo o dano sofrido por ela em energia para a Hisagomaru. A energia absorvida fica armazenada na Hisagomaru e pode ser liberada no próximo minuto. A criatura da qual você absorveu o dano será curada na quantidade que você absorveu, e você pode escolher a quantidade de dano a ser absorvida. Se a Hisagomaru já estiver com o máximo de reiatsu absorvido, ela não poderá absorver mais até que você use a técnica “Akeiro Hisagomaru”.
 
-Técnica: Akeiro Hisagomaru
+### Técnica: Akeiro Hisagomaru
 
 Quando você tiver absorvido o dano de uma criatura e pode liberar em forma de uma explosão de energia. Com sua ação e 5 pontos de reiatsu faça um ataque à distância contra uma criatura até 9 metros, se acertar, a criatura sofrerá 2d10 de dano de Energia + a quantidade de dano absorvido pela Hisagomaru. Após utilizar essa técnica, a quantidade de dano absorvido será zerada.
 
@@ -1258,9 +1258,7 @@ A forma Shikai, quando liberada, exige que seu nome seja dito, que é “Kubirik
 
 Na forma Shikai, seus ataques com ela causam 2d6 de dano cortante. Você adiciona seu modificador de Força ao rolar o dano, e se você escolheu uma Asauchi com o atributo de Força, você adicionará o modificador de Força mais uma vez, adicionando ele duas vezes.
 
-CATEGOrias Como já mencionado, as Zanpakutous têm categorias: Combate, Kido e Especial. A categoria de Kido possui divisões que não serão abordadas no Soul Society por questões de simplificação, mas podem aparecer nas campanhas, e o Mestre pode abordar diferentes tipos para a categoria de Kido, que são: • •
-
-• •
+CATEGOrias Como já mencionado, as Zanpakutous têm categorias: Combate, Kido e Especial. A categoria de Kido possui divisões que não serão abordadas no Soul Society por questões de simplificação, mas podem aparecer nas campanhas, e o Mestre pode abordar diferentes tipos para a categoria de Kido, que são:
 
 Subtipo Projétil: É uma divisão onde as Zanpakutous criam algum tipo de projétil e podem ser usadas para combate ou outras utilidades.
 
@@ -1270,17 +1268,15 @@ Subtipo Venenosa: É uma divisão onde a Zanpakutou é especializada na geraçã
 
 ## Elemental
 
-As Zanpakutous Elementais também são um subtipo das de Kido, mas no Soul Society elas são abordadas como uma categoria própria devido à quantidade e diversidade de Zanpakutous. Todos os subtipos elementais estão abaixo: • • • • •
+As Zanpakutous Elementais também são um subtipo das de Kido, mas no Soul Society elas são abordadas como uma categoria própria devido à quantidade e diversidade de Zanpakutous. Todos os subtipos elementais estão abaixo:
 
-Água Eletricidade Escuridão Fogo Gelo
+### Água Eletricidade Escuridão Fogo Gelo
 
-• • • •
-
-Luz Planta Terra Vento
+### Luz Planta Terra Vento
 
 KYOKA SUIGETSU HIPNOSE PERFEITA “A verdade é um conceito relativo. O que é verdade para um pode não ser verdade para outro.”
 
-Aizen Sosuke
+### Aizen Sosuke
 
 A Kyoka Suigetsu é considerada por muitos a Zanpakutou mais forte de todas, não por causar danos massivos em seus inimigos, mas por criar uma ilusão perfeita onde aqueles que caírem uma vez nessa hipnose estarão para sempre presos em ilusões.
 
@@ -1322,17 +1318,17 @@ Categoria: Mirokumaru tem a categoria de Zanpakutou do tipo Elemental de Vento.
 
 A forma Shikai, quando liberada, exige que seu nome seja dito, que é “Mirokumaru”. Quando atinge o estágio de Shikai, ela se transforma em um Khakkhara com uma ponta afiada. Para liberá-la, é preciso utilizar 4 pontos de Reiatsu na sua ativação, permanecendo ativa por 1 minuto. Após esse tempo, é necessário utilizar os pontos de Reiatsu novamente para mantê-la ativa.
 
-Fúria do Vento Crepuscular
+### Fúria do Vento Crepuscular
 
 Na sua forma Shikai, Mirokumaru se torna um cajado Khakkhara e pode controlar os ventos em formas de tornados arremessando em seus inimigos. Seus ataques com a Mirokumaru causam 2d8 de dano de Cortante e têm um alcance de 6 metros.
 
-TÉCNICA: TORNADO crespuscular
+### Técnica: Tornado Crespuscular
 
 Com uma ação e 6 pontos de reiatsu, você cria um tornado a partir da ponta da Mirokumaru e o arremessa contra uma criatura. Faça um ataque à distância em uma criatura que esteja até 9 metros em linha reta. Se acertar, você causa 5d10 de dano de Concussão. A criatura atingida deve realizar um Teste de Resistência de Força, se falhar, será empurrada 3 metros para trás.
 
 Alternativamente, você pode utilizar esse tornado em diversas criaturas. Com sua ação e 8 pontos de reiatsu escolha uma área de 4,5 metros de raio até 9 metros de você. Todas as criaturas dentro dessa área devem realizar um Teste de Resistência de Destreza. Se falharem no teste, sofrerão 8d6 de dano Cortante e serão arremessadas 1,5 metros para trás.
 
-Técnica: Ciclone Ascendente
+### Técnica: Ciclone Ascendente
 
 Você cria um grande tornado ao seu redor que o ergue do chão e destrói tudo ao seu redor. Com uma ação e 6 pontos de reiatsu, você cria esse tornado centrado em você, estendendo-se por um raio de 3 metros e alcançando uma altura de 9 metros. Ao conjurá-lo, você pode subir no tornado e flutuar sobre ele, mantendo-o ativo com sua concentração. Todas as criaturas dentro da área do tornado devem realizar um Teste de Resistência de Destreza, se falharem sofreram 6d6 de dano Cortante e seram arremessadas 3 metros para trás se falharem, saindo de dentro do tornado.
 
@@ -1350,7 +1346,7 @@ Seus ataques com a Nejibana causam 1d12 de dano Perfurante ou Cortante, a sua es
 
 Com sua ação e 8 pontos de reiatsu, você gira a Nejibana rapidamente e a bate no chão, criando uma onda de água que se estende em uma linha de 9 metros de comprimento e largura de 3 metros. Todas as criaturas dentro da área da onda devem realizar um Teste de Resistência de Constituição. Se falharem no teste, sofrerão 6d10 de dano de Frio e deverão realizar um segundo Teste de Resistência de Força ou serão empurradas até o fim da onda ou serão paradas em um objeto no caminho ou criatura.
 
-TÉCNICA: Impacto de Água
+### Técnica: Impacto de Água
 
 O usuário gira a Nejibana, juntando uma grande quantidade de água, e a arremessa contra uma criatura. Com sua ação e 8 pontos de reiatsu, faça um ataque à distância contra uma criatura até 9 metros. Se acertar, você causa 5d10 de dano de Frio e a criatura sofre a condição “Caído”.
 
@@ -1358,11 +1354,11 @@ O usuário gira a Nejibana, juntando uma grande quantidade de água, e a arremes
 
 Quando você for atacado, você pode girar a Nejibana e criar um escudo de água que adiciona +3 à sua Classe de Resistência para esse ataque, potencialmente fazendo com que o ataque erre. Para isso, você deve utilizar sua reação e gastar 4 pontos de reiatsu.
 
-TÉCNICA: Explosão da Maré
+### Técnica: Explosão da Maré
 
 Se você estiver cercado de inimigos, pode criar uma inundação de água para afastar as criaturas próximas. Com sua ação, você cria uma explosão de água que se estende em todas as direções em 3 metros, centrada em você. Todas as criaturas dentro desse raio devem fazer um Teste de Resistência de Força. Se falharem, serão empurradas 3 metros para trás e sofrerão 4d10 de dano de Frio.
 
-ruri iro KujaKu
+### Ruri Iro Kujaku
 
 ## Comando
 
@@ -1382,11 +1378,11 @@ Seus ataques com a Ruri’iro Kujaku causam 1d10 de dano de Energia ou Cortante,
 
 Você também pode escolher causar dano diretamente na reiatsu da criatura. Mesmo que não seja um acerto crítico, você roubará metade do dano causado em pontos de reiatsu, mas apenas se optar por atacar diretamente a reiatsu da criatura.
 
-TÉCNICA: Absorção Espectral
+### Técnica: Absorção Espectral
 
 Com uma ação e 10 pontos de reiatsu, você cria vinhas de reiatsu semelhantes a asas de pavão e as prende em uma criatura. Faça um ataque contra uma criatura até 9 metros em linha, se acertar, as vinhas se prenderão na criatura e começarão a sugar o reiatsu dela, fazendo florescer belas flores nessas vinhas. Essas vinhas permanecerão presas à criatura até que você as libere, seja derrotado ou a criatura se afaste mais de 18 metros de você. Se a criatura se afastar e depois se aproximar novamente, as vinhas se prenderão automaticamente de novo. A cada turno, depois de acertar as vinhas, elas sugarão uma quantidade de reiatsu igual ao seu bônus de proficiência em d10 no começo do seu turno. Quando você acumular uma quantidade de reiatsu igual a 10x seu nível de classe, ou decidir que elas parem de absorver, você pode causar um dano massivo na criatura automaticamente. O dano será igual à quantidade de reiatsu absorvida da criatura, como dano de Energia. Se a criatura ficar sem reiatsu no processo de absorção, ela morrerá se você assim desejar. Ao causar dano, você recupera metade dos pontos de reiatsu correspondentes ao dano causado.
 
-LIBERAÇÃO INCOMPLETA: Fuji Kujaku
+### Liberação Incompleta: Fuji Kujaku
 
 A forma Shikai, quando liberada, exige que seu nome seja dito, que é “Fuji Kujaku”. Quando atinge o estágio de Shikai, ela se transforma em uma foice, mas possui quatro lâminas, que parecem ser quatro foices juntas. Para liberála, é preciso utilizar 3 pontos de Reiatsu na sua ativação, permanecendo ativa por 1 minuto. Após esse tempo, é necessário utilizar os pontos de Reiatsu novamente para mantê-la ativa.
 
@@ -1404,7 +1400,7 @@ A forma Shikai, quando liberada, exige que seu nome seja dito, que é “Sanpo K
 
 A Sanpo Kenju não altera sua forma quando liberada, permanecendo na forma Asauchi, com o mesmo dano e a mesma margem de crítico. No entanto, você pode utilizar os ataques (acerto e dano) feitos com ela utilizando seu atributo de Espírito em vez de Força ou Destreza.
 
-Sentinelas da Alma
+### Sentinelas da Alma
 
 As duas criaturas invocadas ao liberar a Sanpo Kenju têm aparências distintas. Uma delas é alta e feita de ossos, usa um manto preto e tem um grande osso que atravessa verticalmente sua cabeça, empunhando uma lâmina longa com outra lâmina saliente na borda superior. A outra criatura é gorda e coberta de pelo, deixando seus olhos apenas parcialmente visíveis, empunhando um cutelo. As criaturas imitam todos os seus movimentos, locomovendose junto com você. Elas ocupam espaços adjacentes a você e sempre ficam a 1,5 metros de distância de você. Se você estiver em um local sem espaço suficiente, o mestre decide onde elas aparecem, mas elas sempre estarão ao seu lado, e por estarem sempre ao seu lado, fica mais díficil te acertar, você ganha +3 na sua Classe de Resistência.
 
@@ -1470,7 +1466,7 @@ A Tengumaru é uma Zanpakutou muito forte no combate físico, apesar de ser do t
 
 A forma Shikai, quando liberada, exige que seu nome seja dito, que é “Tengumaru”. Quando alcança o estágio de Shikai, ela se transforma em um Kanabo com espinhos duas vezes maior que o usuário. Para liberá-la, é preciso utilizar 6 pontos de Reiatsu na sua ativação, permanecendo ativa por 1 minuto. Após esse tempo, é necessário utilizar os pontos de Reiatsu novamente para mantê-la ativa.
 
-Fúria Ardente
+### Fúria Ardente
 
 Pelo tamanho gigante da Tengumaru, seus ataques com ela causam 3d12 de dano Perfurante. Você só pode usar o atributo de Força para os ataques e danos com ela.
 
@@ -1478,7 +1474,7 @@ Pelo tamanho gigante da Tengumaru, seus ataques com ela causam 3d12 de dano Perf
 
 Quando você sofrer um ataque, você pode usar sua reação e 2 ponto de reiatsu para colocar a Tengumaru para se proteger, reduzindo o dano em um valor igual ao seu atributo de Força. Você pode utilizar 5 pontos de reiatsu para reduzir o dano em um valor igual a duas vezes seu atributo de força.
 
-TÉCNICA: Hifuki no Koduchi
+### Técnica: Hifuki no Koduchi
 
 Com sua ação e 10 pontos de reiatsu você ergue a Tengumaru acima da cabeça e faz ela se acender em chamas e logo após você arremessa uma esfera de chamas parecendo um meteoro em uma criautra até 9 metros em linha reta. Em um acerto a criatura sofre 5d10 de dano de Fogo e deve realizar um teste de resistência de Constituição para não sofrer a condição “Queimado”.
 
@@ -1492,7 +1488,7 @@ Para criar a Zanpakutou, você deve seguir sempre o conceito de que a alma do Sh
 
 Se, durante a campanha, sua Bankai estiver liberada e ela for quebrada por algum motivo, o Mestre pode permitir que você crie uma nova Zanpakutou. No entanto, ela deve seguir o tipo que tinha anteriormente e possuir habilidades muito parecidas. Algumas mudanças podem ocorrer, que você ou o Mestre devem definir, e até mesmo uma mudança de nome pode acontecer. Esse processo é chamado de “Reforja”, onde o usuário praticamente forja uma nova Zanpakutou. O usuário pode escolher que sua Shikai mude algumas habilidades também, mesmo que não seja comum que a Shikai mude.
 
-PRIMEIRO PASSO: DEFININDO a CATEGORIA
+### Primeiro Passo: Definindo a Categoria
 
 ## Quarto Passo: Shikai
 
@@ -1534,7 +1530,7 @@ O crítico da sua Shikai é determinado quando você escolhe sua forma. Uma Zanp
 
 ## Dupla
 
-Custo de liberação
+### Custo de Liberação
 
 As Zanpakutous podem assumir uma forma dupla ou se tornar praticamente duas Zanpakutous diferentes. Você deve definir danos iguais ou diferentes para elas, e elas seguirão a regra no capítulo de combate “Jogando com Duas Armas”. Também pode transformar a Asauchi (Forma Selada) em duas armas, seguindo essa regra.
 
@@ -1568,6 +1564,6 @@ Obviamente, as Zanpakutous seguem um padrão; se elas têm um poder na Shikai, n
 
 Assim como o Shinigami tem defeitos, sua Bankai também deve ter. Você deve criar um ponto fraco que pode ser um efeito colateral prejudicial ao usuário ao utilizá-la, ou até mesmo uma vulnerabilidade específica que adversários podem explorar. Por exemplo, uma Bankai só pode ser liberada longe de aliados porque pode causar danos até mesmo a eles. Se você estiver perdido ao criar um ponto fraco, pode olhar as Zanpakutous existentes ou pedir para um amigo analisar a Zanpakutou e tentar identificar a fraqueza dela. É importante lembrar que quase todas as Bankais possuem fraquezas, assim como seus usuários.
 
-sexto PASSO: mudança
+### Sexto Passo: Mudança
 
 Uma Zanpakutou muda ao longo da vida do usuário junto com ele, então você pode alterá-la durante a jornada, criando novos poderes. No entanto, ela nunca fugirá da temática já estabelecida ou do tipo de Zanpakutou que ela é. Você pode começar com uma versão incompleta da sua Zanpakutou e ir evoluindo durante a jornada.

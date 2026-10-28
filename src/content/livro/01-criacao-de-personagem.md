@@ -42,7 +42,7 @@ Os pontos de vida de um personagem definem sua resistência em combate, enquanto
 
 Anote os pontos de vida e os pontos de reiatsu do seu personagem após definir os atributos na sua Ficha de Personagem.
 
-Bônus de Proficiência
+### Bônus de Proficiência
 
 A tabela presente na descrição da classe mostra o bônus de proficiência (Ou somente Proficiência), que é de +2 para um personagem de 1° nível e maior em níveis superiores.
 
@@ -54,7 +54,7 @@ O seu bônus de proficiência não pode ser adicionado mais de uma vez a uma ún
 
 A sua Classe de Resistência (CR) representa a habilidade do personagem em evitar ser ferido em combate. Cada classe possui um cálculo diferente para determinar a Classe de Resistência, que normalmente é 10 + o bônus de proficiência + um atributo chave da classe (veremos os atributos no próximo passo), que está na tabela de classe. Anote sua Classe de Resistência na Ficha de Personagem após distribuir os pontos de atributo.
 
-essência espiritual
+### Essência Espiritual
 
 Uma classe no 1° nível concede a capacidade de escolher uma Essência Espiritual inicial, conforme descrito no Capítulo 4. Você pode escolher qualquer essência que considerar mais adequada. Nos níveis mais avançados, é possível começar com mais de uma Essência Espiritual ou essências com etapas evoluídas. Lembre-se de que, no início, você não começa com uma essência com etapas, apenas com a essência pura.
 
@@ -70,17 +70,7 @@ Todo personagem tem seis atributos que definem suas competências: Força, Destr
 
 Quando você cria um personagem, todos os seus atributos começam em 0 e você recebe 12 pontos para distribuir entre eles como desejar. Nessa distribuição, você não pode ultrapassar 4 pontos em um mesmo atributo, a menos que tenha alguma característica que conceda pontos extras a um atributo. Anote seus atributos na sua Ficha de Personagem.
 
-Resumo dos Atributos •
-
-•
-
-•
-
-•
-
-•
-
-•
+### Resumo dos Atributos
 
 A Força reflete a capacidade física e a potência do personagem, envolvendo musculatura, resistência e habilidade para tarefas exigentes. Personagens com alta Força podem levantar objetos pesados, empurrar obstáculos e desferir golpes poderosos.
 
@@ -98,7 +88,7 @@ Construindo Ishida (3): Para criar o personagem Ishida, devemos distribuir os po
 
 por favor um doze Como regra opcional, existe outra forma de começar com quantidades diferentes de pontos de atributo no primeiro nível, baseada na sorte: você rola um d12 e deixa que o resultado decida. Valores altos no dado garantem mais pontos para distribuir no início, enquanto valores baixos resultam em menos pontos de atributo. Além disso, a quantidade máxima que você pode investir em um único atributo também pode aumentar ou diminuir, conforme descrito na tabela abaixo. Consulte o resultado do seu d12 na tabela para saber quantos pontos de atributo seu personagem terá e qual será o novo limite máximo permitido por atributo. resultado
 
-pONTOS DE Atributo
+### Pontos de Atributo
 
 Máximo
 
@@ -136,7 +126,7 @@ Anote a história do seu personagem na Ficha de Personagem, incluindo personagen
 
 Construindo Rukia e Ishida (5): Como a história dos dois personagens é muito longa e cheia de detalhes, espero que você tenha assistido Bleach ou que eu tenha conseguido despertar seu interesse para assistir, seja por algo do livro ou pelos próprios personagens. Portanto, este passo é: veja Bleach!
 
-e classe
+### E Classe
 
 sd 6. Particularidades dos tipo
 
@@ -146,37 +136,37 @@ Progressão de Níveis À medida que seu personagem explora o mundo de Bleach e 
 
 Cada vez que um personagem sobe de nível, ele recebe novas características da sua Classe, conforme indicado na descrição dela. Além disso, o personagem ganha novos Pontos de Vida e Pontos de Reiatsu: ao subir de nível, você soma o seu Atributo Constituição para calcular os novos Pontos de Vida e o seu Atributo Espírito para calcular os novos Pontos de Reiatsu, como também Pontos de Atributos e Essência Espirituais.
 
-Pontos de atributo extra
+### Pontos de Atributo Extra
 
 Quando um personagem sobe de nível, ele recebe pontos de Atributo que podem ser distribuídos livremente entre seus atributos, permitindo ultrapassar o limite inicial de 4 pontos usado na criação do personagem. A partir desse momento, o novo limite para cada atributo passa a ser 15 pontos.
 
 Nos níveis 3, 5, 7, 9, 11, 13, 15, 17 e 19, o personagem ganha 1 ponto de Atributo, que podem ser distribuídos da forma que o jogador preferir.
 
-essência espiritual ADICIONAL
+### Essência Espiritual Adicional
 
 Subir de nível na sua classe não é a única forma de conseguir uma nova essência espiritual. Ao derrotar um inimigo poderoso, você pode conquistar uma nova essência ou evoluir uma que já possua, avançando para uma etapa superior. Para campanhas em que os personagens começam em níveis mais altos, consulte a tabela para ver quantos pontos de essência adicionais você recebe na criação do personagem. Um ponto compra uma nova essência ou sobe uma etapa. Lembre-se: esses pontos extras são apenas para personagens que começam em níveis avançados. Se você estiver subindo de nível normalmente durante a campanha, não receberá esses pontos adicionais. Nesses casos, cabe ao Mestre conceder novas essências de acordo com os inimigos vencidos e o progresso da história. Para mais detalhes, consulte o Capítulo 4.
 
-Tabela de Progressão de Nível Influência
+### Tabela de Progressão de Nível Influência
 
-Espírito Desperto
+### Espírito Desperto
 
-Pontos de Experiência
+### Pontos de Experiência
 
 Nível
 
-Pontos de Atributo
+### Pontos de Atributo
 
-Essências Espirituais
-
--
+### Essências Espirituais
 
 -
 
-Eco Espiritual
+-
+
+### Eco Espiritual
 
 -
 
-Risco Existencial
+### Risco Existencial
 
 +1
 
@@ -184,7 +174,7 @@ Risco Existencial
 
 -
 
-Pilar Espiritual
+### Pilar Espiritual
 
 +1
 

@@ -26,7 +26,7 @@ O mesmo vale para uma campanha. Você pode saber quem é o grande inimigo, quais
 
 aquilo que foi planejado. Muitas vezes, os momentos mais memoráveis surgem justamente quando os jogadores fazem algo completamente inesperado. O planejamento serve como uma base para o Mestre, não como um roteiro que precisa ser seguido à risca.
 
-Quando os jogadores tomarem uma decisão inesperada, pense em como o mundo reagiria a ela. Os personagens possuem seus próprios objetivos, as organizações continuam agindo e os acontecimentos não precisam esperar pelos jogadores. Dessa forma, mesmo quando a história muda de direção, ela continua fazendo sentido. • • • •
+Quando os jogadores tomarem uma decisão inesperada, pense em como o mundo reagiria a ela. Os personagens possuem seus próprios objetivos, as organizações continuam agindo e os acontecimentos não precisam esperar pelos jogadores. Dessa forma, mesmo quando a história muda de direção, ela continua fazendo sentido.
 
 O Mestre apresenta o problema.
 
@@ -74,19 +74,19 @@ Você não precisa reproduzir a história de Bleach. Este livro fornece as ferra
 
 Use o capítulo de Introdução como referência para consultar a história e entender como funciona o universo de Bleach.
 
-Criando uma aventura
+### Criando Uma Aventura
 
 Uma aventura pode nascer de uma ideia simples: algo está acontecendo e os personagens precisam lidar com a situação.Uma aventura é formada por uma ou mais sessões de jogo.
 
 A partir dos elementos apresentados anteriormente, o Mestre pode desenvolver essa ideia em uma aventura completa. Não é necessário criar uma história complexa ou planejar cada acontecimento. Um conflito interessante, personagens com objetivos claros e um cenário adequado já são suficientes para começar.
 
-Definindo o Conflito
+### Definindo o Conflito
 
 O conflito é o problema central da aventura. Ele é aquilo que coloca os personagens em movimento e cria uma situação que precisa ser resolvida.
 
 Em Soul Society RPG, o conflito pode envolver o surgimento de um Hollow incomum, o desaparecimento
 
-de almas, uma investigação dentro da Soul Society, uma disputa entre organizações, um ataque de Quincy ou qualquer outro acontecimento relacionado ao mundo espiritual. Ao definir o conflito, procure responder: • • • •
+de almas, uma investigação dentro da Soul Society, uma disputa entre organizações, um ataque de Quincy ou qualquer outro acontecimento relacionado ao mundo espiritual. Ao definir o conflito, procure responder:
 
 O que está acontecendo?
 
@@ -98,7 +98,7 @@ O que pode acontecer se ninguém interferir?
 
 Essas respostas já fornecem uma base para desenvolver o restante da aventura.
 
-Objetivo dos Personagens
+### Objetivo dos Personagens
 
 Depois de definir o conflito, estabeleça aquilo que os personagens precisam alcançar.
 
@@ -120,7 +120,7 @@ Antagonista
 
 O antagonista é aquele que se opõe aos objetivos dos personagens. Ele pode ser um Hollow, Arrancar, Shinigami, Quincy, Fullbringer ou qualquer outro personagem capaz de entrar em conflito com o grupo.
 
-O antagonista não precisa ser simplesmente alguém que deseja destruir tudo. Ele pode possuir seus próprios objetivos, motivos e interesses, que podem até entrar em conflito com os personagens sem que ele se considere um vilão. Ao criar um antagonista, pense: • • • •
+O antagonista não precisa ser simplesmente alguém que deseja destruir tudo. Ele pode possuir seus próprios objetivos, motivos e interesses, que podem até entrar em conflito com os personagens sem que ele se considere um vilão. Ao criar um antagonista, pense:
 
 O que ele quer?
 
@@ -136,7 +136,7 @@ Nem todo obstáculo precisa ser resolvido com combate. Um inimigo pode ser engan
 
 Ao preparar uma aventura, pense em diferentes possibilidades, mas não determine uma única solução. Se os jogadores encontrarem uma maneira diferente de superar um obstáculo, permita que tentem.
 
-Como Começar uma Aventura
+### Como Começar Uma Aventura
 
 O início deve apresentar aos jogadores uma situação que desperte sua atenção e dê uma razão para seus personagens agirem.
 
@@ -146,7 +146,7 @@ Também é possível começar diretamente no meio de uma situação. Os personag
 
 O importante é dar aos jogadores uma situação clara para reagir e descobrir o que está acontecendo.
 
-Conduzindo a História
+### Conduzindo a História
 
 Durante a aventura, utilize aquilo que foi preparado como uma base para conduzir os acontecimentos. Tenha em mente os objetivos dos personagens importantes, o estado do conflito e os acontecimentos que podem ocorrer. A partir disso, determine como esses elementos respondem às ações dos jogadores.
 
@@ -164,13 +164,13 @@ As consequências também podem criar conflitos.
 
 Um inimigo poupado pode retornar, uma organização pode reagir a uma invasão ou uma escolha feita durante uma missão pode afetar acontecimentos futuros. Ao preparar uma aventura, pense no que pode acontecer quando os personagens alcançam seus objetivos, mas também no que pode acontecer caso falhem.
 
-Criando uma CAMPANHA
+### Criando Uma Campanha
 
 Uma campanha é formada por várias aventuras conectadas. Enquanto uma aventura apresenta um conflito específico, a campanha cria uma história maior que pode se desenvolver ao longo de várias sessões.
 
 Uma campanha de Soul Society RPG pode começar com uma missão simples e, conforme os personagens descobrem novas informações, revelar conflitos maiores envolvendo diferentes personagens, organizações e partes do mundo espiritual.
 
-A Premissa
+### A Premissa
 
 A premissa é a ideia central da campanha. Ela define o tipo de história que o grupo irá vivenciar e pode servir como ponto de partida para suas primeiras aventuras.
 
@@ -178,7 +178,7 @@ Uma campanha pode acompanhar um grupo de Shinigami recém-formado, uma equipe re
 
 A premissa não precisa explicar toda a história. Ela deve apenas estabelecer o ponto de partida e dar aos jogadores uma ideia do tipo de aventura que irão encontrar.
 
-O Conflito Maior
+### O Conflito Maior
 
 Uma campanha pode possuir um conflito maior que se desenvolve ao longo de várias aventuras.
 
@@ -186,7 +186,7 @@ Pode ser uma ameaça que cresce aos poucos, uma guerra entre organizações, uma
 
 O conflito maior não precisa ser revelado no início. Os personagens podem descobrir seus detalhes conforme avançam pela campanha.
 
-Facções e Organizações
+### Facções e Organizações
 
 As organizações são importantes para criar uma campanha com diferentes interesses em conflito.
 
@@ -194,7 +194,7 @@ A Soul Society, o Gotei 13, os Quincy, os Arrancar e outras forças do universo 
 
 Cada grupo pode possuir aliados, inimigos, recursos e interesses diferentes. Isso permite criar situações em que os personagens precisam decidir em quem confiar, com quem negociar ou contra quem agir. Nem todas as organizações precisam ser inimigas. Algumas podem cooperar em determinados momentos e entrar em conflito em outros.
 
-Personagens Importantes
+### Personagens Importantes
 
 Uma campanha pode possuir personagens que aparecem em várias aventuras.
 
@@ -204,7 +204,7 @@ Não é necessário criar dezenas de personagens importantes. Escolha aqueles qu
 
 sobre a história e defina seus objetivos, personalidade e relação com os personagens.
 
-Arcos de História
+### Arcos de História
 
 Dividir uma campanha em arcos ajuda a organizar histórias longas. Cada arco pode possuir seu próprio conflito, antagonistas e objetivos, enquanto também contribui para o desenvolvimento da campanha como um todo.
 
@@ -212,7 +212,7 @@ Um primeiro arco pode apresentar os personagens e o mundo ao seu redor. Um segun
 
 Os arcos não precisam ser planejados completamente desde o início. Conforme os jogadores tomam decisões, novos caminhos podem surgir e alterar aquilo que o Mestre havia planejado.
 
-Evolução dos Personagens
+### Evolução dos Personagens
 
 Uma campanha também é construída pelas mudanças dos próprios personagens.
 
@@ -222,13 +222,13 @@ Pense também em como os objetivos pessoais dos personagens podem se relacionar 
 
 Criando sua Própria História de Bleach Soul Society RPG não precisa reproduzir a história de Bleach. Utilize a Soul Society, o Mundo Humano, Hueco Mundo e os demais elementos do universo como base para criar novos conflitos, personagens e organizações. A campanha pode acompanhar acontecimentos completamente diferentes daqueles apresentados na obra original. Crie novas histórias, explore partes desconhecidas do universo e permita que as decisões dos jogadores definam o rumo dos acontecimentos.
 
-Conduzindo uma sessão
+### Conduzindo Uma Sessão
 
 Uma sessão é um período de jogo em que os jogadores e o Mestre se reúnem para conduzir os acontecimentos da aventura. Ela pode durar algumas horas ou o tempo que o grupo tiver disponível. Uma sessão pode representar apenas uma parte de uma aventura ou concluir uma aventura inteira.
 
 Durante o jogo, você apresentará situações, interpretará personagens, aplicará as regras e reagirá às escolhas do grupo. Não é necessário seguir exatamente aquilo que foi preparado. Utilize suas anotações como referência e adapte os acontecimentos conforme a sessão avança.
 
-Apresentando as Cenas
+### Apresentando as Cenas
 
 Ao iniciar uma cena, descreva aos jogadores aquilo que seus personagens podem perceber. Apresente o local, os acontecimentos ao redor e qualquer informação importante
 
@@ -238,7 +238,7 @@ Evite descrever apenas o que os personagens devem fazer. Em vez disso, apresente
 
 Quando uma cena for simples, uma descrição curta pode ser suficiente. Situações importantes podem receber mais detalhes, principalmente quando houver informações que os jogadores precisam perceber ou investigar.
 
-Interpretando Personagens
+### Interpretando Personagens
 
 O Mestre interpreta todos os personagens que não são controlados pelos jogadores. Isso inclui aliados, inimigos, habitantes e qualquer outra pessoa encontrada durante a aventura.
 
@@ -246,7 +246,7 @@ Você não precisa criar uma voz diferente para cada personagem. Procure apenas 
 
 Ao interpretar um personagem importante, tenha em mente o que ele quer e o que sabe sobre a situação. Isso ajuda a manter suas ações coerentes mesmo quando os jogadores fazem algo inesperado.
 
-Fazendo Perguntas
+### Fazendo Perguntas
 
 Nem toda situação precisa começar com uma rolagem. Muitas vezes, é melhor perguntar primeiro o que o personagem pretende fazer.
 
@@ -254,7 +254,7 @@ Se um jogador disser que deseja investigar uma porta, por exemplo, descubra como
 
 A intenção do jogador ajuda a determinar qual regra deve ser utilizada e evita testes desnecessários.
 
-Utilizando os Testes
+### Utilizando os Testes
 
 Quando o resultado de uma ação for incerto e houver uma consequência relevante para o sucesso ou fracasso, peça um teste.
 
@@ -264,7 +264,7 @@ Nem toda ação precisa de um teste. Se algo for simples e não houver uma conse
 
 Da mesma forma, se uma ação for impossível dentro da situação apresentada, não é necessário pedir uma rolagem apenas para confirmar isso.
 
-Mantendo o Ritmo
+### Mantendo o Ritmo
 
 Uma sessão não precisa permanecer o tempo todo no mesmo ritmo. Momentos de investigação, conversa, exploração e combate podem se alternar durante a aventura.
 
@@ -274,7 +274,7 @@ Nem toda cena precisa mostrar cada detalhe.
 
 Algumas situações podem ser resumidas quando não houver motivo para representá-las em jogo.
 
-Criando NPCS
+### Criando Npcs
 
 Quando os Jogadores Fugirem do Planejado Os jogadores podem ignorar uma missão, seguir uma pista diferente, conversar com um inimigo ou encontrar uma solução que você não havia previsto. Essas escolhas fazem parte da aventura e podem levar a acontecimentos que não estavam presentes no planejamento inicial.
 
@@ -282,7 +282,7 @@ Não é necessário impedir essas escolhas apenas porque elas não estavam plane
 
 Considere o que os personagens sabem, quais consequências suas ações podem causar e como os personagens do mundo reagiriam. A partir disso, continue a sessão pelo novo caminho. Mesmo que os jogadores sigam em uma direção completamente diferente, os objetivos dos personagens, as ações das organizações e os acontecimentos do mundo podem servir como base para continuar a história.
 
-Encerrando uma Sessão
+### Encerrando Uma Sessão
 
 Procure encerrar a sessão em um momento que permita ao grupo lembrar o que aconteceu e saber o que pode acontecer a seguir. Sempre que possível, escolha um ponto que marque o fim de uma cena ou acontecimento importante.
 
@@ -290,7 +290,7 @@ A sessão pode terminar após a conclusão de um conflito, a descoberta de uma i
 
 Nem todo personagem encontrado durante uma aventura precisa possuir uma ficha completa. Muitos NPCs existem principalmente para interagir com os jogadores, apresentar informações, movimentar a história ou tornar o mundo mais vivo.
 
-Ao criar um NPC, pense em algumas características que ajudem a definir quem ele é: • • • • • • •
+Ao criar um NPC, pense em algumas características que ajudem a definir quem ele é:
 
 Personalidade: como ele costuma agir?
 
@@ -306,7 +306,7 @@ Medos: o que ele teme perder ou enfrentar?
 
 Papel na história: por que esse personagem está presente na aventura?
 
-Os NPCs também podem ser divididos em dois tipos: • •
+Os NPCs também podem ser divididos em dois tipos:
 
 NPCs comuns: personagens utilizados para preencher o mundo e interagir com os jogadores, como habitantes, comerciantes e outros personagens sem grande influência na história.
 

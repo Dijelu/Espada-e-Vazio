@@ -64,7 +64,7 @@ Varredura
 
 Armas com a propriedade Cone atingem todas as criaturas na área indicada. Faça uma única jogada de ataque contra a CR de cada criatura afetada. A distância do cone é indicada entre parênteses. Você também pode concentrar o ataque da arma em uma única criatura dentro do alcance.
 
-ARMAS CORPO A CORPO Nome
+### Armas Corpo a Corpo Nome
 
 Dano
 
@@ -80,11 +80,11 @@ Peso
 
 19 - x3
 
-Arremesso, Dupla
+### Arremesso, Dupla
 
 Destreza
 
-LEVES Adaga
+### Leves Adaga
 
 Cimitarra
 
@@ -92,13 +92,13 @@ Chicote
 
 Chakram
 
-Espada Curta
+### Espada Curta
 
 Estoque
 
 Facão
 
-Foice Curta
+### Foice Curta
 
 Jitte
 
@@ -114,7 +114,7 @@ Lança
 
 Machadinha
 
-Martelo Leve
+### Martelo Leve
 
 Rapieira
 
@@ -218,55 +218,55 @@ Dupla
 
 Poderosa
 
-Alcance, Arremesso
+### Alcance, Arremesso
 
 Dupla
 
-Arremesso, Impacto
+### Arremesso, Impacto
 
 -
 
-Dupla, Impacto
+### Dupla, Impacto
 
-Marcial, Impacto
+### Marcial, Impacto
 
 Dupla
 
-Destreza ou Força
+### Destreza Ou Força
 
 Destreza
 
 Destreza
 
-Destreza ou Força
-
-Destreza
-
-Força
-
-Destreza ou Força
-
-Destreza
-
-Destreza ou Força
-
-Destreza ou Força
-
-Destreza ou Força
-
-Força
-
-Força
-
-Destreza ou Força
+### Destreza Ou Força
 
 Destreza
 
 Força
 
+### Destreza Ou Força
+
 Destreza
 
-Força, Destreza
+### Destreza Ou Força
+
+### Destreza Ou Força
+
+### Destreza Ou Força
+
+Força
+
+Força
+
+### Destreza Ou Força
+
+Destreza
+
+Força
+
+Destreza
+
+### Força, Destreza
 
 Destreza
 
@@ -280,7 +280,7 @@ Tessen
 
 Dupla
 
-Destreza ou Força
+### Destreza Ou Força
 
 Alabarda
 
@@ -288,7 +288,7 @@ Alabarda
 
 20 - x3
 
-Alcance, Duas Mãos
+### Alcance, Duas Mãos
 
 Força
 
@@ -296,7 +296,7 @@ Clava
 
 Espada
 
-Espada Grande
+### Espada Grande
 
 Falcata
 
@@ -308,25 +308,25 @@ Guandao
 
 Kanabo
 
-Lança Pesada
+### Lança Pesada
 
 Maça
 
 Machado
 
-Machado Duplo
+### Machado Duplo
 
-Machado Grande
+### Machado Grande
 
 Mangual
 
 Manoplas
 
-Martelo de Guerra
+### Martelo de Guerra
 
-Martelo Grande
+### Martelo Grande
 
-Martelo Gigante
+### Martelo Gigante
 
 Odachi
 
@@ -426,53 +426,49 @@ Impacto
 
 Poderosa
 
-Duas Mãos, Poderosa
+### Duas Mãos, Poderosa
 
 -
 
 Dupla
 
-Duas Mãos
+### Duas Mãos
 
-Alcance, Duas Mãos
+### Alcance, Duas Mãos
 
-Impacto, Poderosa
+### Impacto, Poderosa
 
-Alcance, Duas Mãos
+### Alcance, Duas Mãos
 
 Impacto
 
 -
 
-Duas Mãos
+### Duas Mãos
 
-Duas Mãos, Poderosa
+### Duas Mãos, Poderosa
 
 -
 
-Impacto, Marcial
+### Impacto, Marcial
 
 Impacto
 
-Duas Mãos, Impacto
+### Duas Mãos, Impacto
 
-Duas Mãos, Impacto, Poderosa
+### Duas Mãos, Impacto, Poderosa
 
-Duas Mãos
+### Duas Mãos
 
 Dupla
 
-Duas Mãos, Alcance
+### Duas Mãos, Alcance
 
-Duas Mãos, Poderosa
-
-Força
-
-Destreza ou Força
+### Duas Mãos, Poderosa
 
 Força
 
-Força
+### Destreza Ou Força
 
 Força
 
@@ -492,7 +488,11 @@ Força
 
 Força
 
-Força, Destreza
+Força
+
+Força
+
+### Força, Destreza
 
 Força
 
@@ -504,23 +504,23 @@ Força
 
 Força
 
-Destreza ou Força
+### Destreza Ou Força
 
-Destreza ou Força
+### Destreza Ou Força
 
 Força
 
-ARMAS A DISTÂNCIA Nome
+### Armas a Distância Nome
 
 Dano
 
-Crítico Propriedades
+### Crítico Propriedades
 
 Alcance
 
-Atributo Peso
+### Atributo Peso
 
-Arco Curto
+### Arco Curto
 
 1d6 perfurante
 
@@ -532,7 +532,7 @@ Energia (1), Duas Mãos
 
 Destreza
 
-Besta Pesada
+### Besta Pesada
 
 1d12 perfurante 20 - x2
 
@@ -542,11 +542,11 @@ Energia (2), Duas Mãos, Acumular
 
 Destreza
 
-MEDIEVAIS Arco Longo
+### Medievais Arco Longo
 
 1d8 perfurante
 
-Besta Leve
+### Besta Leve
 
 1d8 perfurante
 
@@ -570,7 +570,7 @@ Energia (1), Duas Mãos Energia (1)
 
 18m / 12 sqm
 
-Destreza Destreza Destreza Destreza
+### Destreza Destreza Destreza Destreza
 
 Espingarda
 
@@ -582,7 +582,7 @@ Energia (6), Varredura (3m), Duas Mãos 18m / 12 sqm
 
 Destreza
 
-Metralhadora Leve
+### Metralhadora Leve
 
 2d4 perfurante
 
@@ -598,7 +598,7 @@ Energia (2), Dupla
 
 24m / 16 sqm
 
-Espingarda Automática
+### Espingarda Automática
 
 Escopeta de Cano Curto Metralhadora Minigun Pistola
 
@@ -608,9 +608,9 @@ Escopeta de Cano Curto Metralhadora Minigun Pistola
 
 Revolver de Cano Longo 1d12 perfurante 19 - x3 Revólver
 
-Rifle de Assalto
+### Rifle de Assalto
 
-Rifle de Precisão
+### Rifle de Precisão
 
 1d10 perfurante 20 - x2 2d6 perfurante
 
@@ -630,15 +630,15 @@ Energia (3), Duas Mãos, Acumular Energia (5), Duas Mãos, Acumular
 
 Nome
 
-Classe de Resistência
+### Classe de Resistência
 
-Escudo Leve
+### Escudo Leve
 
 +1 na Classe de Resistência
 
-Escudo Pesado
+### Escudo Pesado
 
-Escudo Leve
+### Escudo Leve
 
 +2 na Classe de Resistência +4 na Classe de Resistência
 
@@ -650,7 +650,7 @@ Destreza Destreza Destreza Destreza Destreza Destreza Destreza
 
 100m / 66 sqm Destreza
 
-Escudo Médio
+### Escudo Médio
 
 Alguns Quincys utilizam escudos durante o combate para obter uma maior proteção. Isso não é muito comum dentro do estilo de luta, pois os Quincys priorizam o combate à distância. No entanto, para aqueles que preferem um estilo de luta mais defensivo, o escudo é ideal.
 
@@ -658,7 +658,7 @@ Você recebe um bônus na sua classe de resistência ao usar um escudo, mas o es
 
 Abaixo, você encontrará a tabela de escudos, onde poderá ver o bônus na CR concedidos por eles.
 
-Escudo Médio
+### Escudo Médio
 
 60m / 40 sqm
 
@@ -666,7 +666,7 @@ Destreza
 
 Com um escudo médio, você sofre uma penalidade de 3 metros no seu deslocamento total. Quando for atacado, você pode usar sua reação para reduzir o dano que sofreria em 1 + metade do seu atributo de Constituição para um ataque.
 
-Escudo PESADO
+### Escudo Pesado
 
 Com um escudo pesado, você sofre uma penalidade de 6 metros no seu deslocamento total ao usá-lo. Mas sempre quando você for atacado você diminuirá (RD) 2 + a metade do seu atributo de Constituição para qualquer ataque que receber, exceto dano Psíquico e dano Temporal.
 
@@ -678,7 +678,7 @@ Por outro lado, se a lista de armas não incluir exatamente o que você imagina,
 
 Melhorias
 
-Aumento na margem de crítico
+### Aumento na Margem de Crítico
 
 Equipamentos Quincy podem receber melhorias, que representam aprimoramentos não diretamente no equipamento, mas na maneira como o Quincy o utiliza, aumentando seu poder conforme o próprio Quincy evolui. Por exemplo, se você aprimorar uma arma e ela acabar sendo destruída, outra arma idêntica que você possuir herdará automaticamente as mesmas melhorias. O mesmo vale para armas com a propriedade Dupla: se você estiver usando duas armas com melhorias iguais ou compartilhadas, ambas se beneficiarão dos mesmos aprimoramentos, embora ainda precisem seguir as regras normais de combate com duas armas.
 
@@ -686,11 +686,11 @@ Cada arma pode receber um número ilimitado de melhorias, e entre as possibilida
 
 Quando você escolher uma melhoria para sua arma e ela possuir a “Energia” para cada melhoria que ela possui, aumente +2 no custo de pontos de reiatsu da arma.
 
-Aumento de dano
+### Aumento de Dano
 
 Se você escolher aprimorar o dano da sua arma, ela aumentará um passo de dano por vez, conforme mostrado na tabela abaixo. Por exemplo, se você decidir aprimorar um Arco Longo, que causa 1d8 de dano, ao aplicar a primeira melhoria de dano ele passará a causar 1d10. Com aprimoramentos adicionais de dano, o dano continuará aumentando conforme os passos indicados na tabela. O máximo que uma arma pode chegar em dano é 5d10, e não pode quebrar esse limite.
 
-PASSOS DE DANO Dado
+### Passos de Dano Dado
 
 +1 Passo
 
@@ -728,13 +728,13 @@ Se você escolher ampliar a margem de crítico de uma arma, poderá aumentá-la 
 
 Uma arma Quincy pode ter sua margem de crítico aumentada até o máximo de 15, não podendo ultrapassar esse limite.
 
-Aumento no Multiplicador de crítico
+### Aumento no Multiplicador de Crítico
 
 Se você escolher aumentar o multiplicador de crítico de uma arma, poderá ampliá-lo em +1 por aprimoramento. Por exemplo, ao aprimorar um Kanabo com multiplicador x2, ele passará a ter multiplicador x3.
 
 Armas Quincy podem ter, no máximo, multiplicador de crítico x4.
 
-Melhorando um Escudo
+### Melhorando Um Escudo
 
 Você também pode aprimorar um escudo, aumentando a defesa que ele concede. Para cada aprimoramento, o escudo recebe +1 na Classe de Resistência.
 
@@ -742,7 +742,7 @@ Um escudo pode ter, no máximo, cinco aprimoramentos.
 
 Artefatos Os Quincy utilizam diversos artefatos espirituais para canalizar, armazenar ou ampliar seu poder. Esses objetos podem assumir diferentes funções e são carregados pelo próprio Quincy, servindo como ferramentas importantes dentro e fora de combate. Seu Mestre pode permitir que você comece com um artefato ou que adquira um deles ao longo da campanha.
 
-Quincy Cross
+### Quincy Cross
 
 Um artefato bastante comum entre os Quincy, utilizado como foco para criar uma arma espiritual. Pode assumir diferentes tamanhos e formatos, embora o mais comum seja uma cruz com o símbolo Quincy. Seu uso não é obrigatório, mas a maioria dos Quincy mais destacados utiliza uma Quincy Cross.
 
@@ -750,13 +750,13 @@ Uma Quincy Cross pode materializar qualquer arma do Arsenal Quincy, mas cada Qui
 
 Para invocar a arma por meio da Quincy Cross, você deve utilizar uma ação bônus e gastar 5 pontos de Reiatsu. A Quincy Cross aumenta o dano da arma em um dado de dano adicional.
 
-Luva Sanrei
+### Luva Sanrei
 
 A Luva Sanrei é uma luva branca ou preta que se estende até o antebraço. Enquanto utiliza a Luva Sanrei, o Quincy tem sua capacidade de absorver e manipular Reishi ampliada. A luva dificulta a concentração das partículas espirituais, exigindo que o usuário exerça maior controle sobre seu poder. Após dominar seu uso, o Quincy consegue extrair muito mais poder do Reishi ao seu redor.
 
 Uma vez por turno você tem vantagem no dano, quando causar dano com uma Técnica de Reishi ou um ataque enquanto estiver utilizando a Luva Sanrei. Sua capacidade de reunir Reishi também é intensificada, fazendo com que você acumule uma quantidade adicional de Reishi por turno igual à metade do seu nível de personagem.
 
-Letzt stil
+### Letzt Stil
 
 Um Quincy utilizando a Luva Sanrei pode ativar o Letzt Stil, uma forma incompleta do Vollstandig que ultrapassa seus próprios limites, concedendo grande poder, mas cobrando um preço alto ao final.
 
@@ -776,7 +776,7 @@ São pequenas cápsulas cilíndricas de prata que armazenam energia espiritual l
 
 O Gintou também pode servir como catalisador para algumas Técnicas de Reishi. Nesse caso, deve conter Reiatsu e é consumido ao ser utilizado. O Quincy ainda deve conhecer e ser capaz de utilizar a técnica normalmente. O requisito da Técnica de Reishi indica se um Gintou pode ou deve ser utilizado como catalisador.
 
-Seele Schneider
+### Seele Schneider
 
 A Seele Schneider se assemelha ao cabo de uma espada sem guarda. Quando ativada, manifesta uma lâmina fina de Reishi azul brilhante. Sua estrutura funciona como uma serra espiritual, com partículas de Reishi vibrando em alta velocidade, afrouxando as ligações entre as partículas espirituais daquilo que corta. A Seele Schneider é considerada uma Espada (veja a tabela de Armas Corpo a Corpo), mas sua lâmina serrilhada é especialmente eficiente contra defesas espirituais. Seus ataques ignoram 20 pontos de RD da criatura atingida.
 
@@ -784,7 +784,7 @@ A Seele Schneider também pode ser disparada como uma flecha. Nesse caso, causa 
 
 Vollstanding O Quincy Letzt Stil , o poder com o qual você está familiarizado, é uma relíquia do passado. A própria noção dele foi abandonada há cerca de 200 anos devido à sua fragilidade inerente. [...] O poder que você conhece e o Quincy Vollständig que você vê agora são tão diferentes quanto o céu e a terra!
 
-Quilge Opie
+### Quilge Opie
 
 A Vollstanding é uma forma avançada de liberação espiritual exclusiva dos Quincy. Representa um estado de ascensão no qual o usuário amplia drasticamente sua capacidade de manipular reishi, aprimorando todas as suas habilidades de combate. Diferente do antigo Letzt Stil, que consumia permanentemente os poderes do Quincy, a Vollstanding pode ser ativada e desativada conforme o controle do usuário, tornando-se a principal forma de combate dos Quincy modernos contra as Bankais dos Shinigamis.
 
@@ -796,7 +796,7 @@ Esta seção apresenta as regras para ativação da Vollstanding, suas limitaç�
 
 Visualmente, ao ser ativada, a Vollstanding envolve o usuário com uma grande quantidade de reishi, tomando a forma de asas e uma auréola feitas dessa energia espiritual. Essas manifestações variam de acordo com o personagem, assumindo padrões únicos. A cor do reishi durante a Vollstanding costuma seguir a tonalidade natural do Quincy, mas pode se adaptar à influência da Schrift, se houver.
 
-Poderes da Vollstanding
+### Poderes da Vollstanding
 
 Após definir a aparência da sua Vollstanding e o objeto utilizado em sua ativação, vamos aos primeiros passos da liberação e de seus poderes. A Vollstanding aumenta significativamente o poder dos Quincy, aprimorando todas as habilidades que o usuário já possui e elevando seu potencial ao máximo.
 
@@ -808,19 +808,15 @@ Os poderes da Vollstanding são divididos em duas categorias: habilidades passiv
 
 As habilidades passivas são um conjunto de características que, quando a Vollstanding é ativada, o Quincy recebe imediatamente, sem a opção de recusá-las.
 
-Ao ativar sua Vollstanding, você adquire as seguintes habilidades passivas: •
+Ao ativar sua Vollstanding, você adquire as seguintes habilidades passivas:
 
-Como funciona uma Vollstanding
+### Como Funciona Uma Vollstanding
 
 Ao atingir o nível de poder necessário, o Quincy desperta a capacidade de ativar sua Vollstanding. Diferente de um Shinigami, que precisa passar por treinamentos específicos e rigorosos para liberar sua Bankai, a Vollstanding se manifesta de forma mais natural, exigindo apenas que o Quincy tenha alcançado o estágio adequado de evolução espiritual. No entanto, para ativá-la, é necessário um equipamento canalizador, que é definido no momento em que o personagem adquire essa habilidade.
 
 Esse equipamento pode assumir qualquer forma, mas normalmente está ligado à simbologia dos Quincys, como um colar com o símbolo, uma luva com o emblema, uma máscara, ou até mesmo o próprio sangue do Quincy formando o símbolo no ar durante a ativação. A escolha do item é totalmente livre para o jogador. Caso o Quincy perca esse objeto, ele pode recriá-lo a partir de reishi durante o próximo descanso longo, sem custo algum.
 
 A Vollstanding também possui uma frase de liberação, como “Quincy Vollstanding”, ou um nome específico, caso o personagem possua uma Schrift. A Schrift pode influenciar tanto o nome quanto os efeitos da Vollstanding, conforme descrito na seção correspondente, sendo geralmente associada a temas divinos, como “Medo de Deus” ou “Poder de Deus”.
-
-•
-
-• •
 
 Arma Espiritual: Escolha uma arma na qual você seja proficiente. Ela é criada em sua mão a partir de energia espiritual, sem a necessidade de gastar reiatsu para mantê-la. Você pode fazê-la aparecer ou desaparecer livremente.
 
@@ -830,7 +826,7 @@ Consciência Espiritual Expandida: A percepção espiritual se intensifica consi
 
 Sklaverei: Sua habilidade de reunir reishi do ambiente é intensificada. Sempre que recuperar reiatsu dessa forma, você reunirá o dobro de pontos de reiatsu. Voo: As Vollstanding manifestam asas, que não são meramente ornamentais. Você recebe deslocamento adicional de voo de 6 metros.
 
-regra opcional
+### Regra Opcional
 
 Como regra opcional, o mestre pode conceder habilidades passivas adicionais. Por exemplo, permitir mais armas espirituais ou autorizar que os jogadores substituam as duas melhorias em passos de dano por outro tipo de aprimoramento.
 
@@ -838,7 +834,7 @@ HABILIDADES Únicas As habilidades únicas são semelhantes às habilidades de c
 
 Você pode selecionar quatro habilidades únicas para sua Vollstanding, e ao atingir o 18° nível de classe como Quincy, recebe mais duas habilidades únicas à sua escolha. Escolha com sabedoria, pois uma vez definidas, não poderão ser alteradas.
 
-Essas habilidades só são válidas enquanto a Vollstanding estiver ativa, e você pode escolhê-las várias vezes, acumulando seus efeitos. • • • • • • • • • • • • • • •
+Essas habilidades só são válidas enquanto a Vollstanding estiver ativa, e você pode escolhê-las várias vezes, acumulando seus efeitos.
 
 Aumento de Atributo: Escolha um atributo. Ele aumenta em +2.
 
@@ -862,7 +858,7 @@ Sentido Divino: Aumente o alcance da sua Consciência Espiritual Expandida em +1
 
 Vigor do Reishi: Todo começo do seu turno você recupera 5 pontos de vida. Se você estiver com os pontos de vida no máxima, eles se transformam em pontos de vida temporários.
 
-Vollstanding Prontas
+### Vollstanding Prontas
 
 Caso não queira escolher individualmente as habilidades únicas da sua Vollständig, você pode optar por uma versão pronta, dividida em diferentes arquétipos. Cada arquétipo reúne habilidades voltadas para uma proposta de combate específica, facilitando a escolha de uma combinação completa. Após definir as habilidades únicas da sua Vollständig, seja individualmente ou por meio de um arquétipo, essa decisão é permanente e não pode ser alterada. As opções prontas estão ao lado.
 
@@ -932,11 +928,7 @@ Esse Schrift representa a essência da imprevisibilidade: cada uso pode virar o 
 
 ## Troca Perfeita
 
-Ao adquirir a Antítese, você ganha a capacidade de inverter tudo o que ocorreu entre dois alvos no último turno, podendo mudar drasticamente o rumo de uma batalha. Essa habilidade se divide em três formas de uso: Troca de Ferimentos, Troca de Efeito e Troca de Posição. Cada uma delas possui um custo específico em pontos de reiatsu e exige um tipo de ação diferente para ser ativada. •
-
-•
-
-•
+Ao adquirir a Antítese, você ganha a capacidade de inverter tudo o que ocorreu entre dois alvos no último turno, podendo mudar drasticamente o rumo de uma batalha. Essa habilidade se divide em três formas de uso: Troca de Ferimentos, Troca de Efeito e Troca de Posição. Cada uma delas possui um custo específico em pontos de reiatsu e exige um tipo de ação diferente para ser ativada.
 
 Troca de Ferimentos (30 PR): No seu turno escolha duas criaturas, podendo incluir a si mesmo como um dos alvos. Todo o dano que uma das criaturas sofreu desde o último turno dela é invertido: ela recupera essa quantidade de pontos de vida, enquanto o outro alvo sofre o mesmo valor em dano imediatamente. A criatura que está recebendo o dano não pode diminuir o dano de nenhuma maneira.
 
@@ -954,7 +946,7 @@ físicas, desde que ambos caibam no espaço que irão ocupar. Essa habilidade po
 
 Quando usada como reação, o gatilho ocorre no momento em que uma criatura realiza uma ação, como arremessar um objeto ou executar um ataque. No caso de um ataque contra outra criatura, o golpe ainda acerta o alvo original e seus efeitos se resolvem normalmente; somente após isso as posições dos dois alvos escolhidos são trocadas.
 
-The Balance
+### The Balance
 
 Entre os Schrift, poucos representam tanto poder e simbolismo quanto o The Balance. O Quincy que o porta é capaz de manipular a própria noção de sorte e destino dentro de sua esfera de influência, redistribuindo a boa e a má sorte para manter aquilo que chama de harmonia do mundo.
 
@@ -964,15 +956,11 @@ Assim, o que deveria ser a sorte de um adversário se torna inevitavelmente a su
 
 ## Equilibrio
 
-The Balance é uma habilidade extremamente poderosa, capaz de distorcer o destino de forma que parece que o próprio mundo conspira contra seus inimigos. O azar se volta contra seus adversários, enquanto a sorte se inclina para o lado do usuário. Ao adquirir essa habilidade, você obtém a capacidade de manipular a sorte das criaturas próximas, inclinando a balança do destino em seu favor. Durante o seu turno, como ação livre, você pode gastar 10 pontos de reiatsu para ativar o The Balance contra uma criatura. Ao fazê-lo, uma imensa balança espiritual se manifesta atrás de você, visível para o alvo escolhido. Então, você pode aplicar um dos efeitos listados abaixo à criatura. O efeito permanece até o fim do combate, mas você deve gastar os pontos de reiatsu indicados em cada habilidade a cada turno após a ativação, ou até decidir encerrá-lo (também como ação livre). Você pode manter mais de um efeito ativo sobre a mesma criatura, mas só pode ativar um por turno, e deve pagar o custo em reiatsu do efeito escolhido já no turno. •
-
-•
+The Balance é uma habilidade extremamente poderosa, capaz de distorcer o destino de forma que parece que o próprio mundo conspira contra seus inimigos. O azar se volta contra seus adversários, enquanto a sorte se inclina para o lado do usuário. Ao adquirir essa habilidade, você obtém a capacidade de manipular a sorte das criaturas próximas, inclinando a balança do destino em seu favor. Durante o seu turno, como ação livre, você pode gastar 10 pontos de reiatsu para ativar o The Balance contra uma criatura. Ao fazê-lo, uma imensa balança espiritual se manifesta atrás de você, visível para o alvo escolhido. Então, você pode aplicar um dos efeitos listados abaixo à criatura. O efeito permanece até o fim do combate, mas você deve gastar os pontos de reiatsu indicados em cada habilidade a cada turno após a ativação, ou até decidir encerrá-lo (também como ação livre). Você pode manter mais de um efeito ativo sobre a mesma criatura, mas só pode ativar um por turno, e deve pagar o custo em reiatsu do efeito escolhido já no turno.
 
 Inversão do Destino (10 PR): Sempre que uma criatura realizar um acerto crítico contra você, o resultado será considerado um erro crítico. Da mesma forma, se a criatura obtiver um erro crítico em um ataque contra você, o resultado será tratado como um acerto crítico.
 
 Nulificação de Defesa (5 PR): Efeitos que concedem
-
-• •
 
 resistência ou imunidade contra você podem ser revertidos, removendo a proteção e aplicando um revés proporcional. Escolha um tipo de dano para remover totalmente resistência, imunidade e redução de dano da criatura.
 

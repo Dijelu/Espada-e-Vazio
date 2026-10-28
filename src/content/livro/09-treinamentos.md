@@ -34,9 +34,9 @@ O processo de criação exige um teste de Inteligência + metade do seu nível d
 
 O Mestre pode, a qualquer momento, ajustar o funcionamento de uma invenção que se mostre desequilibrada ou problemática, mantendo a coerência do jogo. Afinal, a ciência espiritual é uma área em constante desenvolvimento, e até os projetos mais promissores exigem testes e ajustes contínuos.
 
-Tabela de Complexidade de Invenções Complexidade
+### Tabela de Complexidade de Invenções Complexidade
 
-Classe de Dificuldade
+### Classe de Dificuldade
 
 Tempo
 
@@ -88,7 +88,7 @@ Junto ao nome, o Shinigami também deve escolher uma palavra ou frase de libera�
 
 Essa frase de liberação da Shikai normalmente faz referência aos seus poderes ou a algo mais profundo, voltando ao exemplo da Ryuujin Jakka, aonde sua frase de liberação é “Reduza tudo as cinzas, Ryuujin Jakka”.
 
-Teste de determinação
+### Teste de Determinação
 
 Após entrar em seu mundo interior, o espírito de sua Zanpakutou iniciará um teste de determinação. Durante esse teste, o Shinigami será questionado por meio de perguntas profundas, e suas respostas determinarão se ele é digno de empunhar o verdadeiro poder de sua Zanpakutou. Esse processo cria o vínculo entre ambos, permitindo que a espada revele parte de seu poder. É importante lembrar que a Zanpakutou é uma manifestação da alma do próprio Shinigami. Por isso, seus questionamentos geralmente refletem aspectos ocultos da personalidade, traumas passados ou conflitos internos. Ao enfrentar ou aceitar essas partes de si mesmo, o Shinigami demonstra maturidade espiritual, e, nesse momento, a Zanpakutou reconhece que ele está pronto. Por se tratar de uma experiência profundamente pessoal, o mestre deve adaptar o teste de acordo com a história e o desenvolvimento do personagem, criando perguntas ou situações que façam sentido dentro da trajetória do Shinigami.
 
@@ -124,7 +124,7 @@ BANKAI A Bankai de um Shinigami é a forma final de sua Zanpakutou, na qual o es
 
 Quando você recebe acesso ao treinamento de Bankai, já está apto a finalmente alcançá-la através de um treinamento específico. Para completar esse processo, você deve passar por cada um dos testes descritos a seguir.
 
-PRIMEIRO PASSO: intensificaçÃO física
+### Primeiro Passo: Intensificação Física
 
 Você treinou seu físico até atingir um nível que permite iniciar o Treinamento de Intensificação Física, no qual o Shinigami aprimora suas técnicas e combate corpo a corpo, preparando-se para suportar a liberação de uma Bankai. Esse treinamento dura 20 dias, reduzindo o número de dias pelo atributo de Constituição do personagem, com um mínimo de 5 dias.
 
@@ -132,13 +132,13 @@ Ao final do período, deve ser realizado um teste de condicionamento físico par
 
 Se o personagem tiver atributo de Constituição negativo, nada será somado ao d20. Em caso de falha, o personagem deve repetir o treinamento físico para tentar novamente o teste.
 
-Segundo PASSO: Preparação Espiritual
+### Segundo Passo: Preparação Espiritual
 
 Você já treinou seu físico, mas seu lado espiritual ainda precisa ser fortalecido. Agora, o Shinigami inicia uma preparação espiritual, que dura 20 dias, reduzindo o número de dias pelo atributo de Espírito do personagem, com um mínimo de 5 dias. Durante esse período, ele permanece em seu mundo interior, estreitando e fortalecendo o vínculo com o espírito de sua Zanpakutou. Nesse processo, o espírito da Zanpakutou pode apresentar questionamentos e desafios, semelhantes aos realizados durante a Shikai, mas agora com perguntas mais complexas sobre o desenvolvimento do Shinigami, sua maturidade e sua compreensão de si mesmo.
 
 Ao final do treinamento, o Shinigami deve realizar dois testes: um Teste de Constituição (d20 + atributo de Constituição) e um Teste de Espírito (d20 + atributo de Espírito). Para avançar à próxima fase, a soma dos resultados deve atingir ou superar a Classe de Dificuldade 25. Caso o personagem falhe, será necessário repetir a preparação espiritual antes de tentar novamente.
 
-Terceiro PASSO: Materialização
+### Terceiro Passo: Materialização
 
 Quando você alcança o terceiro e último passo, torna-se apto a tentar materializar sua Bankai. No entanto, esta é a etapa mais difícil de todas.
 
@@ -160,7 +160,7 @@ No fim, entender o espírito da Zanpakutou é entender a si mesmo. Dominar a lâ
 
 Despertar do Hollow Os Visored possuem a capacidade de controlar seus Hollows e canalizar seus poderes em combate, tornando-se, como o próprio nome indica, o exército mascarado. Eles são Shinigamis que utilizam máscaras de Hollow, unindo o poder espiritual dos Shinigamis à força destrutiva dos Hollows. No entanto, para alcançar esse domínio, precisam passar por um treinamento mortal, um processo que pode facilmente levá-los à morte.
 
-Controlando o hollow
+### Controlando o Hollow
 
 O treinamento para controlar um Hollow é um dos processos mais difíceis e perigosos que um shinigami pode enfrentar. Sendo muito díficil que um indivíduo consiga realizá-lo sozinho. é necessário o auxílio de outros companheiros experientes, capazes de conter o corpo do Visored caso ele perca o controle. Essa é uma provação em que o risco de morte é constante, e o fracasso pode significar ser consumido pelo próprio Hollow.
 
@@ -170,7 +170,7 @@ O Mestre também pode optar por conduzir o confronto como um combate direto, uti
 
 Esse treinamento dura 10 dias, reduzindo o número de dias pelo atributo de Espírito do personagem, com um mínimo de 3 dia. Ao final do processo, o jogador deve realizar um Teste de Resistência de Espírito com uma Classe de Dificuldade 30. Se tiver sucesso, o shinigami consegue subjugar o Hollow em seu mundo interior e sobrevive à possessão, despertando com parte de seu poder sob controle. Em caso de falha, o Hollow assume completamente o corpo, e o shinigami entra em um estado de fúria cega, atacando tudo à sua volta até ser contido, aonde pode levar o Shinigami a morte.
 
-Próximo passo
+### Próximo Passo
 
 Se o shinigami tiver sucesso em controlar o seu Hollow, ele se torna apto a realizar o próximo passo, chamado Máscara Hollow, no qual aprenderá a manifestar e utilizar os poderes de seu Hollow em combate.
 
@@ -182,55 +182,45 @@ Para ativar sua Máscara Hollow, o Shinigami deve ser capaz de levar a mão ao r
 
 Abaixo, você deve escolher qual Máscara Hollow possuirá. Existem três opções disponíveis, e a escolha é permanente, portanto, decida com sabedoria.
 
-Máscara do Conquistador
+### Máscara do Conquistador
 
-A Máscara do Conquistador é conhecida por intensificar a reiatsu do usuário, tornando-se a escolha ideal para combatentes que utilizam grandes quantidades de reiatsu. Para ativá-la, você deve gastar cinco vezes o seu bônus de proficiência em reiatsu e, ao fazê-lo, adquire as seguintes características: •
-
-•
-
-•
+A Máscara do Conquistador é conhecida por intensificar a reiatsu do usuário, tornando-se a escolha ideal para combatentes que utilizam grandes quantidades de reiatsu. Para ativá-la, você deve gastar cinco vezes o seu bônus de proficiência em reiatsu e, ao fazê-lo, adquire as seguintes características:
 
 Imposição Hollow: Se você utilizar uma técnica de Zanpakutou, Hadou ou Bakudou e ela exigir que a criatura realize um teste de resistência, aumente a CD do teste em um valor igual ao seu nível de personagem. Poder Aumentado: Suas técnicas de Zanpakutou, Hadou e Bakudou tornam-se mais intensas. Sempre que uma dessas técnicas causar dano, aumente o número de dados de dano em um valor igual ao dobro do seu bônus de proficiência.
 
 Reiatsu Amplificada: Você recebe pontos de reiatsu temporários iguais ao total dos seus pontos de reiatsu totais.
 
-Máscara do Predador
+### Máscara do Predador
 
 A Máscara do Predador é conhecida por intensificar o poder físico do usuário, tornando-se a escolha ideal para combatentes de curto alcance.
 
-Para ativá-la, você deve gastar cinco vezes o seu bônus de proficiência em reiatsu e, ao fazê-lo, adquire as seguintes características: •
-
-•
+Para ativá-la, você deve gastar cinco vezes o seu bônus de proficiência em reiatsu e, ao fazê-lo, adquire as seguintes características:
 
 Corpo Hollow: Seu corpo se torna muito mais resistente, concedendo redução de dano igual ao seu nível de personagem contra todos os tipos de dano, exceto psíquico e temporal.
 
 Golpes Amplificados: Seu poder físico se intensifica.
 
-•
-
 Seus ataques com Zanpakutou ou Hakuda causam dano adicional, recebendo um número extra de dados igual à seu bônus de proficiência.
 
 Vitalidade Hollow: Você recebe pontos de vida temporários iguais ao total dos seus pontos de vida totais.
 
-Máscara do Equilíbrio
+### Máscara do Equilíbrio
 
 A Máscara do Equilíbrio é conhecida por ser balanceada, aumentando a reiatsu e poder físico do usuário, tornandose a escolha ideal para combatentes híbridos que utilizam grandes quantidades de reiatsu e se colocam em risco.
 
-Para ativá-la, você deve gastar cinco vezes o seu bônus de proficiência em reiatsu e, ao fazê-lo, adquire as seguintes características: •
-
-• •
+Para ativá-la, você deve gastar cinco vezes o seu bônus de proficiência em reiatsu e, ao fazê-lo, adquire as seguintes características:
 
 Poder Amplificado: Suas técnicas de Zanpakutou, Hadou e Bakudou tornam-se mais intensas. Sempre que uma dessas técnicas causar dano, aumente o número de dados de dano em um valor igual à metade do seu bônus de proficiência. Além disso, seus ataques com Zanpakutou ou Hakuda se tornam mais devastadores, causando um dado de dano adicional em cada acerto. Reiatsu Amplificada: Você recebe pontos de reiatsu temporários iguais a metade do total dos seus pontos de reiatsu totais.
 
 Vitalidade Hollow: Você recebe pontos de vida temporários iguais a metade do total dos seus pontos de vida totais.
 
-regras visored
+### Regras Visored
 
 Essa sessão é para elucidar como funciona o tempo com a Máscara como também método de aumentar o tempo de uso. Quando o Visored coloca a Máscara Hollow, como já mencionado, ele deve levar a mão até o rosto para ativá-la. O turno em que a máscara é colocada já conta para o número total de turnos em que ela pode permanecer ativa. Por exemplo, se o Visored pode manter a máscara por apenas um turno, ao final desse turno ele a perderá automaticamente, encerrando todos os benefícios concedidos por ela e adquirindo imediatamente a condição “Esgotado” até o fim do combate ou até o Mestre decidir.
 
 O Visored também pode optar por retirar a máscara antes do tempo acabar, utilizando uma Ação para fazê-lo. Nesse caso, ele não fica esgotado, mas a máscara entra em tempo de recarga, ficando inutilizável por um número de turnos igual ao dobro do tempo em que foi utilizada. Por exemplo, se o Visored manteve a máscara ativa por dois turnos, ela ficará em recarga por quatro turnos. O turno em que ele retira a máscara não conta para a contagem do tempo de recarga.
 
-Aumentando o tempo da Máscara
+### Aumentando o Tempo da Máscara
 
 Quanto mais o Visored utiliza a Máscara, maior se torna seu domínio sobre ela. O Mestre pode solicitar um Teste de Determinação, com uma CD definida por ele, quando o Visored usar a Máscara diversas vezes ou passar por uma situação de vida ou morte enquanto a utiliza. Em caso de sucesso, o tempo de uso da Máscara aumenta em 1d6 turnos, dividido pela metade (arredondando para baixo), com um mínimo de 1 turno adicional.
 
@@ -238,7 +228,7 @@ Cero Um Cero é uma técnica ofensiva usada pelos Hollows que consiste em concen
 
 Após dominar sua Máscara Hollow, você pode aprender a usar o Cero, tão característico dos Hollows. Para isso, é necessário ter controle total do tempo da máscara, e ser capaz de mantê-la ativa por 1 minuto (10 turnos). Quando você atingir esse tempo de domínio, passa a ser capaz de utilizar o Cero.
 
-TÉCINA: Cero
+### Técina: Cero
 
 O usuário aponta para uma criatura, acumulando energia espiritual e liberando uma explosão condensada na direção do alvo. Usando sua ação e 8 pontos de reiatsu, faça um ataque à distância contra uma criatura, utilizando Espírito, Sabedoria ou Inteligência (à escolha do usuário). Em caso de acerto, a criatura sofre 6d8 de dano de Energia + atributo usado.
 
@@ -248,7 +238,7 @@ Acerto para Cero = d20 + bônus de proficiência + seu atributo de Espirito, Sab
 
 Você pode aumentar a potência do seu Cero gastando mais pontos de reiatsu. Para cada 2 pontos de reiatsu gastos, você adiciona +1d8 de dano de Energia. Com o máximo de dano sendo 12d8 de dano de energia.
 
-Personalização do Cero
+### Personalização do Cero
 
 O Cero é uma das manifestações mais icônicas do poder Hollow, e sua aparência varia conforme a essência espiritual do usuário. Embora o tom vermelho seja o mais comum e tradicional, representando a natureza destrutiva desse ataque, muitos conjuradores manifestam o Cero na cor de seu próprio reiatsu, criando versões únicas e facilmente reconhecíveis. Essa variação não altera apenas a estética; em alguns casos, reflete a intensidade emocional ou a assinatura espiritual do usuário, tornando cada Cero uma extensão direta de sua alma. Além da cor, a forma de disparo do Cero é outro aspecto altamente personalizável. O método mais difundido é apontar um dedo para o alvo, concentrando a energia espiritual na ponta antes de liberá-la em um feixe devastador. Contudo, essa técnica não é rígida: Hollows, Arrancars e Visoreds desenvolvem maneiras próprias de canalizar o ataque.
 

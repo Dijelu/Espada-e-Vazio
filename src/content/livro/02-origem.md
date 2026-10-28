@@ -24,15 +24,15 @@ Lobisomem
 
 Shinigami
 
-Espírito Vivo Humano
+### Espírito Vivo Humano
 
-Mod Soul Quincy
+### Mod Soul Quincy
 
 Visored
 
 Shinigami
 
-Shinigami, Quincy Shinigami Quincy
+### Shinigami, Quincy Shinigami Quincy
 
 Shinigami
 
@@ -88,7 +88,7 @@ Estudos Avançados: Seu valor de Inteligência aumenta em 1, e você recebe prof
 
 Nobreza: Como você é um nobre, você tem vantagem em testes que envolvem assuntos relacionados a nobres e é proficiente em Nobreza. Reiatsu Superior: Você recebe um aumento maior de Reiatsu, começando com 5 pontos adicionais de Reiatsu inicial e, para cada nível de personagem posterior, você recebe +2 de Reiatsu adicional. Treinamento de Kido: Você pode escolher dois Kidous adicionais para iniciar e sua habilidade de conjuração é a inteligência para eles.
 
-FÂMILIAs NOBREs
+### Fâmilias Nobres
 
 Como nobre, você pode escolher uma família no capítulo da Seireitei para fazer parte. Caso pertença a uma família nobre, você deve escolher entre a característica dela ou da sua Força Militar, não podendo ter ambas.
 
@@ -104,7 +104,7 @@ Um Espírito Vivo é uma Alma (Origem) com sua própria personalidade, poderes e
 
 A existência de um Espírito Vivo é envolta em mistério, e a quantidade deles na Gotei 13 é desconhecida. Sabe-se que é algo raro e quase impossível de acontecer, mas, considerando a vastidão da Seireitei, muitos mistérios podem estar escondidos.
 
-PERSONAGEM DO MESTRE e jogador
+### Personagem do Mestre e Jogador
 
 Se um personagem do jogador perder o vínculo com sua Zanpakutou (Combatente Ryoka), a melhor abordagem é que o Espírito Vivo se torne um personagem do Mestre, um NPC. Esse NPC geralmente será um aliado e deve manter um vínculo profundo com o personagem, mas essa conexão não deve ser do conhecimento do personagem. Ele só deverá descobrir que o NPC era o Espírito da sua Zanpakutou no momento em que aceitar a Zanpakutou de volta, sem rejeitá-la. Por outro lado se um jogador quiser criar um personagem Espírito Vivo, sendo a Zanpakutou de outro jogador ou de um NPC, para isso deve ser criar um personagem com a origem Alma, mas utilizando uma variação alternativa chamada “Espírito Vivo”. No entanto ao criar um personagem Espírito Vivo, o Jogador deve estar ciente de que perderá seu personagem caso o Shinigami, do qual ele é o Espírito Vivo, aceite sua Zanpakutou de volta. O jogador poderá escolher uma classe de Shinigami normalmente, mas não poderá utilizar a subclasse Ryoka da classe Combatente.
 
@@ -112,7 +112,7 @@ VARIAÇão alternativa (alma)
 
 Essa váriação de Alma é uma alternativa e deve ser aprovada pelo Mestre.
 
-Espírito vivo
+### Espírito Vivo
 
 Um Espírito Vivo é uma Alma muito diferente, mas ainda assim pode se tornar tão forte quanto um Shinigami comum. Um Espírito Vivo terá o mesmo status social que o Shinigami de Origem.
 
