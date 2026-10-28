@@ -447,6 +447,41 @@ export interface Ataque {
   nota?: string;
 }
 
+export interface KidoEscolhido {
+  tipo: "hadou" | "bakudou";
+  n: number;
+  nome: string;
+}
+
+export interface Equip {
+  forca: string;
+  divisao: number;
+  asauchi: string;
+  armas: string[];
+  artefato: string;
+  naturalForma: string;
+  extras: string;
+}
+
+export interface Treinos {
+  /** ids das etapas concluídas */
+  feitos: string[];
+  /** Pontos de Fome da Trilha da Resurrección */
+  pf: number;
+  /** dias acumulados de Treinamento Geral */
+  geralDias: number;
+}
+
+export type Liberacao = "" | "shikai" | "bankai" | "resurreccion" | "mascara";
+
+export interface Estado {
+  pvTemp: number;
+  liberado: Liberacao;
+  condicoes: string[];
+  ultimoFolegoUsado: boolean;
+  curtosUsados: number;
+}
+
 export interface Ficha {
   versao: 1;
   nome: string;
@@ -477,6 +512,13 @@ export interface Ficha {
   historia: string;
   notas: string;
   equipamento: string;
+  talentos: string[];
+  kidos: KidoEscolhido[];
+  tecnicasReishi: string[];
+  equip: Equip;
+  treinos: Treinos;
+  estado: Estado;
+  zanpakutou: { nome: string; frase: string };
 }
 
 const zero = (): Record<Atr, number> => ({ for: 0, des: 0, con: 0, men: 0, esp: 0 });
@@ -512,6 +554,13 @@ export function fichaNova(): Ficha {
     historia: "",
     notas: "",
     equipamento: "",
+    talentos: [],
+    kidos: [],
+    tecnicasReishi: [],
+    equip: { forca: "", divisao: 0, asauchi: "", armas: [], artefato: "", naturalForma: "", extras: "" },
+    treinos: { feitos: [], pf: 0, geralDias: 0 },
+    estado: { pvTemp: 0, liberado: "", condicoes: [], ultimoFolegoUsado: false, curtosUsados: 0 },
+    zanpakutou: { nome: "", frase: "" },
   };
 }
 
@@ -523,6 +572,13 @@ export function normalizar(bruto: Partial<Ficha> | null | undefined): Ficha {
   f.livre = { ...n.livre, ...f.livre };
   f.nivelAtr = { ...n.nivelAtr, ...f.nivelAtr };
   f.ajuste = { ...n.ajuste, ...f.ajuste };
+  f.equip = { ...n.equip, ...f.equip };
+  f.treinos = { ...n.treinos, ...f.treinos };
+  f.estado = { ...n.estado, ...f.estado };
+  f.zanpakutou = { ...n.zanpakutou, ...f.zanpakutou };
+  f.talentos = f.talentos ?? [];
+  f.kidos = f.kidos ?? [];
+  f.tecnicasReishi = f.tecnicasReishi ?? [];
   return f;
 }
 
@@ -651,6 +707,12 @@ export function calcular(f: Ficha): Calculo {
   pv += f.ajuste.pv;
   pr += f.ajuste.pr;
   cr += ef.cr + f.ajuste.cr;
+  // liberações que mexem na CR (Shikai soma a proficiência; Resurrección conforme a classe)
+  if (f.estado.liberado === "shikai") cr += prof;
+  if (f.estado.liberado === "resurreccion") {
+    if (c?.id === "hueco") cr += prof + 1;
+    if (c?.id === "vazio") cr += n >= 16 ? prof : prof - 1;
+  }
 
   const saves = {} as Calculo["saves"];
   const fixos = c?.saves ?? [];

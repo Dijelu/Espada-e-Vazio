@@ -1,6 +1,11 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { AcoesRapidas } from "../components/AcoesRapidas";
+import { EscolhaPoderes, pendencias, totalPendencias } from "../components/EscolhaPoderes";
 import { Campo, LinhaAtributos, Passo, SeletorVariacoes, novoId } from "../components/FichaPecas";
+import { BotaoRolar, PainelRolagens, useRolagens, type Rolagens } from "../components/Rolador";
+import { AbaTreinamento } from "../components/Treinamento";
+import { ARMAS, KIDOS, talentosDe } from "../regras/catalogo";
 import { lerFicha, salvarFicha } from "../lib/fichas";
 import { efeito as som } from "../lib/som";
 import {
@@ -22,7 +27,7 @@ import {
   type Ficha as TFicha,
 } from "../regras/ficha";
 
-const ABAS = ["Resumo", "Combate", "Perícias", "Poderes", "Evolução", "Notas"] as const;
+const ABAS = ["Resumo", "Combate", "Perícias", "Poderes", "Treinamento", "Evolução", "Notas"] as const;
 type Aba = (typeof ABAS)[number];
 
 export default function Ficha() {
@@ -33,6 +38,7 @@ export default function Ficha() {
   const [estado, setEstado] = useState<"salvo" | "salvando" | "erro">("salvo");
   const [aba, setAba] = useState<Aba>("Resumo");
   const carregada = useRef(false);
+  const rol = useRolagens();
 
   useEffect(() => {
     if (!id) return;
@@ -66,6 +72,13 @@ export default function Ficha() {
 
   const c = useMemo(() => (f ? calcular(f) : null), [f]);
 
+  const subirNivel = useCallback(() => {
+    alterar((x) => ({ nivel: Math.min(20, x.nivel + 1) }));
+    setAba("Evolução");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    som.energia();
+  }, [alterar]);
+
   if (erro)
     return (
       <main className="page">
@@ -79,6 +92,11 @@ export default function Ficha() {
   const partes = partesOrigem(f);
   const estagio = partes[0]?.origem;
   const variacao = partes[0]?.variacao;
+
+  const pend = pendencias(f);
+  const nPend = totalPendencias(pend);
+  const nivelXp = nivelPorXp(f.xp);
+  const podeSubir = nivelXp > f.nivel && f.nivel < 20;
 
   const pvPct = c.pv > 0 ? Math.max(0, Math.min(100, (f.pvAtual / c.pv) * 100)) : 0;
   const prPct = c.pr > 0 ? Math.max(0, Math.min(100, (f.prAtual / c.pr) * 100)) : 0;
@@ -105,7 +123,7 @@ export default function Ficha() {
         <div className="selos">
           <div><small>CR</small><b>{c.cr}</b></div>
           <div><small>Proficiência</small><b>{mod(c.prof)}</b></div>
-          <div><small>Iniciativa</small><b>{mod(c.iniciativa)}</b></div>
+          <div><small>Iniciativa</small><b>{mod(c.iniciativa)}</b><BotaoRolar r={rol} rotulo="Iniciativa" bonus={c.iniciativa} /></div>
           <div><small>Desloc.</small><b>{c.desloc} m</b></div>
           <div><small>Perc. passiva</small><b>{c.percPassiva}</b></div>
           <div><small>CD</small><b>{c.cd}</b></div>
@@ -114,11 +132,24 @@ export default function Ficha() {
 
       <LinhaAtributos atr={c.atr} />
 
+      <AcoesRapidas f={f} c={c} alterar={alterar} r={rol} />
+
+      {(podeSubir || nPend > 0) && (
+        <div className="banner-evolucao" role="status">
+          {podeSubir ? <span>Você tem XP para o <b>nível {f.nivel + 1}</b>.</span> : <span>Você tem <b>{nPend}</b> escolha(s) de poderes pendente(s).</span>}
+          {podeSubir ? (
+            <button type="button" className="btn btn-red" onClick={subirNivel}>Subir de nível</button>
+          ) : (
+            <button type="button" className="btn btn-red" onClick={() => setAba("Evolução")}>Escolher agora</button>
+          )}
+        </div>
+      )}
+
       {c.avisos.length > 0 && <ul className="avisos">{c.avisos.map((a) => <li key={a}>{a}</li>)}</ul>}
 
       <nav className="abas" role="tablist" aria-label="Seções da ficha">
         {ABAS.map((a) => (
-          <button key={a} role="tab" aria-selected={aba === a} className={aba === a ? "on" : ""} onClick={() => setAba(a)}>{a}</button>
+          <button key={a} role="tab" aria-selected={aba === a} className={aba === a ? "on" : ""} onClick={() => setAba(a)}>{a}{a === "Evolução" && nPend > 0 ? <i className="pontinho" aria-label={`${nPend} pendente(s)`}>{nPend}</i> : null}</button>
         ))}
       </nav>
 
@@ -132,7 +163,7 @@ export default function Ficha() {
                 <div className="carta-mini" key={a.id}>
                   <b>{a.nome}</b>
                   <span>Acerto {mod(ataqueBonus(f, c, a))} · Dano {a.dano || "—"}</span>
-                  <button className="rolar" onClick={() => som.dado()} aria-label={`Som de dado para ${a.nome}`}>🎲</button>
+                  <LinhaAtaque r={rol} nome={a.nome} bonus={ataqueBonus(f, c, a)} dano={a.dano} />
                 </div>
               ))}
             </div>
@@ -152,6 +183,7 @@ export default function Ficha() {
                 <div className={`linha-sv ${c.saves[a.id].prof ? "prof" : ""}`} key={a.id}>
                   <span>{c.saves[a.id].prof ? "●" : "○"} {a.nome}</span>
                   <b>{mod(c.saves[a.id].total)}</b>
+                  <BotaoRolar r={rol} rotulo={`Salvaguarda de ${a.nome}`} bonus={c.saves[a.id].total} />
                 </div>
               ))}
               {(c.rdFis > 0 || c.rdEso > 0) && (
@@ -200,9 +232,17 @@ export default function Ficha() {
                 </select>
                 <input value={a.dano} placeholder="Dano (ex.: 2d8+3)" onChange={(e) => alterar({ ataques: f.ataques.map((x) => (x.id === a.id ? { ...x, dano: e.target.value } : x)) })} aria-label="Dano" />
                 <span className="acerto">{mod(ataqueBonus(f, c, a))}</span>
+                <LinhaAtaque r={rol} nome={a.nome} bonus={ataqueBonus(f, c, a)} dano={a.dano} />
                 <button className="link-perigo" onClick={() => alterar({ ataques: f.ataques.filter((x) => x.id !== a.id) })}>Remover</button>
               </div>
             ))}
+            <select className="arma-add" value="" aria-label="Adicionar arma do livro" onChange={(e) => {
+              const a = [...ARMAS.corpo, ...ARMAS.distancia].find((x) => x.nome === e.target.value);
+              if (a) alterar({ ataques: [...f.ataques, { id: novoId(), nome: a.nome, atr: a.atr.startsWith("Destreza") ? "des" : "for", dano: a.dano }] });
+            }}>
+              <option value="">Adicionar arma do livro…</option>
+              {[...ARMAS.corpo, ...ARMAS.distancia].map((a) => <option key={a.nome} value={a.nome}>{a.nome} ({a.dano})</option>)}
+            </select>
             <button className="btn btn-paper" onClick={() => alterar({ ataques: [...f.ataques, { id: novoId(), nome: "Zanpakutou", atr: classe?.chave.startsWith("Destreza") ? "des" : "for", dano: "" }] })}>Adicionar ataque</button>
           </div>
         </section>
@@ -211,6 +251,18 @@ export default function Ficha() {
       {aba === "Perícias" && (
         <section className="aba">
           <p className="ajuda">Proficiente em {PERICIAS.filter((p) => c.pericias[p.id].prof).length} perícia(s). Você pode escolher {c.quantasPericias} além das fixas.</p>
+          <div className="caixa">
+            <h3>Salvaguardas</h3>
+            <div className="saves-grade">
+              {ATRIBUTOS.map((a) => (
+                <div className={`linha-sv ${c.saves[a.id].prof ? "prof" : ""}`} key={a.id}>
+                  <span>{c.saves[a.id].prof ? "●" : "○"} {a.nome}</span>
+                  <b>{mod(c.saves[a.id].total)}</b>
+                  <BotaoRolar r={rol} rotulo={`Salvaguarda de ${a.nome}`} bonus={c.saves[a.id].total} />
+                </div>
+              ))}
+            </div>
+          </div>
           <div className="pericias-grade">
             {ATRIBUTOS.map((a) => (
               <div key={a.id}>
@@ -227,6 +279,7 @@ export default function Ficha() {
                       />
                       <span>{p.nome}{r.fixa && " 🔒"}</span>
                       <em>{mod(r.total)}</em>
+                      <BotaoRolar r={rol} rotulo={p.nome} bonus={r.total} />
                     </label>
                   );
                 })}
@@ -251,6 +304,7 @@ export default function Ficha() {
             ))}
             <button className="btn btn-paper" onClick={() => alterar({ essencias: [...f.essencias, { id: novoId(), nome: "Nova essência", etapa: 1 }] })}>Adicionar essência</button>
           </div>
+          <PoderesEscolhidos f={f} />
           <div className="caixa">
             <h3>Poderes, técnicas e talentos</h3>
             <p className="ajuda">Anote aqui Shikai, Bankai, Kidō, técnicas, talentos e o que mais usar na mesa.</p>
@@ -270,9 +324,11 @@ export default function Ficha() {
         </section>
       )}
 
-      {aba === "Evolução" && (
-        <Evolucao f={f} c={c} alterar={alterar} />
-      )}
+      {aba === "Treinamento" && <AbaTreinamento f={f} c={c} alterar={alterar} />}
+
+      {aba === "Evolução" && <Evolucao f={f} c={c} alterar={alterar} subir={subirNivel} />}
+
+      <PainelRolagens r={rol} />
 
       {aba === "Notas" && (
         <section className="aba">
@@ -320,17 +376,11 @@ function Barra({ tipo, rotulo, atual, max, pct, onChange }: { tipo: "pv" | "pr";
   );
 }
 
-function Evolucao({ f, c, alterar }: { f: TFicha; c: ReturnType<typeof calcular>; alterar: (p: Partial<TFicha>) => void }) {
+function Evolucao({ f, c, alterar, subir }: { f: TFicha; c: ReturnType<typeof calcular>; alterar: (p: Partial<TFicha>) => void; subir: () => void }) {
   const classe = classePorId(f.classe);
   const origem = origemPorId(f.origem);
   const nivelXp = nivelPorXp(f.xp);
   const podeSubir = nivelXp > f.nivel && f.nivel < 20;
-
-  const subir = () => {
-    const novo = Math.min(20, f.nivel + 1);
-    alterar({ nivel: novo });
-    som.energia();
-  };
 
   const ganhos = (n: number) => {
     const g: string[] = [];
@@ -382,6 +432,9 @@ function Evolucao({ f, c, alterar }: { f: TFicha; c: ReturnType<typeof calcular>
         </div>
       </div>
 
+      <h2 className="title-font sub">Poderes do nível {f.nivel}</h2>
+      <EscolhaPoderes f={f} mudar={alterar} />
+
       {classe && f.nivel >= 3 && (
         <div className="caixa">
           <h3>{classe.subclasseNome}</h3>
@@ -430,5 +483,43 @@ function Evolucao({ f, c, alterar }: { f: TFicha; c: ReturnType<typeof calcular>
         <p>{c.pontosEssencia.total - c.pontosEssencia.usados} disponível(is) de {c.pontosEssencia.total}. Gaste na aba Poderes.</p>
       </div>
     </section>
+  );
+}
+
+/** Botões de acerto, dano e dano crítico de um ataque. */
+function LinhaAtaque({ r, nome, bonus, dano }: { r: Rolagens; nome: string; bonus: number; dano: string }) {
+  return (
+    <span className="rolar-grupo">
+      <button type="button" className="rolar" onClick={() => r.d20(`Acerto: ${nome}`, bonus)} title="Rolar acerto">🎲 Acerto</button>
+      <button type="button" className="rolar" disabled={!dano} onClick={() => r.expr(`Dano: ${nome}`, dano)} title="Rolar dano">Dano</button>
+      <button type="button" className="rolar" disabled={!dano} onClick={() => r.expr(`Dano crítico: ${nome}`, dano, true)} title="Rolar dano crítico (dados dobrados)">Crítico</button>
+    </span>
+  );
+}
+
+/** Talentos, Kidō e técnicas escolhidos, com a descrição do livro. */
+function PoderesEscolhidos({ f }: { f: TFicha }) {
+  const tals = talentosDe(f.classe).filter((t) => f.talentos.includes(t.id));
+  const nada = tals.length + f.kidos.length + f.tecnicasReishi.length === 0;
+  if (nada) return null;
+  return (
+    <div className="caixa">
+      <h3>Escolhidos do livro</h3>
+      {tals.map((t) => (
+        <details className="poder-livro" key={t.id}>
+          <summary><b>{t.nome}</b> <small>Talento</small></summary>
+          <p>{t.texto}</p>
+        </details>
+      ))}
+      {f.kidos.map((k) => (
+        <p className="poder-livro" key={k.tipo + k.n}>
+          <b>{k.tipo === "hadou" ? "Hadō" : "Bakudō"} {k.n}: {k.nome}</b> <small>Kidō · rank {KIDOS.find((x) => x.tipo === k.tipo && x.n === k.n)?.rank}</small>
+        </p>
+      ))}
+      {f.tecnicasReishi.map((t) => (
+        <p className="poder-livro" key={t}><b>{t}</b> <small>Técnica de Reishi</small></p>
+      ))}
+      <p className="ajuda">Descrições completas de Kidō e das técnicas no <Link to="/livro/feiticos-e-tecnicas" target="_blank">capítulo de Feitiços e Técnicas</Link>.</p>
+    </div>
   );
 }

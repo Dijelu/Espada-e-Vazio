@@ -1,0 +1,1882 @@
+{
+ "zanjutsu": [
+  {
+   "id": "ataque-extra",
+   "nome": "Ataque Extra",
+   "texto": "Você ganha a habilidade de realizar mais ataques durante o seu turno. Quando você usar a ação “Ataque” no seu turno, pode realizar dois ataques em vez de um.",
+   "nivel": 5,
+   "req": "5° nível de Zanjutsu.",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "armadura-natural",
+   "nome": "Armadura Natural",
+   "texto": "Sua pele é mais resistente do que a de um Shinigami comum. Você recebe +2 na sua Classe de Resistência (CR).",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "bankai-reativa",
+   "nome": "Bankai Reativa",
+   "texto": "Quando uma criatura usar algum tipo de liberação, como Bankai, Ressurreição ou Vollstandig, você pode ativar sua própria Bankai como reação. Os efeitos causados por ela, como um dano em área, começarão a se manifestar apenas no início do seu próximo turno, mas os efeitos defensivos entram em vigor imediatamente. Você ainda deve gastar os pontos de reiatsu para liberar a Bankai.",
+   "nivel": 1,
+   "req": "Bankai.",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "campeao",
+   "nome": "Campeão",
+   "texto": "Vocêsetornaimuneàcondiçãoamedrontado.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "critico-brutal",
+   "nome": "Crítico Brutal",
+   "texto": "Você aumenta o multiplicador de dano crítico da sua Zanpakutou em +1.",
+   "nivel": 18,
+   "req": "18° nível de Zanjutsu.",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "defesa-resoluta",
+   "nome": "Defesa Resoluta",
+   "texto": "Quando você for alvo de um ataque, pode usar sua reação para receber +5 em sua CR para esse ataque. Se o ataque ainda assim acertar, você reduz o dano sofrido em 5 pontos (RD).",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "defesa-agil",
+   "nome": "Defesa Ágil",
+   "texto": "Seu estilo de luta é mais ágil, então suas defesas são baseadas em bloqueios e esquivas. Sua classe de resistência passa a ser 10 + proficiência + atributo de Destreza.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "desvio-instintivo",
+   "nome": "Desvio Instintivo",
+   "texto": "Usando sua reação, você pode desviar parte do dano de um ataque corpo a corpo que o acertaria. Faça uma jogada de ataque, se o resultado for maior que a jogada de ataque do inimigo, o dano é reduzido pela metade.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "duelista",
+   "nome": "Duelista",
+   "texto": "Escolha uma criatura com uma Ação Livre no começo ou durante o combate, você concentra todo o seu poder contra esse alvo. Durante o combate, você recebe +2 nas rolagens de ataque e dano contra a criatura escolhida e +2 na sua Classe de Resistência contra ataques da criatura escolhida. Esses benefícios permanecem até o fim do combate ou até que você ataque outra criatura. Caso ataque um alvo diferente, os bônus são imediatamente perdidos. Você só pode escolher uma criatura como alvo de duelo por combate.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "foco-letal",
+   "nome": "Foco Letal",
+   "texto": "Você aprimorou Talento \"Duelista\" agora você mantém o vínculo com a criatura escolhida mesmo após atacar outras criaturas, podendo selecionar um novo alvo durante o combate. No entanto, não é possível escolher a mesma criatura duas vezes em um único confronto. Contra a criatura escolhida, sua margem de crítico com a Zanpakutou agora é ampliada em +1.",
+   "nivel": 1,
+   "req": "Talento de Zanjutsu \"Duelista\".",
+   "grupo": "",
+   "pre": [
+    "duelista"
+   ]
+  },
+  {
+   "id": "pressao-espiritual",
+   "nome": "Pressão Espíritual",
+   "texto": "Você pode com uma ação livre utilizar a ação \"Liberar Reaitsu\". Todas as criaturas dentro da área da técnica devem realizar um Teste de Resistência de Mente com a classe de dificuldade sendo 12 + sua proficiência + seu atributo de Espírito. Se falharem no teste, além da condição \"Amendrontas\" elas ficam paralisadas por 1 turno e as que passarem perdem metade do deslocamento delas. Você pode utilizar essa habilidade como uma ação livre duas vezes e recupera seus usos com um descanso longo.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "recuperacao-de-reiatsu",
+   "nome": "Recuperação de Reiatsu",
+   "texto": "Durante uma batalha, você pode canalizar reiatsu para se recuperar. Duas vezes por combate, pode utilizar a ação \"Recuperação de Reiatsu\" como uma ação bônus.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "retaliacao",
+   "nome": "Retaliação",
+   "texto": "Quando uma criatura o atingir com um ataque corpo a corpo, você pode usar sua reação para realizar um único ataque com sua Zanpakutou contra ela.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "resistir",
+   "nome": "Resistir",
+   "texto": "Quando estiver sob as condições Congelado, Eletrificado ou Queimado, você pode usar sua reação no seu turno e 2 pontos de reiatsu para encerrar a condição.",
+   "nivel": 15,
+   "req": "15° nível de Zanjutsu.",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "sede-de-sangue",
+   "nome": "Sede de Sangue",
+   "texto": "A cada dois ataques consecutivos bem-sucedidos com sua Zanpakutou contra a mesma criatura, ela recebe a condição Sangramento.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "sublimacao-da-mascara",
+   "nome": "Sublimação da Máscara",
+   "texto": "Em combate contra um Hollow, todos os Shinigamis visam instintivamente sua máscara, pois destruí-la leva à sublimação. Quando você atingir um Hollow e deixá-lo com 10 pontos de vida ou menos, ele é automaticamente reduzido a 0 pontos de vida, sendo morto. Esta habilidade não funciona contra Arrancars.",
+   "nivel": 7,
+   "req": "7° nível de Zanjutsu.",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "shunpo-maior",
+   "nome": "Shunpo Maior",
+   "texto": "Você adquire uma variação aprimorada do Shunpo, chamada Shunpo Maior. Com sua ação, você pode dobrar seu deslocamento normal e, em seguida, usar essa distância aumentada para se deslocar instântaneamente para qualquer local dentro desse alcance expandido. Assim como no Shunpo original, você não provoca ataques de oportunidade ao usar o Shunpo Maior, e pode atravessar terreno difícil ou obstáculos desde que o local de destino esteja dentro do seu deslocamento estendido. Lembre-se de que você ainda precisa ter uma linha de visão clara para o local de destino, e você não pode usar o Shunpo Maior para atravessar barreiras solidas, como paredes de pedra.",
+   "nivel": 1,
+   "req": "característica de classe \"Shunpo\".",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "velocidade-sutil",
+   "nome": "Velocidade Sutil",
+   "texto": "Você pode alterar o atributo usado na Perícia Velocidade, substituindo por Destreza.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  }
+ ],
+ "tokubetsu": [
+  {
+   "id": "ajuste-agil",
+   "nome": "Ajuste Ágil",
+   "texto": "As perícias Velocidade e Preparo Físico podem ser utilizadas com o atributo Destreza.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "golpe-triplo",
+   "nome": "Golpe Triplo",
+   "texto": "Quando você utiliza a ação \"Atacar\", agora você realiza três ataques.",
+   "nivel": 11,
+   "req": "11° nível de Tokubetsu e a característica Ataque Extra (5° nível).",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "impacto-de-reiatsu",
+   "nome": "Impacto de Reiatsu",
+   "texto": "Quando acertar uma criatura com sua Zanpakutou, você pode utilizar sua ação bônus e 4 pontos de reiatsu para causar 2d4 de dano de energia adicional, além do dano normal da arma. O dano extra pode ser aumentado em 1d4 para cada 2 pontos de reiatsu adicionais gastos, até um máximo de 5d4.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "imposicao-espiritual",
+   "nome": "Imposição Espiritual",
+   "texto": "A classe de dificuldade para resistir aos seus Kidos aumenta em +3.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "kaido",
+   "nome": "Kaido",
+   "texto": "Com sua \"Ação\" e o custo de 4 pontos de reiatsu, você pode utilizar um Kido de Cura, restaurando 1d8 + 4 pontos de vida em uma criatura ao tocá-la. Você pode potencializar essa cura, adicionando um dado extra ao efeito por 4 pontos de reiatsu adicionais para cada dado extra. Além disso, você pode dobrar o custo total do Kido para utilizá-lo como uma ação bônus.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "kido-extra",
+   "nome": "Kido Extra",
+   "texto": "Você pode conjurar mais Kidos durante o seu turno. Quando usar um Kido com sua \"Ação\", pode conjurar um segundo Kido que também exija uma Ação, esse segundo Kido é considerado parte da mesma ação. Você ainda deve respeitar as regras de \"Encantamento\" e não pode conjurar Kidos iguais com essa habilidade.",
+   "nivel": 5,
+   "req": "5° nível de Tokubetsu.",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "lamina-restauradora",
+   "nome": "Lâmina Restauradora",
+   "texto": "Ao atingir uma criatura com um ataque crítico com sua Zanpakutou, você recupera uma quantidade de pontos de reiatsu igual ao seu atributo de Mente.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "mobilidade-fantasma",
+   "nome": "Mobilidade Fantasma",
+   "texto": "Você pode usar o Shunpo sem gastar sua Ação Bônus, tornando-o uma ação livre. No entanto, você só pode utilizá-lo uma vez por turno, e ele ainda consome seu deslocamento ao ser usado.",
+   "nivel": 1,
+   "req": "característica de classe \"Shunpo\".",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "padroes-espirituais",
+   "nome": "Padrões Espirituais",
+   "texto": "Sua capacidade de identificar padrões espirituais é incrível. Quando você examina um conjunto de pistas ou um ambiente, pode gastar 5 pontos de reiatsu para realizar um teste de Percepção Espiritual com a CD determinada pelo Mestre. Se bemsucedido, você consegue identificar padrões espirituais, como os efeitos de um Kido ou outra habilidade usados no local, ou até mesmo descobrir quem mais pode estar envolvido, a partir da reiatsu remanescente da criatura no objeto ou no próprio local.",
+   "nivel": 1,
+   "req": "característica de classe \"Sentido Espiritual Apurado\".",
+   "grupo": "",
+   "pre": [
+    "sentido-espiritual-apurado"
+   ]
+  },
+  {
+   "id": "passo-relampago",
+   "nome": "Passo Relâmpago",
+   "texto": "Você pode usar o Shunpo mais de uma vez em seu turno.",
+   "nivel": 1,
+   "req": "Talento de Tokubetsu \"Mobilidade Fantasma\".",
+   "grupo": "",
+   "pre": [
+    "mobilidade-fantasma"
+   ]
+  },
+  {
+   "id": "perito-em-hakuda",
+   "nome": "Perito em Hakuda",
+   "texto": "Seu dano desarmado se torna 1d6. Você pode escolher este Talento de Tokubetsu novamente para aumentar o dano para 1d8, e uma terceira vez para aumentar para 1d10.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "quebra-de-defesas",
+   "nome": "Quebra de Defesas",
+   "texto": "Quando você realizar um ataque com sua Zanpakutou ou um Kido, pode gastar 5 pontos de reiatsu para ignorar 10 pontos de redução de dano da criatura para esse ataque. Alternativamente, você pode gastar mais 5 pontos, totalizando 10, para ignorar 20 pontos de redução de dano.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "resolucao",
+   "nome": "Resolução",
+   "texto": "Escolha um dos atributos, quando você realizar um teste de perícia que envolva o atributo escolhido, se falhar no teste, você pode gastar 4 pontos de reiatsu para rolar novamente, devendo utilizar o novo resultado. Você pode escolher esse Talento de Tokubetsu novamente, escolhendo um novo atributo.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "sem-brechas",
+   "nome": "Sem Brechas",
+   "texto": "Quando você estiver sendo Flanqueado, você não sofre penalidade na sua Classe de Resistência. Além disso, se uma criatura estiver em terreno elevado, ela não recebe vantagem ao atacar você.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "sentido-espiritual-apurado",
+   "nome": "Sentido Espiritual Apurado",
+   "texto": "Sua percepção espiritual é muito superior à de uma criatura comum. Sempre que uma criatura entrar a até 9 metros de você, você sabe exatamente aonde a criatura está. No caso de uma criatura que esteja suprimindo a reiatsu, você ainda sentirá uma sensação estranha, aonde o mestre pode descrever como um sentimento que tem algo errado. Além disso, se você realizar um teste de Percepção Espiritual para identificá-la, poderá rolar com vantagem.",
+   "nivel": 1,
+   "req": "ser proficiênte na perícia \"Percepção Espiritual\".",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "shunpo-evasivo",
+   "nome": "Shunpo Evasivo",
+   "texto": "Quando você for alvo de um ataque que exija um Teste de Resistência de Destreza, você pode usar sua velocidade com o Shunpo para se esquivar. Se você for bem-sucedido no teste de resistência, não sofrerá nenhum dano, e se falhar sofrerá apenas metade do dano.",
+   "nivel": 1,
+   "req": "característica de classe \"Shunpo\".",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "shunpo-suprimido",
+   "nome": "Shunpo Suprimido",
+   "texto": "Após utilizar seu Shunpo, você pode, com sua ação bônus, você pode tentar se Esconder, permitindo que você faça um Teste de Furtividade ou um Teste de Suprimir Reiatsu, mesmo que não haja onde se esconder das criaturas, esse teste irá contar como uma furtividade completa, mas sem precisar fazer os dois testes. As criaturas devem fazer um Teste de Percepção ou Teste de Percepção Espiritual resistido ao seu teste.",
+   "nivel": 1,
+   "req": "Talento de Tokubetsu \"Mobilidade Fantasma\".",
+   "grupo": "",
+   "pre": [
+    "mobilidade-fantasma"
+   ]
+  },
+  {
+   "id": "versatilidade-de-caracteristicas",
+   "nome": "Versatilidade de Características",
+   "texto": "Você pode escolher uma nova característica de divisão (Cap 6: Sereitei), exceto a segunda característica da sua própria divisão. Você pode escolher este Talento de Tokubetsu novamente, mas não pode selecionar características das mesmas divisões que você já possui.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "versatilidade-de-habilidades",
+   "nome": "Versatilidade de Habilidades",
+   "texto": "Você pode escolher um Talento de qualquer outra classe de Shinigami (Ex. Talentos de Hakuda), desde que atenda aos requisitos. Você pode escolher este Talento novamente, mas só poderá ter até dois Talentos de cada classe. Alguns Talentos possuem requisitos específicos, como Impacto Elemental da classe Zanjutsu, que normalmente exige a característica Impacto de Reiatsu. Se você não atender a esse requisito diretamente, ainda pode adquiri-lo ao escolhendo o Talento Impacto de Reiatsu da classe Tokubetsu. Essa regra se aplica a qualquer Talento cujo requisito tenha o mesmo nome de outro Talento disponível. Se você possuir a versão equivalente de outra classe, ela contará como requisito para a seleção do Talento desejado. Além disso, se o Talento exigir um certo nível de classe específica, esse nível será considerado como pertencente à classe Tokubetsu.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "versatilidade-marcial",
+   "nome": "Versatilidade Marcial",
+   "texto": "Você pode utilizar técnicas de Hakuda, escolha duas da lista de Técnicas de Hakuda do capítulo 11. Você pode usá-las com Força ou Destreza, à sua escolha. Se a técnica exigir um Teste de Resistência da criatura, a dificuldade é igual a 8 + seu bônus de proficiência + seu modificador de Força ou Destreza.",
+   "nivel": 1,
+   "req": "Talento de Tokubetsu \"Perito em Hakuda\".",
+   "grupo": "",
+   "pre": [
+    "perito-em-hakuda"
+   ]
+  },
+  {
+   "id": "visao-agucada",
+   "nome": "Visão Aguçada",
+   "texto": "Quando você estiver investigando um ambiente ou procurando por pistas, pode gastar 4 pontos de reiatsu para ter vantagem em um teste de Percepção ou Investigação.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  }
+ ],
+ "hakuda": [
+  {
+   "id": "ataque-extra",
+   "nome": "Ataque Extra",
+   "texto": "Você usar a ação “Ataque” no seu turno, pode realizar dois ataques em vez de um.",
+   "nivel": 5,
+   "req": "5° nível de Hakuda.",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "ataque-de-oportunidade",
+   "nome": "Ataque de Oportunidade",
+   "texto": "Quando uma criatura sair da sua área de combate desarmado (1,5 m de você), seja se deslocando normalmente ou por meio de um deslocamento instantâneo, você pode usar sua Reação para realizar um ataque desarmado contra ela. Esse ataque consiste em um único golpe e não na ação Atacar.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "ataque-preciso",
+   "nome": "Ataque Preciso",
+   "texto": "Você adota um estilo de combate focado na precisão, atingindo apenas pontos estratégicos do adversário. Você pode gastar sua ação bônus para adicionar seu atributo de Mente ao dano de todos os ataques que fizer nesse turno.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "barreira-espiritual",
+   "nome": "Barreira Espiritual",
+   "texto": "Você infunde reiatsu em sua pele, tornando-a muito resistente. Você se torna resistente a danos físicos (Concussão, Cortante e Perfurante).",
+   "nivel": 13,
+   "req": "13° nível de Hakuda",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "contra-ataque",
+   "nome": "Contra-Ataque",
+   "texto": "Quando você utilizar “Bloqueio” da característica de 1° nível e for atacado com um ataque corpo a corpo, você pode gastar 5 pontos de reiatsu para realizar um ataque corpo a corpo desarmado contra a criatura que o atacou. Essa habilidade não tem limite mas lembre-se, é apenas um ataque e não a ação “Atacar”.",
+   "nivel": 1,
+   "req": "característica de classe “Hakuda”.",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "cura-corporal",
+   "nome": "Cura Corporal",
+   "texto": "No começo do seu turno você consegue utilizar kidou curativos em você mesmo, você pode utilizar 5 pontos de reiatsu para curar 3d8 + seu atributo de Mente. Você pode intensificar essa cura, utilizando 3 pontos de reiatsu para adicionar 1d8 adicional. Você só pode utilizar, no máximo, um adicional igual ao seu atributo de Mente.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "desvio-instintivo",
+   "nome": "Desvio Instintivo",
+   "texto": "Usando sua reação, você pode desviar o dano de um ataque corpo a corpo que o acertaria. Faça uma jogada de ataque; se o resultado for maior que a jogada de ataque do inimigo, o dano é reduzido para 0.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "dominio-do-ceu",
+   "nome": "Domínio do Céu",
+   "texto": "Caminhar no Céu não consome mais pontos de reiatsu e deixa de ser considerado terreno difícil.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "estilo-veloz",
+   "nome": "Estilo Veloz",
+   "texto": "Você adota um estilo de luta ágil, normalmente usado para capturar inimigos em fuga. Você pode usar sua ação bônus para aumentar seu deslocamento em 6 metros até o final do turno.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "fluxo-veloz",
+   "nome": "Fluxo Veloz",
+   "texto": "Suas perícias Preparo Físico e Velocidade agora utilizam o atributo Destreza em vez de Força.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "golpe-triplo",
+   "nome": "Golpe Triplo",
+   "texto": "Quando você utiliza a ação “Atacar”, agora você realiza três ataques.",
+   "nivel": 11,
+   "req": "11° nível de Hakuda e habilidade de Hakuda “Ataque Extra”.",
+   "grupo": "",
+   "pre": [
+    "ataque-extra"
+   ]
+  },
+  {
+   "id": "golpe-superior",
+   "nome": "Golpe Superior",
+   "texto": "Quando você utiliza a ação “Atacar”, agora você realiza quatro ataques.",
+   "nivel": 15,
+   "req": "15° nível de Hakuda e habilidade de Hakuda “Golpe Triplo”.",
+   "grupo": "",
+   "pre": [
+    "golpe-triplo"
+   ]
+  },
+  {
+   "id": "hakuda-crescente",
+   "nome": "Hakuda Crescente",
+   "texto": "Para cada ataque corpo-a-corpo desarmado (Hakuda) que você errar, você adiciona +2 no seu acerto com Hakuda, até que você acerte um ataque, resetando os acúmulos.",
+   "nivel": 5,
+   "req": "5° nível de Hakuda.",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "instinto-assassino",
+   "nome": "Instinto Assassino",
+   "texto": "No primeiro turno do combate, seus ataques têm vantagem contra inimigos que ainda não agiram.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "investida-mortal",
+   "nome": "Investida Mortal",
+   "texto": "Se atacar um inimigo que ainda não agiu no combate, seus ataques causam dano dobrado, mesmo que sejam crítico.",
+   "nivel": 13,
+   "req": "13° nível de Hakuda e habilidade de Hakuda “Instinto Assassino”.",
+   "grupo": "",
+   "pre": [
+    "instinto-assassino"
+   ]
+  },
+  {
+   "id": "marcial",
+   "nome": "Marcial",
+   "texto": "Você adquiri duas técnicas adicionais de Hakuda. Essa habilidade pode ser escolhida mais vezes.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "pressao-constante",
+   "nome": "Pressão Constante",
+   "texto": "Toda vez que você realizar um ataque desarmado corpo a corpo, role 1d10. Se o resultado for 1, você pode realizar um novo golpe (um único ataque desarmado). Você pode escolher essa habilidade novamente em um próximo nível, reduzindo o dado para 1d8 e, novamente para 1d6.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "primeiro-movimento",
+   "nome": "Primeiro Movimento",
+   "texto": "Você pode gastar 2 pontos de reiatsu para agir primeiro na rodada, independentemente da iniciativa, você deve informar que vai utilizar essa habilidade assim que o Mestre falar que uma nova rodada começou. Você pode usar essa habilidade um número de vezes igual ao seu bônus de proficiência por combate.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "recalibracao",
+   "nome": "Recalibração",
+   "texto": "Quando você errar um ataque, pode gastar 2 pontos de reiatsu para adicionar 1d4 à rolagem de ataque (Acerto).Você pode utilizar essa habilidade uma vez no turno.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "reflexos-ho-ho",
+   "nome": "Reflexos Ho-Ho",
+   "texto": "Sua velocidade é muito maior do que a de um shinigami comum. Quando for alvo de um ataque que exige um Teste de Resistência de Destreza, você utiliza seu Shunpo para se tornar muito mais difícil de ser acertado. Se passar no teste de resistência, não sofre nenhum dano; se falhar, sofre apenas metade do dano.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "ripostar",
+   "nome": "Ripostar",
+   "texto": "Você aprimorou ainda mais sua habilidade de contra-ataque. Sempre que for acertado por um ataque corpo a corpo, poderá contra-atacar a criatura sem gastar um posto de reiatsu, desde que o Bloqueio esteja ativo.",
+   "nivel": 9,
+   "req": "9° nível de Hakuda e habilidade de Hakuda “Contra-Ataque”.",
+   "grupo": "",
+   "pre": [
+    "contra-ataque"
+   ]
+  },
+  {
+   "id": "ruptura-da-defesa",
+   "nome": "Ruptura da Defesa",
+   "texto": "Você ignora uma quantidade de redução de dano (RD) da criatura igual ao seu nível de personagem.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "sede-de-sangue",
+   "nome": "Sede de Sangue",
+   "texto": "Quando você acerta um ataque crítico, ganha pontos de vida temporários iguais ao seu nível de personagem + metade do seu atributo de Mente.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "shunpo-defensivo",
+   "nome": "Shunpo Defensivo",
+   "texto": "Quando você usa um tipo de Shunpo, recebe um bônus na sua CR igual ao seu bônus de proficiência contra o primeiro ataque feito contra você até o começo do seu próximo turno.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "shunpo-reativo",
+   "nome": "Shunpo Reativo",
+   "texto": "Quando você for alvo de um ataque, você pode usar sua reação para ativar seu Shunpo para ficar quase intangível, reduzindo o dano que você sofreria pela metade.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  }
+ ],
+ "kidoshu": [
+  {
+   "id": "alinhamento",
+   "nome": "Alinhamento",
+   "texto": "Sua maestria em focalizar reiatsu atinge um novo patamar, permitindo que cada Hadou disparado por você busque naturalmente o ponto vital do inimigo. Todos os seus Hadous que utilizem uma jogada de ataque de “Acerto” recebem +1 na margem de crítico, acumulando-se normalmente com o benefício do talento Convergência.",
+   "nivel": 1,
+   "req": "Talento de Kidōshū “Convergência”.",
+   "grupo": "",
+   "pre": [
+    "convergencia"
+   ]
+  },
+  {
+   "id": "ataque-extra",
+   "nome": "Ataque Extra",
+   "texto": "Você ganha a habilidade de realizar mais ataques durante o seu turno. Quando você usar a ação “Ataque” no seu turno, pode realizar dois ataques em vez de um.",
+   "nivel": 5,
+   "req": "5° nível de Kidōshū.",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "controle",
+   "nome": "Controle",
+   "texto": "Quando você conjurar um Kido que afete todas as criaturas dentro de uma área de efeito, poderá escolher um número de criaturas igual ao seu atributo de Mente. As criaturas escolhidas não são afetadas pelos efeitos do Kido.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "convergencia",
+   "nome": "Convergência",
+   "texto": "Você canaliza seu reiatsu de forma altamente concentrada, guiando o fluxo do Hadou com precisão cirúrgica. Com sua ação bônus, você aprimora o próximo Hadou que conjurar neste turno, fazendo com que ele receba +1 na margem de crítico, desde que seja um Hadou que utilize uma jogada de ataque de “Acerto”.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "defesa-inteligente",
+   "nome": "Defesa Inteligente",
+   "texto": "Seu estilo de luta é mais astuto, então suas defesas são baseadas em puramente prever os ataques inimigos. Sua classe de resistência passa a ser 10 + proficiência + metade do atributo de Mente.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "disciplina",
+   "nome": "Disciplina",
+   "texto": "Você consegue manter a concentração em mais de um Kido com mais facilidade. Tornando o cáculo para manter o Kido mais facil, se tornando 15 + o Rank do Kido (Capítulo 11: Feitiços e Técnicas).",
+   "nivel": 6,
+   "req": "6° nível de Kidōshū.",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "dominio",
+   "nome": "Domínio",
+   "texto": "Quando você falhar em um teste para manter a concentração em um Kido enquanto estiver sustentando mais de um, você não perde mais a concentração em todos eles. Em vez disso, você perde a concentração apenas em um dos Kidos de sua escolha.",
+   "nivel": 12,
+   "req": "12° nível de Kidōshū e Talento de Kidōshū “Disciplina”.",
+   "grupo": "",
+   "pre": [
+    "disciplina"
+   ]
+  },
+  {
+   "id": "encantamento-aprimorado",
+   "nome": "Encantamento Aprimorado",
+   "texto": "Você possui a habilidade de recitar qualquer Kido com extrema facilidade. Sempre que você recitar um Kido que tenha uma velocidade de Encatamento, você diminui uma categoria dessa velocidade. Se o Kido possuir o Encatamento Normal, você o reduz para Encantamento Rápido e se ele tiver Encantamento Lento, você reduz para Normal.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "escudo",
+   "nome": "Escudo",
+   "texto": "Quando você conjurar um Hadou, a energia remanescente forma um escudo de reiatsu ao seu redor. Você recebe +2 na sua Classe de Resistência contra o primeiro ataque que receber antes do início do seu próximo turno. Esse bônus não é acumulável e se dissipa no começo do seu próximo turno.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "escudo-aprimorado",
+   "nome": "Escudo Aprimorado",
+   "texto": "Agora o Escudo é acumulável somando +1 para cada Kido adicional conjurado.",
+   "nivel": 1,
+   "req": "Talento de Kidōshū “Escudo”.",
+   "grupo": "",
+   "pre": [
+    "escudo"
+   ]
+  },
+  {
+   "id": "feitico-discreto",
+   "nome": "Feitiço Discreto",
+   "texto": "Quando você lançar um Bakudou ou Hadou, pode remover a necessidade de encantamento do Kido, tornando-o um encantamento rápido. Para isso, ao conjurar o Hadou ou Bakudou, você deve gastar sua ação bônus para retirar o encantamento.",
+   "nivel": 6,
+   "req": "6° nível de Kidōshū e Talento de Kidōshū “Encantamento Aprimorado”.",
+   "grupo": "",
+   "pre": [
+    "encantamento-aprimorado"
+   ]
+  },
+  {
+   "id": "hadou-poderoso",
+   "nome": "Hadou Poderoso",
+   "texto": "Quando utilizar um Hadou, você adiciona seu atributo de Mente ao dano.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "kaido",
+   "nome": "Kaido",
+   "texto": "Com sua “Ação” e o custo de 4 pontos de reiatsu, você pode utilizar um Kido de Cura, restaurando 1d8 + 4 pontos de vida em uma criatura ao tocá-la. Você pode potencializar essa cura, adicionando um dado extra ao efeito por 4 pontos de reiatsu adicionais para cada dado extra. Além disso, você pode dobrar o custo total do Kido para utilizá-lo como uma ação bônus.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "kido-extra",
+   "nome": "Kido Extra",
+   "texto": "Você pode conjurar mais Kidos durante o seu turno. Quando usar um Kido com sua “Ação”, pode conjurar um segundo Kido que também exija uma Ação, esse segundo Kido é considerado parte da mesma ação. Você ainda deve respeitar as regras de “Encantamento” e não pode conjurar Kidos iguais com essa habilidade.",
+   "nivel": 5,
+   "req": "5° nível de Kidōshū.",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "fluxo-de-kido",
+   "nome": "Fluxo de Kido",
+   "texto": "Agora, quando você utilizar um Kido que tenha como requisito “Ação”, você pode conjurar dois Kidos adicionais. Respeitando as mesmas regras de conjuração do Kido Extra.",
+   "nivel": 11,
+   "req": "11° nível de Kidōshū e Talento de Kidōshū “Kido Extra”.",
+   "grupo": "",
+   "pre": [
+    "kido-extra"
+   ]
+  },
+  {
+   "id": "mestre",
+   "nome": "Mestre",
+   "texto": "Quando você for atacado enquanto estiver mantendo a concentração em um ou mais Kidos e precisar realizar um teste para mantê-los, você não perde mais a concentração em nenhum deles ao falhar nesse teste.",
+   "nivel": 18,
+   "req": "18° nível de Kidōshū e Talento de Kidōshū “Domínio”.",
+   "grupo": "",
+   "pre": [
+    "dominio"
+   ]
+  },
+  {
+   "id": "perfuracao-arcana",
+   "nome": "Perfuração Arcana",
+   "texto": "Você afia seu reiatsu para perfurar defesas espirituais com precisão devastadora, fazendo com que o impacto do seu Kido atravesse camadas protetoras menores sem perder força. Seus Kidos passam a ignorar 5 pontos de redução de dano de qualquer criatura atingida, rompendo barreiras que antes mitigavam os efeitos de suas técnicas.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "perfuracao-elemental",
+   "nome": "Perfuração Elemental",
+   "texto": "Ao conjurar um Hadou que cause dano Esotérico, você ignora 5 pontos de redução de dano da criatura atingida.",
+   "nivel": 1,
+   "req": "Talento de Kidōshū “Perfuração Arcana”.",
+   "grupo": "",
+   "pre": [
+    "perfuracao-arcana"
+   ]
+  },
+  {
+   "id": "peso-do-conjurador",
+   "nome": "Peso do Conjurador",
+   "texto": "Quando você conjurar um Kido que exija um teste de resistência de uma criatura, você pode gastar 4 pontos de reiatsu para impor uma penalidade de –2 na rolagem de resistência dessa criatura. Você pode gastar 2 pontos de reiatsu adicionais para cada –1 extras de penalidade, até um máximo de –5.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "rastro-de-hadou",
+   "nome": "Rastro de Hadou",
+   "texto": "Após atingir uma criatura com um Hadou que tenha um alvo único, você pode gastar metade do custo em pontos de reiatsu para direcionar uma réplica menor do Hadou a outro inimigo dentro de 6 metros do alvo original. Essa versão menor do Hadou causa metade do dano e ainda exige que você realize o teste de acerto normalmente. Esse talento apenas funciona em Hadous que tenha como jogada de ataque “Acerto”.",
+   "nivel": 3,
+   "req": "3° nível de Kidōshū.",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "ressonar",
+   "nome": "Ressonar",
+   "texto": "Quando você errar uma jogada de ataque com um Kido, pode gastar metade do custo total em pontos de reiatsu para rolar novamente o ataque. Você só pode usar esta habilidade uma vez por turno.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "selo-imutavel",
+   "nome": "Selo Imutável",
+   "texto": "Você eleva sua técnica de selos a um patamar impecável, moldando Bakudous tão precisos que se entrelaçam ao reiatsu do alvo como correntes absolutas. Criaturas afetadas por um Bakudou seu têm desvantagem para escapar, quebrar ou dissipar seus efeitos, tornando suas prisões espirituais quase inescapáveis.",
+   "nivel": 18,
+   "req": "18° nível de Kidōshū.",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "selo-reforcado",
+   "nome": "Selo Reforçado",
+   "texto": "Você fortalece a estrutura espiritual dos seus Bakudous com camadas adicionais de reiatsu. Sempre que uma criatura estiver presa por um Bakudou seu, ela sofre –2 em testes feitos para escapar dele.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "shunpo-maior",
+   "nome": "Shunpo Maior",
+   "texto": "Você adquire uma variação aprimorada do Shunpo, chamada Shunpo Maior. Com sua ação, você pode dobrar seu deslocamento normal e, em seguida, usar essa distância aumentada para se deslocar instântaneamente para qualquer local dentro desse alcance expandido. Assim como no Shunpo original, você não provoca ataques de oportunidade ao usar o Shunpo Maior, e pode atravessar terreno difícil ou obstáculos desde que o local de destino esteja dentro do seu deslocamento estendido. Lembre-se de que você ainda precisa ter uma linha de visão clara para o local de destino, e você não pode usar o Shunpo Maior para atravessar barreiras solidas, como paredes de pedra.",
+   "nivel": 1,
+   "req": "característica de classe “Shunpo”.",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "toque-preciso",
+   "nome": "Toque Preciso",
+   "texto": "Você aprendeu a canalizar seu reiatsu pelas mãos com precisão absoluta, guiando o fluxo espiritual direto ao ponto de impacto. Sempre que você conjurar um Kido que exija ataque por toque, você recebe vantagem na jogada de ataque, tornando seus golpes de contato muito mais difíceis de evitar.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "ultrapasso",
+   "nome": "Ultrapasso",
+   "texto": "Quando um Kido seu reduzir uma criatura a 0 PV, você recupera metade dos pontos de reiatsu gastos para conjurar esse Kido.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  }
+ ],
+ "kyugo": [
+  {
+   "id": "ataque-extra",
+   "nome": "Ataque Extra",
+   "texto": "Você usar a ação “Ataque” no seu turno, pode realizar dois ataques em vez de um.",
+   "nivel": 5,
+   "req": "5° nível de Kyūgo.",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "alerta-espiritual",
+   "nome": "Alerta Espiritual",
+   "texto": "Um suporte é frequentemente o primeiro alvo em combate, mas isso não acontece mais com você. Você não pode ser surpreendido e pode gastar 2 pontos de reiatsu para cada aliado no campo para impedir que eles também sejam surpreendidos, você utilizará os pontos de reiatsu assim que o combate iniciar, mesmo que não seja seu turno.",
+   "nivel": 7,
+   "req": "7° nível de Kyūgo e Talento de Kyūgo \"Sentido Espiritual Apurado\".",
+   "grupo": "",
+   "pre": [
+    "sentido-espiritual-apurado"
+   ]
+  },
+  {
+   "id": "aliados",
+   "nome": "Aliados",
+   "texto": "Quando você e uma criatura aliada realizarem um Teste de Resistência juntos por qualquer motivo, como um ataque que afete ambos, você pode gastar 3 pontos de reiatsu para que o aliado utilize o mesmo resultado que você obteve no teste. Você só pode utilizar esta habilidade para afetar uma única criatura por teste.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "analise",
+   "nome": "Análise",
+   "texto": "Durante um combate, você pode analisar uma habilidade utilizada por uma criatura. Para isso, use sua reação imediatamente após a criatura usar a habilidade, por exemplo, uma Zanpakutou, o poder de uma Letra Quincy ou qualquer outra técnica especial. Você deve então realizar um Teste de Intuição, com uma CD definida pelo Mestre (sugestão para o Mestre: CD = 10 + ND da criatura). Se for bem-sucedido, o Mestre pode revelar uma fraqueza associada à habilidade, caso ela exista. Caso contrário, ou se a habilidade não possuir fraquezas, você e seus aliados recebem +2 em testes de resistência contra essa habilidade pelo restante do combate.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "chamado-da-alma",
+   "nome": "Chamado da Alma",
+   "texto": "Durante seu turno, você pode usar sua ação bônus para permitir que um aliado voluntário a até 9 metros de você ative a liberação da Shikai dele, durante o seu turno. Se a Shikai possuir efeitos, eles só se manifestam no turno do aliado, mas o custo de reiatsu é pago imediatamente e efeitos defensivos são ativos imediatamente. Além disso, você pode optar por dividir o custo da liberação com o aliado, fazendo com que cada um gaste metade dos pontos de reiatsu necessários.",
+   "nivel": 1,
+   "req": "Aliado tenha acesso a Shikai.",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "controle-preciso",
+   "nome": "Controle Preciso",
+   "texto": "Quando você usar um Kido, técnica ou habilidade da sua Zanpakuto que afete todas as criaturas em uma área de efeito, poderá escolher um número de criaturas igual à metade do seu atributo de Mente (arredondado para baixo) para que não sejam afetadas pelos efeitos ou pelo dano da habilidade. Essa regra também se aplica às liberações da Zanpakuto.",
+   "nivel": 3,
+   "req": "3° nível de Kyūgo. Características de classe Classe de Shinigami",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "coordenacao-de-combate",
+   "nome": "Coordenação de Combate",
+   "texto": "Com uma ação bônus, você escolhe um aliado a até 9 metros. Até o início do próximo turno dele, esse aliado pode usar a reação dele para realizar um ataque corpo a corpo contra uma criatura que está sendo alvo de um ataque.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "cura-fragmentada",
+   "nome": "Cura Fragmentada",
+   "texto": "Quando você conjurar um Kido de cura que exija uma ação, pode gastar 4 pontos de reiatsu adicionais para dividir o valor da cura entre dois aliados diferentes que você consiga tocar, distribuindo a quantidade de cura conforme desejar.",
+   "nivel": 1,
+   "req": "Talento de Kyūgo \"Kaido\" ou Afinidade \"Curandeiro\".",
+   "grupo": "",
+   "pre": [
+    "kaido"
+   ]
+  },
+  {
+   "id": "escudo-de-reiatsu",
+   "nome": "Escudo de Reiatsu",
+   "texto": "Sempre que você curar uma criatura durante o combate, ela recebe +5 na Classe de Resistência (CR) contra o próximo ataque que sofrer até o início do próprio turno. Se não for atacada até lá, o bônus é perdido. Esse benefício só é concedido se a cura for direcionada exclusivamente a uma única criatura, não funcionando com efeitos de cura em área.",
+   "nivel": 1,
+   "req": "Talento de Kyūgo \"Kaido\" ou Afinidade \"Curandeiro\".",
+   "grupo": "",
+   "pre": [
+    "kaido"
+   ]
+  },
+  {
+   "id": "kaido",
+   "nome": "Kaido",
+   "texto": "Com sua \"Ação\" e o custo de 4 pontos de reiatsu, você pode utilizar um Kido de Cura, restaurando 1d8 + 4 pontos de vida em uma criatura ao tocá-la. Você pode potencializar essa cura, adicionando um dado extra ao efeito por 4 pontos de reiatsu adicionais para cada dado extra. Além disso, você pode dobrar o custo total do Kido para utilizá-lo como uma ação livre. Se você possuir a subclasse Curandeiro este Talento, adiciona um dado de cura adicional a todas as suas curas.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "golpe-triplo",
+   "nome": "Golpe Triplo",
+   "texto": "Quando você utiliza a ação \"Atacar\", agora você realiza três ataques.",
+   "nivel": 11,
+   "req": "11° nível de Kyūgo e Talento de Kyūgo \"Ataque Extra\".",
+   "grupo": "",
+   "pre": [
+    "ataque-extra"
+   ]
+  },
+  {
+   "id": "kido-extra",
+   "nome": "Kido Extra",
+   "texto": "Você pode conjurar mais Kidos durante o seu turno. Quando usar um Kido com sua \"Ação\", pode conjurar um segundo Kido que também exija uma Ação, esse segundo Kido é considerado parte da mesma ação. Você ainda deve respeitar as regras de \"Encantamento\" e não pode conjurar Kidos iguais com essa habilidade.",
+   "nivel": 5,
+   "req": "5° nível de Kyūgo.",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "para-o-outro",
+   "nome": "Para o Outro",
+   "texto": "Você pode conjurar qualquer Bakudou que normalmente teria efeito apenas em você em outra criatura, como se estivesse conjurando em si mesmo. Para isso, você deve tocar a criatura no momento da conjuração. Todos os demais custos e requisitos do Bakudou permanecem os mesmos.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "potencial-compartilhado",
+   "nome": "Potencial Compartilhado",
+   "texto": "No início do combate, ao definir a ordem de turnos, você pode compartilhar uma de suas Essências Espirituais com criaturas aliadas que participam da batalha, mantendo esse vínculo até o fim do combate. Se a essência escolhida tiver etapas aumentadas, os aliados também se beneficiam dessas melhorias. Essências Proibidas não podem ser compartilhadas.",
+   "nivel": 15,
+   "req": "15° nível de Kyūgo.",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "preparacao",
+   "nome": "Preparação",
+   "texto": "No primeiro turno de um combate, você ganha uma Ação adicional. No entanto, essa Ação não pode ser usada para atacar.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "protecao",
+   "nome": "Proteção",
+   "texto": "Em situações de emergência, você pode proteger um aliado com seu próprio corpo. No seu turno, você pode gastar 5 pontos de reiatsu para usar a ação \"Proteger\" como uma ação bônus.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "recuperacao-compartilhada",
+   "nome": "Recuperação Compartilhada",
+   "texto": "Quando você usar a ação \"Recuperar Reiatsu\", pode compartilhar parte do reiatsu recuperado com um aliado ao alcance do toque. Você escolhe a quantidade de reiatsu a ser transferida para o aliado.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "resposta-urgente",
+   "nome": "Resposta Urgente",
+   "texto": "Quando um aliado for reduzido a 0 pontos de vida, você recebe uma ação bônus extra no seu turno. Se mais de um aliado cair a 0 pontos de vida, você recebe uma ação adicional ao invés de uma Ação Bônus. No entanto, essas ações adicionais não pode ser usada para atacar.",
+   "nivel": 10,
+   "req": "10° nível de Kyūgo e Talento de Kyūgo \"Preparação\".",
+   "grupo": "",
+   "pre": [
+    "preparacao"
+   ]
+  },
+  {
+   "id": "sentido-espiritual-apurado",
+   "nome": "Sentido Espiritual Apurado",
+   "texto": "Sua percepção espiritual é muito superior à de uma criatura comum. Sempre que uma criatura entrar a até 9 metros de você, você sabe exatamente aonde a criatura está. No caso de uma criatura que esteja suprimindo a reiatsu, você ainda sentirá uma sensação estranha, aonde o mestre pode descrever como um sentimento que tem algo errado. Além disso, se você realizar um teste de Percepção Espiritual para identificá-la, poderá rolar com vantagem.",
+   "nivel": 1,
+   "req": "Proficiência na perícia \"Percepção Espiritual\".",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "sincronizar-espirito",
+   "nome": "Sincronizar Espírito",
+   "texto": "Quando um aliado lançar uma técnica ou habilidade baseada em reiatsu (Zanpakutou, Kido e Técnica), você pode usar sua reação e 4 pontos de reiatsu e reforçar o poder dela. Se fizer isso, o aliado tem vantagem no teste de ataque ou impõe desvantagem na resistência contra a habilidade.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "toque-de-harmonia",
+   "nome": "Toque de Harmonia",
+   "texto": "Como uma ação e ao custo de 4 pontos de reiatsu, você toca um aliado e remove uma condição (Cego, Surdo, Envenenado, Paralisado, etc.). Você pode gastar +2 pontos de reiatsu para remover uma condição adicional. O mestre pode decidir que essa habilidade não remove a condição quando ela for causada por algum tipo de liberação, como uma Shikai ou Bankai.",
+   "nivel": 1,
+   "req": "Talento de Kyūgo \"Kaido\" ou Afinidade \"Curandeiro\".",
+   "grupo": "",
+   "pre": [
+    "kaido"
+   ]
+  },
+  {
+   "id": "troca-de-acao",
+   "nome": "Troca de Ação",
+   "texto": "Se você estiver em combate, no início do seu turno, pode gastar 3 pontos de reiatsu para transferir uma de suas ações para um aliado a até 6 metros de você. Escolha entre Ação, Ação Bônus ou Reação, você pode transferir apenas uma por turno. Ao fazer isso, você perde essa ação no turno atual. O aliado recebe a ação transferida como uma ação extra no próximo turno dele, exceto no caso da Reação, que ele pode usar fora do próprio turno. Após ser utilizada, a ação transferida é consumida normalmente, como se fosse dele.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  }
+ ],
+ "schutze": [
+  {
+   "id": "alvo-cercado",
+   "nome": "Alvo Cercado",
+   "texto": "Você é capaz de flanquear uma criatura mesmo utilizando uma arma à distância, desde que esteja adjacente ao alvo e outra criatura esteja no lado oposto, engajada em combate corpo a corpo com o alvo ou possua essa habilidade.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "arma-favorita",
+   "nome": "Arma Favorita",
+   "texto": "Com o seu treinamento Quincy, você pode usar varios tipos de armas do Arsenal mas você escolheu uma arma para ser sua Arma Favorita. Você pode escolher uma arma a Distância para ser sua Arma Favorita. Sua arma favorita recebe uma melhoria a sua escolha.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "ataque-extra",
+   "nome": "Ataque Extra",
+   "texto": "Você ganha a habilidade de realizar mais ataques durante o seu turno. Quando você usar a ação “Ataque” no seu turno, pode realizar dois ataques em vez de um.",
+   "nivel": 5,
+   "req": "5° nível de Schütze.",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "calculo-rapido",
+   "nome": "Cálculo Rápido",
+   "texto": "Você adiciona metade do seu atributo de Mente, arredondado para baixo, à sua rolagem de iniciativa.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "cacador-solitario",
+   "nome": "Caçador Solitário",
+   "texto": "Quando não houver nenhuma criatura aliada próxima a você (18 metros), você recebe +2 na sua Classe de Resistência e +2 nas suas rolagens de dano.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "detetive",
+   "nome": "Detetive",
+   "texto": "Você realiza todos os testes de Investigação com vantagem.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "disparo-perfurante",
+   "nome": "Disparo Perfurante",
+   "texto": "Você consegue concentrar Reishi em um disparo capaz de atravessar defesas. Uma vez por turno, quando acertar um ataque com arma à distância, você pode ignorar uma quantidade de Resistência a Dano (RD) igual ao seu atributo de Mente.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "disparo-ricochete",
+   "nome": "Disparo Ricochete",
+   "texto": "Você consegue controlar a trajetória dos seus projéteis de Reishi. Ao realizar um ataque à distância, pode ignorar cobertura e fazer o disparo contornar obstáculos, desde que o alvo esteja dentro do alcance da arma e você tenha uma trajetória plausível para o projétil",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "dobro",
+   "nome": "Dobro",
+   "texto": "Quando você utiliza armas à distância, o alcance indicado por elas é dobrado, permitindo que seus disparos alcancem alvos ainda mais distantes com precisão.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "executar",
+   "nome": "Executar",
+   "texto": "Você ganha a habilidade de executar criaturas com poucos pontos de vida. Se você atacar uma criatura, causar dano a ela e reduzi-la a 10 pontos de vida ou menos, ela será executada, morrendo instantaneamente. Você pode optar por não matá-la, causando dano não letal, o que a deixará com 1 ponto de vida e inconsciênte.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "execucao-aprimorada",
+   "nome": "Execução Aprimorada",
+   "texto": "Você passa a executar criaturas com 20 pontos de vida, seguindo as mesmas regras da habilidade \"Executar\".",
+   "nivel": 9,
+   "req": "9° nível de Schütze e habilidade de Schütze \"Executar\".",
+   "grupo": "",
+   "pre": [
+    "executar"
+   ]
+  },
+  {
+   "id": "foco-estavel",
+   "nome": "Foco Estável",
+   "texto": "Você não sofre mais a penalidade de deslocamento imposta pela característica \"Mira Impecável\".",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "guarda",
+   "nome": "Guarda",
+   "texto": "Quando uma criatura dentro de um raio de 9 metros de você se deslocar em sua direção, desde que não seja por um deslocamento instantâneo, você pode usar sua reação para realizar um único ataque com arma à distância contra ela.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "heilig-pfeil-fisico",
+   "nome": "Heilig Pfeil Físico",
+   "texto": "Você consegue imbuir suas mãos e pés com Reishi, adicionando 1d6 de dano de energia a seus ataques corpo a corpo desarmado. Características de classe Classe de Quincy",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "golpe-triplo",
+   "nome": "Golpe Triplo",
+   "texto": "Quando você utiliza a ação \"Atacar\", agora você realiza três ataques.",
+   "nivel": 11,
+   "req": "11° nível de Schütze e habilidade de Schütze \"Ataque Extra\".",
+   "grupo": "",
+   "pre": [
+    "ataque-extra"
+   ]
+  },
+  {
+   "id": "golpe-superior",
+   "nome": "Golpe Superior",
+   "texto": "Quando você utiliza a ação \"Atacar\", agora você realiza quatro ataques.",
+   "nivel": 20,
+   "req": "20° nível de Schütze e habilidade de Schütze \"Golpe Triplo\".",
+   "grupo": "",
+   "pre": [
+    "golpe-triplo"
+   ]
+  },
+  {
+   "id": "feitico-extra",
+   "nome": "Feitiço Extra",
+   "texto": "Você pode conjurar mais de uma Técnica de Reishi durante o seu turno. Quando usar um Kido com sua \"Ação\", pode conjurar um segundo Kido que também exija uma Ação. Você ainda deve respeitar outros requisitos e não pode conjurar Técnicas de Reishi iguais com essa habilidade.",
+   "nivel": 5,
+   "req": "5° nível de Schütze.",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "instinto-do-schutze",
+   "nome": "Instinto do Schütze",
+   "texto": "Quando um inimigo erra um ataque contra você, você pode revidar acertando ele com um único ataque com sua arma, utilizando sua reação.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "negacao-de-projeteis",
+   "nome": "Negação de Projetéis",
+   "texto": "Quando você for alvo de um ataque à distância, seja por técnica ou não, que venha em sua direção, você pode usar disparos da sua arma para tentar interceptar o ataque. Utilizando sua reação, você pode realizar um ataque com sua arma contra o ataque que se aproxima. O dano do ataque será reduzido pelo próprio dano causado pelo seu ataque. Se o dano for reduzido a 0 pontos, você anulará completamente o ataque.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "percepcao-espiritual-apurada",
+   "nome": "Percepção Espiritual Apurada",
+   "texto": "Sua percepção espiritual está além do comum, permitindo que você sinta as criaturas com facilidade. Você recebe um bônus de +5 na sua percepção passiva, e todas as criaturas que entrarem dentro de um alcance de 36 metros ao seu redor (exceto aquelas que estejam suprimindo a reiatsu) serão imediatamente reveladas, permitindo que você saiba exatamente a localização de cada uma.",
+   "nivel": 9,
+   "req": "9° nível de Schütze.",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "precisao-total",
+   "nome": "Precisão Total",
+   "texto": "Você pode usar Deslocamento Instantâneo normalmente, não sofrendo mais a penalidade ao utilizar Mira Impecável.",
+   "nivel": 1,
+   "req": "habilidade de Schütze \"Foco Estável\".",
+   "grupo": "",
+   "pre": [
+    "foco-estavel"
+   ]
+  },
+  {
+   "id": "realocacao-antecipada",
+   "nome": "Realocação Antecipada",
+   "texto": "Quando o combate começar, após utilizar o Saque Rápido você pode usar seu Hirenkyaku para se posicionar dentro do seu alcance antes que a ordem de turnos comece.",
+   "nivel": 8,
+   "req": "8° nível de Schütze e habilidade de Schütze \"Saque Rápido\".",
+   "grupo": "",
+   "pre": [
+    "saque-rapido"
+   ]
+  },
+  {
+   "id": "recuo-tatico",
+   "nome": "Recuo Tático",
+   "texto": "Quando uma criatura terminar seu deslocamento a até 3 metros de você, você pode usar sua reação para se deslocar até 3 metros sem provocar ataques de oportunidade.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "reposicionamento",
+   "nome": "Reposicionamento",
+   "texto": "Após acertar um ataque com uma arma à distância, você pode se deslocar até 3 metros sem provocar ataques de oportunidade. Esse deslocamento é descontado do seu deslocamento.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "saque-rapido",
+   "nome": "Saque Rápido",
+   "texto": "Quando o combate começar, você pode realizar um ataque com arma a distância contra uma criatura hostil antes da ordem de turnos começar.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "sequencia-fatal",
+   "nome": "Sequência Fatal",
+   "texto": "Cada vez que você acerta um ataque contra uma criatura, reduz a Classe de Resistência (CR) dela em –1 para você, até um máximo igual à metade do seu atributo de Mente (arredondado para baixo).",
+   "nivel": 12,
+   "req": "12° nível de Schütze.",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "schrift",
+   "nome": "Schrift",
+   "texto": "O poder latente na alma de um Quincy pode se manifestar de formas diversas, refletindo habilidades únicas e extraordinárias. A obtenção de uma Shrift é um evento raro e especial, que ocorre em circunstâncias distintas: alguns Quincy nascem com esse dom, enquanto outros o despertam ao beber o sangue do próprio Rei Quincy ou o desenvolvem ao longo de suas vidas. Ao selecionar esta habilidade, você pode escolher uma Shrift do capítulo \"Arsenal Quincy\". A escolha da Shrift deve ser aprovada pelo Mestre, garantindo que ela se encaixe na narrativa do jogo.",
+   "nivel": 6,
+   "req": "6° nível de Schütze, aprovação do mestre.",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "tiro-mortal",
+   "nome": "Tiro Mortal",
+   "texto": "Quando você obtiver um acerto crítico com uma arma à distância, pode adicionar metade do seu atributo de Mente ao dano causado pelo ataque.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  }
+ ],
+ "ritter": [
+  {
+   "id": "alvo-cercado",
+   "nome": "Alvo Cercado",
+   "texto": "você flanqueia como qualquer atacante corpo a corpo e soma sua proficiência ao dano contra um alvo flanqueado.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "aparar",
+   "nome": "Aparar",
+   "texto": "reação; quando for alvo de um ataque corpo a corpo, ataque com a sua arma contra o ataque. O dano do ataque é reduzido pelo dano do seu golpe; se chegar a zero, o ataque é anulado.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "ataque-extra",
+   "nome": "Ataque Extra",
+   "texto": "quando usar a ação Atacar, você faz dois ataques.",
+   "nivel": 5,
+   "req": "5º nível",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "calculo-de-duelo",
+   "nome": "Cálculo de Duelo",
+   "texto": "soma metade do seu Espírito (para baixo) à iniciativa.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "estocada-perfurante",
+   "nome": "Estocada Perfurante",
+   "texto": "uma vez por turno, ao acertar um ataque corpo a corpo, você ignora RD igual ao seu Espírito.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "execucao",
+   "nome": "Execução",
+   "texto": "criaturas reduzidas a 10 PV ou menos por um golpe seu morrem na hora, sem teste. Você pode optar por dano não letal.",
+   "nivel": 9,
+   "req": "9º nível",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "execucao-aprimorada",
+   "nome": "Execução Aprimorada",
+   "texto": "o limite sobe para 20 PV.",
+   "nivel": 9,
+   "req": "9º nível, Execução",
+   "grupo": "",
+   "pre": [
+    "execucao"
+   ]
+  },
+  {
+   "id": "feitico-extra",
+   "nome": "Feitiço Extra",
+   "texto": "você pode lançar uma segunda Técnica de Reishi de ação no mesmo turno, sem repetir a técnica.",
+   "nivel": 5,
+   "req": "5º nível",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "golpe-mortal",
+   "nome": "Golpe Mortal",
+   "texto": "em um acerto crítico corpo a corpo, some metade do seu Espírito ao dano.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "golpe-superior",
+   "nome": "Golpe Superior",
+   "texto": "quatro ataques com a ação Atacar.",
+   "nivel": 15,
+   "req": "15º nível, Golpe Triplo",
+   "grupo": "",
+   "pre": [
+    "golpe-triplo"
+   ]
+  },
+  {
+   "id": "golpe-triplo",
+   "nome": "Golpe Triplo",
+   "texto": "três ataques com a ação Atacar.",
+   "nivel": 10,
+   "req": "10º nível, Ataque Extra",
+   "grupo": "",
+   "pre": [
+    "ataque-extra"
+   ]
+  },
+  {
+   "id": "guarda",
+   "nome": "Guarda",
+   "texto": "reação; quando uma criatura vinda de fora entra a até 3 metros de você, você pode atacá-la uma vez.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "instinto-do-seele-schneider",
+   "nome": "Instinto do Seele Schneider",
+   "texto": "quando um inimigo erra um ataque corpo a corpo contra você, você revida com um ataque (reação).",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "marca-movel",
+   "nome": "Marca Móvel",
+   "texto": "o bônus do Duelo Impecável vale mesmo que você use o Hirenkyaku no mesmo turno.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "percepcao-espiritual-apurada",
+   "nome": "Percepção Espiritual Apurada",
+   "texto": "como no Schütze, +5 na percepção passiva e criaturas a até 36 metros são reveladas.",
+   "nivel": 9,
+   "req": "9º nível",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "realocacao-antecipada",
+   "nome": "Realocação Antecipada",
+   "texto": "usa o Hirenkyaku antes da ordem de turnos.",
+   "nivel": 8,
+   "req": "8º nível, Saque Rápido",
+   "grupo": "",
+   "pre": [
+    "saque-rapido"
+   ]
+  },
+  {
+   "id": "recuo-tatico",
+   "nome": "Recuo Tático",
+   "texto": "reação; você se afasta 3 metros sem provocar ataques de oportunidade.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "saque-rapido",
+   "nome": "Saque Rápido",
+   "texto": "no início do combate, você ataca antes da ordem de turnos.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "schrift",
+   "nome": "Schrift",
+   "texto": "escolha uma Schrift do Arsenal Quincy (Capítulo 7).",
+   "nivel": 6,
+   "req": "6º nível, aprovação do Mestre",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "sequencia-fatal",
+   "nome": "Sequência Fatal",
+   "texto": "cada acerto reduz a CR do alvo em 1 para você, até metade do seu Espírito (para baixo).",
+   "nivel": 12,
+   "req": "12º nível",
+   "grupo": "",
+   "pre": []
+  }
+ ],
+ "hueco": [
+  {
+   "id": "cero-rapido",
+   "nome": "Cero Rápido",
+   "texto": "uma vez por rodada, com uma ação bônus, você lança um Cero com metade dos dados (arredonde para cima), pagando o custo normal do Cero. Não pode ser escolhido por quem tem o Caminho Estallido, que já lança dois Ceros.",
+   "nivel": 9,
+   "req": "9º nível",
+   "grupo": "Ofensivos",
+   "pre": []
+  },
+  {
+   "id": "cero-perfurante",
+   "nome": "Cero Perfurante",
+   "texto": "seu Cero ignora RD igual ao seu Espírito.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "Ofensivos",
+   "pre": []
+  },
+  {
+   "id": "cero-em-cone",
+   "nome": "Cero em Cone",
+   "texto": "o Cero atinge um cone de 9 m, com salvaguarda de Destreza (CD 8 + prof. + Espírito). Custa +5 PR e -2 dados; metade do dano no sucesso.",
+   "nivel": 6,
+   "req": "6º nível",
+   "grupo": "Ofensivos",
+   "pre": []
+  },
+  {
+   "id": "cero-concentrado",
+   "nome": "Cero Concentrado",
+   "texto": "você pode gastar a ação para carregar o próximo Cero. No turno seguinte, ele causa +prof. d8.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "Ofensivos",
+   "pre": []
+  },
+  {
+   "id": "golpe-rasgador",
+   "nome": "Golpe Rasgador",
+   "texto": "em acerto crítico com a arma natural, o alvo sangra (1d6 por prof., por 3 rodadas).",
+   "nivel": 1,
+   "req": "",
+   "grupo": "Ofensivos",
+   "pre": []
+  },
+  {
+   "id": "mordida-esmagadora",
+   "nome": "Mordida Esmagadora",
+   "texto": "a mordida causa +metade da prof. de dano (arredonde para baixo) e prende o alvo (agarrado, CD igual à CD de salvaguarda).",
+   "nivel": 1,
+   "req": "",
+   "grupo": "Ofensivos",
+   "pre": []
+  },
+  {
+   "id": "alcance-alongado",
+   "nome": "Alcance Alongado",
+   "texto": "o alcance da arma natural aumenta em 3 m, e você faz ataques de oportunidade com ela.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "Ofensivos",
+   "pre": []
+  },
+  {
+   "id": "frenesi",
+   "nome": "Frenesi",
+   "texto": "ao reduzir uma criatura a 0 PV, você faz um ataque extra imediato (uma vez por rodada).",
+   "nivel": 11,
+   "req": "11º nível",
+   "grupo": "Ofensivos",
+   "pre": []
+  },
+  {
+   "id": "couraca-ossea",
+   "nome": "Couraça Óssea",
+   "texto": "+1 de CR e RD 2 contra dano físico.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "Defensivos",
+   "pre": []
+  },
+  {
+   "id": "hierro-reativo",
+   "nome": "Hierro Reativo",
+   "texto": "com sua reação, ao ser acertado, você reduz o dano em 1d10 + Constituição (3 vezes por descanso longo).",
+   "nivel": 7,
+   "req": "7º nível",
+   "grupo": "Defensivos",
+   "pre": []
+  },
+  {
+   "id": "persistencia-hollow",
+   "nome": "Persistência Hollow",
+   "texto": "ao cair a 0 PV, faça uma salvaguarda de Constituição (CD 10 + dano). No sucesso, você fica com 1 PV (uma vez por descanso longo).",
+   "nivel": 1,
+   "req": "",
+   "grupo": "Defensivos",
+   "pre": []
+  },
+  {
+   "id": "regeneracao-menor",
+   "nome": "Regeneração Menor",
+   "texto": "no início do seu turno, enquanto estiver abaixo da metade dos PV, você recupera PV iguais à sua Constituição.",
+   "nivel": 5,
+   "req": "5º nível",
+   "grupo": "Defensivos",
+   "pre": []
+  },
+  {
+   "id": "resistencia-ao-medo",
+   "nome": "Resistência ao Medo",
+   "texto": "vantagem contra as condições amedrontado e enfeitiçado.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "Defensivos",
+   "pre": []
+  },
+  {
+   "id": "fome-insaciavel",
+   "nome": "Fome Insaciável",
+   "texto": "ao reduzir uma criatura a 0 PV, você recupera PR igual a prof. x 2.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "Utilidade e presença",
+   "pre": []
+  },
+  {
+   "id": "rugido",
+   "nome": "Rugido",
+   "texto": "ação, 5 PR. Criaturas em 6 m fazem salvaguarda de Espírito (CD 8 + prof. + Espírito) ou ficam amedrontadas por 1 minuto.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "Utilidade e presença",
+   "pre": []
+  },
+  {
+   "id": "salto-hollow",
+   "nome": "Salto Hollow",
+   "texto": "você salta o dobro; uma vez por rodada, move 6 m como parte do ataque.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "Utilidade e presença",
+   "pre": []
+  },
+  {
+   "id": "faro-de-reiatsu",
+   "nome": "Faro de Reiatsu",
+   "texto": "você sente criaturas com reiatsu a 36 m, mesmo sem vê-las.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "Utilidade e presença",
+   "pre": []
+  },
+  {
+   "id": "aura-opressora",
+   "nome": "Aura Opressora",
+   "texto": "criaturas hostis a 3 m têm -1 em testes de Espírito e em Determinação.",
+   "nivel": 9,
+   "req": "9º nível",
+   "grupo": "Utilidade e presença",
+   "pre": []
+  },
+  {
+   "id": "predador-de-almas",
+   "nome": "Predador de Almas",
+   "texto": "vantagem para rastrear almas e reiatsu e +prof. em Percepção Espiritual.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "Utilidade e presença",
+   "pre": []
+  },
+  {
+   "id": "segunda-pele",
+   "nome": "Segunda Pele",
+   "texto": "você veste ou dispensa a máscara como ação livre.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "Utilidade e presença",
+   "pre": []
+  }
+ ],
+ "vazio": [
+  {
+   "id": "poder-duplo",
+   "nome": "Poder Duplo",
+   "texto": "você lança dois Poderes Inatos na mesma ação. O segundo custa 75% do PR normal e usa 75% dos dados.",
+   "nivel": 9,
+   "req": "9º nível",
+   "grupo": "Poderes",
+   "pre": []
+  },
+  {
+   "id": "poder-perfurante",
+   "nome": "Poder Perfurante",
+   "texto": "o Poder Inato ignora RD igual ao seu Espírito.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "Poderes",
+   "pre": []
+  },
+  {
+   "id": "poder-preciso",
+   "nome": "Poder Preciso",
+   "texto": "em crítico, o Poder Inato causa +prof. d10.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "Poderes",
+   "pre": []
+  },
+  {
+   "id": "poder-em-area",
+   "nome": "Poder em Área",
+   "texto": "raio de 6 m, com salvaguarda de Destreza (CD 8 + prof. + Espírito). Custa +5 PR e -3 dados.",
+   "nivel": 6,
+   "req": "6º nível",
+   "grupo": "Poderes",
+   "pre": []
+  },
+  {
+   "id": "eco-do-vazio",
+   "nome": "Eco do Vazio",
+   "texto": "ao lançar um Poder, ele ecoa. Uma vez por descanso curto, você o repete pela metade do custo.",
+   "nivel": 11,
+   "req": "11º nível",
+   "grupo": "Poderes",
+   "pre": []
+  },
+  {
+   "id": "golpe-vazio-ampliado",
+   "nome": "Golpe Vazio Ampliado",
+   "texto": "o Golpe Vazio ganha alcance de 18 m e +prof. de dano.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "Poderes",
+   "pre": []
+  },
+  {
+   "id": "olhar-paralisante",
+   "nome": "Olhar Paralisante",
+   "texto": "ação, 8 PR. O alvo faz uma salvaguarda de Espírito ou fica paralisado até o fim do próximo turno dele (uma vez por descanso curto).",
+   "nivel": 7,
+   "req": "7º nível",
+   "grupo": "Controle e ilusão",
+   "pre": []
+  },
+  {
+   "id": "marca-do-vazio",
+   "nome": "Marca do Vazio",
+   "texto": "ação bônus. Você marca uma criatura (uma marca por vez), e seus Poderes causam +prof. de dano nela.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "Controle e ilusão",
+   "pre": []
+  },
+  {
+   "id": "veu",
+   "nome": "Véu",
+   "texto": "ação, 6 PR. Você fica invisível por 1 minuto ou até atacar.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "Controle e ilusão",
+   "pre": []
+  },
+  {
+   "id": "contramedida",
+   "nome": "Contramedida",
+   "texto": "com sua reação, você soma prof. + Espírito a uma salvaguarda sua ou de um aliado a 9 m.",
+   "nivel": 9,
+   "req": "9º nível",
+   "grupo": "Controle e ilusão",
+   "pre": []
+  },
+  {
+   "id": "mente-fechada",
+   "nome": "Mente Fechada",
+   "texto": "proteção contra Kidō de controle e vantagem em salvaguardas de Mente.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "Controle e ilusão",
+   "pre": []
+  },
+  {
+   "id": "ilusao-persistente",
+   "nome": "Ilusão Persistente",
+   "texto": "a desvantagem imposta dura 1 rodada extra.",
+   "nivel": 1,
+   "req": "Ilusión",
+   "grupo": "Controle e ilusão",
+   "pre": []
+  },
+  {
+   "id": "espelho-fraturado",
+   "nome": "Espelho Fraturado",
+   "texto": "o contra-ataque pode usar Poder Inato (8 PR) em vez de Golpe Vazio.",
+   "nivel": 1,
+   "req": "Reflejo",
+   "grupo": "Controle e ilusão",
+   "pre": []
+  },
+  {
+   "id": "ponzona-persistente",
+   "nome": "Ponzoña Persistente",
+   "texto": "as cargas duram 1 rodada depois que o alvo sai do alcance, e o limite de cargas sobe em 1.",
+   "nivel": 1,
+   "req": "Ponzoña",
+   "grupo": "Controle e ilusão",
+   "pre": []
+  },
+  {
+   "id": "toxina-corrosiva",
+   "nome": "Toxina Corrosiva",
+   "texto": "a Ponzoña reduz a RD do alvo em prof.",
+   "nivel": 1,
+   "req": "Ponzoña",
+   "grupo": "Controle e ilusão",
+   "pre": []
+  },
+  {
+   "id": "reserva-vazia",
+   "nome": "Reserva Vazia",
+   "texto": "+2 PR por nível (retroativo).",
+   "nivel": 1,
+   "req": "",
+   "grupo": "Reserva e utilidade",
+   "pre": []
+  },
+  {
+   "id": "vazio-silencioso",
+   "nome": "Vazio Silencioso",
+   "texto": "vantagem em Suprimir Reiatsu e +prof. em Furtividade.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "Reserva e utilidade",
+   "pre": []
+  },
+  {
+   "id": "sentir-fraquezas",
+   "nome": "Sentir Fraquezas",
+   "texto": "ação bônus. Você vê as vulnerabilidades do alvo, e o próximo Poder contra ele ignora metade da RD.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "Reserva e utilidade",
+   "pre": []
+  },
+  {
+   "id": "cura-hollow",
+   "nome": "Cura Hollow",
+   "texto": "ação, 6 PR. Você ou um aliado a 6 m recupera 1d8 + Espírito por prof. em PV (3 vezes por descanso longo).",
+   "nivel": 5,
+   "req": "5º nível",
+   "grupo": "Reserva e utilidade",
+   "pre": []
+  },
+  {
+   "id": "atencao",
+   "nome": "Atenção",
+   "texto": "os efeitos que reduzem RD ou dão resistência (Couraça Óssea, Hierro Reativo, o Caminho Glotonería, Toxina Corrosiva e outros) seguem a regra de uma Essência de redução por tipo de dano. O Mestre deve ficar atento a pacotes de talentos defensivos que acumulem demais.",
+   "nivel": 1,
+   "req": "",
+   "grupo": "Reserva e utilidade",
+   "pre": []
+  }
+ ]
+}

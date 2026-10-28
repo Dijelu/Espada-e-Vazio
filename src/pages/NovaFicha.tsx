@@ -1,8 +1,21 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../components/Auth";
 import { Campo, LinhaAtributos, Passo, SeletorVariacoes, novoId } from "../components/FichaPecas";
+import { EscolhaPoderes, pendencias, totalPendencias } from "../components/EscolhaPoderes";
 import { criarFicha } from "../lib/fichas";
+import {
+  ARMAS,
+  ARTEFATOS,
+  ASAUCHI,
+  ESSENCIA_SUGERIDA,
+  FORCAS,
+  ataquesIniciais,
+  equipamentoPadrao,
+  essenciasDaOrigem,
+  itensDaOrigem,
+  resumoEquip,
+} from "../regras/catalogo";
 import { efeito as som } from "../lib/som";
 import {
   ATRIBUTOS,
@@ -21,7 +34,7 @@ import {
   type Ficha,
 } from "../regras/ficha";
 
-const PASSOS = ["Origem", "Classe", "Atributos", "Perícias", "Essências", "Personagem"];
+const PASSOS = ["Origem", "Classe", "Atributos", "Perícias", "Poderes", "Essências e equipamento", "Personagem"];
 
 export default function NovaFicha() {
   const { sessao } = useAuth();
@@ -61,6 +74,23 @@ export default function NovaFicha() {
     return "";
   };
 
+  // essências que a Origem entrega de graça: entram e saem sozinhas quando a Origem muda
+  useEffect(() => {
+    setF((x) => {
+      const dela = essenciasDaOrigem(x);
+      const atuais = x.essencias.filter((e) => e.id.startsWith("origem-"));
+      const iguais = atuais.length === dela.length && dela.every((d) => atuais.some((e) => e.id === "origem-" + d.nome));
+      if (iguais) return x;
+      return {
+        ...x,
+        essencias: [
+          ...dela.map((d) => ({ id: "origem-" + d.nome, nome: d.nome, etapa: 1, gratis: true })),
+          ...x.essencias.filter((e) => !e.id.startsWith("origem-")),
+        ],
+      };
+    });
+  }, [f.origem, f.variacao]);
+
   const bloqueio = pronto(passo);
   const proximo = () => {
     if (bloqueio) return;
@@ -79,16 +109,17 @@ export default function NovaFicha() {
       variacaoAdjuchas: "",
       livre: { for: 0, des: 0, con: 0, men: 0, esp: 0 },
       classe: k && o.tipos.includes(k.tipo) ? f.classe : "",
+      equip: equipamentoPadrao(),
     });
   };
 
   const escolherClasse = (id: string) => {
-    mudar({ classe: id, subclasse: "", saveExtra: [], pericias: [] });
+    mudar({ classe: id, subclasse: "", saveExtra: [], pericias: [], talentos: [], kidos: [], tecnicasReishi: [], equip: equipamentoPadrao() });
   };
 
   const mudarNivel = (n: number) => {
     const nivelAtr = { for: 0, des: 0, con: 0, men: 0, esp: 0 };
-    mudar({ nivel: n, xp: n > 1 ? [0, 10, 25, 45, 70, 100, 135, 175, 220, 270, 325, 385, 450, 520, 595, 675, 760, 850, 945, 1045][n - 1] : 0, nivelAtr, subclasse: n < 3 ? "" : f.subclasse });
+    mudar({ nivel: n, xp: n > 1 ? [0, 10, 25, 45, 70, 100, 135, 175, 220, 270, 325, 385, 450, 520, 595, 675, 760, 850, 945, 1045][n - 1] : 0, nivelAtr, subclasse: n < 3 ? "" : f.subclasse, talentos: [], kidos: [], tecnicasReishi: [] });
   };
 
   const mudarAtr = (a: Atr, v: number) => mudar({ base: { ...f.base, [a]: v } });
@@ -109,7 +140,15 @@ export default function NovaFicha() {
     setSalvando(true);
     setErro("");
     try {
-      const pronta: Ficha = { ...f, nome: f.nome.trim(), pvAtual: c.pv, prAtual: c.pr };
+      const tipo = classe?.tipo;
+      const pronta: Ficha = {
+        ...f,
+        nome: f.nome.trim(),
+        pvAtual: c.pv,
+        prAtual: c.pr,
+        equipamento: f.equipamento.trim() || resumoEquip(f, tipo),
+        ataques: f.ataques.length ? f.ataques : ataquesIniciais(f, tipo),
+      };
       const id = await criarFicha(pronta, sessao.user.id);
       som.pagina();
       nav(`/fichas/${id}`);
@@ -182,8 +221,7 @@ export default function NovaFicha() {
           </div>
           {classe && (
             <div className="detalhe">
-              {classe.provisorio && <p className="aviso">{classe.provisorio}</p>}
-              <div className="grade2">
+                      <div className="grade2">
                 <Campo rotulo="Nível inicial">
                   <Passo valor={f.nivel} min={1} max={20} onChange={mudarNivel} rotulo="nível" />
                 </Campo>
@@ -292,43 +330,144 @@ export default function NovaFicha() {
 
       {passo === 4 && (
         <section>
-          <h2 className="title-font">5. Essências Espirituais e equipamento</h2>
+          <h2 className="title-font">5. Poderes, talentos e técnicas</h2>
           <p className="ajuda">
-            Você tem {c.pontosEssencia.total} ponto(s) de essência: cada ponto compra uma essência nova ou sobe uma etapa. Usados: {c.pontosEssencia.usados}.
-            Escolha os nomes no Capítulo 4 do livro. Essências que a Origem dá de graça (Restrição de Kido, Velocista) marcam-se como grátis.
+            Escolha agora o que o seu nível {f.nivel} já permite, direto do livro. O que sobrar fica pendente e abre sozinho na aba Evolução da ficha.
           </p>
-          <Link className="ajuda" to="/livro/essencias-espirituais" target="_blank">Abrir o Capítulo 4 em outra aba</Link>
-          <ul className="lista-ess">
-            {f.essencias.map((e) => (
-              <li key={e.id}>
-                <span>{e.nome}</span>
-                <Passo valor={e.etapa} min={1} max={5} rotulo={`etapa de ${e.nome}`} onChange={(v) => mudar({ essencias: f.essencias.map((x) => (x.id === e.id ? { ...x, etapa: v } : x)) })} />
-                <label className="mini"><input type="checkbox" checked={!!e.gratis} onChange={(ev) => mudar({ essencias: f.essencias.map((x) => (x.id === e.id ? { ...x, gratis: ev.target.checked } : x)) })} /> grátis</label>
-                <button type="button" className="link-perigo" onClick={() => mudar({ essencias: f.essencias.filter((x) => x.id !== e.id) })}>Remover</button>
-              </li>
-            ))}
-          </ul>
-          <form
-            className="add-linha"
-            onSubmit={(ev) => {
-              ev.preventDefault();
-              if (!novaEss.trim()) return;
-              mudar({ essencias: [...f.essencias, { id: novoId(), nome: novaEss.trim(), etapa: 1 }] });
-              setNovaEss("");
-            }}
-          >
-            <input value={novaEss} onChange={(e) => setNovaEss(e.target.value)} placeholder="Nome da essência" aria-label="Nome da essência" />
-            <button className="btn btn-paper" type="submit">Adicionar</button>
-          </form>
-          <Campo rotulo="Equipamento (Zanpakutou, arma Quincy, itens)">
-            <textarea rows={4} value={f.equipamento} onChange={(e) => mudar({ equipamento: e.target.value })} />
-          </Campo>
+          <EscolhaPoderes f={f} mudar={mudar} />
+          {totalPendencias(pendencias(f)) > 0 && <p className="ajuda">Ainda há escolhas pendentes. Você pode seguir e terminar depois.</p>}
         </section>
       )}
 
       {passo === 5 && (
         <section>
-          <h2 className="title-font">6. Seu personagem</h2>
+          <h2 className="title-font">6. Essências Espirituais e equipamento</h2>
+          <p className="ajuda">
+            Você tem {c.pontosEssencia.total} ponto(s) de essência: cada ponto compra uma essência nova ou sobe uma etapa. Usados: {c.pontosEssencia.usados}.
+            Os nomes e efeitos estão no <Link to="/livro/essencias-espirituais" target="_blank">Capítulo 4</Link>.
+          </p>
+
+          {f.essencias.some((e) => e.id.startsWith("origem-")) && (
+            <div className="caixa">
+              <h3>Da sua Origem (grátis)</h3>
+              <ul className="lista-ess">
+                {f.essencias.filter((e) => e.id.startsWith("origem-")).map((e) => (
+                  <li key={e.id}>
+                    <input value={e.nome} onChange={(ev) => mudar({ essencias: f.essencias.map((x) => (x.id === e.id ? { ...x, nome: ev.target.value } : x)) })} aria-label="Essência da Origem" />
+                    <span className="chip">não gasta pontos</span>
+                  </li>
+                ))}
+              </ul>
+              {f.origem === "visored" && <p className="ajuda">Visored: troque o texto pelo nome da essência proibida que combinar com o Mestre.</p>}
+            </div>
+          )}
+
+          <div className="caixa">
+            <h3>Suas essências</h3>
+            {classe && ESSENCIA_SUGERIDA[classe.id] && !f.essencias.some((e) => e.nome === ESSENCIA_SUGERIDA[classe.id]) && (
+              <button type="button" className="btn btn-paper" onClick={() => mudar({ essencias: [...f.essencias, { id: novoId(), nome: ESSENCIA_SUGERIDA[classe.id], etapa: 1 }] })}>
+                Usar a sugerida pelo livro: {ESSENCIA_SUGERIDA[classe.id]}
+              </button>
+            )}
+            <ul className="lista-ess">
+              {f.essencias.filter((e) => !e.id.startsWith("origem-")).map((e) => (
+                <li key={e.id}>
+                  <span>{e.nome}</span>
+                  <Passo valor={e.etapa} min={1} max={5} rotulo={`etapa de ${e.nome}`} onChange={(v) => mudar({ essencias: f.essencias.map((x) => (x.id === e.id ? { ...x, etapa: v } : x)) })} />
+                  <label className="mini"><input type="checkbox" checked={!!e.gratis} onChange={(ev) => mudar({ essencias: f.essencias.map((x) => (x.id === e.id ? { ...x, gratis: ev.target.checked } : x)) })} /> grátis</label>
+                  <button type="button" className="link-perigo" onClick={() => mudar({ essencias: f.essencias.filter((x) => x.id !== e.id) })}>Remover</button>
+                </li>
+              ))}
+            </ul>
+            <form
+              className="add-linha"
+              onSubmit={(ev) => {
+                ev.preventDefault();
+                if (!novaEss.trim()) return;
+                mudar({ essencias: [...f.essencias, { id: novoId(), nome: novaEss.trim(), etapa: 1 }] });
+                setNovaEss("");
+              }}
+            >
+              <input value={novaEss} onChange={(e) => setNovaEss(e.target.value)} placeholder="Nome da essência" aria-label="Nome da essência" />
+              <button className="btn btn-paper" type="submit">Adicionar</button>
+            </form>
+          </div>
+
+          <div className="caixa">
+            <h3>Equipamento inicial</h3>
+            {classe?.tipo === "shinigami" && (
+              <>
+                <div className="grade2">
+                  <Campo rotulo="Força militar">
+                    <select value={f.equip.forca} onChange={(e) => mudar({ equip: { ...f.equip, forca: e.target.value } })}>
+                      <option value="">Escolher</option>
+                      {FORCAS.map((x) => <option key={x}>{x}</option>)}
+                    </select>
+                  </Campo>
+                  {f.equip.forca === "Gotei 13" && (
+                    <Campo rotulo="Divisão">
+                      <Passo valor={f.equip.divisao} min={0} max={13} rotulo="divisão" onChange={(v) => mudar({ equip: { ...f.equip, divisao: v } })} />
+                    </Campo>
+                  )}
+                </div>
+                <Campo rotulo="Forma da Asauchi">
+                  <select value={f.equip.asauchi} onChange={(e) => mudar({ equip: { ...f.equip, asauchi: e.target.value } })}>
+                    <option value="">Escolher</option>
+                    {ASAUCHI.map((a) => <option key={a.nome} value={a.nome}>{a.nome} · {a.dano} · crítico {a.crit}+ · {a.atr}</option>)}
+                  </select>
+                </Campo>
+              </>
+            )}
+            {classe?.tipo === "quincy" && (
+              <>
+                <p className="ajuda">Escolha 2 armas com as quais você tenha proficiência ({f.equip.armas.length} de 2) e 1 artefato (com aprovação do Mestre).</p>
+                <div className="armas-escolha">
+                  {[...ARMAS.corpo, ...ARMAS.distancia].map((a) => {
+                    const on = f.equip.armas.includes(a.nome);
+                    return (
+                      <button key={a.nome} type="button" className={`kido ${on ? "on" : ""}`} aria-pressed={on} disabled={!on && f.equip.armas.length >= 2}
+                        onClick={() => mudar({ equip: { ...f.equip, armas: on ? f.equip.armas.filter((x) => x !== a.nome) : [...f.equip.armas, a.nome] } })}>
+                        <span>{a.nome}</span>
+                        <em>{a.dano}</em>
+                      </button>
+                    );
+                  })}
+                </div>
+                <Campo rotulo="Artefato Quincy">
+                  <select value={f.equip.artefato} onChange={(e) => mudar({ equip: { ...f.equip, artefato: e.target.value } })}>
+                    <option value="">Escolher</option>
+                    {ARTEFATOS.map((a) => <option key={a.nome} value={a.nome}>{a.nome}</option>)}
+                  </select>
+                </Campo>
+                {ARTEFATOS.find((a) => a.nome === f.equip.artefato) && <p className="ajuda">{ARTEFATOS.find((a) => a.nome === f.equip.artefato)!.texto}</p>}
+              </>
+            )}
+            {classe?.tipo === "hollow" && (
+              <Campo rotulo="Forma da arma natural (garras, chifre, cauda…)">
+                <input value={f.equip.naturalForma} onChange={(e) => mudar({ equip: { ...f.equip, naturalForma: e.target.value } })} placeholder="Ex.: garras longas" />
+              </Campo>
+            )}
+
+            {itensDaOrigem(f, classe?.tipo).length > 0 && (
+              <div className="ja-vem">
+                <h4>Já vem com você</h4>
+                <ul>{itensDaOrigem(f, classe?.tipo).map((i) => <li key={i}>{i}</li>)}</ul>
+              </div>
+            )}
+            {classe?.tipo === "shinigami" && itensDaOrigem(f, "shinigami").length === 0 && f.equip.forca && (
+              <p className="ajuda">Exilados e Shinigamis Substitutos não recebem os itens de divisão.</p>
+            )}
+            <Campo rotulo="Outros itens (opcional)">
+              <textarea rows={3} value={f.equip.extras} onChange={(e) => mudar({ equip: { ...f.equip, extras: e.target.value } })} />
+            </Campo>
+            <p className="ajuda">Seus ataques já saem prontos na ficha com as armas escolhidas.</p>
+          </div>
+        </section>
+      )}
+
+      {passo === 6 && (
+        <section>
+          <h2 className="title-font">7. Seu personagem</h2>
           <div className="grade2">
             <Campo rotulo="Nome"><input value={f.nome} onChange={(e) => mudar({ nome: e.target.value })} autoFocus /></Campo>
             <Campo rotulo="Tendência Espiritual">

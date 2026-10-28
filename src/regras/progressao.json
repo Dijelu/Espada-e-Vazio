@@ -1,0 +1,786 @@
+{
+ "zanjutsu": {
+  "1": {
+   "kido": 1,
+   "rank": "D",
+   "caract": "Zanpakutou, Kido, Impacto de Reiatsu, Estilo de Combate"
+  },
+  "2": {
+   "kido": 2,
+   "rank": "D",
+   "caract": "Shunpo, Talentos de Zanjutsu"
+  },
+  "3": {
+   "kido": 3,
+   "rank": "D",
+   "caract": "Especializando (Sub-classe), Talentos de Zanjutsu"
+  },
+  "4": {
+   "kido": 4,
+   "rank": "D",
+   "caract": "Aprimoramento da Essência"
+  },
+  "5": {
+   "kido": 4,
+   "rank": "D",
+   "caract": "Talentos de Zanjutsu"
+  },
+  "6": {
+   "kido": 5,
+   "rank": "C",
+   "caract": "Especializando (Sub-classe), Talentos de Zanjutsu"
+  },
+  "7": {
+   "kido": 5,
+   "rank": "C",
+   "caract": "Talentos de Zanjutsu"
+  },
+  "8": {
+   "kido": 6,
+   "rank": "C",
+   "caract": "Aprimoramento da Essência"
+  },
+  "9": {
+   "kido": 6,
+   "rank": "C",
+   "caract": "Talentos de Zanjutsu"
+  },
+  "10": {
+   "kido": 7,
+   "rank": "C",
+   "caract": "Especializando (Sub-classe), Talentos de Zanjutsu"
+  },
+  "11": {
+   "kido": 7,
+   "rank": "B",
+   "caract": "Talentos de Zanjutsu"
+  },
+  "12": {
+   "kido": 8,
+   "rank": "B",
+   "caract": "Aprimoramento da Essência"
+  },
+  "13": {
+   "kido": 8,
+   "rank": "B",
+   "caract": "Especializando (Apenas Colosso), Talentos de Zanjutsu"
+  },
+  "14": {
+   "kido": 9,
+   "rank": "B",
+   "caract": "Talentos de Zanjutsu"
+  },
+  "15": {
+   "kido": 9,
+   "rank": "B",
+   "caract": "Especializando (Sub-classe), Talentos de Zanjutsu"
+  },
+  "16": {
+   "kido": 10,
+   "rank": "A",
+   "caract": "Aprimoramento da Essência"
+  },
+  "17": {
+   "kido": 10,
+   "rank": "A",
+   "caract": "Talentos de Zanjutsu"
+  },
+  "18": {
+   "kido": 11,
+   "rank": "A",
+   "caract": "Talentos de Zanjutsu"
+  },
+  "19": {
+   "kido": 11,
+   "rank": "A",
+   "caract": "Aprimoramento da Essência"
+  },
+  "20": {
+   "kido": 12,
+   "rank": "A",
+   "caract": "Especializando (Sub-classe), Talentos de Zanjutsu"
+  }
+ },
+ "tokubetsu": {
+  "1": {
+   "kido": 1,
+   "rank": "D",
+   "caract": "Zanpakutou, Talento de Tokubetsu"
+  },
+  "2": {
+   "kido": 2,
+   "rank": "D",
+   "caract": "Talento de Tokubetsu, Shunpo"
+  },
+  "3": {
+   "kido": 3,
+   "rank": "D",
+   "caract": "Sub-Classe de Tokubetsu, Talento de Tokubetsu"
+  },
+  "4": {
+   "kido": 4,
+   "rank": "D",
+   "caract": "Aprimoramento da Essência"
+  },
+  "5": {
+   "kido": 4,
+   "rank": "D",
+   "caract": "Talento de Tokubetsu"
+  },
+  "6": {
+   "kido": 5,
+   "rank": "C",
+   "caract": "Talento de Tokubetsu"
+  },
+  "7": {
+   "kido": 5,
+   "rank": "C",
+   "caract": "Talento de Tokubetsu"
+  },
+  "8": {
+   "kido": 6,
+   "rank": "C",
+   "caract": "Aprimoramento da Essência"
+  },
+  "9": {
+   "kido": 6,
+   "rank": "C",
+   "caract": "Talento de Tokubetsu"
+  },
+  "10": {
+   "kido": 7,
+   "rank": "C",
+   "caract": "Talento de Tokubetsu"
+  },
+  "11": {
+   "kido": 7,
+   "rank": "B",
+   "caract": "Talento de Tokubetsu"
+  },
+  "12": {
+   "kido": 8,
+   "rank": "B",
+   "caract": "Aprimoramento da Essência"
+  },
+  "13": {
+   "kido": 8,
+   "rank": "B",
+   "caract": "Talento de Tokubetsu"
+  },
+  "14": {
+   "kido": 9,
+   "rank": "B",
+   "caract": "Talento de Tokubetsu"
+  },
+  "15": {
+   "kido": 9,
+   "rank": "B",
+   "caract": "Talento de Tokubetsu"
+  },
+  "16": {
+   "kido": 10,
+   "rank": "A",
+   "caract": "Aprimoramento da Essência"
+  },
+  "17": {
+   "kido": 10,
+   "rank": "A",
+   "caract": "Talento de Tokubetsu"
+  },
+  "18": {
+   "kido": 11,
+   "rank": "A",
+   "caract": "Talento de Tokubetsu"
+  },
+  "19": {
+   "kido": 11,
+   "rank": "A",
+   "caract": "Aprimoramento da Essência"
+  },
+  "20": {
+   "kido": 12,
+   "rank": "A",
+   "caract": "Talento de Tokubetsu"
+  }
+ },
+ "hakuda": {
+  "1": {
+   "kido": 1,
+   "rank": "D",
+   "caract": "1d6 Zanpakutou, Kido, Hakuda"
+  },
+  "2": {
+   "kido": 2,
+   "rank": "D",
+   "caract": "1d6 Shunpo Aprimorado, Talento de Hakuda"
+  },
+  "3": {
+   "kido": 3,
+   "rank": "D",
+   "caract": "1d6 Caminhos D... (Sub Classe), Técnicas de Hakuda, Talento..."
+  },
+  "4": {
+   "kido": 4,
+   "rank": "D",
+   "caract": "1d6 Aprimoramento da Essência"
+  },
+  "5": {
+   "kido": 4,
+   "rank": "D",
+   "caract": "1d8 Talento de Hakuda"
+  },
+  "6": {
+   "kido": 5,
+   "rank": "C",
+   "caract": "1d8 Talento de Hakuda"
+  },
+  "7": {
+   "kido": 5,
+   "rank": "C",
+   "caract": "1d8 Caminhos Distintos (Sub Classe), Talento de Hakuda"
+  },
+  "8": {
+   "kido": 6,
+   "rank": "C",
+   "caract": "1d8 Aprimoramento da Essência"
+  },
+  "9": {
+   "kido": 6,
+   "rank": "C",
+   "caract": "1d10 Talento de Hakuda"
+  },
+  "10": {
+   "kido": 7,
+   "rank": "C",
+   "caract": "1d10 Talento de Hakuda"
+  },
+  "11": {
+   "kido": 7,
+   "rank": "B",
+   "caract": "1d10 Talento de Hakuda"
+  },
+  "12": {
+   "kido": 8,
+   "rank": "B",
+   "caract": "1d10 Aprimoramento da Essência"
+  },
+  "13": {
+   "kido": 8,
+   "rank": "B",
+   "caract": "1d12 Caminhos Distintos (SubClasse), Talento de Hakuda"
+  },
+  "14": {
+   "kido": 9,
+   "rank": "B",
+   "caract": "1d12 Talento de Hakuda"
+  },
+  "15": {
+   "kido": 9,
+   "rank": "B",
+   "caract": "1d12 Talento de Hakuda"
+  },
+  "16": {
+   "kido": 10,
+   "rank": "A",
+   "caract": "2d6 Aprimoramento da Essência"
+  },
+  "17": {
+   "kido": 10,
+   "rank": "A",
+   "caract": "2d6 Caminhos Distintos (SubClasse), Talento de Hakuda"
+  },
+  "18": {
+   "kido": 11,
+   "rank": "A",
+   "caract": "2d6 Talento de Hakuda"
+  },
+  "19": {
+   "kido": 11,
+   "rank": "A",
+   "caract": "2d6 Aprimoramento da Essência"
+  },
+  "20": {
+   "kido": 12,
+   "rank": "A",
+   "caract": "2d8 Talento de Hakuda"
+  }
+ },
+ "kidoshu": {
+  "1": {
+   "kido": 6,
+   "rank": "D",
+   "caract": "Zanpakutou, Kido, Estudos Avançados"
+  },
+  "2": {
+   "kido": 7,
+   "rank": "D",
+   "caract": "Shunpo, Talentos de Kyūgo"
+  },
+  "3": {
+   "kido": 8,
+   "rank": "D",
+   "caract": "Tradição (Sub-classe), Talentos de Kidōshū"
+  },
+  "4": {
+   "kido": 9,
+   "rank": "C",
+   "caract": "Aprimoramento da Essência"
+  },
+  "5": {
+   "kido": 10,
+   "rank": "C",
+   "caract": "TTalentos de Kidōshū"
+  },
+  "6": {
+   "kido": 11,
+   "rank": "C",
+   "caract": "Tradição (Sub-classe), Talentos de Kidōshū"
+  },
+  "7": {
+   "kido": 12,
+   "rank": "C",
+   "caract": "Talentos de Kidōshū"
+  },
+  "8": {
+   "kido": 13,
+   "rank": "B",
+   "caract": "Aprimoramento da Essência"
+  },
+  "9": {
+   "kido": 14,
+   "rank": "B",
+   "caract": "Talentos de Kidōshū"
+  },
+  "10": {
+   "kido": 15,
+   "rank": "B",
+   "caract": "Tradição (Sub-classe), Talentos de Kidōshū"
+  },
+  "11": {
+   "kido": 16,
+   "rank": "B",
+   "caract": "Talentos de Kidōshū"
+  },
+  "12": {
+   "kido": 17,
+   "rank": "A",
+   "caract": "Aprimoramento da Essência"
+  },
+  "13": {
+   "kido": 18,
+   "rank": "A",
+   "caract": "Talentos de Kidōshū"
+  },
+  "14": {
+   "kido": 19,
+   "rank": "A",
+   "caract": "Talentos de Kidōshū"
+  },
+  "15": {
+   "kido": 20,
+   "rank": "A",
+   "caract": "Tradição (Sub-classe), Talentos de Kidōshū"
+  },
+  "16": {
+   "kido": 21,
+   "rank": "",
+   "caract": "S Aprimoramento da Essência"
+  },
+  "17": {
+   "kido": 22,
+   "rank": "",
+   "caract": "S Talentos de Kidōshū"
+  },
+  "18": {
+   "kido": 23,
+   "rank": "",
+   "caract": "S Talentos de Kidōshū"
+  },
+  "19": {
+   "kido": 24,
+   "rank": "",
+   "caract": "SS Aprimoramento da Essência"
+  },
+  "20": {
+   "kido": 25,
+   "rank": "",
+   "caract": "SS Tradição (Sub-classe), Talentos de Kidōshū"
+  }
+ },
+ "kyugo": {
+  "1": {
+   "kido": 6,
+   "rank": "D",
+   "caract": "Zanpakutou, Kido, Estilo de Kyūgo"
+  },
+  "2": {
+   "kido": 7,
+   "rank": "D",
+   "caract": "Shunpo, Talentos de Kyūgo"
+  },
+  "3": {
+   "kido": 8,
+   "rank": "D",
+   "caract": "Afinidade (Sub-classe), Talentos de Kyūgo"
+  },
+  "4": {
+   "kido": 9,
+   "rank": "C",
+   "caract": "Aprimoramento da Essência"
+  },
+  "5": {
+   "kido": 10,
+   "rank": "C",
+   "caract": "Talentos de Kyūgo"
+  },
+  "6": {
+   "kido": 11,
+   "rank": "C",
+   "caract": "Afinidade (Sub-classe), Talentos de Kyūgo"
+  },
+  "7": {
+   "kido": 12,
+   "rank": "C",
+   "caract": "Talentos de Kyūgo"
+  },
+  "8": {
+   "kido": 13,
+   "rank": "B",
+   "caract": "Aprimoramento da Essência"
+  },
+  "9": {
+   "kido": 14,
+   "rank": "B",
+   "caract": "Talentos de Kyūgo"
+  },
+  "10": {
+   "kido": 15,
+   "rank": "B",
+   "caract": "Afinidade (Sub-classe), Talentos de Kyūgo"
+  },
+  "11": {
+   "kido": 16,
+   "rank": "B",
+   "caract": "Talentos de Kyūgo"
+  },
+  "12": {
+   "kido": 17,
+   "rank": "A",
+   "caract": "Aprimoramento da Essência"
+  },
+  "13": {
+   "kido": 18,
+   "rank": "A",
+   "caract": "Talentos de Kyūgo"
+  },
+  "14": {
+   "kido": 19,
+   "rank": "A",
+   "caract": "Talentos de Kyūgo"
+  },
+  "15": {
+   "kido": 20,
+   "rank": "A",
+   "caract": "Afinidade (Sub-classe), Talentos de Kyūgo"
+  },
+  "16": {
+   "kido": 21,
+   "rank": "",
+   "caract": "S Aprimoramento da Essência"
+  },
+  "17": {
+   "kido": 22,
+   "rank": "",
+   "caract": "S Talentos de Kyūgo"
+  },
+  "18": {
+   "kido": 23,
+   "rank": "",
+   "caract": "S Talentos de Kyūgo"
+  },
+  "19": {
+   "kido": 24,
+   "rank": "",
+   "caract": "SS Aprimoramento da Essência"
+  },
+  "20": {
+   "kido": 25,
+   "rank": "",
+   "caract": "SS Afinidade (Sub-classe), Talentos de Kyūgo"
+  }
+ },
+ "schutze": {
+  "1": {
+   "tecnicas": 1,
+   "nivelTec": 1,
+   "caract": "Mira Impecável, Técnicas de Reish"
+  },
+  "2": {
+   "tecnicas": 2,
+   "nivelTec": 1,
+   "caract": "Habilidades de Schütze"
+  },
+  "3": {
+   "tecnicas": 3,
+   "nivelTec": 1,
+   "caract": "Estilo (Sub-classe), Habilidades de Schütze"
+  },
+  "4": {
+   "tecnicas": 4,
+   "nivelTec": 1,
+   "caract": "Aprimoramento da Essência"
+  },
+  "5": {
+   "tecnicas": 4,
+   "nivelTec": 1,
+   "caract": "Habilidades de Schütze, Melhoria de Equipamento"
+  },
+  "6": {
+   "tecnicas": 5,
+   "nivelTec": 2,
+   "caract": "Estilo (Sub-classe), Habilidades de Schütze"
+  },
+  "7": {
+   "tecnicas": 5,
+   "nivelTec": 2,
+   "caract": "Habilidades de Schütze"
+  },
+  "8": {
+   "tecnicas": 6,
+   "nivelTec": 2,
+   "caract": "Aprimoramento da Essência"
+  },
+  "9": {
+   "tecnicas": 6,
+   "nivelTec": 2,
+   "caract": "Habilidades de Schütze"
+  },
+  "10": {
+   "tecnicas": 7,
+   "nivelTec": 2,
+   "caract": "Estilo (Sub-classe), Habilidades de Schütze"
+  },
+  "11": {
+   "tecnicas": 7,
+   "nivelTec": 3,
+   "caract": "Habilidades de Schütze"
+  },
+  "12": {
+   "tecnicas": 8,
+   "nivelTec": 3,
+   "caract": "Aprimoramento da Essência"
+  },
+  "13": {
+   "tecnicas": 8,
+   "nivelTec": 3,
+   "caract": "Habilidades de Schütze, Vollstanding"
+  },
+  "14": {
+   "tecnicas": 9,
+   "nivelTec": 3,
+   "caract": "Habilidades de Schütze"
+  },
+  "15": {
+   "tecnicas": 9,
+   "nivelTec": 3,
+   "caract": "Estilo (Sub-classe), Habilidades de Schütze"
+  },
+  "16": {
+   "tecnicas": 10,
+   "nivelTec": 4,
+   "caract": "Aprimoramento da Essência"
+  },
+  "17": {
+   "tecnicas": 10,
+   "nivelTec": 4,
+   "caract": "Habilidades de Schütze"
+  },
+  "18": {
+   "tecnicas": 11,
+   "nivelTec": 4,
+   "caract": "Habilidades de Schütze, Vollstanding (2)"
+  },
+  "19": {
+   "tecnicas": 11,
+   "nivelTec": 4,
+   "caract": "Habilidades de Schütze"
+  },
+  "20": {
+   "tecnicas": 12,
+   "nivelTec": 4,
+   "caract": "Estilo (Sub-classe), Habilidades de Schütze"
+  }
+ },
+ "ritter": {
+  "1": {
+   "tecnicas": 1,
+   "nivelTec": 1,
+   "caract": "Duelo Impecável, Lâmina de Reishi, Técnicas de Reishi"
+  },
+  "2": {
+   "tecnicas": 1,
+   "nivelTec": 1,
+   "caract": "Hirenkyaku, Talento de Ritter"
+  },
+  "3": {
+   "tecnicas": 2,
+   "nivelTec": 1,
+   "caract": "Estilo (subclasse), Talento de Ritter, Blut Arterie"
+  },
+  "4": {
+   "tecnicas": 2,
+   "nivelTec": 1,
+   "caract": "Aprimoramento da Essência"
+  },
+  "5": {
+   "tecnicas": 3,
+   "nivelTec": 1,
+   "caract": "Talento de Ritter, Melhoria de Equipamento"
+  },
+  "6": {
+   "tecnicas": 3,
+   "nivelTec": 2,
+   "caract": "Estilo, Talento de Ritter"
+  },
+  "7": {
+   "tecnicas": 4,
+   "nivelTec": 2,
+   "caract": "Talento de Ritter"
+  },
+  "8": {
+   "tecnicas": 4,
+   "nivelTec": 2,
+   "caract": "Aprimoramento da Essência"
+  },
+  "9": {
+   "tecnicas": 5,
+   "nivelTec": 2,
+   "caract": "Talento de Ritter"
+  },
+  "10": {
+   "tecnicas": 5,
+   "nivelTec": 2,
+   "caract": "Estilo, Talento de Ritter, Melhoria de Equipamento"
+  },
+  "11": {
+   "tecnicas": 6,
+   "nivelTec": 3,
+   "caract": "Talento de Ritter"
+  },
+  "12": {
+   "tecnicas": 6,
+   "nivelTec": 3,
+   "caract": "Aprimoramento da Essência, Vollständig"
+  },
+  "13": {
+   "tecnicas": 7,
+   "nivelTec": 3,
+   "caract": "Talento de Ritter"
+  },
+  "14": {
+   "tecnicas": 7,
+   "nivelTec": 3,
+   "caract": "Talento de Ritter"
+  },
+  "15": {
+   "tecnicas": 8,
+   "nivelTec": 3,
+   "caract": "Estilo, Talento de Ritter, Melhoria de Equipamento"
+  },
+  "16": {
+   "tecnicas": 8,
+   "nivelTec": 4,
+   "caract": "Aprimoramento da Essência"
+  },
+  "17": {
+   "tecnicas": 9,
+   "nivelTec": 4,
+   "caract": "Talento de Ritter, Vollständig (2)"
+  },
+  "18": {
+   "tecnicas": 9,
+   "nivelTec": 4,
+   "caract": "Talento de Ritter"
+  },
+  "19": {
+   "tecnicas": 10,
+   "nivelTec": 4,
+   "caract": "Aprimoramento da Essência"
+  },
+  "20": {
+   "tecnicas": 10,
+   "nivelTec": 4,
+   "caract": "Estilo, Talento de Ritter, Melhoria de Equipamento"
+  }
+ },
+ "hueco": {
+  "1": {
+   "caract": "Arma natural (1d10), Cero, Corpo Hollow"
+  },
+  "2": {
+   "caract": "Talento de Hueco"
+  },
+  "3": {
+   "caract": "Caminho; arma natural +1 passo"
+  },
+  "4": {
+   "caract": "Aprimoramento da Essência"
+  },
+  "5": {
+   "caract": "2º ataque; arma natural +1 passo"
+  },
+  "6": {
+   "caract": "Característica do Caminho"
+  },
+  "7": {
+   "caract": "Arma natural +1 passo"
+  },
+  "10": {
+   "caract": "**Resurrección**; característica do Caminho"
+  },
+  "11": {
+   "caract": "3º ataque"
+  },
+  "15": {
+   "caract": "4º ataque; característica do Caminho"
+  },
+  "18": {
+   "caract": "+1 ataque do Caminho"
+  },
+  "20": {
+   "caract": "Capstone do Caminho; Mestre Resurrección"
+  }
+ },
+ "vazio": {
+  "1": {
+   "caract": "Poder Inato, Golpe Vazio, Corpo Hollow"
+  },
+  "2": {
+   "caract": "Talento de Vazio"
+  },
+  "3": {
+   "caract": "Caminho"
+  },
+  "4": {
+   "caract": "Aprimoramento da Essência"
+  },
+  "5": {
+   "caract": "Golpe Vazio ganha +1 dado"
+  },
+  "6": {
+   "caract": "Característica do Caminho"
+  },
+  "10": {
+   "caract": "**Resurrección**; característica do Caminho"
+  },
+  "15": {
+   "caract": "Característica do Caminho"
+  },
+  "17": {
+   "caract": "Poder tardio do Caminho"
+  },
+  "20": {
+   "caract": "Capstone do Caminho; Mestre Resurrección"
+  }
+ }
+}
