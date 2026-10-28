@@ -1,1 +1,1586 @@
-[{"tipo": "bakudou", "n": 41, "nome": "Kouryuu", "rank": "B"}, {"tipo": "bakudou", "n": 42, "nome": "Kuukan no Kusari", "rank": "B"}, {"tipo": "bakudou", "n": 43, "nome": "Meikyuu", "rank": "B"}, {"tipo": "bakudou", "n": 44, "nome": "Ten’i", "rank": "B"}, {"tipo": "bakudou", "n": 45, "nome": "Seishin no Shirushi", "rank": "B"}, {"tipo": "bakudou", "n": 46, "nome": "Kukan Ido", "rank": "B"}, {"tipo": "bakudou", "n": 47, "nome": "Michibiki", "rank": "B"}, {"tipo": "bakudou", "n": 48, "nome": "Seishin Kekkai", "rank": "B"}, {"tipo": "bakudou", "n": 49, "nome": "Kekkai no Tate", "rank": "B"}, {"tipo": "bakudou", "n": 50, "nome": "Shingan", "rank": "B"}, {"tipo": "bakudou", "n": 51, "nome": "Saimin Kekkai", "rank": "B"}, {"tipo": "bakudou", "n": 52, "nome": "Reishi no Kusari", "rank": "B"}, {"tipo": "bakudou", "n": 53, "nome": "Kekkai no Kabe", "rank": "B"}, {"tipo": "bakudou", "n": 54, "nome": "Tsuushinka", "rank": "B"}, {"tipo": "bakudou", "n": 55, "nome": "Jakuten", "rank": "B"}, {"tipo": "bakudou", "n": 56, "nome": "Kakushi", "rank": "B"}, {"tipo": "bakudou", "n": 57, "nome": "Fuuin no Kyoukai", "rank": "B"}, {"tipo": "bakudou", "n": 58, "nome": "Kakushitsuijaku", "rank": "B"}, {"tipo": "bakudou", "n": 59, "nome": "Sanki Kousoku", "rank": "B"}, {"tipo": "bakudou", "n": 60, "nome": "Kyoumon", "rank": "B"}, {"tipo": "bakudou", "n": 61, "nome": "Rikujukourou", "rank": "A"}, {"tipo": "bakudou", "n": 62, "nome": "Hyapporankan", "rank": "A"}, {"tipo": "bakudou", "n": 63, "nome": "Sajou Sabaku", "rank": "A"}, {"tipo": "bakudou", "n": 64, "nome": "Shinshoku Ryoiki", "rank": "A"}, {"tipo": "bakudou", "n": 65, "nome": "Reien", "rank": "A"}, {"tipo": "bakudou", "n": 66, "nome": "Shouheki", "rank": "A"}, {"tipo": "bakudou", "n": 67, "nome": "Seimei Kekkai", "rank": "A"}, {"tipo": "bakudou", "n": 68, "nome": "Fuuin", "rank": "A"}, {"tipo": "bakudou", "n": 69, "nome": "Keimusho Mugen", "rank": "A"}, {"tipo": "bakudou", "n": 70, "nome": "Tsuihou", "rank": "A"}, {"tipo": "bakudou", "n": 71, "nome": "Kekkai Ryouiki", "rank": "A"}, {"tipo": "bakudou", "n": 72, "nome": "Shinjitsu no Tobari", "rank": "A"}, {"tipo": "bakudou", "n": 73, "nome": "Tozansho", "rank": "A"}, {"tipo": "bakudou", "n": 74, "nome": "Inochi no Kizuna", "rank": "A"}, {"tipo": "bakudou", "n": 75, "nome": "Gochuu Tekkan", "rank": "A"}, {"tipo": "bakudou", "n": 76, "nome": "Ten’i Rakuin", "rank": "A"}, {"tipo": "bakudou", "n": 77, "nome": "Tenteikuura", "rank": "A"}, {"tipo": "bakudou", "n": 78, "nome": "Reiatsu Shoumei", "rank": "A"}, {"tipo": "bakudou", "n": 79, "nome": "Kuyou Shibari", "rank": "A"}, {"tipo": "bakudou", "n": 80, "nome": "Kakurega", "rank": "A"}, {"tipo": "bakudou", "n": 81, "nome": "Danku", "rank": "S"}, {"tipo": "bakudou", "n": 82, "nome": "Reishi Kassei", "rank": "S"}, {"tipo": "bakudou", "n": 83, "nome": "Kakuremi", "rank": "S"}, {"tipo": "bakudou", "n": 84, "nome": "Jikan Kekkai", "rank": "S"}, {"tipo": "bakudou", "n": 85, "nome": "Enkaku", "rank": "S"}, {"tipo": "bakudou", "n": 86, "nome": "Mugen Kagami", "rank": "S"}, {"tipo": "bakudou", "n": 87, "nome": "Tamashii Bunri", "rank": "S"}, {"tipo": "bakudou", "n": 88, "nome": "Gokan Fuin", "rank": "S"}, {"tipo": "bakudou", "n": 89, "nome": "Boukyaku", "rank": "S"}, {"tipo": "bakudou", "n": 90, "nome": "Keimusho Mugen", "rank": "S"}, {"tipo": "bakudou", "n": 91, "nome": "Jikan Teishi", "rank": "SS"}, {"tipo": "bakudou", "n": 92, "nome": "Seishin Shouheki", "rank": "SS"}, {"tipo": "bakudou", "n": 93, "nome": "Unmei Shihai", "rank": "SS"}, {"tipo": "bakudou", "n": 94, "nome": "Shihai", "rank": "SS"}, {"tipo": "bakudou", "n": 95, "nome": "Shisoukeppu", "rank": "SS"}, {"tipo": "bakudou", "n": 96, "nome": "Keikaigi", "rank": "SS"}, {"tipo": "bakudou", "n": 97, "nome": "Jikanteishi", "rank": "SS"}, {"tipo": "bakudou", "n": 98, "nome": "Kuukanten’i", "rank": "SS"}, {"tipo": "bakudou", "n": 99, "nome": "Kin", "rank": "SS"}, {"tipo": "bakudou", "n": 1, "nome": "Sai", "rank": "D"}, {"tipo": "bakudou", "n": 2, "nome": "Noroi", "rank": "D"}, {"tipo": "bakudou", "n": 3, "nome": "Tegami", "rank": "D"}, {"tipo": "bakudou", "n": 4, "nome": "Hainawa", "rank": "D"}, {"tipo": "bakudou", "n": 5, "nome": "Senkou", "rank": "D"}, {"tipo": "bakudou", "n": 6, "nome": "Shin’en", "rank": "D"}, {"tipo": "bakudou", "n": 7, "nome": "Genkai", "rank": "D"}, {"tipo": "bakudou", "n": 8, "nome": "Seki", "rank": "D"}, {"tipo": "bakudou", "n": 9, "nome": "Geki", "rank": "D"}, {"tipo": "bakudou", "n": 10, "nome": "Horin", "rank": "D"}, {"tipo": "bakudou", "n": 11, "nome": "Kyuketsu", "rank": "D"}, {"tipo": "bakudou", "n": 12, "nome": "Fushibi", "rank": "D"}, {"tipo": "bakudou", "n": 13, "nome": "Yojigen no Hokai", "rank": "D"}, {"tipo": "bakudou", "n": 14, "nome": "Seicho", "rank": "D"}, {"tipo": "bakudou", "n": 15, "nome": "Kukanshu", "rank": "D"}, {"tipo": "bakudou", "n": 16, "nome": "Koka no Hassha", "rank": "D"}, {"tipo": "bakudou", "n": 17, "nome": "Shinden", "rank": "D"}, {"tipo": "bakudou", "n": 18, "nome": "Hakuryoku no Yugen", "rank": "D"}, {"tipo": "bakudou", "n": 19, "nome": "Kouzen Fuuin", "rank": "D"}, {"tipo": "bakudou", "n": 20, "nome": "Kage Tsuru", "rank": "D"}, {"tipo": "bakudou", "n": 21, "nome": "Sekienton", "rank": "C"}, {"tipo": "bakudou", "n": 22, "nome": "Seishin Heiwa", "rank": "C"}, {"tipo": "bakudou", "n": 23, "nome": "Keikai no Mon", "rank": "C"}, {"tipo": "bakudou", "n": 24, "nome": "Kamen no Utage", "rank": "C"}, {"tipo": "bakudou", "n": 25, "nome": "Joushin", "rank": "C"}, {"tipo": "bakudou", "n": 26, "nome": "Kyokkou", "rank": "C"}, {"tipo": "bakudou", "n": 27, "nome": "Seishin Tate", "rank": "C"}, {"tipo": "bakudou", "n": 28, "nome": "Kanjou no Tobari", "rank": "C"}, {"tipo": "bakudou", "n": 29, "nome": "Satori", "rank": "C"}, {"tipo": "bakudou", "n": 30, "nome": "Sansen", "rank": "C"}, {"tipo": "bakudou", "n": 31, "nome": "Kido Shoumei", "rank": "C"}, {"tipo": "bakudou", "n": 32, "nome": "Reijuu", "rank": "C"}, {"tipo": "bakudou", "n": 33, "nome": "Sokuheki", "rank": "C"}, {"tipo": "bakudou", "n": 34, "nome": "Kekkai", "rank": "C"}, {"tipo": "bakudou", "n": 35, "nome": "Ankoku En", "rank": "C"}, {"tipo": "bakudou", "n": 36, "nome": "Koumyou Shou", "rank": "C"}, {"tipo": "bakudou", "n": 37, "nome": "Tsuriboshi", "rank": "C"}, {"tipo": "bakudou", "n": 38, "nome": "Teikou", "rank": "C"}, {"tipo": "bakudou", "n": 39, "nome": "Enkosen", "rank": "C"}, {"tipo": "bakudou", "n": 40, "nome": "Kurokabe", "rank": "C"}, {"tipo": "hadou", "n": 1, "nome": "Shou", "rank": "D"}, {"tipo": "hadou", "n": 2, "nome": "Ken", "rank": "D"}, {"tipo": "hadou", "n": 3, "nome": "Kaze no Tenshou", "rank": "D"}, {"tipo": "hadou", "n": 4, "nome": "Byakurai", "rank": "D"}, {"tipo": "hadou", "n": 5, "nome": "Tenshi kori", "rank": "D"}, {"tipo": "hadou", "n": 6, "nome": "Hono Yari", "rank": "D"}, {"tipo": "hadou", "n": 7, "nome": "Raiu Heki", "rank": "D"}, {"tipo": "hadou", "n": 8, "nome": "Akuma no Koe", "rank": "D"}, {"tipo": "hadou", "n": 9, "nome": "Kageho", "rank": "D"}, {"tipo": "hadou", "n": 10, "nome": "Hikari no Dangan", "rank": "D"}, {"tipo": "hadou", "n": 11, "nome": "Tsuzuri Raiden", "rank": "D"}, {"tipo": "hadou", "n": 12, "nome": "Tasogare no Yaiba", "rank": "D"}, {"tipo": "hadou", "n": 13, "nome": "Hoshi Kuzure", "rank": "D"}, {"tipo": "hadou", "n": 14, "nome": "Seishin Hari", "rank": "D"}, {"tipo": "hadou", "n": 15, "nome": "Kaze no Yaiba", "rank": "D"}, {"tipo": "hadou", "n": 16, "nome": "Dangan Reppa", "rank": "D"}, {"tipo": "hadou", "n": 17, "nome": "Hakai Kyōmei", "rank": "D"}, {"tipo": "hadou", "n": 18, "nome": "Kori no Hagane", "rank": "D"}, {"tipo": "hadou", "n": 19, "nome": "Shinjitsu no Kizu", "rank": "D"}, {"tipo": "hadou", "n": 20, "nome": "Shoutenkyu", "rank": "D"}, {"tipo": "hadou", "n": 21, "nome": "Raikoha", "rank": "C"}, {"tipo": "hadou", "n": 22, "nome": "Enjin Gekishin", "rank": "C"}, {"tipo": "hadou", "n": 23, "nome": "Kiba Homura", "rank": "C"}, {"tipo": "hadou", "n": 24, "nome": "Koryuha", "rank": "C"}, {"tipo": "hadou", "n": 25, "nome": "Hosenka", "rank": "C"}, {"tipo": "hadou", "n": 26, "nome": "Raijin no Ya", "rank": "C"}, {"tipo": "hadou", "n": 27, "nome": "Kokaku Senpu", "rank": "C"}, {"tipo": "hadou", "n": 28, "nome": "Seishin Kyomei", "rank": "C"}, {"tipo": "hadou", "n": 29, "nome": "Goenzai", "rank": "C"}, {"tipo": "hadou", "n": 30, "nome": "Hyorinmaru", "rank": "C"}, {"tipo": "hadou", "n": 31, "nome": "Shakkahou", "rank": "C"}, {"tipo": "hadou", "n": 32, "nome": "Oukasen", "rank": "C"}, {"tipo": "hadou", "n": 33, "nome": "Soukatsui", "rank": "C"}, {"tipo": "hadou", "n": 34, "nome": "Kongoubaku", "rank": "C"}, {"tipo": "hadou", "n": 35, "nome": "Dokukami", "rank": "C"}, {"tipo": "hadou", "n": 36, "nome": "Kokoro Satsu", "rank": "C"}, {"tipo": "hadou", "n": 37, "nome": "Toki Satsu", "rank": "C"}, {"tipo": "hadou", "n": 38, "nome": "Oto Satsu", "rank": "C"}, {"tipo": "hadou", "n": 39, "nome": "Denki", "rank": "C"}, {"tipo": "hadou", "n": 40, "nome": "Hyoketsu", "rank": "C"}, {"tipo": "hadou", "n": 41, "nome": "Kosenko", "rank": "B"}, {"tipo": "hadou", "n": 42, "nome": "Raikoha", "rank": "B"}, {"tipo": "hadou", "n": 43, "nome": "Sokkekka", "rank": "B"}, {"tipo": "hadou", "n": 44, "nome": "Hikari no Senkou", "rank": "B"}, {"tipo": "hadou", "n": 45, "nome": "Jishin Reimei", "rank": "B"}, {"tipo": "hadou", "n": 46, "nome": "Komyosen", "rank": "B"}, {"tipo": "hadou", "n": 47, "nome": "Enraimei no Tate", "rank": "B"}, {"tipo": "hadou", "n": 48, "nome": "Toki no Kizu", "rank": "B"}, {"tipo": "hadou", "n": 49, "nome": "Gakirekkou", "rank": "B"}, {"tipo": "hadou", "n": 50, "nome": "Shinkuha", "rank": "B"}, {"tipo": "hadou", "n": 51, "nome": "Ennetsu Jigoku", "rank": "B"}, {"tipo": "hadou", "n": 52, "nome": "Kuroikiba", "rank": "B"}, {"tipo": "hadou", "n": 53, "nome": "Shirotenrai", "rank": "B"}, {"tipo": "hadou", "n": 54, "nome": "Haien", "rank": "B"}, {"tipo": "hadou", "n": 55, "nome": "Seiketsu", "rank": "B"}, {"tipo": "hadou", "n": 56, "nome": "Retsugaikou", "rank": "B"}, {"tipo": "hadou", "n": 57, "nome": "Seikyouketsu", "rank": "B"}, {"tipo": "hadou", "n": 58, "nome": "Tenran", "rank": "B"}, {"tipo": "hadou", "n": 59, "nome": "Shinku Tenshou", "rank": "B"}, {"tipo": "hadou", "n": 60, "nome": "Bakuhatsu Enbu", "rank": "B"}, {"tipo": "hadou", "n": 61, "nome": "Seiren Kozan", "rank": "A"}, {"tipo": "hadou", "n": 62, "nome": "Hyouketsu Ryouran", "rank": "A"}, {"tipo": "hadou", "n": 63, "nome": "Raikouhou", "rank": "A"}, {"tipo": "hadou", "n": 64, "nome": "Seikatsu no Kekkai", "rank": "A"}, {"tipo": "hadou", "n": 65, "nome": "Chijo Bankotsu", "rank": "A"}, {"tipo": "hadou", "n": 66, "nome": "Karyuu Tenka", "rank": "A"}, {"tipo": "hadou", "n": 67, "nome": "Jikan Dangan", "rank": "A"}, {"tipo": "hadou", "n": 68, "nome": "Dokuga no Korin", "rank": "A"}, {"tipo": "hadou", "n": 69, "nome": "Hikari no Senkou", "rank": "A"}, {"tipo": "hadou", "n": 70, "nome": "Kori no Raiten", "rank": "A"}, {"tipo": "hadou", "n": 71, "nome": "Shinko Hoko", "rank": "A"}, {"tipo": "hadou", "n": 72, "nome": "Hono no Tsubasa", "rank": "A"}, {"tipo": "hadou", "n": 73, "nome": "Souren Soukatsui", "rank": "A"}, {"tipo": "hadou", "n": 74, "nome": "Seikoko", "rank": "A"}, {"tipo": "hadou", "n": 75, "nome": "Hokai Ryujin", "rank": "A"}, {"tipo": "hadou", "n": 76, "nome": "Seiketsu Shiryu", "rank": "A"}, {"tipo": "hadou", "n": 77, "nome": "Toki no Senko", "rank": "A"}, {"tipo": "hadou", "n": 78, "nome": "Zangerin", "rank": "A"}, {"tipo": "hadou", "n": 79, "nome": "Kaminari", "rank": "A"}, {"tipo": "hadou", "n": 80, "nome": "Kagutsuchi", "rank": "A"}, {"tipo": "hadou", "n": 81, "nome": "Jiku no Tatsumaki", "rank": "S"}, {"tipo": "hadou", "n": 82, "nome": "Ennetsu Jigoku", "rank": "S"}, {"tipo": "hadou", "n": 83, "nome": "Kaminari no Korin", "rank": "S"}, {"tipo": "hadou", "n": 84, "nome": "Kosen", "rank": "S"}, {"tipo": "hadou", "n": 85, "nome": "Tenshi no Hikari", "rank": "S"}, {"tipo": "hadou", "n": 86, "nome": "Kesshou Sokatsu", "rank": "S"}, {"tipo": "hadou", "n": 87, "nome": "Hyosetsu", "rank": "S"}, {"tipo": "hadou", "n": 88, "nome": "Hiriougeki Zoku Shinten Reihou", "rank": "S"}, {"tipo": "hadou", "n": 89, "nome": "Shinri Shien", "rank": "S"}, {"tipo": "hadou", "n": 90, "nome": "Kurohitsugi", "rank": "S"}, {"tipo": "hadou", "n": 91, "nome": "Senjuu Kouten Taiho", "rank": "SS"}, {"tipo": "hadou", "n": 92, "nome": "Hikari no Tairiku", "rank": "SS"}, {"tipo": "hadou", "n": 93, "nome": "Enkakyuu", "rank": "SS"}, {"tipo": "hadou", "n": 94, "nome": "Dokukesshou", "rank": "SS"}, {"tipo": "hadou", "n": 95, "nome": "Reitetsu", "rank": "SS"}, {"tipo": "hadou", "n": 96, "nome": "Ittoukasou", "rank": "SS"}, {"tipo": "hadou", "n": 97, "nome": "Raikaryuu", "rank": "SS"}, {"tipo": "hadou", "n": 98, "nome": "Honokai", "rank": "SS"}, {"tipo": "hadou", "n": 99, "nome": "Goryutenmetsu", "rank": "SS"}]
+[
+ {
+  "tipo": "bakudou",
+  "n": 41,
+  "nome": "Kouryuu",
+  "rank": "B",
+  "texto": "O usuário dispara uma corrente de Reiatsu que desestabiliza o fluxo espiritual do alvo. Ao ser atingido, sempre que o alvo tentar utilizar Reiatsu para realizar qualquer tipo de ação, deverá realizar um Teste de Resistência de Espírito. Em caso de falha, a ação não ocorre, mas todo o Reiatsu, recurso ou custo envolvido é gasto normalmente. Em caso de sucesso, a ação é realizada normalmente e o efeito do bakudou é desfeito. O efeito permanece até o início do próximo turno do usuário.",
+  "meta": "Requisito: Ação · Alcance: 9 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 13 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 42,
+  "nome": "Kuukan no Kusari",
+  "rank": "B",
+  "texto": "O usuário distorce o espaço ao redor de uma criatura de tamanho Grande ou menor, tornando impossível escapar através de técnicas de deslocamento espiritual. Sempre que o alvo tentar se deslocar por qualquer meio que não seja seu movimento normal, como Shunpo, técnicas de deslocamento ou teletransporte, deverá realizar um Teste de Resistência de Espírito. Em caso de falha, o deslocamento não ocorre e o recurso utilizado é gasto normalmente. Em caso de sucesso, o deslocamento ocorre normalmente.",
+  "meta": "Velocidade: Instantânea, Encantamento Normal · Custo: 14 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 43,
+  "nome": "Meikyuu",
+  "rank": "B",
+  "texto": "",
+  "meta": ""
+ },
+ {
+  "tipo": "bakudou",
+  "n": 44,
+  "nome": "Ten’i",
+  "rank": "B",
+  "texto": "metros for atingida por um ataque",
+  "meta": "Requisito: Reação quando você ou uma criatura a até 6 · Alcance: Pessoa · Velocidade: Instantânea, Encantamento Rápido · Custo: 18 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 45,
+  "nome": "Seishin no Shirushi",
+  "rank": "B",
+  "texto": "",
+  "meta": "Requisito: Ação · Alcance: 18 metros · Custo: 15 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 46,
+  "nome": "Kukan Ido",
+  "rank": "B",
+  "texto": "O usuário dobra brevemente o espaço, permitindo que ele e uma criatura de tamanho Grande ou menor sejam transportados instantaneamente para um espaço desocupado que o usuário possa ver a até 24 metros. Para utilizar o Kidou, o usuário deve estar tocando a si mesmo e a criatura durante todo o encantamento. Uma criatura involuntária não pode ser transportada por este efeito. O Kidou não pode atravessar barreiras de Reiatsu, Kekkai ou espaços que impeçam teletransporte. [Central 46] - Proibido: Este Kidou é…",
+  "meta": "Requisito: Ação · Alcance: 24 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 15 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 47,
+  "nome": "Michibiki",
+  "rank": "B",
+  "texto": "O usuário assume brevemente o controle dos movimentos de uma criatura voluntária de tamanho Grande ou menor. O alvo pode estar consciente, inconsciente ou incapacitado. O usuário utiliza seu próprio deslocamento para locomover a criatura, 1 metro do deslocamento do usuário permite mover a criatura 1 metro.",
+  "meta": "Requisito: Ação · Alcance: 18 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 13 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 48,
+  "nome": "Seishin Kekkai",
+  "rank": "B",
+  "texto": "O usuário envolve uma criatura de tamanho Grande ou",
+  "meta": "Requisito: Ação Bônus · Alcance: Toque · Velocidade: Instantânea, Encantamento Rápido · Custo: 13 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 49,
+  "nome": "Kekkai no Tate",
+  "rank": "B",
+  "texto": "O usuário ergue uma das mãos diante do alvo e concentra seu Reiatsu na palma, criando instantaneamente uma barreira espiritual à sua frente. A barreira possui 30 Pontos de Vida, e todo o dano do ataque é direcionado a ela, reduzindo os Pontos de Vida dela. Caso a barreira seja destruída antes de absorver todo o dano, o valor excedente é aplicado normalmente ao alvo.",
+  "meta": "Requisito: Reação · Alcance: Pessoal · Velocidade: Instantânea, Encantamento Normal · Custo: 17 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 50,
+  "nome": "Shingan",
+  "rank": "B",
+  "texto": "O usuário leva dois dedos até os próprios olhos e concentra Reiatsu em sua visão, passando a perceber os fluxos de energia espiritual ao seu redor. Até o início do próximo turno, o usuário consegue identificar qual criatura está mantendo uma técnica ativa, desde que ela esteja dentro de seu campo de visão, além de perceber a direção e a intensidade aproximada do fluxo sabendo em qual direção a técnica irá ser disparada.",
+  "meta": "Requisito: Ação Bônus ou Reação · Alcance: Pessoal · Velocidade: Instantânea, Encantamento Normal · Custo: 10 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 51,
+  "nome": "Saimin Kekkai",
+  "rank": "B",
+  "texto": "O usuário estende a mão na direção do alvo e manifesta uma poderosa pressão de Reiatsu que envolve todo o seu corpo, prendendo simultaneamente seus braços, mãos, pernas e boca. A criatura recebe a condição Preso com todos os membros presos e sofre 4d8 de Dano de Reiatsu. Para escapar, o alvo deve realizar um Teste de Resistência de Força ou Destreza, à sua escolha. Em caso de falha, a criatura pode optar por permanecer presa ou forçar a ruptura da contenção, encerrando a condição Preso, mas sofrendo 4d8 de Dano…",
+  "meta": "Requisito: Ação · Alcance: 18 metros · Velocidade: Concentração até 1 minuto, Encantamento Normal · Custo: 15 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 52,
+  "nome": "Reishi no Kusari",
+  "rank": "B",
+  "texto": "O shinigami toca em uma criatura aliada que possa ver e estabelece uma ligação de Reiatsu entre si e o alvo. Enquanto o efeito durar, o usuário sabe exatamente a localização, direção e distância que o separa da criatura, mesmo que ela esteja fora de seu campo de visão ou escondida por obstáculos. Essa percepção permanece enquanto ambos estiverem no mesmo plano de existência.",
+  "meta": "Requisito: Ação · Alcance: Toque · Velocidade: 1 hora, Encantamento Rápido · Custo: 10 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 53,
+  "nome": "Kekkai no Kabe",
+  "rank": "B",
+  "texto": "O usuário ergue uma das mãos e cria uma barreira",
+  "meta": "Requisito: Ação · Alcance: 18 metros · Velocidade: Concentração até 1 minuto, Encantamento Lento · Custo: 16 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 54,
+  "nome": "Tsuushinka",
+  "rank": "B",
+  "texto": "O usuário estende a mão e estabelece uma conexão espiritual entre até 4 criaturas aliadas que possa ver dentro do alcance. Enquanto a conexão permanecer ativa, as criaturas podem se comunicar mentalmente entre si, independentemente da distância entre elas, desde que estejam no mesmo plano de existência.",
+  "meta": "Requisito: Ação · Alcance: 9 metros · Velocidade: Concentração até 10 minutos, Encantamento Normal · Custo: 10 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 55,
+  "nome": "Jakuten",
+  "rank": "B",
+  "texto": "O usuário leva dois dedos até os próprios olhos e concentra Reiatsu em sua visão, tentando interpretar as características espirituais de uma criatura que possa ver. Após utilizar o Kidou, role 1d6. Se o resultado for par, o usuário consegue perceber uma informação relevante sobre a criatura, revelada pelo Mestre, como uma resistência, vulnerabilidade, imunidade, condição, habilidade ou outra característica que o Mestre considere pertinente. Se o resultado for ímpar, o fluxo espiritual não pode ser interpretado e…",
+  "meta": "Requisito: Ação Bônus · Alcance: Pessoal · Velocidade: Concentração até 10 minutos, Encantamento Normal · Custo: 5 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 56,
+  "nome": "Kakushi",
+  "rank": "B",
+  "texto": "desapareçam e que nenhum sentido encontre aquilo que está além desta barreira!",
+  "meta": "Requisito: Ação Completa · Alcance: 18 metros · Velocidade: Concentração até 10 minutos, Encantamento Lento · Custo: 17 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 57,
+  "nome": "Fuuin no Kyoukai",
+  "rank": "B",
+  "texto": "O usuário estende a mão e cria um selo espiritual quadrado de 3 metros de cada lado em uma superfície que possa ver dentro do alcance. Enquanto permanecer ativo, o selo impede que criaturas atravessem aquele espaço. Uma criatura que tentar cruzá-lo deve realizar um Teste de Resistência de Força. Em caso de falha, seu deslocamento é interrompido imediatamente e ela não pode atravessar o selo naquele turno. Em caso de sucesso, pode atravessá-lo normalmente.",
+  "meta": "Requisito: Ação Bônus · Alcance: 6 metros · Velocidade: Concentração até 1 minuto, Encantamento Normal · Custo: 17 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 58,
+  "nome": "Kakushitsuijaku",
+  "rank": "B",
+  "texto": "O usuário desenha no chão um símbolo espiritual formado por diversos pontos e linhas. Após concluí-lo, deve permanecer concentrado sobre o símbolo por 1 minuto, canalizando Reiatsu até que o Kidou seja ativado. O usuário escolhe uma criatura que conheça como alvo do rastreamento e passa a saber sua localização aproximada, independentemente da distância ou do plano de existência em que ela esteja. Além disso, consegue percebê-la brevemente, sendo capaz de vê-la por alguns instantes através do Kidou.",
+  "meta": "Requisito: Ação Completa por turno · Alcance: Especial · Velocidade: 1 minuto, Encantamento Lento · Custo: 30 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 59,
+  "nome": "Sanki Kousoku",
+  "rank": "B",
+  "texto": "O usuário estende ambas as mãos e libera fios de Reiatsu que se espalham pelo campo, envolvendo até 3 criaturas que possa ver dentro do alcance. Cada criatura deve realizar um Teste de Resistência de Força. Em caso de falha, recebe a condição Pernas Presas por 1 minuto. Uma criatura afetada pode repetir o Teste de Resistência de Força no final de cada um de seus turnos, encerrando o efeito sobre si mesma em caso de sucesso.",
+  "meta": "Requisito: Ação · Alcance: 18 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 17 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 60,
+  "nome": "Kyoumon",
+  "rank": "B",
+  "texto": "Juntando as duas mãos e concentrando Reiatsu nas palmas, o usuário cria uma barreira espiritual semelhante a vidro que aprisiona uma área dentro do alcance do Bakudou. A barreira possui o formato de um cubo com até 6 metros de cada lado, e o usuário pode escolher onde ele surge dentro do alcance.",
+  "meta": "Requisito: Ação · Alcance: 6 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 18 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 61,
+  "nome": "Rikujukourou",
+  "rank": "A",
+  "texto": "",
+  "meta": ""
+ },
+ {
+  "tipo": "bakudou",
+  "n": 62,
+  "nome": "Hyapporankan",
+  "rank": "A",
+  "texto": "O usuário manifesta uma estaca de Reiatsu roxo e a arremessa contra uma criatura que possa ver. Durante o trajeto, a estaca se multiplica em dezenas de outras, formando uma chuva de lanças que converge sobre o alvo. Realize um ataque à distância utilizando Kidou. Em caso de acerto, o alvo sofre 6d10 de Dano de Energia e deve realizar um Teste de Resistência de Força. Em caso de falha, as estacas se cravam ao seu redor e o deixam com a condição Pernas Presas até o início do próximo turno da criatura.",
+  "meta": "Requisito: Ação · Alcance: 12 metros · Velocidade: Até 1 minuto, Encantamento Rápido · Custo: 22 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 63,
+  "nome": "Sajou Sabaku",
+  "rank": "A",
+  "texto": "Apontando a mão em direção a uma criatura e fechando-a em seguida, o usuário faz surgir uma corrente de Reiatsu amarelo que se estende até o alvo e se enrola violentamente ao redor de seu corpo.",
+  "meta": "Requisito: Ação · Alcance: 24 metros · Velocidade: Concentração até 1 minuto, Encantamento Normal · Custo: 26 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 64,
+  "nome": "Shinshoku Ryoiki",
+  "rank": "A",
+  "texto": "O usuário estende a mão e cria uma área de contenção espiritual com 6 metros de raio, centrada em um ponto (1 sqm) que possa ver dentro do alcance. No centro da área surge um losango de energia formado por chamas de Reiatsu, que permanece suspenso no ar e funciona como o núcleo do Kidou.",
+  "meta": "Requisito: Ação · Alcance: 24 metros · Velocidade: Concentração até 1 minuto, Encantamento Lento · Custo: 27 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 65,
+  "nome": "Reien",
+  "rank": "A",
+  "texto": "O usuário aponta para uma criatura e cria uma marca espiritual sobre seu corpo, fazendo com que o Reiatsu do alvo registre a ação que acabou de realizar.",
+  "meta": "Requisito: Ação · Alcance: 9 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 28 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 66,
+  "nome": "Shouheki",
+  "rank": "A",
+  "texto": "O usuário escolhe uma criatura aliada dentro do alcance e envolve seu corpo em uma camada de Reiatsu.",
+  "meta": "Requisito: Ação · Alcance: 18 metros · Velocidade: Concentração até 1 minuto, Encantamento Rápido · Custo: 22 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 67,
+  "nome": "Seimei Kekkai",
+  "rank": "A",
+  "texto": "O usuário escolhe uma criatura aliada dentro do alcance e envolve seu corpo com uma camada de Reiatsu que se prende diretamente à sua alma.",
+  "meta": "Requisito: Ação · Alcance: 9 metros · Velocidade: Até 1 minuto, Encantamento Lento · Custo: 25 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 68,
+  "nome": "Fuuin",
+  "rank": "A",
+  "texto": "O usuário cria um selo de Reiatsu sobre uma criatura ao tocá-la, envolvendo seu corpo com marcas espirituais. A criatura realiza um Teste de Resistência de Espírito. Se falhar, o usuário escolhe um Kidou que a criatura conheça. Enquanto o selo permanecer ativo, a criatura não pode utilizar o Kidou escolhido.",
+  "meta": "Requisito: Ação · Alcance: Toque · Velocidade: Até 1 minuto, Encantamento Normal · Custo: 23 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 69,
+  "nome": "Keimusho Mugen",
+  "rank": "A",
+  "texto": "O usuário cria uma gigantesca prisão de Reiatsu em um ponto que possa ver dentro do alcance. A prisão pode conter até 6 Hollows, desde que cada um seja de tamanho Enorme ou menor.",
+  "meta": "Requisito: Ação · Alcance: 24 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 35 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 70,
+  "nome": "Tsuihou",
+  "rank": "A",
+  "texto": "O usuário escolhe uma criatura dentro do alcance e envolve seu corpo com um círculo de Reiatsu.",
+  "meta": "Requisito: Ação Completa · Alcance: 9 metros · Velocidade: Concentração até 1 minuto, Encantamento Lento · Custo: 25 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 71,
+  "nome": "Kekkai Ryouiki",
+  "rank": "A",
+  "texto": "O usuário escolhe uma criatura dentro do alcance e cria uma esfera de Reiatsu ao redor de si mesmo e do alvo, isolando ambos do espaço exterior.",
+  "meta": "Requisito: Ação · Alcance: 9 metros · Velocidade: Até 1 minuto, Encantamento Normal · Custo: 19 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 72,
+  "nome": "Shinjitsu no Tobari",
+  "rank": "A",
+  "texto": "O usuário cria uma área espiritual de 6 metros de raio em um ponto que possa ver dentro do alcance.",
+  "meta": "Requisito: Ação · Alcance: 18 metros · Velocidade: Concentração até 10 minuto, Encantamento Normal · Custo: 19 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 73,
+  "nome": "Tozansho",
+  "rank": "A",
+  "texto": "Quando você ou uma criatura a até 3 metros de você for alvo de um ataque ou técnica, você pode utilizar sua Reação para criar instantaneamente uma barreira de Reiatsu em formato de pirâmide de quatro lados, envolvendo você e todas as criaturas que escolher dentro da área. A barreira possui 70 Pontos de Vida e Redução de Dano 15. Ela bloqueia completamente a passagem de criaturas, objetos e ataques através de suas paredes. A barreira permanece até você desfazer com uma ação livre ou até os Pontos de Vida serem…",
+  "meta": "Requisito: Reação · Alcance: 18 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 22 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 74,
+  "nome": "Inochi no Kizuna",
+  "rank": "A",
+  "texto": "O usuário estabelece um vínculo de Reiatsu com uma criatura voluntária dentro do alcance. Enquanto o vínculo permanecer ativo, sempre que a criatura sofrer dano, o usuário pode utilizar sua Reação para receber metade do dano sofrido por ela, antes de aplicar sua Redução de Dano ou outras formas de redução.",
+  "meta": "Requisito: Ação · Alcance: 18 metros · Velocidade: Até 1 minuto, Encantamento Normal · Custo: 25 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 75,
+  "nome": "Gochuu Tekkan",
+  "rank": "A",
+  "texto": "Quando uma criatura estiver Caída, você pode utilizar este Bakudou para prendê-la ao chão. Ao utilizá-lo, o usuário junta as duas mãos, criando Reiatsu laranja, e realiza um movimento como se lançasse as mãos contra o chão. Você pode utilizar este Kidou como Reação quando outra criatura causar a condição Caído em uma criatura dentro do alcance.",
+  "meta": "Requisito: Ação ou Reação · Alcance: 18 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 24 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 76,
+  "nome": "Ten’i Rakuin",
+  "rank": "A",
+  "texto": "Quando uma criatura dentro do alcance terminar voluntariamente seu movimento, você pode utilizar sua Reação para marcar sua posição com Reiatsu e fazê-la retornar instantaneamente ao espaço onde iniciou esse movimento.",
+  "meta": "Requisito: Reação · Alcance: 18 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 22 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 77,
+  "nome": "Tenteikuura",
+  "rank": "A",
+  "texto": "O usuário inscreve símbolos de Reiatsu em seus braços, fazendo com que eles percorram completamente seu corpo. Ao concluir o encantamento, um grande quadrado de Reiatsu se forma diante do usuário e emite uma intensa luz espiritual.",
+  "meta": "Requisito: Ação · Alcance: Especial · Velocidade: Instantânea, Encantamento Lento · Custo: 10 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 78,
+  "nome": "Reiatsu Shoumei",
+  "rank": "A",
+  "texto": "O usuário cria uma área de 9 metros de raio centrada",
+  "meta": "Requisito: Ação · Alcance: 24 metros · Velocidade: Até 1 minuto, Encantamento Lento · Custo: 15 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 79,
+  "nome": "Kuyou Shibari",
+  "rank": "A",
+  "texto": "Quando uma criatura estiver sob a condição Preso com todos os os membros presos, causada por um Bakudou, você pode utilizar este Kidou para selá-la ainda mais. O usuário cria oito pequenos buracos negros ao redor da criatura e um nono buraco negro dentro de seu peito. O alvo deve realizar um Teste de Resistência de Espírito com desvantagem. Em caso de falha, recebe a condição Distorcido.",
+  "meta": "Requisito: Ação · Alcance: 36 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 25 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 80,
+  "nome": "Kakurega",
+  "rank": "A",
+  "texto": "O usuário cria uma estrutura de Reiatsu em um espaço desocupado que possa ver dentro do alcance, com até 6 metros de lado e 3 metros de altura. A estrutura pode assumir a aparência de uma construção simples e adequada ao ambiente, como uma casa, cabana, ruína ou outra estrutura semelhante.",
+  "meta": "Requisito: Ação · Alcance: 18 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 10 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 81,
+  "nome": "Danku",
+  "rank": "S",
+  "texto": "Quando for alvo de um ataque à distância, você pode utilizar sua Reação para criar uma barreira invisível de Reiatsu entre você e o efeito. A barreira impede que o ataque alcance você enquanto permanecer intacta. O Danku possui 100 Pontos de Vida e Redução de Dano 20, desaparecendo após o ataque terminar ou quando seus Pontos de Vida forem reduzidos a 0. Se o ataque reduzir a barreira a 0 Pontos de Vida, ele atravessa a barreira e atinge você. Nesse caso, reduza o dano sofrido pela quantidade de Pontos de Vida…",
+  "meta": "Requisito: Reação · Alcance: Pessoal · Velocidade: Instantânea, Encantamento Rápido · Custo: 30 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 82,
+  "nome": "Reishi Kassei",
+  "rank": "S",
+  "texto": "O Shinigami concentra Reiatsu na palma da mão e a encosta diretamente no corpo do alvo. No instante do contato, sua energia espiritual se prende ao Reiatsu da criatura e começa a arrancá-lo de seu corpo à força, como se estivesse puxando sua própria essência através da palma.",
+  "meta": "Requisito: Ação · Alcance: Toque · Velocidade: Instantânea, Encantamento Normal · Custo: 30 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 83,
+  "nome": "Kakuremi",
+  "rank": "S",
+  "texto": "Ao tocar uma criatura voluntária ou um objeto, o Shinigami envolve o alvo em uma camada extremamente densa de Reiatsu, ocultando sua presença espiritual. O alvo se torna invisível e recebe -20 em Testes de Percepção Espiritual realizados para localizá-lo. O alvo não pode ser detectado por técnicas que detectem automáticamente sua presença ou permitam observar sua localização à distância.",
+  "meta": "Alcance: Toque · Velocidade: Instantânea, Encantamento Lento · Custo: 20 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 84,
+  "nome": "Jikan Kekkai",
+  "rank": "S",
+  "texto": "",
+  "meta": ""
+ },
+ {
+  "tipo": "bakudou",
+  "n": 85,
+  "nome": "Enkaku",
+  "rank": "S",
+  "texto": "O usuário distorce o espaço ao redor de uma criatura fazendo com que todos os caminhos que levam até ela se tornem infinitamente mais longos.",
+  "meta": "Requisito: Ação · Alcance: Toque · Velocidade: Instantânea, Encantamento Lento · Custo: 25 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 86,
+  "nome": "Mugen Kagami",
+  "rank": "S",
+  "texto": "",
+  "meta": "Requisito: Ação · Custo: 28 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 87,
+  "nome": "Tamashii Bunri",
+  "rank": "S",
+  "texto": "O usuário envolve uma criatura que possa perceber com uma camada de Reiatsu que interfere na ligação entre seu corpo e seu espírito. O alvo deve realizar um Teste de Resistência de Constituição.",
+  "meta": "Requisito: Ação · Alcance: 36 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 30 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 88,
+  "nome": "Gokan Fuin",
+  "rank": "S",
+  "texto": "O usuário envolve até seis criaturas que possa perceber com uma camada de Reiatsu, criando um escudo espiritual diretamente sobre seus corpos. O Bakudou concede um total de 200 Pontos de Vida Temporários, que o usuário pode dividir livremente entre as criaturas escolhidas.",
+  "meta": "Requisito: Ação · Alcance: 18 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 40 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 89,
+  "nome": "Boukyaku",
+  "rank": "S",
+  "texto": "O usuário envolve a mente de uma criatura mortal que tenha testemunhado algo relacionado ao mundo espiritual que não deveria conhecer, como um encontro com um Hollow ou a presença de um Shinigami. O alvo deve realizar um Teste de Resistência de Mente. Uma criatura voluntária pode escolher falhar automaticamente. Em caso de falha, o mortal fica Incapacitado durante o processo, que dura 10 minutos, e perde a percepção do que acontece ao seu redor, embora consiga ouvir e compreender o usuário.",
+  "meta": "Requisito: Ação Completa · Alcance: Toque · Velocidade: Instantânea, Encantamento Lento · Custo: 40 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 90,
+  "nome": "Keimusho Mugen",
+  "rank": "S",
+  "texto": "O usuário cria uma gigantesca prisão de Reiatsu em um ponto que possa ver dentro do alcance. A prisão pode conter até 6 Hollows, desde que cada um seja de tamanho Enorme ou menor.",
+  "meta": "Requisito: Ação · Alcance: 24 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 35 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 91,
+  "nome": "Jikan Teishi",
+  "rank": "SS",
+  "texto": "O usuário concentra Reiatsu sobre até 3 criaturas que possa ver dentro do alcance. Cada alvo deve realizar um Teste de Resistência de Mente.",
+  "meta": "Requisito: Ação · Alcance: 24 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 30 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 92,
+  "nome": "Seishin Shouheki",
+  "rank": "SS",
+  "texto": "O usuário cria uma grande área de proteção espiritual com 9 metros de raio, centrada em um ponto que possa ver dentro do alcance. A área permanece por 1 minuto. Sempre que uma criatura aliada dentro da área for atingida por um ataque ou técnica de uma criatura que esteja fora dela, o dano sofrido é reduzido em 30, exceto Dano Temporal e Dano Psíquico.",
+  "meta": "Requisito: Ação · Alcance: 24 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 35 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 93,
+  "nome": "Unmei Shihai",
+  "rank": "SS",
+  "texto": "O usuário manipula brevemente os caminhos do futuro, envolvendo até 3 criaturas voluntárias que possa ver dentro do alcance.",
+  "meta": "Requisito: Ação · Alcance: 36 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 30 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 94,
+  "nome": "Shihai",
+  "rank": "SS",
+  "texto": "O usuário estabelece um vínculo espiritual com um Humano ou Hollow de ND 1 ou menor que possa ver dentro do alcance. O alvo deve realizar um Teste de Resistência de Espírito. Em caso de falha, fica Controlado pelo usuário durante 1 minuto.",
+  "meta": "Requisito: Ação · Alcance: 18 metros · Velocidade: Concentração até 1 minuto, Encantamento Normal · Custo: 40 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 95,
+  "nome": "Shisoukeppu",
+  "rank": "SS",
+  "texto": "conhcem o kido",
+  "meta": "Requisito: Ação Especial, realizado por dois usuários que · Alcance: Toque · Velocidade: Instantânea, Encantamento Lento · Custo: 50 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 96,
+  "nome": "Keikaigi",
+  "rank": "SS",
+  "texto": "O usuário realiza um longo ritual para rasgar o espaço diante de si e criar uma Garganta, conectando dois mundos. A abertura da Garganta exige 30 minutos e",
+  "meta": "Requisito: Ação Completa · Alcance: Toque · Velocidade: Instantânea, Encantamento Lento · Custo: 50 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 97,
+  "nome": "Jikanteishi",
+  "rank": "SS",
+  "texto": "O usuário interrompe brevemente o fluxo do tempo, criando uma área de 300 metros de raio ao redor do ponto onde o Kidou foi conjurado. Todas as criaturas e objetos dentro dessa área, exceto o usuário, permanecem completamente imóveis enquanto o tempo deixa de avançar para eles.",
+  "meta": "Requisito: Ação · Alcance: Pessoal · Velocidade: Instantânea, Encantamento Lento · Custo: 60 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 98,
+  "nome": "Kuukanten’i",
+  "rank": "SS",
+  "texto": "O usuário escolhe uma área de até 18 metros de raio que possa ver dentro do alcance e marca outro ponto que possa ver a até 300 metros. Ao concluir o ritual, o espaço contido na área escolhida é deslocado instantaneamente para o novo ponto, como se aquela porção do mundo tivesse sido arrancada de seu lugar e colocada em outro. Tudo que estiver dentro da área é deslocado junto, incluindo criaturas, objetos, estruturas e Kidou ou outros efeitos ativos presentes no espaço. Os efeitos deslocados continuam funcionando…",
+  "meta": "Requisito: Ação · Alcance: 300 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 65 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 99,
+  "nome": "Kin",
+  "rank": "SS",
+  "texto": "Ao juntar as duas mãos e entrelaçar os dedos, o usuário concentra seu Reiatsu na visão e aponta para uma criatura dentro do alcance. Faixas negras de energia avançam contra o alvo, tentando envolvê-lo.",
+  "meta": "Requisito: Ação · Alcance: 18 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 50 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 1,
+  "nome": "Sai",
+  "rank": "D",
+  "texto": "O shinigami levanta dois dedos e aponta para uma ou mais criaturas. A criatura deve realizar um teste de resistência de Espirito em caso de falha, a criatura sofre 1d4 de dano de Energia e recebe a condição “Preso - Mãos”, ficando com as mãos atadas para trás, impossibilitando a realização de ações com as mãos até o final do próximo turno da criatura.",
+  "meta": "Requisito: Ação · Alcance: 9 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 2 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 2,
+  "nome": "Noroi",
+  "rank": "D",
+  "texto": "Quando uma criatura atacar com um ataque corpo-acorpo um aliado que esteja até 6 metros, o Shinigami usando a reação aponta a mão na direção da criatura que está atacando, recitando o encantamento e dificultando o ataque que a criatura iria realizar. A criatura deve realizar um Teste de Resistência de Mente ou sofrerá -2 na rolagem de ataque.",
+  "meta": "Requisito: Reação · Alcance: 6 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 2 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 3,
+  "nome": "Tegami",
+  "rank": "D",
+  "texto": "O Shinigami aponta um dedo em direção a uma criatura e envia uma mensagem mental para ela, sendo ouvida",
+  "meta": "Requisito: Ação Bônus · Alcance: 18 metros · Velocidade: Instantânea, Encantamento Rápido"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 4,
+  "nome": "Hainawa",
+  "rank": "D",
+  "texto": "Você junta energia amarela em suas mãos e aponta para uma criatura, lançando uma corrente de reiatsu em direção a ela para tentar prendê-la. Faça uma jogada de ataque à distância com Kido, se acertar a criatura deve realizar um teste de resistência de Força. Em caso de falha, ela recebe a condição “Preso”, ficando com os braços aprisionados. No início de cada turno da criatura, ela deve refazer o teste de resistência para tentar se soltar da corrente.",
+  "meta": "Requisito: Ação · Alcance: 9 metros · Velocidade: Concentração até 1 minuto, Encantamento Normal · Custo: 3 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 5,
+  "nome": "Senkou",
+  "rank": "D",
+  "texto": "O Shinigami cria uma rápida explosão de energia espiritual ao seu redor, envolvendo-o em uma esfera brilhante de luz. Isso desorienta as criaturas que estão olhando diretamente para o Shinigami, permitindo que ele desapareça instantaneamente do campo de visão delas usando Shunpo, proporcionando uma oportunidade para escapar. Após usar esse Bakudou, se o Shinigami usar qualquer tipo de Shunpo e se distanciar dos inimigos, ele pode fazer um Teste de Furtividade com vantagem.",
+  "meta": "Requisito: Ação · Alcance: 9 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 5 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 6,
+  "nome": "Shin’en",
+  "rank": "D",
+  "texto": "O Shinigami faz um movimento com uma mão para frente, estendendo a palma rapidamente em uma direção específica, fazendo com que as criaturas dentro da área sejam arremessadas para trás. Todas as criaturas dentro de um cone de 3 metros, criado a partir do Shinigami, devem fazer um Teste de Resistência de Força para evitar serem empurradas 1,5 metros para trás, as criaturas que falharem no teste, além de serem empurradas, recebem dano psíquico igual ao modificador de conjuração do shinigami.",
+  "meta": "Requisito: Ação · Alcance: Cone de 3 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 5 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 7,
+  "nome": "Genkai",
+  "rank": "D",
+  "texto": "Enquanto recita o encantamento, o Shinigami faz um movimento com a mão de baixo para cima, rente ao corpo, criando uma barreira invisível de reiatsu ao redor dele, protegendo-o de ataques. O usuário deve escolher um tipo de dano entre Cortante, Perfurante ou de Concussão para criar um escudo de 10 pontos de absorção de dano. Quando o Shinigami for atacado por um desses tipos de dano, o escudo irá absorver o dano por ele, se desfazendo quando o escudo chegar a 0 pontos. Se o dano recebido for maior que a…",
+  "meta": "Requisito: Ação Bônus · Alcance: Pessoal · Velocidade: Instantânea, Encantamento Rápido · Custo: 5 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 8,
+  "nome": "Seki",
+  "rank": "D",
+  "texto": "",
+  "meta": "Requisito: Ação · Alcance: Pessoal · Velocidade: Instantânea, Encantamento Rápido"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 9,
+  "nome": "Geki",
+  "rank": "D",
+  "texto": "Com uma mão você cria um símbolo e depois junta as duas mãos em direção a uma criatura criando uma aura vermelha na criatura e causando dor a ela. A criatura deve realizar um Teste de Resistência de Mente ou sofrerá 1d6 de dano Psíquico e não pode realizar “Reações” até o final do próximo turno dela.",
+  "meta": "Requisito: Ação · Alcance: 12 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 3 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 10,
+  "nome": "Horin",
+  "rank": "D",
+  "texto": "Você conjura uma corda de energia laranja e a lança contra uma criatura. Faça um ataque à distância com Kidou. Se acertar, a criatura faz um teste de Resistência de Força. Em caso de falha, você a arrasta com você, mas seu movimento conta como terreno difícil. A criatura se liberta no início do turno dela.",
+  "meta": "Requisito: Ação · Alcance: 9 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 3 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 11,
+  "nome": "Kyuketsu",
+  "rank": "D",
+  "texto": "prende a um alvo escolhido, drenando gradualmente sua energia espiritual ao longo do tempo. Realize um ataque com Kido à distância, se atingir, o alvo deve realizar um Teste de Resistência de Espírito. Se falhar, a criatura terá 10 pontos de reiatsu sugados pela esfera, transferindo 5 pontos de reiatsu para o Shinigami. No início de cada turno enquanto o Bakudou estiver ativo, a criatura deve realizar um Teste de Resistência de Espírito para evitar a drenagem de reiatsu. Se a criatura passar no teste, o Bakudou é…",
+  "meta": "Requisito: Ação · Alcance: 18 metros"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 12,
+  "nome": "Fushibi",
+  "rank": "D",
+  "texto": "Você cria uma rede que conecta você a uma criatura que esteja até 18 metros de distância. Essa ligação dura até o final do seu turno. Durante esse período, você pode utilizar uma técnica da sua Zanpakutou, seja de toque ou à distância, ou um Hadou por meio dessa ligação. Seu ataque recebe um bônus de +5 na jogada de acerto. Após realizar o ataque, a ligação é desfeita.",
+  "meta": "Requisito: Ação Bônus · Alcance: 18 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 10 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 13,
+  "nome": "Yojigen no Hokai",
+  "rank": "D",
+  "texto": "O Shinigami cria uma área no chão no formato de um cubo de 4,5 metros dentro do alcance do Bakudou, gerando uma distorção espacial que atrai todas as criaturas para baixo com uma gravidade intensa. Todas as criaturas dentro da área do cubo devem realizar um Teste de Resistência de Força. Se falharem, não serão capazes de se mover dentro da área do cubo e sofrerão 2d6 de dano Esse cubo dura por dois turnos do Shinigami, se encerrando no começo do terceiro turno do Shinigami.",
+  "meta": "Requisito: Ação · Alcance: 18 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 6 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 14,
+  "nome": "Seicho",
+  "rank": "D",
+  "texto": "",
+  "meta": ""
+ },
+ {
+  "tipo": "bakudou",
+  "n": 15,
+  "nome": "Kukanshu",
+  "rank": "D",
+  "texto": "Quando uma criatura a até 1,5 metro de você for alvo de um ataque corpo a corpo, você pode usar este Bakudou para criar uma pequena distorção no espaço, redirecionando o ataque para si. O atacante deve realizar um teste de Determinação. Em caso de falha, o ataque será direcionado para você.",
+  "meta": "Requisito: Reação · Alcance: Pessoal · Velocidade: Instantânea, Encantamento Rápido · Custo: 5 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 16,
+  "nome": "Koka no Hassha",
+  "rank": "D",
+  "texto": "O Shinigami toca uma criatura, inclusive a si mesmo, e recita o encantamento, concedendo à criatura um aumento de 3 metros em seu deslocamento, que dura até o final de seu próximo turno.",
+  "meta": "Requisito: Ação Bônus · Alcance: Pessoal · Velocidade: Instantânea, Encantamento Rápido"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 17,
+  "nome": "Shinden",
+  "rank": "D",
+  "texto": "Kido.",
+  "meta": "Requisito: Ação · Alcance: 9 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 1 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 18,
+  "nome": "Hakuryoku no Yugen",
+  "rank": "D",
+  "texto": "",
+  "meta": ""
+ },
+ {
+  "tipo": "bakudou",
+  "n": 19,
+  "nome": "Kouzen Fuuin",
+  "rank": "D",
+  "texto": "",
+  "meta": "Requisito: Ação · Alcance: 9 metros · Velocidade: Concentração até 1 minuto, Encantamento Lento"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 20,
+  "nome": "Kage Tsuru",
+  "rank": "D",
+  "texto": "",
+  "meta": ""
+ },
+ {
+  "tipo": "bakudou",
+  "n": 21,
+  "nome": "Sekienton",
+  "rank": "C",
+  "texto": "Você pressiona a mão contra o chão ou uma superfície espiritual, liberando uma densa cortina de fumaça vermelha que se espalha em um raio de 9 metros centrado em você. Todas as criaturas dentro da área, bem como aquelas que olharem de fora para dentro, sofrem desvantagem em testes de Percepção.",
+  "meta": "Requisito: Ação · Alcance: Pessoal · Velocidade: Instantânea, Encantamento Rápido · Custo: 12 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 22,
+  "nome": "Seishin Heiwa",
+  "rank": "C",
+  "texto": "",
+  "meta": ""
+ },
+ {
+  "tipo": "bakudou",
+  "n": 23,
+  "nome": "Keikai no Mon",
+  "rank": "C",
+  "texto": "",
+  "meta": ""
+ },
+ {
+  "tipo": "bakudou",
+  "n": 24,
+  "nome": "Kamen no Utage",
+  "rank": "C",
+  "texto": "",
+  "meta": ""
+ },
+ {
+  "tipo": "bakudou",
+  "n": 25,
+  "nome": "Joushin",
+  "rank": "C",
+  "texto": "",
+  "meta": ""
+ },
+ {
+  "tipo": "bakudou",
+  "n": 26,
+  "nome": "Kyokkou",
+  "rank": "C",
+  "texto": "Você manipula a luz ao seu redor, criando uma distorção de Reiatsu que dobra a luminosidade e oculta",
+  "meta": "Requisito: Ação · Alcance: Pessoal · Velocidade: 10 minutos, Encantamento Lento · Custo: 12 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 27,
+  "nome": "Seishin Tate",
+  "rank": "C",
+  "texto": "",
+  "meta": ""
+ },
+ {
+  "tipo": "bakudou",
+  "n": 28,
+  "nome": "Kanjou no Tobari",
+  "rank": "C",
+  "texto": "",
+  "meta": ""
+ },
+ {
+  "tipo": "bakudou",
+  "n": 29,
+  "nome": "Satori",
+  "rank": "C",
+  "texto": "",
+  "meta": ""
+ },
+ {
+  "tipo": "bakudou",
+  "n": 30,
+  "nome": "Sansen",
+  "rank": "C",
+  "texto": "",
+  "meta": ""
+ },
+ {
+  "tipo": "bakudou",
+  "n": 31,
+  "nome": "Kido Shoumei",
+  "rank": "C",
+  "texto": "",
+  "meta": ""
+ },
+ {
+  "tipo": "bakudou",
+  "n": 32,
+  "nome": "Reijuu",
+  "rank": "C",
+  "texto": "O Shinigami quando for atacado levanta a mão invocando rapidamente um escudo de reiatsu ao seu redor, envolvendo todo o corpo com energia espiritual concentrada. Esse escudo concede +5 na Classe de Resistência contra o ataque que disparou a reação.",
+  "meta": "Requisito: Reação · Alcance: Pessoal · Velocidade: Instantânea, Encantamento Rápido · Custo: 8 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 33,
+  "nome": "Sokuheki",
+  "rank": "C",
+  "texto": "Quando uma criatura começar a se deslocar o Shinigami projeta uma barreira de reiatsu à frente do movimento, tentando dificultar seu avanço. A criatura deve realizar um Teste de Resistência de Força. Se falhar, seu deslocamento é reduzido pela metade até o final do seu turno. Este Bakudou não afeta deslocamentos instantâneos, como Shunpo ou habilidades de movimento que ignorem terreno.",
+  "meta": "Requisito: Reação, quando uma criatura se movimentar · Alcance: 12 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 9 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 34,
+  "nome": "Kekkai",
+  "rank": "C",
+  "texto": "O Shinigami projeta um campo de reiatsu cintilante ao redor de uma criatura à sua escolha dentro do alcance. Este campo dura até 10 minutos, ou enquanto o usuário manter a concentração, e concede à criatura um bônus de +2 na Classe de Resistência, tornando-a mais difícil de atingir ataques e habilidades inimigas.",
+  "meta": "Requisito: Ação Bônus · Alcance: 9 metros metros · Velocidade: Concentração até 10 minutos, Encantamento Normal · Custo: 10 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 35,
+  "nome": "Ankoku En",
+  "rank": "C",
+  "texto": "O Shinigami traça um círculo de reiatsu negro no chão ou no ar, com 4,5 metros de raio, criando uma esfera de escuridão que envolve todas as criaturas dentro da área. As criaturas dentro deste círculo ficam cegas enquanto permanecerem na área.",
+  "meta": "Requisito: Ação · Alcance: Esfera de 4,5 metros (Até 18 metros do usuário) · Velocidade: Concentração até 1 minuto, Encantamento Lento · Custo: 8 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 36,
+  "nome": "Koumyou Shou",
+  "rank": "C",
+  "texto": "O Shinigami estende ambas as mãos à frente, concentrando reiatsu em um feixe de luz que se expande em cone de 9 metros. Todas as criaturas dentro da área devem realizar um Teste de Resistência de Constituição. Se falharem, ficam ofuscadas pela luz e sofrem desvantagem em seu próximo ataque ou ação até o início do próximo turno. Se obtiverem sucesso, não sofrem o efeito.",
+  "meta": "Requisito: Ação · Alcance: Cone de 6 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 7 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 37,
+  "nome": "Tsuriboshi",
+  "rank": "C",
+  "texto": "criaturas voluntárias)",
+  "meta": "Requisito: Reação · Alcance: Esfera de 6 metros (Embaixo do usuário, e · Velocidade: Instantânea, 1 minuto, Encantamento Rápido · Custo: 5 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 38,
+  "nome": "Teikou",
+  "rank": "C",
+  "texto": "O usuário concentra reiatsu nas pontas dos dedos e, lentamente, traça símbolos no ar enquanto recita o encantamento. Correntes espirituais emergem do chão ou do próprio reiatsu do usuário, se estendendo em direção aos braços ou pernas de até duas criaturas dentro do alcance.",
+  "meta": "Requisito: Ação · Alcance: 12 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 5 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 39,
+  "nome": "Enkosen",
+  "rank": "C",
+  "texto": "Colocando a palma da mão sobre sua Zanpakutou, o usuário concentra sua reiatsu, formando uma roda cintilante de energia protetora ao seu redor. Utilizando sua reação, quando for alvo de um ataque à distância, o Bakudou se ativa instantaneamente, reduzindo 20 pontos do dano que o usuário sofreria.",
+  "meta": "Requisito: Reação · Alcance: Pessoal · Velocidade: Instantânea, Encantamento Rápido · Custo: 10 PR"
+ },
+ {
+  "tipo": "bakudou",
+  "n": 40,
+  "nome": "Kurokabe",
+  "rank": "C",
+  "texto": "altura e 1,5 metros de largura",
+  "meta": "Requisito: Ação · Alcance: Linha 12 metros de comprimento, 3 metros de · Velocidade: Concentração até 1 minuto, Encantamento Lento · Custo: 10 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 1,
+  "nome": "Shou",
+  "rank": "D",
+  "texto": "",
+  "meta": ""
+ },
+ {
+  "tipo": "hadou",
+  "n": 2,
+  "nome": "Ken",
+  "rank": "D",
+  "texto": "",
+  "meta": ""
+ },
+ {
+  "tipo": "hadou",
+  "n": 3,
+  "nome": "Kaze no Tenshou",
+  "rank": "D",
+  "texto": "O Shinigami estende a palma da mão na direção desejada, canalizando sua reiatsu para criar um poderoso vento em forma de cone de 6 metros a partir de você. Este vento causa 2d8 de dano cortante. Todas as criaturas dentro do cone devem realizar um Teste de Resistência de Destreza, sofrendo todo dano se falhar ou metade dele se obtiver sucesso.",
+  "meta": "Requisito: Ação · Alcance: Cone de 6 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 3 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 4,
+  "nome": "Byakurai",
+  "rank": "D",
+  "texto": "O Shinigami aponta um dedo para frente e gera um trovão branco que se estende a partir da ponta do dedo, atingindo uma criatura. Realize um ataque à distância com Kido, se acertar, a criatura sofrerá 2d10 de dano Elétrico. Você também pode utilizar este Kido em um ataque corpo a corpo. Se o fizer e houver uma criatura atrás da primeira, a até 3 metros em linha, você pode rolar um acerto adicional para ela, causando o mesmo dano a ambas.",
+  "meta": "Requisito: Ação · Alcance: 9 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 6 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 5,
+  "nome": "Tenshi kori",
+  "rank": "D",
+  "texto": "Em uma de suas mãos, forma-se uma pequena esfera de reiatsu. Você a condensa, tornando-a extremamente fria, e a arremessa contra uma criatura. Realize um ataque à distância com Kido. Se acertar, a criatura sofre 2d8 de dano de frio.",
+  "meta": "Requisito: Ação · Alcance: 9 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 2 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 6,
+  "nome": "Hono Yari",
+  "rank": "D",
+  "texto": "Uma lança ardente de reiatsu flamejante surge em sua mão. Você a projeta com força em direção a um alvo dentro do alcance. Realize um ataque à distância com Kido. Se acertar, a criatura sofre 1d10 de dano de fogo e todos os objetos inflamáveis não carregados no caminho da lança pegam fogo.",
+  "meta": "Requisito: Ação · Alcance: 6 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 3 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 7,
+  "nome": "Raiu Heki",
+  "rank": "D",
+  "texto": "O Shinigami invoca uma pequena onda de raios ao seu redor, criando uma barreira elétrica pulsante por um instante. Todas as criaturas à sua escolha dentro do raio devem realizar um teste de Resistência de Constituição. As criaturas que falharem sofrem 2d6 de dano elétrico e são empurradas 3 metros para longe de você. As que passarem no teste sofrem apenas metade do dano e não são empurradas.",
+  "meta": "Requisito: Ação · Alcance: 4,5 metros de raio (centrado em você) · Velocidade: Instantânea, Encantamento Lento · Custo: 4 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 8,
+  "nome": "Akuma no Koe",
+  "rank": "D",
+  "texto": "Você libera uma onda de reiatsu que emite um som ensurdecedor, afetando todas as criaturas em um cone de 4,5 metros. As criaturas na área devem realizar um teste de Resistência de Constituição. As que falharem sofrem 1d6 de dano sonoro e ficam surdas até o começo do turno delas. As criaturas que passarem no teste sofrem apenas metade do dano e não ficam ensurdecidas.",
+  "meta": "Requisito: Ação · Alcance: Cone de 4,5 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 4 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 9,
+  "nome": "Kageho",
+  "rank": "D",
+  "texto": "Uma esfera densa de reiatsu sombrio forma-se em suas mãos e é disparada com força devastadora em direção a uma criatura. Realize um ataque à distância com Kido. Se acertar, a criatura sofre 1d12 de dano psíquico.",
+  "meta": "Requisito: Ação · Alcance: 9 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 4 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 10,
+  "nome": "Hikari no Dangan",
+  "rank": "D",
+  "texto": "O Shinigami cria um projétil de luz concentrada em sua mão e o dispara em linha reta em direção a um alvo. Realize um ataque à distância com Kido. Se acertar, a criatura sofre 1d8 de dano de luz. Se o ataque for realizado em um ambiente de escuro, ele ignora quaisquer penalidades relacionadas ao ambiente.",
+  "meta": "Requisito: Ação · Alcance: 18 metros em Linha · Velocidade: Instantânea, Encantamento Normal · Custo: 3 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 11,
+  "nome": "Tsuzuri Raiden",
+  "rank": "D",
+  "texto": "Ao encostar em um objeto de metal, você cria uma",
+  "meta": "Requisito: Ação Bônus · Alcance: Toque · Velocidade: Instantânea, Encantamento Rápido · Custo: 5 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 12,
+  "nome": "Tasogare no Yaiba",
+  "rank": "D",
+  "texto": "Você conjura uma lâmina feita de reiatsu obscurecido que corta o ar e perfura o inimigo. Realize um ataque à distância com Kido. Se acertar, a criatura sofre 2d10 de dano de Energia.",
+  "meta": "Requisito: Ação · Alcance: 9 metros em Linha · Velocidade: Instantânea, Encantamento Rápido · Custo: 3 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 13,
+  "nome": "Hoshi Kuzure",
+  "rank": "D",
+  "texto": "Você invoca uma pequena esfera de reiatsu dourado que explode em uma rajada de calor e impacto. Realize um ataque à distância com Kido. Se acertar, a criatura sofre 2d10 de dano de Fogo.",
+  "meta": "Requisito: Ação · Alcance: 18 metros em Linha · Velocidade: Instantânea, Encantamento Normal · Custo: 3 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 14,
+  "nome": "Seishin Hari",
+  "rank": "D",
+  "texto": "Você dispara finas agulhas de reiatsu espiritual concentrada em direção a até três criaturas que você possa ver em alcance. Realize um ataque de Kido contra",
+  "meta": "Requisito: Ação · Alcance: 12 metros em Linha · Velocidade: Instantânea, Encantamento Lento · Custo: 5 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 15,
+  "nome": "Kaze no Yaiba",
+  "rank": "D",
+  "texto": "Você dispara uma rajada afiada de vento condensado em reiatsu que corta tudo em linha reta. Todas as criaturas na área da Linha devem realizar um teste de resistência de Destreza. Se falharem, sofrem 2d6 de dano cortante. Em caso de sucesso, sofrem metade do dano.",
+  "meta": "Requisito: Ação · Alcance: 9 metros em Linha · Velocidade: Instantânea, Encantamento Rápido · Custo: 4 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 16,
+  "nome": "Dangan Reppa",
+  "rank": "D",
+  "texto": "Você comprime sua reiatsu em uma bala espiritual densa e veloz que atravessa defesas. Realize um ataque à distância com Kido. Se acertar, o alvo sofre 2d10 de dano de Energia. Esse ataque ignora cobertura.",
+  "meta": "Requisito: Ação · Alcance: 24 metros em Linha · Velocidade: Instantânea, Encantamento Lento · Custo: 3 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 17,
+  "nome": "Hakai Kyōmei",
+  "rank": "D",
+  "texto": "ponto a sua escolha dentro de 9 metros de você",
+  "meta": "Requisito: Ação · Alcance: Explosão de 3 metros de raio centrada em um · Velocidade: Instantânea, Encantamento Normal · Custo: 3 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 18,
+  "nome": "Kori no Hagane",
+  "rank": "D",
+  "texto": "Você forma uma lança de reiatsu congelante que é disparada contra um inimigo, girando com precisão letal. Realize um ataque à distância com Kido. Se acertar, o alvo sofre 1d8 de dano de Frio e deve realizar um teste de Resistência de Constituição. Se falhar, o deslocamento dela é reduzida pela metade até o final do próximo turno.",
+  "meta": "Requisito: Ação · Alcance: 9 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 5 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 19,
+  "nome": "Shinjitsu no Kizu",
+  "rank": "D",
+  "texto": "Você conjura uma lâmina de reiatsu invisível que atinge diretamente a mente do alvo, revelando verdades que ele não pode suportar. Realize um ataque à distância com Kido. Se acertar, o alvo sofre 1d8 de dano Psíquico e deve realizar um teste de Resistência de Reiatsu. Se falhar, sofre Desvantagem em seu próximo teste de ataque ou habilidade até o final do seu próximo turno.",
+  "meta": "Requisito: Ação · Alcance: 18 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 3 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 20,
+  "nome": "Shoutenkyu",
+  "rank": "D",
+  "texto": "",
+  "meta": ""
+ },
+ {
+  "tipo": "hadou",
+  "n": 21,
+  "nome": "Raikoha",
+  "rank": "C",
+  "texto": "O Shinigami concentra seu Reiatsu em suas mãos, e faíscas elétricas espirituais saltam, formando uma descarga que percorre uma linha reta até uma criatura específica, atingindo músculos, nervos e ossos com uma sensação de choque intenso.",
+  "meta": "Requisito: Ação · Alcance: Linha de 12 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 14 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 22,
+  "nome": "Enjin Gekishin",
+  "rank": "C",
+  "texto": "",
+  "meta": "Requisito: Ação · Alcance: 9 metros"
+ },
+ {
+  "tipo": "hadou",
+  "n": 23,
+  "nome": "Kiba Homura",
+  "rank": "C",
+  "texto": "O Shinigami estende a mão à frente e invoca uma língua de fogo espiritual que toma a forma de chamas dentadas e agitadas, como se possuíssem uma vontade própria. As chamas explodem em um cone curto à sua frente, tentando agarrar e devorar qualquer coisa em seu caminho. Todas as criaturas na área devem realizar um Teste de Resistência de Destreza. Em caso de falha, sofrem 5d6 de dano de Fogo e ficam com desvantagem em testes de contra efeitos que causem dano de fogo até o início do próximo turno do Shinigami. Em…",
+  "meta": "Requisito: Ação · Alcance: Cone de 4,5 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 10 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 24,
+  "nome": "Koryuha",
+  "rank": "C",
+  "texto": "O Shinigami estende a palma da mão à frente e, a partir de sua energia espiritual, uma espiral azulada de luz se condensa e toma forma dracônica. Um dragão etéreo de puro reiatsu se projeta em linha reta, varrendo o campo com um rugido ensurdecedor. A onda luminosa consome tudo em seu caminho, queimando tanto corpo quanto espírito com a força purificadora da luz espiritual.",
+  "meta": "Requisito: Ação · Alcance: Linha de 12 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 9 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 25,
+  "nome": "Hosenka",
+  "rank": "C",
+  "texto": "O Shinigami concentra o Reiatsu nas mãos e o molda em diversas pétalas de fogo espiritual, que giram e cintilam como uma flor prestes a desabrochar. Ao lançar o encantamento, as pétalas se dispersam em chamas, atingindo os inimigos à distância com precisão devastadora.",
+  "meta": "Requisito: Ação · Alcance: 18 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 9 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 26,
+  "nome": "Raijin no Ya",
+  "rank": "C",
+  "texto": "O Reiatsu do Shinigami pulsa como um tambor distante, e um clarão azul surge, condensando-se em uma flecha elétrica que rasga o ar, iluminando tudo em seu caminho antes de atingir o alvo. Realize uma jogada de ataque de Kido contra uma criatura dentro do alcance. Em um acerto, o alvo sofre 6d8 de dano Elétrico e deve realizar um Teste de Resistência de Constituição. Se falhar, recebe a condição Eletrificado por 2 turnos.",
+  "meta": "Requisito: Ação · Alcance: 36 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 10 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 27,
+  "nome": "Kokaku Senpu",
+  "rank": "C",
+  "texto": "O Shinigami gira rapidamente, liberando uma rajada de ar espiritual em forma de lâminas cortantes que se espalham em um cone à sua frente. As lâminas giram com força suficiente para cortar obstáculos e ferir qualquer inimigo na área, pressionando-os contra o chão ou fazendo-os recuar.",
+  "meta": "Requisito: Ação · Alcance: Cone de 12 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 8 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 28,
+  "nome": "Seishin Kyomei",
+  "rank": "C",
+  "texto": "O Shinigami concentra o Reiatsu ao redor de seu corpo e canaliza energia espiritual em uma onda pulsante que se expande em direção aos inimigos. A onda brilha com um tom esverdeado e ressoa com a força da terra e do espírito, atingindo todos os alvos em seu caminho. Realize uma jogada de ataque de Kido contra todas as criaturas em linha dentro do alcance. Em um acerto, cada alvo sofre 2d8 de dano de Energia e recebe a condição Distorcido por 1 turno, limitando a quantidade máxima de Reiatsu que pode usar em…",
+  "meta": "Requisito: Ação · Alcance: Linha de 24 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 7 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 29,
+  "nome": "Goenzai",
+  "rank": "C",
+  "texto": "O Shinigami concentra Reiatsu em suas mãos e invoca uma roda de chamas que sobe girando ao seu redor. As chamas se mantêm enquanto você canaliza o Kido e, ao final da conjuração, se espalham horizontalmente em um círculo, envolvendo aliados e inimigos na área.",
+  "meta": "Requisito: Reação · Alcance: Esfera de 6 metros (ponto de origem: você) · Velocidade: Instantânea, Encantamento Rápido · Custo: 7 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 30,
+  "nome": "Hyorinmaru",
+  "rank": "C",
+  "texto": "O Shinigami estende a mão à frente, liberando uma rajada de vento gelado carregado de Reiatsu que se transforma em cristais de gelo afiados enquanto avançam. Os cristais se espalham em um cone, congelando tudo em seu caminho e cobrindo o chão com uma camada escorregadia de gelo espiritual.",
+  "meta": "Requisito: Ação · Alcance: Cone de 12 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 8 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 31,
+  "nome": "Shakkahou",
+  "rank": "C",
+  "texto": "O Shinigami concentra Reiatsu em sua mão e dispara uma esfera espiritual vermelha incandescente que avança em linha reta em direção ao inimigo. A esfera arde com intensidade e é capaz de perfurar obstáculos leves enquanto mantém sua energia espiritual concentrada. Realize uma jogada de ataque de Kido contra",
+  "meta": "Requisito: Ação · Alcance: 30 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 12 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 32,
+  "nome": "Oukasen",
+  "rank": "C",
+  "texto": "O Shinigami concentra Reiatsu em sua mão e dispara uma esfera espiritual amarela brilhante em direção ao inimigo. A esfera incandescente se move em linha reta, irradiando energia espiritual intensa capaz de perfurar obstáculos leves e atingir múltiplos inimigos no caminho.",
+  "meta": "Requisito: Ação · Alcance: Linha de 30 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 9 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 33,
+  "nome": "Soukatsui",
+  "rank": "C",
+  "texto": "O Shinigami concentra Reiatsu em sua mão e dispara uma esfera espiritual azul cintilante em linha reta em direção a um único inimigo. A esfera pulsa com energia espiritual concentrada, perfurando obstáculos leves e atingindo o alvo com precisão sobrenatural.",
+  "meta": "Requisito: Ação · Alcance: 30 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 12 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 34,
+  "nome": "Kongoubaku",
+  "rank": "C",
+  "texto": "O Shinigami concentra Reiatsu na ponta de sua arma, seja a Zanpakutou ou mãos, formando uma grande esfera de energia vermelha intensa. Movimentando-se rapidamente, ele dispara a esfera em direção ao inimigo. Ao atingir o alvo, a esfera explode, liberando uma onda de calor e chamas que pode causar queimaduras graves.",
+  "meta": "Requisito: Ação · Alcance: Linha de 18 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 9 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 35,
+  "nome": "Dokukami",
+  "rank": "C",
+  "texto": "Uma bruma verde surge do Reiatsu do Shinigami, contorcendo-se como serpentes etéreas enquanto se adensa no ar. Com um movimento preciso, ele lança a névoa em direção ao inimigo; cada partícula carrega veneno espiritual que corrói corpo e mente.",
+  "meta": "Requisito: Ação · Alcance: 18 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 10 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 36,
+  "nome": "Kokoro Satsu",
+  "rank": "C",
+  "texto": "diretamente sobre uma criatura específica. As ondas golpeiam a mente do alvo, causando distúrbios psíquicos imediatos e intensos.",
+  "meta": "Requisito: Ação · Alcance: 15 metros · Custo: 10 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 37,
+  "nome": "Toki Satsu",
+  "rank": "C",
+  "texto": "O Shinigami gira lentamente sobre si mesmo, fazendo seu Reiatsu pulsar em ondas que distorcem o tempo ao redor de uma criatura específica. Cada pulsação comprime e estica os momentos da vítima, causando instabilidade temporal e impactando diretamente sua percepção e resistência física.",
+  "meta": "Requisito: Ação · Alcance: 9 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 7 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 38,
+  "nome": "Oto Satsu",
+  "rank": "C",
+  "texto": "O Shinigami concentra seu Reiatsu em um ponto à sua frente, e um rugido espiritual ecoa como se viesse de todos os lados, expandindo-se em ondas concêntricas que perfuram o ar. O som reverbera dentro dos corpos de todos os inimigos na linha, desestabilizando ossos e órgãos internos, enquanto causa dor intensa.",
+  "meta": "Requisito: Ação · Alcance: Linha de 9 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 7 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 39,
+  "nome": "Denki",
+  "rank": "C",
+  "texto": "",
+  "meta": ""
+ },
+ {
+  "tipo": "hadou",
+  "n": 40,
+  "nome": "Hyoketsu",
+  "rank": "C",
+  "texto": "O Shinigami concentra seu Reiatsu em uma esfera de gelo espiritual que flutua à sua frente e dispara uma rajada de frio cortante em direção a uma criatura específica. O frio intenso invade corpo e espírito, dificultando os movimentos e impactando diretamente a resistência da vítima.",
+  "meta": "Requisito: Ação · Alcance: 18 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 10 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 41,
+  "nome": "Kosenko",
+  "rank": "B",
+  "texto": "O Shinigami concentra seu Reiatsu em seus olhos, e uma onda de energia psíquica intensa dispara em direção a uma criatura específica, visando desestabilizar seu corpo e mente. A energia percorre nervos e pensamentos, causando dor e confusão.",
+  "meta": "Requisito: Ação · Alcance: 9 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 14 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 42,
+  "nome": "Raikoha",
+  "rank": "B",
+  "texto": "O Shinigami concentra seu Reiatsu em suas mãos, e faíscas elétricas espirituais saltam, formando uma descarga que percorre uma linha reta até uma criatura específica, atingindo músculos, nervos e ossos com uma sensação de choque intenso.",
+  "meta": "Requisito: Ação · Alcance: Linha de 12 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 14 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 43,
+  "nome": "Sokkekka",
+  "rank": "B",
+  "texto": "",
+  "meta": ""
+ },
+ {
+  "tipo": "hadou",
+  "n": 44,
+  "nome": "Hikari no Senkou",
+  "rank": "B",
+  "texto": "O Shinigami estende a mão aberta em direção ao alvo, liberando um feixe concentrado de energia luminosa que percorre a linha escolhida. A luz brilha com intensidade ofuscante, atingindo a primeira criatura em seu caminho",
+  "meta": "Requisito: Ação · Alcance: Linha de 15 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 23 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 45,
+  "nome": "Jishin Reimei",
+  "rank": "B",
+  "texto": "chão a até 12 metros de você)",
+  "meta": "Requisito: Ação · Alcance: Esfera de 6 metros (centrada em um ponto no · Velocidade: Instantânea, Encantamento Rápido · Custo: 13 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 46,
+  "nome": "Komyosen",
+  "rank": "B",
+  "texto": "O Shinigami traça um selo no ar com dois dedos, liberando",
+  "meta": "Requisito: Ação · Alcance: Linha de 12 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 16 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 47,
+  "nome": "Enraimei no Tate",
+  "rank": "B",
+  "texto": "O Shinigami crava o pé no chão e ergue o braço aos céus, canalizando seu Reiatsu em um redemoinho de faíscas douradas que o cercam. O ar vibra e o chão se ilumina com símbolos elétricos antes que uma cúpula de energia trovejante se forme, e em seguida, detone em uma explosão radial de relâmpagos que consome tudo ao redor.",
+  "meta": "Requisito: Ação · Alcance: Esfera de 4,5 metros (centrada em você) · Velocidade: Instantânea, Encantamento Rápido · Custo: 18 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 48,
+  "nome": "Toki no Kizu",
+  "rank": "B",
+  "texto": "O Shinigami coloca a palma da mão sobre o inimigo, e uma onda de energia espiritual densa e irregular atravessa o corpo da vítima. Por um breve instante, o fluxo temporal dentro do alvo se desestabiliza, fazendo seus músculos envelhecerem e seu espírito enfraquecer enquanto o tempo o devora de dentro para fora.",
+  "meta": "Requisito: Ação · Alcance: Toque · Velocidade: Instantânea, Encantamento Rápido · Custo: 17 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 49,
+  "nome": "Gakirekkou",
+  "rank": "B",
+  "texto": "Um círculo de energia verde surge diante do Shinigami, girando em alta rotação como uma engrenagem espiritual. De seu interior, dezenas de feixes de reiatsu são disparados em sequência, atravessando o ar como lâminas de pura energia cortante. O solo se parte e o ar vibra com cada impacto, tornando impossível escapar de sua chuva luminosa.",
+  "meta": "Requisito: Ação · Alcance: Linha de 18 metros e 3 metros de largura · Velocidade: Instantânea, Encantamento Lento · Custo: 17 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 50,
+  "nome": "Shinkuha",
+  "rank": "B",
+  "texto": "O Shinigami reúne seu reiatsu diante de si, moldando-o em uma lâmina translúcida que vibra com o som do ar sendo dividido. Num único gesto, ele desfere o golpe, liberando uma onda cortante invisível que rasga o espaço e tudo em seu caminho. A energia do vácuo colapsa sobre si mesma, destruindo o ar e a matéria onde toca. Realize uma jogada de ataque de Kido à distância contra uma criatura dentro do alcance. Em um acerto, o alvo sofre 5d10 de dano Sonoro, à medida que seu corpo é dilacerado pela pressão do vácuo e…",
+  "meta": "Requisito: Ação · Alcance: 12 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 15 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 51,
+  "nome": "Ennetsu Jigoku",
+  "rank": "B",
+  "texto": "metros de largura",
+  "meta": "Requisito: Ação · Alcance: Linha de 18 metros de comprimento por 4,5 · Velocidade: Instantânea, Encantamento Lento · Custo: 28 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 52,
+  "nome": "Kuroikiba",
+  "rank": "B",
+  "texto": "O Shinigami canaliza seu reiatsu em uma linha diante de si, e dele surgem garras sombrias feitas de energia espiritual condensada. Elas avançam em um estalo seco, rasgando o ar e deixando um rastro negro cintilante. O impacto é acompanhado de uma força espiritual sufocante que atinge o corpo e a mente dos inimigos.",
+  "meta": "Requisito: Ação · Alcance: Linha de 12 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 16 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 53,
+  "nome": "Shirotenrai",
+  "rank": "B",
+  "texto": "",
+  "meta": ""
+ },
+ {
+  "tipo": "hadou",
+  "n": 54,
+  "nome": "Haien",
+  "rank": "B",
+  "texto": "O Shinigami concentra todo seu reiatsu em uma explosão de energia espiritual roxa, lançando uma bola de fogo que incinera tudo em seu caminho. Realize uma jogada de ataque de Kido, a criatura atingida sofre 9d12 de dano de Fogo. Se o dano reduzir os pontos de vida do alvo a zero, a criatura é automaticamente incinerada e morta, sem chance de recuperação.",
+  "meta": "Requisito: Ação · Alcance: 18 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 18 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 55,
+  "nome": "Seiketsu",
+  "rank": "B",
+  "texto": "O Shinigami concentra seu reiatsu na mão, moldando uma lâmina de energia luminosa que se projeta como uma espada de pura luz. Ele corta em linha reta, atingindo a primeira criatura em seu caminho com precisão mortal, enquanto o clarão intenso ilumina a área ao redor. Em um acerto, o alvo sofre 9d10 de dano de Luz.",
+  "meta": "Requisito: Ação · Alcance: Linha de 12 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 15 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 56,
+  "nome": "Retsugaikou",
+  "rank": "B",
+  "texto": "O Shinigami levanta ambas as mãos e concentra uma energia elétrica instável, que se condensa em uma tempestade de fragmentos eletrificados. Ao liberar o Kido, os fragmentos voam em todas as direções dentro do cubo escolhido, atingindo qualquer criatura presente na área com uma descarga rápida e precisa.",
+  "meta": "Requisito: Ação · Alcance: Cubo de 4,5 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 15 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 57,
+  "nome": "Seikyouketsu",
+  "rank": "B",
+  "texto": "O Shinigami concentra Reiatsu em torno de seu corpo e estende ambas as mãos, liberando correntes espirituais venenosas que envolvem uma criatura próxima. As correntes se agarram ao alvo, causando dor intensa e sufocando seus movimentos.",
+  "meta": "Requisito: Ação · Alcance: Toque · Velocidade: Instantânea, Encantamento Lento · Custo: 16 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 58,
+  "nome": "Tenran",
+  "rank": "B",
+  "texto": "O Shinigami realiza um gesto amplo com as mãos, canalizando Reiatsu no ar para formar um tornado de",
+  "meta": "Requisito: Ação · Alcance: Linha de 12 metros, largura de 4,5 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 15 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 59,
+  "nome": "Shinku Tenshou",
+  "rank": "B",
+  "texto": "O Shinigami junta ambas as mãos à frente e concentra Reiatsu em uma esfera de luz intensa, que pulsa com energia espiritual concentrada. A esfera se expande rapidamente, atingindo todas as criaturas dentro do seu raio.",
+  "meta": "Requisito: Ação · Alcance: Círculo de 6 metros (até 15 metros de você) · Velocidade: Instantânea, Encantamento Lento · Custo: 18 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 60,
+  "nome": "Bakuhatsu Enbu",
+  "rank": "B",
+  "texto": "O Shinigami salta e gira no ar, liberando rajadas de energia espiritual colorida que explodem em pequenas detonações dentro de uma área cúbica ao seu redor. Cada explosão é imprevisível, criando um espetáculo de luz e energia que afeta qualquer criatura na área.",
+  "meta": "Requisito: Ação · Alcance: Cubo de 4,5 metros (Centrado no usuário) · Velocidade: Instantânea, Encantamento Lento · Custo: 15 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 61,
+  "nome": "Seiren Kozan",
+  "rank": "A",
+  "texto": "O Shinigami ergue ambas as mãos ao céu, e uma flor etérea de chamas espirituais alaranjadas se forma acima dele. As pétalas incandescentes giram em espiral, crescendo até se tornarem uma explosão de fogo divino que cobre a área em um círculo de destruição purificadora. O calor não apenas queima, ele consome o Reiatsu instável dos inimigos, deixando o ar vibrar com energia espiritual em colapso.",
+  "meta": "Requisito: Ação · Alcance: Esfera de 9 metros (até 36 metros de você) · Velocidade: Instantânea, Encantamento Normal · Custo: 21 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 62,
+  "nome": "Hyouketsu Ryouran",
+  "rank": "A",
+  "texto": "",
+  "meta": ""
+ },
+ {
+  "tipo": "hadou",
+  "n": 63,
+  "nome": "Raikouhou",
+  "rank": "A",
+  "texto": "O Shinigami ergue o braço e, à sua frente, o ar se curva sob o peso da energia espiritual. Um círculo dourado se forma, girando violentamente enquanto relâmpagos estouram dentro dele. Quando o encantamento é concluído, uma onda maciça de energia elétrica amarela é disparada em linha reta, o trovão ruge como uma fera ancestral, consumindo tudo em seu caminho com pura fúria espiritual.",
+  "meta": "Requisito: Ação · Alcance: Linha de 18 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 25 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 64,
+  "nome": "Seikatsu no Kekkai",
+  "rank": "A",
+  "texto": "12 metros de você)",
+  "meta": "Requisito: Ação · Alcance: Esfera de 6 metros (centrada em um ponto a até · Velocidade: Instantânea, Encantamento Normal · Custo: 21 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 65,
+  "nome": "Chijo Bankotsu",
+  "rank": "A",
+  "texto": "O Shinigami finca o pé no solo e canaliza seu Reiatsu diretamente para o chão. A energia espiritual rastreia o terreno como rachaduras ardentes, até que o chão explode em colunas de pedra e energia espiritual bruta, levantando uma onda de destruição irresistível. Todas as criaturas na linha devem realizar um Teste de Resistência de Força. Em uma falha, sofrem 10d12 de dano de Energia e são arremessadas 6 metros para trás, caindo derrubadas. Em caso de sucesso, sofrem metade do dano e permanecem de pé.",
+  "meta": "Requisito: Ação · Alcance: Linha de 12 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 25 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 66,
+  "nome": "Karyuu Tenka",
+  "rank": "A",
+  "texto": "O Shinigami ergue ambas as mãos, moldando sua energia espiritual em uma imensa serpente de fogo dourado que se lança à frente em um rugido flamejante. O dragão avança incinerando tudo em seu caminho, deixando um rastro ardente de destruição.",
+  "meta": "Requisito: Ação · Alcance: Linha de 18 metros por 3 metros de Largura · Velocidade: Instantânea, Encantamento Normal · Custo: 22 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 67,
+  "nome": "Jikan Dangan",
+  "rank": "A",
+  "texto": "",
+  "meta": ""
+ },
+ {
+  "tipo": "hadou",
+  "n": 68,
+  "nome": "Dokuga no Korin",
+  "rank": "A",
+  "texto": "O Shinigami traça um símbolo no ar com os dedos, liberando uma onda de energia espiritual tóxica que se expande rapidamente ao da mão do Shinigami. O veneno espiritual penetra na carne e no espírito das criaturas, causando dor intensa e debilitando suas defesas. Realize uma jogada de ataque de Kido corpo a corpo contra o alvo, infundido o veneno no corpo dele, causando 9d10 de dano de Veneno. Se o alvo for acertado ele tem uma redução de -2 na Classe de Resistência até o final do combate.",
+  "meta": "Requisito: Ação · Alcance: Toque · Velocidade: Instantânea, Encantamento Rápido · Custo: 22 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 69,
+  "nome": "Hikari no Senkou",
+  "rank": "A",
+  "texto": "O Shinigami estende a mão aberta em direção ao alvo, liberando um feixe concentrado de energia luminosa que percorre a linha escolhida. A luz brilha com intensidade ofuscante, atingindo a primeira criatura em seu caminho",
+  "meta": "Requisito: Ação · Alcance: Linha de 15 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 23 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 70,
+  "nome": "Kori no Raiten",
+  "rank": "A",
+  "texto": "O Shinigami estende a mão aberta em direção ao inimigo, liberando uma torrente de energia espiritual gelada que rasga o ar à frente. A onda de gelo percorre a linha, atingindo qualquer criatura no caminho e congelando suas defesas.",
+  "meta": "Requisito: Ação · Alcance: Linha de 9 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 25 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 71,
+  "nome": "Shinko Hoko",
+  "rank": "A",
+  "texto": "36 metros de você)",
+  "meta": "Requisito: Ação · Alcance: Esfera de 9 metros (centrada em um ponto a até · Velocidade: Instantânea, Encantamento Lento · Custo: 22 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 72,
+  "nome": "Hono no Tsubasa",
+  "rank": "A",
+  "texto": "O Shinigami eleva ambas as mãos, entrelaçando os dedos como se moldasse asas flamejantes de energia espiritual pura. Uma torrente de chamas espirituais percorre a linha escolhida, atingindo uma única criatura à frente. O calor intenso queima armaduras e carne, consumindo tudo em seu caminho.",
+  "meta": "Requisito: Acerto · Alcance: 15 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 23 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 73,
+  "nome": "Souren Soukatsui",
+  "rank": "A",
+  "texto": "",
+  "meta": ""
+ },
+ {
+  "tipo": "hadou",
+  "n": 74,
+  "nome": "Seikoko",
+  "rank": "A",
+  "texto": "O Shinigami estende a mão aberta em direção ao inimigo",
+  "meta": "Requisito: Acerto · Alcance: Linha de 12 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 25 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 75,
+  "nome": "Hokai Ryujin",
+  "rank": "A",
+  "texto": "O Shinigami entrelaça os dedos das duas mãos formando um selo complexo diante do peito e, em seguida, lança os braços para frente, abrindo as palmas. Uma serpente etérea de energia venenosa surge do selo, deslizando pelo ar como se tivesse vontade própria, mirando uma única criatura. O feixe toca o alvo e libera todo o veneno espiritual concentrado, corroendo sua resistência e força vital.",
+  "meta": "Requisito: Ação · Alcance: 12 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 22 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 76,
+  "nome": "Seiketsu Shiryu",
+  "rank": "A",
+  "texto": "O Shinigami levanta uma mão acima da cabeça e, com os dedos abertos, desenha círculos no ar. Ao completar o movimento, da palma da mão surge um feixe de energia espiritual concentrada, que atinge a mente do inimigo em vez de seu corpo. O ataque atravessa defesas físicas e causa dor mental intensa, desorientando a vítima. Todas as criaturas na linha são atingidas automaticamente, sofrendo 4d10 de dano Psíquico.",
+  "meta": "Requisito: Ação · Alcance: Linha de 6 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 24 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 77,
+  "nome": "Toki no Senko",
+  "rank": "A",
+  "texto": "O Shinigami estende as duas mãos à frente, formando um gesto fluido com os dedos que parece cortar o ar. Um feixe de energia temporal emerge de suas mãos e se estende em linha reta, atravessando o campo e atingindo a criatura à sua frente. O tempo dentro do corpo do alvo se distorce violentamente, causando intensa pressão e desestabilização física.",
+  "meta": "Requisito: Ação · Alcance: 9 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 25 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 78,
+  "nome": "Zangerin",
+  "rank": "A",
+  "texto": "O Shinigami concentra uma grande quantidade de Reiatsu em sua Zanpakutou e realiza um corte preciso no ar. A energia espiritual disparada ganha a forma de uma lâmina curva, semelhante a uma foice, que se projeta em direção ao inimigo. A lâmina espiritual corta tudo em sua trajetória, buscando a criatura à frente com velocidade e força devastadora.",
+  "meta": "Requisito: Ação · Alcance: 36 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 25 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 79,
+  "nome": "Kaminari",
+  "rank": "A",
+  "texto": "O Shinigami ergue a mão e convoca um raio espiritual do céu. A descarga divina cai com força esmagadora sobre",
+  "meta": "Requisito: Ação · Alcance: Esfera de 9 metros (Até 36 metros de você) · Velocidade: Instantânea, Encantamento Lento · Custo: 19 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 80,
+  "nome": "Kagutsuchi",
+  "rank": "A",
+  "texto": "O Shinigami concentra seu Reiatsu em uma esfera incandescente entre as mãos. Quando liberada, a esfera explode em uma onda de fogo espiritual, atingindo todas as criaturas dentro do alcance com calor e energia devastadora.",
+  "meta": "Requisito: Ação · Alcance: Esfera de 9 metros (Centrado no usuário) · Velocidade: Instantânea, Encantamento Normal · Custo: 23 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 81,
+  "nome": "Jiku no Tatsumaki",
+  "rank": "S",
+  "texto": "O Shinigami ergue ambas as mãos e distorce o ar ao redor, como se o próprio tempo se contorcesse sob seu comando. No ponto escolhido dentro do alcance, um enorme vórtice de energia temporal se forma, sugando a luz e o som enquanto rasga o tecido do tempo. Dentro da esfera, o passado e o futuro colidem, e tudo o que existe é moído pela força do instante desfeito.",
+  "meta": "Requisito: Ação · Alcance: Esfera de 9 metros (Até 36 metros do usuário) · Velocidade: Instantânea, Encantamento Lento · Custo: 27 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 82,
+  "nome": "Ennetsu Jigoku",
+  "rank": "S",
+  "texto": "metros de largura",
+  "meta": "Requisito: Ação · Alcance: Linha de 18 metros de comprimento por 4,5 · Velocidade: Instantânea, Encantamento Lento · Custo: 28 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 83,
+  "nome": "Kaminari no Korin",
+  "rank": "S",
+  "texto": "",
+  "meta": ""
+ },
+ {
+  "tipo": "hadou",
+  "n": 84,
+  "nome": "Kosen",
+  "rank": "S",
+  "texto": "O Shinigami junta as mãos diante do peito, e o ar entre seus dedos vibra como uma nota crescente. Num instante, ele estende um dos braços para frente e libera um feixe de pura pressão sonora, comprimido e visível apenas pela distorção do ar. O raio atravessa o espaço em um rugido estrondoso, focando toda a energia espiritual em um único alvo.",
+  "meta": "Requisito: Ação · Alcance: 18 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 26 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 85,
+  "nome": "Tenshi no Hikari",
+  "rank": "S",
+  "texto": "O Shinigami avança um passo à frente, arrasta a lâmina no chão e traça um semicírculo ardente de reiatsu dourado. Em um movimento brusco, ele gira a Zanpakutou em direção ao alvo, e a energia acumulada se parte em um feixe de luz celestial que desce do céu como um julgamento inevitável.",
+  "meta": "Requisito: Ação · Alcance: 18 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 31 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 86,
+  "nome": "Kesshou Sokatsu",
+  "rank": "S",
+  "texto": "O Shinigami aproxima-se do alvo e toca-o com a pal de sua mão, liberando uma energia espiritual corrosiva concentrada. A substância adere imediatamente ao corpo do inimigo, queimando e corroendo tudo em contato. Realize uma jogada de ataque de Kido contra o alvo. Em um acerto, ele sofre 10d6 de dano Corrosivo e sua Classe de Resistência é reduzida em -5 até o início do próximo turno do Shinigami.",
+  "meta": "Requisito: Ação · Alcance: Toque · Velocidade: Instantânea, Encantamento Lento · Custo: 26 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 87,
+  "nome": "Hyosetsu",
+  "rank": "S",
+  "texto": "O Shinigami faz um simbolo com as mãos para o céu e traçando um símbolos de gelo no ar, fazendo com que uma chuva de cristais cortantes de energia espiritual fria caia sobre todos na área. Cada estilhaço rasga a carne e o o",
+  "meta": "Requisito: Ação · Alcance: Esfera de 9 metros (Até 36 metros do usuário) · Velocidade: Instantânea, Encantamento Normal · Custo: 30 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 88,
+  "nome": "Hiriougeki Zoku Shinten Reihou",
+  "rank": "S",
+  "texto": "",
+  "meta": ""
+ },
+ {
+  "tipo": "hadou",
+  "n": 89,
+  "nome": "Shinri Shien",
+  "rank": "S",
+  "texto": "O Shinigami concentra intensamente seu reiatsu ao redor de sua cabeça, fechando os olhos e projetando ondas de",
+  "meta": "Requisito: Ação · Alcance: Esfera de 9 metros (Centrado no usuário) · Velocidade: Instantânea, Encantamento Normal · Custo: 26 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 90,
+  "nome": "Kurohitsugi",
+  "rank": "S",
+  "texto": "Apontando dois dedos para cima junto ao peito, o Shinigami traça um complexo símbolo no ar. Uma marcação surge no chão abaixo de uma criatura visível dentro do alcance, evocando um cubo negro que aprisiona um alvo. O cubo comprime a energia e o tempo ao redor da criatura, infligindo 15d12 de dano Temporal. A criatura deve realizar um Teste de Resistência de Força, em caso de sucesso, sofre metade do dano, e em caso de falha, recebe o dano inteiro. Se ela tiver um erro crítico quando for realizar o teste de…",
+  "meta": "Requisito: Ação Completa · Alcance: 36 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 36 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 91,
+  "nome": "Senjuu Kouten Taiho",
+  "rank": "SS",
+  "texto": "O Shinigami começa a recitar o encantamento, e tudo ao seu redor parece mergulhar na noite, especialmente para aqueles que o observam. Ele aponta para uma criatura alvo, que deve realizar um teste de resistência de Mente, em caso de falha, o usuário recebe vantagem no lançamento deste Hadou.",
+  "meta": "Requisito: Ação · Alcance: 56 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 36 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 92,
+  "nome": "Hikari no Tairiku",
+  "rank": "SS",
+  "texto": "O Shinigami ergue ambos os braços, unindo as pontas dos dedos, e traça complexos símbolos de luz no ar. A energia espiritual concentrada explode em uma esfera radiante que emana uma luz pura e abrasadora. A esfera se expande rapidamente, iluminando tudo em seu raio e atingindo todas as criaturas dentro da área.",
+  "meta": "Requisito: Ação · Alcance: Esfera de 6 metros (Até 36 metros do usuário) · Velocidade: Instantânea, Encantamento Normal · Custo: 30 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 93,
+  "nome": "Enkakyuu",
+  "rank": "SS",
+  "texto": "O Shinigami concentra seu reiatsu em uma esfera incandescente e a dispara contra uma criatura alvo. Ao atingir o inimigo, a esfera explode em chamas, atingindo o alvo diretamente e todas as criaturas em um raio de 6 metros ao redor dele.",
+  "meta": "Requisito: Ação · Alcance: 21 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 26 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 94,
+  "nome": "Dokukesshou",
+  "rank": "SS",
+  "texto": "O Shinigami estende os braços à frente, entrelaçando os dedos como se liberasse correntes invisíveis de energia espiritual. Uma onda de veneno espiritual percorre a linha designada, atingindo todas as criaturas no caminho. Ao tocar o corpo de seus alvos, a energia tóxica penetra rapidamente, corroendo a vitalidade e desestabilizando suas defesas.",
+  "meta": "Requisito: Ação · Alcance: Linha de 18 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 26 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 95,
+  "nome": "Reitetsu",
+  "rank": "SS",
+  "texto": "O Shinigami traça um símbolo complexo no ar com ambas as mãos, condensando seu reiatsu em cristais de gelo afiados. Os cristais se projetam em um cone de 12 metros, atingindo todas as criaturas na direção escolhida. Todas as criaturas dentro da área do cone devem realizar um Teste de Resistência de Destreza, sofrendo 12d10 de dano de Frio se falharem, e devem realizar um novo Teste de Resistência de Constituição: em caso de falha, recebem a condição Congelado até o final do próximo turno delas.",
+  "meta": "Requisito: Ação · Alcance: Cone de 12 metros de comprimento · Velocidade: Instantânea, Encantamento Rápido · Custo: 28 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 96,
+  "nome": "Ittoukasou",
+  "rank": "SS",
+  "texto": "O Shinigami concentra toda sua reiatsu em uma parte do corpo, escolhida como catalisador, braço, perna ou até o corpo inteiro. Essa parte se transforma em uma massa de energia destrutiva, explodindo e liberando uma onda massiva de energia vermelha que se espalha em 56 metros ao redor do usuário. Todas as criaturas dentro do alcance sofrem 20d10 + pontos de reiatsu total do usuário em dano de Energia. Exemplo se o shinigami que conjurou esse hadou possuir uma reiatsu total de 150 pontos, ao utilizar esse hadou,…",
+  "meta": "Requisito: Ação · Alcance: Raio de 56 metros, centrado no usuário · Velocidade: Instantânea, Encantamento Rápido · Custo: 55 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 97,
+  "nome": "Raikaryuu",
+  "rank": "SS",
+  "texto": "O Shinigami junta ambas as mãos fazendo menção a boca de um tigre, e atrás dele então surge a silhueta de um tigre formado de pura energia elétrica. O felino ruge, sua pelagem cintilando com relâmpagos, e investe em linha reta à frente do usuário, descarregando um poderoso feixe de eletricidade que percorre toda a linha, atingindo todas as criaturas em seu caminho com força devastadora. Todas as criaturas na linha devem realizar um Teste de Resistência de Constituição. Em caso de falha, sofrem 13d12 de dano…",
+  "meta": "Requisito: Ação · Alcance: Linha de 18 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 25 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 98,
+  "nome": "Honokai",
+  "rank": "SS",
+  "texto": "O Shinigami concentra uma quantidade colossal de reiatsu em uma de suas mãos, apontando diretamente para o inimigo. Uma chama vermelha e negra, pulsante como magma vivo, emerge da palma e envolve o alvo completamente. O corpo da criatura é tomado pelas chamas espirituais, que parecem penetrar em cada célula, queimando de dentro para fora. O calor é tão intenso que o ar ao redor distorce, e o grito do alvo ecoa como se fosse consumido pelo próprio inferno.",
+  "meta": "Requisito: Ação · Alcance: 18 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 32 PR"
+ },
+ {
+  "tipo": "hadou",
+  "n": 99,
+  "nome": "Goryutenmetsu",
+  "rank": "SS",
+  "texto": "O Hadou mais poderoso de todos. O usuário concentra uma quantidade colossal de reiatsu, rompendo o fluxo natural do Reimyaku ao redor e fazendo com que pilares de energia e solo se elevem do chão. Cinco enormes dragões de reiatsu surgem acima do usuário, seus corpos torcidos e pulsantes com energia pura, prontos para despencar sobre o campo de batalha. Ao serem enviados contra os inimigos, o impacto altera completamente o terreno, transformando tudo dentro do alcance em terreno difícil.",
+  "meta": "Requisito: Ação Completa · Alcance: Raio de 36 metros (Centrado no usuário) · Velocidade: Instantânea, Encantamento Rápido · Custo: 60 PR"
+ }
+]

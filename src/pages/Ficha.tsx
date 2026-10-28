@@ -3,7 +3,8 @@ import { SeletorEssencia } from "../components/SeletorEssencia";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { CartasHabilidades, CondicoesAtivas, EfeitosAtivos } from "../components/CartasResumo";
 import { AcoesRapidas } from "../components/AcoesRapidas";
-import { EscolhaPoderes, pendencias, totalPendencias } from "../components/EscolhaPoderes";
+import { EscolhaPoderes, pendencias, subclassePendente, totalPendencias } from "../components/EscolhaPoderes";
+import { EscolhaSubclasse } from "../components/EscolhaSubclasse";
 import { CartasFormas, ConstrutorForma, PainelFormaAtiva } from "../components/ConstrutorForma";
 import { TIPO_FORMA_NOME, formaPendente, nivelLiberacao } from "../regras/liberacoes";
 import { Campo, LinhaAtributos, Passo, SeletorVariacoes, novoId } from "../components/FichaPecas";
@@ -45,11 +46,13 @@ export default function Ficha() {
   const carregada = useRef(false);
   const [construir, setConstruir] = useState<TipoForma | null>(null);
   const nivelVisto = useRef<number | null>(null);
+  const [subAberta, setSubAberta] = useState(false);
   const rol = useRolagens();
 
   useEffect(() => {
     if (!id) return;
     carregada.current = false;
+    nivelVisto.current = null;
     lerFicha(id)
       .then((r) => {
         if (!r) setErro("Ficha não encontrada.");
@@ -79,16 +82,23 @@ export default function Ficha() {
 
   const c = useMemo(() => (f ? calcular(f) : null), [f]);
 
-  // ao subir de nível e chegar numa liberação nova, abre a tela para montá-la
+  // abre a próxima janela pendente: primeiro a subclasse, depois a forma de liberação (Shikai, Bankai...)
+  const proxima = useCallback((x: TFicha) => {
+    if (subclassePendente(x)) {
+      setSubAberta(true);
+      return;
+    }
+    const t = formaPendente(x, classePorId(x.classe)?.tipo);
+    if (t) setConstruir(t);
+  }, []);
+
+  // ao abrir a ficha e ao subir de nível, mostra as escolhas que faltam
   useEffect(() => {
     if (!f) return;
     const antes = nivelVisto.current;
     nivelVisto.current = f.nivel;
-    if (antes !== null && f.nivel > antes) {
-      const t = formaPendente(f, classePorId(f.classe)?.tipo);
-      if (t) setConstruir(t);
-    }
-  }, [f]);
+    if (antes === null || f.nivel > antes) proxima(f);
+  }, [f, proxima]);
 
   const subirNivel = useCallback(() => {
     alterar((x) => ({ nivel: Math.min(20, x.nivel + 1) }));
@@ -356,16 +366,28 @@ export default function Ficha() {
 
       {aba === "Treinamento" && <AbaTreinamento f={f} c={c} alterar={alterar} />}
 
-      {aba === "Evolução" && <Evolucao f={f} c={c} alterar={alterar} subir={subirNivel} onForma={setConstruir} />}
+      {aba === "Evolução" && <Evolucao f={f} c={c} alterar={alterar} subir={subirNivel} onForma={setConstruir} onSub={() => setSubAberta(true)} />}
 
       <PainelRolagens r={rol} />
-      {construir && (
+      {subAberta && (
+        <EscolhaSubclasse
+          f={f}
+          onFechar={() => setSubAberta(false)}
+          onEscolher={(nome) => {
+            alterar({ subclasse: nome });
+            setSubAberta(false);
+            const t = formaPendente({ ...f, subclasse: nome }, classePorId(f.classe)?.tipo);
+            if (t) setConstruir(t);
+          }}
+        />
+      )}
+      {construir && !subAberta && (
         <ConstrutorForma
           f={f}
           tipo={construir}
           onFechar={() => setConstruir(null)}
           onSalvar={(forma) => {
-            alterar({ formas: { ...f.formas, [construir]: forma } });
+            alterar({ formas: { ...f.formas, [construir]: forma }, ...(construir === "shikai" ? { zanpakutou: { nome: forma.nome, frase: forma.comando } } : {}) });
             setConstruir(null);
           }}
         />
@@ -417,7 +439,7 @@ function Barra({ tipo, rotulo, atual, max, pct, onChange }: { tipo: "pv" | "pr";
   );
 }
 
-function Evolucao({ f, c, alterar, subir, onForma }: { f: TFicha; c: ReturnType<typeof calcular>; alterar: (p: Partial<TFicha>) => void; subir: () => void; onForma: (t: TipoForma) => void }) {
+function Evolucao({ f, c, alterar, subir, onForma, onSub }: { f: TFicha; c: ReturnType<typeof calcular>; alterar: (p: Partial<TFicha>) => void; subir: () => void; onForma: (t: TipoForma) => void; onSub: () => void }) {
   const classe = classePorId(f.classe);
   const origem = origemPorId(f.origem);
   const nivelXp = nivelPorXp(f.xp);
@@ -476,7 +498,7 @@ function Evolucao({ f, c, alterar, subir, onForma }: { f: TFicha; c: ReturnType<
       <h2 className="title-font sub">Poderes do nível {f.nivel}</h2>
       <EscolhaPoderes f={f} mudar={alterar} />
 
-      {(["bankai", "resurreccion", "vollstandig"] as TipoForma[])
+      {(["shikai", "bankai", "resurreccion", "vollstandig"] as TipoForma[])
         .filter((t) => nivelLiberacao(f.classe, classe?.tipo, t) > 0)
         .map((t) => {
           const nv = nivelLiberacao(f.classe, classe?.tipo, t);
@@ -503,6 +525,7 @@ function Evolucao({ f, c, alterar, subir, onForma }: { f: TFicha; c: ReturnType<
       {classe && f.nivel >= 3 && (
         <div className="caixa">
           <h3>{classe.subclasseNome}</h3>
+          {!f.subclasse && <button type="button" className="btn btn-red" onClick={onSub}>Escolher {classe.subclasseNome} em uma janela</button>}
           {classe.subclasses.length ? (
             <select value={f.subclasse} onChange={(e) => alterar({ subclasse: e.target.value })} aria-label={classe.subclasseNome}>
               <option value="">Escolher</option>

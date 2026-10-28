@@ -704,3 +704,13 @@ input:focus, select:focus, textarea:focus { outline: 3px solid var(--accent); ou
 .opcao small { color: var(--muted); font-size: 14px; }
 .opcao.on { border-color: var(--accent); box-shadow: 4px 4px 0 var(--accent); }
 .assistente .chip-btn { text-align: left; white-space: normal; padding: 8px 12px; }
+
+/* balão de dica */
+.dica-alvo { display: block; }
+.dica-balao { position: fixed; z-index: 120; background: var(--panel); color: var(--text); border: 2px solid var(--accent); border-radius: 8px; padding: 10px 12px; font-size: 14px; line-height: 1.5; box-shadow: 6px 6px 0 #0006; pointer-events: none; }
+.dica-balao b { display: block; font-size: 16px; margin-bottom: 4px; }
+.dica-balao small { display: block; color: var(--muted); margin-bottom: 4px; }
+.dica-balao ul { margin: 0; padding-left: 18px; }
+.dica-balao p { margin: 0 0 6px; }
+.dica-alvo.dica-inline { display: inline-block; }
+.dica-alvo > .kido { width: 100%; }

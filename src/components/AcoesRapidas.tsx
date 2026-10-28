@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Passo } from "./FichaPecas";
 import type { Rolagens } from "./Rolador";
-import { CONDICOES, treinoConcluido } from "../regras/catalogo";
+import { CONDICAO_TEXTO, CONDICOES, treinoConcluido } from "../regras/catalogo";
+import { Dica } from "./Dica";
 import { nivelLiberacao } from "../regras/liberacoes";
 import { classePorId, type Calculo, type Ficha, type Liberacao } from "../regras/ficha";
 import { efeito as som } from "../lib/som";
@@ -74,6 +75,7 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
     if (id === "mascara") return 5 * c.prof;
     if (id === "vollstandig") return 60;
     if (id === "bankai") return f.formas?.bankai?.custo ?? 0;
+    if (id === "shikai") return f.formas?.shikai?.custo ?? 0;
     return 0;
   };
 
@@ -85,7 +87,7 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
     const custo = custoLib(id);
     const ganhoTemp = id === "resurreccion" && classe?.id === "vazio" ? (f.nivel >= 16 ? 5 : 3) * f.nivel : 0;
     alterar({ prAtual: Math.max(0, f.prAtual - custo), estado: { ...f.estado, liberado: id, pvTemp: Math.max(e.pvTemp, ganhoTemp) } });
-    setMsg(custo ? `${id === "mascara" ? "Máscara" : id === "vollstandig" ? "Vollständig" : id === "bankai" ? "Bankai" : "Resurrección"} ativada: ${custo} PR gastos.` : "Liberação marcada. O custo está na descrição da sua Zanpakutou.");
+    setMsg(custo ? `${id === "mascara" ? "Máscara" : id === "vollstandig" ? "Vollständig" : id === "bankai" ? "Bankai" : id === "shikai" ? "Shikai" : "Resurrección"} ativada: ${custo} PR gastos.` : "Liberação marcada. O custo está na descrição da sua Zanpakutou.");
   };
 
   return (
@@ -131,9 +133,11 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
         <summary>Condições {e.condicoes.length > 0 && <span className="chip">{e.condicoes.length}</span>}</summary>
         <div className="chips">
           {CONDICOES.map((n) => (
-            <button key={n} type="button" className={`chip chip-btn ${e.condicoes.includes(n) ? "on" : ""}`} aria-pressed={e.condicoes.includes(n)} onClick={() => setE({ condicoes: e.condicoes.includes(n) ? e.condicoes.filter((x) => x !== n) : [...e.condicoes, n] })}>
-              {n}
-            </button>
+            <Dica key={n} className="dica-inline" balao={<><b>{n}</b><ul>{(CONDICAO_TEXTO[n] ?? []).map((t, i) => <li key={i}>{t}</li>)}</ul></>}>
+              <button type="button" className={`chip chip-btn ${e.condicoes.includes(n) ? "on" : ""}`} aria-pressed={e.condicoes.includes(n)} onClick={() => setE({ condicoes: e.condicoes.includes(n) ? e.condicoes.filter((x) => x !== n) : [...e.condicoes, n] })}>
+                {n}
+              </button>
+            </Dica>
           ))}
         </div>
       </details>

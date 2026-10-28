@@ -67,6 +67,8 @@ export interface Kido {
   n: number;
   nome: string;
   rank: string;
+  texto?: string;
+  meta?: string;
 }
 export const KIDOS = kidosJson as unknown as Kido[];
 
@@ -81,6 +83,7 @@ export const kidoLiberado = (k: Kido, classeId: string, nivel: number) => {
 export interface TecnicaReishi {
   nome: string;
   nivel: number;
+  texto?: string;
 }
 export const TECNICAS_REISHI = tecnicasJson as unknown as TecnicaReishi[];
 export const tecnicasConhecidas = (classeId: string, nivel: number) => linhaProg(classeId, nivel)?.tecnicas ?? 0;

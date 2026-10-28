@@ -482,7 +482,7 @@ export interface Treinos {
 
 export type Liberacao = "" | "shikai" | "bankai" | "resurreccion" | "vollstandig" | "mascara";
 
-export type TipoForma = "bankai" | "resurreccion" | "vollstandig";
+export type TipoForma = "shikai" | "bankai" | "resurreccion" | "vollstandig";
 
 export interface HabForma {
   id: string;
@@ -518,6 +518,10 @@ export interface FormaLib {
   picks: Record<string, number>;
   /** texto de referência do modelo pronto */
   texto: string;
+  /** Shikai: Combate, Elemental, Kido ou Especial */
+  categoria?: string;
+  /** Shikai: o espírito da Zanpakutou (aparência e personalidade) */
+  espirito?: string;
 }
 
 export interface Estado {

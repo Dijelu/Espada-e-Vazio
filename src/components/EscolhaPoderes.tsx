@@ -13,6 +13,7 @@ import {
   tecnicasConhecidas,
 } from "../regras/catalogo";
 import { classePorId, type Ficha } from "../regras/ficha";
+import { Dica } from "./Dica";
 import { formaPendente } from "../regras/liberacoes";
 
 export interface Pendencias {
@@ -21,7 +22,12 @@ export interface Pendencias {
   tecnicas: number;
   /** forma de liberação (Bankai, Resurrección ou Vollständig) por montar */
   forma: number;
+  /** subclasse do nível 3 ainda sem escolha */
+  subclasse: number;
 }
+
+/** A subclasse chega no nível 3 e ainda não foi escolhida. */
+export const subclassePendente = (f: Ficha) => !!classePorId(f.classe) && f.nivel >= 3 && !f.subclasse.trim();
 
 /** Quantas escolhas de poderes ainda faltam para o nível atual. */
 export function pendencias(f: Ficha): Pendencias {
@@ -32,10 +38,11 @@ export function pendencias(f: Ficha): Pendencias {
     kidos: Math.max(0, kidosConhecidos(f.classe, f.nivel) - f.kidos.length),
     tecnicas: Math.max(0, tecnicasConhecidas(f.classe, f.nivel) - f.tecnicasReishi.length),
     forma: formaPendente(f, classePorId(f.classe)?.tipo) ? 1 : 0,
+    subclasse: subclassePendente(f) ? 1 : 0,
   };
 }
 
-export const totalPendencias = (p: Pendencias) => p.talentos + p.kidos + p.tecnicas + p.forma;
+export const totalPendencias = (p: Pendencias) => p.talentos + p.kidos + p.tecnicas + p.forma + p.subclasse;
 
 export function EscolhaPoderes({ f, mudar }: { f: Ficha; mudar: (p: Partial<Ficha>) => void }) {
   const classe = classePorId(f.classe);
@@ -112,22 +119,23 @@ export function EscolhaPoderes({ f, mudar }: { f: Ficha; mudar: (p: Partial<Fich
                   const trava = talentoLiberado(t, f);
                   const cheio = !marcado && escolhidos.length >= slots;
                   return (
-                    <div key={t.id} className={`tal ${marcado ? "on" : ""} ${trava ? "trava" : ""}`}>
-                      <button
-                        type="button"
-                        className="tal-corpo"
-                        onClick={() => (!trava || marcado) && alternarTalento(t.id)}
-                        disabled={(!!trava && !marcado) || cheio}
-                        aria-pressed={marcado}
-                      >
-                        <b>{marcado ? "✓ " : ""}{t.nome}</b>
-                        <small>{trava ? `🔒 ${trava}` : t.req || `${t.nivel}º nível`}</small>
-                      </button>
-                      <button type="button" className="tal-ver" onClick={() => setAberto(aberto === t.id ? "" : t.id)} aria-expanded={aberto === t.id}>
-                        {aberto === t.id ? "Fechar" : "Ler"}
-                      </button>
-                      {aberto === t.id && <p className="tal-texto">{t.texto}</p>}
-                    </div>
+                    <Dica key={t.id} balao={<><b>{t.nome}</b><small>{trava ? `🔒 ${trava}` : t.req || `${t.nivel}º nível`}</small><p>{t.texto}</p></>}>
+                      {(alternar) => (
+                        <div className={`tal ${marcado ? "on" : ""} ${trava ? "trava" : ""}`}>
+                          <button
+                            type="button"
+                            className="tal-corpo"
+                            onClick={() => (!trava || marcado) && alternarTalento(t.id)}
+                            disabled={(!!trava && !marcado) || cheio}
+                            aria-pressed={marcado}
+                          >
+                            <b>{marcado ? "✓ " : ""}{t.nome}</b>
+                            <small>{trava ? `🔒 ${trava}` : t.req || `${t.nivel}º nível`}</small>
+                          </button>
+                          <button type="button" className="tal-ver" onClick={alternar} aria-label={`Ler ${t.nome}`}>Ler</button>
+                        </div>
+                      )}
+                    </Dica>
                   );
                 })}
               </div>
@@ -166,11 +174,13 @@ export function EscolhaPoderes({ f, mudar }: { f: Ficha; mudar: (p: Partial<Fich
             {kidosFiltrados.map((k) => {
               const on = temKido(k);
               return (
-                <button key={k.tipo + k.n} type="button" className={`kido ${on ? "on" : ""}`} onClick={() => alternarKido(k)} aria-pressed={on} disabled={!on && f.kidos.length >= maxKidos}>
-                  <i>{k.n}</i>
-                  <span>{k.nome}</span>
-                  <em>{k.rank}</em>
-                </button>
+                <Dica key={k.tipo + k.n} balao={<><b>{k.tipo === "hadou" ? "Hadō" : "Bakudō"} {k.n} · {k.nome}</b><small>Rank {k.rank}{k.meta ? ` · ${k.meta}` : ""}</small><p>{k.texto || "Veja o texto completo no capítulo de Feitiços e Técnicas do livro."}</p></>}>
+                  <button type="button" className={`kido ${on ? "on" : ""}`} onClick={() => alternarKido(k)} aria-pressed={on} disabled={!on && f.kidos.length >= maxKidos}>
+                    <i>{k.n}</i>
+                    <span>{k.nome}</span>
+                    <em>{k.rank}</em>
+                  </button>
+                </Dica>
               );
             })}
             {kidosFiltrados.length === 0 && <p className="ajuda">Nada encontrado nesse rank.</p>}
@@ -190,10 +200,12 @@ export function EscolhaPoderes({ f, mudar }: { f: Ficha; mudar: (p: Partial<Fich
             {tecnicas.map((t) => {
               const on = f.tecnicasReishi.includes(t.nome);
               return (
-                <button key={t.nome} type="button" className={`kido ${on ? "on" : ""}`} onClick={() => alternarTecnica(t.nome)} aria-pressed={on} disabled={!on && f.tecnicasReishi.length >= maxTec}>
-                  <i>{t.nivel}</i>
-                  <span>{t.nome}</span>
-                </button>
+                <Dica key={t.nome} balao={<><b>{t.nome}</b><small>Técnica de Reishi · nível {t.nivel}</small><p>{t.texto || "Veja o texto completo no capítulo de Feitiços e Técnicas do livro."}</p></>}>
+                  <button type="button" className={`kido ${on ? "on" : ""}`} onClick={() => alternarTecnica(t.nome)} aria-pressed={on} disabled={!on && f.tecnicasReishi.length >= maxTec}>
+                    <i>{t.nivel}</i>
+                    <span>{t.nome}</span>
+                  </button>
+                </Dica>
               );
             })}
           </div>

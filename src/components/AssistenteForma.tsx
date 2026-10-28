@@ -19,6 +19,15 @@ interface Passo {
 }
 
 const PASSOS: Record<TipoForma, Passo[]> = {
+  shikai: [
+    { id: "categoria", titulo: "Categoria", ajuda: "Defina o tipo da sua Zanpakutou. Combate é voltada só para lutar. Elemental usa um elemento da natureza. Kido tem uma habilidade que faz tudo funcionar. Especial é o que não cabe nas outras." },
+    { id: "espirito", titulo: "Espírito", ajuda: "A alma do Shinigami se reflete na Zanpakutou. Crie a aparência e a personalidade do espírito com base no seu personagem (ou no contrário dele). O espírito pode ter vontades diferentes das suas." },
+    { id: "nome", titulo: "Nome e comando", ajuda: "O nome tem relação com a natureza da Zanpakutou. Na Shikai ele é um nome incompleto. O comando é a frase de liberação, como “Reduza tudo a Cinzas” seguido do nome." },
+    { id: "aparencia", titulo: "Forma", ajuda: "Ao liberar, a Zanpakutou pode ter outra forma: outra arma ou algo exótico. Pode ser dupla (duas armas). Ela usa o mesmo atributo da Asauchi nos ataques." },
+    { id: "acoes", titulo: "Habilidades e técnicas", ajuda: "Habilidades são poderes passivos da Shikai. Técnicas são ativadas de propósito. Quanto mais forte, maior o custo. Use os modelos e edite." },
+    { id: "custo", titulo: "Custo de liberação", ajuda: "De 3 a 10 PR. Custos altos são para Shikais completas e poderosas; custos baixos, para as mais simples ou incompletas." },
+    { id: "revisao", titulo: "Revisão", ajuda: "Confira tudo. Ao salvar, o nome e a frase vão para a sua ficha e as habilidades viram cartas no Resumo." },
+  ],
   bankai: [
     { id: "conceito", titulo: "Conceito", ajuda: "A Bankai reflete a alma do Shinigami. Pense no que ele esconde dentro de si e escolha como ela vai se comportar em relação à sua Shikai." },
     { id: "nome", titulo: "Nome e comando", ajuda: "O nome verdadeiro do espírito aparece na Bankai. O comando é a frase dita ao liberar, seguida do nome." },
@@ -48,6 +57,13 @@ const PASSOS: Record<TipoForma, Passo[]> = {
 };
 
 const APARENCIA: Record<TipoForma, string[]> = {
+  shikai: [
+    "A Asauchi se transforma numa espada de lâmina diferente.",
+    "A lâmina se desfaz em milhares de pétalas ou lâminas minúsculas.",
+    "A arma vira uma lança, naginata ou arco.",
+    "A Zanpakutou se divide em duas armas.",
+    "Uma manopla, leque ou arma exótica surge na mão.",
+  ],
   bankai: [
     "A lâmina continua a mesma, mas o corpo é envolto pelo elemento da Zanpakutou.",
     "O ambiente muda: nuvens, tempestade, neve ou noite cobrem o céu.",
@@ -81,6 +97,7 @@ const TRACOS = [
 ];
 
 const FRAQUEZAS: Record<TipoForma, string[]> = {
+  shikai: [],
   bankai: [
     "Só pode ser liberada longe de aliados, porque o poder também os atinge.",
     "Ao encerrar a Bankai, você fica Esgotado até o fim do próximo turno.",
@@ -121,15 +138,16 @@ const ASSINATURA: Record<string, [string, string]> = {
 
 /** Modelos de habilidade para quem nunca montou uma forma. Os valores crescem com o nível. */
 function modelos(tipo: TipoForma, atr: string): HabForma[] {
-  const d = tipo === "bankai" ? "d12" : "d10";
+  const d = tipo === "bankai" ? "d12" : tipo === "shikai" ? "d8" : "d10";
+  const peq = tipo === "shikai";
   const mk = (nome: string, acao: string, pr: number, dano: string, texto: string): HabForma => ({ id: novoId(), nome, acao, custo: pr ? `${pr} PR` : "", pr: pr || undefined, dano: dano || undefined, texto });
   return [
-    mk("Ataque básico", "Ação", tipo === "bankai" ? 15 : 10, `[NIV/2+3]${d}+[${atr}]`, "Um ataque do tema da sua forma. Descreva como ele se manifesta."),
-    mk("Golpe em área", "Ação", 20, `[NIV/2+4]${d}+[${atr}]`, "Atinge criaturas numa área de 6 metros de raio. Salvaguarda de Destreza (CD 8 + proficiência + atributo): dano na falha, metade no sucesso."),
-    mk("Técnica final", "Ação", 30, tipo === "bankai" ? `[NIV]${d}+[${atr}]` : `[NIV/2+5]${d}+[${atr}]`, "O golpe mais forte da sua forma. Só vale a pena em momentos decisivos."),
-    mk("Reforço", "Ação bônus", 8, "2d10", "O seu próximo ataque no turno causa o dano indicado a mais."),
-    mk("Defesa", "Reação", 10, "2d10+[PROF]", "Reduz o dano sofrido por você ou por um aliado a 3 metros na quantidade indicada."),
-    mk("Proteção", "Ação", 15, "[NIV]", "Você e os aliados a até 3 metros ganham PV temporários na quantidade indicada."),
+    mk("Ataque básico", "Ação", tipo === "bankai" ? 15 : peq ? 4 : 10, peq ? `[NIV/2+1]${d}+[${atr}]` : `[NIV/2+3]${d}+[${atr}]`, "Um ataque do tema da sua forma. Descreva como ele se manifesta."),
+    mk("Golpe em área", "Ação", peq ? 8 : 20, peq ? `[NIV/2+2]${d}+[${atr}]` : `[NIV/2+4]${d}+[${atr}]`, "Atinge criaturas numa área de 6 metros de raio. Salvaguarda de Destreza (CD 8 + proficiência + atributo): dano na falha, metade no sucesso."),
+    mk("Técnica final", "Ação", peq ? 10 : 30, tipo === "bankai" ? `[NIV]${d}+[${atr}]` : peq ? `[NIV/2+4]${d}+[${atr}]` : `[NIV/2+5]${d}+[${atr}]`, "O golpe mais forte da sua forma. Só vale a pena em momentos decisivos."),
+    mk("Reforço", "Ação bônus", peq ? 3 : 8, "2d10", "O seu próximo ataque no turno causa o dano indicado a mais."),
+    mk("Defesa", "Reação", peq ? 4 : 10, "2d10+[PROF]", "Reduz o dano sofrido por você ou por um aliado a 3 metros na quantidade indicada."),
+    mk("Proteção", "Ação", peq ? 6 : 15, "[NIV]", "Você e os aliados a até 3 metros ganham PV temporários na quantidade indicada."),
   ];
 }
 
@@ -169,7 +187,8 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo }: Pro
   if (!r.nome.trim()) erros.push("Falta o nome.");
   if (tipo === "vollstandig" && usados < limite) erros.push(`Faltam ${limite - usados} habilidade(s) única(s).`);
   if (r.habilidades.length === 0) erros.push("Adicione pelo menos uma habilidade ou técnica.");
-  if (tipo !== "vollstandig" && !r.pontoFraco.trim()) erros.push("Falta o ponto fraco.");
+  if (tipo === "shikai" && !r.categoria) erros.push("Escolha a categoria.");
+  if ((tipo === "bankai" || tipo === "resurreccion") && !r.pontoFraco.trim()) erros.push("Falta o ponto fraco.");
 
   return (
     <div className="assistente">
@@ -187,6 +206,26 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo }: Pro
         <small className="ajuda">Passo {i + 1} de {passos.length}</small>
         <h3>{passo.titulo}</h3>
         <p className="ajuda">{passo.ajuda}</p>
+
+        {passo.id === "categoria" && (
+          <div className="opcoes-grandes">
+            {[
+              ["Combate", "Voltada para lutar, como a Zangetsu. Habilidades simples, como somar o dobro da Força no dano."],
+              ["Elemental", "Envolve um elemento, como o fogo da Ryuujin Jakka ou o gelo da Sode no Shirayuki."],
+              ["Kido", "Tem uma habilidade que faz tudo funcionar, como as marcas da Suzumebachi."],
+              ["Especial", "Não se encaixa nas outras, como a névoa de lâminas da Haineko."],
+            ].map(([n, d]) => (
+              <button key={n} type="button" className={`opcao ${r.categoria === n ? "on" : ""}`} onClick={() => mud({ categoria: n })}>
+                <b>{n}</b>
+                <small>{d}</small>
+              </button>
+            ))}
+          </div>
+        )}
+
+        {passo.id === "espirito" && (
+          <label className="campo">Espírito da Zanpakutou<textarea rows={4} value={r.espirito ?? ""} onChange={(e) => mud({ espirito: e.target.value })} placeholder="Aparência e personalidade. Ex.: um dragão de gelo calmo e orgulhoso." /></label>
+        )}
 
         {passo.id === "conceito" && tipo === "bankai" && (
           <>
@@ -213,8 +252,8 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo }: Pro
 
         {passo.id === "nome" && (
           <>
-            <label className="campo">Nome<input value={r.nome} onChange={(e) => mud({ nome: e.target.value })} placeholder={tipo === "resurreccion" ? "Ex.: Pantera" : tipo === "vollstandig" ? "Ex.: Vollständig do Atirador" : "Nome verdadeiro da Zanpakutou"} /></label>
-            <label className="campo">{tipo === "vollstandig" ? "Frase de liberação" : "Comando"}<input value={r.comando} onChange={(e) => mud({ comando: e.target.value })} placeholder={tipo === "bankai" ? "Ex.: Bankai, (nome)" : tipo === "resurreccion" ? "Ex.: Rasgue o silêncio, Pantera." : "Ex.: Quincy Vollständig"} /></label>
+            <label className="campo">Nome<input value={r.nome} onChange={(e) => mud({ nome: e.target.value })} placeholder={tipo === "shikai" ? "Nome da Zanpakutou na Shikai" : tipo === "resurreccion" ? "Ex.: Pantera" : tipo === "vollstandig" ? "Ex.: Vollständig do Atirador" : "Nome verdadeiro da Zanpakutou"} /></label>
+            <label className="campo">{tipo === "vollstandig" ? "Frase de liberação" : "Comando"}<input value={r.comando} onChange={(e) => mud({ comando: e.target.value })} placeholder={tipo === "shikai" ? "Ex.: Reduza tudo a cinzas, (nome)" : tipo === "bankai" ? "Ex.: Bankai, (nome)" : tipo === "resurreccion" ? "Ex.: Rasgue o silêncio, Pantera." : "Ex.: Quincy Vollständig"} /></label>
           </>
         )}
 
@@ -299,7 +338,10 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo }: Pro
           </>
         )}
 
-        {passo.id === "custo" && (
+        {passo.id === "custo" && tipo === "shikai" && (
+          <label className="campo">Custo de liberação (3 a 10 PR)<input type="number" min={3} max={10} value={r.custo} onChange={(e) => mud({ custo: Number(e.target.value) })} /></label>
+        )}
+        {passo.id === "custo" && tipo !== "shikai" && (
           <>
             <div className="duas">
               <label className="campo">Custo de liberação (PR)<input type="number" min={20} max={80} value={r.custo} onChange={(e) => mud({ custo: Number(e.target.value) })} /></label>
@@ -326,6 +368,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo }: Pro
             {r.aparencia && <p>{r.aparencia}</p>}
             {r.traco && <p><b>Traço:</b> {r.traco}</p>}
             {r.canalizador && <p><b>Canalizador:</b> {r.canalizador}</p>}
+            {tipo === "shikai" && <p><b>{r.categoria || "Sem categoria"}</b> · {r.custo} PR</p>}
             {tipo === "bankai" && <p><b>{r.estilo || "Tipo não escolhido"}</b> · {r.custo} PR · {r.duracao}</p>}
             {Object.keys(r.picks).length > 0 && (
               <ul>{Object.entries(r.picks).map(([id, n]) => <li key={id}>{HAB_UNICAS.find((h) => h.id === id)?.nome} ({n}x)</li>)}</ul>

@@ -1,4 +1,5 @@
 import bankaisJson from "./bankais.json";
+import shikaisJson from "./shikais.json";
 import acoesJson from "./acoes-forma.json";
 import type { Calculo, Ficha, FormaLib, HabForma, TipoForma } from "./ficha";
 
@@ -22,6 +23,18 @@ export interface ModeloBankai {
   acoes: AcaoBankai[];
 }
 export const BANKAIS: ModeloBankai[] = bankaisJson as ModeloBankai[];
+
+/* ---------- Shikai: modelos prontos ---------- */
+
+export interface ModeloShikai {
+  id: string;
+  nome: string;
+  categoria: string;
+  resumo: string;
+  custo: number;
+  acoes: AcaoBankai[];
+}
+export const SHIKAIS: ModeloShikai[] = shikaisJson as ModeloShikai[];
 
 /* ---------- Resurrección: modelos do livro ---------- */
 
@@ -147,6 +160,7 @@ export const VOLL_PRONTAS: ProntaVoll[] = [
 
 /** Nível em que o personagem pode ter essa forma, ou 0 se a classe não tem. */
 export function nivelLiberacao(classeId: string, tipoClasse: string | undefined, tipo: TipoForma): number {
+  if (tipo === "shikai") return tipoClasse === "shinigami" ? 3 : 0;
   if (tipo === "bankai") return tipoClasse === "shinigami" ? 10 : 0;
   if (tipo === "resurreccion") return tipoClasse === "hollow" ? 10 : 0;
   if (tipo === "vollstandig") return tipoClasse === "quincy" ? (classeId === "ritter" ? 12 : 13) : 0;
@@ -161,6 +175,7 @@ export function picksVoll(classeId: string, nivel: number): number {
 export const totalPicks = (p: Record<string, number>) => Object.values(p).reduce((a, b) => a + b, 0);
 
 export const TIPO_FORMA_NOME: Record<TipoForma, string> = {
+  shikai: "Shikai",
   bankai: "Bankai",
   resurreccion: "Resurrección",
   vollstandig: "Vollständig",
@@ -168,7 +183,7 @@ export const TIPO_FORMA_NOME: Record<TipoForma, string> = {
 
 /** Forma pendente de configurar (ainda sem nome, ou com habilidades únicas faltando). */
 export function formaPendente(f: { classe: string; nivel: number; formas?: Partial<Record<TipoForma, FormaLib>> }, tipoClasse: string | undefined): TipoForma | null {
-  for (const t of ["bankai", "resurreccion", "vollstandig"] as TipoForma[]) {
+  for (const t of ["shikai", "bankai", "resurreccion", "vollstandig"] as TipoForma[]) {
     const n = nivelLiberacao(f.classe, tipoClasse, t);
     if (!n || f.nivel < n) continue;
     const forma = f.formas?.[t];

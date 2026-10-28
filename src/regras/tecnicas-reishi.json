@@ -1,1 +1,127 @@
-[{"nome": "Blue Flames", "nivel": 1}, {"nome": "Disparo Explosivo", "nivel": 1}, {"nome": "Flechas de Reishi", "nivel": 1}, {"nome": "Gritz", "nivel": 1}, {"nome": "Heizen", "nivel": 1}, {"nome": "Lança de Reishi", "nivel": 1}, {"nome": "Wolke", "nivel": 1}, {"nome": "Blut Arterie", "nivel": 2}, {"nome": "Blut Vene", "nivel": 2}, {"nome": "Licht Klinge", "nivel": 2}, {"nome": "Klavier", "nivel": 2}, {"nome": "Materialização", "nivel": 2}, {"nome": "Ransotengai", "nivel": 2}, {"nome": "Blue Burst", "nivel": 3}, {"nome": "Blut Vene Anhaben", "nivel": 3}, {"nome": "Grande Lança de Reishi", "nivel": 3}, {"nome": "Prisão de Reishi", "nivel": 3}, {"nome": "Shadow", "nivel": 3}, {"nome": "Sprenger", "nivel": 3}, {"nome": "Blitz Geschoss", "nivel": 4}, {"nome": "Blue Pillar", "nivel": 4}, {"nome": "Chuva de Heilig Pfeil", "nivel": 4}, {"nome": "Heilig Pfeil Erobern", "nivel": 4}, {"nome": "Kirchenlied: Sankt Zwinger", "nivel": 4}, {"nome": "Qual Kreis", "nivel": 4}]
+[
+ {
+  "nome": "Blue Flames",
+  "nivel": 1,
+  "texto": "Você concentra uma grande quantidade de Reiatsu nas mãos, fazendo chamas azuladas de Reishi surgirem ao redor de seus braços. As chamas se intensificam rapidamente, irradiando calor enquanto partículas espirituais se acumulam em seu interior. Com um movimento brusco, você lança essa energia contra um alvo, envolvendo o ponto de impacto em uma explosão de fogo azul. O ataque causa 2d10 de dano de Fogo. Se uma criatura for reduzida a 0 pontos de vida por essa técnica, ela morre instantaneamente."
+ },
+ {
+  "nome": "Disparo Explosivo",
+  "nivel": 1,
+  "texto": "Quando você realizar um disparo com uma arma de ataque à distância, poderá criar um projétil explosivo que, ao atingir o alvo, provoca uma explosão em um raio de 3 metros. Todas as criaturas na área, incluindo o alvo atingido, devem realizar um teste de resistência de Destreza, se você atingiu a criatura com o disparo ela fará o teste com desvantagem. Em caso de falha, sofrem 2d6 de dano de Energia ou o dano causado pela arma, o que for maior. Esta técnica também pode ser utilizada em outras Técnicas de Reishi ou…"
+ },
+ {
+  "nome": "Flechas de Reishi",
+  "nivel": 1,
+  "texto": ""
+ },
+ {
+  "nome": "Gritz",
+  "nivel": 1,
+  "texto": "criatura, formando uma cruz Quincy que, ao atingi-la, envolve seu corpo e a aprisiona em uma jaula de metal, prendendo todos os seus membros. A jaula possui Pontos de Vida iguais à quantidade de Reiatsu armazenada no Gintou. O Gintou é destruido quando usado nessa técnica. A criatura aprisionada pode realizar um Teste de Resistência de Força no começo do turno para tentar se libertar. Em caso de falha, permanece presa."
+ },
+ {
+  "nome": "Heizen",
+  "nivel": 1,
+  "texto": ""
+ },
+ {
+  "nome": "Lança de Reishi",
+  "nivel": 1,
+  "texto": "Você concentra uma grande quantidade de Reishi e cria uma enorme lança espiritual, arremessando-a com um gesto da mão. A lança avança até o ponto escolhido e explode no impacto, atingindo todas as criaturas em um Segundo Nível, Exclusiva BLUE BURST"
+ },
+ {
+  "nome": "Wolke",
+  "nivel": 1,
+  "texto": "Quando você for atingido por um ataque corpo a corpo ou à distância, poderá utilizar sua reação e um Gintou para reduzir o dano recebido em um valor igual à quantidade de Reiatsu armazenada nele. O Gintou é destruido quando usado nessa técnica."
+ },
+ {
+  "nome": "Blut Arterie",
+  "nivel": 2,
+  "texto": "Ao fazer o Reishi fluir diretamente por seus vasos sanguíneos, você aumenta drasticamente seu poder defensivo. Enquanto o Blut Vene estiver ativo, você recebe um bônus de CR igual à metade do seu atributo-chave de Técnicas de Reishi e redução de dano contra todos os tipos de dano, exceto psíquico, igual a metade do seu atributochave de Técnicas de Reishi."
+ },
+ {
+  "nome": "Blut Vene",
+  "nivel": 2,
+  "texto": "Ao fazer o Reishi fluir diretamente por seus vasos sanguíneos, você aumenta drasticamente seu poder defensivo. Enquanto o Blut Vene estiver ativo, você recebe um bônus de CR igual à metade do seu atributo-chave de Técnicas de Reishi e redução de dano contra todos os tipos de dano, exceto psíquico, igual a metade do seu atributochave de Técnicas de Reishi."
+ },
+ {
+  "nome": "Licht Klinge",
+  "nivel": 2,
+  "texto": "Ao realizar um ataque corpo a corpo, você pode imbuir sua arma com Reishi, fazendo-a brilhar em azul e aumentando Segundo Nível, Bleach"
+ },
+ {
+  "nome": "Klavier",
+  "nivel": 2,
+  "texto": "Ao fazer o Reishi fluir diretamente por seus vasos sanguíneos, você aumenta drasticamente seu poder defensivo. Enquanto o Blut Vene estiver ativo, você recebe um bônus de CR igual à metade do seu atributo-chave de Técnicas de Reishi e redução de dano contra todos os tipos de dano, exceto psíquico, igual a metade do seu atributochave de Técnicas de Reishi."
+ },
+ {
+  "nome": "Materialização",
+  "nivel": 2,
+  "texto": "Você reúne partículas de Reishi e materializa uma arma à sua escolha do Arsenal Quincy em suas mãos. A arma permanece materializada por 1 minuto, após o qual se desfaz em partículas de Reishi. Você pode desfazê-la antes do término da duração, sem gastar uma ação."
+ },
+ {
+  "nome": "Ransotengai",
+  "nivel": 2,
+  "texto": "Você cria fios de Reishi controlados pela mente, conectando-os ao próprio corpo para movimentá-lo como uma marionete. Enquanto a técnica estiver ativa, você pode continuar se movimentando e realizando ações mesmo que esteja sob efeito de condições que impeçam seus movimentos, como Paralisado ou Incapacitado. Essa técnica não remove as condições nem impede seus demais efeitos."
+ },
+ {
+  "nome": "Blue Burst",
+  "nivel": 3,
+  "texto": "ocê concentra uma enorme quantidade de Reishi nas mãos, criando uma esfera de chamas azuladas que arremessa contra um ponto dentro do alcance. Ao atingir o local escolhido, a esfera se expande violentamente, espalhando chamas que queimam tudo ao redor em um raio de 6 metros. Cada criatura na área deve realizar um teste de resistência de Destreza. Em caso de falha, sofre 8d8 de dano de Fogo e deve realizar um teste de resistência de Constituição. Se falhar nesse segundo teste, fica Queimada. Em caso de sucesso no…"
+ },
+ {
+  "nome": "Blut Vene Anhaben",
+  "nivel": 3,
+  "texto": "Ao ser atingido por um ataque, você faz o Reishi fluir intensamente por seus vasos sanguíneos e o libera ao redor, criando um domo defensivo de Reishi com 3 metros de raio. Todas as criaturas dentro do domo ficam protegidas contra o ataque que ativou a técnica, reduzindo o dano recebido em um valor igual a cinco vezes o seu nível de personagem + seu atributo-chave de Técnicas de Reishi. Essa redução se aplica a todas as criaturas protegidas, incluindo você."
+ },
+ {
+  "nome": "Grande Lança de Reishi",
+  "nivel": 3,
+  "texto": "Você concentra uma grande quantidade de Reishi e cria uma enorme lança espiritual, arremessando-a com um gesto da mão. A lança avança até o ponto escolhido e explode no impacto, atingindo todas as criaturas em um Segundo Nível, Exclusiva BLUE BURST"
+ },
+ {
+  "nome": "Prisão de Reishi",
+  "nivel": 3,
+  "texto": "Você reúne partículas de Reishi ao redor dos pés de uma criatura que possa ver, formando uma prisão espiritual que a impede de se movimentar. O alvo deve realizar um teste de resistência de Força. Em caso de falha, fica Preso pelas pernas por até 1 minuto."
+ },
+ {
+  "nome": "Shadow",
+  "nivel": 3,
+  "texto": "Você expande sua sombra e a transforma em uma passagem dimensional, permitindo atravessar as sombras para alcançar outros locais e dimensões. Para utilizar essa técnica, você deve conhecer o destino desejado e dedicar 10 minutos de concentração total à abertura da passagem, sem realizar outras atividades durante esse período. A travessia reduz pela metade o tempo que normalmente seria necessário para chegar ao destino. Ao alcançar o local desejado, você pode sair da dimensão sombria instantaneamente. No entanto,…"
+ },
+ {
+  "nome": "Sprenger",
+  "nivel": 3,
+  "texto": "Você posiciona cinco Seele Schneider no chão, formando os vértices de um pentágono. Cada Seele Schneider deve estar a até 18 metros de você, e a distância entre duas Seele Schneider consecutivas não pode ultrapassar 6 metros. Após posicionar as cinco armas, você utiliza um Gintō para ativar o selo, provocando uma violenta explosão de energia espiritual que atinge toda a área interna do pentágono. Todas as criaturas dentro da área devem realizar um teste de resistência de Constituição. Em caso de falha, sofrem…"
+ },
+ {
+  "nome": "Blitz Geschoss",
+  "nivel": 4,
+  "texto": "Você cria enormes projéteis em forma de flechas de Reishi, concentrando uma grande quantidade de energia espiritual em cada uma delas. As flechas flutuam ao seu redor, prontas para serem lançadas contra seus inimigos com grande velocidade e força destrutiva, acompanhando seus movimentos enquanto aguardam seu comando."
+ },
+ {
+  "nome": "Blue Pillar",
+  "nivel": 4,
+  "texto": "Você reúne uma imensa quantidade de Reishi nas mãos, fazendo chamas azuladas envolverem seus braços e iluminarem o ambiente com um brilho intenso. Em seguida, direciona toda essa energia para um ponto dentro do alcance, provocando uma explosão de chamas que irrompe violentamente do chão. Um gigantesco pilar de fogo azul se ergue em direção aos céus, alcançando 12 metros de altura e se espalhando em um raio de 3 metros, consumindo tudo o que estiver em seu caminho."
+ },
+ {
+  "nome": "Chuva de Heilig Pfeil",
+  "nivel": 4,
+  "texto": ""
+ },
+ {
+  "nome": "Heilig Pfeil Erobern",
+  "nivel": 4,
+  "texto": ""
+ },
+ {
+  "nome": "Kirchenlied: Sankt Zwinger",
+  "nivel": 4,
+  "texto": ""
+ },
+ {
+  "nome": "Qual Kreis",
+  "nivel": 4,
+  "texto": ""
+ }
+]
