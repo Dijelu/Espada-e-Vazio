@@ -61,6 +61,15 @@ export default function Capitulo() {
   return (
     <div className="reader" key={cap.slug}>
       <Transicao cap={cap} />
+      <aside className="painel-voltar">
+        <Link to="/livro" className="painel-card" aria-label="Voltar para todos os capítulos">
+          <img src={`/art/${cap.art}.jpg`} alt="" />
+          <span className="painel-txt">
+            <small>← TODOS OS CAPÍTULOS</small>
+            <b>{cap.no === 0 ? "Introdução" : `${cap.no}. ${cap.title}`}</b>
+          </span>
+        </Link>
+      </aside>
       <article className="article">
         <Link to="/livro" className="voltar">← Todos os capítulos</Link>
         <div className="kicker">{cap.no === 0 ? "INTRODUÇÃO" : `CAPÍTULO ${cap.no}`}</div>
