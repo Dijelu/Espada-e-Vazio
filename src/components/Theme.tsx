@@ -1,3 +1,4 @@
+import { efeito } from "../lib/som";
 import { createContext, type ReactNode, useCallback, useContext, useEffect, useRef, useState } from "react";
 
 type Tema = "dark" | "light";
@@ -35,6 +36,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const alternar = useCallback(() => {
     if (anim) return;
     const novo: Tema = tema === "dark" ? "light" : "dark";
+    efeito.tema(novo === "dark");
     const reduzido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduzido) {
       setTema(novo);

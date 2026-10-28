@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { efeito } from "../lib/som";
 import type { Capitulo } from "../content/livro";
 
 /** Cortina que cruza a tela quando o leitor troca de capítulo. */
@@ -6,6 +7,9 @@ export default function Transicao({ cap }: { cap: Capitulo }) {
   const [fim, setFim] = useState(
     typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches
   );
+  useEffect(() => {
+    efeito.pagina();
+  }, []);
   if (fim) return null;
   return (
     <div className="cap-cortina" aria-hidden="true" onAnimationEnd={() => setFim(true)}>

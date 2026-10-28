@@ -4,7 +4,10 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { AuthProvider } from "./components/Auth";
 import { ThemeProvider } from "./components/Theme";
+import { iniciarSom } from "./lib/som";
 import "./styles.css";
+
+iniciarSom();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

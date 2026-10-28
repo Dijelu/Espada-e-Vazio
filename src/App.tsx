@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Topbar from "./components/Topbar";
 import Busca from "./components/Busca";
@@ -8,10 +8,21 @@ import Capitulo from "./pages/Capitulo";
 import EmBreve from "./pages/EmBreve";
 import Conta from "./pages/Conta";
 import { RequerLogin } from "./components/Auth";
+import { efeito } from "./lib/som";
 
 export default function App() {
   const [busca, setBusca] = useState(false);
   const { pathname } = useLocation();
+  const primeira = useRef(true);
+
+  useEffect(() => {
+    if (primeira.current) {
+      primeira.current = false;
+      return;
+    }
+    if (busca) efeito.abrir();
+    else efeito.fechar();
+  }, [busca]);
 
   useEffect(() => {
     const f = (e: KeyboardEvent) => {
