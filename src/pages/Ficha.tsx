@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { CartasHabilidades, CondicoesAtivas, EfeitosAtivos } from "../components/CartasResumo";
 import { AcoesRapidas } from "../components/AcoesRapidas";
 import { EscolhaPoderes, pendencias, totalPendencias } from "../components/EscolhaPoderes";
-import { CartasFormas, ConstrutorForma } from "../components/ConstrutorForma";
+import { CartasFormas, ConstrutorForma, PainelFormaAtiva } from "../components/ConstrutorForma";
 import { TIPO_FORMA_NOME, formaPendente, nivelLiberacao } from "../regras/liberacoes";
 import { Campo, LinhaAtributos, Passo, SeletorVariacoes, novoId } from "../components/FichaPecas";
 import { BotaoRolar, PainelRolagens, useRolagens, type Rolagens } from "../components/Rolador";
@@ -151,6 +151,8 @@ export default function Ficha() {
       <LinhaAtributos atr={c.atr} />
 
       <AcoesRapidas f={f} c={c} alterar={alterar} r={rol} />
+
+      <PainelFormaAtiva f={f} c={c} r={rol} alterar={alterar} />
 
       {(podeSubir || nPend > 0) && (
         <div className="banner-evolucao" role="status">

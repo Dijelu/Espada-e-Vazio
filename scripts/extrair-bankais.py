@@ -19,11 +19,30 @@ for p in partes:
     paragrafos = [x.strip() for x in bloco.split("\n\n") if x.strip()]
     resumo = paragrafos[0] if paragrafos else ""
     custo = re.search(r"(\d+)\s*(?:Pontos|pontos) de [Rr]eiatsu", bloco)
+    acoes = []
+    for h in re.split(r"(?m)^### ", bloco)[1:]:
+        titulo, _, corpo_h = h.partition("\n")
+        corpo_h = corpo_h.strip()
+        if not corpo_h:
+            continue
+        low = corpo_h.lower()
+        pr = re.search(r"(\d+)\s*(?:pontos?|pr)\s+de\s+reiatsu", low)
+        acao = "Ação bônus" if "ação bônus" in low else "Reação" if "reação" in low else "Ação" if "com uma ação" in low or "como uma ação" in low or re.search(r"\bação\b", low) else "Habilidade"
+        dano = re.search(r"\d+d\d+", corpo_h)
+        acoes.append({
+            "id": re.sub(r"[^a-z0-9]+", "-", titulo.lower()).strip("-"),
+            "nome": titulo.replace("Técnica:", "").strip(),
+            "acao": acao,
+            "pr": int(pr.group(1)) if pr else 0,
+            "dano": dano.group(0) if dano else "",
+            "texto": corpo_h[:900],
+        })
     saida.append({
         "id": re.sub(r"[^a-z0-9]+", "-", nome.lower()).strip("-"),
         "nome": nome,
         "resumo": resumo[:700],
         "texto": bloco[:6000],
+        "acoes": acoes,
         "custo": int(custo.group(1)) if custo and 30 <= int(custo.group(1)) <= 100 else 0,
     })
 (raiz / "src/regras/bankais.json").write_text(json.dumps(saida, ensure_ascii=False, indent=1), encoding="utf-8")

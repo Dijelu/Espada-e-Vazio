@@ -1,8 +1,17 @@
 import bankaisJson from "./bankais.json";
 import acoesJson from "./acoes-forma.json";
-import type { Calculo, Ficha, FormaLib, TipoForma } from "./ficha";
+import type { Calculo, Ficha, FormaLib, HabForma, TipoForma } from "./ficha";
 
 /* ---------- Bankai: modelos prontos do capítulo de Zanpakutōs ---------- */
+
+export interface AcaoBankai {
+  id: string;
+  nome: string;
+  acao: string;
+  pr: number;
+  dano: string;
+  texto: string;
+}
 
 export interface ModeloBankai {
   id: string;
@@ -10,6 +19,7 @@ export interface ModeloBankai {
   resumo: string;
   texto: string;
   custo: number;
+  acoes: AcaoBankai[];
 }
 export const BANKAIS: ModeloBankai[] = bankaisJson as ModeloBankai[];
 
@@ -179,14 +189,14 @@ export interface AcaoForma {
 }
 
 const AC = acoesJson as unknown as {
-  resurreccion: { base: Record<string, AcaoForma[]>; modelos: Record<string, AcaoForma[]> };
-  vollstandig: { base: AcaoForma[]; prontas: Record<string, AcaoForma[]> };
+  resurreccion: { modelos: Record<string, AcaoForma[]> };
+  vollstandig: { prontas: Record<string, AcaoForma[]> };
 };
 
-/** Ações prontas da forma: as da classe/base mais as do modelo escolhido. */
-export function acoesDaForma(forma: FormaLib, classeId: string): AcaoForma[] {
-  if (forma.tipo === "resurreccion") return [...(AC.resurreccion.base[classeId] ?? []), ...(AC.resurreccion.modelos[forma.modelo] ?? [])];
-  if (forma.tipo === "vollstandig") return [...AC.vollstandig.base, ...(AC.vollstandig.prontas[forma.modelo] ?? [])];
+/** Ações do modelo pronto escolhido (cada forma tem as suas, como a Bankai). */
+export function acoesDaForma(forma: FormaLib): AcaoForma[] {
+  if (forma.tipo === "resurreccion") return AC.resurreccion.modelos[forma.modelo] ?? [];
+  if (forma.tipo === "vollstandig") return AC.vollstandig.prontas[forma.modelo] ?? [];
   return [];
 }
 
@@ -206,4 +216,15 @@ export function resolverDano(expr: string, f: Ficha, c: Calculo): string {
       return "0";
     }
   });
+}
+
+/** Habilidades da forma: as que estão salvas, ou as do modelo pronto se ainda não foram copiadas. */
+export function habilidadesDaForma(forma: FormaLib): HabForma[] {
+  if (forma.habilidades.length > 0) return forma.habilidades;
+  return acoesDaForma(forma).map((a) => ({ id: "m-" + a.nome, nome: a.nome, texto: a.texto, custo: `${a.pr} PR`, acao: a.acao, pr: a.pr, dano: a.dano }));
+}
+
+/** Converte as ações de um modelo pronto em habilidades editáveis da ficha. */
+export function comoHabilidades(acoes: { nome: string; acao: string; pr: number; dano: string; texto: string }[]): HabForma[] {
+  return acoes.map((a, i) => ({ id: `${Date.now()}-${i}-${a.nome}`, nome: a.nome, texto: a.texto, custo: a.pr ? `${a.pr} PR` : "", acao: a.acao, pr: a.pr || undefined, dano: a.dano || undefined }));
 }

@@ -2432,34 +2432,37 @@ A Resurrección já tem custo, duração, bônus de CR e técnica de assinatura 
 
 - **Comando:** “Rasgue o silêncio, Pantera.”
 - **Aparência:** corpo esguio de felino, garras longas de osso, cauda e a máscara reduzida a uma crista na face.
-- **Técnica de assinatura:** o Golpe Fantasma surge como uma sequência de arranhões de garras, cada um vindo de uma direção diferente.
+- **Aparência da técnica de assinatura:** o Golpe Fantasma surge como uma sequência de arranhões de garras, cada um vindo de uma direção diferente.
 - **Traço, Salto de Pantera:** seu deslocamento aumenta em 6 metros e, uma vez por turno, você usa Desengajar como ação livre.
 - **Ponto fraco, Pelagem Rasgada:** você sofre -2 de CR contra ataques à distância.
 - **Ações da forma:**
-  - **Garra Relâmpago** (Ação bônus, 8 PR): Você se move até 9 metros sem provocar ataques de oportunidade e ataca com a arma natural. O ataque causa 2d10 + Destreza de Energia a mais. Dano: 2d10 + Destreza.
-  - **Tempestade de Garras** (Ação, 30 PR): Você investe contra até 3 criaturas a 4,5 metros de você. Cada uma faz uma salvaguarda de Destreza (CD 8 + proficiência + Destreza): sofre o dano de Energia na falha ou metade no sucesso. Dano: (nível/2 + 5)d10 + Destreza.
+  - **Golpe Fantasma** (Ação, 12 PR): Técnica de assinatura do Caminho Sonido. Um ataque com vantagem e margem de crítico 19–20, em que você surge de várias direções ao mesmo tempo. Substitui os ataques da ação. Dano: (nível/2-3)d10 + (2×Destreza).
+  - **Garra Relâmpago** (Ação bônus, 8 PR): Você se move até 9 metros sem provocar ataques de oportunidade e ataca com a arma natural, causando o dano de Energia indicado a mais. Dano: 2d10 + (Destreza).
+  - **Tempestade de Garras** (Ação, 30 PR): Você investe contra até 3 criaturas a 4,5 metros. Cada uma faz salvaguarda de Destreza (CD 8 + proficiência + Destreza): dano de Energia na falha, metade no sucesso. Dano: (nível/2 + 5)d10 + (Destreza).
 
 **Los Lobos** (Caminho Estallido)
 
 - **Comando:** “Uivem, Los Lobos.”
 - **Aparência:** duas silhuetas de lobo feitas de reiatsu acompanham você, e o seu próprio corpo ganha pelagem de névoa e uma pistola de osso nas mãos.
-- **Técnica de assinatura:** os dois Ceros do Gran Rey Cero saem um de cada lobo.
+- **Aparência da técnica de assinatura:** os dois Ceros do Gran Rey Cero saem um de cada lobo.
 - **Traço, Cero em Matilha:** ao lançar o Cero, você pode dividi-lo entre até 2 alvos a até 6 metros um do outro. Cada alvo sofre metade do dano (arredonde para cima). O custo não muda.
 - **Ponto fraco, Sede de Matilha:** se nenhum aliado estiver a até 9 metros de você, o Cero custa +3 PR.
 - **Ações da forma:**
+  - **Gran Rey Cero** (Ação, 15 PR): Técnica de assinatura do Caminho Estallido. O Cero de Resurrección sai dos dois lobos e causa +proficiência d8. Ignora o Hierro. Você pode lançar dois por turno a partir do 6º nível. Dano: ((nível + 8)×1.7 + proficiência)d8 + (Espírito).
   - **Uivo de Matilha** (Ação bônus, 8 PR): Os lobos uivam: o seu próximo Cero até o fim do próximo turno causa os dados indicados a mais. Dano: (proficiência)d8.
-  - **Matilha Voraz** (Ação, 30 PR): Os lobos disparam numa linha de 12 metros por 1,5. Cada criatura na linha faz salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso. Dano: (nível/2 + 5)d10 + Espírito.
+  - **Matilha Voraz** (Ação, 30 PR): Os lobos disparam numa linha de 12 metros por 1,5. Cada criatura na linha faz salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso. Dano: (nível/2 + 5)d10 + (Espírito).
 
 **Santa Teresa** (Caminho Glotonería)
 
 - **Comando:** “Estraçalhe, Santa Teresa.”
 - **Aparência:** um corpo magro e alto, com quatro braços de osso afiado e uma boca extra no peito.
-- **Técnica de assinatura:** o Devorar usa os quatro braços para prender e rasgar o alvo.
+- **Aparência da técnica de assinatura:** o Devorar usa os quatro braços para prender e rasgar o alvo.
 - **Traço, Braços Múltiplos:** seu alcance corpo a corpo aumenta em 3 metros. Se você acertar a mesma criatura duas vezes na mesma ação, ela fica agarrada (salvaguarda de Força, CD 8 + proficiência + Força).
 - **Ponto fraco, Guarda Aberta:** enquanto estiver agarrando uma criatura, a margem de crítico dos ataques contra você aumenta em 1.
 - **Ações da forma:**
-  - **Abraço de Osso** (Ação, 10 PR): Contra uma criatura que você agarra: ela sofre o dano de Concussão e fica contida até o fim do próximo turno dela, a menos que passe numa salvaguarda de Força (CD 8 + proficiência + Força). Dano: 3d10 + Força.
-  - **Banquete de Carne** (Ação, 30 PR): Ataque corpo a corpo com as quatro garras. Se acertar, você recupera PV iguais à metade do dano causado. Dano: (nível/2 + 5)d10 + Força.
+  - **Devorar** (Ação, 12 PR): Técnica de assinatura do Caminho Glotonería. Um ataque de Energia em que os quatro braços rasgam o alvo. Você recupera 60% do dano causado em PV. Dano: (nível + 10)d10 + (2×Força).
+  - **Abraço de Osso** (Ação, 10 PR): Contra uma criatura que você agarra: ela sofre o dano de Concussão e fica contida até o fim do próximo turno dela, a menos que passe numa salvaguarda de Força (CD 8 + proficiência + Força). Dano: 3d10 + (Força).
+  - **Festim de Ossos** (Ação, 30 PR): Ataque contra todas as criaturas que você está agarrando. Cada uma sofre o dano de Energia e fica com desvantagem nos ataques até o início do seu próximo turno. Dano: (nível/2 + 5)d10 + (Força).
 
 ### Modelos de Vazio
 
@@ -2467,43 +2470,37 @@ A Resurrección já tem custo, duração, bônus de CR e técnica de assinatura 
 
 - **Comando:** “Cubra o céu, Murciélago.”
 - **Aparência:** asas membranosas, pele pálida, lágrimas negras sob os olhos e uma lança de reiatsu esverdeado.
-- **Técnica de assinatura:** o Mundo Quebrado surge como um céu escuro que apaga as referências do alvo.
+- **Aparência da técnica de assinatura:** o Mundo Quebrado surge como um céu escuro que apaga as referências do alvo.
 - **Traço, Asas Negras:** você ganha voo igual ao seu deslocamento.
 - **Ponto fraco, Olhos Sensíveis:** você tem desvantagem em testes de Percepção feitos com luz intensa.
 - **Ações da forma:**
-  - **Lança Verde** (Ação, 10 PR): Ataque à distância de técnica, alcance de 24 metros, dano de Energia. Dano: 4d10 + Espírito.
-  - **Noite Sem Estrelas** (Ação, 30 PR): Esfera de 9 metros de raio num ponto a até 24 metros. Salvaguarda de Mente (CD 8 + proficiência + Espírito): na falha o alvo sofre o dano e fica cego até o fim do próximo turno dele; no sucesso, metade do dano. Dano: (nível/2 + 5)d10 + Espírito.
+  - **Lança Verde** (Ação, 9 PR): O Poder Inato de Resurrección sai da lança de reiatsu esverdeado. Ataque de técnica (d20 + proficiência + Espírito), alcance de 24 metros. Ignora o Hierro. Custo: 8 PR + nível/5. Dano: ((nível + 4)×1.6)d10 + (Espírito).
+  - **Mundo Quebrado** (Ação, 12 PR): Técnica de assinatura do Caminho Ilusión. Um alvo a até 24 metros faz salvaguarda de Constituição (CD 8 + proficiência + Espírito). Na falha, tem desvantagem nos ataques e fica sem reações até o fim do próximo turno dele.
+  - **Noite Sem Estrelas** (Ação, 30 PR): Esfera de 9 metros de raio num ponto a até 24 metros. Salvaguarda de Mente (CD 8 + proficiência + Espírito): na falha o alvo sofre o dano e fica cego até o fim do próximo turno dele; no sucesso, metade do dano. Dano: (nível/2 + 5)d10 + (Espírito).
 
 **Fornicarás** (Caminho Ponzoña)
 
 - **Comando:** “Teça a ruína, Fornicarás.”
 - **Aparência:** corpo coberto de casulos que se abrem como flores, de onde escorre um veneno roxo.
-- **Técnica de assinatura:** o Veneno Total faz as cargas escorrerem pelo corpo do alvo como fios.
+- **Aparência da técnica de assinatura:** o Veneno Total faz as cargas escorrerem pelo corpo do alvo como fios.
 - **Traço, Casulo Venenoso:** uma vez por rodada, quando uma criatura acerta você em combate corpo a corpo, ela recebe 1 carga de Ponzoña (respeitando o máximo de cargas).
 - **Ponto fraco, Corpo Pesado:** seu deslocamento diminui em 3 metros.
 - **Ações da forma:**
-  - **Casulo Explosivo** (Ação, 10 PR): Um alvo a até 12 metros faz salvaguarda de Constituição (CD 8 + proficiência + Espírito). Na falha, recebe 1 carga de Ponzoña sem precisar de ataque.
+  - **Espinho Roxo** (Ação, 9 PR): O Poder Inato de Resurrección sai como um espinho de veneno. Ataque de técnica (d20 + proficiência + Espírito). Ignora o Hierro. Se acertar, aplica 1 carga de Ponzoña. Dano: ((nível + 4)×1.6)d10 + (Espírito).
+  - **Veneno Total** (Ação bônus, 12 PR): Técnica de assinatura do Caminho Ponzoña. Até o fim do seu próximo turno, as cargas de Ponzoña causam +50% de dano.
   - **Colheita Venenosa** (Ação, 30 PR): Detona todas as cargas de Ponzoña num alvo que você veja. Ele sofre os dados indicados de Energia por carga (ignora RD) e as cargas somem. Dano: (proficiência)d10.
 
 **Espejo Negro** (Caminho Reflejo)
 
 - **Comando:** “Reflita-os, Espejo Negro.”
 - **Aparência:** a pele vira vidro escuro e o rosto some atrás de uma máscara lisa em que o inimigo vê o próprio reflexo.
-- **Técnica de assinatura:** o Espejo Roto devolve o golpe em estilhaços de vidro negro.
+- **Aparência da técnica de assinatura:** o Espejo Roto devolve o golpe em estilhaços de vidro negro.
 - **Traço, Véu de Reflexo:** uma vez por rodada, quando um ataque erra você, você ganha PV temporários iguais ao seu bônus de proficiência.
 - **Ponto fraco, Vidro Frágil:** se você sofrer um acerto crítico, o Véu de Reflexo deixa de funcionar até o fim da Resurrección.
 - **Ações da forma:**
-  - **Estilhaço** (Reação, 8 PR): Quando um ataque erra você, o atacante sofre o dano de Energia em estilhaços de vidro negro. Dano: 3d10 + Espírito.
-  - **Espelho Quebrado** (Ação, 30 PR): Uma criatura a até 18 metros faz salvaguarda de Espírito (CD 8 + proficiência + Espírito). Na falha sofre o dano de Energia e tem desvantagem nos ataques até o início do seu próximo turno; no sucesso, metade do dano. Dano: (nível/2 + 5)d10 + Espírito.
-
-### Ações Básicas da Resurrección
-
-Estas ações valem para qualquer Resurrección da classe, só enquanto ela estiver ativa. Os valores entre parênteses usam o seu nível e os seus atributos.
-
-- **Hueco:**
-  - **Cero de Resurrección** (Ação, 15 PR): Ataque à distância de Energia. Na Resurrección o Cero causa 1,7 vez os dados. Ignora o Hierro. Dano: ((nível + 8)×1.7)d8 + Espírito.
-- **Vazio:**
-  - **Poder Inato de Resurrección** (Ação, 9 PR): Ataque de técnica (d20 + proficiência + Espírito). Na Resurrección o Poder Inato causa 1,6 vez os dados. Ignora o Hierro. Custo: 8 PR + nível/5. Dano: ((nível + 4)×1.6)d10 + Espírito.
+  - **Reflexo Negro** (Ação, 9 PR): O Poder Inato de Resurrección sai em estilhaços de vidro negro. Ataque de técnica (d20 + proficiência + Espírito). Ignora o Hierro. Custo: 8 PR + nível/5. Dano: ((nível + 4)×1.6)d10 + (Espírito).
+  - **Espejo Roto** (Reação, 12 PR): Técnica de assinatura do Caminho Reflejo. Quando você sofre dano, devolve 50% desse dano ao atacante como dano de Energia.
+  - **Espelho Quebrado** (Ação, 30 PR): Uma criatura a até 18 metros faz salvaguarda de Espírito (CD 8 + proficiência + Espírito). Na falha sofre o dano de Energia e tem desvantagem nos ataques até o início do seu próximo turno; no sucesso, metade do dano. Dano: (nível/2 + 5)d10 + (Espírito).
 
 ### Criando Sua Resurrección
 
@@ -2513,7 +2510,9 @@ Se não quiser um modelo pronto, siga o mesmo caminho da Bankai (Capítulo 5, �
 2. **Aparência:** descreva o corpo, a máscara e a arma natural na forma liberada.
 3. **Técnica de assinatura:** ela é a do seu Caminho (veja acima). Você só descreve como ela se manifesta.
 4. **Traço:** crie um efeito pequeno e claro, na escala dos modelos prontos (+3 metros de alcance, voo, +proficiência em PV temporários, uma reação por rodada e assim por diante). Nada de dano fixo grande: o dano já vem da forma.
-5. **Ponto fraco:** toda Resurrección tem um preço, como menos CR contra um tipo de ataque, menos deslocamento ou um custo extra. O Mestre aprova o traço e o ponto fraco.
+5. **Ponto fraco:** toda Resurrección tem um preço, como menos CR contra um tipo de ataque, menos deslocamento ou um custo extra. 6. **Ações:** monte de duas a três técnicas no padrão da Bankai, com ação, custo e dano: uma básica de 8 a 10 PR, uma de apoio e uma final de 30 PR (a assinatura do Caminho conta como uma delas, a 12 PR). Cada técnica vira uma carta na ficha.
+
+O Mestre aprova o traço, o ponto fraco e as ações.
 
 ## Talentos Hollow
 

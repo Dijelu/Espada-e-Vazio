@@ -11,7 +11,7 @@ import {
   totalPicks,
 } from "../regras/liberacoes";
 import { novoId } from "./FichaPecas";
-import { acoesDaForma, resolverDano } from "../regras/liberacoes";
+import { acoesDaForma, comoHabilidades, habilidadesDaForma, resolverDano } from "../regras/liberacoes";
 import type { Calculo } from "../regras/ficha";
 import type { Rolagens } from "./Rolador";
 
@@ -81,6 +81,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
       custo: m.custo || 40,
       texto: m.texto,
       aparencia: m.resumo,
+      habilidades: comoHabilidades(m.acoes),
     });
     setAba("meu");
   };
@@ -94,14 +95,14 @@ export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
       aparencia: m.aparencia,
       traco: m.traco,
       pontoFraco: m.pontoFraco,
-      habilidades: [{ id: novoId(), nome: "Técnica de assinatura", texto: m.tecnica, custo: "12 PR", acao: "Ação" }],
+      habilidades: comoHabilidades(acoesDaForma({ tipo: "resurreccion", modelo: m.id } as FormaLib)),
       custo: classe?.id === "vazio" ? 40 : 45,
     });
     setAba("meu");
   };
   const usarVoll = (id: string) => {
     const m = VOLL_PRONTAS.find((x) => x.id === id)!;
-    setR((x) => ({ ...x, modelo: m.id, nome: x.nome || `Vollständig ${m.nome}`, picks: { ...m.picks }, texto: m.resumo }));
+    setR((x) => ({ ...x, modelo: m.id, nome: x.nome || `Vollständig ${m.nome}`, picks: { ...m.picks }, texto: m.resumo, habilidades: comoHabilidades(acoesDaForma({ tipo: "vollstandig", modelo: m.id } as FormaLib)) }));
     setAba("meu");
   };
 
@@ -234,14 +235,15 @@ export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
 
             {tipo === "resurreccion" && (
               <>
-                <p className="ajuda">Técnica de assinatura do seu Caminho: custo 12 PR, só durante a Resurrección (veja o Capítulo 3). Descreva abaixo como ela aparece.</p>
+                <p className="ajuda">Inclua abaixo a técnica de assinatura do seu Caminho (12 PR, só durante a Resurrección, Capítulo 3) e as suas outras técnicas.</p>
                 <label className="campo">Traço da forma (pequeno e claro)<textarea rows={2} value={r.traco} onChange={(e) => mud({ traco: e.target.value })} placeholder="Ex.: +3 m de alcance, voo, PV temporários por rodada" /></label>
               </>
             )}
 
-            {tipo !== "vollstandig" && (
+            {(
               <div className="caixa">
-                <h3>{tipo === "bankai" ? "Habilidades e técnicas" : "Técnica e extras"}</h3>
+                <h3>{tipo === "bankai" ? "Habilidades e técnicas" : "Habilidades e técnicas da forma"}</h3>
+                <p className="ajuda">Cada habilidade com PR ou dano vira uma carta nova no Resumo, com botões de usar e rolar.</p>
                 {r.habilidades.map((h) => (
                   <div className="hab-edit" key={h.id}>
                     <div className="linha-edit">
@@ -308,56 +310,104 @@ export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
   );
 }
 
-/** Formas já definidas, em cartas para o Resumo, com as ações usáveis. */
-export function CartasFormas({ f, c, r, alterar, onEditar }: { f: Ficha; c: Calculo; r: Rolagens; alterar: (p: Partial<Ficha>) => void; onEditar: (t: TipoForma) => void }) {
-  const [msg, setMsg] = useState("");
-  const lista = (["bankai", "resurreccion", "vollstandig"] as TipoForma[]).map((t) => f.formas[t]).filter((x): x is FormaLib => !!x && !!x.nome);
-  if (lista.length === 0) return null;
+type ItemAcao = { id: string; nome: string; texto: string; custo: string; acao: string; pr?: number; dano?: string };
 
-  const usar = (nome: string, pr: number) => {
-    alterar({ prAtual: Math.max(0, f.prAtual - pr) });
-    setMsg(`${nome}: ${pr} PR gastos.`);
-  };
+const formasDefinidas = (f: Ficha) =>
+  (["bankai", "resurreccion", "vollstandig"] as TipoForma[]).map((t) => f.formas[t]).filter((x): x is FormaLib => !!x && !!x.nome);
 
+/** Uma habilidade da forma como carta, com botões de usar e rolar. */
+function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg }: { f: Ficha; c: Calculo; r: Rolagens; alterar: (p: Partial<Ficha>) => void; forma: FormaLib; h: ItemAcao; ativa: boolean; onMsg: (m: string) => void }) {
+  const dano = h.dano ? resolverDano(h.dano, f, c) : "";
+  const gasta = h.pr ?? 0;
   return (
-    <div className="caixa">
-      <h3>Formas de liberação</h3>
+    <article className={`carta-hab acao-carta ${ativa ? "" : "travada"}`}>
+      <small className="ajuda">{TIPO_FORMA_NOME[forma.tipo]} · {forma.nome}</small>
+      <h3>{h.nome || "Habilidade"}</h3>
+      <p className="ajuda">{[h.acao, h.custo].filter(Boolean).join(" · ")}</p>
+      <p>{h.texto}</p>
+      {(gasta > 0 || /\d/.test(dano)) && (
+        <div className="acao-botoes">
+          {gasta > 0 && (
+            <button
+              type="button"
+              className="btn-mini"
+              disabled={!ativa || f.prAtual < gasta}
+              onClick={() => {
+                alterar({ prAtual: Math.max(0, f.prAtual - gasta) });
+                onMsg(`${h.nome}: ${gasta} PR gastos.`);
+              }}
+            >
+              Usar ({gasta} PR)
+            </button>
+          )}
+          {/\d/.test(dano) && (
+            <button type="button" className="btn-mini" disabled={!ativa} onClick={() => r.expr(h.nome, dano)}>
+              🎲 {dano}
+            </button>
+          )}
+        </div>
+      )}
+      {!ativa && <p className="ajuda">Ative a {TIPO_FORMA_NOME[forma.tipo]} nas Ações rápidas.</p>}
+    </article>
+  );
+}
+
+/** Painel especial que aparece enquanto a Bankai, a Resurrección ou a Vollständig está ativa. */
+export function PainelFormaAtiva({ f, c, r, alterar }: { f: Ficha; c: Calculo; r: Rolagens; alterar: (p: Partial<Ficha>) => void }) {
+  const [msg, setMsg] = useState("");
+  const tipo = f.estado.liberado as string;
+  const forma = tipo === "bankai" || tipo === "resurreccion" || tipo === "vollstandig" ? f.formas[tipo] : undefined;
+  if (!forma || !forma.nome) return null;
+  const lista = habilidadesDaForma(forma);
+  return (
+    <section className={`painel-forma painel-${forma.tipo}`} aria-label={`Painel da ${TIPO_FORMA_NOME[forma.tipo]}`}>
+      <div className="painel-forma-topo">
+        <div>
+          <small>{TIPO_FORMA_NOME[forma.tipo]} ativa</small>
+          <h2 className="title-font">{forma.nome}</h2>
+          {forma.comando && <p><i>“{forma.comando}”</i></p>}
+        </div>
+        <div className="painel-forma-botoes">
+          {forma.tipo === "bankai" && forma.custo > 0 && (
+            <button type="button" className="btn-mini" disabled={f.prAtual < forma.custo} onClick={() => { alterar({ prAtual: Math.max(0, f.prAtual - forma.custo) }); setMsg(`Bankai mantida por mais ${forma.duracao}: ${forma.custo} PR.`); }}>
+              Manter ({forma.custo} PR)
+            </button>
+          )}
+          <button type="button" className="btn-mini" onClick={() => alterar({ estado: { ...f.estado, liberado: "" } })}>Encerrar</button>
+        </div>
+      </div>
+      {forma.aparencia && <p>{forma.aparencia}</p>}
+      {forma.traco && <p><b>Traço:</b> {forma.traco}</p>}
+      {forma.pontoFraco && <p><b>Ponto fraco:</b> {forma.pontoFraco}</p>}
       {msg && <p className="ajuda" role="status">{msg}</p>}
       <div className="cartas-hab">
-        {lista.map((x) => {
-          const ativa = f.estado.liberado === x.tipo;
-          const prontas = acoesDaForma(x, f.classe);
-          return (
+        {lista.map((h) => (
+          <CartaAcao key={h.id} f={f} c={c} r={r} alterar={alterar} forma={forma} h={h} ativa onMsg={setMsg} />
+        ))}
+        {lista.length === 0 && <p className="ajuda">Nenhuma habilidade cadastrada. Abra a aba Evolução para adicionar.</p>}
+      </div>
+    </section>
+  );
+}
+
+/** Formas já definidas: a carta de descrição e, para cada habilidade nova, uma carta no Resumo. */
+export function CartasFormas({ f, c, r, alterar, onEditar }: { f: Ficha; c: Calculo; r: Rolagens; alterar: (p: Partial<Ficha>) => void; onEditar: (t: TipoForma) => void }) {
+  const [msg, setMsg] = useState("");
+  const lista = formasDefinidas(f);
+  if (lista.length === 0) return null;
+  return (
+    <>
+      <div className="caixa">
+        <h3>Formas de liberação</h3>
+        <div className="cartas-hab">
+          {lista.map((x) => (
             <article className="carta-hab forma-card" key={x.tipo}>
-              <small className="ajuda">{TIPO_FORMA_NOME[x.tipo]}{x.estilo ? ` · ${x.estilo}` : ""}{ativa ? " · ATIVA" : ""}</small>
+              <small className="ajuda">{TIPO_FORMA_NOME[x.tipo]}{x.estilo ? ` · ${x.estilo}` : ""}{f.estado.liberado === x.tipo ? " · ATIVA" : ""}</small>
               <h3>{x.nome}</h3>
               {x.comando && <p><i>“{x.comando}”</i></p>}
               {x.aparencia && <p>{x.aparencia}</p>}
               {x.tipo === "bankai" && <p><b>Custo:</b> {x.custo} PR · <b>Duração:</b> {x.duracao}</p>}
               {x.traco && <p><b>Traço:</b> {x.traco}</p>}
-              {!ativa && <p className="ajuda">Ative a {TIPO_FORMA_NOME[x.tipo]} nas Ações rápidas para usar as ações abaixo.</p>}
-              {[...prontas.map((a) => ({ id: "p-" + a.nome, nome: a.nome, texto: a.texto, custo: `${a.pr} PR`, acao: a.acao, pr: a.pr, dano: a.dano })), ...x.habilidades].map((h) => {
-                const dano = h.dano ? resolverDano(h.dano, f, c) : "";
-                return (
-                  <div className="acao-forma" key={h.id}>
-                    <p><b>{h.nome || "Habilidade"}</b>{h.acao || h.custo ? ` (${[h.acao, h.custo].filter(Boolean).join(", ")})` : ""}: {h.texto}</p>
-                    {(h.pr !== undefined || dano) && (
-                      <div className="acao-botoes">
-                        {h.pr !== undefined && h.pr > 0 && (
-                          <button type="button" className="btn-mini" disabled={!ativa || f.prAtual < h.pr} onClick={() => usar(h.nome, h.pr!)}>
-                            Usar ({h.pr} PR)
-                          </button>
-                        )}
-                        {dano && /\d/.test(dano) && (
-                          <button type="button" className="btn-mini" disabled={!ativa} onClick={() => r.expr(h.nome, dano)}>
-                            🎲 {dano}
-                          </button>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
               {x.tipo === "vollstandig" && Object.keys(x.picks).length > 0 && (
                 <ul>
                   {Object.entries(x.picks).map(([id, n]) => {
@@ -371,9 +421,20 @@ export function CartasFormas({ f, c, r, alterar, onEditar }: { f: Ficha; c: Calc
               {x.pontoFraco && <p><b>Ponto fraco:</b> {x.pontoFraco}</p>}
               <button type="button" className="link-perigo" onClick={() => onEditar(x.tipo)}>Editar</button>
             </article>
-          );
-        })}
+          ))}
+        </div>
       </div>
-    </div>
+      {lista.some((x) => f.estado.liberado !== x.tipo) && (
+        <div className="caixa">
+          <h3>Habilidades das formas</h3>
+          {msg && <p className="ajuda" role="status">{msg}</p>}
+          <div className="cartas-hab">
+            {lista
+              .filter((x) => f.estado.liberado !== x.tipo)
+              .flatMap((x) => habilidadesDaForma(x).map((h) => <CartaAcao key={x.tipo + h.id} f={f} c={c} r={r} alterar={alterar} forma={x} h={h} ativa={false} onMsg={setMsg} />))}
+          </div>
+        </div>
+      )}
+    </>
   );
 }

@@ -1,56 +1,355 @@
 {
-  "resurreccion": {
-    "base": {
-      "hueco": [
-        { "nome": "Cero de Resurrección", "acao": "Ação", "pr": 15, "dano": "[(NIV+8)*1.7]d8+[ESP]", "texto": "Ataque à distância de Energia. Na Resurrección o Cero causa 1,7 vez os dados. Ignora o Hierro." }
-      ],
-      "vazio": [
-        { "nome": "Poder Inato de Resurrección", "acao": "Ação", "pr": 9, "dano": "[(NIV+4)*1.6]d10+[ESP]", "texto": "Ataque de técnica (d20 + proficiência + Espírito). Na Resurrección o Poder Inato causa 1,6 vez os dados. Ignora o Hierro. Custo: 8 PR + nível/5." }
-      ]
+ "resurreccion": {
+  "modelos": {
+   "pantera": [
+    {
+     "nome": "Golpe Fantasma",
+     "acao": "Ação",
+     "pr": 12,
+     "dano": "[NIV/2-3]d10+[2*DES]",
+     "texto": "Técnica de assinatura do Caminho Sonido. Um ataque com vantagem e margem de crítico 19–20, em que você surge de várias direções ao mesmo tempo. Substitui os ataques da ação."
     },
-    "modelos": {
-      "pantera": [
-        { "nome": "Garra Relâmpago", "acao": "Ação bônus", "pr": 8, "dano": "2d10+[DES]", "texto": "Você se move até 9 metros sem provocar ataques de oportunidade e ataca com a arma natural. O ataque causa 2d10 + Destreza de Energia a mais." },
-        { "nome": "Tempestade de Garras", "acao": "Ação", "pr": 30, "dano": "[NIV/2+5]d10+[DES]", "texto": "Você investe contra até 3 criaturas a 4,5 metros de você. Cada uma faz uma salvaguarda de Destreza (CD 8 + proficiência + Destreza): sofre o dano de Energia na falha ou metade no sucesso." }
-      ],
-      "los-lobos": [
-        { "nome": "Uivo de Matilha", "acao": "Ação bônus", "pr": 8, "dano": "[PROF]d8", "texto": "Os lobos uivam: o seu próximo Cero até o fim do próximo turno causa os dados indicados a mais." },
-        { "nome": "Matilha Voraz", "acao": "Ação", "pr": 30, "dano": "[NIV/2+5]d10+[ESP]", "texto": "Os lobos disparam numa linha de 12 metros por 1,5. Cada criatura na linha faz salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso." }
-      ],
-      "santa-teresa": [
-        { "nome": "Abraço de Osso", "acao": "Ação", "pr": 10, "dano": "3d10+[FOR]", "texto": "Contra uma criatura que você agarra: ela sofre o dano de Concussão e fica contida até o fim do próximo turno dela, a menos que passe numa salvaguarda de Força (CD 8 + proficiência + Força)." },
-        { "nome": "Banquete de Carne", "acao": "Ação", "pr": 30, "dano": "[NIV/2+5]d10+[FOR]", "texto": "Ataque corpo a corpo com as quatro garras. Se acertar, você recupera PV iguais à metade do dano causado." }
-      ],
-      "murcielago": [
-        { "nome": "Lança Verde", "acao": "Ação", "pr": 10, "dano": "4d10+[ESP]", "texto": "Ataque à distância de técnica, alcance de 24 metros, dano de Energia." },
-        { "nome": "Noite Sem Estrelas", "acao": "Ação", "pr": 30, "dano": "[NIV/2+5]d10+[ESP]", "texto": "Esfera de 9 metros de raio num ponto a até 24 metros. Salvaguarda de Mente (CD 8 + proficiência + Espírito): na falha o alvo sofre o dano e fica cego até o fim do próximo turno dele; no sucesso, metade do dano." }
-      ],
-      "fornicaras": [
-        { "nome": "Casulo Explosivo", "acao": "Ação", "pr": 10, "dano": "", "texto": "Um alvo a até 12 metros faz salvaguarda de Constituição (CD 8 + proficiência + Espírito). Na falha, recebe 1 carga de Ponzoña sem precisar de ataque." },
-        { "nome": "Colheita Venenosa", "acao": "Ação", "pr": 30, "dano": "[PROF]d10", "texto": "Detona todas as cargas de Ponzoña num alvo que você veja. Ele sofre os dados indicados de Energia por carga (ignora RD) e as cargas somem." }
-      ],
-      "espejo-negro": [
-        { "nome": "Estilhaço", "acao": "Reação", "pr": 8, "dano": "3d10+[ESP]", "texto": "Quando um ataque erra você, o atacante sofre o dano de Energia em estilhaços de vidro negro." },
-        { "nome": "Espelho Quebrado", "acao": "Ação", "pr": 30, "dano": "[NIV/2+5]d10+[ESP]", "texto": "Uma criatura a até 18 metros faz salvaguarda de Espírito (CD 8 + proficiência + Espírito). Na falha sofre o dano de Energia e tem desvantagem nos ataques até o início do seu próximo turno; no sucesso, metade do dano." }
-      ]
+    {
+     "nome": "Garra Relâmpago",
+     "acao": "Ação bônus",
+     "pr": 8,
+     "dano": "2d10+[DES]",
+     "texto": "Você se move até 9 metros sem provocar ataques de oportunidade e ataca com a arma natural, causando o dano de Energia indicado a mais."
+    },
+    {
+     "nome": "Tempestade de Garras",
+     "acao": "Ação",
+     "pr": 30,
+     "dano": "[NIV/2+5]d10+[DES]",
+     "texto": "Você investe contra até 3 criaturas a 4,5 metros. Cada uma faz salvaguarda de Destreza (CD 8 + proficiência + Destreza): dano de Energia na falha, metade no sucesso."
     }
-  },
-  "vollstandig": {
-    "base": [
-      { "nome": "Rajada de Reishi", "acao": "Ação", "pr": 10, "dano": "4d10+[ESP]", "texto": "Ataque de técnica à distância (alcance de 18 metros). Soma os bônus de Potência Espiritual e Olhos do Céu que você escolheu." },
-      { "nome": "Golpe Alado", "acao": "Ação", "pr": 15, "dano": "3d10", "texto": "Você voa até 9 metros e ataca com a arma espiritual. O ataque causa o dano de Energia indicado a mais." },
-      { "nome": "Chuva de Reishi", "acao": "Ação", "pr": 30, "dano": "[NIV/2+5]d10+[ESP]", "texto": "Área de 6 metros de raio num ponto a até 18 metros. Salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso." }
-    ],
-    "prontas": {
-      "conjurador": [{ "nome": "Salva de Reishi", "acao": "Ação", "pr": 25, "dano": "3d10+[ESP]", "texto": "Três ataques de técnica à distância, em alvos iguais ou diferentes. Cada acerto causa o dano indicado de Energia." }],
-      "defensivo": [{ "nome": "Muralha de Reishi", "acao": "Reação", "pr": 10, "dano": "2d10+[PROF]", "texto": "Quando você ou um aliado a 3 metros sofre dano, reduza esse dano na quantidade indicada." }],
-      "duelista": [{ "nome": "Corte Alado", "acao": "Ação", "pr": 20, "dano": "4d10+[ESP]", "texto": "Dois ataques com a arma espiritual. Se ambos acertarem no mesmo alvo, ele sofre o dano de Energia indicado a mais." }],
-      "expurgador": [{ "nome": "Disparo Perfurante", "acao": "Ação", "pr": 20, "dano": "6d10+[ESP]", "texto": "Ataque com a arma espiritual que ignora toda a redução de dano do alvo." }],
-      "oraculo": [{ "nome": "Visão Total", "acao": "Ação bônus", "pr": 10, "dano": "", "texto": "Até o fim do seu próximo turno, você sabe a localização de todas as criaturas a 56 metros e tem vantagem no próximo ataque." }],
-      "velocista": [{ "nome": "Passo Relâmpago", "acao": "Ação bônus", "pr": 10, "dano": "2d10", "texto": "Você voa até 18 metros sem provocar ataques de oportunidade. O seu próximo ataque no turno causa o dano de Energia indicado a mais." }],
-      "atirador-celeste": [{ "nome": "Flecha Celeste", "acao": "Ação", "pr": 25, "dano": "8d10+[ESP]", "texto": "Um disparo com o dobro do alcance e margem de crítico 19–20. Causa dano de Energia." }],
-      "bombardeiro": [{ "nome": "Bomba de Reishi", "acao": "Ação", "pr": 30, "dano": "[NIV/2+4]d10+[ESP]", "texto": "Explosão de 6 metros de raio num ponto a até 18 metros. Salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso." }],
-      "sentinela": [{ "nome": "Barreira Sentinela", "acao": "Ação", "pr": 15, "dano": "[NIV*2]", "texto": "Você e os aliados a até 3 metros ganham PV temporários na quantidade indicada." }]
+   ],
+   "los-lobos": [
+    {
+     "nome": "Gran Rey Cero",
+     "acao": "Ação",
+     "pr": 15,
+     "dano": "[(NIV+8)*1.7+PROF]d8+[ESP]",
+     "texto": "Técnica de assinatura do Caminho Estallido. O Cero de Resurrección sai dos dois lobos e causa +proficiência d8. Ignora o Hierro. Você pode lançar dois por turno a partir do 6º nível."
+    },
+    {
+     "nome": "Uivo de Matilha",
+     "acao": "Ação bônus",
+     "pr": 8,
+     "dano": "[PROF]d8",
+     "texto": "Os lobos uivam: o seu próximo Cero até o fim do próximo turno causa os dados indicados a mais."
+    },
+    {
+     "nome": "Matilha Voraz",
+     "acao": "Ação",
+     "pr": 30,
+     "dano": "[NIV/2+5]d10+[ESP]",
+     "texto": "Os lobos disparam numa linha de 12 metros por 1,5. Cada criatura na linha faz salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso."
     }
+   ],
+   "santa-teresa": [
+    {
+     "nome": "Devorar",
+     "acao": "Ação",
+     "pr": 12,
+     "dano": "[NIV+10]d10+[2*FOR]",
+     "texto": "Técnica de assinatura do Caminho Glotonería. Um ataque de Energia em que os quatro braços rasgam o alvo. Você recupera 60% do dano causado em PV."
+    },
+    {
+     "nome": "Abraço de Osso",
+     "acao": "Ação",
+     "pr": 10,
+     "dano": "3d10+[FOR]",
+     "texto": "Contra uma criatura que você agarra: ela sofre o dano de Concussão e fica contida até o fim do próximo turno dela, a menos que passe numa salvaguarda de Força (CD 8 + proficiência + Força)."
+    },
+    {
+     "nome": "Festim de Ossos",
+     "acao": "Ação",
+     "pr": 30,
+     "dano": "[NIV/2+5]d10+[FOR]",
+     "texto": "Ataque contra todas as criaturas que você está agarrando. Cada uma sofre o dano de Energia e fica com desvantagem nos ataques até o início do seu próximo turno."
+    }
+   ],
+   "murcielago": [
+    {
+     "nome": "Lança Verde",
+     "acao": "Ação",
+     "pr": 9,
+     "dano": "[(NIV+4)*1.6]d10+[ESP]",
+     "texto": "O Poder Inato de Resurrección sai da lança de reiatsu esverdeado. Ataque de técnica (d20 + proficiência + Espírito), alcance de 24 metros. Ignora o Hierro. Custo: 8 PR + nível/5."
+    },
+    {
+     "nome": "Mundo Quebrado",
+     "acao": "Ação",
+     "pr": 12,
+     "dano": "",
+     "texto": "Técnica de assinatura do Caminho Ilusión. Um alvo a até 24 metros faz salvaguarda de Constituição (CD 8 + proficiência + Espírito). Na falha, tem desvantagem nos ataques e fica sem reações até o fim do próximo turno dele."
+    },
+    {
+     "nome": "Noite Sem Estrelas",
+     "acao": "Ação",
+     "pr": 30,
+     "dano": "[NIV/2+5]d10+[ESP]",
+     "texto": "Esfera de 9 metros de raio num ponto a até 24 metros. Salvaguarda de Mente (CD 8 + proficiência + Espírito): na falha o alvo sofre o dano e fica cego até o fim do próximo turno dele; no sucesso, metade do dano."
+    }
+   ],
+   "fornicaras": [
+    {
+     "nome": "Espinho Roxo",
+     "acao": "Ação",
+     "pr": 9,
+     "dano": "[(NIV+4)*1.6]d10+[ESP]",
+     "texto": "O Poder Inato de Resurrección sai como um espinho de veneno. Ataque de técnica (d20 + proficiência + Espírito). Ignora o Hierro. Se acertar, aplica 1 carga de Ponzoña."
+    },
+    {
+     "nome": "Veneno Total",
+     "acao": "Ação bônus",
+     "pr": 12,
+     "dano": "",
+     "texto": "Técnica de assinatura do Caminho Ponzoña. Até o fim do seu próximo turno, as cargas de Ponzoña causam +50% de dano."
+    },
+    {
+     "nome": "Colheita Venenosa",
+     "acao": "Ação",
+     "pr": 30,
+     "dano": "[PROF]d10",
+     "texto": "Detona todas as cargas de Ponzoña num alvo que você veja. Ele sofre os dados indicados de Energia por carga (ignora RD) e as cargas somem."
+    }
+   ],
+   "espejo-negro": [
+    {
+     "nome": "Reflexo Negro",
+     "acao": "Ação",
+     "pr": 9,
+     "dano": "[(NIV+4)*1.6]d10+[ESP]",
+     "texto": "O Poder Inato de Resurrección sai em estilhaços de vidro negro. Ataque de técnica (d20 + proficiência + Espírito). Ignora o Hierro. Custo: 8 PR + nível/5."
+    },
+    {
+     "nome": "Espejo Roto",
+     "acao": "Reação",
+     "pr": 12,
+     "dano": "",
+     "texto": "Técnica de assinatura do Caminho Reflejo. Quando você sofre dano, devolve 50% desse dano ao atacante como dano de Energia."
+    },
+    {
+     "nome": "Espelho Quebrado",
+     "acao": "Ação",
+     "pr": 30,
+     "dano": "[NIV/2+5]d10+[ESP]",
+     "texto": "Uma criatura a até 18 metros faz salvaguarda de Espírito (CD 8 + proficiência + Espírito). Na falha sofre o dano de Energia e tem desvantagem nos ataques até o início do seu próximo turno; no sucesso, metade do dano."
+    }
+   ]
   }
+ },
+ "vollstandig": {
+  "prontas": {
+   "conjurador": [
+    {
+     "nome": "Salva de Reishi",
+     "acao": "Ação",
+     "pr": 25,
+     "dano": "3d10+[ESP]",
+     "texto": "Três ataques de técnica à distância (18 metros), em alvos iguais ou diferentes. Cada acerto causa o dano indicado de Energia."
+    },
+    {
+     "nome": "Círculo de Reishi",
+     "acao": "Ação bônus",
+     "pr": 10,
+     "dano": "",
+     "texto": "Seu próximo ataque de técnica de Reishi no turno recebe vantagem e +3 metros de alcance."
+    },
+    {
+     "nome": "Chuva de Reishi",
+     "acao": "Ação",
+     "pr": 30,
+     "dano": "[NIV/2+5]d10+[ESP]",
+     "texto": "Área de 6 metros de raio num ponto a até 18 metros. Salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso."
+    }
+   ],
+   "defensivo": [
+    {
+     "nome": "Muralha de Reishi",
+     "acao": "Reação",
+     "pr": 10,
+     "dano": "2d10+[PROF]",
+     "texto": "Quando você ou um aliado a 3 metros sofre dano, reduza esse dano na quantidade indicada."
+    },
+    {
+     "nome": "Escudo de Asas",
+     "acao": "Ação bônus",
+     "pr": 8,
+     "dano": "[NIV]",
+     "texto": "Você ganha PV temporários na quantidade indicada e a sua CR aumenta em 2 até o início do próximo turno."
+    },
+    {
+     "nome": "Barreira Sentinela",
+     "acao": "Ação",
+     "pr": 20,
+     "dano": "[NIV*2]",
+     "texto": "Você e os aliados a até 3 metros ganham PV temporários na quantidade indicada."
+    }
+   ],
+   "duelista": [
+    {
+     "nome": "Corte Alado",
+     "acao": "Ação",
+     "pr": 20,
+     "dano": "4d10+[ESP]",
+     "texto": "Dois ataques com a arma espiritual. Se ambos acertarem no mesmo alvo, ele sofre o dano de Energia indicado a mais."
+    },
+    {
+     "nome": "Passo do Duelo",
+     "acao": "Ação bônus",
+     "pr": 8,
+     "dano": "",
+     "texto": "Você voa até 9 metros e o próximo ataque com a arma espiritual no turno tem vantagem."
+    },
+    {
+     "nome": "Lâmina de Estrelas",
+     "acao": "Ação",
+     "pr": 30,
+     "dano": "[NIV/2+5]d10+[ESP]",
+     "texto": "Um ataque com a arma espiritual com margem de crítico 19–20. Se acertar, causa o dano de Energia indicado a mais."
+    }
+   ],
+   "expurgador": [
+    {
+     "nome": "Disparo Perfurante",
+     "acao": "Ação",
+     "pr": 20,
+     "dano": "6d10+[ESP]",
+     "texto": "Ataque com a arma espiritual que ignora toda a redução de dano do alvo."
+    },
+    {
+     "nome": "Marca do Expurgo",
+     "acao": "Ação bônus",
+     "pr": 8,
+     "dano": "",
+     "texto": "Marque uma criatura que você veja: os seus ataques contra ela somam +3 até o fim da cena."
+    },
+    {
+     "nome": "Execução",
+     "acao": "Ação",
+     "pr": 30,
+     "dano": "[NIV/2+6]d10+[ESP]",
+     "texto": "Ataque com a arma espiritual contra a criatura marcada, com margem de crítico 19–20. Ignora a redução de dano."
+    }
+   ],
+   "oraculo": [
+    {
+     "nome": "Visão Total",
+     "acao": "Ação bônus",
+     "pr": 10,
+     "dano": "",
+     "texto": "Até o fim do seu próximo turno, você sabe a localização de todas as criaturas a 56 metros e tem vantagem no próximo ataque."
+    },
+    {
+     "nome": "Previsão Divina",
+     "acao": "Reação",
+     "pr": 10,
+     "dano": "",
+     "texto": "Quando uma criatura o ataca, imponha desvantagem nessa jogada de ataque."
+    },
+    {
+     "nome": "Julgamento do Céu",
+     "acao": "Ação",
+     "pr": 30,
+     "dano": "[NIV/2+5]d10+[ESP]",
+     "texto": "Um ataque à distância sem limite de alcance contra uma criatura cuja posição você sabe. Não pode ter desvantagem. Causa dano de Energia."
+    }
+   ],
+   "velocista": [
+    {
+     "nome": "Passo Relâmpago",
+     "acao": "Ação bônus",
+     "pr": 10,
+     "dano": "2d10",
+     "texto": "Você voa até 18 metros sem provocar ataques de oportunidade. O seu próximo ataque no turno causa o dano de Energia indicado a mais."
+    },
+    {
+     "nome": "Rastro de Asas",
+     "acao": "Ação",
+     "pr": 15,
+     "dano": "4d10+[ESP]",
+     "texto": "Você voa até 12 metros em linha reta: cada criatura no caminho faz salvaguarda de Destreza (CD 8 + proficiência + Espírito) e sofre o dano na falha, metade no sucesso."
+    },
+    {
+     "nome": "Mil Cortes",
+     "acao": "Ação",
+     "pr": 30,
+     "dano": "[NIV/2+4]d10+[ESP]",
+     "texto": "Quatro ataques rápidos com a arma espiritual. Cada acerto causa o dano indicado, dividido em partes iguais."
+    }
+   ],
+   "atirador-celeste": [
+    {
+     "nome": "Flecha Celeste",
+     "acao": "Ação",
+     "pr": 25,
+     "dano": "8d10+[ESP]",
+     "texto": "Um disparo com o dobro do alcance e margem de crítico 19–20. Causa dano de Energia."
+    },
+    {
+     "nome": "Olho do Falcão",
+     "acao": "Ação bônus",
+     "pr": 8,
+     "dano": "",
+     "texto": "Até o fim do turno, os seus ataques à distância ignoram cobertura e você tem +2 nas jogadas de ataque."
+    },
+    {
+     "nome": "Chuva de Flechas",
+     "acao": "Ação",
+     "pr": 30,
+     "dano": "[NIV/2+5]d10+[ESP]",
+     "texto": "Área de 6 metros de raio num ponto a até 36 metros. Salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso."
+    }
+   ],
+   "bombardeiro": [
+    {
+     "nome": "Bomba de Reishi",
+     "acao": "Ação",
+     "pr": 30,
+     "dano": "[NIV/2+4]d10+[ESP]",
+     "texto": "Explosão de 6 metros de raio num ponto a até 18 metros. Salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso."
+    },
+    {
+     "nome": "Marca Explosiva",
+     "acao": "Ação bônus",
+     "pr": 8,
+     "dano": "4d10",
+     "texto": "Marque uma criatura ou objeto a até 18 metros. Quando você usar a Bomba de Reishi em uma área que o inclua, ele sofre o dano indicado a mais."
+    },
+    {
+     "nome": "Detonação em Cadeia",
+     "acao": "Ação",
+     "pr": 20,
+     "dano": "3d10+[ESP]",
+     "texto": "A explosão salta entre até 4 criaturas a até 6 metros uma da outra: cada uma faz salvaguarda de Destreza (CD 8 + proficiência + Espírito) e sofre o dano na falha, metade no sucesso."
+    }
+   ],
+   "sentinela": [
+    {
+     "nome": "Barreira Sentinela",
+     "acao": "Ação",
+     "pr": 15,
+     "dano": "[NIV*2]",
+     "texto": "Você e os aliados a até 3 metros ganham PV temporários na quantidade indicada."
+    },
+    {
+     "nome": "Postura Firme",
+     "acao": "Ação bônus",
+     "pr": 8,
+     "dano": "",
+     "texto": "Até o início do próximo turno, você não pode ser empurrado nem derrubado, e os ataques contra aliados a 3 metros de você têm desvantagem."
+    },
+    {
+     "nome": "Muralha Viva",
+     "acao": "Reação",
+     "pr": 15,
+     "dano": "2d10+[PROF]",
+     "texto": "Quando um aliado a até 6 metros sofre dano, você voa até ele sem provocar ataques de oportunidade e reduz esse dano na quantidade indicada."
+    }
+   ]
+  }
+ }
 }

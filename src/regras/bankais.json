@@ -4,6 +4,40 @@
   "nome": "Benehime",
   "resumo": "A Bankai, quando liberada, assume a forma de uma mulher gigante com cabelos escuros trançados em laços, braços semelhantes a um manequim, usando um robe vermelho. Ela fica parada sobre o usuário, com vários fios se estendendo por todo o campo de batalha com alguns fios também presos ao usuário.",
   "texto": "A Bankai, quando liberada, assume a forma de uma mulher gigante com cabelos escuros trançados em laços, braços semelhantes a um manequim, usando um robe vermelho. Ela fica parada sobre o usuário, com vários fios se estendendo por todo o campo de batalha com alguns fios também presos ao usuário.\n\nA Bankai é ativada quando o comando “Bankai” e o verdadeiro nome dela, “Kannonbiraki Benihime Aratame” são pronunciados. Para isso, você deve gastar 80 Pontos de Reiatsu, deixando ela ativa por 1 minuto. Após esse minuto, você deve utilizar novamente os Pontos de Reiatsu para mantê-la ativa por mais 1 minuto.\n\nO usuário após liberar a Bankai sua Zanpakutou se torna a forma da sua Asauchi mas com o dano e margem de crítico igual a habilidade “Elegância Carmesim” da Shikai.\n\n### Área de Influência\n\nO controle da Kannonbiraki Benihime Aratame se estende por uma área de 36 metros centrado no usuário aonde todas as criaturas que estão dentro dessa área podem ser afetadas pelas técnicas da Bankai.\n\n### Técnica: Bisturi\n\nQuando a Bankai está ativada, o usuário consegue cortar qualquer coisa dentro da área de influência utilizando, Esse “corte” é semelhante ao ato de dissecar algo ao abri-lo. Com uma ação e 15 pontos de reiatsu, você corta uma criatura. Faça um ataque contra uma criatura que esteja dentro da área de influência, não importando a distância, e faça esse ataque com vantagem. Se acertar, a criatura sofre 15d10 de dano cortante e deve realizar um Teste de Resistência de Destreza. Se falhar, ela é decepada e pode perder parte do corpo conforme decidido pelo mestre (O mestre pode decidir que a criatura não pode ser decepada).\n\n### Técnica: Reconstrução\n\nO usuário da Benehime, quando a Bankai está ativada, você consegue reconstruir a si mesmo ou a outras criaturas dentro da área de influência da Bankai, usando fios para costurar as áreas feridas. Com uma ação livre em seu turno e 10 pontos de reiatsu, o usuário cura um número de dados d10 igual ao dobro do seu bônus de proficiência em si mesmo ou pode curar outra criatura dentro da área de influência. Você só pode curar uma criatura por turno, sempre no início do seu turno com essa ação livre. Se você estiver incapacitado devido a ferimentos como uma perna quebrada ou cegueira, pode curar esses ferimentos e recuperar a funcionalidade utilizando essa cura.\n\n### Técnica: Otimizar\n\nDentro da área de influência da Bankai, o usuário pode otimizar algum ataque ou ação que uma criatura, ou ele próprio, esteja realizando. Utilizando sua ação bônus e 5 pontos de reiatsu, você pode aumentar a eficácia de uma ação, concedendo vantagem nela, ou pode intensificar uma técnica ou ataque seu ou de uma criatura, reconstruindo o corpo. Isso adiciona um número de dados de dano igual ao seu bônus de proficiência a cada turno seu ou da criatura que você otimizou.",
+  "acoes": [
+   {
+    "id": "rea-de-influ-ncia",
+    "nome": "Área de Influência",
+    "acao": "Habilidade",
+    "pr": 0,
+    "dano": "",
+    "texto": "O controle da Kannonbiraki Benihime Aratame se estende por uma área de 36 metros centrado no usuário aonde todas as criaturas que estão dentro dessa área podem ser afetadas pelas técnicas da Bankai."
+   },
+   {
+    "id": "t-cnica-bisturi",
+    "nome": "Bisturi",
+    "acao": "Ação",
+    "pr": 15,
+    "dano": "15d10",
+    "texto": "Quando a Bankai está ativada, o usuário consegue cortar qualquer coisa dentro da área de influência utilizando, Esse “corte” é semelhante ao ato de dissecar algo ao abri-lo. Com uma ação e 15 pontos de reiatsu, você corta uma criatura. Faça um ataque contra uma criatura que esteja dentro da área de influência, não importando a distância, e faça esse ataque com vantagem. Se acertar, a criatura sofre 15d10 de dano cortante e deve realizar um Teste de Resistência de Destreza. Se falhar, ela é decepada e pode perder parte do corpo conforme decidido pelo mestre (O mestre pode decidir que a criatura não pode ser decepada)."
+   },
+   {
+    "id": "t-cnica-reconstru-o",
+    "nome": "Reconstrução",
+    "acao": "Ação",
+    "pr": 10,
+    "dano": "",
+    "texto": "O usuário da Benehime, quando a Bankai está ativada, você consegue reconstruir a si mesmo ou a outras criaturas dentro da área de influência da Bankai, usando fios para costurar as áreas feridas. Com uma ação livre em seu turno e 10 pontos de reiatsu, o usuário cura um número de dados d10 igual ao dobro do seu bônus de proficiência em si mesmo ou pode curar outra criatura dentro da área de influência. Você só pode curar uma criatura por turno, sempre no início do seu turno com essa ação livre. Se você estiver incapacitado devido a ferimentos como uma perna quebrada ou cegueira, pode curar esses ferimentos e recuperar a funcionalidade utilizando essa cura."
+   },
+   {
+    "id": "t-cnica-otimizar",
+    "nome": "Otimizar",
+    "acao": "Ação bônus",
+    "pr": 5,
+    "dano": "",
+    "texto": "Dentro da área de influência da Bankai, o usuário pode otimizar algum ataque ou ação que uma criatura, ou ele próprio, esteja realizando. Utilizando sua ação bônus e 5 pontos de reiatsu, você pode aumentar a eficácia de uma ação, concedendo vantagem nela, ou pode intensificar uma técnica ou ataque seu ou de uma criatura, reconstruindo o corpo. Isso adiciona um número de dados de dano igual ao seu bônus de proficiência a cada turno seu ou da criatura que você otimizou."
+   }
+  ],
   "custo": 80
  },
  {
@@ -11,6 +45,16 @@
   "nome": "Gonryomaru",
   "resumo": "A Bankai, quando liberada, forma uma tempestade elétrica ao redor do usuário em forma de cúpula, composta por 11 pilares de trovão que cercam o usuário. Isso não altera a aparência da Shikai, mas transforma a roupa do usuário. O ambiente muda quando a Bankai é liberada, com nuvens cobrindo o céu e provocando tempestades e chuvas. A Bankai é ativada quando o comando “Bankai” e o verdadeiro nome dela, “Koko Konryo Rikyu” são pronunciados. Para isso, você deve gastar 40 Pontos de Reiatsu, deixando ela ativa por 1 minuto. Após esse minuto, você deve utilizar novamente os Pontos de Reiatsu para mantê-la ativa por mais 1 minuto.",
   "texto": "A Bankai, quando liberada, forma uma tempestade elétrica ao redor do usuário em forma de cúpula, composta por 11 pilares de trovão que cercam o usuário. Isso não altera a aparência da Shikai, mas transforma a roupa do usuário. O ambiente muda quando a Bankai é liberada, com nuvens cobrindo o céu e provocando tempestades e chuvas. A Bankai é ativada quando o comando “Bankai” e o verdadeiro nome dela, “Koko Konryo Rikyu” são pronunciados. Para isso, você deve gastar 40 Pontos de Reiatsu, deixando ela ativa por 1 minuto. Após esse minuto, você deve utilizar novamente os Pontos de Reiatsu para mantê-la ativa por mais 1 minuto.\n\nA Bankai utiliza todas as técnicas da Shikai, porém de maneira muito mais poderosa. A Zanpakutou “Florete” causa agora 2d10 de dano Perfurante. A habilidade “Infusão de Eletricidade” agora adiciona inicialmente 2d12 de dano e aumenta em 2d12 até um máximo de 8d12. Além disso, as técnicas ganham um número adicional de dados igual ao seu bônus de proficiência enquanto a Bankai estiver ativa, e agora também incluem o dano da “Infusão de Eletricidade”.\n\n### Técnica: Infusão Suprema\n\nA Bankai possui uma técnica suprema que a torna extremamente poderosa com apenas um golpe. Com uma ação e 30 pontos de reiatsu, o usuário posiciona o Florete dentro da cúpula de tempestade, puxa-o para trás e se impulsiona em direção a uma criatura se imbuindo totalmente de trovão. Faça um ataque com a Zanpakutou com vantagem contra uma criatura, você ganha 9 metros de deslocamento adicional para esse ataque. Se acertar, a criatura sofre 10d12 de dano Elétrico, além do dano da Infusão de Eletricidade naquele momento, que não pode ser reduzido por resistências ou imunidades.",
+  "acoes": [
+   {
+    "id": "t-cnica-infus-o-suprema",
+    "nome": "Infusão Suprema",
+    "acao": "Ação",
+    "pr": 30,
+    "dano": "10d12",
+    "texto": "A Bankai possui uma técnica suprema que a torna extremamente poderosa com apenas um golpe. Com uma ação e 30 pontos de reiatsu, o usuário posiciona o Florete dentro da cúpula de tempestade, puxa-o para trás e se impulsiona em direção a uma criatura se imbuindo totalmente de trovão. Faça um ataque com a Zanpakutou com vantagem contra uma criatura, você ganha 9 metros de deslocamento adicional para esse ataque. Se acertar, a criatura sofre 10d12 de dano Elétrico, além do dano da Infusão de Eletricidade naquele momento, que não pode ser reduzido por resistências ou imunidades."
+   }
+  ],
   "custo": 40
  },
  {
@@ -18,6 +62,16 @@
   "nome": "Hozukimaru",
   "resumo": "Uma Bankai onde o usuário junta as partes da Hozukimaru na forma de Naginata, mesmo se ela estiver quebrada, transformando-se em uma versão da sua Shikai dividida extremamente desproporcional, possuindo duas lâminas gigantes e uma terceira lâmina semelhante a um machado nas costas, com um dragão chinês entalhado nesta terceira lâmina. As três lâminas são ligadas por grandes correntes. A Bankai é ativada quando o comando “Bankai” e o verdadeiro nome dela, “Ryumon Hozukimaru” são pronunciados. Para isso, você deve gastar 30 Pontos de Reiatsu, deixando ela ativa por 1 minuto. Após esse minuto, você deve utilizar novamente os Pontos de Reiatsu para mantê-la ativa por mais 1 minuto.",
   "texto": "Uma Bankai onde o usuário junta as partes da Hozukimaru na forma de Naginata, mesmo se ela estiver quebrada, transformando-se em uma versão da sua Shikai dividida extremamente desproporcional, possuindo duas lâminas gigantes e uma terceira lâmina semelhante a um machado nas costas, com um dragão chinês entalhado nesta terceira lâmina. As três lâminas são ligadas por grandes correntes. A Bankai é ativada quando o comando “Bankai” e o verdadeiro nome dela, “Ryumon Hozukimaru” são pronunciados. Para isso, você deve gastar 30 Pontos de Reiatsu, deixando ela ativa por 1 minuto. Após esse minuto, você deve utilizar novamente os Pontos de Reiatsu para mantê-la ativa por mais 1 minuto.\n\nA Ryumon Hozukimaru é uma Zanpakuto extremamente preguiçosa, então quando a Bankai é ativada, ela ainda não está completamente desperta e permanece em forma de descanso. Ela vai despertando gradualmente no calor da batalha, fazendo com que o dragão chinês se preencha em vermelho à medida que desperta.\n\nNo início de cada turno, você girará a Ryumon Hozukimaru para ajudá-la a despertar. Role 2d20 no início de cada turno e guarde o resultado, somando-os em forma de porcentagem. Quando atingir 100%, ela estará completamente desperta, tornando-se cada vez mais poderosa conforme listado abaixo: 0% - O dano com a Ryumon Hozukimaru é de 2d10 de dano cortante + o dobro do seu atributo. 20% - Você consegue utilizar sua ação bônus para realizar um ataque quando usar a ação “Atacar”. 40% - O dano aumenta para 3d10 de dano 60% - Você libera a técnica “Ataque de Reiatsu”. 80% - O dano aumenta para 4d10 de dano. 100% - O dano aumenta para 6d10 de dano cortante, e você recebe um “Ataque Extra” se possuir a característica. A técnica “Ataque de Reiatsu” se torna constante para todos os ataque e você não precisa utilizar a ação bônus para que ela seja ativada.\n\n### Técnica: Ataque de Reiatsu “60%”\n\nQuando você atingir 60%, com sua ação bônus, você consegue imbuir a Ryumon Hozukimaru com Reiatsu até o final do seu turno, fazendo com que todo o dano dela se torne de energia e não possa ser diminuído por resistência. Se a criatura tiver imunidade a dano de energia, ela se tornará resistente.",
+  "acoes": [
+   {
+    "id": "t-cnica-ataque-de-reiatsu-60",
+    "nome": "Ataque de Reiatsu “60%”",
+    "acao": "Ação bônus",
+    "pr": 0,
+    "dano": "",
+    "texto": "Quando você atingir 60%, com sua ação bônus, você consegue imbuir a Ryumon Hozukimaru com Reiatsu até o final do seu turno, fazendo com que todo o dano dela se torne de energia e não possa ser diminuído por resistência. Se a criatura tiver imunidade a dano de energia, ela se tornará resistente."
+   }
+  ],
   "custo": 30
  },
  {
@@ -25,6 +79,64 @@
   "nome": "Hyorinmaru",
   "resumo": "Uma Bankai onde o usuário tem seu braço, que segura sua Zanpakutou, coberto de gelo, ganha grandes asas de gelo com uma longa cauda, e seus pés se tornam gelo. Sua Zanpakutou também se transforma em uma katana, e sua guarda se torna uma estrela de oito pontas.",
   "texto": "Uma Bankai onde o usuário tem seu braço, que segura sua Zanpakutou, coberto de gelo, ganha grandes asas de gelo com uma longa cauda, e seus pés se tornam gelo. Sua Zanpakutou também se transforma em uma katana, e sua guarda se torna uma estrela de oito pontas.\n\nA Bankai é ativada quando o comando “Bankai” e o verdadeiro nome dela, “Daiguren Hyourinmaru” são pronunciados. Para isso, você deve gastar 60 Pontos de Reiatsu, deixando ela ativa por 1 minuto. Após esse minuto ela será desativada e esse tempo é verificável, pois uma flor de gelo flutua em suas costas e vai se quebrando com o tempo até se quebrar por completo quando atinge 1 minuto. Após esse período, você deve esperar mais 5 minutos para ativá-la novamente.\n\nA Daiguren Hyorinmaru permite que seu usuário voe quando ativada, possibilitando a troca do deslocamento por deslocamento de voo. Além disso, ela possui habilidades passivas e ativas, conforme listadas abaixo:\n\n### Tenso Jurin Aprimorado\n\nQuando você libera sua Bankai, sua Tenso Juri se torna significativamente mais poderosa. Todos os seus ataques agora causam um dano adicional de 4d10 de dano de Frio e você pode utilizar todas as suas técnicas da Shikai tornando elas muito mais poderosas, adicionando cinco dados de dano a elas.\n\nAlém disso qualquer criatura de até ND 3 ou objeto em um raio de 9 metros, recebem a condição “Congelado” automaticamente.\n\n### Técnica: Ryusenka\n\nCom uma ação e 12 pontos de reiatsu, você avança em um ataque contra uma criatura, realizando um golpe com sua Zanpakutou. Se acertar, você causa 12d10 de dano de Frio. A criatura deve então realizar um Teste de Resistência de Constituição para evitar ficar com a condição “Congelado” por dois turnos.\n\nVocê tem a opção de realizar um único ataque como parte da mesma ação, rolando novamente um acerto. Caso acerte, você inflige mais 3d10 de dano de Frio adicional, quebrando o congelamento e libertando a criatura. Após quebrar o congelamento a criatura não poderá se mover tão facilmente, perdendo metade do deslocamento dela no próximo turno dela.\n\n### Técnica: Sennen Hyoro\n\nCom uma ação, você cria quatro pilares de gelo, posicionando-os a 15 metros de você em uma formação que se assemelha a um símbolo de cruz: um à sua frente, outro atrás, e os outros nos lados direito e esquerdo. Cada pilar possui 3 metros de diâmetro e 9 metros de altura. Essa formação prende você e todas as criaturas que estiverem dentro da área. Se a criatura tentar sair, um pilar mais próximo se movimentará em direção a ela, exigindo um acerto com uma técnica. Se o acerto for bem-sucedido, o pilar causa 4d10 de dano de Frio e retira o deslocamento da criatura até o final do próximo turno dela. Para manter esses pilares ativos, você deve permanecer dentro da área de 15 metros. Após o encontro de um pilar com uma criatura, os demais pilares são desfeitos.\n\nSe uma criatura tentar entrar na área, o pilar também se moverá em direção a ela, mas apenas afetará criaturas que você desejar. No entanto, ao tentar sair da área, o pilar irá em direção à criatura, mesmo que seja uma aliada.\n\nSe você sair da área onde os pilares foram conjurados, eles serão desfeitos. É necessário manter a concentração para sustentar os pilares, e eles serão desfeitos se você desativar sua Bankai ou com uma ação livre.\n\nAlternativamente, com sua ação em um turno subsequente à conjuração dos pilares, você pode direcionar todos os pilares para uma criatura dentro da área da técnica. Realize um ataque com técnica para cada um dos pilares, causando 4d10 de dano de Frio em cada um. Se acertar mais de um pilar, a criatura perde todo o deslocamento.\n\n### Técnica: Guncho Tsurara\n\nCom uma ação bônus e 15 pontos de reiatsu, você pode conjurar punhais de gelo com sua Zanpakutou, fazendo-os flutuar ao seu lado. Dentro dos próximos dois turnos, você pode, com uma ação, disparar esses punhais de gelo em direção a uma criatura, realizando um acerto com técnica à distância e causando 5d10 de dano Perfurante.\n\nSe a criatura estiver congelada, você pode disparar esses punhais com vantagem, e a margem de crítico se torna 18-20. Eles perfuram o gelo, causando consideravelmente mais dano devido à imobilidade da criatura. Nesse caso, o dano é de 10d10 de dano Perfurante, ignorando resistência ao dano. Se a criatura for imune ao dano perfurante, ela sofre o dano como se fosse resistente a ele.\n\n### Técnica: Hyoten Hyakkaso\n\nApós cinco turnos desde a ativação da sua Bankai, você tem a capacidade de criar uma chuva de neve que cai no campo de batalha em um raio de 36 metros centrado em você. Com uma ação e o custo de 20 pontos de reiatsu, você pode desencadear essa chuva de neve sobre o campo de batalha. Quando a neve toca uma criatura, flores de gelo se formam. Todas as criaturas dentro da área da técnica devem realizar um teste de resistência de Destreza; falhando no teste, elas sofrerão 15d10 de dano de Frio e serão envolvidas pelas flores de gelo, ficando na condição “Congelado”. As criaturas congelados ficam com a condição por 1 minuto e no início do turno da criatura congelada, ela deve realizar um teste de resistência de Força ou um Teste de Preparo Físico, a escolha da criatura para tentar se libertar; em caso de falha, permanecerá congelada e sofrerá 5d10 de dano de Frio por estar nesta condição no turno.\n\nA técnica permanece ativa por 5 turnos no campo de batalha ou até o término da sua Bankai. Importante ressaltar que esta técnica não afeta você, e todas as criaturas dentro da área devem realizar o teste de destreza no início de cada turno após a ativação, ou sofreram o dano e congelaram, mas as criaturas que estão congeladas não precisam realizar o teste de destreza para desviar da chuva de gelo e criaturas que já foram congeladas não podem mais ser congeladas por essa técnica mais ainda sofreram o dano se falhar no testes de resistência de Destreza.\n\n### Técnica: Hyoryu Senbi\n\nCom uma ação e o custo de 15 pontos de reiatsu, você libera uma quantidade gigantesca de gelo da ponta de",
+  "acoes": [
+   {
+    "id": "tenso-jurin-aprimorado",
+    "nome": "Tenso Jurin Aprimorado",
+    "acao": "Habilidade",
+    "pr": 0,
+    "dano": "4d10",
+    "texto": "Quando você libera sua Bankai, sua Tenso Juri se torna significativamente mais poderosa. Todos os seus ataques agora causam um dano adicional de 4d10 de dano de Frio e você pode utilizar todas as suas técnicas da Shikai tornando elas muito mais poderosas, adicionando cinco dados de dano a elas.\n\nAlém disso qualquer criatura de até ND 3 ou objeto em um raio de 9 metros, recebem a condição “Congelado” automaticamente."
+   },
+   {
+    "id": "t-cnica-ryusenka",
+    "nome": "Ryusenka",
+    "acao": "Ação",
+    "pr": 12,
+    "dano": "12d10",
+    "texto": "Com uma ação e 12 pontos de reiatsu, você avança em um ataque contra uma criatura, realizando um golpe com sua Zanpakutou. Se acertar, você causa 12d10 de dano de Frio. A criatura deve então realizar um Teste de Resistência de Constituição para evitar ficar com a condição “Congelado” por dois turnos.\n\nVocê tem a opção de realizar um único ataque como parte da mesma ação, rolando novamente um acerto. Caso acerte, você inflige mais 3d10 de dano de Frio adicional, quebrando o congelamento e libertando a criatura. Após quebrar o congelamento a criatura não poderá se mover tão facilmente, perdendo metade do deslocamento dela no próximo turno dela."
+   },
+   {
+    "id": "t-cnica-sennen-hyoro",
+    "nome": "Sennen Hyoro",
+    "acao": "Ação",
+    "pr": 0,
+    "dano": "4d10",
+    "texto": "Com uma ação, você cria quatro pilares de gelo, posicionando-os a 15 metros de você em uma formação que se assemelha a um símbolo de cruz: um à sua frente, outro atrás, e os outros nos lados direito e esquerdo. Cada pilar possui 3 metros de diâmetro e 9 metros de altura. Essa formação prende você e todas as criaturas que estiverem dentro da área. Se a criatura tentar sair, um pilar mais próximo se movimentará em direção a ela, exigindo um acerto com uma técnica. Se o acerto for bem-sucedido, o pilar causa 4d10 de dano de Frio e retira o deslocamento da criatura até o final do próximo turno dela. Para manter esses pilares ativos, você deve permanecer dentro da área de 15 metros. Após o encontro de um pilar com uma criatura, os demais pilares são desfeitos.\n\nSe uma criatura tentar entrar na área, o pilar também se moverá em direção a ela, mas apenas afetará criaturas que você desejar. No e"
+   },
+   {
+    "id": "t-cnica-guncho-tsurara",
+    "nome": "Guncho Tsurara",
+    "acao": "Ação bônus",
+    "pr": 15,
+    "dano": "5d10",
+    "texto": "Com uma ação bônus e 15 pontos de reiatsu, você pode conjurar punhais de gelo com sua Zanpakutou, fazendo-os flutuar ao seu lado. Dentro dos próximos dois turnos, você pode, com uma ação, disparar esses punhais de gelo em direção a uma criatura, realizando um acerto com técnica à distância e causando 5d10 de dano Perfurante.\n\nSe a criatura estiver congelada, você pode disparar esses punhais com vantagem, e a margem de crítico se torna 18-20. Eles perfuram o gelo, causando consideravelmente mais dano devido à imobilidade da criatura. Nesse caso, o dano é de 10d10 de dano Perfurante, ignorando resistência ao dano. Se a criatura for imune ao dano perfurante, ela sofre o dano como se fosse resistente a ele."
+   },
+   {
+    "id": "t-cnica-hyoten-hyakkaso",
+    "nome": "Hyoten Hyakkaso",
+    "acao": "Ação",
+    "pr": 20,
+    "dano": "15d10",
+    "texto": "Após cinco turnos desde a ativação da sua Bankai, você tem a capacidade de criar uma chuva de neve que cai no campo de batalha em um raio de 36 metros centrado em você. Com uma ação e o custo de 20 pontos de reiatsu, você pode desencadear essa chuva de neve sobre o campo de batalha. Quando a neve toca uma criatura, flores de gelo se formam. Todas as criaturas dentro da área da técnica devem realizar um teste de resistência de Destreza; falhando no teste, elas sofrerão 15d10 de dano de Frio e serão envolvidas pelas flores de gelo, ficando na condição “Congelado”. As criaturas congelados ficam com a condição por 1 minuto e no início do turno da criatura congelada, ela deve realizar um teste de resistência de Força ou um Teste de Preparo Físico, a escolha da criatura para tentar se libertar; em caso de falha, permanecerá congelada e sofrerá 5d10 de dano de Frio por estar nesta condição no t"
+   },
+   {
+    "id": "t-cnica-hyoryu-senbi",
+    "nome": "Hyoryu Senbi",
+    "acao": "Ação",
+    "pr": 15,
+    "dano": "12d6",
+    "texto": "Com uma ação e o custo de 15 pontos de reiatsu, você libera uma quantidade gigantesca de gelo da ponta de sua Zanpakutou em um cone de 18 metros. Causando 12d6 de dano de Frio em todas as criaturas dentro do cone da técnica. Essas criaturas devem realizar um Teste de Resistência de Destreza, sofrendo o dano total em caso de falha ou metade dele em caso de sucesso.\n\nAs criaturas que falharem no primeiro teste de resistência devem então realizar um segundo Teste de Resistência de Constituição para evitar ficarem congeladas até o final do próximo turno delas."
+   },
+   {
+    "id": "regenera-o",
+    "nome": "Regeneração",
+    "acao": "Habilidade",
+    "pr": 0,
+    "dano": "1d10",
+    "texto": "Para o shinigami que possui a Hyorinmaru, a ligação é muito mais profunda, permitindo que você regenere sua Bankai caso ela se quebre por algum motivo. Você experimenta sonhos constantes com a Hyorinmaru após atingir sua Bankai pela primeira vez.\n\nA regeneração da Bankai é possível a partir de sua própria reiatsu, mas esse processo demanda tempo. Leva 1d10+10 dias para regenerar completamente. Se você já possuir uma habilidade que permita a regeneração da sua Bankai, esse tempo é reduzido para apenas 10 dias. Durante esses dias de regeneração da sua bankai, você ainda pode utilizar sua shikai.\n\nSe a bankai estiver um local que tenha muita água em volta e ela for quebrada e estiver ativa, o usuário pode utilizar metade do custo de liberação para regenerar a bankai instantaneamente."
+   }
+  ],
   "custo": 60
  },
  {
@@ -32,6 +144,40 @@
   "nome": "Katen Kyokotsu",
   "resumo": "O usuário crava as duas Zanpakutous no chão, criando uma trilha de sombras em todas as direções, alterando a percepção das criaturas e trazendo uma atmosfera de melancolia e tristeza ao ambiente da Bankai. O espírito da Zanpakutou aparece e abraça o ombro do usuário quando a Bankai é liberada.",
   "texto": "O usuário crava as duas Zanpakutous no chão, criando uma trilha de sombras em todas as direções, alterando a percepção das criaturas e trazendo uma atmosfera de melancolia e tristeza ao ambiente da Bankai. O espírito da Zanpakutou aparece e abraça o ombro do usuário quando a Bankai é liberada.\n\nA Bankai é ativada quando o comando “Bankai” e o verdadeiro nome dela, “Katen Kyokotsu Karamatsu Shinju” são pronunciados. Para isso, você deve gastar 80 Pontos de Reiatsu. A Bankai durará até o final da última provação. Quando essa Bankai é liberada, o ambiente fica totalmente escuro e todas as criaturas em um raio de até 36 metros do usuário, mesmo sendo aliadas, são envolvidas e devem passar pela história que a Bankai contará em forma de provações. As Zanpakutous revertem para a forma de Asauchi quando a Bankai está ativa, mas causam o mesmo dano que na forma Shikai. Todas as criaturas devem passar pelas provações a seguir:\n\n### 1. Tameraikizu no Wakachia\n\nA primeira provação da Bankai dura três rodadas após a liberação da Bankai. Todo dano recebido por qualquer criatura dentro da área é compartilhado igualmente entre todas as outras, exceto pelo usuário, que receberá apenas metade do dano de outra criatura, mas se for atacada, receberá o dano normalmente. Por exemplo, se uma criatura sofrer 10 pontos de dano de um ataque com Zanpakutou, todas as outras também receberão 10 pontos de dano, e o usuário receberá apenas 5 pontos de dano. As criaturas podem se mexer livremente nessa provação e essa provação remete à história de um homem que sofre das mesmas feridas que seu parceiro, mas não pode morrer delas.\n\n### 2. Zanki no Shitone\n\nApós terminar a primeira provação, essa provação é ativada imediatamente e durará por mais duas rodadas. O usuário escolhe um número de criaturas igual ao seu bônus de proficiência. Todas elas perdem -10 na Classe de Resistência e sofrem 5 acumulações de Sangramento que não podem ser estancadas. As criaturas podem se mexer livremente nessa provação e continuando a história, o homem sente vergonha após ferir seu parceiro, levando-o a desmoronar em vergonha e adoecer incuravelmente.\n\n### 3. Dangyo no Fuchi\n\nApós terminar a segunda provação, esta se inicia: o ambiente inteiro do combate se enche de água e todas as criaturas que estão sofrendo o efeito da Bankai são submersas nessa água, inclusive o usuário. Esta provação dura por três rodadas, durante os quais todas as criaturas afetadas são incapazes de realizar qualquer ação, permanecendo imóveis. Cada criatura recebe 100 pontos que serão diminuídos ao longo da duração da provação. No início do turno de cada criatura, a criatura deve rolar um d100, e o resultado será subtraído dos 100 pontos. A criatura ou o usuário da Bankai que zerar os pontos primeiro perde a provação e morre. O usuário também morrerá se chegar a 0 pontos, desfazendo a Bankai instantaneamente. Se passar as três rodadas e ninguém chegar a 0 pontos, ninguém morrerá e passará para a próxima provação.\n\nO mestre pode utilizar uma regra alternativa: quem chegar a 0 pontos ficará com 1 ponto de vida e 1 ponto de reiatsu. Se o usuário zerar, ele também ficará com 1 ponto de vida e 1 ponto de reiatsu, e a Bankai será desfeita. Essa parte da história conta como dois personagens se lançaram em águas tumultuosas.\n\n### 4. Itokiribasami Chizome no Nodobue\n\nApós terminar a terceira provação, e se sobrarem criaturas vivas, o usuário puxa uma de suas Zanpakutous e um fio aparece em sua mão. Com uma ação no seu turno, você enrola um fio no pescoço de todas as criaturas vivas, exceto o seu. As criaturas podem se mover livremente durante esta provação e podem tentar derrotar o usuário da Bankai, matando ele. No início de cada turno, cada criatura deve realizar um Teste de Resistência de Constituição. Se falhar, a criatura é decepada e morre.\n\nEssa parte da história é uma analogia a um amigo que ignora os apelos do outro e corta sua garganta.",
+  "acoes": [
+   {
+    "id": "1-tameraikizu-no-wakachia",
+    "nome": "1. Tameraikizu no Wakachia",
+    "acao": "Habilidade",
+    "pr": 0,
+    "dano": "",
+    "texto": "A primeira provação da Bankai dura três rodadas após a liberação da Bankai. Todo dano recebido por qualquer criatura dentro da área é compartilhado igualmente entre todas as outras, exceto pelo usuário, que receberá apenas metade do dano de outra criatura, mas se for atacada, receberá o dano normalmente. Por exemplo, se uma criatura sofrer 10 pontos de dano de um ataque com Zanpakutou, todas as outras também receberão 10 pontos de dano, e o usuário receberá apenas 5 pontos de dano. As criaturas podem se mexer livremente nessa provação e essa provação remete à história de um homem que sofre das mesmas feridas que seu parceiro, mas não pode morrer delas."
+   },
+   {
+    "id": "2-zanki-no-shitone",
+    "nome": "2. Zanki no Shitone",
+    "acao": "Habilidade",
+    "pr": 0,
+    "dano": "",
+    "texto": "Após terminar a primeira provação, essa provação é ativada imediatamente e durará por mais duas rodadas. O usuário escolhe um número de criaturas igual ao seu bônus de proficiência. Todas elas perdem -10 na Classe de Resistência e sofrem 5 acumulações de Sangramento que não podem ser estancadas. As criaturas podem se mexer livremente nessa provação e continuando a história, o homem sente vergonha após ferir seu parceiro, levando-o a desmoronar em vergonha e adoecer incuravelmente."
+   },
+   {
+    "id": "3-dangyo-no-fuchi",
+    "nome": "3. Dangyo no Fuchi",
+    "acao": "Ação",
+    "pr": 1,
+    "dano": "",
+    "texto": "Após terminar a segunda provação, esta se inicia: o ambiente inteiro do combate se enche de água e todas as criaturas que estão sofrendo o efeito da Bankai são submersas nessa água, inclusive o usuário. Esta provação dura por três rodadas, durante os quais todas as criaturas afetadas são incapazes de realizar qualquer ação, permanecendo imóveis. Cada criatura recebe 100 pontos que serão diminuídos ao longo da duração da provação. No início do turno de cada criatura, a criatura deve rolar um d100, e o resultado será subtraído dos 100 pontos. A criatura ou o usuário da Bankai que zerar os pontos primeiro perde a provação e morre. O usuário também morrerá se chegar a 0 pontos, desfazendo a Bankai instantaneamente. Se passar as três rodadas e ninguém chegar a 0 pontos, ninguém morrerá e passará para a próxima provação.\n\nO mestre pode utilizar uma regra alternativa: quem chegar a 0 pontos fic"
+   },
+   {
+    "id": "4-itokiribasami-chizome-no-nodobue",
+    "nome": "4. Itokiribasami Chizome no Nodobue",
+    "acao": "Ação",
+    "pr": 0,
+    "dano": "",
+    "texto": "Após terminar a terceira provação, e se sobrarem criaturas vivas, o usuário puxa uma de suas Zanpakutous e um fio aparece em sua mão. Com uma ação no seu turno, você enrola um fio no pescoço de todas as criaturas vivas, exceto o seu. As criaturas podem se mover livremente durante esta provação e podem tentar derrotar o usuário da Bankai, matando ele. No início de cada turno, cada criatura deve realizar um Teste de Resistência de Constituição. Se falhar, a criatura é decepada e morre.\n\nEssa parte da história é uma analogia a um amigo que ignora os apelos do outro e corta sua garganta."
+   }
+  ],
   "custo": 80
  },
  {
@@ -39,6 +185,56 @@
   "nome": "Minazuki",
   "resumo": "A Bankai assume a forma de uma substância espessa vermelha que escorre da arma do usuário, transformando tudo ao seu redor em um tom escuro de vermelho devido ao líquido ácido que se espalha por todo o campo de batalha. A Bankai é ativada quando o comando “Bankai” e o verdadeiro nome dela, “Minazuki” são pronunciados. Para isso, você deve gastar 60 Pontos de Reiatsu, deixando ela ativa por 1 minuto. Após esse minuto, você deve utilizar novamente os Pontos de Reiatsu para mantê-la ativa por mais 1 minuto.",
   "texto": "A Bankai assume a forma de uma substância espessa vermelha que escorre da arma do usuário, transformando tudo ao seu redor em um tom escuro de vermelho devido ao líquido ácido que se espalha por todo o campo de batalha. A Bankai é ativada quando o comando “Bankai” e o verdadeiro nome dela, “Minazuki” são pronunciados. Para isso, você deve gastar 60 Pontos de Reiatsu, deixando ela ativa por 1 minuto. Após esse minuto, você deve utilizar novamente os Pontos de Reiatsu para mantê-la ativa por mais 1 minuto.\n\n### Carmesin\n\nQuando a Bankai é ativada, um líquido vermelho escuro escorre pela arma, que se transforma em uma Nodachi. Esta Nodachi causa o mesmo dano de uma Nodachi normal (1d12) mas é banhada no líquido, com uma margem de crítico de 18-20. Além disso, esse líquido percorre o campo de batalha até 12 metros do usuário, centrado nele. Todas as criaturas dentro desse líquido devem realizar um teste de resistência de constituição para evitar sofrer 8d6 de dano Corrosivo no início de cada turno.\n\nEsse líquido pode ser utilizado para causar dano Corrosivo adicional aos seus ataques ou para curar quem estiver dentro da área da Bankai, inclusive o usuário. Você possui dados d8 que podem ser utilizados para esses objetivos, e a quantidade de dados disponíveis é igual a duas vezes seu bônus de proficiência. Por exemplo, se estiver no 12º nível de classe e possuir 4 de proficiência, você terá 8d8 para utilizar.\n\nSe você utiliza os dados para uma ação você gastará os dados e só recupera eles no começo do próximo turno.\n\n### Atacar\n\nQuando você utilizar a ação de ataque com sua Zanpakutou, você pode utilizar uma quantidade de dados que tiver disponível para causar dano Corrosivo adicional. Por exemplo, se possuir 8 dados d8, pode usar todos ou parte deles para se curar e guardar outra parte deles para realizar outra ação.\n\nVocê pode também utilizar sua ação bônus e 5 pontos de reiatsu para adicionar dois dados d8 adicionais em todos os seus ataques no turno como dano adicional Corrosivo.\n\n### Curar\n\nVocê pode utilizar seus dados com uma ação livre para curar você, você pode utilizar uma quantidade de dados que tiver disponível. Por exemplo, se possuir 8 dados d8, pode usar todos ou parte deles para se curar e guardar outra parte deles para realizar outra ação.\n\nVocê pode utilizar sua ação bônus para curar outra criatura que esteja dentro da área da sua Bankai com um número de dados que você tenha disponível.\n\n### Defender\n\nVocê pode utilizar seus dados para se defender, utilizando sua reação no começo do seu turno ou quando receber um ataque antes de saber se acertou, adicionando +1 na sua Classe de Resistência para cada dado que você utilizar. Por exemplo, você pode utilizar quatro dados para adicionar +4 na sua Classe de Resistência.\n\nEsse aumento na sua CR durará até o começo do seu próximo turno.\n\n### Projetar\n\nQuando você utilizar a ação de ataque, pode usar um dado para fazer com que o alcance do seu ataque com a Zanpakutou se torne 9 metros. Alternativamente, pode usar três dados para que todos os seus ataques no turno com a katana tenham um alcance de 9 metros, além de um bônus de +2 de dano Corrosivo a eles.\n\nAlternativamente, você pode utilizar sua ação bônus para que seus ataques com a Zanpakutou tenham um alcance de 3 metros no turno.\n\n### Alucinações\n\nDurante a batalha, a Bankai Minazuki cria uma aura de medo, e as criaturas dentro desse líquido vermelho começam a ter alucinações, vendo-se transformadas em caveiras ou até mesmo vendo o usuário como uma caveira. Criaturas que permaneçam mais de três turnos dentro da área da Bankai ou que a observem devem realizar um Teste de Determinação no início do terceiro turno; se falharem, ficaram incapazes de realizar ações ou ações bônus, podendo apenas executar reações defensivas durante esse turno e devem se deslocar para longe do usuário da bankai usando metade do seu deslocamento. Após três turnos, as criaturas devem realizar esse teste novamente.\n\nUma vez que falhem nesse teste, ao tentarem novamente após três turnos, poderão fazer o teste com vantagem. No entanto, se o primeiro teste resultar em uma falha crítica (1 no d20), elas farão esse teste sempre com desvantagem.",
+  "acoes": [
+   {
+    "id": "carmesin",
+    "nome": "Carmesin",
+    "acao": "Ação",
+    "pr": 0,
+    "dano": "1d12",
+    "texto": "Quando a Bankai é ativada, um líquido vermelho escuro escorre pela arma, que se transforma em uma Nodachi. Esta Nodachi causa o mesmo dano de uma Nodachi normal (1d12) mas é banhada no líquido, com uma margem de crítico de 18-20. Além disso, esse líquido percorre o campo de batalha até 12 metros do usuário, centrado nele. Todas as criaturas dentro desse líquido devem realizar um teste de resistência de constituição para evitar sofrer 8d6 de dano Corrosivo no início de cada turno.\n\nEsse líquido pode ser utilizado para causar dano Corrosivo adicional aos seus ataques ou para curar quem estiver dentro da área da Bankai, inclusive o usuário. Você possui dados d8 que podem ser utilizados para esses objetivos, e a quantidade de dados disponíveis é igual a duas vezes seu bônus de proficiência. Por exemplo, se estiver no 12º nível de classe e possuir 4 de proficiência, você terá 8d8 para utiliza"
+   },
+   {
+    "id": "atacar",
+    "nome": "Atacar",
+    "acao": "Ação bônus",
+    "pr": 5,
+    "dano": "",
+    "texto": "Quando você utilizar a ação de ataque com sua Zanpakutou, você pode utilizar uma quantidade de dados que tiver disponível para causar dano Corrosivo adicional. Por exemplo, se possuir 8 dados d8, pode usar todos ou parte deles para se curar e guardar outra parte deles para realizar outra ação.\n\nVocê pode também utilizar sua ação bônus e 5 pontos de reiatsu para adicionar dois dados d8 adicionais em todos os seus ataques no turno como dano adicional Corrosivo."
+   },
+   {
+    "id": "curar",
+    "nome": "Curar",
+    "acao": "Ação bônus",
+    "pr": 0,
+    "dano": "",
+    "texto": "Você pode utilizar seus dados com uma ação livre para curar você, você pode utilizar uma quantidade de dados que tiver disponível. Por exemplo, se possuir 8 dados d8, pode usar todos ou parte deles para se curar e guardar outra parte deles para realizar outra ação.\n\nVocê pode utilizar sua ação bônus para curar outra criatura que esteja dentro da área da sua Bankai com um número de dados que você tenha disponível."
+   },
+   {
+    "id": "defender",
+    "nome": "Defender",
+    "acao": "Reação",
+    "pr": 0,
+    "dano": "",
+    "texto": "Você pode utilizar seus dados para se defender, utilizando sua reação no começo do seu turno ou quando receber um ataque antes de saber se acertou, adicionando +1 na sua Classe de Resistência para cada dado que você utilizar. Por exemplo, você pode utilizar quatro dados para adicionar +4 na sua Classe de Resistência.\n\nEsse aumento na sua CR durará até o começo do seu próximo turno."
+   },
+   {
+    "id": "projetar",
+    "nome": "Projetar",
+    "acao": "Ação bônus",
+    "pr": 0,
+    "dano": "",
+    "texto": "Quando você utilizar a ação de ataque, pode usar um dado para fazer com que o alcance do seu ataque com a Zanpakutou se torne 9 metros. Alternativamente, pode usar três dados para que todos os seus ataques no turno com a katana tenham um alcance de 9 metros, além de um bônus de +2 de dano Corrosivo a eles.\n\nAlternativamente, você pode utilizar sua ação bônus para que seus ataques com a Zanpakutou tenham um alcance de 3 metros no turno."
+   },
+   {
+    "id": "alucina-es",
+    "nome": "Alucinações",
+    "acao": "Habilidade",
+    "pr": 0,
+    "dano": "",
+    "texto": "Durante a batalha, a Bankai Minazuki cria uma aura de medo, e as criaturas dentro desse líquido vermelho começam a ter alucinações, vendo-se transformadas em caveiras ou até mesmo vendo o usuário como uma caveira. Criaturas que permaneçam mais de três turnos dentro da área da Bankai ou que a observem devem realizar um Teste de Determinação no início do terceiro turno; se falharem, ficaram incapazes de realizar ações ou ações bônus, podendo apenas executar reações defensivas durante esse turno e devem se deslocar para longe do usuário da bankai usando metade do seu deslocamento. Após três turnos, as criaturas devem realizar esse teste novamente.\n\nUma vez que falhem nesse teste, ao tentarem novamente após três turnos, poderão fazer o teste com vantagem. No entanto, se o primeiro teste resultar em uma falha crítica (1 no d20), elas farão esse teste sempre com desvantagem."
+   }
+  ],
   "custo": 60
  },
  {
@@ -46,6 +242,32 @@
   "nome": "Nozarashi",
   "resumo": "Uma Bankai muito diferente do que é normalmente esperado, onde o usuário é tomado por um descontrole colossal ao ponto de não conseguir nem falar o nome da Bankai. Após dar o comando de liberação, ele não conseguirá falar e apenas tomará a forma de um Oni, com a pele vermelha, olhos amarelos, dois chifres na cabeça e uma arma na mão na forma de um cutelo deformado.",
   "texto": "Uma Bankai muito diferente do que é normalmente esperado, onde o usuário é tomado por um descontrole colossal ao ponto de não conseguir nem falar o nome da Bankai. Após dar o comando de liberação, ele não conseguirá falar e apenas tomará a forma de um Oni, com a pele vermelha, olhos amarelos, dois chifres na cabeça e uma arma na mão na forma de um cutelo deformado.\n\nA Bankai é ativada quando apenas o comando “Bankai” é pronunciado. Para isso, você deve gastar 60 Pontos de Reiatsu, deixando ela ativa por 1 minuto. Após esse minuto, você deve utilizar novamente os Pontos de Reiatsu para mantê-la ativa por mais 1 minuto.\n\n### Forma Demoníaca\n\nQuando ativar a Bankai, você se tornará um demônio vermelho. Nessa forma, você tem resistência a todos os tipos de dano, exceto dano “Temporal”. Seus ataques com o cutelo nessa forma causam 5d10 de dano cortante, que não pode ser diminuído de nenhuma forma, nem mesmo por resistência ou imunidade. Sua margem de crítico se torna 19-20, e seu crítico se mantém 3x, jogando os dados triplicados ao invés de duplicados e você pode utilizar a habilidade “Destruidora” da Shikai.\n\nVocê não conseguirá desativar sua Bankai por vontade própria, apenas se você cair a 0 pontos de vida ou você não ter pontos de reiatsu suficientes para manter a Bankai ativa.\n\n### Poder Incontrolável\n\nO poder da Bankai da Nozarashi é tão grande que o próprio usuário sofre com ela, causando dano ao corpo do usuário caso ele perca minimamente o controle do seu poder. No começo de cada turno, você deve rolar um d20. Se tirar 9 ou menos, a Bankai sai de controle e fere o próprio usuário, causando um dano inicial de 5d10. Para cada falha subsequente, o dano aumenta em dois dados acumulando até a Bankai ser desativada, não podendo ser diminuído de maneira alguma.\n\n### Frenesi\n\nNa forma de Bankai, o usuário fica descontrolado, com um único objetivo, destruir o inimigo, fazendo com que ele perca o controle e, às vezes, não consiga dicernir aliados de inimigos, não possuindo consciência e só vendo a batalha em sua frente. Você deve atacar um inimigo a cada turno, caso não consiga atacar no turno, no próximo turno você perderá o controle e deverá atacar a criatura mais próxima. Você também ignorará se seu corpo perder um membro ou ser destruido, continuando a lutar até a Bankai desativar.",
+  "acoes": [
+   {
+    "id": "forma-demon-aca",
+    "nome": "Forma Demoníaca",
+    "acao": "Habilidade",
+    "pr": 0,
+    "dano": "5d10",
+    "texto": "Quando ativar a Bankai, você se tornará um demônio vermelho. Nessa forma, você tem resistência a todos os tipos de dano, exceto dano “Temporal”. Seus ataques com o cutelo nessa forma causam 5d10 de dano cortante, que não pode ser diminuído de nenhuma forma, nem mesmo por resistência ou imunidade. Sua margem de crítico se torna 19-20, e seu crítico se mantém 3x, jogando os dados triplicados ao invés de duplicados e você pode utilizar a habilidade “Destruidora” da Shikai.\n\nVocê não conseguirá desativar sua Bankai por vontade própria, apenas se você cair a 0 pontos de vida ou você não ter pontos de reiatsu suficientes para manter a Bankai ativa."
+   },
+   {
+    "id": "poder-incontrol-vel",
+    "nome": "Poder Incontrolável",
+    "acao": "Habilidade",
+    "pr": 0,
+    "dano": "5d10",
+    "texto": "O poder da Bankai da Nozarashi é tão grande que o próprio usuário sofre com ela, causando dano ao corpo do usuário caso ele perca minimamente o controle do seu poder. No começo de cada turno, você deve rolar um d20. Se tirar 9 ou menos, a Bankai sai de controle e fere o próprio usuário, causando um dano inicial de 5d10. Para cada falha subsequente, o dano aumenta em dois dados acumulando até a Bankai ser desativada, não podendo ser diminuído de maneira alguma."
+   },
+   {
+    "id": "frenesi",
+    "nome": "Frenesi",
+    "acao": "Habilidade",
+    "pr": 0,
+    "dano": "",
+    "texto": "Na forma de Bankai, o usuário fica descontrolado, com um único objetivo, destruir o inimigo, fazendo com que ele perca o controle e, às vezes, não consiga dicernir aliados de inimigos, não possuindo consciência e só vendo a batalha em sua frente. Você deve atacar um inimigo a cada turno, caso não consiga atacar no turno, no próximo turno você perderá o controle e deverá atacar a criatura mais próxima. Você também ignorará se seu corpo perder um membro ou ser destruido, continuando a lutar até a Bankai desativar."
+   }
+  ],
   "custo": 60
  },
  {
@@ -53,6 +275,64 @@
   "nome": "Ryuujin Jakka",
   "resumo": "Uma Bankai que sela totalmente o poder das chamas de Ryuujin Jakka em sua lâmina, liberando destruição em cada golpe, reduzindo tudo a cinzas.",
   "texto": "Uma Bankai que sela totalmente o poder das chamas de Ryuujin Jakka em sua lâmina, liberando destruição em cada golpe, reduzindo tudo a cinzas.\n\nA Bankai é ativada quando o comando “Bankai” e o verdadeiro nome dela, “Zanka no Tachi” são pronunciados. Para isso, você deve gastar 80 Pontos de Reiatsu, deixando ela ativa por 1 minuto. Após esse minuto, você deve utilizar novamente os Pontos de Reiatsu para mantê-la ativa por mais 1 minuto.\n\n### Higashi: Kyokujitsujin\n\nComo todas as chamas estão seladas dentro da lâmina, quando você atinge um inimigo com ela, ela não queima, mas desintegra, transformando tudo em cinzas. Ela mantém a forma Asauchi e causa 6d10 de dano de Fogo adiconal com seus ataques usando a lâmina da Zanka no Tachi. Os seus ataques destroem tudo que tocam e se você atacar um objeto, você destrói esse objeto instantaneamente o transformando em cinzas, sendo esse objeto uma estrutura grande ou média que o mestre decidir que possa ser destruido.\n\n### Técnicas Aprimoradas\n\nVocê pode utilizar qualquer habilidade que esteja descrita como “técnica” da sua Shikai, mas agora elas estão totalmente potencializadas pela Bankai, você adiciona cinco dados a mais de dano nas técnicas.\n\nTodas as técnicas da Shikai que causem condição agora passam a garantir a condição de “Queimado” se elas acertarem\n\n### Nishi: Zanjitsu Gokui\n\nCom essa habilidade, seu corpo fica coberto por chamas a uma temperatura de 15 milhões de graus. Toda criatura que terminar o turno dela ou começar o turno a até 9 metros de você sofre 4d10 de dano de fogo.\n\nSe uma criatura for reduzida a 0 pontos de vida estando a até 6 metros de você, ela vira cinzas instantaneamente, morrendo sem realizar testes contra a morte. Além disso, quando uma criatura o acertar, ela também sofre 4d10 de dano de fogo.\n\nTodas as criaturas que possuírem ND igual a duas vezes seu bônus de proficiência ou menor caem a 0 pontos de vida e morrem queimadas instantaneamente se chegarem a 9 metros de você.\n\n### Técnica: Kita, Tenchi Kaijin\n\nVocê libera as chamas de sua Bankai a uma velocidade incrível a partir da lâmina. Utilizando sua ação e 20 pontos de reiatsu, faça um ataque à distância contra um alvo a até 21 metros de distância em linha reta. Em caso de acerto, o alvo sofre 15d10 de dano de Fogo.\n\nUma criatura atingida por essa técnica recebe a condição “Queimado” com um acúmulo de 3 vezes.\n\n### Minami, Kaka Juman Okushi Daisoujin\n\nQuando você adquirir a Bankai Zanka no Tachi, todos os inimigos que você derrotar com ela poderão ser invocados na forma de esqueletos, mas que ainda possuem as mesmas habilidades de quando estavam vivos.\n\nQuando você matar uma criatura, seja um Shinigami ou Quincy, com sua Bankai, você adicionará uma ficha de “Morto-Vivo” à sua contagem de mortes, que está ao lado. Para invocá-los, você precisa utilizar uma ação e 20 pontos de reiatsu. Nos turnos seguintes, custará 5 pontos de reiatsu no começo do seu turno para mantê-los ativos. Todos eles se posicionarão o mais perto possível de você, começando a 1,5 metros e se afastando à medida que não houver mais espaço ao seu redor, formando um exército ao seu redor.\n\nVocê invocará um número de mortos igual à sua contagem. Eles devem rolar iniciativa e poderão agir na próxima rodada. Os mortos-vivos desaparecerão se você os dissipar com uma ação livre ou se sua Bankai acabar. Um morto-vivo ficará parado e, para que eles façam uma ação, conforme descrito na ficha, você deve usar uma ação chamada “Comando” para ordenar que eles ataquem e se movimentem.\n\nAlternativamente, o mestre pode oferecer a ficha original do inimigo que você matou. Eles contarão como mortos-vivo e terão todas as habilidades que possuíam em vida, como classe de resistência, acerto e etc... com a única diferença de que terão os mesmos Pontos de Vida da ficha de Morto Vivo.\n\nMorto-Vivo FOR DES CON MEN ESP Atributos Aura de Medo: Quando os mortos-vivos são invocados pela primeira vez, todas as criaturas até 36 metros deles, devem realizar um Teste de Mente. Se falhar, ficará com a condição “Amedrontado” em relação ao usuário da Bankai, se uma criatura conheceu um dos mortos vivos quando ele estava vivo, ela fará o teste de resistência com desvantagem. A criatura que falhou no teste pode repetir o teste no início de cada um dos seus turnos, mas agora deve realizar um Teste de Determinação para tentar se livrar da condição de Amedrontado.\n\nO morto vivo pode realizar a ação Atacar Corpo-a-Corpo se em vida ele ter sido um Shinigami, ou a distância se ele era um Quincy.\n\nAtaque CORPO-A-CORPO: Ataque corpo-a-corpo desarmado com +4 de acerto, causando 2d6 + 4 de dano de Fogo. Ataque à distância: Ataque à distância com alcance de 18 metros e com +6 de acerto, causando 1d10 + 4 de dano de Fogo.\n\n### Passivas\n\nPV cr 9m dESL\n\n### Ficha\n\nQuando você executar um Quincy ou Shinigami com sua Bankai, deve fazer a contagem separadamente, porque os Shinigamis atacam fisicamente e os Quincys atacam à distância, conforme descrito na ficha.\n\nPara qualquer teste que o Morto Vivo tenha que fazer você irá utilizar apenas o Atributo para o teste.\n\n### Ações",
+  "acoes": [
+   {
+    "id": "higashi-kyokujitsujin",
+    "nome": "Higashi: Kyokujitsujin",
+    "acao": "Habilidade",
+    "pr": 0,
+    "dano": "6d10",
+    "texto": "Como todas as chamas estão seladas dentro da lâmina, quando você atinge um inimigo com ela, ela não queima, mas desintegra, transformando tudo em cinzas. Ela mantém a forma Asauchi e causa 6d10 de dano de Fogo adiconal com seus ataques usando a lâmina da Zanka no Tachi. Os seus ataques destroem tudo que tocam e se você atacar um objeto, você destrói esse objeto instantaneamente o transformando em cinzas, sendo esse objeto uma estrutura grande ou média que o mestre decidir que possa ser destruido."
+   },
+   {
+    "id": "t-cnicas-aprimoradas",
+    "nome": "Técnicas Aprimoradas",
+    "acao": "Habilidade",
+    "pr": 0,
+    "dano": "",
+    "texto": "Você pode utilizar qualquer habilidade que esteja descrita como “técnica” da sua Shikai, mas agora elas estão totalmente potencializadas pela Bankai, você adiciona cinco dados a mais de dano nas técnicas.\n\nTodas as técnicas da Shikai que causem condição agora passam a garantir a condição de “Queimado” se elas acertarem"
+   },
+   {
+    "id": "nishi-zanjitsu-gokui",
+    "nome": "Nishi: Zanjitsu Gokui",
+    "acao": "Habilidade",
+    "pr": 0,
+    "dano": "4d10",
+    "texto": "Com essa habilidade, seu corpo fica coberto por chamas a uma temperatura de 15 milhões de graus. Toda criatura que terminar o turno dela ou começar o turno a até 9 metros de você sofre 4d10 de dano de fogo.\n\nSe uma criatura for reduzida a 0 pontos de vida estando a até 6 metros de você, ela vira cinzas instantaneamente, morrendo sem realizar testes contra a morte. Além disso, quando uma criatura o acertar, ela também sofre 4d10 de dano de fogo.\n\nTodas as criaturas que possuírem ND igual a duas vezes seu bônus de proficiência ou menor caem a 0 pontos de vida e morrem queimadas instantaneamente se chegarem a 9 metros de você."
+   },
+   {
+    "id": "t-cnica-kita-tenchi-kaijin",
+    "nome": "Kita, Tenchi Kaijin",
+    "acao": "Ação",
+    "pr": 20,
+    "dano": "15d10",
+    "texto": "Você libera as chamas de sua Bankai a uma velocidade incrível a partir da lâmina. Utilizando sua ação e 20 pontos de reiatsu, faça um ataque à distância contra um alvo a até 21 metros de distância em linha reta. Em caso de acerto, o alvo sofre 15d10 de dano de Fogo.\n\nUma criatura atingida por essa técnica recebe a condição “Queimado” com um acúmulo de 3 vezes."
+   },
+   {
+    "id": "minami-kaka-juman-okushi-daisoujin",
+    "nome": "Minami, Kaka Juman Okushi Daisoujin",
+    "acao": "Ação",
+    "pr": 20,
+    "dano": "2d6",
+    "texto": "Quando você adquirir a Bankai Zanka no Tachi, todos os inimigos que você derrotar com ela poderão ser invocados na forma de esqueletos, mas que ainda possuem as mesmas habilidades de quando estavam vivos.\n\nQuando você matar uma criatura, seja um Shinigami ou Quincy, com sua Bankai, você adicionará uma ficha de “Morto-Vivo” à sua contagem de mortes, que está ao lado. Para invocá-los, você precisa utilizar uma ação e 20 pontos de reiatsu. Nos turnos seguintes, custará 5 pontos de reiatsu no começo do seu turno para mantê-los ativos. Todos eles se posicionarão o mais perto possível de você, começando a 1,5 metros e se afastando à medida que não houver mais espaço ao seu redor, formando um exército ao seu redor.\n\nVocê invocará um número de mortos igual à sua contagem. Eles devem rolar iniciativa e poderão agir na próxima rodada. Os mortos-vivos desaparecerão se você os dissipar com uma ação "
+   },
+   {
+    "id": "passivas",
+    "nome": "Passivas",
+    "acao": "Habilidade",
+    "pr": 0,
+    "dano": "",
+    "texto": "PV cr 9m dESL"
+   },
+   {
+    "id": "ficha",
+    "nome": "Ficha",
+    "acao": "Habilidade",
+    "pr": 0,
+    "dano": "",
+    "texto": "Quando você executar um Quincy ou Shinigami com sua Bankai, deve fazer a contagem separadamente, porque os Shinigamis atacam fisicamente e os Quincys atacam à distância, conforme descrito na ficha.\n\nPara qualquer teste que o Morto Vivo tenha que fazer você irá utilizar apenas o Atributo para o teste."
+   }
+  ],
   "custo": 80
  },
  {
@@ -60,6 +340,7 @@
   "nome": "Sakanade",
   "resumo": "Transformando a Zanpakutou em um grande bastão, o usuário se posiciona dentro de uma flor, ficando protegido enquanto libera uma grande quantidade de gás.",
   "texto": "Transformando a Zanpakutou em um grande bastão, o usuário se posiciona dentro de uma flor, ficando protegido enquanto libera uma grande quantidade de gás.\n\nA Bankai é ativada quando o comando “Bankai” e o verdadeiro nome dela, “Sakashima Yokoshima Happofusagari” são pronunciados. Para isso, você deve gastar 60 Pontos de Reiatsu, deixando ela ativa por 1 minuto. Após esse minuto ela desativará não podendo manter ela ativa novamente apenas com custo de reiatsu. Quando você liberar a Bankai você entrará dentro da flor e ela se fechará, tornando você imune a todos os tipos de dano até desfazer a Bankai. Porém, não pode realizar ações ou se mover dentro da flor. A flor emite uma névoa branca em uma área de 36 metros ao redor. Todas as criaturas nessa área têm suas almas afetadas, invertendo suas crenças, fazendo-as atacar qualquer criatura que esteja próxima, seja aliado ou inimigo, enquanto a Bankai estiver ativa. O mestre pode conduzir turnos de combate ou decidir quais criaturas saem vivas ou não do confronto. As criaturas afetadas pela Bankai ficam imunes aos seus efeitos por um dia inteiro após serem impactadas por ela.\n\nCriaturas com Nível de Desafio igual ou superior ao dobro da proficiência do usuário da Bankai podem diminuir a duração pela metade (5 turnos da criatura) em si mesmo, realizando um Teste de Determinação.",
+  "acoes": [],
   "custo": 60
  },
  {
@@ -67,6 +348,48 @@
   "nome": "Senbonzakura",
   "resumo": "O usuário deixa cair a Zanpakutou no chão, e ela se funde ao solo, gerando diversas Zanpakutous gigantes atrás do usuário. Todas se transformam em lâminas de Senbonzakura, constituindo uma versão muito mais poderosa da Shikai, com um número muito maior de lâminas e mais poderosas.",
   "texto": "O usuário deixa cair a Zanpakutou no chão, e ela se funde ao solo, gerando diversas Zanpakutous gigantes atrás do usuário. Todas se transformam em lâminas de Senbonzakura, constituindo uma versão muito mais poderosa da Shikai, com um número muito maior de lâminas e mais poderosas.\n\nA Bankai é ativada quando o comando “Bankai” e o verdadeiro nome dela, “Senbonzakura Kageyoushi” são pronunciados. Para isso, você deve gastar 60 Pontos de Reiatsu, deixando ela ativa por 1 minuto. Após esse minuto, você deve utilizar novamente os Pontos de Reiatsu para mantê-la ativa por mais 1 minuto.\n\n### Shikai Aprimorada\n\nA Senbonzakura, diferente de outras Zanpakutous, não muda de forma quando a Bankai é liberada, mas aumenta a quantidade de lâminas, intensificando tudo o que o Shikai já fazia. Na Bankai, é possível utilizar as habilidades da Shikai listadas abaixo, mas de forma muito mais forte.\n\nA habilidade “Flor de Sakura” aumenta seu dano para 3d10 de dano cortante nas jogadas de ataque e estende o alcance para 18 metros.\n\nA habilidade “Dilacerar” aumenta o dado para d8 e o máximo para 8d8 de dano. Além disso, se a criatura possuir resistência ao dano, você a ignora, e se ela possuir imunidade, isso se torna resistência.\n\nA habilidade “Defesa Dilacerante” concede um bônus de +3 na sua Classe de Resistência. Toda criatura que te atacar corpo a corpo ou com arma corpo a corpo, além de você conseguir realizar um ataque com reação, recebe sempre 3 de dano cortante ao te acertar. O dado de diminuição de dano torna-se um d10.\n\n### Comando Gestual\n\nDepois de liberar a Bankai, você controla as lâminas com o pensamento, mas pode utilizar sua mão para gesticular, dando comandos às lâminas. Isso as torna muito mais velozes e fáceis de acertar. Diferente da habilidade da Shikai “Perseguir”, você intensifica a velocidade utilizando sua mão e reiatsu, sem a necessidade de utilizar a ação bônus. Para cada ataque que você realizar com a Senbonzakura Kageyoshi, pode gastar 3 pontos de reiatsu para receber vantagem na jogada de ataque.\n\n### Técnica: Gokei\n\nCom uma ação e 15 pontos de reiatsu, o usuário envolve uma criatura que esteja até 18 metros de distância com as lâminas, fazendo-as girar em torno da criatura e atacando-a de todas as direções, dificultando a defesa contra a técnica. A criatura alvo dessa técnica receberá 11d10 de dano cortante mais o dano da habilidade “Dilacerar”. Ela pode tentar reduzir o dano pela metade, realizando um Teste de Resistência de Constituição; se tiver sucesso, o dano é reduzido pela metade.\n\nUma criatura atingida pelo Gokei passará a sofrer o dano da habilidade “Dilacerar” com o máximo de dados de dano possível após receber a técnica.\n\n### Senkei\n\nSendo a verdadeira forma da Bankai da Senbonzakura, um domo é criado em volta do usuário, unindo as pétalas em milhares de espadas que formam uma cúpula ao seu redor. O usuário desativa a forma Shikai de milhares lâminas soltas e controladas à distância, não possuindo mais acesso às habilidades “Flor de Sakura”, “Perseguir” e “Defesa Dilacerante”. Nessa forma o usuário abre a mão e sua Zanpakutou aparece nela em sua forma Asauchi para combate físico, mas com um dano muito maior.\n\nEsse domo criado tem um raio de 12 metros, centrado onde o usuário ativou essa habilidade, que deve ser ativada como uma ação livre. Toda criatura que estiver dentro do domo e tentar sair deve realizar um Teste de Resistência de Força. Se obtiver sucesso, consegue sair, mas recebe a técnica “Ikka Senjinka”, custando metade do custo original em reiatsu. A criatura dentro do domo sabe que, se tentar sair, receberá um ataque em grande escala. A Zanpakutou aparece na mão do usuário como uma ação livre. Em sua forma, causará 4d10 de dano cortante, e a habilidade “Dilacerar” sempre estará com o máximo de dados de dano possível.\n\nVocê desativará essa forma “Senkei” se utilizar a técnica “Ikka Senjinka”, desativar a Bankai ou com uma ação voltar para forma “Flor de Sakura”.\n\n### Técnica: Ikka Senjinka\n\nCom a forma “Senkei” ativada, você pode direcionar todas as Zanpakutous do domo em uma única criatura, criando um ataque colossal. Com uma ação e 20 pontos de reiatsu, o usuário realiza um ataque à distância com a Zanpakutou em uma criatura que esteja até 18 metros de distância, se acertar irá causar 15d10 de dano mais o dano da habilidade “Dilacerar” com o máximo de dados possível.",
+  "acoes": [
+   {
+    "id": "shikai-aprimorada",
+    "nome": "Shikai Aprimorada",
+    "acao": "Reação",
+    "pr": 0,
+    "dano": "3d10",
+    "texto": "A Senbonzakura, diferente de outras Zanpakutous, não muda de forma quando a Bankai é liberada, mas aumenta a quantidade de lâminas, intensificando tudo o que o Shikai já fazia. Na Bankai, é possível utilizar as habilidades da Shikai listadas abaixo, mas de forma muito mais forte.\n\nA habilidade “Flor de Sakura” aumenta seu dano para 3d10 de dano cortante nas jogadas de ataque e estende o alcance para 18 metros.\n\nA habilidade “Dilacerar” aumenta o dado para d8 e o máximo para 8d8 de dano. Além disso, se a criatura possuir resistência ao dano, você a ignora, e se ela possuir imunidade, isso se torna resistência.\n\nA habilidade “Defesa Dilacerante” concede um bônus de +3 na sua Classe de Resistência. Toda criatura que te atacar corpo a corpo ou com arma corpo a corpo, além de você conseguir realizar um ataque com reação, recebe sempre 3 de dano cortante ao te acertar. O dado de diminuição de "
+   },
+   {
+    "id": "comando-gestual",
+    "nome": "Comando Gestual",
+    "acao": "Ação bônus",
+    "pr": 3,
+    "dano": "",
+    "texto": "Depois de liberar a Bankai, você controla as lâminas com o pensamento, mas pode utilizar sua mão para gesticular, dando comandos às lâminas. Isso as torna muito mais velozes e fáceis de acertar. Diferente da habilidade da Shikai “Perseguir”, você intensifica a velocidade utilizando sua mão e reiatsu, sem a necessidade de utilizar a ação bônus. Para cada ataque que você realizar com a Senbonzakura Kageyoshi, pode gastar 3 pontos de reiatsu para receber vantagem na jogada de ataque."
+   },
+   {
+    "id": "t-cnica-gokei",
+    "nome": "Gokei",
+    "acao": "Ação",
+    "pr": 15,
+    "dano": "11d10",
+    "texto": "Com uma ação e 15 pontos de reiatsu, o usuário envolve uma criatura que esteja até 18 metros de distância com as lâminas, fazendo-as girar em torno da criatura e atacando-a de todas as direções, dificultando a defesa contra a técnica. A criatura alvo dessa técnica receberá 11d10 de dano cortante mais o dano da habilidade “Dilacerar”. Ela pode tentar reduzir o dano pela metade, realizando um Teste de Resistência de Constituição; se tiver sucesso, o dano é reduzido pela metade.\n\nUma criatura atingida pelo Gokei passará a sofrer o dano da habilidade “Dilacerar” com o máximo de dados de dano possível após receber a técnica."
+   },
+   {
+    "id": "senkei",
+    "nome": "Senkei",
+    "acao": "Ação",
+    "pr": 0,
+    "dano": "4d10",
+    "texto": "Sendo a verdadeira forma da Bankai da Senbonzakura, um domo é criado em volta do usuário, unindo as pétalas em milhares de espadas que formam uma cúpula ao seu redor. O usuário desativa a forma Shikai de milhares lâminas soltas e controladas à distância, não possuindo mais acesso às habilidades “Flor de Sakura”, “Perseguir” e “Defesa Dilacerante”. Nessa forma o usuário abre a mão e sua Zanpakutou aparece nela em sua forma Asauchi para combate físico, mas com um dano muito maior.\n\nEsse domo criado tem um raio de 12 metros, centrado onde o usuário ativou essa habilidade, que deve ser ativada como uma ação livre. Toda criatura que estiver dentro do domo e tentar sair deve realizar um Teste de Resistência de Força. Se obtiver sucesso, consegue sair, mas recebe a técnica “Ikka Senjinka”, custando metade do custo original em reiatsu. A criatura dentro do domo sabe que, se tentar sair, receberá"
+   },
+   {
+    "id": "t-cnica-ikka-senjinka",
+    "nome": "Ikka Senjinka",
+    "acao": "Ação",
+    "pr": 20,
+    "dano": "15d10",
+    "texto": "Com a forma “Senkei” ativada, você pode direcionar todas as Zanpakutous do domo em uma única criatura, criando um ataque colossal. Com uma ação e 20 pontos de reiatsu, o usuário realiza um ataque à distância com a Zanpakutou em uma criatura que esteja até 18 metros de distância, se acertar irá causar 15d10 de dano mais o dano da habilidade “Dilacerar” com o máximo de dados possível."
+   }
+  ],
   "custo": 60
  },
  {
@@ -74,6 +397,32 @@
   "nome": "Shinso",
   "resumo": "Uma Bankai que potencializa totalmente os poderes da Shikai, permitindo uma expansão ainda maior e muito mais rápida, mas mantendo a mesma aparência.",
   "texto": "Uma Bankai que potencializa totalmente os poderes da Shikai, permitindo uma expansão ainda maior e muito mais rápida, mas mantendo a mesma aparência.\n\nA Bankai é ativada quando o comando “Bankai” e o verdadeiro nome dela, “Kamishini no Yari” são pronunciados. Para isso, você deve gastar 40 Pontos de Reiatsu, deixando ela ativa por 1 minuto. Após esse minuto, você deve utilizar novamente os Pontos de Reiatsu para manter ela ativa por mais 1 minuto.\n\nQuando liberada Wakizashi tem seu dano aumentado para 1d10 de dano cortante, com uma margem de crítico de 16-20 aumentando a “Expansão” para 150 metros e o dano adicional por crítico para d8.\n\n### Técnica: Buto\n\nCom uma ação e utilizando 15 pontos de reiatsu, você segura firmemente sua zanpakutou junto ao peito, concentrando uma grande quantidade de força e intensificando a perfuração. Realize um ataque com sua zanpakutou, e se acertar, cause 10d10 de dano perfurante. A criatura atingida deve realizar um Teste de Resistência de Força. Se falhar, a criatura é empurrada 18 metros para trás. Se ela colidir com um objeto sólido de tamanho médio ou grande, sofrerá 6d6 de dano de concussão adicional.\n\n### Técnica: Buto Renjin\n\nApós utilizar a técnica “Buto”, você pode, com uma ação bônus e utilizando 25 pontos de reiatsu, realizar a técnica “Buto” novamente em mais dois novos ataques. Esses ataques podem ser direcionados para a mesma criatura que foi atacada originalmente ou em outras criaturas. Se você optar por realizar o ataque na mesma criatura que foi atingida anteriormente, você tem vantagem no acerto, mas não empurra a criatura.\n\n### Técnica: Korose\n\nEste é o verdadeiro poder de sua Bankai, não de se expandir, mas de se transformar em pó tão rapidamente que parece uma expansão aos olhos dos outros. Após acertar a técnica “Buto” como um crítico, com uma ação bônus e 25 pontos de reiatsu, você pode introduzir parte da zanpakutou dentro da criatura, envenenando-a. Com uma ação em um turno subsequente, até 1 minuto depois, você pode fazer esse pó desintegrar a criatura, causando sua morte. Se, por alguma razão determinada pelo mestre, a criatura não puder morrer, você inflige 15d10 de dano cortante.",
+  "acoes": [
+   {
+    "id": "t-cnica-buto",
+    "nome": "Buto",
+    "acao": "Ação",
+    "pr": 15,
+    "dano": "10d10",
+    "texto": "Com uma ação e utilizando 15 pontos de reiatsu, você segura firmemente sua zanpakutou junto ao peito, concentrando uma grande quantidade de força e intensificando a perfuração. Realize um ataque com sua zanpakutou, e se acertar, cause 10d10 de dano perfurante. A criatura atingida deve realizar um Teste de Resistência de Força. Se falhar, a criatura é empurrada 18 metros para trás. Se ela colidir com um objeto sólido de tamanho médio ou grande, sofrerá 6d6 de dano de concussão adicional."
+   },
+   {
+    "id": "t-cnica-buto-renjin",
+    "nome": "Buto Renjin",
+    "acao": "Ação bônus",
+    "pr": 25,
+    "dano": "",
+    "texto": "Após utilizar a técnica “Buto”, você pode, com uma ação bônus e utilizando 25 pontos de reiatsu, realizar a técnica “Buto” novamente em mais dois novos ataques. Esses ataques podem ser direcionados para a mesma criatura que foi atacada originalmente ou em outras criaturas. Se você optar por realizar o ataque na mesma criatura que foi atingida anteriormente, você tem vantagem no acerto, mas não empurra a criatura."
+   },
+   {
+    "id": "t-cnica-korose",
+    "nome": "Korose",
+    "acao": "Ação bônus",
+    "pr": 25,
+    "dano": "15d10",
+    "texto": "Este é o verdadeiro poder de sua Bankai, não de se expandir, mas de se transformar em pó tão rapidamente que parece uma expansão aos olhos dos outros. Após acertar a técnica “Buto” como um crítico, com uma ação bônus e 25 pontos de reiatsu, você pode introduzir parte da zanpakutou dentro da criatura, envenenando-a. Com uma ação em um turno subsequente, até 1 minuto depois, você pode fazer esse pó desintegrar a criatura, causando sua morte. Se, por alguma razão determinada pelo mestre, a criatura não puder morrer, você inflige 15d10 de dano cortante."
+   }
+  ],
   "custo": 40
  },
  {
@@ -81,6 +430,24 @@
   "nome": "Sode no Shirayuki",
   "resumo": "Uma Bankai que transforma o usuário por completo, tornando seu cabelo branco, sua Zanpakutou se torna transparente, e sua pele fica gélida usando um kimono muito semelhante ao de uma Yuki Onna.",
   "texto": "Uma Bankai que transforma o usuário por completo, tornando seu cabelo branco, sua Zanpakutou se torna transparente, e sua pele fica gélida usando um kimono muito semelhante ao de uma Yuki Onna.\n\nA Bankai é ativada quando o comando “Bankai” e o verdadeiro nome dela, “Hakka no Togame” são pronunciados. Para isso, você deve gastar 60 Pontos de Reiatsu, deixando ela ativa por 1 minuto. Após esse minuto, você deve utilizar novamente os Pontos de Reiatsu para manter ela ativa por mais 1 minuto. A Hakka no Togame é necessário concentrar toda a sua atenção para desativar, ou você pode morrer no processo. Role um d20 quando for desativar a Bankai, se o resultado for 2 ou menor, você sofre 20d10 de dano e recebe a condição “Atordoado”.\n\nA liberação da sua Bankai cria uma onda de criogenia muito semelhante quando a Shikai é liberada mas agora muito mais poderoso, tornando tudo à temperatura de zero absoluto em todas as direções, gerando uma explosão de gelo em um raio de 100 metros centrado no usuário. Isso causa 13d10 de dano de Frio para todas as criaturas dentro da área da técnica automaticamente, sem a necessidade de uma jogada de acerto, as quais devem realizar um teste de resistência de Constituição para evitar a condição “Congelado”. Uma criatura congelada pela Hakka no Togame no início de cada turno pode realizar um novo teste, mas agora um teste de resistência de Força para tentar, quebrar o gelo e se soltar do congelamento. Com a temperatura do Zero Absoluto, você se torna imune a dano de frio enquanto a Bankai estiver ativa, mas isso tem um custo: você se torna vulnerável a dano de concussão, cortante e perfurante.\n\nO dano da Beleza Gélida se torna 3d10 de dano de Frio e durante a ativação da Bankai, é possível utilizar todas as técnicas da Shikai, acrescentando três dados de dano adicionais.\n\n### Criogênia\n\nA Hakka no Togame tem uma condição especial chamada “Criogenia”, onde uma criatura que está sob essa condição fica vulnerável a dano de Frio.\n\n### Aura Criogênica\n\nEnquanto Hakka no Togame está ativada, após o primeiro turno se cria uma aura de gelo em todas as direções. No início do seu turno, todas as criaturas que estiverem a 12 metros de você recebem automaticamente 8d10 de dano de frio, sem a necessidade de um acerto. Essa aura se espalha em todas as direções, e todas as criaturas dentro dessa área ficam automaticamente com a condição de “Criogênia”. Criaturas que foram congeladas pela liberação da Bankai, mesmo estando congeladas, recebem o dano dessa habilidade como se não estivessem sob a condição, além de ao sair do congelamento recebem a condição “Criogênia”, mesmo sem receber dano da aura.\n\nAssim como na liberação da Bankai, o usuário não pode interromper essa aura criogênica, que causa dano em todas as direções, afetando todos e aplicando a condição a todos que estão próximos. Criaturas que ficarem dois turnos consecutivos sem sofrerem a Aura de Criogênia perdem a condição “Criogênia”.",
+  "acoes": [
+   {
+    "id": "criog-nia",
+    "nome": "Criogênia",
+    "acao": "Habilidade",
+    "pr": 0,
+    "dano": "",
+    "texto": "A Hakka no Togame tem uma condição especial chamada “Criogenia”, onde uma criatura que está sob essa condição fica vulnerável a dano de Frio."
+   },
+   {
+    "id": "aura-criog-nica",
+    "nome": "Aura Criogênica",
+    "acao": "Habilidade",
+    "pr": 0,
+    "dano": "8d10",
+    "texto": "Enquanto Hakka no Togame está ativada, após o primeiro turno se cria uma aura de gelo em todas as direções. No início do seu turno, todas as criaturas que estiverem a 12 metros de você recebem automaticamente 8d10 de dano de frio, sem a necessidade de um acerto. Essa aura se espalha em todas as direções, e todas as criaturas dentro dessa área ficam automaticamente com a condição de “Criogênia”. Criaturas que foram congeladas pela liberação da Bankai, mesmo estando congeladas, recebem o dano dessa habilidade como se não estivessem sob a condição, além de ao sair do congelamento recebem a condição “Criogênia”, mesmo sem receber dano da aura.\n\nAssim como na liberação da Bankai, o usuário não pode interromper essa aura criogênica, que causa dano em todas as direções, afetando todos e aplicando a condição a todos que estão próximos. Criaturas que ficarem dois turnos consecutivos sem sofrerem "
+   }
+  ],
   "custo": 60
  },
  {
@@ -88,6 +455,16 @@
   "nome": "Suzumebachi",
   "resumo": "Uma Bankai que transforma a Suzumebachi em uma lança gigante com um pequeno escudo no rosto do usuário criando uma mira, aonde essa lança na verdade é um grande míssil.",
   "texto": "Uma Bankai que transforma a Suzumebachi em uma lança gigante com um pequeno escudo no rosto do usuário criando uma mira, aonde essa lança na verdade é um grande míssil.\n\nA Bankai é ativada quando o comando “Bankai” e o verdadeiro nome dela, “Jakuho Raikoben” são pronunciados. Para isso, você deve gastar 40 Pontos de Reiatsu, criando um míssil muito poderoso que deve ser disparado dentro de 1 minuto como veremos abaixo:\n\n### Míssil\n\nSeu míssil criado é muito poderoso, até mesmo para o usuário da Bankai, então deve ser utilizado como último recurso, pois consome muita reiatsu. O míssil tem um poder igual a seu nível de classe, em dados de dano d10. Se estiver no nível 12 de classe, você terá 12d10 de dano no míssil, mais 30 de dano, causando 12d10 + 30 de dano de Fogo com esse míssil. Na liberação da sua Bankai, você pode utilizar mais pontos de reiatsu para causar mais dano com esse míssil, gastando 1 ponto de reiatsu para cada ponto de dano adicional, com o máximo de reiatsu gasto sendo o disponível no momento da liberação da sua Bankai. Para disparar esse míssil você deve utilizar uma ação. Este míssil causa uma área de explosão quando entra em contato com uma criatura ou objeto, resultando numa explosão de 36 metros de raio a partir do ponto de impacto, e pode acertar um alvo até 100 metros. Se não atingir nada, explodirá dentro desse alcance. A criatura atingida sofre o dano total, e as criaturas dentro da área devem fazer um Teste de Resistência de Constituição, sofrendo metade do dano se obtiverem sucesso ou o dano completo se falharem. Após disparar você deve rolar um d10 o resultado será o número de dias que você não poderá utilizar sua bankai. Você pode realizar um segundo disparo com a mesma liberação, no próximo turno depois de disparar o primeiro, mas ao criar o míssil, você deve utilizar a mesma quantidade de reiatsu de uma liberação normal, somando o reiatsu adicional ao dano. O dado de tempo para ativar sua Bankai novamente torna-se um d100 de dias.\n\nVocê pode disparar esse míssil com cuidado, mas deve se amarrar a um local, criando faixas a partir da sua Bankai. Com uma ação bônus, e estando em solo ou em um local que tenha sustentação decidida pelo mestre, você pode se amarrar. Ao fazer isso, você ganhará sustentação para mirar e disparar o míssil com muito mais precisão, podendo rolar o dado de acerto três vezes.",
+  "acoes": [
+   {
+    "id": "m-ssil",
+    "nome": "Míssil",
+    "acao": "Ação bônus",
+    "pr": 1,
+    "dano": "12d10",
+    "texto": "Seu míssil criado é muito poderoso, até mesmo para o usuário da Bankai, então deve ser utilizado como último recurso, pois consome muita reiatsu. O míssil tem um poder igual a seu nível de classe, em dados de dano d10. Se estiver no nível 12 de classe, você terá 12d10 de dano no míssil, mais 30 de dano, causando 12d10 + 30 de dano de Fogo com esse míssil. Na liberação da sua Bankai, você pode utilizar mais pontos de reiatsu para causar mais dano com esse míssil, gastando 1 ponto de reiatsu para cada ponto de dano adicional, com o máximo de reiatsu gasto sendo o disponível no momento da liberação da sua Bankai. Para disparar esse míssil você deve utilizar uma ação. Este míssil causa uma área de explosão quando entra em contato com uma criatura ou objeto, resultando numa explosão de 36 metros de raio a partir do ponto de impacto, e pode acertar um alvo até 100 metros. Se não atingir nada, "
+   }
+  ],
   "custo": 40
  },
  {
@@ -95,6 +472,24 @@
   "nome": "Tachikaze",
   "resumo": "Quando a Bankai é liberada, ventos fortes se propagam para todos os lados, e a Zanpakutou se transforma em soqueiras com lâminas em ambas as mãos e faixas de metal envolvem os braços do usuário, parecendo uma armadura, enquanto uma faixa mais robusta se arqueia por cima dos ombros, conectando um braço ao outro.",
   "texto": "Quando a Bankai é liberada, ventos fortes se propagam para todos os lados, e a Zanpakutou se transforma em soqueiras com lâminas em ambas as mãos e faixas de metal envolvem os braços do usuário, parecendo uma armadura, enquanto uma faixa mais robusta se arqueia por cima dos ombros, conectando um braço ao outro.\n\nA Bankai é ativada quando o comando “Bankai” e o verdadeiro nome dela, “Tekken Tachikaze” são pronunciados. Para isso, você deve gastar 40 Pontos de Reiatsu, deixando ela ativa por 1 minuto. Após esse minuto, você deve utilizar novamente os Pontos de Reiatsu para manter ela ativa por mais 1 minuto.\n\n### Combate Fortificado\n\nA Tekken Tachikaze canaliza todo o poder da Shikai em seus punhos, resultando em explosões de dano durante seus ataques. Seu dano com a Tachikaze é seu dano desarmado + 4d8 de dano Cortante ou de Energia, à sua escolha, e a margem de crítico com ela se torna 17-20. Caso o usuário escolha dano de Energia, ele pode empurrar uma criatura pequena ou média que for atingida 1,5 metros para trás a cada golpe acertado, sem a necessidade de um teste. Quando a Bankai estiver ativa, suas técnicas da Shikai podem ser utilizadas também na Bankai, porém estarão muito mais poderosas, causando mais danos. Você adiciona um número adicional de dados ao dano da técnica igual ao seu bônus de proficiência.\n\n### Armadura\n\nQuando a Tekken Tachikaze estiver ativa, a armadura que ela forma nos braços do usuário adiciona um bônus à Classe de Resistência, adicionando +3 à sua Classe de Resistência quando a Bankai estiver ativa. Utilizando sua reação durante o seu turno, você pode assumir uma forma de combate defensiva, passando a adicionar +5 à sua Classe de Resistência até o início do seu próximo turno.",
+  "acoes": [
+   {
+    "id": "combate-fortificado",
+    "nome": "Combate Fortificado",
+    "acao": "Habilidade",
+    "pr": 0,
+    "dano": "4d8",
+    "texto": "A Tekken Tachikaze canaliza todo o poder da Shikai em seus punhos, resultando em explosões de dano durante seus ataques. Seu dano com a Tachikaze é seu dano desarmado + 4d8 de dano Cortante ou de Energia, à sua escolha, e a margem de crítico com ela se torna 17-20. Caso o usuário escolha dano de Energia, ele pode empurrar uma criatura pequena ou média que for atingida 1,5 metros para trás a cada golpe acertado, sem a necessidade de um teste. Quando a Bankai estiver ativa, suas técnicas da Shikai podem ser utilizadas também na Bankai, porém estarão muito mais poderosas, causando mais danos. Você adiciona um número adicional de dados ao dano da técnica igual ao seu bônus de proficiência."
+   },
+   {
+    "id": "armadura",
+    "nome": "Armadura",
+    "acao": "Reação",
+    "pr": 0,
+    "dano": "",
+    "texto": "Quando a Tekken Tachikaze estiver ativa, a armadura que ela forma nos braços do usuário adiciona um bônus à Classe de Resistência, adicionando +3 à sua Classe de Resistência quando a Bankai estiver ativa. Utilizando sua reação durante o seu turno, você pode assumir uma forma de combate defensiva, passando a adicionar +5 à sua Classe de Resistência até o início do seu próximo turno."
+   }
+  ],
   "custo": 40
  },
  {
@@ -102,6 +497,32 @@
   "nome": "Tenken",
   "resumo": "O usuário levanta a Zanpakutou pra cima e uma intensa reiatsu toma conta do local e de trás do usuário começa a se erguer oque antes era apenas partes fantasmas, mas agora é um gigante de armadura samurai segurando uma enorme Zanpakutou, possuindo cerca de 100 metros de altura. A Bankai é ativada quando o comando “Bankai” e o verdadeiro nome dela, “Kokujo Tengen Myoo” são pronunciados. Para isso, você deve gastar 40 Pontos de Reiatsu, deixando ela ativa por 1 minuto. Após esse minuto, você deve utilizar novamente os Pontos de Reiatsu para manter ela ativa por mais 1 minuto.",
   "texto": "O usuário levanta a Zanpakutou pra cima e uma intensa reiatsu toma conta do local e de trás do usuário começa a se erguer oque antes era apenas partes fantasmas, mas agora é um gigante de armadura samurai segurando uma enorme Zanpakutou, possuindo cerca de 100 metros de altura. A Bankai é ativada quando o comando “Bankai” e o verdadeiro nome dela, “Kokujo Tengen Myoo” são pronunciados. Para isso, você deve gastar 40 Pontos de Reiatsu, deixando ela ativa por 1 minuto. Após esse minuto, você deve utilizar novamente os Pontos de Reiatsu para manter ela ativa por mais 1 minuto.\n\nQuando o Bankai é ativada, o usuário mantém a forma Asauchi da Zanpakutou, com o mesmo dano, mas com uma margem de crítico de 19-20. O Samurai que emerge do chão, possui o tamanho “Imenso” (Veja no capítulo Jogando quanto ele ocupa no tabuleiro) e será invocado atrás do usuário se houver espaço, e se não qualquer objeto atrás do usuário será destruído conforme a vontade do mestre, por exemplo, um prédio será destruido com o Samurai sendo invocado. Esse samurai imita qualquer movimento do usuário, mesmo sendo imenso, mas ele é tão rápido quanto o usuário. Se você se mover, o samurai também imitará o movimento, destruindo qualquer objeto no caminho e seguindo você aonde for, permanecendo sempre atrás de você.\n\n### Ataques\n\nCada ataque que você realizar o Samurai irá fazer também, imitando seu movimento, aonde criará uma onda de destruição à sua frente, causando dano triplicado em objetos. O samurai causará dano em um cone de 18 metros a partir dele com cada ataque, infligindo 7d12 de dano cortante com a Zanpakutou ou pode realizar ataques com Hakuda também, que causará o mesmo dano mas do tipo de Concussão. Faça apenas um acerto com vantagem para todas as criaturas dentro do cone que você deseja atacar.\n\n### Laços do Protetor\n\nO samurai é imenso e protege o usuário, que permanecerá com o samurai constantemente, não podendo ser separados. Com isso, o usuário recebe um bônus de +5 na Classe de Resistência enquanto o Bankai estiver ativa. No entanto, o samurai e o usuário compartilham os mesmos Pontos de Vida e Classe de Resistência. Se o samurai for atacado, o usuário também sofrerá o dano, e todo ataque feito contra o Samurai será realizado com vantagem.\n\n### Vida Conectada\n\nA Bankai e o usuário compartilham uma conexão extremamente forte: quando o usuário está ferido, a Bankai também sofre dano, porém, se o usuário se cura, a Bankai também é restaurada. Essa Bankai é dificilmente quebrada porque o usuário e ela compartilham o mesmo corpo.",
+  "acoes": [
+   {
+    "id": "ataques",
+    "nome": "Ataques",
+    "acao": "Habilidade",
+    "pr": 0,
+    "dano": "7d12",
+    "texto": "Cada ataque que você realizar o Samurai irá fazer também, imitando seu movimento, aonde criará uma onda de destruição à sua frente, causando dano triplicado em objetos. O samurai causará dano em um cone de 18 metros a partir dele com cada ataque, infligindo 7d12 de dano cortante com a Zanpakutou ou pode realizar ataques com Hakuda também, que causará o mesmo dano mas do tipo de Concussão. Faça apenas um acerto com vantagem para todas as criaturas dentro do cone que você deseja atacar."
+   },
+   {
+    "id": "la-os-do-protetor",
+    "nome": "Laços do Protetor",
+    "acao": "Habilidade",
+    "pr": 0,
+    "dano": "",
+    "texto": "O samurai é imenso e protege o usuário, que permanecerá com o samurai constantemente, não podendo ser separados. Com isso, o usuário recebe um bônus de +5 na Classe de Resistência enquanto o Bankai estiver ativa. No entanto, o samurai e o usuário compartilham os mesmos Pontos de Vida e Classe de Resistência. Se o samurai for atacado, o usuário também sofrerá o dano, e todo ataque feito contra o Samurai será realizado com vantagem."
+   },
+   {
+    "id": "vida-conectada",
+    "nome": "Vida Conectada",
+    "acao": "Habilidade",
+    "pr": 0,
+    "dano": "",
+    "texto": "A Bankai e o usuário compartilham uma conexão extremamente forte: quando o usuário está ferido, a Bankai também sofre dano, porém, se o usuário se cura, a Bankai também é restaurada. Essa Bankai é dificilmente quebrada porque o usuário e ela compartilham o mesmo corpo."
+   }
+  ],
   "custo": 40
  },
  {
@@ -109,6 +530,32 @@
   "nome": "Zabimaru",
   "resumo": "Uma Bankai que estende o alcance da Shikai significativamente, transformando a Zanpakutou em uma grande serpente inteiramente feita de ossos, com um crânio de serpente coberto por um manto vermelho na ponta. Assim como na Shikai, a Zanpakutou é dividida em segmentos, mas agora esses segmentos são feitos de ossos e ligados por pura reiatsu. A roupa do usuário também muda, e ele ganha um manto de peles com um crânio no ombro, a roupa se estende até a mão, formando uma luva. Esse manto indica qual mão o Shinigami usa para controlar a Zabimaru. A Bankai é ativada quando o comando “Bankai” e o verdadeiro nome dela, “Hihio Zabimaru” são pronunciados. Para isso, você deve gastar 40 Pontos de Reiats",
   "texto": "Uma Bankai que estende o alcance da Shikai significativamente, transformando a Zanpakutou em uma grande serpente inteiramente feita de ossos, com um crânio de serpente coberto por um manto vermelho na ponta. Assim como na Shikai, a Zanpakutou é dividida em segmentos, mas agora esses segmentos são feitos de ossos e ligados por pura reiatsu. A roupa do usuário também muda, e ele ganha um manto de peles com um crânio no ombro, a roupa se estende até a mão, formando uma luva. Esse manto indica qual mão o Shinigami usa para controlar a Zabimaru. A Bankai é ativada quando o comando “Bankai” e o verdadeiro nome dela, “Hihio Zabimaru” são pronunciados. Para isso, você deve gastar 40 Pontos de Reiatsu, deixando ela ativa por 1 minuto. Após esse minuto, você deve utilizar novamente os Pontos de Reiatsu para manter ela ativa por mais 1 minuto.\n\n### Serpente de Ossos\n\nCom a Bankai liberada, o alcance da Zabimaru aumenta significativamente, passando para 12 metros. O dano causado por ela se torna 4d12 de dano perfurante. A serpente fica constantemente circulando ao redor do usuário com seu corpo gigante, fazendo com que o usuário fique quase completamente coberto. Dessa forma, o usuário ganha um bônus na sua Classe de Resistência igual ao seu bônus de proficiência.\n\n### Técnica: Hikotsu Taiho\n\nA serpente se acende em reiatsu e dispara uma grande bola de energia de sua boca, que acerta uma criatura em linha reta até 18 metros de distância. Faça um ataque à distância com a Zanpakutou contra a criatura. Se acertar, você causará 15d12 de dano de Energia.\n\n### Regeneração\n\nA Hihio Zabimaru, assim como na forma da Shikai, pode utilizar a técnica “Higa Zekko” se for quebrada. Na Bankai, o alcance dessa técnica aumenta para 18 metros, e o dano para 12d10 e não desativará a Bankai ao ser usada. Após usar a Higa Zekko, o usuário pode, com uma ação, juntar novamente a Hihio Zabimaru, tornando-a novamente utilizável. Embora seja difícil deixá-la inutilizável, ela ainda pode ser quebrada.",
+  "acoes": [
+   {
+    "id": "serpente-de-ossos",
+    "nome": "Serpente de Ossos",
+    "acao": "Habilidade",
+    "pr": 0,
+    "dano": "4d12",
+    "texto": "Com a Bankai liberada, o alcance da Zabimaru aumenta significativamente, passando para 12 metros. O dano causado por ela se torna 4d12 de dano perfurante. A serpente fica constantemente circulando ao redor do usuário com seu corpo gigante, fazendo com que o usuário fique quase completamente coberto. Dessa forma, o usuário ganha um bônus na sua Classe de Resistência igual ao seu bônus de proficiência."
+   },
+   {
+    "id": "t-cnica-hikotsu-taiho",
+    "nome": "Hikotsu Taiho",
+    "acao": "Habilidade",
+    "pr": 0,
+    "dano": "15d12",
+    "texto": "A serpente se acende em reiatsu e dispara uma grande bola de energia de sua boca, que acerta uma criatura em linha reta até 18 metros de distância. Faça um ataque à distância com a Zanpakutou contra a criatura. Se acertar, você causará 15d12 de dano de Energia."
+   },
+   {
+    "id": "regenera-o",
+    "nome": "Regeneração",
+    "acao": "Ação",
+    "pr": 0,
+    "dano": "12d10",
+    "texto": "A Hihio Zabimaru, assim como na forma da Shikai, pode utilizar a técnica “Higa Zekko” se for quebrada. Na Bankai, o alcance dessa técnica aumenta para 18 metros, e o dano para 12d10 e não desativará a Bankai ao ser usada. Após usar a Higa Zekko, o usuário pode, com uma ação, juntar novamente a Hihio Zabimaru, tornando-a novamente utilizável. Embora seja difícil deixá-la inutilizável, ela ainda pode ser quebrada."
+   }
+  ],
   "custo": 40
  },
  {
@@ -116,6 +563,32 @@
   "nome": "Zangetsu",
   "resumo": "Uma Bankai que aumenta imensamente os atributos físicos, onde o usuário recebe um manto negro, e sua Zanpakutou se torna totalmente preta, assumindo a forma de uma katana.",
   "texto": "Uma Bankai que aumenta imensamente os atributos físicos, onde o usuário recebe um manto negro, e sua Zanpakutou se torna totalmente preta, assumindo a forma de uma katana.\n\nA Bankai é ativada quando o comando “Bankai” e o verdadeiro nome dela, “Tensa Zangetsu” são pronunciados. Para isso, você deve gastar 40 Pontos de Reiatsu, deixando ela ativa por 1 minuto. Após esse minuto, você deve utilizar novamente os Pontos de Reiatsu para manter ela ativa por mais 1 minuto.\n\n### Manto Negro\n\nO usuário se torna muito mais veloz e forte do que o normal, e toda sua reiatsu se torna negra. Você adiciona sua proficiência à sua Classe de Resistência, e seus ataques com a Zangetsu causam 3d12 de dano cortante. Você ganha uma ação extra no seu turno. No entanto, durante essa ação extra, você só pode utilizar uma ação de “Ataque”, “Ajudar” ou “Disparada”. Todo seu deslocamento se torna deslocamento de Shunpo.\n\nComo sua reiatsu se torna totalmente negra, ela passa a ignorar qualquer resistência e imunidade que o alvo possa ter a dano de energia. Você também consegue utilizar a habilidade “Embuir” da Shikai, causando 3d10 de dano.\n\n### Técnica: Getsuga Tenshou Negro\n\nAgora você canaliza a energia espiritual negra em sua arma e desfere um poderoso ataque à distância com a Zangetsu. Utilizando sua ação e 15 pontos de reiatsu faça um ataque à distância com vantagem contra um alvo em até 36 metros de distância em linha. Em um acerto, o alvo sofre 14d12 de dano de energia.\n\nVocê também consegue utilizar o Getsu Tenshou cocentrado, quando você realizar um ataque corpo a corpo com a Zangetsu, antes de saber se o ataque acertou, com sua ação bônus e 7 pontos de reiatsu você adiciona 7d12 de dano de Energia ao ataque.\n\n### Técnica: Getsuga Tenshou Disperso\n\nAgora você canaliza a energia espiritual negra em sua arma e desfere um poderoso ataque à distância com a Zangetsu, mas focando em diversos inimigos agora. Utilizando sua ação e 15 pontos de reiatsu, você canaliza seu golpe em um cone de 9 metros de comprimento a partir de você, causando 12d8 de dano de energia. Toda criatura dentro da área do Getsuga Tenshou deve realizar um Teste de Resistência de Destreza, sofrendo todo o dano se falhar ou metade dele se obtiver sucesso.",
+  "acoes": [
+   {
+    "id": "manto-negro",
+    "nome": "Manto Negro",
+    "acao": "Ação",
+    "pr": 0,
+    "dano": "3d12",
+    "texto": "O usuário se torna muito mais veloz e forte do que o normal, e toda sua reiatsu se torna negra. Você adiciona sua proficiência à sua Classe de Resistência, e seus ataques com a Zangetsu causam 3d12 de dano cortante. Você ganha uma ação extra no seu turno. No entanto, durante essa ação extra, você só pode utilizar uma ação de “Ataque”, “Ajudar” ou “Disparada”. Todo seu deslocamento se torna deslocamento de Shunpo.\n\nComo sua reiatsu se torna totalmente negra, ela passa a ignorar qualquer resistência e imunidade que o alvo possa ter a dano de energia. Você também consegue utilizar a habilidade “Embuir” da Shikai, causando 3d10 de dano."
+   },
+   {
+    "id": "t-cnica-getsuga-tenshou-negro",
+    "nome": "Getsuga Tenshou Negro",
+    "acao": "Ação bônus",
+    "pr": 15,
+    "dano": "14d12",
+    "texto": "Agora você canaliza a energia espiritual negra em sua arma e desfere um poderoso ataque à distância com a Zangetsu. Utilizando sua ação e 15 pontos de reiatsu faça um ataque à distância com vantagem contra um alvo em até 36 metros de distância em linha. Em um acerto, o alvo sofre 14d12 de dano de energia.\n\nVocê também consegue utilizar o Getsu Tenshou cocentrado, quando você realizar um ataque corpo a corpo com a Zangetsu, antes de saber se o ataque acertou, com sua ação bônus e 7 pontos de reiatsu você adiciona 7d12 de dano de Energia ao ataque."
+   },
+   {
+    "id": "t-cnica-getsuga-tenshou-disperso",
+    "nome": "Getsuga Tenshou Disperso",
+    "acao": "Ação",
+    "pr": 15,
+    "dano": "12d8",
+    "texto": "Agora você canaliza a energia espiritual negra em sua arma e desfere um poderoso ataque à distância com a Zangetsu, mas focando em diversos inimigos agora. Utilizando sua ação e 15 pontos de reiatsu, você canaliza seu golpe em um cone de 9 metros de comprimento a partir de você, causando 12d8 de dano de energia. Toda criatura dentro da área do Getsuga Tenshou deve realizar um Teste de Resistência de Destreza, sofrendo todo o dano se falhar ou metade dele se obtiver sucesso."
+   }
+  ],
   "custo": 40
  }
 ]
