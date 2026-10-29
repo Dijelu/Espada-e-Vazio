@@ -949,3 +949,31 @@ select:focus-visible, .opcoes-grandes .opcao:focus-visible, .chip-btn:focus-visi
 .sim-res { margin-top: 14px; }
 .sim-ok { border-color: #2e8b57; }
 .sim-fora { border-color: var(--accent); }
+
+/* ---------- ajustes para celular e tablet ---------- */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+img, video, svg { max-width: 100%; }
+@media (max-width: 1024px) {
+  .campo input, .campo select, .campo textarea, .caixa select, .caixa input, .caixa textarea, .nome-ficha, .sim-acao input:not([type="checkbox"]) { font-size: 16px; }
+}
+@media (max-width: 700px) {
+  .tab-atr { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .caixa { overflow-wrap: anywhere; }
+  .abas { scrollbar-width: none; }
+  .abas::-webkit-scrollbar { display: none; }
+}
+@media (max-width: 520px) {
+  .construtor .duas { grid-template-columns: 1fr; }
+  .selos { grid-template-columns: repeat(3, 1fr); }
+  .sim-acao { grid-template-columns: repeat(2, 1fr); }
+}
+/* telas de celular com barras de endereço que encolhem: usa a altura dinâmica quando existe */
+@supports (height: 100dvh) {
+  .seletor { max-height: 92dvh; }
+  .dialog { max-height: 90dvh; }
+  body { min-height: 100dvh; }
+}
+@media (min-width: 701px) and (max-width: 1024px) {
+  .page { padding-left: 28px; padding-right: 28px; }
+  .abas button { padding: 0 16px; }
+}
