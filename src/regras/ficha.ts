@@ -735,6 +735,9 @@ export interface Calculo {
   danoCorpo: number;
   /** dados extras de dano corpo a corpo de situações ligadas, ex.: "2d8" */
   danoDados: string[];
+  /** acerto extra de situações ligadas */
+  acertoCorpo: number;
+  acertoDist: number;
   /** CR veio da Evasão Aprimorada */
   crEvasao: boolean;
   percPassiva: number;
@@ -893,9 +896,11 @@ export function calcular(f: Ficha): Calculo {
     cdKido: 8 + prof + atr.esp + px.cdKido,
     reducaoLib: px.reducaoLib,
     danoDados: sit.dados,
+    acertoCorpo: sit.acertoCorpo,
+    acertoDist: sit.acertoDist,
   };
 }
 
 export function ataqueBonus(f: Ficha, c: Calculo, a: Ataque) {
-  return c.prof + c.atr[a.atr];
+  return c.prof + c.atr[a.atr] + (a.distancia ? c.acertoDist : c.acertoCorpo);
 }

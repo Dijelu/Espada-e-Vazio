@@ -1,4 +1,4 @@
-import { efeito } from "../lib/som";
+import { efeito, trocarFaixaDoTema } from "../lib/som";
 import { createContext, type ReactNode, useCallback, useContext, useEffect, useRef, useState } from "react";
 
 type Tema = "dark" | "light";
@@ -26,6 +26,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", tema);
+    trocarFaixaDoTema();
     try {
       localStorage.setItem("tema", tema);
     } catch {

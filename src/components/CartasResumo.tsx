@@ -124,19 +124,24 @@ export function CartasSituacoes({ f, alterar }: { f: Ficha; alterar: (p: Partial
     <div className="caixa">
       <h3>Habilidades de situação</h3>
       <p className="ajuda">Ligue o botão quando a situação estiver valendo. Os números que dá para somar entram na ficha na hora.</p>
-      <div className="cartas-hab">
-        {lista.map((s) => {
-          const on = f.estado.ativas.includes(idSituacao(s.id));
-          return (
-            <article className={`carta-hab ${on ? "ligada" : ""}`} key={s.id}>
-              <header><b>{s.nome}</b><small>{s.fonte}</small></header>
-              <p className="acao-hab">Vale quando: {s.quando}</p>
-              <p>{s.texto}</p>
-              <button type="button" className={`btn ${on ? "btn-red" : "btn-paper"}`} aria-pressed={on} onClick={() => ligar(s.id)}>{on ? "Ligada · desligar" : "Ligar"}</button>
-            </article>
-          );
-        })}
-      </div>
+      {[...new Set(lista.map((x) => x.fonte))].map((fonte) => (
+        <div key={fonte}>
+          <h4 className="sub-passivas">{fonte}</h4>
+          <div className="cartas-hab">
+            {lista.filter((s) => s.fonte === fonte).map((s) => {
+              const on = f.estado.ativas.includes(idSituacao(s.id));
+              return (
+                <article className={`carta-hab ${on ? "ligada" : ""}`} key={s.id}>
+                  <header><b>{s.nome}</b></header>
+                  <p className="acao-hab">Vale quando: {s.quando}</p>
+                  <p>{s.texto}</p>
+                  <button type="button" className={`btn ${on ? "btn-red" : "btn-paper"}`} aria-pressed={on} onClick={() => ligar(s.id)}>{on ? "Ligada · desligar" : "Ligar"}</button>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      ))}
     </div>
   );
 }

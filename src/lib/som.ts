@@ -78,10 +78,15 @@ function irPara(v: number, ao_fim?: () => void) {
   }, 35);
 }
 
+/** Tema escuro (Hollow) toca a faixa Hollow; tema claro toca a música do site. */
+function srcDoTema() {
+  return document.documentElement.getAttribute("data-theme") === "light" ? "/audio/musica.m4a" : "/audio/musica-hollow.m4a";
+}
+
 function tocarMusica() {
   if (!cfg.musica) return;
   if (!faixa) {
-    faixa = new Audio("/audio/musica.m4a");
+    faixa = new Audio(srcDoTema());
     faixa.loop = true;
     faixa.volume = 0;
   }
@@ -95,6 +100,25 @@ function tocarMusica() {
     .catch(() => {
       /* o navegador ainda não deixou tocar; tenta no próximo toque */
     });
+}
+
+/** Troca a faixa quando o tema muda, com a música antiga sumindo antes da nova entrar. */
+export function trocarFaixaDoTema() {
+  if (!faixa) return;
+  const novo = srcDoTema();
+  if (faixa.src.endsWith(novo)) return;
+  const f = faixa;
+  const tocando = !f.paused;
+  const entra = () => {
+    f.src = novo;
+    f.loop = true;
+    f.volume = 0;
+    if (cfg.musica && desbloqueado && tocando) {
+      f.play().then(() => irPara(alvoVolume())).catch(() => {});
+    }
+  };
+  if (tocando) irPara(0, entra);
+  else entra();
 }
 
 function pararMusica() {
