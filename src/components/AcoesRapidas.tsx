@@ -59,14 +59,18 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
     setMsg("Combate encerrado: habilidades de uso por combate renovadas.");
   };
 
-  // liberações disponíveis conforme o treinamento concluído
+  // liberações disponíveis: forma montada na ficha (no nível certo) ou treinamento concluído
+  const pronta = (t: "shikai" | "bankai" | "resurreccion" | "vollstandig") => {
+    const n = nivelLiberacao(f.classe, tipo, t);
+    return !!n && f.nivel >= n && !!f.formas?.[t]?.nome?.trim();
+  };
   const libs: { id: Liberacao; nome: string }[] = [];
   if (tipo === "shinigami") {
-    if (treinoConcluido(f, "shikai") || f.estado.liberado === "shikai") libs.push({ id: "shikai", nome: "Shikai" });
-    if (treinoConcluido(f, "bankai") || f.estado.liberado === "bankai") libs.push({ id: "bankai", nome: "Bankai" });
+    if (treinoConcluido(f, "shikai") || pronta("shikai") || f.estado.liberado === "shikai") libs.push({ id: "shikai", nome: "Shikai" });
+    if (treinoConcluido(f, "bankai") || pronta("bankai") || f.estado.liberado === "bankai") libs.push({ id: "bankai", nome: "Bankai" });
   }
-  if (tipo === "hollow" && (treinoConcluido(f, "resurreccion") || f.estado.liberado === "resurreccion")) libs.push({ id: "resurreccion", nome: "Resurrección" });
-  if (tipo === "quincy" && (f.nivel >= nivelLiberacao(f.classe, tipo, "vollstandig") || f.estado.liberado === "vollstandig")) libs.push({ id: "vollstandig", nome: "Vollständig" });
+  if (tipo === "hollow" && (treinoConcluido(f, "resurreccion") || pronta("resurreccion") || f.estado.liberado === "resurreccion")) libs.push({ id: "resurreccion", nome: "Resurrección" });
+  if (tipo === "quincy" && (pronta("vollstandig") || f.nivel >= nivelLiberacao(f.classe, tipo, "vollstandig") || f.estado.liberado === "vollstandig")) libs.push({ id: "vollstandig", nome: "Vollständig" });
   if (f.origem === "visored" && f.treinos.feitos.includes("visored-2")) libs.push({ id: "mascara", nome: "Máscara Hollow" });
 
   const custoLib = (id: Liberacao) => {
