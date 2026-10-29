@@ -15,6 +15,9 @@ import { AbaTreinamento } from "../components/Treinamento";
 import { ataqueMelhorado } from "../regras/melhorias";
 import { ARMAS, KIDOS, talentosDe } from "../regras/catalogo";
 import { lerFicha, salvarFicha } from "../lib/fichas";
+import { guardar, ler as lerLocal, marcarEnviado } from "../lib/rascunho";
+import { repararFicha } from "../regras/reparo";
+import { normalizar } from "../regras/ficha";
 import { efeito as som } from "../lib/som";
 import {
   ATRIBUTOS,
@@ -52,20 +55,34 @@ export default function Ficha() {
   const nivelVisto = useRef<number | null>(null);
   const [subAberta, setSubAberta] = useState(false);
   const rol = useRolagens();
+  const [avisosRepar, setAvisosRepar] = useState<string[]>([]);
 
   useEffect(() => {
     if (!id) return;
     carregada.current = false;
     nivelVisto.current = null;
+    const chave = `ficha-${id}`;
+    const abrir = (dados: TFicha, avisos: string[], salvarDepois: boolean) => {
+      const rep = repararFicha(dados);
+      setAvisosRepar([...avisos, ...rep.mudancas]);
+      setF(rep.ficha);
+      carregada.current = true;
+      if (salvarDepois || rep.mudancas.length) setEstado("salvando");
+    };
     lerFicha(id)
       .then((r) => {
-        if (!r) setErro("Ficha não encontrada.");
-        else {
-          setF(r.data);
-          carregada.current = true;
-        }
+        if (!r) { setErro("Ficha não encontrada."); return; }
+        const local = lerLocal<TFicha>(chave);
+        if (local?.pendente && local.em > Date.parse(r.atualizado)) {
+          abrir(normalizar(local.dados), ["Recuperamos o que você estava fazendo: a última versão não tinha chegado ao servidor."], true);
+        } else abrir(r.data, [], false);
       })
-      .catch(() => setErro("Não foi possível abrir a ficha."));
+      .catch(() => {
+        const local = lerLocal<TFicha>(chave);
+        if (local) {
+          abrir(normalizar(local.dados), ["O servidor não respondeu. Abrimos a cópia guardada neste aparelho e vamos salvar assim que a conexão voltar."], true);
+        } else setErro("Não foi possível abrir a ficha.");
+      });
   }, [id]);
 
   const alterar = useCallback((p: Partial<TFicha> | ((x: TFicha) => Partial<TFicha>)) => {
@@ -73,16 +90,39 @@ export default function Ficha() {
     setEstado("salvando");
   }, []);
 
+  // cópia no aparelho a cada mudança: se o site cair, a pessoa continua de onde parou
+  useEffect(() => {
+    if (!f || !id || !carregada.current) return;
+    guardar(`ficha-${id}`, f, estado !== "salvo");
+  }, [f, id, estado]);
+
   // salva sozinho, um instante depois da última mudança
   useEffect(() => {
     if (!f || !id || !carregada.current || estado !== "salvando") return;
     const t = window.setTimeout(() => {
       salvarFicha(id, f)
-        .then(() => setEstado("salvo"))
+        .then(() => { marcarEnviado(`ficha-${id}`); setEstado("salvo"); })
         .catch(() => setEstado("erro"));
     }, 800);
     return () => window.clearTimeout(t);
   }, [f, id, estado]);
+
+  // se não conseguiu salvar, tenta de novo sozinho e quando a internet voltar
+  useEffect(() => {
+    if (estado !== "erro") return;
+    const tentar = () => setEstado("salvando");
+    const t = window.setInterval(tentar, 12000);
+    window.addEventListener("online", tentar);
+    return () => { window.clearInterval(t); window.removeEventListener("online", tentar); };
+  }, [estado]);
+
+  // avisa antes de fechar a página com mudanças que ainda não chegaram ao servidor
+  useEffect(() => {
+    if (estado === "salvo") return;
+    const aviso = (e: BeforeUnloadEvent) => { e.preventDefault(); e.returnValue = ""; };
+    window.addEventListener("beforeunload", aviso);
+    return () => window.removeEventListener("beforeunload", aviso);
+  }, [estado]);
 
   const c = useMemo(() => (f ? calcular(f) : null), [f]);
 
@@ -158,9 +198,16 @@ export default function Ficha() {
           </p>
         </div>
         <span className={`estado-salvo ${estado}`} role="status">
-          {estado === "salvo" ? "Salvo" : estado === "salvando" ? "Salvando…" : "Não foi possível salvar"}
+          {estado === "salvo" ? "Salvo" : estado === "salvando" ? "Salvando…" : "Sem conexão: guardado neste aparelho, tentando de novo"}
         </span>
       </header>
+      {avisosRepar.length > 0 && (
+        <div className="aviso" role="status">
+          <b>Verificamos a sua ficha</b>
+          <ul>{avisosRepar.map((t) => <li key={t}>{t}</li>)}</ul>
+          <div className="row"><button type="button" className="btn btn-paper" onClick={() => setAvisosRepar([])}>Entendi</button></div>
+        </div>
+      )}
 
       <section className="barras" aria-label="Vida e reiatsu">
         <Barra tipo="pv" rotulo="PV" atual={f.pvAtual} max={c.pv} pct={pvPct} onChange={(v) => alterar({ pvAtual: v })} />

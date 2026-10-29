@@ -7,6 +7,8 @@ import { useAuth } from "../components/Auth";
 import { AvisosFicha, Campo, LinhaAtributos, Passo, SeletorVariacoes, novoId } from "../components/FichaPecas";
 import { EscolhaPoderes, pendencias, totalPendencias } from "../components/EscolhaPoderes";
 import { criarFicha } from "../lib/fichas";
+import { guardar, ler as lerLocal, limpar } from "../lib/rascunho";
+import { normalizar } from "../regras/ficha";
 import {
   ARMAS,
   ARTEFATOS,
@@ -46,6 +48,23 @@ export default function NovaFicha() {
   const [passo, setPasso] = useState(0);
   const [salvando, setSalvando] = useState(false);
   const [erro, setErro] = useState("");
+
+  const chaveRascunho = sessao ? `nova-${sessao.user.id}` : "";
+  const [rascunho, setRascunho] = useState<{ f: Ficha; passo: number } | null>(null);
+  const [livre, setLivre] = useState(false);
+
+  // se a pessoa já tinha começado uma ficha, oferece continuar de onde parou
+  useEffect(() => {
+    if (!chaveRascunho) return;
+    const g = lerLocal<{ f: Ficha; passo: number }>(chaveRascunho);
+    if (g?.dados?.f && (g.dados.f.origem || g.dados.f.nome)) setRascunho(g.dados);
+    setLivre(true);
+  }, [chaveRascunho]);
+
+  useEffect(() => {
+    if (!livre || rascunho || !chaveRascunho) return;
+    guardar(chaveRascunho, { f, passo }, true);
+  }, [f, passo, livre, rascunho, chaveRascunho]);
 
   const mudar = (p: Partial<Ficha>) => setF((x) => ({ ...x, ...p }));
   const irDestino = (d: string) => {
@@ -160,6 +179,7 @@ export default function NovaFicha() {
         ataques: f.ataques.length ? f.ataques : ataquesIniciais(f, tipo),
       };
       const id = await criarFicha(pronta, sessao.user.id);
+      limpar(chaveRascunho);
       som.pagina();
       nav(`/fichas/${id}`);
     } catch {
@@ -175,6 +195,21 @@ export default function NovaFicha() {
     else if (escolhidas.length < c.quantasPericias) mudar({ pericias: [...f.pericias, id] });
   };
 
+
+  if (rascunho) {
+    return (
+      <main className="page assistente">
+        <div className="aviso" role="status">
+          <b>Você já tinha começado uma ficha</b>
+          <span>{rascunho.f.nome ? `“${rascunho.f.nome}”` : "Uma ficha sem nome"}, no passo {rascunho.passo + 1} de {PASSOS.length}. Quer continuar de onde parou?</span>
+          <div className="row">
+            <button type="button" className="btn btn-red" onClick={() => { setF(normalizar(rascunho.f)); setPasso(Math.min(PASSOS.length - 1, rascunho.passo)); setRascunho(null); }}>Continuar</button>
+            <button type="button" className="btn btn-paper" onClick={() => { limpar(chaveRascunho); setRascunho(null); }}>Começar do zero</button>
+          </div>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className="page assistente">
