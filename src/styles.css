@@ -894,17 +894,19 @@ select:focus-visible, .opcoes-grandes .opcao:focus-visible, .chip-btn:focus-visi
 .qr-frase { top: auto; bottom: 14vh; max-width: min(92vw, 900px); text-shadow: 0 2px 18px #000, 0 0 6px #000; font-size: clamp(17px, 3.2vw, 34px); line-height: 1.35; }
 .qr-quadro { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; filter: grayscale(1) contrast(1.1); }
 .qr-quadro::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 35%, #000 100%), linear-gradient(to top, #000 0%, transparent 45%); }
-.qr-q1 { background-image: url(/art/q-sombras.jpg); animation: qr-quadro 6.4s 0.4s ease both; }
-.qr-q2 { background-image: url(/art/q-yhwach.jpg); background-size: contain; background-repeat: no-repeat; animation: qr-quadro 6.2s 6.4s ease both; }
+.qr-q0 { background-image: url(/art/q-palacio.jpg); filter: grayscale(.55) contrast(1.05); animation: qr-quadro 5s 0.3s ease both; }
+.qr-q1 { background-image: url(/art/q-sombras.jpg); animation: qr-quadro 6s 5.2s ease both; }
+.qr-q2 { background-image: url(/art/q-yhwach.jpg); background-size: contain; background-repeat: no-repeat; animation: qr-quadro 5.8s 11.1s ease both; }
 @keyframes qr-quadro { 0% { opacity: 0; transform: scale(1.04); } 12%, 88% { opacity: 1; } 100% { opacity: 0; transform: scale(1.14); } }
-.qr-a1 { animation: qr-texto 2.2s 0.9s ease both; } .qr-a2 { animation: qr-texto 2.2s 2.8s ease both; } .qr-a3 { animation: qr-texto 2.2s 4.6s ease both; }
-.qr-b1 { animation: qr-texto 2.8s 6.9s ease both; } .qr-b2 { animation: qr-texto 2.6s 9.4s ease both; color: #cfeaff; }
+.qr-z1 { animation: qr-texto 2.2s 0.8s ease both; } .qr-z2 { animation: qr-texto 2.2s 2.8s ease both; }
+.qr-a1 { animation: qr-texto 2s 5.6s ease both; } .qr-a2 { animation: qr-texto 2s 7.4s ease both; } .qr-a3 { animation: qr-texto 2s 9.2s ease both; }
+.qr-b1 { animation: qr-texto 2.8s 11.5s ease both; } .qr-b2 { animation: qr-texto 2.6s 13.9s ease both; color: #cfeaff; }
 @keyframes qr-texto { 0% { opacity: 0; filter: blur(8px); letter-spacing: .3em; } 25%, 75% { opacity: 1; filter: blur(0); letter-spacing: .12em; } 100% { opacity: 0; filter: blur(4px); } }
-.qr-luz { position: absolute; inset: 0; opacity: 0; background: radial-gradient(circle, #fff 0%, #8fd8ff 28%, #1b5f9a 55%, #02060c 85%); animation: qr-luz 2.6s 11.6s ease-out both; }
+.qr-luz { position: absolute; inset: 0; opacity: 0; background: radial-gradient(circle, #fff 0%, #8fd8ff 28%, #1b5f9a 55%, #02060c 85%); animation: qr-luz 2.6s 16s ease-out both; }
 @keyframes qr-luz { 0% { opacity: 0; transform: scale(.2); } 30% { opacity: 1; } 100% { opacity: .85; transform: scale(1.6); } }
-.qr-emblema { position: absolute; width: min(44vmin, 360px); opacity: 0; filter: drop-shadow(0 0 24px #fff) drop-shadow(0 0 60px #5cc8ff); animation: qr-emblema 2.6s 11.7s cubic-bezier(.2,.9,.2,1) both; }
+.qr-emblema { position: absolute; width: min(44vmin, 360px); opacity: 0; filter: drop-shadow(0 0 24px #fff) drop-shadow(0 0 60px #5cc8ff); animation: qr-emblema 2.6s 16.1s cubic-bezier(.2,.9,.2,1) both; }
 @keyframes qr-emblema { 0% { opacity: 0; transform: scale(.1) rotate(-200deg); } 50% { opacity: 1; transform: scale(1) rotate(0); } 100% { opacity: 1; transform: scale(1.08) rotate(8deg); } }
-.qr-titulo { position: absolute; bottom: 12vh; margin: 0; font-family: "Cinzel", serif; font-weight: 900; font-size: clamp(34px, 7vw, 84px); letter-spacing: .3em; text-transform: uppercase; color: #fff; text-shadow: 0 0 20px #5cc8ff, 0 0 60px #5cc8ff; opacity: 0; animation: qr-texto-final 2.2s 12.2s ease both; }
+.qr-titulo { position: absolute; bottom: 12vh; margin: 0; font-family: "Cinzel", serif; font-weight: 900; font-size: clamp(34px, 7vw, 84px); letter-spacing: .3em; text-transform: uppercase; color: #fff; text-shadow: 0 0 20px #5cc8ff, 0 0 60px #5cc8ff; opacity: 0; animation: qr-texto-final 2.2s 16.6s ease both; }
 @keyframes qr-texto-final { from { opacity: 0; transform: translateY(24px); letter-spacing: .6em; } to { opacity: 1; transform: none; letter-spacing: .3em; } }
 .qr-pular { position: absolute; bottom: 14px; right: 18px; color: #6f8196; font-size: 12px; letter-spacing: .08em; }
 @keyframes qr-entra { from { opacity: 0; } to { opacity: 1; } }

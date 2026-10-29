@@ -23,6 +23,10 @@ function salvar(v: boolean) {
   }
 }
 
+const CENA0 = [
+  "Os Quincy já tiveram um reino de pedra e prata.",
+  "Hoje, só ruínas e gelo guardam o seu nome.",
+];
 const CENA1 = [
   "Duzentos anos atrás, o Seireitei decretou o fim dos Quincy.",
   "As cidades arderam e os sobreviventes se esconderam nas sombras.",
@@ -41,8 +45,9 @@ function retorno() {
   el.className = "quincy-retorno";
   el.setAttribute("role", "presentation");
   el.innerHTML =
-    '<div class="qr-quadro qr-q1"></div><div class="qr-quadro qr-q2"></div>' +
+    '<div class="qr-quadro qr-q0"></div><div class="qr-quadro qr-q1"></div><div class="qr-quadro qr-q2"></div>' +
     '<div class="qr-poeira"></div>' +
+    CENA0.map((t, i) => `<p class="qr-frase qr-z${i + 1}">${t}</p>`).join("") +
     CENA1.map((t, i) => `<p class="qr-frase qr-a${i + 1}">${t}</p>`).join("") +
     CENA2.map((t, i) => `<p class="qr-frase qr-b${i + 1}">${t}</p>`).join("") +
     '<div class="qr-luz"></div>' +
@@ -62,8 +67,8 @@ function retorno() {
     }, 900);
   };
   el.addEventListener("click", fim);
-  window.setTimeout(() => aplicar(true), 12400);
-  window.setTimeout(fim, 14400);
+  window.setTimeout(() => aplicar(true), 16800);
+  window.setTimeout(fim, 18800);
 }
 
 function despedida() {
