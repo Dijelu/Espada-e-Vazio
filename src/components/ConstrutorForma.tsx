@@ -123,7 +123,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
   };
   const usarVoll = (id: string) => {
     const m = VOLL_PRONTAS.find((x) => x.id === id)!;
-    setR((x) => ({ ...x, modelo: m.id, nome: x.nome || `Vollständig ${m.nome}`, picks: { ...m.picks }, texto: m.resumo, habilidades: comoHabilidades(acoesDaForma({ tipo: "vollstandig", modelo: m.id } as FormaLib)) }));
+    setR((x) => ({ ...x, modelo: m.id, nome: m.nome, aparencia: m.aparencia, canalizador: m.canalizador, picks: { ...m.picks }, texto: m.resumo, habilidades: comoHabilidades(acoesDaForma({ tipo: "vollstandig", modelo: m.id } as FormaLib)) }));
     setAba("meu");
   };
 
@@ -238,10 +238,12 @@ export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
               <li key={m.id} className={aberto === m.id ? "aberta" : ""}>
                 <button type="button" className="seletor-item" aria-expanded={aberto === m.id} onClick={() => setAberto(aberto === m.id ? "" : m.id)}>
                   <b>{m.nome}</b>
-                  <small>{m.fonte === "manga" ? "Inspirada no mangá" : "Arquétipo do livro"} · {m.resumo}</small>
+                  <small>{m.personagem} · reishi {m.cor} · {m.resumo}</small>
                 </button>
                 {aberto === m.id && (
                   <div className="seletor-detalhe">
+                    <p><b>Aparência:</b> {m.aparencia}</p>
+                    <p><b>Canalizador:</b> {m.canalizador}</p>
                     <ul>
                       {Object.entries(m.picks).map(([id, n]) => {
                         const h = HAB_UNICAS.find((x) => x.id === id);

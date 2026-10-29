@@ -32,15 +32,27 @@ for mid, nome in nomes.items():
 s = s.replace("- **Técnica de assinatura:**", "- **Aparência da técnica de assinatura:**")
 p.write_text(s, encoding="utf-8")
 
-# ---- Vollständig
+# ---- Vollständig (modelos inspirados nos Quincy do mangá/anime)
+M = json.loads((raiz / "src/regras/vollstandig-modelos.json").read_text(encoding="utf-8"))
+HAB = {"armadura": "Armadura de Reishi", "defesa": "Defesa", "forca": "Força Espiritual", "melhoria": "Melhoria", "olhos": "Olhos do Céu", "potencia": "Potência Espiritual", "precisao": "Precisão Espiritual", "reserva-esp": "Reserva Espiritual", "reserva-vital": "Reserva Vital", "reuniao": "Reunião Eficiente", "sentido": "Sentido Divino", "velocidade": "Velocidade", "vigor": "Vigor do Reishi"}
 p = raiz / "src/content/livro/07-arsenal-quincy.md"
 s = p.read_text(encoding="utf-8")
-s = re.sub(r"### Ações da Vollstanding\n.*?(?=## Schirift)", "", s, flags=re.S)
-pront = {"conjurador": "Conjurador", "defensivo": "Defensivo", "duelista": "Duelista", "expurgador": "Expurgador", "oraculo": "Oráculo", "velocista": "Velocista", "atirador-celeste": "Atirador Celeste", "bombardeiro": "Bombardeiro", "sentinela": "Sentinela"}
-txt = "### Ações das Vollstanding Prontas\n\nCada Vollstanding pronta vem com as suas próprias ações, no estilo das técnicas da Bankai: custo, ação e dano definidos. Elas só valem enquanto a Vollstanding estiver ativa. Se você criar a sua, monte as ações no mesmo padrão (uma básica de 8 a 10 PR, uma de apoio e uma final de 30 PR).\n\n"
-for i, n in pront.items():
-    txt += f"**{n}**\n\n" + "\n".join("- " + linha(a)[4:] for a in D["vollstandio" if False else "vollstandig"]["prontas"][i]) + "\n\n"
-j = s.index("## Schirift")
-s = s[:j] + txt + s[j:]
+txt = """## Vollstanding Prontas
+
+Estas são as Vollstanding prontas do livro. Cada uma segue a forma de um Quincy do mangá e do anime, com a aparência, o canalizador e os poderes que ele mostra na obra. A Schrift é outra coisa e não faz parte delas: se o seu personagem tiver uma, ela influencia o nome e os efeitos, como descrito mais adiante. Você pode usar o modelo como está ou mudar o nome e a aparência para o seu Quincy.
+
+Todo modelo usa as mesmas habilidades passivas e escolhe quatro habilidades únicas da lista acima (Força Espiritual e Precisão Espiritual só uma vez cada), mais três ações no padrão da Bankai. Depois de escolhida, a combinação é permanente.
+
+"""
+for m in M:
+    picks = ", ".join(f"{HAB[k]} ({n}x)" for k, n in m["picks"].items())
+    txt += f"### {m['nome']} ({m['personagem']})\n\n"
+    txt += f"{m['resumo']}\n\n"
+    txt += f"- **Reishi:** {m['cor']}.\n- **Aparência:** {m['aparencia']}\n- **Canalizador:** {m['canalizador']}.\n- **Habilidades únicas:** {picks}.\n- **Ações:**\n"
+    txt += "\n".join(linha(a) for a in D["vollstandig"]["prontas"][m["id"]]) + "\n\n"
+a = s.index("## Vollstanding Prontas")
+b = s.index("### Criando Sua Vollstanding")
+s = s[:a] + txt + s[b:]
+s = s.replace("Se não quiser uma versão pronta, monte a sua em seis passos.", "Se não quiser uma das formas prontas, monte a sua em seis passos.")
 p.write_text(s, encoding="utf-8")
 print("ok")

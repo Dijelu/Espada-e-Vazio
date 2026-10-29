@@ -269,201 +269,117 @@ Atenção: Força Espiritual e Precisão Espiritual só podem ser escolhidas **u
 
 ## Vollstanding Prontas
 
-Caso não queira escolher individualmente as habilidades únicas da sua Vollständig, você pode optar por uma versão pronta, dividida em diferentes arquétipos. Cada arquétipo reúne habilidades voltadas para uma proposta de combate específica, facilitando a escolha de uma combinação completa. Após definir as habilidades únicas da sua Vollständig, seja individualmente ou por meio de um arquétipo, essa decisão é permanente e não pode ser alterada. As opções prontas estão ao lado.
-
-A Vollstanding Conjurador tem as seguintes habilidades únicas escolhidas:
-
-Olhos do Céu (1x): +6 metros de alcance para técnicas de reishi.
-
-Potência Espiritual (2x): +10 em dano com técnicas de reishi.
-
-Reunião Eficiente (1x): +5 pontos de reiatsu com Sklaverei.
-
-CONJURADOR A Vollstanding Defensivo tem as seguintes habilidades únicas escolhidas:
-
-Armadura de Reishi (2x): RD 10 a todos os tipos de dano.
-
-Defesa (1x): +3 na Classe de Resistência.
-
-Velocidade (1x): +6 metros de deslocamento.
-
-DEFENSIVO A Vollstanding Duelista tem as seguintes habilidades únicas escolhidas:
-
-Defesa (1x): +3 na Classe de Resistência.
-
-Força Espiritual (1x): +5 de dano com sua arma espiritual.
-
-Melhoria (2x): Aprimoramento na arma espiritual, crítico e dano.
-
-DUELISTA A Vollstanding Expurgador tem as seguintes habilidades únicas escolhidas:
-
-Melhoria (2x): Aprimoramento na arma espiritual, crítico e dano.
-
-Olhos do Céu (1x): +6 metros no alcance com arma.
-
-Precisão Espiritual (1x): +3 nas jogadas de ataque com a arma espiritual.
-
-EXPURGADOR A Vollstanding Oráculo tem as seguintes habilidades únicas escolhidas:
-
-Sentido Divino (2x): +24 metros no alcance da Consciência Espiritual Expandida.
-
-Olhos do Céu (1x): +6 metros no alcance de ataques à distância e habilidades.
-
-Precisão Espiritual (1x): +3 nas jogadas de ataque com a arma espiritual.
-
-ORÁCULO A Vollstanding Velocista tem as seguintes habilidades únicas escolhidas:
-
-Velocidade (2x): +12 metros no deslocamento.
-
-Precisão Espiritual (1x): +3 nas jogadas de ataque com a arma espiritual.
-
-Força Espiritual (1x): +5 de dano com a arma espiritual.
-
-VELOCISTA
-
-### Vollstanding Inspiradas no Mangá
-
-Estes três modelos seguem o estilo de combate de Quincy famosos da obra. Eles usam as mesmas habilidades únicas da lista acima, então os limites valem (Força Espiritual e Precisão Espiritual só uma vez cada).
-
-**Atirador Celeste.** Um arqueiro que acerta qualquer coisa à vista e dispara de longe.
-
-- Olhos do Céu (1x): +6 metros de alcance.
-- Potência Espiritual (1x): +5 de dano com Técnicas de Reishi.
-- Precisão Espiritual (1x): +3 nas jogadas de ataque com a arma espiritual.
-- Velocidade (1x): +6 metros de deslocamento.
-
-**Bombardeiro.** Um Quincy que transforma o reishi em explosões e vive de reserva espiritual.
-
-- Potência Espiritual (2x): +10 de dano com Técnicas de Reishi.
-- Reserva Espiritual (1x): +40 de reiatsu máximo.
-- Reunião Eficiente (1x): +5 pontos de reiatsu com Sklaverei.
-
-**Sentinela.** Um Quincy que guarda o grupo e aguenta o que vier.
-
-- Armadura de Reishi (1x): RD 5 a todos os tipos de dano, exceto Psíquico.
-- Defesa (1x): +3 na Classe de Resistência.
-- Reserva Vital (1x): +40 de PV máximos.
-- Vigor do Reishi (1x): recupera 5 PV no início do turno.
-
-### Ações das Vollstanding Prontas
-
-Cada Vollstanding pronta vem com as suas próprias ações, no estilo das técnicas da Bankai: custo, ação e dano definidos. Elas só valem enquanto a Vollstanding estiver ativa. Se você criar a sua, monte as ações no mesmo padrão (uma básica de 8 a 10 PR, uma de apoio e uma final de 30 PR).
-
-**Conjurador**
-
-- **Salva de Reishi** (Ação, 25 PR): Três ataques de técnica à distância (18 metros), em alvos iguais ou diferentes. Cada acerto causa o dano indicado de Energia. Dano: 3d10 + (Espírito).
-- **Círculo de Reishi** (Ação bônus, 10 PR): Seu próximo ataque de técnica de Reishi no turno recebe vantagem e +3 metros de alcance.
-- **Chuva de Reishi** (Ação, 30 PR): Área de 6 metros de raio num ponto a até 18 metros. Salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso. Dano: (nível/2 + 5)d10 + (Espírito).
-
-**Defensivo**
-
-- **Muralha de Reishi** (Reação, 10 PR): Quando você ou um aliado a 3 metros sofre dano, reduza esse dano na quantidade indicada. Dano: 2d10 + (proficiência).
-- **Escudo de Asas** (Ação bônus, 8 PR): Você ganha PV temporários na quantidade indicada e a sua CR aumenta em 2 até o início do próximo turno. Dano: (nível).
-- **Barreira Sentinela** (Ação, 20 PR): Você e os aliados a até 3 metros ganham PV temporários na quantidade indicada. Dano: (nível×2).
-
-**Duelista**
-
-- **Corte Alado** (Ação, 20 PR): Dois ataques com a arma espiritual. Se ambos acertarem no mesmo alvo, ele sofre o dano de Energia indicado a mais. Dano: 4d10 + (Espírito).
-- **Passo do Duelo** (Ação bônus, 8 PR): Você voa até 9 metros e o próximo ataque com a arma espiritual no turno tem vantagem.
-- **Lâmina de Estrelas** (Ação, 30 PR): Um ataque com a arma espiritual com margem de crítico 19–20. Se acertar, causa o dano de Energia indicado a mais. Dano: (nível/2 + 5)d10 + (Espírito).
-
-**Expurgador**
-
-- **Disparo Perfurante** (Ação, 20 PR): Ataque com a arma espiritual que ignora toda a redução de dano do alvo. Dano: 6d10 + (Espírito).
-- **Marca do Expurgo** (Ação bônus, 8 PR): Marque uma criatura que você veja: os seus ataques contra ela somam +3 até o fim da cena.
-- **Execução** (Ação, 30 PR): Ataque com a arma espiritual contra a criatura marcada, com margem de crítico 19–20. Ignora a redução de dano. Dano: (nível/2 + 6)d10 + (Espírito).
-
-**Oráculo**
-
-- **Visão Total** (Ação bônus, 10 PR): Até o fim do seu próximo turno, você sabe a localização de todas as criaturas a 56 metros e tem vantagem no próximo ataque.
-- **Previsão Divina** (Reação, 10 PR): Quando uma criatura o ataca, imponha desvantagem nessa jogada de ataque.
-- **Julgamento do Céu** (Ação, 30 PR): Um ataque à distância sem limite de alcance contra uma criatura cuja posição você sabe. Não pode ter desvantagem. Causa dano de Energia. Dano: (nível/2 + 5)d10 + (Espírito).
-
-**Velocista**
-
-- **Passo Relâmpago** (Ação bônus, 10 PR): Você voa até 18 metros sem provocar ataques de oportunidade. O seu próximo ataque no turno causa o dano de Energia indicado a mais. Dano: 2d10.
-- **Rastro de Asas** (Ação, 15 PR): Você voa até 12 metros em linha reta: cada criatura no caminho faz salvaguarda de Destreza (CD 8 + proficiência + Espírito) e sofre o dano na falha, metade no sucesso. Dano: 4d10 + (Espírito).
-- **Mil Cortes** (Ação, 30 PR): Quatro ataques rápidos com a arma espiritual. Cada acerto causa o dano indicado, dividido em partes iguais. Dano: (nível/2 + 4)d10 + (Espírito).
-
-**Atirador Celeste**
-
-- **Flecha Celeste** (Ação, 25 PR): Um disparo com o dobro do alcance e margem de crítico 19–20. Causa dano de Energia. Dano: 8d10 + (Espírito).
-- **Olho do Falcão** (Ação bônus, 8 PR): Até o fim do turno, os seus ataques à distância ignoram cobertura e você tem +2 nas jogadas de ataque.
-- **Chuva de Flechas** (Ação, 30 PR): Área de 6 metros de raio num ponto a até 36 metros. Salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso. Dano: (nível/2 + 5)d10 + (Espírito).
-
-**Bombardeiro**
-
-- **Bomba de Reishi** (Ação, 30 PR): Explosão de 6 metros de raio num ponto a até 18 metros. Salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso. Dano: (nível/2 + 4)d10 + (Espírito).
-- **Marca Explosiva** (Ação bônus, 8 PR): Marque uma criatura ou objeto a até 18 metros. Quando você usar a Bomba de Reishi em uma área que o inclua, ele sofre o dano indicado a mais. Dano: 4d10.
-- **Detonação em Cadeia** (Ação, 20 PR): A explosão salta entre até 4 criaturas a até 6 metros uma da outra: cada uma faz salvaguarda de Destreza (CD 8 + proficiência + Espírito) e sofre o dano na falha, metade no sucesso. Dano: 3d10 + (Espírito).
-
-**Sentinela**
-
-- **Barreira Sentinela** (Ação, 15 PR): Você e os aliados a até 3 metros ganham PV temporários na quantidade indicada. Dano: (nível×2).
-- **Postura Firme** (Ação bônus, 8 PR): Até o início do próximo turno, você não pode ser empurrado nem derrubado, e os ataques contra aliados a 3 metros de você têm desvantagem.
-- **Muralha Viva** (Reação, 15 PR): Quando um aliado a até 6 metros sofre dano, você voa até ele sem provocar ataques de oportunidade e reduz esse dano na quantidade indicada. Dano: 2d10 + (proficiência).
-
-### Ações das Vollstanding Prontas
-
-Cada Vollstanding pronta vem com as suas próprias ações, no estilo das técnicas da Bankai: custo, ação e dano definidos. Elas só valem enquanto a Vollstanding estiver ativa. Se você criar a sua, monte as ações no mesmo padrão (uma básica de 8 a 10 PR, uma de apoio e uma final de 30 PR).
-
-**Conjurador**
-
-- **Salva de Reishi** (Ação, 25 PR): Três ataques de técnica à distância (18 metros), em alvos iguais ou diferentes. Cada acerto causa o dano indicado de Energia. Dano: 3d10 + (Espírito).
-- **Círculo de Reishi** (Ação bônus, 10 PR): Seu próximo ataque de técnica de Reishi no turno recebe vantagem e +3 metros de alcance.
-- **Chuva de Reishi** (Ação, 30 PR): Área de 6 metros de raio num ponto a até 18 metros. Salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso. Dano: (nível/2 + 5)d10 + (Espírito).
-
-**Defensivo**
-
-- **Muralha de Reishi** (Reação, 10 PR): Quando você ou um aliado a 3 metros sofre dano, reduza esse dano na quantidade indicada. Dano: 2d10 + (proficiência).
-- **Escudo de Asas** (Ação bônus, 8 PR): Você ganha PV temporários na quantidade indicada e a sua CR aumenta em 2 até o início do próximo turno. Dano: (nível).
-- **Barreira Sentinela** (Ação, 20 PR): Você e os aliados a até 3 metros ganham PV temporários na quantidade indicada. Dano: (nível×2).
-
-**Duelista**
-
-- **Corte Alado** (Ação, 20 PR): Dois ataques com a arma espiritual. Se ambos acertarem no mesmo alvo, ele sofre o dano de Energia indicado a mais. Dano: 4d10 + (Espírito).
-- **Passo do Duelo** (Ação bônus, 8 PR): Você voa até 9 metros e o próximo ataque com a arma espiritual no turno tem vantagem.
-- **Lâmina de Estrelas** (Ação, 30 PR): Um ataque com a arma espiritual com margem de crítico 19–20. Se acertar, causa o dano de Energia indicado a mais. Dano: (nível/2 + 5)d10 + (Espírito).
-
-**Expurgador**
-
-- **Disparo Perfurante** (Ação, 20 PR): Ataque com a arma espiritual que ignora toda a redução de dano do alvo. Dano: 6d10 + (Espírito).
-- **Marca do Expurgo** (Ação bônus, 8 PR): Marque uma criatura que você veja: os seus ataques contra ela somam +3 até o fim da cena.
-- **Execução** (Ação, 30 PR): Ataque com a arma espiritual contra a criatura marcada, com margem de crítico 19–20. Ignora a redução de dano. Dano: (nível/2 + 6)d10 + (Espírito).
-
-**Oráculo**
-
-- **Visão Total** (Ação bônus, 10 PR): Até o fim do seu próximo turno, você sabe a localização de todas as criaturas a 56 metros e tem vantagem no próximo ataque.
-- **Previsão Divina** (Reação, 10 PR): Quando uma criatura o ataca, imponha desvantagem nessa jogada de ataque.
-- **Julgamento do Céu** (Ação, 30 PR): Um ataque à distância sem limite de alcance contra uma criatura cuja posição você sabe. Não pode ter desvantagem. Causa dano de Energia. Dano: (nível/2 + 5)d10 + (Espírito).
-
-**Velocista**
-
-- **Passo Relâmpago** (Ação bônus, 10 PR): Você voa até 18 metros sem provocar ataques de oportunidade. O seu próximo ataque no turno causa o dano de Energia indicado a mais. Dano: 2d10.
-- **Rastro de Asas** (Ação, 15 PR): Você voa até 12 metros em linha reta: cada criatura no caminho faz salvaguarda de Destreza (CD 8 + proficiência + Espírito) e sofre o dano na falha, metade no sucesso. Dano: 4d10 + (Espírito).
-- **Mil Cortes** (Ação, 30 PR): Quatro ataques rápidos com a arma espiritual. Cada acerto causa o dano indicado, dividido em partes iguais. Dano: (nível/2 + 4)d10 + (Espírito).
-
-**Atirador Celeste**
-
-- **Flecha Celeste** (Ação, 25 PR): Um disparo com o dobro do alcance e margem de crítico 19–20. Causa dano de Energia. Dano: 8d10 + (Espírito).
-- **Olho do Falcão** (Ação bônus, 8 PR): Até o fim do turno, os seus ataques à distância ignoram cobertura e você tem +2 nas jogadas de ataque.
-- **Chuva de Flechas** (Ação, 30 PR): Área de 6 metros de raio num ponto a até 36 metros. Salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso. Dano: (nível/2 + 5)d10 + (Espírito).
-
-**Bombardeiro**
-
-- **Bomba de Reishi** (Ação, 30 PR): Explosão de 6 metros de raio num ponto a até 18 metros. Salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso. Dano: (nível/2 + 4)d10 + (Espírito).
-- **Marca Explosiva** (Ação bônus, 8 PR): Marque uma criatura ou objeto a até 18 metros. Quando você usar a Bomba de Reishi em uma área que o inclua, ele sofre o dano indicado a mais. Dano: 4d10.
-- **Detonação em Cadeia** (Ação, 20 PR): A explosão salta entre até 4 criaturas a até 6 metros uma da outra: cada uma faz salvaguarda de Destreza (CD 8 + proficiência + Espírito) e sofre o dano na falha, metade no sucesso. Dano: 3d10 + (Espírito).
-
-**Sentinela**
-
-- **Barreira Sentinela** (Ação, 15 PR): Você e os aliados a até 3 metros ganham PV temporários na quantidade indicada. Dano: (nível×2).
-- **Postura Firme** (Ação bônus, 8 PR): Até o início do próximo turno, você não pode ser empurrado nem derrubado, e os ataques contra aliados a 3 metros de você têm desvantagem.
-- **Muralha Viva** (Reação, 15 PR): Quando um aliado a até 6 metros sofre dano, você voa até ele sem provocar ataques de oportunidade e reduz esse dano na quantidade indicada. Dano: 2d10 + (proficiência).
+Estas são as Vollstanding prontas do livro. Cada uma segue a forma de um Quincy do mangá e do anime, com a aparência, o canalizador e os poderes que ele mostra na obra. A Schrift é outra coisa e não faz parte delas: se o seu personagem tiver uma, ela influencia o nome e os efeitos, como descrito mais adiante. Você pode usar o modelo como está ou mudar o nome e a aparência para o seu Quincy.
+
+Todo modelo usa as mesmas habilidades passivas e escolhe quatro habilidades únicas da lista acima (Força Espiritual e Precisão Espiritual só uma vez cada), mais três ações no padrão da Bankai. Depois de escolhida, a combinação é permanente.
+
+### Piskiel (Quilge Opie)
+
+Velocidade e força de um espadachim que devora o reishi à sua volta.
+
+- **Reishi:** azul.
+- **Aparência:** Asas de reishi e auréola, luvas nos dois pulsos, botas e uma espada espiritual.
+- **Canalizador:** Leiden Hant (a luva Quincy).
+- **Habilidades únicas:** Velocidade (1x), Força Espiritual (1x), Reunião Eficiente (1x), Melhoria (1x).
+- **Ações:**
+  - **Hirenkyaku Dominante** (Ação bônus, 10 PR): Você voa até 18 metros sem provocar ataques de oportunidade e o seu próximo ataque no turno tem vantagem.
+  - **Sklaverei Devoradora** (Ação, 20 PR): Uma criatura com reishi a até 9 metros faz salvaguarda de Espírito (CD 8 + proficiência + Espírito). Na falha, sofre o dano de Energia indicado e você recupera PR igual à metade do dano causado. No sucesso, metade do dano e sem recuperação. Dano: 4d10 + (Espírito).
+  - **Lâmina da Justiça** (Ação, 30 PR): Um ataque com a espada espiritual com margem de crítico 19–20. Se acertar, causa o dano de Energia indicado a mais. Dano: (nível/2 + 5)d10 + (Espírito).
+
+### Zofiel (Bambietta Basterbine)
+
+Voo veloz, corpo reforçado e explosões de reishi vermelho.
+
+- **Reishi:** vermelho.
+- **Aparência:** Uma coluna de reiatsu vermelho com uma enorme Cruz Quincy se ergue e se parte; ela surge com asas grandes e uma auréola em forma de estrela.
+- **Canalizador:** Leiden Hant (a luva Quincy).
+- **Habilidades únicas:** Armadura de Reishi (1x), Potência Espiritual (1x), Reserva Vital (1x), Velocidade (1x).
+- **Ações:**
+  - **Voo Veloz** (Ação bônus, 8 PR): Você voa até 18 metros em linha reta sem provocar ataques de oportunidade.
+  - **Corpo Reforçado** (Reação, 10 PR): Quando você sofre dano, reduza esse dano na quantidade indicada. A sua reishi vermelha endurece o corpo. Dano: 2d10 + (proficiência).
+  - **Mergulho Explosivo** (Ação, 30 PR): Você voa até 18 metros e mergulha sobre um ponto: explosão de reishi vermelho de 3 metros de raio. Cada criatura na área faz salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso. Dano: (nível/2 + 5)d10 + (Espírito).
+
+### Barbarriel (Candice Catnipp)
+
+Relâmpagos: espadas feitas das próprias asas e uma descarga final.
+
+- **Reishi:** verde.
+- **Aparência:** Uma explosão de eletricidade e seis asas verdes com bordas em forma de raio. A auréola é uma estrela de eletricidade e faíscas correm pelo corpo.
+- **Canalizador:** Luva Quincy.
+- **Habilidades únicas:** Força Espiritual (1x), Potência Espiritual (1x), Olhos do Céu (1x), Velocidade (1x).
+- **Ações:**
+  - **Espadas de Relâmpago** (Ação, 15 PR): Você arranca duas asas e as usa como espadas: dois ataques corpo a corpo. Cada acerto causa o dano indicado de Energia (elétrico) e empurra o alvo 3 metros. Dano: 2d10 + (Espírito).
+  - **Galvano Javelin** (Ação, 20 PR): Você arremessa uma espada de relâmpago contra uma criatura a até 36 metros. Se acertar, causa o dano de Energia indicado. Dano: 6d10 + (Espírito).
+  - **Eletrocussão** (Ação, 30 PR): Você reúne a eletricidade ao redor numa coluna e a arremessa: área de 9 metros de raio num ponto a até 18 metros. Cada criatura faz salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso. Dano: (nível/2 + 5)d10 + (Espírito).
+
+### Pornipora (Meninas McAllon)
+
+Briga corpo a corpo com dois halteres de reishi.
+
+- **Reishi:** rosa.
+- **Aparência:** Asas rosa de três grandes segmentos em forma de coração e auréola em estrela. Com Sklaverei surgem joelheiras e um peitoral em forma de coração, e dois halteres nas mãos.
+- **Canalizador:** Luva Quincy.
+- **Habilidades únicas:** Força Espiritual (1x), Melhoria (1x), Armadura de Reishi (1x), Vigor do Reishi (1x).
+- **Ações:**
+  - **Dumbbell Duster** (Ação bônus, 8 PR): Você reforça os punhos com os halteres: o seu próximo ataque corpo a corpo no turno causa o dano de Energia indicado a mais. Dano: 2d10.
+  - **Baton Beat** (Ação, 15 PR): Os halteres se alongam em bastões de 3 metros de alcance: dois ataques. Cada acerto causa o dano de Energia indicado. Dano: 3d10 + (Força).
+  - **Halteres** (Ação, 30 PR): Um halter vira uma lâmina enorme e você mergulha sobre um alvo a até 18 metros. Um ataque que causa o dano de Energia indicado, com margem de crítico 19–20. Dano: (nível/2 + 5)d10 + (Força).
+
+### Tatarforas (Äs Nödt)
+
+Forma grotesca que paralisa pelo medo de quem a vê.
+
+- **Reishi:** roxo.
+- **Aparência:** Sangue nos olhos, carne rasgada e costurada com uma costura visível no corpo, auréola, asas de arame farpado, olhos revirados e braços negros. Cria um domo de olhos ao redor dos inimigos.
+- **Canalizador:** O olho esquerdo, que o usuário revira para ativar.
+- **Habilidades únicas:** Sentido Divino (1x), Defesa (1x), Reserva Vital (1x), Armadura de Reishi (1x).
+- **Ações:**
+  - **Olhar do Medo** (Ação bônus, 8 PR): Uma criatura a até 18 metros que veja você faz salvaguarda de Espírito (CD 8 + proficiência + Espírito). Na falha, fica amedrontada até o fim do seu próximo turno. Fechar os olhos não protege.
+  - **Domo de Olhos** (Ação, 20 PR): Um domo de olhos de 9 metros de raio surge ao redor de você. Cada criatura que o veja faz salvaguarda de Espírito (CD 8 + proficiência + Espírito). Na falha, fica paralisada até o fim do seu próximo turno e repete o teste ao fim de cada turno dela. O domo dura 1 minuto.
+  - **Absorver os Olhos** (Ação, 30 PR): Você absorve os olhos do domo e o corpo se deforma. Ganha PV temporários na quantidade indicada e +2 de CR até o fim da cena. Dano: (nível×2).
+
+### Vollständig de Uryū (Uryū Ishida)
+
+Arqueiro de flechas guiadas que concentra tudo num único disparo.
+
+- **Reishi:** azul-claro.
+- **Aparência:** Duas asas de partículas de reishi, armadura de reishi nos braços e pernas e um emblema no peito em forma de empenagem de flecha. Não tem auréola.
+- **Canalizador:** À sua escolha.
+- **Habilidades únicas:** Olhos do Céu (1x), Potência Espiritual (1x), Precisão Espiritual (1x), Velocidade (1x).
+- **Ações:**
+  - **Licht Reigen** (Ação bônus, 8 PR): As flechas circulam ao seu redor e você as guia: até o fim do turno, os seus ataques à distância ignoram cobertura, podem fazer curva e têm +2 nas jogadas de ataque.
+  - **Flecha Perfurante** (Ação, 20 PR): Uma única flecha concentrada atravessa o alvo. Ataque à distância que ignora toda a redução de dano e causa o dano de Energia indicado. Dano: 6d10 + (Espírito).
+  - **Sternenstaub** (Ação, 30 PR): Você junta as flechas num ataque pentagonal concentrado: linha de 36 metros por 3 de largura. Cada criatura na linha faz salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso. Dano: (nível/2 + 5)d10 + (Espírito).
+
+### Aschtonig (Gerard Valkyrie)
+
+Armadura de reishi, rajadas que arrasam quarteirões e corpo que se refaz.
+
+- **Reishi:** dourado.
+- **Aparência:** Capacete nórdico de reishi, uma estrela sobre o escudo, padrões grossos nos braços e nas pernas, e a estrela do cabo de Hoffnung fica dourada. Pode abrir asas à vontade.
+- **Canalizador:** O próprio sangue, desenhando o símbolo Quincy no ar.
+- **Habilidades únicas:** Potência Espiritual (1x), Reserva Vital (1x), Vigor do Reishi (1x), Reserva Espiritual (1x).
+- **Ações:**
+  - **Escudo de Hoffnung** (Reação, 10 PR): Quando você ou um aliado a 3 metros sofre dano, o escudo de reishi reduz esse dano na quantidade indicada. Dano: 2d10 + (proficiência).
+  - **Rajada de Hoffnung** (Ação, 25 PR): Uma rajada de energia sai da ponta de Hoffnung: linha de 36 metros por 3 de largura. Cada criatura na linha faz salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso. Dano: (nível/2 + 4)d10 + (Espírito).
+  - **Corpo Renascido** (Reação, 30 PR): Uma vez por descanso longo, quando você cairia a 0 PV, o corpo se refaz: você volta com os PV indicados e fica com +3 de CR até o fim do próximo turno. Dano: (nível×3).
+
+### Jilliel (Lille Barro)
+
+Asas amarelas e uma segunda forma que se regenera depois de um ferimento fatal.
+
+- **Reishi:** amarelo.
+- **Aparência:** Asas amarelas de reishi. Depois de um ferimento fatal, assume uma segunda forma que regenera as partes perdidas do corpo.
+- **Canalizador:** À sua escolha.
+- **Habilidades únicas:** Vigor do Reishi (1x), Reserva Vital (1x), Defesa (1x), Armadura de Reishi (1x).
+- **Ações:**
+  - **Regeneração Amarela** (Ação, 15 PR): Você cura PV na quantidade indicada em si mesmo e regenera um membro perdido, se houver. Dano: (nível×2).
+  - **Golpe de Asas** (Ação, 20 PR): As asas amarelas batem como lâminas: ataque corpo a corpo de 3 metros de alcance que causa o dano de Energia indicado e empurra o alvo 3 metros. Dano: 4d10 + (Espírito).
+  - **Renascimento** (Reação, 30 PR): Uma vez por descanso longo, ao cair a 0 PV, você assume a segunda forma: volta com os PV indicados, regenerado. Dano: (nível×3).
 
 ### Criando Sua Vollstanding
 
-Se não quiser uma versão pronta, monte a sua em seis passos. A ficha oferece este mesmo passo a passo quando você chega ao nível da Vollstanding.
+Se não quiser uma das formas prontas, monte a sua em seis passos. A ficha oferece este mesmo passo a passo quando você chega ao nível da Vollstanding.
 
 1. **Nome e frase de liberação:** “Quincy Vollständig” ou um nome próprio. Se tiver Schrift, ela influencia o nome.
 2. **Aparência:** asas e auréola de reishi, na cor do seu reishi.

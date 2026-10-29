@@ -1,0 +1,122 @@
+[
+ {
+  "id": "piskiel",
+  "nome": "Piskiel",
+  "personagem": "Quilge Opie",
+  "cor": "azul",
+  "resumo": "Velocidade e força de um espadachim que devora o reishi à sua volta.",
+  "aparencia": "Asas de reishi e auréola, luvas nos dois pulsos, botas e uma espada espiritual.",
+  "canalizador": "Leiden Hant (a luva Quincy)",
+  "picks": {
+   "velocidade": 1,
+   "forca": 1,
+   "reuniao": 1,
+   "melhoria": 1
+  }
+ },
+ {
+  "id": "zofiel",
+  "nome": "Zofiel",
+  "personagem": "Bambietta Basterbine",
+  "cor": "vermelho",
+  "resumo": "Voo veloz, corpo reforçado e explosões de reishi vermelho.",
+  "aparencia": "Uma coluna de reiatsu vermelho com uma enorme Cruz Quincy se ergue e se parte; ela surge com asas grandes e uma auréola em forma de estrela.",
+  "canalizador": "Leiden Hant (a luva Quincy)",
+  "picks": {
+   "armadura": 1,
+   "potencia": 1,
+   "reserva-vital": 1,
+   "velocidade": 1
+  }
+ },
+ {
+  "id": "barbarriel",
+  "nome": "Barbarriel",
+  "personagem": "Candice Catnipp",
+  "cor": "verde",
+  "resumo": "Relâmpagos: espadas feitas das próprias asas e uma descarga final.",
+  "aparencia": "Uma explosão de eletricidade e seis asas verdes com bordas em forma de raio. A auréola é uma estrela de eletricidade e faíscas correm pelo corpo.",
+  "canalizador": "Luva Quincy",
+  "picks": {
+   "forca": 1,
+   "potencia": 1,
+   "olhos": 1,
+   "velocidade": 1
+  }
+ },
+ {
+  "id": "pornipora",
+  "nome": "Pornipora",
+  "personagem": "Meninas McAllon",
+  "cor": "rosa",
+  "resumo": "Briga corpo a corpo com dois halteres de reishi.",
+  "aparencia": "Asas rosa de três grandes segmentos em forma de coração e auréola em estrela. Com Sklaverei surgem joelheiras e um peitoral em forma de coração, e dois halteres nas mãos.",
+  "canalizador": "Luva Quincy",
+  "picks": {
+   "forca": 1,
+   "melhoria": 1,
+   "armadura": 1,
+   "vigor": 1
+  }
+ },
+ {
+  "id": "tatarforas",
+  "nome": "Tatarforas",
+  "personagem": "Äs Nödt",
+  "cor": "roxo",
+  "resumo": "Forma grotesca que paralisa pelo medo de quem a vê.",
+  "aparencia": "Sangue nos olhos, carne rasgada e costurada com uma costura visível no corpo, auréola, asas de arame farpado, olhos revirados e braços negros. Cria um domo de olhos ao redor dos inimigos.",
+  "canalizador": "O olho esquerdo, que o usuário revira para ativar",
+  "picks": {
+   "sentido": 1,
+   "defesa": 1,
+   "reserva-vital": 1,
+   "armadura": 1
+  }
+ },
+ {
+  "id": "uryu",
+  "nome": "Vollständig de Uryū",
+  "personagem": "Uryū Ishida",
+  "cor": "azul-claro",
+  "resumo": "Arqueiro de flechas guiadas que concentra tudo num único disparo.",
+  "aparencia": "Duas asas de partículas de reishi, armadura de reishi nos braços e pernas e um emblema no peito em forma de empenagem de flecha. Não tem auréola.",
+  "canalizador": "À sua escolha",
+  "picks": {
+   "olhos": 1,
+   "potencia": 1,
+   "precisao": 1,
+   "velocidade": 1
+  }
+ },
+ {
+  "id": "aschtonig",
+  "nome": "Aschtonig",
+  "personagem": "Gerard Valkyrie",
+  "cor": "dourado",
+  "resumo": "Armadura de reishi, rajadas que arrasam quarteirões e corpo que se refaz.",
+  "aparencia": "Capacete nórdico de reishi, uma estrela sobre o escudo, padrões grossos nos braços e nas pernas, e a estrela do cabo de Hoffnung fica dourada. Pode abrir asas à vontade.",
+  "canalizador": "O próprio sangue, desenhando o símbolo Quincy no ar",
+  "picks": {
+   "potencia": 1,
+   "reserva-vital": 1,
+   "vigor": 1,
+   "reserva-esp": 1
+  }
+ },
+ {
+  "id": "jilliel",
+  "nome": "Jilliel",
+  "personagem": "Lille Barro",
+  "cor": "amarelo",
+  "resumo": "Asas amarelas e uma segunda forma que se regenera depois de um ferimento fatal.",
+  "aparencia": "Asas amarelas de reishi. Depois de um ferimento fatal, assume uma segunda forma que regenera as partes perdidas do corpo.",
+  "canalizador": "À sua escolha",
+  "picks": {
+   "vigor": 1,
+   "reserva-vital": 1,
+   "defesa": 1,
+   "armadura": 1
+  }
+ }
+]

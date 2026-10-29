@@ -1,6 +1,7 @@
 import bankaisJson from "./bankais.json";
 import shikaisJson from "./shikais.json";
 import acoesJson from "./acoes-forma.json";
+import modelosVoll from "./vollstandig-modelos.json";
 import type { Calculo, Ficha, FormaLib, HabForma, TipoForma } from "./ficha";
 
 /* ---------- Bankai: modelos prontos do capítulo de Zanpakutōs ---------- */
@@ -139,22 +140,17 @@ export const VOLL_PASSIVAS = [
 export interface ProntaVoll {
   id: string;
   nome: string;
-  fonte: "arquetipo" | "manga";
+  /** personagem do mangá/anime em que a forma se inspira */
+  personagem: string;
+  cor: string;
   resumo: string;
+  aparencia: string;
+  canalizador: string;
   picks: Record<string, number>;
 }
 
-export const VOLL_PRONTAS: ProntaVoll[] = [
-  { id: "conjurador", nome: "Conjurador", fonte: "arquetipo", resumo: "Técnicas de Reishi mais fortes e de mais longe.", picks: { olhos: 1, potencia: 2, reuniao: 1 } },
-  { id: "defensivo", nome: "Defensivo", fonte: "arquetipo", resumo: "Resistente e veloz.", picks: { armadura: 2, defesa: 1, velocidade: 1 } },
-  { id: "duelista", nome: "Duelista", fonte: "arquetipo", resumo: "Arma espiritual forte, crítica e dura.", picks: { defesa: 1, forca: 1, melhoria: 2 } },
-  { id: "expurgador", nome: "Expurgador", fonte: "arquetipo", resumo: "Acerta de longe com a arma espiritual.", picks: { melhoria: 2, olhos: 1, precisao: 1 } },
-  { id: "oraculo", nome: "Oráculo", fonte: "arquetipo", resumo: "Percepção enorme e pontaria.", picks: { sentido: 2, olhos: 1, precisao: 1 } },
-  { id: "velocista", nome: "Velocista", fonte: "arquetipo", resumo: "Muito deslocamento e golpes rápidos.", picks: { velocidade: 2, precisao: 1, forca: 1 } },
-  { id: "atirador-celeste", nome: "Atirador Celeste", fonte: "manga", resumo: "Arqueiro que acerta qualquer coisa à vista e dispara de longe.", picks: { olhos: 1, potencia: 1, precisao: 1, velocidade: 1 } },
-  { id: "bombardeiro", nome: "Bombardeiro", fonte: "manga", resumo: "Explosões de reishi e muita reserva espiritual.", picks: { potencia: 2, "reserva-esp": 1, reuniao: 1 } },
-  { id: "sentinela", nome: "Sentinela", fonte: "manga", resumo: "Guarda o grupo e aguenta o que vier.", picks: { armadura: 1, defesa: 1, "reserva-vital": 1, vigor: 1 } },
-];
+/** Vollständig prontas: cada uma é a forma de um Quincy do mangá/anime (a Schrift é outra coisa e não entra aqui). */
+export const VOLL_PRONTAS = modelosVoll as unknown as ProntaVoll[];
 
 /* ---------- regras de nível ---------- */
 

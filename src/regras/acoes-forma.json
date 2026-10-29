@@ -146,211 +146,188 @@
  },
  "vollstandig": {
   "prontas": {
-   "conjurador": [
+   "piskiel": [
     {
-     "nome": "Salva de Reishi",
-     "acao": "Ação",
-     "pr": 25,
-     "dano": "3d10+[ESP]",
-     "texto": "Três ataques de técnica à distância (18 metros), em alvos iguais ou diferentes. Cada acerto causa o dano indicado de Energia."
-    },
-    {
-     "nome": "Círculo de Reishi",
+     "nome": "Hirenkyaku Dominante",
      "acao": "Ação bônus",
      "pr": 10,
      "dano": "",
-     "texto": "Seu próximo ataque de técnica de Reishi no turno recebe vantagem e +3 metros de alcance."
+     "texto": "Você voa até 18 metros sem provocar ataques de oportunidade e o seu próximo ataque no turno tem vantagem."
     },
     {
-     "nome": "Chuva de Reishi",
-     "acao": "Ação",
-     "pr": 30,
-     "dano": "[NIV/2+5]d10+[ESP]",
-     "texto": "Área de 6 metros de raio num ponto a até 18 metros. Salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso."
-    }
-   ],
-   "defensivo": [
-    {
-     "nome": "Muralha de Reishi",
-     "acao": "Reação",
-     "pr": 10,
-     "dano": "2d10+[PROF]",
-     "texto": "Quando você ou um aliado a 3 metros sofre dano, reduza esse dano na quantidade indicada."
-    },
-    {
-     "nome": "Escudo de Asas",
-     "acao": "Ação bônus",
-     "pr": 8,
-     "dano": "[NIV]",
-     "texto": "Você ganha PV temporários na quantidade indicada e a sua CR aumenta em 2 até o início do próximo turno."
-    },
-    {
-     "nome": "Barreira Sentinela",
-     "acao": "Ação",
-     "pr": 20,
-     "dano": "[NIV*2]",
-     "texto": "Você e os aliados a até 3 metros ganham PV temporários na quantidade indicada."
-    }
-   ],
-   "duelista": [
-    {
-     "nome": "Corte Alado",
+     "nome": "Sklaverei Devoradora",
      "acao": "Ação",
      "pr": 20,
      "dano": "4d10+[ESP]",
-     "texto": "Dois ataques com a arma espiritual. Se ambos acertarem no mesmo alvo, ele sofre o dano de Energia indicado a mais."
+     "texto": "Uma criatura com reishi a até 9 metros faz salvaguarda de Espírito (CD 8 + proficiência + Espírito). Na falha, sofre o dano de Energia indicado e você recupera PR igual à metade do dano causado. No sucesso, metade do dano e sem recuperação."
     },
     {
-     "nome": "Passo do Duelo",
-     "acao": "Ação bônus",
-     "pr": 8,
-     "dano": "",
-     "texto": "Você voa até 9 metros e o próximo ataque com a arma espiritual no turno tem vantagem."
-    },
-    {
-     "nome": "Lâmina de Estrelas",
+     "nome": "Lâmina da Justiça",
      "acao": "Ação",
      "pr": 30,
      "dano": "[NIV/2+5]d10+[ESP]",
-     "texto": "Um ataque com a arma espiritual com margem de crítico 19–20. Se acertar, causa o dano de Energia indicado a mais."
+     "texto": "Um ataque com a espada espiritual com margem de crítico 19–20. Se acertar, causa o dano de Energia indicado a mais."
     }
    ],
-   "expurgador": [
+   "zofiel": [
     {
-     "nome": "Disparo Perfurante",
+     "nome": "Voo Veloz",
+     "acao": "Ação bônus",
+     "pr": 8,
+     "dano": "",
+     "texto": "Você voa até 18 metros em linha reta sem provocar ataques de oportunidade."
+    },
+    {
+     "nome": "Corpo Reforçado",
+     "acao": "Reação",
+     "pr": 10,
+     "dano": "2d10+[PROF]",
+     "texto": "Quando você sofre dano, reduza esse dano na quantidade indicada. A sua reishi vermelha endurece o corpo."
+    },
+    {
+     "nome": "Mergulho Explosivo",
+     "acao": "Ação",
+     "pr": 30,
+     "dano": "[NIV/2+5]d10+[ESP]",
+     "texto": "Você voa até 18 metros e mergulha sobre um ponto: explosão de reishi vermelho de 3 metros de raio. Cada criatura na área faz salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso."
+    }
+   ],
+   "barbarriel": [
+    {
+     "nome": "Espadas de Relâmpago",
+     "acao": "Ação",
+     "pr": 15,
+     "dano": "2d10+[ESP]",
+     "texto": "Você arranca duas asas e as usa como espadas: dois ataques corpo a corpo. Cada acerto causa o dano indicado de Energia (elétrico) e empurra o alvo 3 metros."
+    },
+    {
+     "nome": "Galvano Javelin",
      "acao": "Ação",
      "pr": 20,
      "dano": "6d10+[ESP]",
-     "texto": "Ataque com a arma espiritual que ignora toda a redução de dano do alvo."
+     "texto": "Você arremessa uma espada de relâmpago contra uma criatura a até 36 metros. Se acertar, causa o dano de Energia indicado."
     },
     {
-     "nome": "Marca do Expurgo",
-     "acao": "Ação bônus",
-     "pr": 8,
-     "dano": "",
-     "texto": "Marque uma criatura que você veja: os seus ataques contra ela somam +3 até o fim da cena."
-    },
-    {
-     "nome": "Execução",
-     "acao": "Ação",
-     "pr": 30,
-     "dano": "[NIV/2+6]d10+[ESP]",
-     "texto": "Ataque com a arma espiritual contra a criatura marcada, com margem de crítico 19–20. Ignora a redução de dano."
-    }
-   ],
-   "oraculo": [
-    {
-     "nome": "Visão Total",
-     "acao": "Ação bônus",
-     "pr": 10,
-     "dano": "",
-     "texto": "Até o fim do seu próximo turno, você sabe a localização de todas as criaturas a 56 metros e tem vantagem no próximo ataque."
-    },
-    {
-     "nome": "Previsão Divina",
-     "acao": "Reação",
-     "pr": 10,
-     "dano": "",
-     "texto": "Quando uma criatura o ataca, imponha desvantagem nessa jogada de ataque."
-    },
-    {
-     "nome": "Julgamento do Céu",
+     "nome": "Eletrocussão",
      "acao": "Ação",
      "pr": 30,
      "dano": "[NIV/2+5]d10+[ESP]",
-     "texto": "Um ataque à distância sem limite de alcance contra uma criatura cuja posição você sabe. Não pode ter desvantagem. Causa dano de Energia."
+     "texto": "Você reúne a eletricidade ao redor numa coluna e a arremessa: área de 9 metros de raio num ponto a até 18 metros. Cada criatura faz salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso."
     }
    ],
-   "velocista": [
+   "pornipora": [
     {
-     "nome": "Passo Relâmpago",
+     "nome": "Dumbbell Duster",
      "acao": "Ação bônus",
-     "pr": 10,
+     "pr": 8,
      "dano": "2d10",
-     "texto": "Você voa até 18 metros sem provocar ataques de oportunidade. O seu próximo ataque no turno causa o dano de Energia indicado a mais."
+     "texto": "Você reforça os punhos com os halteres: o seu próximo ataque corpo a corpo no turno causa o dano de Energia indicado a mais."
     },
     {
-     "nome": "Rastro de Asas",
+     "nome": "Baton Beat",
      "acao": "Ação",
      "pr": 15,
-     "dano": "4d10+[ESP]",
-     "texto": "Você voa até 12 metros em linha reta: cada criatura no caminho faz salvaguarda de Destreza (CD 8 + proficiência + Espírito) e sofre o dano na falha, metade no sucesso."
+     "dano": "3d10+[FOR]",
+     "texto": "Os halteres se alongam em bastões de 3 metros de alcance: dois ataques. Cada acerto causa o dano de Energia indicado."
     },
     {
-     "nome": "Mil Cortes",
+     "nome": "Halteres",
      "acao": "Ação",
      "pr": 30,
-     "dano": "[NIV/2+4]d10+[ESP]",
-     "texto": "Quatro ataques rápidos com a arma espiritual. Cada acerto causa o dano indicado, dividido em partes iguais."
+     "dano": "[NIV/2+5]d10+[FOR]",
+     "texto": "Um halter vira uma lâmina enorme e você mergulha sobre um alvo a até 18 metros. Um ataque que causa o dano de Energia indicado, com margem de crítico 19–20."
     }
    ],
-   "atirador-celeste": [
+   "tatarforas": [
     {
-     "nome": "Flecha Celeste",
-     "acao": "Ação",
-     "pr": 25,
-     "dano": "8d10+[ESP]",
-     "texto": "Um disparo com o dobro do alcance e margem de crítico 19–20. Causa dano de Energia."
-    },
-    {
-     "nome": "Olho do Falcão",
+     "nome": "Olhar do Medo",
      "acao": "Ação bônus",
      "pr": 8,
      "dano": "",
-     "texto": "Até o fim do turno, os seus ataques à distância ignoram cobertura e você tem +2 nas jogadas de ataque."
+     "texto": "Uma criatura a até 18 metros que veja você faz salvaguarda de Espírito (CD 8 + proficiência + Espírito). Na falha, fica amedrontada até o fim do seu próximo turno. Fechar os olhos não protege."
     },
     {
-     "nome": "Chuva de Flechas",
+     "nome": "Domo de Olhos",
+     "acao": "Ação",
+     "pr": 20,
+     "dano": "",
+     "texto": "Um domo de olhos de 9 metros de raio surge ao redor de você. Cada criatura que o veja faz salvaguarda de Espírito (CD 8 + proficiência + Espírito). Na falha, fica paralisada até o fim do seu próximo turno e repete o teste ao fim de cada turno dela. O domo dura 1 minuto."
+    },
+    {
+     "nome": "Absorver os Olhos",
+     "acao": "Ação",
+     "pr": 30,
+     "dano": "[NIV*2]",
+     "texto": "Você absorve os olhos do domo e o corpo se deforma. Ganha PV temporários na quantidade indicada e +2 de CR até o fim da cena."
+    }
+   ],
+   "uryu": [
+    {
+     "nome": "Licht Reigen",
+     "acao": "Ação bônus",
+     "pr": 8,
+     "dano": "",
+     "texto": "As flechas circulam ao seu redor e você as guia: até o fim do turno, os seus ataques à distância ignoram cobertura, podem fazer curva e têm +2 nas jogadas de ataque."
+    },
+    {
+     "nome": "Flecha Perfurante",
+     "acao": "Ação",
+     "pr": 20,
+     "dano": "6d10+[ESP]",
+     "texto": "Uma única flecha concentrada atravessa o alvo. Ataque à distância que ignora toda a redução de dano e causa o dano de Energia indicado."
+    },
+    {
+     "nome": "Sternenstaub",
      "acao": "Ação",
      "pr": 30,
      "dano": "[NIV/2+5]d10+[ESP]",
-     "texto": "Área de 6 metros de raio num ponto a até 36 metros. Salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso."
+     "texto": "Você junta as flechas num ataque pentagonal concentrado: linha de 36 metros por 3 de largura. Cada criatura na linha faz salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso."
     }
    ],
-   "bombardeiro": [
+   "aschtonig": [
     {
-     "nome": "Bomba de Reishi",
+     "nome": "Escudo de Hoffnung",
+     "acao": "Reação",
+     "pr": 10,
+     "dano": "2d10+[PROF]",
+     "texto": "Quando você ou um aliado a 3 metros sofre dano, o escudo de reishi reduz esse dano na quantidade indicada."
+    },
+    {
+     "nome": "Rajada de Hoffnung",
      "acao": "Ação",
-     "pr": 30,
+     "pr": 25,
      "dano": "[NIV/2+4]d10+[ESP]",
-     "texto": "Explosão de 6 metros de raio num ponto a até 18 metros. Salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso."
+     "texto": "Uma rajada de energia sai da ponta de Hoffnung: linha de 36 metros por 3 de largura. Cada criatura na linha faz salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso."
     },
     {
-     "nome": "Marca Explosiva",
-     "acao": "Ação bônus",
-     "pr": 8,
-     "dano": "4d10",
-     "texto": "Marque uma criatura ou objeto a até 18 metros. Quando você usar a Bomba de Reishi em uma área que o inclua, ele sofre o dano indicado a mais."
-    },
-    {
-     "nome": "Detonação em Cadeia",
-     "acao": "Ação",
-     "pr": 20,
-     "dano": "3d10+[ESP]",
-     "texto": "A explosão salta entre até 4 criaturas a até 6 metros uma da outra: cada uma faz salvaguarda de Destreza (CD 8 + proficiência + Espírito) e sofre o dano na falha, metade no sucesso."
+     "nome": "Corpo Renascido",
+     "acao": "Reação",
+     "pr": 30,
+     "dano": "[NIV*3]",
+     "texto": "Uma vez por descanso longo, quando você cairia a 0 PV, o corpo se refaz: você volta com os PV indicados e fica com +3 de CR até o fim do próximo turno."
     }
    ],
-   "sentinela": [
+   "jilliel": [
     {
-     "nome": "Barreira Sentinela",
+     "nome": "Regeneração Amarela",
      "acao": "Ação",
      "pr": 15,
      "dano": "[NIV*2]",
-     "texto": "Você e os aliados a até 3 metros ganham PV temporários na quantidade indicada."
+     "texto": "Você cura PV na quantidade indicada em si mesmo e regenera um membro perdido, se houver."
     },
     {
-     "nome": "Postura Firme",
-     "acao": "Ação bônus",
-     "pr": 8,
-     "dano": "",
-     "texto": "Até o início do próximo turno, você não pode ser empurrado nem derrubado, e os ataques contra aliados a 3 metros de você têm desvantagem."
+     "nome": "Golpe de Asas",
+     "acao": "Ação",
+     "pr": 20,
+     "dano": "4d10+[ESP]",
+     "texto": "As asas amarelas batem como lâminas: ataque corpo a corpo de 3 metros de alcance que causa o dano de Energia indicado e empurra o alvo 3 metros."
     },
     {
-     "nome": "Muralha Viva",
+     "nome": "Renascimento",
      "acao": "Reação",
-     "pr": 15,
-     "dano": "2d10+[PROF]",
-     "texto": "Quando um aliado a até 6 metros sofre dano, você voa até ele sem provocar ataques de oportunidade e reduz esse dano na quantidade indicada."
+     "pr": 30,
+     "dano": "[NIV*3]",
+     "texto": "Uma vez por descanso longo, ao cair a 0 PV, você assume a segunda forma: volta com os PV indicados, regenerado."
     }
    ]
   }
