@@ -818,3 +818,44 @@ select:focus-visible, .opcoes-grandes .opcao:focus-visible, .chip-btn:focus-visi
 .fx-vollstandig .fx-brilho { position: absolute; bottom: -10px; border-radius: 50%; background: #e8f6ff; box-shadow: 0 0 12px 3px #7fd0ff; opacity: 0; }
 .fx-vollstandig .fx-texto { place-content: end center; padding-bottom: 12vh; }
 .fx-vollstandig .fx-texto b { color: #eaf7ff; text-shadow: 0 0 18px #7fd0ff, 0 0 48px #4aa8ff; font-size: clamp(44px, 9vw, 130px); }
+
+/* ===== Visual secreto de Quincy (liberado pelo emblema da Introdução) ===== */
+:root[data-skin="quincy"] {
+  --bg: #050a14;
+  --panel: #0b1627;
+  --panel2: #07101e;
+  --line: #28507c;
+  --text: #eaf4ff;
+  --muted: #a3bdd9;
+  --accent: #46c4ff;
+  --accent-deep: #123f66;
+  --on-accent: #03111f;
+  --halftone: #7fd0ff12;
+  --glow: radial-gradient(ellipse 60% 40% at 85% -5%, #2b7fc255, transparent 70%), radial-gradient(ellipse 50% 40% at 0% 100%, #13427a55, transparent 70%);
+}
+:root[data-skin="quincy"] body::before {
+  content: ""; position: fixed; right: -6vmin; bottom: -6vmin; width: 54vmin; height: 54vmin; z-index: -1; pointer-events: none;
+  background: url("/art/sym-intro.png") center / contain no-repeat; opacity: .06; filter: drop-shadow(0 0 20px #46c4ff);
+  animation: quincy-gira 120s linear infinite;
+}
+@keyframes quincy-gira { to { transform: rotate(360deg); } }
+:root[data-skin="quincy"] .topbar { background: #050a14ee; border-bottom: 2px solid #46c4ff55; box-shadow: 0 6px 24px #46c4ff14; }
+:root[data-skin="quincy"] .bar-num, :root[data-skin="quincy"] .bar:nth-child(3n+2) .bar-num, :root[data-skin="quincy"] .bar:nth-child(3n) .bar-num { color: #03111f; }
+:root[data-skin="quincy"] .bar:nth-child(3n+2) .bar-num { background: #eaf4ff; }
+:root[data-skin="quincy"] .bar:nth-child(3n) .bar-num { background: #8fd8ff; }
+:root[data-skin="quincy"] .bar-emblema { filter: invert(1) brightness(.15); }
+:root[data-skin="quincy"] .bar, :root[data-skin="quincy"] .strip, :root[data-skin="quincy"] .panel, :root[data-skin="quincy"] .card { border-color: #28507c; }
+:root[data-skin="quincy"] .bar:hover, :root[data-skin="quincy"] .strip:hover { box-shadow: 0 0 0 2px #46c4ff, 0 0 24px #46c4ff55; }
+:root[data-skin="quincy"] .btn-red { background: #46c4ff; color: #03111f; box-shadow: 4px 4px 0 #123f66; }
+:root[data-skin="quincy"] .bar-go { background: #123f66; color: #eaf4ff; }
+:root[data-skin="quincy"] ::selection { background: #46c4ff; color: #03111f; }
+:root[data-skin="quincy"] .hero h1 span, :root[data-skin="quincy"] .logo span { color: #46c4ff; text-shadow: 0 0 14px #46c4ff99; }
+:root[data-skin="quincy"] .bar-emblema { cursor: pointer; }
+
+.quincy-pulso { position: fixed; inset: 0; z-index: 9999; pointer-events: none; display: grid; place-items: center; background: radial-gradient(circle, #cfeaffee 0%, #46c4ff99 35%, #050a14f2 80%); opacity: 0; animation: quincy-flash 1.4s ease-in-out forwards; }
+.quincy-pulso img { width: min(46vmin, 380px); filter: drop-shadow(0 0 24px #46c4ff); animation: quincy-emblema 1.4s ease-out forwards; }
+.quincy-pulso.desliga { background: radial-gradient(circle, #ffffffcc 0%, #e5173f66 40%, #08060af2 85%); }
+.quincy-pulso.desliga img { filter: drop-shadow(0 0 20px #e5173f); }
+@keyframes quincy-flash { 0% { opacity: 0; } 25% { opacity: 1; } 70% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes quincy-emblema { 0% { transform: scale(.2) rotate(-140deg); opacity: 0; } 40% { transform: scale(1) rotate(0); opacity: 1; } 100% { transform: scale(1.5) rotate(40deg); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { :root[data-skin="quincy"] body::before { animation: none; } }

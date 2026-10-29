@@ -1,3 +1,4 @@
+import { alternarQuincy } from "../lib/quincy";
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { capitulos } from "../content/livro";
@@ -52,7 +53,7 @@ export default function Livro() {
           {capitulos.map((c, i) => (
             <Link key={c.slug} to={`/livro/${c.slug}`} className={`bar ${i < 2 ? "big" : ""}`}>
               <div className={`bar-num ${c.no === 0 || c.slug === "homenagens-e-fontes" ? "intro" : ""}`}>
-                {c.no === 0 ? <img className="bar-emblema" src="/art/sym-intro.png" alt="Introdução" /> : c.slug === "homenagens-e-fontes" ? "Fim" : c.no}
+                {c.no === 0 ? <img className="bar-emblema" src="/art/sym-intro.png" alt="Introdução" onClick={(e) => { e.preventDefault(); e.stopPropagation(); alternarQuincy(); }} /> : c.slug === "homenagens-e-fontes" ? "Fim" : c.no}
               </div>
               <div className="bar-text">
                 <b>{c.title}</b>
