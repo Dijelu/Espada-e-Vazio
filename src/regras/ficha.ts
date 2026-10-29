@@ -733,6 +733,8 @@ export interface Calculo {
   rdEso: number;
   iniciativa: number;
   danoCorpo: number;
+  /** dano extra em todos os ataques (talentos ligados) */
+  danoGeral: number;
   /** dados extras de dano corpo a corpo de situações ligadas, ex.: "2d8" */
   danoDados: string[];
   /** acerto extra de situações ligadas */
@@ -874,7 +876,7 @@ export function calcular(f: Ficha): Calculo {
     pv,
     pr,
     cr,
-    desloc: ef.desloc + deslocExtra + px.desloc,
+    desloc: ef.desloc + deslocExtra + px.desloc + sit.desloc,
     rdFis: ef.rdFis + rdFisExtra + px.rdFis,
     rdEso: ef.rdEso + rdEsoExtra + px.rdEso,
     iniciativa: (ef.iniMente ? Math.max(atr.des, atr.men) : atr.des) + px.iniciativa,
@@ -895,6 +897,7 @@ export function calcular(f: Ficha): Calculo {
     passivas,
     cdKido: 8 + prof + atr.esp + px.cdKido,
     reducaoLib: px.reducaoLib,
+    danoGeral: sit.danoGeral,
     danoDados: sit.dados,
     acertoCorpo: sit.acertoCorpo,
     acertoDist: sit.acertoDist,

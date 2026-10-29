@@ -1,6 +1,8 @@
 /* Habilidades que só valem em certas situações. Viram cartas no Resumo, com um botão para ligar e desligar.
    Quando ligadas, os números que dá para somar entram na ficha. */
 import type { Ficha, Atr } from "./ficha";
+import talentosJson from "./talentos.json";
+import { CARTAS } from "./talentos-efeitos";
 
 export interface Ctx {
   n: number;
@@ -17,6 +19,10 @@ export interface Efeito {
   acertoCorpo?: number;
   /** soma no acerto de ataques à distância */
   acertoDist?: number;
+  /** dano e acerto em todos os ataques (corpo a corpo e à distância) */
+  danoGeral?: number;
+  acertoGeral?: number;
+  desloc?: number;
   resumo: string;
 }
 
@@ -152,12 +158,20 @@ const DEFS: Def[] = [
 
 /** Situações que a ficha tem (classe, estilo e nível batem). */
 export function situacoesDaFicha(f: Ficha): Situacao[] {
-  return DEFS.filter((d) => {
+  const doLivro = (talentosJson as unknown as Record<string, { id: string; nome: string; texto: string }[]>)[f.classe] ?? [];
+  const cartasTalento: Situacao[] = [];
+  for (const id of f.talentos) {
+    const carta = CARTAS[`${f.classe}/${id}`];
+    const t = doLivro.find((y) => y.id === id);
+    if (!carta || !t) continue;
+    cartasTalento.push({ id: `tal-${f.classe}-${id}`, nome: t.nome, fonte: "Talentos", quando: carta.quando, texto: t.texto, efeito: carta.efeito });
+  }
+  return cartasTalento.concat(DEFS.filter((d) => {
     if (f.nivel < d.nivel) return false;
     // subclasse: o Tokubetsu usa a subclasse emprestada de outra classe de Shinigami
     if (d.subclasse) return d.subclasse === f.subclasse && (d.classe === f.classe || f.classe === "tokubetsu");
     return d.classe === f.classe;
-  });
+  }));
 }
 
 export const idSituacao = (id: string) => `sit:${id}`;
@@ -167,13 +181,15 @@ export interface SomaSituacao {
   danoCorpo: number;
   acertoCorpo: number;
   acertoDist: number;
+  danoGeral: number;
+  desloc: number;
   dados: string[];
   resumos: { nome: string; resumo: string }[];
 }
 
 /** Soma o que as situações ligadas dão. */
 export function somaSituacoes(f: Ficha, c: Ctx): SomaSituacao {
-  const out: SomaSituacao = { cr: 0, danoCorpo: 0, acertoCorpo: 0, acertoDist: 0, dados: [], resumos: [] };
+  const out: SomaSituacao = { cr: 0, danoCorpo: 0, acertoCorpo: 0, acertoDist: 0, danoGeral: 0, desloc: 0, dados: [], resumos: [] };
   for (const s of situacoesDaFicha(f)) {
     if (!f.estado.ativas.includes(idSituacao(s.id))) continue;
     const e = s.efeito?.(c);
@@ -183,8 +199,10 @@ export function somaSituacoes(f: Ficha, c: Ctx): SomaSituacao {
     }
     out.cr += e.cr ?? 0;
     out.danoCorpo += e.danoCorpo ?? 0;
-    out.acertoCorpo += e.acertoCorpo ?? 0;
-    out.acertoDist += e.acertoDist ?? 0;
+    out.acertoCorpo += (e.acertoCorpo ?? 0) + (e.acertoGeral ?? 0);
+    out.acertoDist += (e.acertoDist ?? 0) + (e.acertoGeral ?? 0);
+    out.danoGeral += e.danoGeral ?? 0;
+    out.desloc += e.desloc ?? 0;
     if (e.dados) out.dados.push(e.dados);
     out.resumos.push({ nome: s.nome, resumo: e.resumo });
   }

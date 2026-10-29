@@ -79,7 +79,7 @@ export function EfeitosAtivos({ f, c }: { f: Ficha; c: Calculo }) {
             <details className="poder-livro" key={p.nome + i}>
               <summary>
                 <b>{p.nome}</b> <small>{p.fonte}</small>
-                {p.auto ? <span className="chip chip-auto">{p.efeito ? `aplicado: ${p.efeito}` : "aplicado"}</span> : <span className="chip chip-manual">usar na mesa</span>}
+                {p.auto ? <span className="chip chip-auto">{p.efeito ? `aplicado: ${p.efeito}` : "aplicado"}</span> : <span className="chip chip-manual">{p.carta ? "carta no Resumo" : "usar na mesa"}</span>}
               </summary>
               <p>{p.texto}</p>
             </details>

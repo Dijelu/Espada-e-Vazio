@@ -3,6 +3,7 @@
 import type { Atr, Ficha } from "./ficha";
 import talentosJson from "./talentos.json";
 import essenciasJson from "./essencias.json";
+import { FIXAS, CARTAS } from "./talentos-efeitos";
 
 type Talento = { id: string; nome: string; texto: string };
 type EssenciaJson = { nome: string; texto: string; etapas: string[] };
@@ -21,6 +22,8 @@ export interface PassivaAtiva {
   auto: boolean;
   /** resumo curto do que foi somado, ex.: "CR +2" */
   efeito?: string;
+  /** true quando o talento virou carta no Resumo (depende de uso ou situação) */
+  carta?: boolean;
 }
 
 export interface EfeitoSoma {
@@ -157,6 +160,10 @@ export function passivasDaFicha(f: Ficha, c: Ctx): { soma: EfeitoSoma; lista: Pa
     if (!t) continue;
     const fn = POR_TALENTO[`${f.classe}/${id}`];
     if (fn) lista.push({ nome: t.nome, fonte: "Talento", texto: t.texto, auto: true, efeito: fn(c, soma) || undefined });
+    else if (FIXAS[`${f.classe}/${id}`]) {
+      const x = FIXAS[`${f.classe}/${id}`];
+      lista.push({ nome: t.nome, fonte: "Talento", texto: t.texto, auto: true, efeito: typeof x === "function" ? x(c) : x });
+    } else if (CARTAS[`${f.classe}/${id}`]) lista.push({ nome: t.nome, fonte: "Talento", texto: t.texto, auto: false, carta: true });
     else lista.push({ nome: t.nome, fonte: "Talento", texto: t.texto, auto: false });
   }
 
