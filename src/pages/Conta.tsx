@@ -56,10 +56,11 @@ export default function Conta() {
 
   const google = async () => {
     if (!supabase) return;
-    await supabase.auth.signInWithOAuth({
+    const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: { redirectTo: window.location.origin + "/conta" },
     });
+    if (error) setMsg({ tipo: "erro", texto: "O login com Google não está disponível agora. Entre com e-mail e senha." });
   };
 
   return (
