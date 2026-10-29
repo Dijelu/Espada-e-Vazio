@@ -71,6 +71,7 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
   }
   if (tipo === "hollow" && (treinoConcluido(f, "resurreccion") || pronta("resurreccion") || f.estado.liberado === "resurreccion")) libs.push({ id: "resurreccion", nome: "Resurrección" });
   if (tipo === "quincy" && (pronta("vollstandig") || f.nivel >= nivelLiberacao(f.classe, tipo, "vollstandig") || f.estado.liberado === "vollstandig")) libs.push({ id: "vollstandig", nome: "Vollständig" });
+  if (tipo === "hollow" && treinoConcluido(f, "terror")) libs.push({ id: "terror", nome: "Terror do Vazio" });
   if (f.origem === "visored" && f.treinos.feitos.includes("visored-2")) libs.push({ id: "mascara", nome: "Máscara Hollow" });
 
   const custoLib = (id: Liberacao) => {
@@ -82,6 +83,7 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
     if (id === "vollstandig") return Math.max(1, 60 - c.reducaoLib.vollstandig);
     if (id === "bankai") return Math.max(1, (f.formas?.bankai?.custo ?? 0) - c.reducaoLib.bankai);
     if (id === "shikai") return Math.max(1, (f.formas?.shikai?.custo ?? 0) - c.reducaoLib.shikai);
+    if (id === "terror") return 60;
     return 0;
   };
 
@@ -91,10 +93,11 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
       return;
     }
     const custo = custoLib(id);
-    const ganhoTemp = id === "resurreccion" && classe?.id === "vazio" ? (f.nivel >= 16 ? 5 : 3) * f.nivel : 0;
+    const ganhoTemp = (id === "resurreccion" || id === "terror") && classe?.id === "vazio" ? (f.nivel >= 16 ? 5 : 3) * f.nivel : 0;
     alterar({ prAtual: Math.max(0, f.prAtual - custo), estado: { ...f.estado, liberado: id, pvTemp: Math.max(e.pvTemp, ganhoTemp) } });
     if (id === "bankai" || id === "resurreccion" || id === "vollstandig") dispararLiberacao(id, f.formas?.[id]?.nome);
-    setMsg(custo ? `${id === "mascara" ? "Máscara" : id === "vollstandig" ? "Vollständig" : id === "bankai" ? "Bankai" : id === "shikai" ? "Shikai" : "Resurrección"} ativada: ${custo} PR gastos.` : "Liberação marcada. O custo está na descrição da sua Zanpakutou.");
+    if (id === "terror") dispararLiberacao("resurreccion", f.formas?.resurreccion?.nome);
+    setMsg(custo ? `${id === "mascara" ? "Máscara" : id === "vollstandig" ? "Vollständig" : id === "bankai" ? "Bankai" : id === "shikai" ? "Shikai" : id === "terror" ? "Terror do Vazio" : "Resurrección"} ativada: ${custo} PR gastos.` : "Liberação marcada. O custo está na descrição da sua Zanpakutou.");
   };
 
   return (

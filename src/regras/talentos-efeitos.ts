@@ -54,13 +54,11 @@ export const FIXAS: Record<string, TextoFixo> = {
   "schutze/foco-estavel": "sem penalidade de deslocamento na Mira Impecável",
   "schutze/heilig-pfeil-fisico": "ataques desarmados +1d6 de Energia",
   "schutze/precisao-total": "Deslocamento Instantâneo sem penalidade na Mira Impecável",
-  "schutze/schrift": "Schrift escolhida (Capítulo 7)",
   // Ritter
   "ritter/execucao": "executa criaturas com 10 PV ou menos (pode optar por não letal)",
   "ritter/execucao-aprimorada": "executa criaturas com 20 PV ou menos",
   "ritter/feitico-extra": "segunda Técnica de Reishi de ação no mesmo turno",
   "ritter/marca-movel": "Duelo Impecável vale mesmo usando o Hirenkyaku",
-  "ritter/schrift": "Schrift escolhida (Capítulo 7)",
   // Hueco
   "hueco/alcance-alongado": "arma natural com +3 m de alcance e ataques de oportunidade com ela",
   "hueco/aura-opressora": "hostis a 3 m têm −1 em testes de Espírito e Determinação",

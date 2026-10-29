@@ -228,6 +228,18 @@ export const TREINOS: Treino[] = [
     aplica: (_f, t) => t === "shinigami",
   },
   {
+    id: "bankai-final",
+    nome: "Bankai Verdadeira (20º nível)",
+    resumo: "A forma final da Bankai. Só começa com a Bankai concluída e só termina no 20º nível. Ao concluir, escolha entre a Bankai Plena (mais poder) e a Bankai Verdadeira (nova forma).",
+    capitulo: "Bankai",
+    etapas: [
+      { id: "bf-1", nome: "Passo 1: Meditação Profunda", texto: "10 dias no mundo interior, menos seu Espírito (mínimo 5). No fim, teste de Espírito.", dias: dias(10, 5, "esp"), teste: "d20 + Espírito, CD 15", nivelMin: 20 },
+      { id: "bf-2", nome: "Passo 2: Duelo com o Espírito", texto: "O espírito da Zanpakutou o enfrenta em uma cena de combate ou diálogo. Vencer é ser reconhecido por ele.", nivelMin: 20 },
+      { id: "bf-3", nome: "Passo 3: Despertar", texto: "Role d100: se o resultado for menor ou igual a Espírito + Constituição + 20, a forma final desperta. Pode tentar de novo a cada 15 dias.", teste: "d100 ≤ Espírito + Constituição + 20", nivelMin: 20 },
+    ],
+    aplica: (f, t) => t === "shinigami" && f.nivel >= 15,
+  },
+  {
     id: "visored",
     nome: "Controlar o Hollow (Visored)",
     resumo: "Treino perigoso para dominar o Hollow interior e usar a Máscara Hollow, e depois o Cero.",
@@ -258,6 +270,18 @@ export const TREINOS: Treino[] = [
       { id: "res-duelo", nome: "Etapa 3: Duelo contra o Vazio", texto: "Duelo 1v1 contra uma cópia sua, sem Resurrección. Só a partir do 10º nível, com 5 PF ou mais.", nivelMin: 10 },
     ],
     aplica: (_f, t) => t === "hollow",
+  },
+  {
+    id: "terror",
+    nome: "Terror do Vazio (Vasto Lorde)",
+    resumo: "A segunda etapa do Hollow, depois da Resurrección: fome profunda, 8 Pontos de Fome e um duelo contra uma cópia sua com a Resurrección ativa. Só vale a partir do 15º nível.",
+    capitulo: "Treinamento do Terror do Vazio",
+    etapas: [
+      { id: "ter-jejum", nome: "Etapa 1: Fome Profunda", texto: "7 dias sem devorar nada. Falhar só obriga a repetir.", teste: "Constituição CD 15", nivelMin: 15 },
+      { id: "ter-pf", nome: "Etapa 2: 8 Pontos de Fome", texto: "Os PF da Trilha da Fome continuam valendo: chegue a 8 PF no total. Cada PF acima de 8 dá +1 de acerto no duelo, até +2.", nivelMin: 15 },
+      { id: "ter-duelo", nome: "Etapa 3: Duelo contra o Terror", texto: "Duelo 1v1 contra uma cópia sua, com a Resurrección ativa. Falhar só obriga a repetir após 1 dia.", nivelMin: 15 },
+    ],
+    aplica: (f, t) => t === "hollow" && (f.classe === "hueco" || f.classe === "vazio") && f.nivel >= 12,
   },
 ];
 

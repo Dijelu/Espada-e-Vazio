@@ -3,6 +3,7 @@
 import type { Ficha, Atr } from "./ficha";
 import talentosJson from "./talentos.json";
 import { CARTAS } from "./talentos-efeitos";
+import { danoSchrift, schriftDaFicha } from "./schrifts";
 
 export interface Ctx {
   n: number;
@@ -165,6 +166,18 @@ export function situacoesDaFicha(f: Ficha): Situacao[] {
     const t = doLivro.find((y) => y.id === id);
     if (!carta || !t) continue;
     cartasTalento.push({ id: `tal-${f.classe}-${id}`, nome: t.nome, fonte: "Talentos", quando: carta.quando, texto: t.texto, efeito: carta.efeito });
+  }
+  const sch = schriftDaFicha(f);
+  if (sch) {
+    const voll = f.estado.liberado === "vollstandig";
+    cartasTalento.push({
+      id: "schrift",
+      nome: `Schrift: ${sch.nome}`,
+      fonte: "Schrift",
+      quando: voll ? "Poder de tema, 10 PR (2× por cena com a Vollständig)" : "Poder de tema, 10 PR (1× por cena)",
+      texto: `${sch.base} Com a Vollständig ativa: ${sch.voll}`,
+      efeito: (c) => ({ resumo: `${sch.dano ? `${danoSchrift(c.prof, voll)} de ${sch.dano}. ` : ""}${voll ? sch.voll : sch.base}` }),
+    });
   }
   return cartasTalento.concat(DEFS.filter((d) => {
     if (f.nivel < d.nivel) return false;

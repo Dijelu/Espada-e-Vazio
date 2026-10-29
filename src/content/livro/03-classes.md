@@ -1793,7 +1793,7 @@ FOR DES CON MEN ESP Recomendação de distribuição de atributos nível 1: Ess�
 | 7° | +3 | 5 | 2 | Habilidades de Schütze |
 | 8° | +3 | 6 | 2 | Aprimoramento da Essência |
 | 9° | +4 | 6 | 2 | Habilidades de Schütze |
-| 10° | +4 | 7 | 2 | Estilo (Sub-classe), Habilidades de Schütze |
+| 10° | +4 | 7 | 2 | Estilo (Sub-classe), Habilidades de Schütze, Schrift |
 | 11° | +4 | 7 | 3 | Habilidades de Schütze |
 | 12° | +4 | 8 | 3 | Aprimoramento da Essência |
 | 13° | +5 | 8 | 3 | Habilidades de Schütze, Vollstanding |
@@ -1892,7 +1892,6 @@ Pré-Requisito: 8° nível de Schütze e habilidade de Schütze "Saque Rápido".
 - Reposicionamento: Após acertar um ataque com uma arma à distância, você pode se deslocar até 3 metros sem provocar ataques de oportunidade. Esse deslocamento é descontado do seu deslocamento.
 - Saque Rápido: Quando o combate começar, você pode realizar um ataque com arma a distância contra uma criatura hostil antes da ordem de turnos começar.
 - Sequência Fatal: Cada vez que você acerta um ataque contra uma criatura, reduz a Classe de Resistência (CR) dela em –1 para você, até um máximo igual à metade do seu atributo de Mente (arredondado para baixo). Pré-Requisito: 12° nível de Schütze.
-- Schrift: O poder latente na alma de um Quincy pode se manifestar de formas diversas, refletindo habilidades únicas e extraordinárias. A obtenção de uma Shrift é um evento raro e especial, que ocorre em circunstâncias distintas: alguns Quincy nascem com esse dom, enquanto outros o despertam ao beber o sangue do próprio Rei Quincy ou o desenvolvem ao longo de suas vidas.
 
 Ao selecionar esta habilidade, você pode escolher uma Shrift do capítulo "Arsenal Quincy". A escolha da Shrift deve ser aprovada pelo Mestre, garantindo que ela se encaixe na narrativa do jogo.
 
@@ -1917,6 +1916,10 @@ A partir do 4° nível e novamente no 8°, 12°, 16° e 19° nível, você pode 
 ### Melhoria de Equipamento
 
 A partir do 5° nível, sua forma de utilizar equipamentos se aprimora significativamente. Você pode escolher uma melhoria para sua arma ou escudo (veja o Capítulo 7). Nos níveis 10°, 15° e 20°, você recebe uma nova melhoria de equipamento.
+
+### Schrift
+
+A partir do 10° nível, o poder latente da sua alma desperta como uma Schrift. Ela pode ser um dom de nascença, um efeito do sangue do Rei Quincy ou algo que amadureceu ao longo da sua vida. Escolha uma Schrift do Capítulo 7: Arsenal Quincy, com a aprovação do Mestre. A Schrift concede um poder de tema próprio e, a partir da Vollständig, ele fica mais forte. A escolha só muda por um evento de história.
 
 ### Vollstanding
 
@@ -2069,7 +2072,7 @@ CR: 10 + Proficiência + Destreza + metade da Constituição
 | 7º | +3 | 4 | 2 | Talento de Ritter |
 | 8º | +3 | 4 | 2 | Aprimoramento da Essência |
 | 9º | +4 | 5 | 2 | Talento de Ritter |
-| 10º | +4 | 5 | 2 | Estilo, Talento de Ritter, Melhoria de Equipamento |
+| 10º | +4 | 5 | 2 | Estilo, Talento de Ritter, Melhoria de Equipamento, Schrift |
 | 11º | +4 | 6 | 3 | Talento de Ritter |
 | 12º | +4 | 6 | 3 | Aprimoramento da Essência, Vollständig |
 | 13º | +5 | 7 | 3 | Talento de Ritter |
@@ -2143,6 +2146,10 @@ Nos níveis 4, 8, 12, 16 e 19, você aumenta duas etapas de uma Essência Espiri
 
 Nos níveis 5, 10, 15 e 20, você escolhe uma melhoria para sua arma ou escudo (dano, margem de crítico ou multiplicador), conforme o Capítulo 7.
 
+#### Schrift
+
+No 10º nível, o Ritter desperta uma Schrift, com as mesmas regras do Schütze (Capítulo 7: Arsenal Quincy). A escolha precisa da aprovação do Mestre.
+
 #### Vollständig do Ritter
 
 No **12º nível** você ativa sua Vollständig com uma ação e 60 pontos de reiatsu, um nível antes do Schütze. Enquanto ela está ativa, você recebe bônus com a arma espiritual, que deve ser corpo a corpo. As regras de criação da Vollständig estão no Capítulo 7.
@@ -2179,7 +2186,6 @@ A partir do 2º nível, você escolhe um Talento de Ritter em cada nível de cla
 - **Realocação Antecipada** (8º nível, Saque Rápido): usa o Hirenkyaku antes da ordem de turnos.
 - **Recuo Tático:** reação; você se afasta 3 metros sem provocar ataques de oportunidade.
 - **Saque Rápido:** no início do combate, você ataca antes da ordem de turnos.
-- **Schrift** (6º nível, aprovação do Mestre): escolha uma Schrift do Arsenal Quincy (Capítulo 7).
 - **Sequência Fatal** (12º nível): cada acerto reduz a CR do alvo em 1 para você, até metade do seu Espírito (para baixo).
 
 ### Estilos de Ritter

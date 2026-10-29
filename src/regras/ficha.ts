@@ -484,9 +484,11 @@ export interface Treinos {
   pf: number;
   /** dias acumulados de Treinamento Geral */
   geralDias: number;
+  /** forma final da Bankai (20º nível): plena ou verdadeira */
+  caminhoBankai: "" | "plena" | "verdadeira";
 }
 
-export type Liberacao = "" | "shikai" | "bankai" | "resurreccion" | "vollstandig" | "mascara";
+export type Liberacao = "" | "shikai" | "bankai" | "resurreccion" | "terror" | "vollstandig" | "mascara";
 
 export type TipoForma = "shikai" | "bankai" | "resurreccion" | "vollstandig";
 
@@ -567,6 +569,8 @@ export interface Ficha {
   ataques: Ataque[];
   /** melhorias de equipamento Quincy escolhidas ao subir de nível */
   melhorias: Melhoria[];
+  /** Schrift do Quincy (a partir do 10º nível), id de schrifts.ts */
+  schrift: string;
   poderes: Poder[];
   ajuste: { pv: number; pr: number; cr: number };
   pvAtual: number;
@@ -611,6 +615,7 @@ export function fichaNova(): Ficha {
     essencias: [],
     ataques: [],
     melhorias: [],
+    schrift: "",
     poderes: [],
     ajuste: { pv: 0, pr: 0, cr: 0 },
     pvAtual: 0,
@@ -624,7 +629,7 @@ export function fichaNova(): Ficha {
     kidos: [],
     tecnicasReishi: [],
     equip: { forca: "", divisao: 0, asauchi: "", armas: [], artefato: "", naturalForma: "", extras: "" },
-    treinos: { feitos: [], pf: 0, geralDias: 0 },
+    treinos: { feitos: [], pf: 0, geralDias: 0, caminhoBankai: "" },
     estado: { pvTemp: 0, liberado: "", condicoes: [], ultimoFolegoUsado: false, curtosUsados: 0, ativas: [], usos: {} },
     zanpakutou: { nome: "", frase: "" },
     formas: {},
@@ -645,6 +650,7 @@ export function normalizar(bruto: Partial<Ficha> | null | undefined): Ficha {
   f.zanpakutou = { ...n.zanpakutou, ...f.zanpakutou };
   f.formas = f.formas ?? {};
   f.melhorias = f.melhorias ?? [];
+  f.schrift = f.schrift ?? "";
   f.talentos = f.talentos ?? [];
   f.kidos = f.kidos ?? [];
   f.tecnicasReishi = f.tecnicasReishi ?? [];
@@ -822,6 +828,13 @@ export function calcular(f: Ficha): Calculo {
     if (c?.id === "hueco") cr += prof + 1;
     if (c?.id === "vazio") cr += n >= 16 ? prof : prof - 1;
   }
+  // Terror do Vazio (Vasto Lorde) substitui a Resurrección
+  if (f.estado.liberado === "terror") {
+    if (c?.id === "hueco") cr += prof + 2;
+    if (c?.id === "vazio") cr += prof + 1;
+  }
+  // Bankai Plena (20º nível): +2 na CR
+  if (f.estado.liberado === "bankai" && f.treinos.caminhoBankai === "plena") cr += 2;
 
   const sit = somaSituacoes(f, { n, prof, atr });
   cr += sit.cr + bonusEscudo(f);
@@ -876,7 +889,7 @@ export function calcular(f: Ficha): Calculo {
     pv,
     pr,
     cr,
-    desloc: ef.desloc + deslocExtra + px.desloc + sit.desloc,
+    desloc: Math.max(ef.desloc + deslocExtra + px.desloc + sit.desloc, f.estado.liberado === "terror" ? 12 : 0),
     rdFis: ef.rdFis + rdFisExtra + px.rdFis,
     rdEso: ef.rdEso + rdEsoExtra + px.rdEso,
     iniciativa: (ef.iniMente ? Math.max(atr.des, atr.men) : atr.des) + px.iniciativa,

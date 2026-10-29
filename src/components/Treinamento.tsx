@@ -4,7 +4,7 @@ import { Passo } from "./FichaPecas";
 import { treinoConcluido, treinosDaFicha } from "../regras/catalogo";
 import { classePorId, type Calculo, type Ficha } from "../regras/ficha";
 
-const NIVEL_TREINO: Record<string, number> = { shikai: 3, bankai: 10, resurreccion: 9 };
+const NIVEL_TREINO: Record<string, number> = { shikai: 3, bankai: 10, resurreccion: 9, "bankai-final": 20, terror: 15 };
 
 export function AbaTreinamento({ f, c, alterar }: { f: Ficha; c: Calculo; alterar: (p: Partial<Ficha>) => void }) {
   const tipo = classePorId(f.classe)?.tipo;
@@ -59,7 +59,17 @@ export function AbaTreinamento({ f, c, alterar }: { f: Ficha; c: Calculo; altera
               </ol>
             )}
 
-            {t.id === "resurreccion" && (
+            {t.id === "bankai-final" && pronto && (
+              <Campo2 rotulo="Forma final escolhida">
+                <select value={f.treinos.caminhoBankai} onChange={(e) => alterar({ treinos: { ...f.treinos, caminhoBankai: e.target.value as "" | "plena" | "verdadeira" } })}>
+                  <option value="">Escolha um caminho</option>
+                  <option value="plena">Bankai Plena (custo pela metade, +2 na CR, técnicas +25%)</option>
+                  <option value="verdadeira">Bankai Verdadeira (nova forma, técnica de assinatura, 1 minuto)</option>
+                </select>
+              </Campo2>
+            )}
+
+            {(t.id === "resurreccion" || t.id === "terror") && (
               <Campo2 rotulo="Pontos de Fome (PF)">
                 <Passo valor={f.treinos.pf} min={0} max={10} rotulo="Pontos de Fome" onChange={(v) => alterar({ treinos: { ...f.treinos, pf: v } })} />
               </Campo2>

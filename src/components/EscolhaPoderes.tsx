@@ -16,6 +16,7 @@ import {
 import { classePorId, type Ficha } from "../regras/ficha";
 import { Dica } from "./Dica";
 import { formaPendente } from "../regras/liberacoes";
+import { SCHRIFTS, NIVEL_SCHRIFT, schriftPendente } from "../regras/schrifts";
 import { melhoriasDoNivel, melhoriasPendentes, podeMelhorar, TIPOS_MELHORIA, type TipoMelhoria } from "../regras/melhorias";
 import { novoId } from "./FichaPecas";
 
@@ -29,6 +30,8 @@ export interface Pendencias {
   subclasse: number;
   /** melhoria de equipamento Quincy (níveis 5, 10, 15 e 20) por escolher */
   melhorias: number;
+  /** Schrift do Quincy (10º nível) por escolher */
+  schrift: number;
 }
 
 /** A subclasse chega no nível 3 e ainda não foi escolhida. */
@@ -45,10 +48,11 @@ export function pendencias(f: Ficha): Pendencias {
     forma: formaPendente(f, classePorId(f.classe)?.tipo) ? 1 : 0,
     subclasse: subclassePendente(f) ? 1 : 0,
     melhorias: melhoriasPendentes(f),
+    schrift: schriftPendente(f) ? 1 : 0,
   };
 }
 
-export const totalPendencias = (p: Pendencias) => p.talentos + p.kidos + p.tecnicas + p.forma + p.subclasse + p.melhorias;
+export const totalPendencias = (p: Pendencias) => p.talentos + p.kidos + p.tecnicas + p.forma + p.subclasse + p.melhorias + p.schrift;
 
 export function EscolhaPoderes({ f, mudar }: { f: Ficha; mudar: (p: Partial<Ficha>) => void }) {
   const classe = classePorId(f.classe);
@@ -220,6 +224,8 @@ export function EscolhaPoderes({ f, mudar }: { f: Ficha; mudar: (p: Partial<Fich
 
       {melhoriasDoNivel(f.classe, f.nivel) > 0 && <SecaoMelhorias f={f} mudar={mudar} pendentes={pend.melhorias} />}
 
+      {(f.classe === "schutze" || f.classe === "ritter") && f.nivel >= NIVEL_SCHRIFT && <SecaoSchrift f={f} mudar={mudar} pendente={pend.schrift > 0} />}
+
       {slots === 0 && maxKidos === 0 && maxTec === 0 && (
         <p className="ajuda">No nível {f.nivel} esta classe ainda não escolhe talentos, Kidō nem técnicas. Eles chegam a partir do nível 2.</p>
       )}
@@ -261,6 +267,28 @@ function SecaoMelhorias({ f, mudar, pendentes }: { f: Ficha; mudar: (p: Partial<
         </div>
       )}
       <p className="ajuda">{TIPOS_MELHORIA.find((t) => t.id === tipo)?.texto}{!ok && alvoReal ? " Essa melhoria já chegou ao limite nesse alvo." : ""}</p>
+    </div>
+  );
+}
+
+function SecaoSchrift({ f, mudar, pendente }: { f: Ficha; mudar: (p: Partial<Ficha>) => void; pendente: boolean }) {
+  const atual = SCHRIFTS.find((s) => s.id === f.schrift);
+  return (
+    <div className="caixa" id="escolha-schrift">
+      <h3>Schrift</h3>
+      <p className={`contagem ${pendente ? "" : "ok"}`} role="status">{pendente ? "Falta escolher sua Schrift (10º nível)" : `Schrift: ${atual?.nome ?? "—"}`}</p>
+      <label className="campo">
+        <span>Schrift do mangá (com a aprovação do Mestre)</span>
+        <select value={f.schrift} onChange={(e) => mudar({ schrift: e.target.value })}>
+          <option value="">Escolha uma Schrift</option>
+          {SCHRIFTS.map((s) => <option key={s.id} value={s.id}>{s.nome}</option>)}
+        </select>
+      </label>
+      {atual && (
+        <p className="ajuda">
+          <b>Poder de tema (10 PR, 1× por cena):</b> {atual.base} <b>Com a Vollständig:</b> {atual.voll}
+        </p>
+      )}
     </div>
   );
 }

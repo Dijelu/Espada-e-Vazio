@@ -1307,15 +1307,6 @@
    "pre": []
   },
   {
-   "id": "schrift",
-   "nome": "Schrift",
-   "texto": "O poder latente na alma de um Quincy pode se manifestar de formas diversas, refletindo habilidades únicas e extraordinárias. A obtenção de uma Shrift é um evento raro e especial, que ocorre em circunstâncias distintas: alguns Quincy nascem com esse dom, enquanto outros o despertam ao beber o sangue do próprio Rei Quincy ou o desenvolvem ao longo de suas vidas. Ao selecionar esta habilidade, você pode escolher uma Shrift do capítulo \"Arsenal Quincy\". A escolha da Shrift deve ser aprovada pelo Mestre, garantindo que ela se encaixe na narrativa do jogo.",
-   "nivel": 6,
-   "req": "6° nível de Schütze, aprovação do mestre.",
-   "grupo": "",
-   "pre": []
-  },
-  {
    "id": "tiro-mortal",
    "nome": "Tiro Mortal",
    "texto": "Quando você obtiver um acerto crítico com uma arma à distância, pode adicionar metade do seu atributo de Mente ao dano causado pelo ataque.",
@@ -1493,15 +1484,6 @@
    "texto": "no início do combate, você ataca antes da ordem de turnos.",
    "nivel": 1,
    "req": "",
-   "grupo": "",
-   "pre": []
-  },
-  {
-   "id": "schrift",
-   "nome": "Schrift",
-   "texto": "escolha uma Schrift do Arsenal Quincy (Capítulo 7).",
-   "nivel": 6,
-   "req": "6º nível, aprovação do Mestre",
    "grupo": "",
    "pre": []
   },

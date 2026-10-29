@@ -262,7 +262,7 @@ Essas habilidades só são válidas enquanto a Vollstanding estiver ativa, e voc
 Estas regras valem para qualquer classe Quincy, e não só para o Ritter.
 
 - **Vollständig:** o Ritter a ativa a partir do 12º nível, e as demais classes Quincy a partir do 13º (60 pontos de reiatsu, uma ação). As duas habilidades únicas adicionais vêm cinco níveis depois. Os poderes passivos e as habilidades únicas são os descritos neste capítulo.
-- **Schrift:** é um talento disponível a partir do 6º nível, com aprovação do Mestre. A Schrift influencia o nome e os efeitos da Vollständig.
+- **Schrift:** é uma característica de classe do 10º nível, com aprovação do Mestre (veja a seção Schrift, mais adiante). Ela dá um poder de tema próprio e, com a Vollständig ativa, esse poder fica mais forte.
 - **Dano de Energia:** o dano da arma espiritual da Vollständig e o das Técnicas de Reishi já é de Energia, então ignora a resistência a dano físico. O Ritter obtém o mesmo efeito antes disso, com a Lâmina de Reishi.
 
 Atenção: Força Espiritual e Precisão Espiritual só podem ser escolhidas **uma vez cada** entre as habilidades únicas da Vollständig. Sem esse limite, o Quincy fica forte demais logo que ganha a Vollständig. Os demais poderes não mudam: Arma Espiritual com duas melhorias de dano, Consciência Espiritual Expandida, Sklaverei e Voo de 6 metros.
@@ -451,7 +451,41 @@ Se não quiser uma das formas prontas, monte a sua em seis passos. A ficha ofere
 5. **Ações:** de duas a três, no padrão da Bankai: uma básica de 8 a 10 PR, uma de apoio e uma final de 30 PR.
 6. **Revisão:** ativar custa 60 PR e usa uma ação. O Mestre aprova as ações.
 
-## Schirift
+## Schrift
+
+A Schrift é o poder latente da alma de um Quincy, e cada uma carrega um tema (explosão, trovão, medo, sorte…). Quem a recebe no 10º nível, antes mesmo da Vollständig, aprende a usá-la sozinha; quando a Vollständig chega, as duas passam a se reforçar.
+
+Este capítulo não cria Schrift novas: usa apenas as que existem no mangá. A Schrift escolhida precisa da aprovação do Mestre.
+
+### Como funciona
+
+- **Obtenção:** no 10º nível, escolha uma Schrift da tabela. Ela pode ter vindo do nascimento, do sangue do Rei Quincy ou de um despertar na batalha. Trocar de Schrift depois só por um evento de história.
+- **Poder de tema:** uma vez por cena, como ação e gastando **10 PR**, você usa o poder de tema da sua Schrift. O alcance é de 18 metros, e a jogada de ataque é de Técnica de Reishi (ou o Teste de Resistência indicado).
+- **Dano de tema:** nas Schrift de dano, o poder causa **proficiência × d8** do tipo indicado.
+- **Com a Vollständig ativa:** o poder pode ser usado **duas vezes por cena**, o dano sobe para **proficiência × d10 + proficiência**, o alcance e a área ficam 50% maiores e o efeito adicional da tabela passa a valer.
+- **Limite:** só um bônus de Schrift vale por turno. Ela não se soma a Força Espiritual ou Precisão Espiritual no mesmo dano.
+- **Schrift de utilidade:** Miracle, X-Axis, Love, Zombie, Antítese e The Balance não causam dano. O poder de tema delas está na tabela, e as habilidades completas de Antítese e The Balance seguem logo abaixo.
+
+### As Schrift do mangá
+
+| Schrift | Tipo | Poder de tema (10 PR) | Com a Vollständig |
+|---|---|---|---|
+| Explosion | Dano de Fogo | Explosão de 3 m de raio. Destreza evita metade. | Raio de 4,5 m e a condição Queimado |
+| Thunderbolt | Dano Elétrico | Raio em linha de 18 m. Destreza evita metade. | A condição Eletrificado |
+| The Deathdealing | Dano de Energia | O dano dobra contra criatura com menos da metade dos PV. | Também dobra contra criatura Atordoada |
+| Fear | Dano Psíquico | O alvo faz Teste de Espírito ou fica Amedrontado por 1 rodada. | Atinge criaturas a até 9 m do alvo |
+| Jail | Controle | Ataque: se acertar, o alvo fica Preso numa jaula de Reishi. | Atinge 2 alvos; a jaula tem 5 × proficiência de PV |
+| Power | Ofensiva | Ação bônus: +proficiência ao dano corpo a corpo até o fim do turno. | Também +2 em testes de Força e empurra o alvo 3 m |
+| Miracle | Utilidade | Refaça uma jogada sua e use a nova. | Duas vezes por cena; pode obrigar um inimigo a refazer uma jogada |
+| X-Axis | Utilidade | Reposicione-se até 9 m, como ação bônus. | 18 m, levando 1 aliado adjacente |
+| The Love | Utilidade | O alvo faz Teste de Mente ou fica Enfeitiçado por 1 rodada. | Até 3 alvos, por 1 minuto |
+| The Zombie | Utilidade | Invoca 1 morto-vivo por 1 minuto (PV 5 × nível, CR 10 + proficiência). | Invoca 2 mortos-vivos |
+| Antítese | Utilidade | Troca Perfeita (veja abaixo). | O custo da Troca Perfeita cai 5 PR (mínimo 5) |
+| The Balance | Utilidade | Equilíbrio (veja abaixo). | O custo do Equilíbrio cai 5 PR (mínimo 5) |
+
+### Schrift e Vollständig
+
+A Schrift influencia o nome e a aparência da Vollständig (uma Vollständig com a Schrift de Candice, por exemplo, tem raios; uma com a de Bambietta, explosões). Os efeitos da Schrift não ficam dentro da Vollständig: são dela, e valem fora ou dentro da forma. Cada Vollständig pronta do capítulo, na linha "Schrift (à parte)", mostra qual Schrift o personagem do mangá tinha.
 
 ## Antítese
 

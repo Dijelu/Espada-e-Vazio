@@ -114,6 +114,30 @@ Para liberar a Bankai, existem métodos alternativos. De forma semelhante à Shi
 
 Há também outro método conhecido como “Método Tenshinta”, descrito no capítulo 5: Zanpakutous.
 
+### Bankai Verdadeira (20º nível)
+
+No 20º nível, o Shinigami que já tem a Bankai pode ir além dela. Este treinamento só começa depois que a Bankai estiver concluída e só termina no 20º nível. Ele tem três passos, e falhar em qualquer um só obriga a repetir, sem perder nada.
+
+- **Passo 1: Meditação Profunda.** 10 dias no mundo interior, reduzidos pelo atributo de Espírito (mínimo 5). No fim, Teste de Espírito (d20 + Espírito) contra CD 15.
+- **Passo 2: Duelo com o Espírito.** O espírito da Zanpakutou o enfrenta num duelo narrativo, conduzido pelo Mestre como uma cena de combate ou de diálogo. Vencer não exige derrotar o espírito, e sim ser reconhecido por ele.
+- **Passo 3: Despertar.** Role d100: se o resultado for menor ou igual a Espírito + Constituição + 20, a forma final desperta. Em caso de falha, pode tentar de novo a cada 15 dias.
+
+Ao concluir, o Shinigami escolhe **um** dos dois caminhos. A escolha não muda depois.
+
+**Bankai Plena (caminho do poder).** É a mesma Bankai, mais forte e mais eficiente.
+
+- O custo de liberação cai pela metade.
+- +2 na CR enquanto a Bankai estiver ativa.
+- O dano das técnicas da Bankai sobe em 25% (arredondado para baixo).
+- Você escolhe uma ação nova para a Bankai, aprovada pelo Mestre.
+
+**Bankai Verdadeira (caminho da forma).** A Bankai muda de aparência e revela o que o espírito escondia.
+
+- Você cria, com o Mestre, uma técnica de assinatura nova.
+- A liberação dura no máximo 1 minuto por vez.
+- Quando termina, o Shinigami fica com 1 nível de Esgotado, até um descanso curto.
+- Os demais números da Bankai não mudam.
+
 ## Espírito da Zanpakutou
 
 O espírito da Zanpakutou é a manifestação viva da alma de um Shinigami. Ele habita o mundo interior, um espaço que reflete a mente, o coração e as emoções mais profundas de seu portador. Dentro desse mundo, o espírito assume uma forma própria, pode parecer humano, uma fera mística ou até uma figura completamente simbólica, mas sempre representa aquilo que o Shinigami carrega dentro de si.
@@ -318,3 +342,44 @@ Só o primeiro teste, de Constituição contra CD 12, é igual ao da Bankai. Dep
 2. O jejum cabe em qualquer pausa de 3 dias.
 3. Anote os PF na ficha, como se fossem XP: eles saem de combates que já aconteceriam.
 4. Prepare o duelo como um combate normal, usando a ficha do jogador sem Resurrección.
+
+## Treinamento do Terror do Vazio
+
+O Terror do Vazio é a forma de Vasto Lorde: o Hollow deixa de ser apenas uma fera que cresceu e vira algo que o mundo aprende a temer. É a segunda etapa de um Hueco ou de um Vazio, depois da Resurrección. Assim como a Resurrección, o treinamento é uma porta de acesso e não muda nenhum número da forma liberada.
+
+**Pré-requisito:** classe Hueco ou Vazio, com a Resurrección concluída. O treinamento só vale a partir do 15º nível.
+
+### Etapa 1: Fome Profunda
+
+Durante 7 dias, o Hollow não devora nem absorve nada. A fome agora é uma presença, e não uma vontade.
+
+- **Teste:** Constituição, CD 15.
+- **Falha:** repita a etapa por mais 7 dias, sem outra consequência.
+
+### Etapa 2: 8 Pontos de Fome
+
+Os Pontos de Fome (PF) funcionam como na Trilha da Fome e continuam valendo depois da Resurrección. Para o Terror, o Hollow precisa chegar a **8 PF** no total. Cada PF acima de 8 dá +1 de acerto no duelo, até +2.
+
+### Etapa 3: Duelo contra o Terror
+
+Em uma cena isolada, o Hollow enfrenta uma cópia de si mesmo, com a mesma ficha e com a Resurrección ativa. O duelo é um 1v1 normal. PV, PR e condições voltam ao estado anterior quando a cena termina.
+
+- **Sucesso:** a máscara não se rompe, ela é arrancada. O treinamento está concluído e o Terror passa a ser liberado pela ficha.
+- **Falha:** o Hollow acorda faminto, sem dano real, e repete o duelo após 1 dia de downtime. Os PF se mantêm.
+
+### O Terror liberado
+
+O Terror substitui a Resurrección enquanto estiver ativo (os números não se somam). É liberado com uma ação bônus e dura até o fim da cena.
+
+| | Hueco | Vazio |
+|---|---|---|
+| Custo | 60 PR | 60 PR |
+| CR | + proficiência + 2 | + proficiência + 1 |
+| Dano | + proficiência + 2; arma natural +1 passo | Poder Inato com dados × 1,9 |
+| Técnica base | Cero com dados × 2,0 | |
+| Deslocamento | 12 metros, com voo | 12 metros, com voo |
+| Defesa | Imune à condição Amedrontado | Imune à condição Amedrontado |
+
+**Preço do Terror.** No início de cada turno do Hollow, ele perde 2 PR. Quando a forma termina, o Hollow fica com 1 nível de Esgotado até um descanso longo. O Mestre pode pedir um teste de Determinação para quem tentar liberar o Terror com menos de metade dos PV.
+
+Como usar na mesa: comece a Fome Profunda numa pausa de 7 dias, anote os PF como XP e prepare o duelo como um combate normal.
