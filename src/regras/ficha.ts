@@ -1,3 +1,5 @@
+import { somaSituacoes } from "./situacionais";
+import { bonusEscudo, type Melhoria } from "./melhorias";
 import { atributosPassivos, passivasDaFicha, type PassivaAtiva, type EfeitoSoma } from "./passivas";
 /* Regras de criação e cálculo da ficha (Espada & vazio). Tudo o que está aqui vem dos capítulos 1, 2, 3, 4 e 8 do livro. */
 
@@ -454,6 +456,9 @@ export interface Ataque {
   nota?: string;
   /** ataque à distância: não recebe o dano extra de corpo a corpo */
   distancia?: boolean;
+  /** margem de crítico e multiplicador da arma (do livro), usados nas melhorias */
+  crit?: number;
+  mult?: number;
 }
 
 export interface KidoEscolhido {
@@ -560,6 +565,8 @@ export interface Ficha {
   saveExtra: Atr[];
   essencias: Essencia[];
   ataques: Ataque[];
+  /** melhorias de equipamento Quincy escolhidas ao subir de nível */
+  melhorias: Melhoria[];
   poderes: Poder[];
   ajuste: { pv: number; pr: number; cr: number };
   pvAtual: number;
@@ -603,6 +610,7 @@ export function fichaNova(): Ficha {
     saveExtra: [],
     essencias: [],
     ataques: [],
+    melhorias: [],
     poderes: [],
     ajuste: { pv: 0, pr: 0, cr: 0 },
     pvAtual: 0,
@@ -636,6 +644,7 @@ export function normalizar(bruto: Partial<Ficha> | null | undefined): Ficha {
   f.estado = { ...n.estado, ...f.estado };
   f.zanpakutou = { ...n.zanpakutou, ...f.zanpakutou };
   f.formas = f.formas ?? {};
+  f.melhorias = f.melhorias ?? [];
   f.talentos = f.talentos ?? [];
   f.kidos = f.kidos ?? [];
   f.tecnicasReishi = f.tecnicasReishi ?? [];
@@ -706,6 +715,13 @@ export function efeitoOrigem(f: Ficha): Required<Pick<Efeito, "pvIni" | "prIni" 
 
 export const mod = (v: number) => (v >= 0 ? `+${v}` : `${v}`);
 
+/** Onde o jogador conserta o problema. */
+export type DestinoAviso = "atributos" | "pericias" | "salvaguarda" | "essencias";
+export interface Aviso {
+  texto: string;
+  destino: DestinoAviso;
+}
+
 export interface Calculo {
   prof: number;
   atr: Record<Atr, number>;
@@ -717,6 +733,8 @@ export interface Calculo {
   rdEso: number;
   iniciativa: number;
   danoCorpo: number;
+  /** dados extras de dano corpo a corpo de situações ligadas, ex.: "2d8" */
+  danoDados: string[];
   /** CR veio da Evasão Aprimorada */
   crEvasao: boolean;
   percPassiva: number;
@@ -729,7 +747,7 @@ export interface Calculo {
   pontosNivel: number;
   cd: number;
   proximoXp: number | null;
-  avisos: string[];
+  avisos: Aviso[];
   /** efeitos passivos de talentos e essências (os automáticos já estão somados acima) */
   passivas: PassivaAtiva[];
   /** bônus na CD dos Kidōs */
@@ -745,7 +763,7 @@ export function calcular(f: Ficha): Calculo {
   const ef = efeitoOrigem(f);
   const n = Math.max(1, f.nivel);
   const prof = proficiencia(n);
-  const avisos: string[] = [];
+  const avisos: Aviso[] = [];
 
   const pas = atributosPassivos(f);
   const atr = zero();
@@ -763,14 +781,14 @@ export function calcular(f: Ficha): Calculo {
     livreUsados: soma(f.livre),
     max: f.maxInicial,
   };
-  if (pa.usados > pa.inicial) avisos.push("Você usou mais pontos de atributo do que tem na criação.");
+  if (pa.usados > pa.inicial) avisos.push({ texto: "Você usou mais pontos de atributo do que tem na criação.", destino: "atributos" });
   ATRIBUTOS.forEach(({ id, nome }) => {
-    if ((f.base[id] ?? 0) > f.maxInicial) avisos.push(`${nome} passa do máximo de ${f.maxInicial} na criação.`);
+    if ((f.base[id] ?? 0) > f.maxInicial) avisos.push({ texto: `${nome} passa do máximo de ${f.maxInicial} na criação.`, destino: "atributos" });
     const lim = pas.limite[id] ?? 15;
-    if (atr[id] > lim) avisos.push(`${nome} passa do limite de ${lim}.`);
+    if (atr[id] > lim) avisos.push({ texto: `${nome} passa do limite de ${lim}.`, destino: "atributos" });
   });
-  if (pa.nivelUsados > pa.nivel) avisos.push("Você gastou mais pontos de atributo de nível do que ganhou.");
-  if (pa.livreUsados > pa.livre) avisos.push("Você gastou mais pontos livres de variação do que a Origem dá.");
+  if (pa.nivelUsados > pa.nivel) avisos.push({ texto: "Você gastou mais pontos de atributo de nível do que ganhou.", destino: "atributos" });
+  if (pa.livreUsados > pa.livre) avisos.push({ texto: "Você gastou mais pontos livres de variação do que a Origem dá.", destino: "atributos" });
 
   let pv = 0;
   let pr = 0;
@@ -800,6 +818,9 @@ export function calcular(f: Ficha): Calculo {
     if (c?.id === "vazio") cr += n >= 16 ? prof : prof - 1;
   }
 
+  const sit = somaSituacoes(f, { n, prof, atr });
+  cr += sit.cr + bonusEscudo(f);
+
   let rdFisExtra = 0;
   let rdEsoExtra = 0;
   let deslocExtra = 0;
@@ -824,12 +845,12 @@ export function calcular(f: Ficha): Calculo {
     const p = fixos.includes(id) || f.saveExtra.includes(id) || pas.saves.includes(id);
     saves[id] = { prof: p, total: atr[id] + (p ? prof : 0) };
   });
-  if (c?.saveEscolha && f.saveExtra.length < c.saveEscolha) avisos.push("Escolha a salvaguarda extra da classe.");
+  if (c?.saveEscolha && f.saveExtra.length < c.saveEscolha) avisos.push({ texto: "Escolha a salvaguarda extra da classe.", destino: "salvaguarda" });
 
   const fixas = [...(c?.periciasFixas ?? []), ...ef.pericias];
   const quantas = c ? c.pericias + Math.floor(atr.men / 2) : 0;
   const escolhidas = f.pericias.filter((p) => !fixas.includes(p));
-  if (c && escolhidas.length > quantas) avisos.push(`Você escolheu ${escolhidas.length} perícias, mas a classe permite ${quantas}.`);
+  if (c && escolhidas.length > quantas) avisos.push({ texto: `Você escolheu ${escolhidas.length} perícias, mas a classe permite ${quantas}.`, destino: "pericias" });
 
   const pericias: Calculo["pericias"] = {};
   PERICIAS.forEach((p) => {
@@ -840,7 +861,7 @@ export function calcular(f: Ficha): Calculo {
   });
 
   const pe = { total: pontosEssencia(n), usados: f.essencias.filter((e) => !e.gratis).reduce((s, e) => s + e.etapa, 0) };
-  if (pe.usados > pe.total) avisos.push("Você gastou mais pontos de essência do que tem.");
+  if (pe.usados > pe.total) avisos.push({ texto: "Você gastou mais pontos de essência do que tem.", destino: "essencias" });
 
   const proximoXp = n >= 20 ? null : XP_NIVEL[n];
 
@@ -855,7 +876,7 @@ export function calcular(f: Ficha): Calculo {
     rdEso: ef.rdEso + rdEsoExtra + px.rdEso,
     iniciativa: (ef.iniMente ? Math.max(atr.des, atr.men) : atr.des) + px.iniciativa,
     // Ritter: armas Quincy corpo a corpo causam +3 de dano do 3º ao 9º nível
-    danoCorpo: ef.danoCorpo + px.danoCorpo + (f.classe === "ritter" && n >= 3 && n <= 9 ? 3 : 0),
+    danoCorpo: ef.danoCorpo + px.danoCorpo + sit.danoCorpo + (f.classe === "ritter" && n >= 3 && n <= 9 ? 3 : 0),
     crEvasao,
     percPassiva: 10 + pericias["percepcao"].total + px.percPassiva,
     saves,
@@ -871,6 +892,7 @@ export function calcular(f: Ficha): Calculo {
     passivas,
     cdKido: 8 + prof + atr.esp + px.cdKido,
     reducaoLib: px.reducaoLib,
+    danoDados: sit.dados,
   };
 }
 

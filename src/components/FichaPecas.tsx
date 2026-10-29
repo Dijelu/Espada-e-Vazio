@@ -79,3 +79,29 @@ export function LinhaAtributos({ atr }: { atr: Record<Atr, number> }) {
 }
 
 export const novoId = () => (typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : String(Date.now() + Math.random()));
+
+/** Lista de problemas da ficha, cada um com um botão que leva ao lugar de corrigir. */
+export function AvisosFicha({ avisos, onIr }: { avisos: { texto: string; destino: string }[]; onIr: (destino: string) => void }) {
+  if (avisos.length === 0) return null;
+  return (
+    <ul className="avisos avisos-ir" role="alert">
+      {avisos.map((a) => (
+        <li key={a.texto}>
+          <span>{a.texto}</span>
+          <button type="button" className="btn btn-paper" onClick={() => onIr(a.destino)}>Corrigir</button>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/** Rola até o campo e dá um destaque curto. */
+export function irParaAncora(id: string) {
+  window.setTimeout(() => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    el.classList.add("destaque-conserto");
+    window.setTimeout(() => el.classList.remove("destaque-conserto"), 2200);
+  }, 80);
+}

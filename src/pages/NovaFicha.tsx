@@ -4,7 +4,7 @@ import { SeletorEssencia } from "../components/SeletorEssencia";
 import { NomeEssencia, TrocarEssencia } from "../components/EssenciaPecas";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../components/Auth";
-import { Campo, LinhaAtributos, Passo, SeletorVariacoes, novoId } from "../components/FichaPecas";
+import { AvisosFicha, Campo, LinhaAtributos, Passo, SeletorVariacoes, novoId } from "../components/FichaPecas";
 import { EscolhaPoderes, pendencias, totalPendencias } from "../components/EscolhaPoderes";
 import { criarFicha } from "../lib/fichas";
 import {
@@ -48,6 +48,13 @@ export default function NovaFicha() {
   const [erro, setErro] = useState("");
 
   const mudar = (p: Partial<Ficha>) => setF((x) => ({ ...x, ...p }));
+  const irDestino = (d: string) => {
+    const passos: Record<string, number> = { salvaguarda: 1, atributos: 2, pericias: 3, essencias: 5 };
+    if (passos[d] !== undefined) {
+      setPasso(passos[d]);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
   const c = useMemo(() => calcular(f), [f]);
   const origem = origemPorId(f.origem);
   const classe = classePorId(f.classe);
@@ -295,7 +302,7 @@ export default function NovaFicha() {
           </table>
           {ef.livre > 0 && <p className="ajuda">Pontos livres da variação: {c.pontosAtrib.livre - c.pontosAtrib.livreUsados} restantes.</p>}
           {c.pontosNivel > 0 && <p className="ajuda">Pontos de atributo de nível: {c.pontosAtrib.nivel - c.pontosAtrib.nivelUsados} restantes (podem ser gastos depois, na aba Evolução).</p>}
-          {c.avisos.length > 0 && <ul className="avisos">{c.avisos.map((a) => <li key={a}>{a}</li>)}</ul>}
+          <AvisosFicha avisos={c.avisos} onIr={irDestino} />
           <div className="previa">
             <span>PV <b>{c.pv}</b></span><span>PR <b>{c.pr}</b></span><span>CR <b>{c.cr}</b></span><span>Proficiência <b>{mod(c.prof)}</b></span>
           </div>
@@ -480,7 +487,7 @@ export default function NovaFicha() {
             <div className="previa">
               <span>PV <b>{c.pv}</b></span><span>PR <b>{c.pr}</b></span><span>CR <b>{c.cr}</b></span><span>Proficiência <b>{mod(c.prof)}</b></span><span>Deslocamento <b>{c.desloc} m</b></span>
             </div>
-            {c.avisos.length > 0 && <ul className="avisos">{c.avisos.map((a) => <li key={a}>{a}</li>)}</ul>}
+            <AvisosFicha avisos={c.avisos} onIr={irDestino} />
           </div>
           {erro && <p className="aviso" role="alert">{erro}</p>}
         </section>

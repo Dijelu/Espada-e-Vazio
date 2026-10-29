@@ -16,6 +16,8 @@ import {
 import { classePorId, type Ficha } from "../regras/ficha";
 import { Dica } from "./Dica";
 import { formaPendente } from "../regras/liberacoes";
+import { melhoriasDoNivel, melhoriasPendentes, podeMelhorar, TIPOS_MELHORIA, type TipoMelhoria } from "../regras/melhorias";
+import { novoId } from "./FichaPecas";
 
 export interface Pendencias {
   talentos: number;
@@ -25,6 +27,8 @@ export interface Pendencias {
   forma: number;
   /** subclasse do nível 3 ainda sem escolha */
   subclasse: number;
+  /** melhoria de equipamento Quincy (níveis 5, 10, 15 e 20) por escolher */
+  melhorias: number;
 }
 
 /** A subclasse chega no nível 3 e ainda não foi escolhida. */
@@ -40,10 +44,11 @@ export function pendencias(f: Ficha): Pendencias {
     tecnicas: Math.max(0, tecnicasConhecidas(f.classe, f.nivel) - f.tecnicasReishi.length),
     forma: formaPendente(f, classePorId(f.classe)?.tipo) ? 1 : 0,
     subclasse: subclassePendente(f) ? 1 : 0,
+    melhorias: melhoriasPendentes(f),
   };
 }
 
-export const totalPendencias = (p: Pendencias) => p.talentos + p.kidos + p.tecnicas + p.forma + p.subclasse;
+export const totalPendencias = (p: Pendencias) => p.talentos + p.kidos + p.tecnicas + p.forma + p.subclasse + p.melhorias;
 
 export function EscolhaPoderes({ f, mudar }: { f: Ficha; mudar: (p: Partial<Ficha>) => void }) {
   const classe = classePorId(f.classe);
@@ -213,9 +218,49 @@ export function EscolhaPoderes({ f, mudar }: { f: Ficha; mudar: (p: Partial<Fich
         </div>
       )}
 
+      {melhoriasDoNivel(f.classe, f.nivel) > 0 && <SecaoMelhorias f={f} mudar={mudar} pendentes={pend.melhorias} />}
+
       {slots === 0 && maxKidos === 0 && maxTec === 0 && (
         <p className="ajuda">No nível {f.nivel} esta classe ainda não escolhe talentos, Kidō nem técnicas. Eles chegam a partir do nível 2.</p>
       )}
+    </div>
+  );
+}
+
+function SecaoMelhorias({ f, mudar, pendentes }: { f: Ficha; mudar: (p: Partial<Ficha>) => void; pendentes: number }) {
+  const total = melhoriasDoNivel(f.classe, f.nivel);
+  const [tipo, setTipo] = useState<TipoMelhoria>("dano");
+  const [alvo, setAlvo] = useState("");
+  const alvoReal = tipo === "escudo" ? "escudo" : alvo || f.ataques[0]?.id || "";
+  const ok = !!alvoReal && podeMelhorar(f, alvoReal, tipo);
+  const nome = (id: string) => (id === "escudo" ? "Escudo" : f.ataques.find((a) => a.id === id)?.nome ?? "Ataque removido");
+  return (
+    <div className="caixa" id="escolha-melhorias">
+      <h3>Melhorias de equipamento</h3>
+      <p className={`contagem ${pendentes === 0 ? "ok" : ""}`} role="status">
+        {f.melhorias.length} de {total} escolhida(s){pendentes > 0 ? ` · faltam ${pendentes}` : ""}
+      </p>
+      {f.melhorias.map((m) => (
+        <p className="linha-edit" key={m.id}>
+          <b>{nome(m.alvo)}</b> · {TIPOS_MELHORIA.find((t) => t.id === m.tipo)?.nome}
+          <button type="button" className="link-perigo" onClick={() => mudar({ melhorias: f.melhorias.filter((x) => x.id !== m.id) })}>Desfazer</button>
+        </p>
+      ))}
+      {pendentes > 0 && (
+        <div className="linha-edit">
+          <select value={tipo} onChange={(e) => setTipo(e.target.value as TipoMelhoria)} aria-label="Tipo de melhoria">
+            {TIPOS_MELHORIA.map((t) => <option key={t.id} value={t.id}>{t.nome}</option>)}
+          </select>
+          {tipo !== "escudo" && (
+            <select value={alvoReal} onChange={(e) => setAlvo(e.target.value)} aria-label="Arma a melhorar">
+              {f.ataques.length === 0 && <option value="">Cadastre uma arma na aba Combate</option>}
+              {f.ataques.map((a) => <option key={a.id} value={a.id}>{a.nome}</option>)}
+            </select>
+          )}
+          <button type="button" className="btn btn-red" disabled={!ok} onClick={() => mudar({ melhorias: [...f.melhorias, { id: novoId(), alvo: alvoReal, tipo }] })}>Aplicar</button>
+        </div>
+      )}
+      <p className="ajuda">{TIPOS_MELHORIA.find((t) => t.id === tipo)?.texto}{!ok && alvoReal ? " Essa melhoria já chegou ao limite nesse alvo." : ""}</p>
     </div>
   );
 }

@@ -916,3 +916,14 @@ select:focus-visible, .opcoes-grandes .opcao:focus-visible, .chip-btn:focus-visi
   :root[data-skin="quincy"] .bar, :root[data-skin="quincy"] .strip { outline-offset: 2px; }
 }
 @media (prefers-reduced-motion: reduce) { :root[data-skin="quincy"] body::before, :root[data-skin="quincy"] .hero::before { animation: none; } }
+
+/* habilidades de situação ligadas */
+.carta-hab.ligada { border-color: var(--text); box-shadow: 0 0 0 2px var(--accent), 0 0 18px color-mix(in srgb, var(--accent) 40%, transparent); }
+
+/* problemas da ficha com botão de corrigir */
+.avisos-ir { gap: 8px; border-left-color: #e5173f; }
+.avisos-ir li { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.avisos-ir .btn { padding: 6px 14px; min-height: 0; font-size: 14px; }
+.pontinho.erro { background: #e5173f; color: #fff; }
+.destaque-conserto { animation: destaque-conserto 2.2s ease-out; }
+@keyframes destaque-conserto { 0%, 60% { box-shadow: 0 0 0 4px #e5173f, 0 0 28px #e5173f88; } 100% { box-shadow: none; } }

@@ -3,6 +3,7 @@ import type { Rolagens } from "./Rolador";
 import { CONDICAO_TEXTO } from "../regras/catalogo";
 import { efeitosContinuos, habilidadesDaFicha, usosRestantes } from "../regras/habilidades";
 import { mod, type Calculo, type Ficha } from "../regras/ficha";
+import { idSituacao, situacoesDaFicha } from "../regras/situacionais";
 import { efeito as som } from "../lib/som";
 
 /** Habilidades da Origem que se usam em jogo, em forma de carta. */
@@ -105,6 +106,37 @@ export function CondicoesAtivas({ f, alterar }: { f: Ficha; alterar: (p: Partial
           <ul>{(CONDICAO_TEXTO[n] ?? []).map((t, i) => <li key={i}>{t}</li>)}</ul>
         </details>
       ))}
+    </div>
+  );
+}
+
+/** Habilidades de situação: o jogador liga quando a situação está valendo. */
+export function CartasSituacoes({ f, alterar }: { f: Ficha; alterar: (p: Partial<Ficha>) => void }) {
+  const lista = situacoesDaFicha(f);
+  if (lista.length === 0) return null;
+  const ligar = (id: string) => {
+    const k = idSituacao(id);
+    const ativas = f.estado.ativas.includes(k) ? f.estado.ativas.filter((x) => x !== k) : [...f.estado.ativas, k];
+    alterar({ estado: { ...f.estado, ativas } });
+    som.energia();
+  };
+  return (
+    <div className="caixa">
+      <h3>Habilidades de situação</h3>
+      <p className="ajuda">Ligue o botão quando a situação estiver valendo. Os números que dá para somar entram na ficha na hora.</p>
+      <div className="cartas-hab">
+        {lista.map((s) => {
+          const on = f.estado.ativas.includes(idSituacao(s.id));
+          return (
+            <article className={`carta-hab ${on ? "ligada" : ""}`} key={s.id}>
+              <header><b>{s.nome}</b><small>{s.fonte}</small></header>
+              <p className="acao-hab">Vale quando: {s.quando}</p>
+              <p>{s.texto}</p>
+              <button type="button" className={`btn ${on ? "btn-red" : "btn-paper"}`} aria-pressed={on} onClick={() => ligar(s.id)}>{on ? "Ligada · desligar" : "Ligar"}</button>
+            </article>
+          );
+        })}
+      </div>
     </div>
   );
 }

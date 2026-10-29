@@ -3,15 +3,16 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { SeletorEssencia } from "../components/SeletorEssencia";
 import { NomeEssencia, TrocarEssencia } from "../components/EssenciaPecas";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { CartasHabilidades, CondicoesAtivas, EfeitosAtivos } from "../components/CartasResumo";
+import { CartasHabilidades, CartasSituacoes, CondicoesAtivas, EfeitosAtivos } from "../components/CartasResumo";
 import { AcoesRapidas } from "../components/AcoesRapidas";
 import { EscolhaPoderes, pendencias, subclassePendente, totalPendencias } from "../components/EscolhaPoderes";
 import { EscolhaSubclasse } from "../components/EscolhaSubclasse";
 import { CartasFormas, ConstrutorForma, PainelFormaAtiva } from "../components/ConstrutorForma";
 import { TIPO_FORMA_NOME, formaPendente, nivelLiberacao } from "../regras/liberacoes";
-import { Campo, LinhaAtributos, Passo, SeletorVariacoes, novoId } from "../components/FichaPecas";
+import { AvisosFicha, Campo, irParaAncora, LinhaAtributos, Passo, SeletorVariacoes, novoId } from "../components/FichaPecas";
 import { BotaoRolar, PainelRolagens, useRolagens, type Rolagens } from "../components/Rolador";
 import { AbaTreinamento } from "../components/Treinamento";
+import { ataqueMelhorado } from "../regras/melhorias";
 import { ARMAS, KIDOS, talentosDe } from "../regras/catalogo";
 import { lerFicha, salvarFicha } from "../lib/fichas";
 import { efeito as som } from "../lib/som";
@@ -31,6 +32,7 @@ import {
   partesOrigem,
   proficiencia,
   type Atr,
+  type Ataque,
   type Ficha as TFicha,
   type TipoForma,
 } from "../regras/ficha";
@@ -125,6 +127,19 @@ export default function Ficha() {
 
   const pend = pendencias(f);
   const nPend = totalPendencias(pend);
+  const DESTINOS: Record<string, [Aba, string]> = {
+    atributos: ["Evolução", "ancora-atributos"],
+    pericias: ["Perícias", "ancora-pericias"],
+    salvaguarda: ["Perícias", "ancora-salvaguardas"],
+    essencias: ["Poderes", "ancora-essencias"],
+  };
+  const irDestino = (d: string) => {
+    const alvo = DESTINOS[d];
+    if (!alvo) return;
+    setAba(alvo[0]);
+    irParaAncora(alvo[1]);
+  };
+  const abasComProblema = new Set(c.avisos.map((a) => DESTINOS[a.destino]?.[0]));
   const nivelXp = nivelPorXp(f.xp);
   const podeSubir = nivelXp > f.nivel && f.nivel < 20;
 
@@ -177,11 +192,11 @@ export default function Ficha() {
         </div>
       )}
 
-      {c.avisos.length > 0 && <ul className="avisos">{c.avisos.map((a) => <li key={a}>{a}</li>)}</ul>}
+      <AvisosFicha avisos={c.avisos} onIr={irDestino} />
 
       <nav className="abas" role="tablist" aria-label="Seções da ficha">
         {ABAS.map((a) => (
-          <button key={a} role="tab" aria-selected={aba === a} className={aba === a ? "on" : ""} onClick={() => setAba(a)}>{a}{a === "Evolução" && nPend > 0 ? <i className="pontinho" aria-label={`${nPend} pendente(s)`}>{nPend}</i> : null}</button>
+          <button key={a} role="tab" aria-selected={aba === a} className={aba === a ? "on" : ""} onClick={() => setAba(a)}>{a}{abasComProblema.has(a) ? <i className="pontinho erro" aria-label="Há um problema nesta aba">!</i> : null}{a === "Evolução" && nPend > 0 ? <i className="pontinho" aria-label={`${nPend} pendente(s)`}>{nPend}</i> : null}</button>
         ))}
       </nav>
 
@@ -194,8 +209,8 @@ export default function Ficha() {
               {f.ataques.map((a) => (
                 <div className="carta-mini" key={a.id}>
                   <b>{a.nome}</b>
-                  <span>Acerto {mod(ataqueBonus(f, c, a))} · Dano {danoFinal(a.dano, a, c) || "—"}</span>
-                  <LinhaAtaque r={rol} nome={a.nome} bonus={ataqueBonus(f, c, a)} dano={danoFinal(a.dano, a, c)} />
+                  <span>Acerto {mod(ataqueBonus(f, c, a))} · Dano {danoFinal(f, a, c) || "—"}{(() => { const m = ataqueMelhorado(f, a); return m.crit ? ` · Crítico ${m.crit}–20 ×${m.mult ?? 2}` : ""; })()}</span>
+                  <LinhaAtaque r={rol} nome={a.nome} bonus={ataqueBonus(f, c, a)} dano={danoFinal(f, a, c)} />
                 </div>
               ))}
             </div>
@@ -224,6 +239,7 @@ export default function Ficha() {
             </div>
           </div>
           <CartasHabilidades f={f} c={c} alterar={alterar} r={rol} />
+          <CartasSituacoes f={f} alterar={alterar} />
           <CartasFormas f={f} c={c} r={rol} alterar={alterar} onEditar={setConstruir} />
           <div className="grade2">
             <EfeitosAtivos f={f} c={c} />
@@ -270,13 +286,13 @@ export default function Ficha() {
                 </select>
                 <input value={a.dano} placeholder="Dano (ex.: 2d8+3)" onChange={(e) => alterar({ ataques: f.ataques.map((x) => (x.id === a.id ? { ...x, dano: e.target.value } : x)) })} aria-label="Dano" />
                 <span className="acerto">{mod(ataqueBonus(f, c, a))}</span>
-                <LinhaAtaque r={rol} nome={a.nome} bonus={ataqueBonus(f, c, a)} dano={danoFinal(a.dano, a, c)} />
+                <LinhaAtaque r={rol} nome={a.nome} bonus={ataqueBonus(f, c, a)} dano={danoFinal(f, a, c)} />
                 <button className="link-perigo" onClick={() => alterar({ ataques: f.ataques.filter((x) => x.id !== a.id) })}>Remover</button>
               </div>
             ))}
             <select className="arma-add" value="" aria-label="Adicionar arma do livro" onChange={(e) => {
               const a = [...ARMAS.corpo, ...ARMAS.distancia].find((x) => x.nome === e.target.value);
-              if (a) alterar({ ataques: [...f.ataques, { id: novoId(), nome: a.nome, atr: a.atr.startsWith("Destreza") ? "des" : "for", dano: a.dano, distancia: ARMAS.distancia.some((x) => x.nome === a.nome) }] });
+              if (a) alterar({ ataques: [...f.ataques, { id: novoId(), nome: a.nome, atr: a.atr.startsWith("Destreza") ? "des" : "for", dano: a.dano, crit: (a as { crit?: number }).crit, mult: (a as { mult?: number }).mult, distancia: ARMAS.distancia.some((x) => x.nome === a.nome) }] });
             }}>
               <option value="">Adicionar arma do livro…</option>
               {[...ARMAS.corpo, ...ARMAS.distancia].map((a) => <option key={a.nome} value={a.nome}>{a.nome} ({a.dano})</option>)}
@@ -289,8 +305,16 @@ export default function Ficha() {
       {aba === "Perícias" && (
         <section className="aba">
           <p className="ajuda">Proficiente em {PERICIAS.filter((p) => c.pericias[p.id].prof).length} perícia(s). Você pode escolher {c.quantasPericias} além das fixas.</p>
-          <div className="caixa">
+          <div className="caixa" id="ancora-salvaguardas">
             <h3>Salvaguardas</h3>
+            {classePorId(f.classe)?.saveEscolha ? (
+              <label className="campo">Salvaguarda extra da classe
+                <select value={f.saveExtra[0] ?? ""} onChange={(e) => alterar({ saveExtra: e.target.value ? [e.target.value as Atr] : [] })}>
+                  <option value="">Escolher</option>
+                  {ATRIBUTOS.filter((a) => !classePorId(f.classe)!.saves.includes(a.id)).map((a) => <option key={a.id} value={a.id}>{a.nome}</option>)}
+                </select>
+              </label>
+            ) : null}
             <div className="saves-grade">
               {ATRIBUTOS.map((a) => (
                 <div className={`linha-sv ${c.saves[a.id].prof ? "prof" : ""}`} key={a.id}>
@@ -301,7 +325,7 @@ export default function Ficha() {
               ))}
             </div>
           </div>
-          <div className="pericias-grade">
+          <div className="pericias-grade" id="ancora-pericias">
             {ATRIBUTOS.map((a) => (
               <div key={a.id}>
                 <h3>{a.nome}</h3>
@@ -329,7 +353,7 @@ export default function Ficha() {
 
       {aba === "Poderes" && (
         <section className="aba">
-          <div className="caixa">
+          <div className="caixa" id="ancora-essencias">
             <h3>Essências Espirituais</h3>
             <p className="ajuda">Pontos: {c.pontosEssencia.usados} de {c.pontosEssencia.total} usados. Os nomes e efeitos estão no <Link to="/livro/essencias-espirituais" target="_blank">Capítulo 4</Link>.</p>
             {f.essencias.map((e) => (
@@ -548,7 +572,7 @@ function Evolucao({ f, c, alterar, subir, onForma, onSub }: { f: TFicha; c: Retu
         </div>
       )}
 
-      <div className="caixa">
+      <div className="caixa" id="ancora-atributos">
         <h3>Pontos de atributo</h3>
         <p>
           De nível: <b>{c.pontosAtrib.nivel - c.pontosAtrib.nivelUsados}</b> disponível(is) de {c.pontosAtrib.nivel}. Limite de cada atributo: 15.
@@ -616,7 +640,8 @@ function PoderesEscolhidos({ f }: { f: TFicha }) {
 }
 
 /** Soma o dano extra de corpo a corpo da Origem (Predador, Infectado, Caçador…) nos ataques que não são à distância. */
-function danoFinal(dano: string, a: { distancia?: boolean }, c: ReturnType<typeof calcular>) {
-  if (!dano.trim() || a.distancia || c.danoCorpo <= 0) return dano;
-  return `${dano}+${c.danoCorpo}`;
+function danoFinal(f: TFicha, a: Ataque, c: ReturnType<typeof calcular>) {
+  const dano = ataqueMelhorado(f, a).dano;
+  if (!dano.trim() || a.distancia) return dano;
+  return dano + (c.danoCorpo > 0 ? `+${c.danoCorpo}` : "") + c.danoDados.map((d) => `+${d}`).join("");
 }
