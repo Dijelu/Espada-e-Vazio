@@ -821,41 +821,98 @@ select:focus-visible, .opcoes-grandes .opcao:focus-visible, .chip-btn:focus-visi
 
 /* ===== Visual secreto de Quincy (liberado pelo emblema da Introdução) ===== */
 :root[data-skin="quincy"] {
-  --bg: #050a14;
-  --panel: #0b1627;
-  --panel2: #07101e;
-  --line: #28507c;
-  --text: #eaf4ff;
-  --muted: #a3bdd9;
-  --accent: #46c4ff;
-  --accent-deep: #123f66;
-  --on-accent: #03111f;
-  --halftone: #7fd0ff12;
-  --glow: radial-gradient(ellipse 60% 40% at 85% -5%, #2b7fc255, transparent 70%), radial-gradient(ellipse 50% 40% at 0% 100%, #13427a55, transparent 70%);
+  --font-title: "Cinzel", "Barlow Condensed", serif;
+  --font-pincel: "Cinzel", serif;
+  --bg: #05090f; --panel: #0a1422; --panel2: #060d18; --line: #2b5380;
+  --text: #eef6ff; --muted: #a3bdd9;
+  --accent: #5cc8ff; --accent-deep: #123f66; --on-accent: #03111f;
+  --halftone: #7fd0ff10;
+  --glow: radial-gradient(ellipse 70% 45% at 50% -8%, #8fd8ff40, transparent 70%), radial-gradient(ellipse 50% 40% at 100% 100%, #13427a55, transparent 70%);
 }
 :root[data-skin="quincy"] body::before {
-  content: ""; position: fixed; right: -6vmin; bottom: -6vmin; width: 54vmin; height: 54vmin; z-index: -1; pointer-events: none;
-  background: url("/art/sym-intro.png") center / contain no-repeat; opacity: .06; filter: drop-shadow(0 0 20px #46c4ff);
-  animation: quincy-gira 120s linear infinite;
+  content: ""; position: fixed; right: -8vmin; bottom: -8vmin; width: 58vmin; height: 58vmin; z-index: -1; pointer-events: none;
+  background: url("/art/sym-intro.png") center / contain no-repeat; opacity: .06; filter: drop-shadow(0 0 20px #5cc8ff);
+  animation: quincy-gira 140s linear infinite;
 }
 @keyframes quincy-gira { to { transform: rotate(360deg); } }
-:root[data-skin="quincy"] .topbar { background: #050a14ee; border-bottom: 2px solid #46c4ff55; box-shadow: 0 6px 24px #46c4ff14; }
-:root[data-skin="quincy"] .bar-num, :root[data-skin="quincy"] .bar:nth-child(3n+2) .bar-num, :root[data-skin="quincy"] .bar:nth-child(3n) .bar-num { color: #03111f; }
-:root[data-skin="quincy"] .bar:nth-child(3n+2) .bar-num { background: #eaf4ff; }
-:root[data-skin="quincy"] .bar:nth-child(3n) .bar-num { background: #8fd8ff; }
-:root[data-skin="quincy"] .bar-emblema { filter: invert(1) brightness(.15); }
-:root[data-skin="quincy"] .bar, :root[data-skin="quincy"] .strip, :root[data-skin="quincy"] .panel, :root[data-skin="quincy"] .card { border-color: #28507c; }
-:root[data-skin="quincy"] .bar:hover, :root[data-skin="quincy"] .strip:hover { box-shadow: 0 0 0 2px #46c4ff, 0 0 24px #46c4ff55; }
-:root[data-skin="quincy"] .btn-red { background: #46c4ff; color: #03111f; box-shadow: 4px 4px 0 #123f66; }
-:root[data-skin="quincy"] .bar-go { background: #123f66; color: #eaf4ff; }
-:root[data-skin="quincy"] ::selection { background: #46c4ff; color: #03111f; }
-:root[data-skin="quincy"] .hero h1 span, :root[data-skin="quincy"] .logo span { color: #46c4ff; text-shadow: 0 0 14px #46c4ff99; }
-:root[data-skin="quincy"] .bar-emblema { cursor: pointer; }
+:root[data-skin="quincy"] .title-font, :root[data-skin="quincy"] .hero h1, :root[data-skin="quincy"] .strip b, :root[data-skin="quincy"] .bar-text b, :root[data-skin="quincy"] .article h1, :root[data-skin="quincy"] .page > h1.title-font, :root[data-skin="quincy"] .page > h2.title-font { font-family: "Cinzel", serif; font-style: normal; font-weight: 700; letter-spacing: .06em; }
 
-.quincy-pulso { position: fixed; inset: 0; z-index: 9999; pointer-events: none; display: grid; place-items: center; background: radial-gradient(circle, #cfeaffee 0%, #46c4ff99 35%, #050a14f2 80%); opacity: 0; animation: quincy-flash 1.4s ease-in-out forwards; }
-.quincy-pulso img { width: min(46vmin, 380px); filter: drop-shadow(0 0 24px #46c4ff); animation: quincy-emblema 1.4s ease-out forwards; }
+/* cabeçalho: faixa branca fina com logo ao centro de luz */
+:root[data-skin="quincy"] .topbar { background: #05090fee; border-bottom: 1px solid #8fd8ff; box-shadow: 0 1px 0 #05090f, 0 2px 0 #2b5380, 0 10px 30px #5cc8ff1c; }
+:root[data-skin="quincy"] .logo { font-family: "Cinzel", serif; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; font-size: 26px; text-shadow: 0 0 16px #5cc8ff66; }
+:root[data-skin="quincy"] .logo span { color: #5cc8ff; }
+:root[data-skin="quincy"] .nav a { font-family: "Cinzel", serif; font-size: 15px; letter-spacing: .14em; text-transform: uppercase; transform: none; border-radius: 0; }
+:root[data-skin="quincy"] .nav a:hover, :root[data-skin="quincy"] .nav a:focus-visible { transform: translateY(-2px); border-color: #5cc8ff; box-shadow: 0 0 16px #5cc8ff44; }
+:root[data-skin="quincy"] .nav a::after { background: #eef6ff; height: 2px; }
+
+/* capa: o retorno triunfal, com raios de luz saindo do alto */
+:root[data-skin="quincy"] .hero { border-bottom: 1px solid #8fd8ff; box-shadow: 0 8px 40px #5cc8ff22; }
+:root[data-skin="quincy"] .hero img.hero-art { filter: grayscale(1) brightness(.7) contrast(1.15) sepia(.3) hue-rotate(170deg) saturate(2.4); }
+:root[data-skin="quincy"] .hero::after { background: linear-gradient(90deg, var(--bg) 28%, #05090fcc 48%, transparent 80%); }
+:root[data-skin="quincy"] .hero::before { content: ""; position: absolute; inset: -30% -10% auto -10%; height: 140%; z-index: 1; pointer-events: none; background: repeating-conic-gradient(from 200deg at 50% -10%, #8fd8ff1f 0deg 3deg, transparent 3deg 12deg); mask-image: linear-gradient(to bottom, #000, transparent 75%); animation: q-raios 9s ease-in-out infinite alternate; }
+@keyframes q-raios { from { opacity: .35; transform: scale(1); } to { opacity: .9; transform: scale(1.06); } }
+:root[data-skin="quincy"] .hero h1 { text-shadow: 0 0 30px #5cc8ff66; font-size: clamp(48px, 9vw, 120px); line-height: 1; }
+:root[data-skin="quincy"] .hero h1 span { color: #5cc8ff; }
+:root[data-skin="quincy"] .hero-sym { filter: invert(1) drop-shadow(0 0 20px #5cc8ff); }
+
+/* linha do tempo: anos perdidos até o retorno */
+.q-linha { display: none; }
+:root[data-skin="quincy"] .q-linha { display: block; padding: 46px 32px 10px; max-width: 1240px; margin: 0 auto; }
+.q-trilha { position: relative; display: flex; justify-content: space-between; padding-top: 26px; }
+.q-trilha::before { content: ""; position: absolute; left: 0; right: 0; top: 33px; height: 2px; background: linear-gradient(90deg, #2b3a4d 0%, #2b3a4d 35%, #5cc8ff 80%, #ffffff 100%); box-shadow: 0 0 14px #5cc8ff88; }
+.q-marco { position: relative; display: flex; flex-direction: column; align-items: center; gap: 4px; font-family: "Cinzel", serif; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-size: 14px; color: #6f8196; text-align: center; padding-top: 22px; }
+.q-marco i { position: absolute; top: 3px; width: 14px; height: 14px; transform: rotate(45deg); background: #2b3a4d; border: 2px solid #0a1422; }
+.q-marco small { font-family: var(--font-body); font-weight: 500; letter-spacing: .04em; text-transform: none; font-size: 13px; opacity: .9; }
+.q-m2 { color: #8197ad; } .q-m3 { color: #bfe6ff; } .q-m3 i { background: #5cc8ff; }
+.q-m4 { color: #fff; font-size: 17px; text-shadow: 0 0 14px #8fd8ff; } .q-m4 i { width: 22px; height: 22px; top: -1px; background: #fff; box-shadow: 0 0 22px 6px #5cc8ff; border-color: #5cc8ff; animation: q-pulsa 2s ease-in-out infinite; }
+@keyframes q-pulsa { 50% { box-shadow: 0 0 34px 12px #5cc8ff; } }
+.q-lema { text-align: center; margin: 30px 0 0; font-family: "Cinzel", serif; font-size: clamp(16px, 2.4vw, 24px); letter-spacing: .1em; color: #eef6ff; text-shadow: 0 0 18px #5cc8ff66; }
+
+/* cartões: cantos cortados, borda dupla e brilho prateado */
+:root[data-skin="quincy"] .bar, :root[data-skin="quincy"] .strip { border: 1px solid #8fd8ff; border-radius: 0; outline: 1px solid #2b5380; outline-offset: 3px; clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px); }
+:root[data-skin="quincy"] .bar:hover, :root[data-skin="quincy"] .strip:hover { box-shadow: 0 0 28px #5cc8ff66; }
+:root[data-skin="quincy"] .strip { filter: grayscale(.8) sepia(.3) hue-rotate(170deg) saturate(2); }
+:root[data-skin="quincy"] .strip:hover { filter: none; }
+:root[data-skin="quincy"] .bar-num, :root[data-skin="quincy"] .bar:nth-child(3n+2) .bar-num, :root[data-skin="quincy"] .bar:nth-child(3n) .bar-num { color: #03111f; background: #5cc8ff; font-style: normal; font-weight: 900; }
+:root[data-skin="quincy"] .bar:nth-child(3n+2) .bar-num { background: #eef6ff; }
+:root[data-skin="quincy"] .bar:nth-child(3n) .bar-num { background: #8fd8ff; }
+:root[data-skin="quincy"] .bar-emblema { filter: invert(1) brightness(.1); cursor: pointer; }
+:root[data-skin="quincy"] .bar-go { background: #123f66; color: #eef6ff; border: 1px solid #8fd8ff; }
+:root[data-skin="quincy"] .bar-art img, :root[data-skin="quincy"] .article img { filter: grayscale(1) sepia(.35) hue-rotate(170deg) saturate(2.2) brightness(.9); }
+:root[data-skin="quincy"] .btn-red { background: #5cc8ff; color: #03111f; border-radius: 0; box-shadow: 4px 4px 0 #123f66; font-family: "Cinzel", serif; letter-spacing: .1em; }
+:root[data-skin="quincy"] .btn-paper { border-radius: 0; font-family: "Cinzel", serif; letter-spacing: .1em; }
+:root[data-skin="quincy"] ::selection { background: #5cc8ff; color: #03111f; }
+:root[data-skin="quincy"] .article h2, :root[data-skin="quincy"] .article h3 { border-color: #5cc8ff; }
+:root[data-skin="quincy"] .article h2::after { content: ""; display: block; height: 1px; margin-top: 8px; background: linear-gradient(90deg, #5cc8ff, transparent); }
+
+/* cena de abertura: o retorno */
+.quincy-retorno { position: fixed; inset: 0; z-index: 10000; background: #000; display: grid; place-items: center; cursor: pointer; overflow: hidden; animation: qr-entra .8s ease both; }
+.quincy-retorno.qr-sai { animation: qr-fim .9s ease forwards; }
+.qr-poeira { position: absolute; inset: 0; opacity: .5; background: radial-gradient(circle at 20% 30%, #ffffff10 0 2px, transparent 3px), radial-gradient(circle at 70% 60%, #ffffff0c 0 2px, transparent 3px), radial-gradient(circle at 40% 80%, #ffffff10 0 1px, transparent 2px); background-size: 160px 160px, 220px 220px, 120px 120px; animation: qr-poeira 12s linear infinite; }
+@keyframes qr-poeira { to { background-position: 0 -300px, 0 -400px, 0 -250px; } }
+.qr-frase { position: absolute; margin: 0; padding: 0 24px; text-align: center; font-family: "Cinzel", serif; font-weight: 500; letter-spacing: .12em; font-size: clamp(20px, 4vw, 44px); color: #9fb0c2; opacity: 0; }
+.qr-f1 { animation: qr-texto 2.4s 1s ease both; } .qr-f2 { animation: qr-texto 2.4s 3.2s ease both; } .qr-f3 { animation: qr-texto 2.6s 5.3s ease both; color: #cfeaff; }
+@keyframes qr-texto { 0% { opacity: 0; filter: blur(8px); letter-spacing: .3em; } 25%, 75% { opacity: 1; filter: blur(0); letter-spacing: .12em; } 100% { opacity: 0; filter: blur(4px); } }
+.qr-luz { position: absolute; inset: 0; opacity: 0; background: radial-gradient(circle, #fff 0%, #8fd8ff 28%, #1b5f9a 55%, #02060c 85%); animation: qr-luz 2.6s 7.4s ease-out both; }
+@keyframes qr-luz { 0% { opacity: 0; transform: scale(.2); } 30% { opacity: 1; } 100% { opacity: .85; transform: scale(1.6); } }
+.qr-emblema { position: absolute; width: min(44vmin, 360px); opacity: 0; filter: drop-shadow(0 0 24px #fff) drop-shadow(0 0 60px #5cc8ff); animation: qr-emblema 2.6s 7.5s cubic-bezier(.2,.9,.2,1) both; }
+@keyframes qr-emblema { 0% { opacity: 0; transform: scale(.1) rotate(-200deg); } 50% { opacity: 1; transform: scale(1) rotate(0); } 100% { opacity: 1; transform: scale(1.08) rotate(8deg); } }
+.qr-titulo { position: absolute; bottom: 12vh; margin: 0; font-family: "Cinzel", serif; font-weight: 900; font-size: clamp(34px, 7vw, 84px); letter-spacing: .3em; text-transform: uppercase; color: #fff; text-shadow: 0 0 20px #5cc8ff, 0 0 60px #5cc8ff; opacity: 0; animation: qr-texto-final 2.2s 8s ease both; }
+@keyframes qr-texto-final { from { opacity: 0; transform: translateY(24px); letter-spacing: .6em; } to { opacity: 1; transform: none; letter-spacing: .3em; } }
+.qr-pular { position: absolute; bottom: 14px; right: 18px; color: #6f8196; font-size: 12px; letter-spacing: .08em; }
+@keyframes qr-entra { from { opacity: 0; } to { opacity: 1; } }
+@keyframes qr-fim { to { opacity: 0; } }
+
+.quincy-pulso { position: fixed; inset: 0; z-index: 9999; pointer-events: none; display: grid; place-items: center; opacity: 0; animation: quincy-flash 1.4s ease-in-out forwards; }
+.quincy-pulso img { width: min(46vmin, 380px); animation: quincy-emblema 1.4s ease-out forwards; }
 .quincy-pulso.desliga { background: radial-gradient(circle, #ffffffcc 0%, #e5173f66 40%, #08060af2 85%); }
 .quincy-pulso.desliga img { filter: drop-shadow(0 0 20px #e5173f); }
 @keyframes quincy-flash { 0% { opacity: 0; } 25% { opacity: 1; } 70% { opacity: 1; } 100% { opacity: 0; } }
 @keyframes quincy-emblema { 0% { transform: scale(.2) rotate(-140deg); opacity: 0; } 40% { transform: scale(1) rotate(0); opacity: 1; } 100% { transform: scale(1.5) rotate(40deg); opacity: 0; } }
-@media (prefers-reduced-motion: reduce) { :root[data-skin="quincy"] body::before { animation: none; } }
+
+@media (max-width: 720px) {
+  :root[data-skin="quincy"] .q-linha { padding: 30px 16px 0; }
+  .q-marco { font-size: 11px; } .q-marco small { font-size: 11px; } .q-m4 { font-size: 13px; }
+  :root[data-skin="quincy"] .bar, :root[data-skin="quincy"] .strip { outline-offset: 2px; }
+}
+@media (prefers-reduced-motion: reduce) { :root[data-skin="quincy"] body::before, :root[data-skin="quincy"] .hero::before { animation: none; } }

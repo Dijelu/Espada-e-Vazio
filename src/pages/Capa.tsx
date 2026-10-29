@@ -30,6 +30,15 @@ export default function Capa() {
           </div>
         </div>
       </section>
+      <section className="q-linha" aria-label="Os anos perdidos e o retorno">
+        <div className="q-trilha">
+          <span className="q-marco q-m1"><i />Ano 0<small>O desaparecimento</small></span>
+          <span className="q-marco q-m2"><i />Ano 100<small>Sombras e silêncio</small></span>
+          <span className="q-marco q-m3"><i />Ano 200<small>O sangue desperta</small></span>
+          <span className="q-marco q-m4"><i />Hoje<small>O retorno</small></span>
+        </div>
+        <p className="q-lema">Os Quincy nunca desapareceram. Esperaram.</p>
+      </section>
       <div className="page">
         <h2 className="title-font" style={{ fontSize: 30, margin: "0 0 18px" }}>O que você encontra aqui</h2>
         <div className="strips">
