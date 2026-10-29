@@ -12,7 +12,7 @@
  {
   "nome": "Flechas de Reishi",
   "nivel": 1,
-  "texto": ""
+  "texto": "Você cria projéteis em forma de flechas que flutuam no ar e acompanham seus movimentos por até 1 minuto. Posteriormente, você pode utilizar uma ação bônus para arremessar uma flecha. Ao acertar, ela causa 1d6 + seu atributo-chave de Técnica de Reishi de dano de Energia ou Perfurante, à sua escolha. Cada flecha possui individualmente o custo em pontos de Reiatsu da técnica (3 PR cada). Você pode manter um número de flechas conjuradas igual à metade do seu nível de personagem, com o mínimo de 1 flecha.\n\nAlternativamente, você pode utilizar uma ação para arremessar todas as flechas restantes de uma só vez, causando o dano de todas elas somado e adicionando o atributo-chave apenas uma vez. O alvo realiza um Teste de Resistência de Destreza: em caso de falha recebe o dano total, em caso de sucesso recebe metade. Essa opção transforma a jogada de ataque em automática.\n\nAo arremessar uma flecha com uma ação bônus, você pode pagar novamente o custo em Reiatsu da técnica para arremessar outra flecha na mesma ação bônus, respeitando o limite de flechas que ainda possui."
  },
  {
   "nome": "Gritz",
@@ -22,7 +22,7 @@
  {
   "nome": "Heizen",
   "nivel": 1,
-  "texto": ""
+  "texto": "O usuário arremessa um ou mais Gintous na direção de uma criatura e, em seguida, posiciona as mãos em forma de cruz. Um feixe de energia retangular, vertical e transparente é gerado entre os Gintous, cortando, esmagando ou purificando instantaneamente tudo o que estiver dentro da área delimitada.\n\nPara cada Gintou arremessado que acertar, a criatura sofre dano de Energia igual à metade da quantidade de pontos de Reiatsu armazenados nele. Você pode arremessar, no máximo, quatro Gintous com esta técnica. Os Gintous são destruídos quando usados nessa técnica. Custo: 10 PR para cada Gintou."
  },
  {
   "nome": "Lança de Reishi",
@@ -107,21 +107,21 @@
  {
   "nome": "Chuva de Heilig Pfeil",
   "nivel": 4,
-  "texto": ""
+  "texto": "Você ergue a mão e concentra uma enorme quantidade de Reishi no céu, criando dezenas de Heilig Pfeil que surgem e ficam suspensos no ar, formando uma imensa formação de flechas espirituais sobre o campo de batalha. Por um instante, os projéteis permanecem imóveis, apontados para o chão, até que, com um simples gesto seu, todas as flechas despencam simultaneamente em direção aos inimigos.\n\nVocê realiza uma única jogada de ataque de Técnica de Reishi contra todas as criaturas em uma área de 6 metros de raio. O resultado da jogada é comparado à CR de cada criatura separadamente. Cada criatura atingida sofre 10d10 de dano Perfurante + seu atributo-chave de Técnica de Reishi. Custo: 30 PR · Ação · 24 metros."
  },
  {
   "nome": "Heilig Pfeil Erobern",
   "nivel": 4,
-  "texto": ""
+  "texto": "Você ergue a mão e aponta o dedo indicador para uma criatura dentro do alcance, concentrando uma quantidade colossal de Reishi na ponta do dedo. Em um instante, você dispara uma saraivada devastadora de Heilig Pfeil, lançando uma sequência frenética de flechas espirituais que convergem sobre o alvo. Os projéteis o atingem sucessivamente, liberando uma força destrutiva capaz de devastar o terreno ao redor e abrir uma enorme cratera no ponto do impacto.\n\nRealize uma jogada de ataque de Técnica de Reishi contra uma criatura dentro do alcance. Se acertar, o alvo sofre dano de Energia igual a oito vezes o seu nível de personagem. Custo: 40 PR · Ação Completa · 24 metros."
  },
  {
   "nome": "Kirchenlied: Sankt Zwinger",
   "nivel": 4,
-  "texto": ""
+  "texto": "Você ergue uma das mãos e concentra uma grande quantidade de Reishi, fazendo partículas espirituais se reunirem ao seu redor. Um enorme símbolo Quincy se manifesta no chão e, com um gesto, enormes colunas de energia espiritual emergem ao seu redor e se conectam, formando uma barreira circular com 6 metros de raio. A estrutura envolve a área em uma poderosa zona de contenção, permanecendo ativa por até 1 minuto.\n\nAo ativar a técnica, todas as criaturas hostis dentro da barreira devem realizar um teste de resistência de Constituição. Em caso de falha, sofrem 10d10 de dano de Energia. Em caso de sucesso, sofrem metade do dano. Além disso, no início do turno de cada criatura hostil que você escolher e que esteja dentro da barreira, ela deve repetir o teste de resistência de Constituição, sofrendo 5d10 de dano de Energia em caso de falha, ou metade em caso de sucesso.\n\nVocê e as criaturas escolhidas no momento da ativação podem atravessar a barreira sem sofrer seus efeitos. A técnica termina antecipadamente se você ficar Incapacitado ou decidir encerrá-la. Custo: 30 PR (+5 PR para aumentar a área em 1,5 metro) · Ação."
  },
  {
   "nome": "Qual Kreis",
   "nivel": 4,
-  "texto": ""
+  "texto": "Você cria quatro enormes Heilig Bogen (arcos) feitos de Reishi, posicionando-os em pontos à sua escolha dentro do alcance. Cada arco ocupa 1 quadrado no tabuleiro e possui alcance de disparo igual ao de um arco longo. Além disso, cada arco deve ter linha de visão desimpedida até o alvo para realizar seus disparos. As estruturas se erguem do chão e passam a girar lentamente ao redor da criatura escolhida, acompanhando seus movimentos, disparando sucessivas rajadas de Heilig Pfeil de diferentes direções.\n\nEnquanto mantiver a concentração, os quatro arcos continuam disparando durante 3 turnos. Ao final de cada turno da criatura alvo, ela deve realizar quatro testes de resistência de Destreza, um para cada disparo. Para cada falha, sofre dano de Energia igual a duas vezes o seu nível de personagem. Em caso de sucesso, não sofre dano daquele disparo.\n\nQualquer criatura pode atacar os arcos para tentar interromper o bombardeio. Cada arco possui 30 pontos de vida e uma CR igual à sua. Sempre que um arco for reduzido a 0 pontos de vida, ele é destruído e deixa de realizar seu disparo. Se os quatro arcos forem destruídos, a técnica é encerrada imediatamente. A técnica também termina se você perder a concentração. Custo: 30 PR · Ação · 12 metros a partir do usuário."
  }
 ]
