@@ -146,6 +146,7 @@ export interface ProntaVoll {
   resumo: string;
   aparencia: string;
   canalizador: string;
+  schrift?: string;
   picks: Record<string, number>;
 }
 

@@ -12,14 +12,15 @@
    "forca": 1,
    "reuniao": 1,
    "melhoria": 1
-  }
+  },
+  "schrift": "The Jail (a Schrift de Quilge é outra coisa; a Sklaverei dele é da Vollständig)"
  },
  {
   "id": "zofiel",
   "nome": "Zofiel",
   "personagem": "Bambietta Basterbine",
   "cor": "vermelho",
-  "resumo": "Voo veloz, corpo reforçado e explosões de reishi vermelho.",
+  "resumo": "Voo veloz, corpo reforçado e mergulhos certeiros.",
   "aparencia": "Uma coluna de reiatsu vermelho com uma enorme Cruz Quincy se ergue e se parte; ela surge com asas grandes e uma auréola em forma de estrela.",
   "canalizador": "Leiden Hant (a luva Quincy)",
   "picks": {
@@ -27,22 +28,24 @@
    "potencia": 1,
    "reserva-vital": 1,
    "velocidade": 1
-  }
+  },
+  "schrift": "The Explode (as explosões de Bambietta são da Schrift, não da Vollständig)"
  },
  {
   "id": "barbarriel",
   "nome": "Barbarriel",
   "personagem": "Candice Catnipp",
   "cor": "verde",
-  "resumo": "Relâmpagos: espadas feitas das próprias asas e uma descarga final.",
-  "aparencia": "Uma explosão de eletricidade e seis asas verdes com bordas em forma de raio. A auréola é uma estrela de eletricidade e faíscas correm pelo corpo.",
+  "resumo": "Espadas feitas das próprias asas, lança arremessada e uma descarga de reishi.",
+  "aparencia": "Uma explosão de energia e seis asas verdes com bordas em forma de raio. A auréola é uma estrela de reishi e faíscas correm pelo corpo.",
   "canalizador": "Luva Quincy",
   "picks": {
    "forca": 1,
    "potencia": 1,
    "olhos": 1,
    "velocidade": 1
-  }
+  },
+  "schrift": "The Thunderbolt (o tema elétrico de Candice vem da Schrift; sem ela, use dano de Energia comum)"
  },
  {
   "id": "pornipora",
@@ -57,22 +60,24 @@
    "melhoria": 1,
    "armadura": 1,
    "vigor": 1
-  }
+  },
+  "schrift": "The Power (a força extra de Meninas é da Schrift)"
  },
  {
   "id": "tatarforas",
   "nome": "Tatarforas",
   "personagem": "Äs Nödt",
   "cor": "roxo",
-  "resumo": "Forma grotesca que paralisa pelo medo de quem a vê.",
-  "aparencia": "Sangue nos olhos, carne rasgada e costurada com uma costura visível no corpo, auréola, asas de arame farpado, olhos revirados e braços negros. Cria um domo de olhos ao redor dos inimigos.",
+  "resumo": "Forma grotesca de asas farpadas, carne costurada e braços negros.",
+  "aparencia": "Sangue nos olhos, carne rasgada e costurada com uma costura visível no corpo, auréola, asas de arame farpado, olhos revirados e braços negros.",
   "canalizador": "O olho esquerdo, que o usuário revira para ativar",
   "picks": {
    "sentido": 1,
    "defesa": 1,
    "reserva-vital": 1,
    "armadura": 1
-  }
+  },
+  "schrift": "The Fear (o domo de olhos e o medo pela visão são da Schrift de Äs Nödt)"
  },
  {
   "id": "uryu",
@@ -94,7 +99,7 @@
   "nome": "Aschtonig",
   "personagem": "Gerard Valkyrie",
   "cor": "dourado",
-  "resumo": "Armadura de reishi, rajadas que arrasam quarteirões e corpo que se refaz.",
+  "resumo": "Armadura de reishi, escudo e rajadas que arrasam quarteirões.",
   "aparencia": "Capacete nórdico de reishi, uma estrela sobre o escudo, padrões grossos nos braços e nas pernas, e a estrela do cabo de Hoffnung fica dourada. Pode abrir asas à vontade.",
   "canalizador": "O próprio sangue, desenhando o símbolo Quincy no ar",
   "picks": {
@@ -102,7 +107,8 @@
    "reserva-vital": 1,
    "vigor": 1,
    "reserva-esp": 1
-  }
+  },
+  "schrift": "The Miracle (a regeneração e a imortalidade de Gerard são da Schrift)"
  },
  {
   "id": "jilliel",

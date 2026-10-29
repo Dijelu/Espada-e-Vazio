@@ -280,6 +280,7 @@ Velocidade e força de um espadachim que devora o reishi à sua volta.
 - **Reishi:** azul.
 - **Aparência:** Asas de reishi e auréola, luvas nos dois pulsos, botas e uma espada espiritual.
 - **Canalizador:** Leiden Hant (a luva Quincy).
+- **Schrift (à parte):** The Jail (a Schrift de Quilge é outra coisa; a Sklaverei dele é da Vollständig).
 - **Habilidades únicas:** Velocidade (1x), Força Espiritual (1x), Reunião Eficiente (1x), Melhoria (1x).
 - **Ações:**
   - **Hirenkyaku Dominante** (Ação bônus, 10 PR): Você voa até 18 metros sem provocar ataques de oportunidade e o seu próximo ataque no turno tem vantagem.
@@ -288,29 +289,31 @@ Velocidade e força de um espadachim que devora o reishi à sua volta.
 
 ### Zofiel (Bambietta Basterbine)
 
-Voo veloz, corpo reforçado e explosões de reishi vermelho.
+Voo veloz, corpo reforçado e mergulhos certeiros.
 
 - **Reishi:** vermelho.
 - **Aparência:** Uma coluna de reiatsu vermelho com uma enorme Cruz Quincy se ergue e se parte; ela surge com asas grandes e uma auréola em forma de estrela.
 - **Canalizador:** Leiden Hant (a luva Quincy).
+- **Schrift (à parte):** The Explode (as explosões de Bambietta são da Schrift, não da Vollständig).
 - **Habilidades únicas:** Armadura de Reishi (1x), Potência Espiritual (1x), Reserva Vital (1x), Velocidade (1x).
 - **Ações:**
   - **Voo Veloz** (Ação bônus, 8 PR): Você voa até 18 metros em linha reta sem provocar ataques de oportunidade.
-  - **Corpo Reforçado** (Reação, 10 PR): Quando você sofre dano, reduza esse dano na quantidade indicada. A sua reishi vermelha endurece o corpo. Dano: 2d10 + (proficiência).
-  - **Mergulho Explosivo** (Ação, 30 PR): Você voa até 18 metros e mergulha sobre um ponto: explosão de reishi vermelho de 3 metros de raio. Cada criatura na área faz salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso. Dano: (nível/2 + 5)d10 + (Espírito).
+  - **Corpo Reforçado** (Reação, 10 PR): Quando você sofre dano, reduza esse dano na quantidade indicada. A Vollständig deixa o seu corpo muito mais resistente. Dano: 2d10 + (proficiência).
+  - **Mergulho Alado** (Ação, 30 PR): Você voa até 18 metros e mergulha sobre uma criatura: um ataque que causa o dano de Energia indicado, com margem de crítico 19–20. Dano: (nível/2 + 5)d10 + (Espírito).
 
 ### Barbarriel (Candice Catnipp)
 
-Relâmpagos: espadas feitas das próprias asas e uma descarga final.
+Espadas feitas das próprias asas, lança arremessada e uma descarga de reishi.
 
 - **Reishi:** verde.
-- **Aparência:** Uma explosão de eletricidade e seis asas verdes com bordas em forma de raio. A auréola é uma estrela de eletricidade e faíscas correm pelo corpo.
+- **Aparência:** Uma explosão de energia e seis asas verdes com bordas em forma de raio. A auréola é uma estrela de reishi e faíscas correm pelo corpo.
 - **Canalizador:** Luva Quincy.
+- **Schrift (à parte):** The Thunderbolt (o tema elétrico de Candice vem da Schrift; sem ela, use dano de Energia comum).
 - **Habilidades únicas:** Força Espiritual (1x), Potência Espiritual (1x), Olhos do Céu (1x), Velocidade (1x).
 - **Ações:**
-  - **Espadas de Relâmpago** (Ação, 15 PR): Você arranca duas asas e as usa como espadas: dois ataques corpo a corpo. Cada acerto causa o dano indicado de Energia (elétrico) e empurra o alvo 3 metros. Dano: 2d10 + (Espírito).
-  - **Galvano Javelin** (Ação, 20 PR): Você arremessa uma espada de relâmpago contra uma criatura a até 36 metros. Se acertar, causa o dano de Energia indicado. Dano: 6d10 + (Espírito).
-  - **Eletrocussão** (Ação, 30 PR): Você reúne a eletricidade ao redor numa coluna e a arremessa: área de 9 metros de raio num ponto a até 18 metros. Cada criatura faz salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso. Dano: (nível/2 + 5)d10 + (Espírito).
+  - **Espadas Aladas** (Ação, 15 PR): Você arranca duas asas e as usa como espadas: dois ataques corpo a corpo. Cada acerto causa o dano indicado de Energia e empurra o alvo 3 metros. Dano: 2d10 + (Espírito).
+  - **Galvano Javelin** (Ação, 20 PR): Você arremessa uma das espadas contra uma criatura a até 36 metros. Se acertar, causa o dano de Energia indicado. Dano: 6d10 + (Espírito).
+  - **Sklaverei: Descarga** (Ação, 30 PR): Você absorve o reishi do ambiente e o arremessa de uma vez: área de 9 metros de raio num ponto a até 18 metros. Cada criatura faz salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso. Dano: (nível/2 + 5)d10 + (Espírito).
 
 ### Pornipora (Meninas McAllon)
 
@@ -319,6 +322,7 @@ Briga corpo a corpo com dois halteres de reishi.
 - **Reishi:** rosa.
 - **Aparência:** Asas rosa de três grandes segmentos em forma de coração e auréola em estrela. Com Sklaverei surgem joelheiras e um peitoral em forma de coração, e dois halteres nas mãos.
 - **Canalizador:** Luva Quincy.
+- **Schrift (à parte):** The Power (a força extra de Meninas é da Schrift).
 - **Habilidades únicas:** Força Espiritual (1x), Melhoria (1x), Armadura de Reishi (1x), Vigor do Reishi (1x).
 - **Ações:**
   - **Dumbbell Duster** (Ação bônus, 8 PR): Você reforça os punhos com os halteres: o seu próximo ataque corpo a corpo no turno causa o dano de Energia indicado a mais. Dano: 2d10.
@@ -327,16 +331,17 @@ Briga corpo a corpo com dois halteres de reishi.
 
 ### Tatarforas (Äs Nödt)
 
-Forma grotesca que paralisa pelo medo de quem a vê.
+Forma grotesca de asas farpadas, carne costurada e braços negros.
 
 - **Reishi:** roxo.
-- **Aparência:** Sangue nos olhos, carne rasgada e costurada com uma costura visível no corpo, auréola, asas de arame farpado, olhos revirados e braços negros. Cria um domo de olhos ao redor dos inimigos.
+- **Aparência:** Sangue nos olhos, carne rasgada e costurada com uma costura visível no corpo, auréola, asas de arame farpado, olhos revirados e braços negros.
 - **Canalizador:** O olho esquerdo, que o usuário revira para ativar.
+- **Schrift (à parte):** The Fear (o domo de olhos e o medo pela visão são da Schrift de Äs Nödt).
 - **Habilidades únicas:** Sentido Divino (1x), Defesa (1x), Reserva Vital (1x), Armadura de Reishi (1x).
 - **Ações:**
-  - **Olhar do Medo** (Ação bônus, 8 PR): Uma criatura a até 18 metros que veja você faz salvaguarda de Espírito (CD 8 + proficiência + Espírito). Na falha, fica amedrontada até o fim do seu próximo turno. Fechar os olhos não protege.
-  - **Domo de Olhos** (Ação, 20 PR): Um domo de olhos de 9 metros de raio surge ao redor de você. Cada criatura que o veja faz salvaguarda de Espírito (CD 8 + proficiência + Espírito). Na falha, fica paralisada até o fim do seu próximo turno e repete o teste ao fim de cada turno dela. O domo dura 1 minuto.
-  - **Absorver os Olhos** (Ação, 30 PR): Você absorve os olhos do domo e o corpo se deforma. Ganha PV temporários na quantidade indicada e +2 de CR até o fim da cena. Dano: (nível×2).
+  - **Voo Farpado** (Ação bônus, 8 PR): Você voa até 18 metros com as asas de arame farpado. Cada criatura a 1,5 metro do seu caminho sofre o dano cortante indicado. Dano: 2d10.
+  - **Costura da Carne** (Reação, 10 PR): Quando você sofre dano, a carne rasgada se fecha e reduz esse dano na quantidade indicada. Dano: 2d10 + (proficiência).
+  - **Garras Negras** (Ação, 30 PR): Um ataque corpo a corpo com os braços negros, com margem de crítico 19–20. Se acertar, causa o dano de Energia indicado. Dano: (nível/2 + 5)d10 + (Espírito).
 
 ### Vollständig de Uryū (Uryū Ishida)
 
@@ -353,16 +358,17 @@ Arqueiro de flechas guiadas que concentra tudo num único disparo.
 
 ### Aschtonig (Gerard Valkyrie)
 
-Armadura de reishi, rajadas que arrasam quarteirões e corpo que se refaz.
+Armadura de reishi, escudo e rajadas que arrasam quarteirões.
 
 - **Reishi:** dourado.
 - **Aparência:** Capacete nórdico de reishi, uma estrela sobre o escudo, padrões grossos nos braços e nas pernas, e a estrela do cabo de Hoffnung fica dourada. Pode abrir asas à vontade.
 - **Canalizador:** O próprio sangue, desenhando o símbolo Quincy no ar.
+- **Schrift (à parte):** The Miracle (a regeneração e a imortalidade de Gerard são da Schrift).
 - **Habilidades únicas:** Potência Espiritual (1x), Reserva Vital (1x), Vigor do Reishi (1x), Reserva Espiritual (1x).
 - **Ações:**
   - **Escudo de Hoffnung** (Reação, 10 PR): Quando você ou um aliado a 3 metros sofre dano, o escudo de reishi reduz esse dano na quantidade indicada. Dano: 2d10 + (proficiência).
+  - **Aura de Hoffnung** (Ação bônus, 15 PR): As asas criam uma aura de energia ao redor de Hoffnung: até o fim do turno, os seus ataques com a arma causam o dano de Energia indicado a mais. Dano: 2d10.
   - **Rajada de Hoffnung** (Ação, 25 PR): Uma rajada de energia sai da ponta de Hoffnung: linha de 36 metros por 3 de largura. Cada criatura na linha faz salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso. Dano: (nível/2 + 4)d10 + (Espírito).
-  - **Corpo Renascido** (Reação, 30 PR): Uma vez por descanso longo, quando você cairia a 0 PV, o corpo se refaz: você volta com os PV indicados e fica com +3 de CR até o fim do próximo turno. Dano: (nível×3).
 
 ### Jilliel (Lille Barro)
 
@@ -373,8 +379,8 @@ Asas amarelas e uma segunda forma que se regenera depois de um ferimento fatal.
 - **Canalizador:** À sua escolha.
 - **Habilidades únicas:** Vigor do Reishi (1x), Reserva Vital (1x), Defesa (1x), Armadura de Reishi (1x).
 - **Ações:**
+  - **Asas Amarelas** (Ação bônus, 8 PR): Você voa até 18 metros sem provocar ataques de oportunidade.
   - **Regeneração Amarela** (Ação, 15 PR): Você cura PV na quantidade indicada em si mesmo e regenera um membro perdido, se houver. Dano: (nível×2).
-  - **Golpe de Asas** (Ação, 20 PR): As asas amarelas batem como lâminas: ataque corpo a corpo de 3 metros de alcance que causa o dano de Energia indicado e empurra o alvo 3 metros. Dano: 4d10 + (Espírito).
   - **Renascimento** (Reação, 30 PR): Uma vez por descanso longo, ao cair a 0 PV, você assume a segunda forma: volta com os PV indicados, regenerado. Dano: (nível×3).
 
 ### Criando Sua Vollstanding

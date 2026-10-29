@@ -48,7 +48,9 @@ for m in M:
     picks = ", ".join(f"{HAB[k]} ({n}x)" for k, n in m["picks"].items())
     txt += f"### {m['nome']} ({m['personagem']})\n\n"
     txt += f"{m['resumo']}\n\n"
-    txt += f"- **Reishi:** {m['cor']}.\n- **Aparência:** {m['aparencia']}\n- **Canalizador:** {m['canalizador']}.\n- **Habilidades únicas:** {picks}.\n- **Ações:**\n"
+    txt += f"- **Reishi:** {m['cor']}.\n- **Aparência:** {m['aparencia']}\n- **Canalizador:** {m['canalizador']}.\n"
+    if m.get("schrift"): txt += f"- **Schrift (à parte):** {m['schrift']}.\n"
+    txt += f"- **Habilidades únicas:** {picks}.\n- **Ações:**\n"
     txt += "\n".join(linha(a) for a in D["vollstandig"]["prontas"][m["id"]]) + "\n\n"
 a = s.index("## Vollstanding Prontas")
 b = s.index("### Criando Sua Vollstanding")

@@ -182,37 +182,37 @@
      "acao": "Reação",
      "pr": 10,
      "dano": "2d10+[PROF]",
-     "texto": "Quando você sofre dano, reduza esse dano na quantidade indicada. A sua reishi vermelha endurece o corpo."
+     "texto": "Quando você sofre dano, reduza esse dano na quantidade indicada. A Vollständig deixa o seu corpo muito mais resistente."
     },
     {
-     "nome": "Mergulho Explosivo",
+     "nome": "Mergulho Alado",
      "acao": "Ação",
      "pr": 30,
      "dano": "[NIV/2+5]d10+[ESP]",
-     "texto": "Você voa até 18 metros e mergulha sobre um ponto: explosão de reishi vermelho de 3 metros de raio. Cada criatura na área faz salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso."
+     "texto": "Você voa até 18 metros e mergulha sobre uma criatura: um ataque que causa o dano de Energia indicado, com margem de crítico 19–20."
     }
    ],
    "barbarriel": [
     {
-     "nome": "Espadas de Relâmpago",
+     "nome": "Espadas Aladas",
      "acao": "Ação",
      "pr": 15,
      "dano": "2d10+[ESP]",
-     "texto": "Você arranca duas asas e as usa como espadas: dois ataques corpo a corpo. Cada acerto causa o dano indicado de Energia (elétrico) e empurra o alvo 3 metros."
+     "texto": "Você arranca duas asas e as usa como espadas: dois ataques corpo a corpo. Cada acerto causa o dano indicado de Energia e empurra o alvo 3 metros."
     },
     {
      "nome": "Galvano Javelin",
      "acao": "Ação",
      "pr": 20,
      "dano": "6d10+[ESP]",
-     "texto": "Você arremessa uma espada de relâmpago contra uma criatura a até 36 metros. Se acertar, causa o dano de Energia indicado."
+     "texto": "Você arremessa uma das espadas contra uma criatura a até 36 metros. Se acertar, causa o dano de Energia indicado."
     },
     {
-     "nome": "Eletrocussão",
+     "nome": "Sklaverei: Descarga",
      "acao": "Ação",
      "pr": 30,
      "dano": "[NIV/2+5]d10+[ESP]",
-     "texto": "Você reúne a eletricidade ao redor numa coluna e a arremessa: área de 9 metros de raio num ponto a até 18 metros. Cada criatura faz salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso."
+     "texto": "Você absorve o reishi do ambiente e o arremessa de uma vez: área de 9 metros de raio num ponto a até 18 metros. Cada criatura faz salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso."
     }
    ],
    "pornipora": [
@@ -240,25 +240,25 @@
    ],
    "tatarforas": [
     {
-     "nome": "Olhar do Medo",
+     "nome": "Voo Farpado",
      "acao": "Ação bônus",
      "pr": 8,
-     "dano": "",
-     "texto": "Uma criatura a até 18 metros que veja você faz salvaguarda de Espírito (CD 8 + proficiência + Espírito). Na falha, fica amedrontada até o fim do seu próximo turno. Fechar os olhos não protege."
+     "dano": "2d10",
+     "texto": "Você voa até 18 metros com as asas de arame farpado. Cada criatura a 1,5 metro do seu caminho sofre o dano cortante indicado."
     },
     {
-     "nome": "Domo de Olhos",
-     "acao": "Ação",
-     "pr": 20,
-     "dano": "",
-     "texto": "Um domo de olhos de 9 metros de raio surge ao redor de você. Cada criatura que o veja faz salvaguarda de Espírito (CD 8 + proficiência + Espírito). Na falha, fica paralisada até o fim do seu próximo turno e repete o teste ao fim de cada turno dela. O domo dura 1 minuto."
+     "nome": "Costura da Carne",
+     "acao": "Reação",
+     "pr": 10,
+     "dano": "2d10+[PROF]",
+     "texto": "Quando você sofre dano, a carne rasgada se fecha e reduz esse dano na quantidade indicada."
     },
     {
-     "nome": "Absorver os Olhos",
+     "nome": "Garras Negras",
      "acao": "Ação",
      "pr": 30,
-     "dano": "[NIV*2]",
-     "texto": "Você absorve os olhos do domo e o corpo se deforma. Ganha PV temporários na quantidade indicada e +2 de CR até o fim da cena."
+     "dano": "[NIV/2+5]d10+[ESP]",
+     "texto": "Um ataque corpo a corpo com os braços negros, com margem de crítico 19–20. Se acertar, causa o dano de Energia indicado."
     }
    ],
    "uryu": [
@@ -293,34 +293,34 @@
      "texto": "Quando você ou um aliado a 3 metros sofre dano, o escudo de reishi reduz esse dano na quantidade indicada."
     },
     {
+     "nome": "Aura de Hoffnung",
+     "acao": "Ação bônus",
+     "pr": 15,
+     "dano": "2d10",
+     "texto": "As asas criam uma aura de energia ao redor de Hoffnung: até o fim do turno, os seus ataques com a arma causam o dano de Energia indicado a mais."
+    },
+    {
      "nome": "Rajada de Hoffnung",
      "acao": "Ação",
      "pr": 25,
      "dano": "[NIV/2+4]d10+[ESP]",
      "texto": "Uma rajada de energia sai da ponta de Hoffnung: linha de 36 metros por 3 de largura. Cada criatura na linha faz salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso."
-    },
-    {
-     "nome": "Corpo Renascido",
-     "acao": "Reação",
-     "pr": 30,
-     "dano": "[NIV*3]",
-     "texto": "Uma vez por descanso longo, quando você cairia a 0 PV, o corpo se refaz: você volta com os PV indicados e fica com +3 de CR até o fim do próximo turno."
     }
    ],
    "jilliel": [
+    {
+     "nome": "Asas Amarelas",
+     "acao": "Ação bônus",
+     "pr": 8,
+     "dano": "",
+     "texto": "Você voa até 18 metros sem provocar ataques de oportunidade."
+    },
     {
      "nome": "Regeneração Amarela",
      "acao": "Ação",
      "pr": 15,
      "dano": "[NIV*2]",
      "texto": "Você cura PV na quantidade indicada em si mesmo e regenera um membro perdido, se houver."
-    },
-    {
-     "nome": "Golpe de Asas",
-     "acao": "Ação",
-     "pr": 20,
-     "dano": "4d10+[ESP]",
-     "texto": "As asas amarelas batem como lâminas: ataque corpo a corpo de 3 metros de alcance que causa o dano de Energia indicado e empurra o alvo 3 metros."
     },
     {
      "nome": "Renascimento",
