@@ -14,7 +14,7 @@ import {
 } from "../regras/liberacoes";
 import { novoId } from "./FichaPecas";
 import { AssistenteForma } from "./AssistenteForma";
-import { acoesDaForma, comoHabilidades, habilidadesDaForma, maiorCustoPR, resolverDano, sugerirCusto } from "../regras/liberacoes";
+import { acoesDaForma, comoHabilidades, habilidadesDaForma, maiorCustoPR, resolverDano, danoDaAcao, sugerirCusto } from "../regras/liberacoes";
 import type { Calculo } from "../regras/ficha";
 import type { Rolagens } from "./Rolador";
 
@@ -395,7 +395,7 @@ const formasDefinidas = (f: Ficha) =>
 
 /** Uma habilidade da forma como carta, com botões de usar e rolar. */
 function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg }: { f: Ficha; c: Calculo; r: Rolagens; alterar: (p: Partial<Ficha>) => void; forma: FormaLib; h: ItemAcao; ativa: boolean; onMsg: (m: string) => void }) {
-  const dano = h.dano ? resolverDano(h.dano, f, c) : "";
+  const dano = h.dano ? danoDaAcao(h.dano, f, c, forma) : "";
   const gasta = h.prExpr ? Number(resolverDano(h.prExpr, f, c)) || (h.pr ?? 0) : h.pr ?? 0;
   return (
     <article className={`carta-hab acao-carta ${ativa ? "" : "travada"}`}>

@@ -5,7 +5,7 @@ import { Passo } from "./FichaPecas";
 import type { Rolagens } from "./Rolador";
 import { CONDICAO_TEXTO, CONDICOES, treinoConcluido } from "../regras/catalogo";
 import { Dica } from "./Dica";
-import { nivelLiberacao } from "../regras/liberacoes";
+import { custoBankai, nivelLiberacao } from "../regras/liberacoes";
 import { classePorId, type Calculo, type Ficha, type Liberacao } from "../regras/ficha";
 import { efeito as som } from "../lib/som";
 
@@ -35,10 +35,13 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
 
   const curto = () => {
     if (e.curtosUsados >= 2) return;
+    const usos = { ...e.usos };
+    const limpa = !!usos["esgotado-curto"];
+    delete usos["esgotado-curto"];
     alterar({
       pvAtual: Math.min(c.pv, f.pvAtual + Math.floor(c.pv / 2)),
       prAtual: Math.min(c.pr, f.prAtual + Math.floor(c.pr / 2)),
-      estado: { ...f.estado, curtosUsados: e.curtosUsados + 1 },
+      estado: { ...f.estado, curtosUsados: e.curtosUsados + 1, usos, condicoes: limpa ? e.condicoes.filter((x) => x !== "Esgotado") : e.condicoes },
     });
     setMsg("Descanso curto: recuperou metade do PV e do PR totais.");
   };
@@ -46,7 +49,7 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
     alterar({
       pvAtual: c.pv,
       prAtual: c.pr,
-      estado: { ...f.estado, pvTemp: 0, curtosUsados: 0, ultimoFolegoUsado: false, liberado: "", usos: {} },
+      estado: { ...f.estado, pvTemp: 0, curtosUsados: 0, ultimoFolegoUsado: false, liberado: "", usos: {}, condicoes: e.condicoes.filter((x) => x !== "Esgotado") },
     });
     setMsg("Descanso longo: PV e PR cheios, descansos curtos e habilidades renovados.");
   };
@@ -55,7 +58,7 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
     // fim do combate: habilidades por combate voltam e a liberação termina
     const usos = { ...f.estado.usos };
     delete usos["ultimo-folego"];
-    alterar({ estado: { ...f.estado, usos, liberado: "" } });
+    alterar({ estado: { ...f.estado, ...encerrarForma(), usos: { ...encerrarForma().usos, ...usos } } });
     setMsg("Combate encerrado: habilidades de uso por combate renovadas.");
   };
 
@@ -81,15 +84,33 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
     }
     if (id === "mascara") return 5 * c.prof;
     if (id === "vollstandig") return Math.max(1, 60 - c.reducaoLib.vollstandig);
-    if (id === "bankai") return Math.max(1, (f.formas?.bankai?.custo ?? 0) - c.reducaoLib.bankai);
+    if (id === "bankai") return Math.max(1, custoBankai(f) - c.reducaoLib.bankai);
     if (id === "shikai") return Math.max(1, (f.formas?.shikai?.custo ?? 0) - c.reducaoLib.shikai);
     if (id === "terror") return 60;
     return 0;
   };
 
+  /** Terror e Bankai Verdadeira deixam o personagem Esgotado quando terminam (Terror até o descanso longo, Bankai até o descanso curto). */
+  const encerrarForma = (): Partial<Ficha["estado"]> => {
+    const terror = e.liberado === "terror";
+    const verdadeira = e.liberado === "bankai" && f.treinos.caminhoBankai === "verdadeira";
+    if (!terror && !verdadeira) return { liberado: "" };
+    const usos = { ...e.usos };
+    if (verdadeira) usos["esgotado-curto"] = 1;
+    else delete usos["esgotado-curto"];
+    return { liberado: "", usos, condicoes: e.condicoes.includes("Esgotado") ? e.condicoes : [...e.condicoes, "Esgotado"] };
+  };
+  const proximoTurno = () => {
+    if (e.liberado !== "terror") return;
+    alterar({ prAtual: Math.max(0, f.prAtual - 2) });
+    setMsg("Novo turno com o Terror ativo: −2 PR.");
+  };
+
   const liberar = (id: Liberacao) => {
     if (e.liberado === id) {
-      setE({ liberado: "" });
+      const fim = encerrarForma();
+      setE(fim);
+      if (fim.condicoes) setMsg(id === "terror" ? "Terror encerrado: você ficou Esgotado até o descanso longo." : "Bankai Verdadeira encerrada: você ficou Esgotado até o descanso curto.");
       return;
     }
     const custo = custoLib(id);
@@ -135,6 +156,7 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
               {l.nome}{custoLib(l.id) ? ` (${custoLib(l.id)} PR)` : ""}
             </button>
           ))}
+          {e.liberado === "terror" && <button type="button" className="chip chip-btn" onClick={proximoTurno}>Novo turno (−2 PR)</button>}
           {e.liberado && <span className="ajuda">CR atual {c.cr}.</span>}
         </div>
       )}
