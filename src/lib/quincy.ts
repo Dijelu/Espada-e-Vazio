@@ -23,10 +23,14 @@ function salvar(v: boolean) {
   }
 }
 
-const FRASES = [
-  "Duzentos anos de silêncio.",
+const CENA1 = [
+  "Duzentos anos atrás, o Seireitei decretou o fim dos Quincy.",
+  "As cidades arderam e os sobreviventes se esconderam nas sombras.",
   "O mundo os deu por extintos.",
-  "Mas o sangue de prata nunca secou.",
+];
+const CENA2 = [
+  "Mas o Rei Quincy não morreu. Esperou, em silêncio, enquanto o poder voltava.",
+  "O sangue de prata nunca secou.",
 ];
 
 let rodando = false;
@@ -37,8 +41,10 @@ function retorno() {
   el.className = "quincy-retorno";
   el.setAttribute("role", "presentation");
   el.innerHTML =
+    '<div class="qr-quadro qr-q1"></div><div class="qr-quadro qr-q2"></div>' +
     '<div class="qr-poeira"></div>' +
-    FRASES.map((t, i) => `<p class="qr-frase qr-f${i + 1}">${t}</p>`).join("") +
+    CENA1.map((t, i) => `<p class="qr-frase qr-a${i + 1}">${t}</p>`).join("") +
+    CENA2.map((t, i) => `<p class="qr-frase qr-b${i + 1}">${t}</p>`).join("") +
     '<div class="qr-luz"></div>' +
     '<img class="qr-emblema" src="/art/sym-intro.png" alt="">' +
     '<h2 class="qr-titulo">O Retorno</h2>' +
@@ -56,8 +62,8 @@ function retorno() {
     }, 900);
   };
   el.addEventListener("click", fim);
-  window.setTimeout(() => aplicar(true), 8200);
-  window.setTimeout(fim, 10200);
+  window.setTimeout(() => aplicar(true), 12400);
+  window.setTimeout(fim, 14400);
 }
 
 function despedida() {
