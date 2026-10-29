@@ -464,7 +464,7 @@ Este capítulo não cria Schrift novas: usa apenas as que existem no mangá. A S
 - **Dano de tema:** nas Schrift de dano, o poder causa **proficiência × d8** do tipo indicado.
 - **Com a Vollständig ativa:** o poder pode ser usado **duas vezes por cena**, o dano sobe para **proficiência × d10 + proficiência**, o alcance e a área ficam 50% maiores e o efeito adicional da tabela passa a valer.
 - **Limite:** só um bônus de Schrift vale por turno. Ela não se soma a Força Espiritual ou Precisão Espiritual no mesmo dano.
-- **Schrift de utilidade:** Miracle, X-Axis, Love, Zombie, Antítese e The Balance não causam dano. O poder de tema delas está na tabela, e as habilidades completas de Antítese e The Balance seguem logo abaixo.
+- **Schrift de utilidade:** As Schrift marcadas como Utilidade ou Ofensiva na tabela (Miracle, X-Axis, Love, Zombie, Antítese, The Balance e as outras sem tipo de dano) não causam dano de tema. O poder de tema delas está na tabela, e as habilidades completas de Antítese e The Balance seguem logo abaixo.
 
 ### As Schrift do mangá
 
@@ -482,6 +482,19 @@ Este capítulo não cria Schrift novas: usa apenas as que existem no mangá. A S
 | The Zombie | Utilidade | Invoca 1 morto-vivo por 1 minuto (PV 5 × nível, CR 10 + proficiência). | Invoca 2 mortos-vivos |
 | Antítese | Utilidade | Troca Perfeita (veja abaixo). | O custo da Troca Perfeita cai 5 PR (mínimo 5) |
 | The Balance | Utilidade | Equilíbrio (veja abaixo). | O custo do Equilíbrio cai 5 PR (mínimo 5) |
+| The Almighty | Utilidade | Reação: um inimigo que você vê tem desvantagem na próxima jogada contra você. Exclusiva de Yhwach; só por história, com a aprovação do Mestre. | Também vale para um aliado a até 9 m, duas vezes por cena. |
+| The Compulsory | Dano de Energia | Ataque: se acertar, nervos de Reishi prendem o alvo, que faz Teste de Constituição ou perde o movimento por 1 rodada. | O alvo fica Paralisado em vez de só perder o movimento. |
+| The Glutton | Utilidade | Ataque: se acertar, você devora um pouco da energia do alvo e recupera PR igual a 2 × proficiência. | Recupera PR igual a 4 × proficiência; se o alvo tiver técnica especial, você a usa uma vez até o fim da cena. |
+| The Heat | Dano de Fogo | Chamas de calor em linha de 18 m. Destreza evita metade. | Também a condição Queimado e o dano ignora resistência a fogo. |
+| The Iron | Utilidade | Reação: sua pele endurece e você ganha resistência a um tipo de dano físico até o início do seu próximo turno. | Resistência a todo dano físico por 1 minuto; a pele também causa dano ao atacante corpo a corpo. |
+| The Overkill | Ofensiva | Ao derrubar um inimigo, a próxima jogada de dano do seu turno ganha +proficiência. | O bônus vale por 1 minuto e acumula até +2 × proficiência. |
+| The Question | Dano Psíquico | O alvo faz Teste de Espírito ou fica com dúvida: desvantagem no próximo ataque dele. | Atinge criaturas a até 9 m do alvo e a desvantagem vale por 1 minuto. |
+| The Roar | Dano Sônico | Grito em cone de 9 m. Constituição evita metade e quem falhar não ouve até o fim do próximo turno. | Cone de 13,5 m e quem falhar fica Atordoado por 1 rodada. |
+| The Superstar | Utilidade | Ação bônus: ganhe PV temporários iguais a 2 × proficiência, alimentados por quem assiste. | PV temporários iguais a 4 × proficiência e +2 na CR por 1 rodada. |
+| The Underbelly | Utilidade | Ação bônus: marque um alvo e descubra o ponto fraco do reiatsu dele; seu próximo ataque contra ele ignora 5 de CR. | O ataque ignora 10 de CR e vale para um aliado também. |
+| The Visionary | Utilidade | Ação: faça uma ilusão se tornar real por 1 rodada (objeto ou obstáculo pequeno, a critério do Mestre). | A criação dura 1 minuto e pode ser do tamanho de uma criatura Média. |
+| The Wind | Utilidade | Reação: ao ser atacado, mova-se até 3 m sem provocar ataques de oportunidade e dê desvantagem ao ataque. | Mova-se até 6 m e use a reação duas vezes por cena. |
+| The Yourself | Utilidade | Ação: assuma a aparência e a voz de uma criatura que você viu, por 1 hora. | Também copia 1 técnica que ela mostrou, por 1 minuto. |
 
 ### Schrift e Vollständig
 

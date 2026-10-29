@@ -25,6 +25,19 @@ export const SCHRIFTS: Schrift[] = [
   { id: "zombie", nome: "The Zombie", base: "Invoca 1 morto-vivo por 1 minuto (PV 5 × nível, CR 10 + proficiência).", voll: "Invoca 2 mortos-vivos." },
   { id: "antitese", nome: "Antítese", base: "Troca Perfeita (veja o Capítulo 7).", voll: "O custo da Troca Perfeita cai 5 PR (mínimo 5)." },
   { id: "balance", nome: "The Balance", base: "Equilíbrio (veja o Capítulo 7).", voll: "O custo do Equilíbrio cai 5 PR (mínimo 5)." },
+  { id: "almighty", nome: "The Almighty", base: "Reação: um inimigo que você vê tem desvantagem na próxima jogada contra você. Exclusiva de Yhwach; só por história, com a aprovação do Mestre.", voll: "Também vale para um aliado a até 9 m, duas vezes por cena." },
+  { id: "compulsory", nome: "The Compulsory", dano: "Energia", base: "Ataque: se acertar, nervos de Reishi prendem o alvo, que faz Teste de Constituição ou perde o movimento por 1 rodada.", voll: "O alvo fica Paralisado em vez de só perder o movimento." },
+  { id: "glutton", nome: "The Glutton", base: "Ataque: se acertar, você devora um pouco da energia do alvo e recupera PR igual a 2 × proficiência.", voll: "Recupera PR igual a 4 × proficiência; se o alvo tiver técnica especial, você a usa uma vez até o fim da cena." },
+  { id: "heat", nome: "The Heat", dano: "Fogo", base: "Chamas de calor em linha de 18 m. Destreza evita metade.", voll: "Também a condição Queimado e o dano ignora resistência a fogo." },
+  { id: "iron", nome: "The Iron", base: "Reação: sua pele endurece e você ganha resistência a um tipo de dano físico até o início do seu próximo turno.", voll: "Resistência a todo dano físico por 1 minuto; a pele também causa dano ao atacante corpo a corpo." },
+  { id: "overkill", nome: "The Overkill", base: "Ao derrubar um inimigo, a próxima jogada de dano do seu turno ganha +proficiência.", voll: "O bônus vale por 1 minuto e acumula até +2 × proficiência." },
+  { id: "question", nome: "The Question", dano: "Psíquico", base: "O alvo faz Teste de Espírito ou fica com dúvida: desvantagem no próximo ataque dele.", voll: "Atinge criaturas a até 9 m do alvo e a desvantagem vale por 1 minuto." },
+  { id: "roar", nome: "The Roar", dano: "Sônico", base: "Grito em cone de 9 m. Constituição evita metade e quem falhar não ouve até o fim do próximo turno.", voll: "Cone de 13,5 m e quem falhar fica Atordoado por 1 rodada." },
+  { id: "superstar", nome: "The Superstar", base: "Ação bônus: ganhe PV temporários iguais a 2 × proficiência, alimentados por quem assiste.", voll: "PV temporários iguais a 4 × proficiência e +2 na CR por 1 rodada." },
+  { id: "underbelly", nome: "The Underbelly", base: "Ação bônus: marque um alvo e descubra o ponto fraco do reiatsu dele; seu próximo ataque contra ele ignora 5 de CR.", voll: "O ataque ignora 10 de CR e vale para um aliado também." },
+  { id: "visionary", nome: "The Visionary", base: "Ação: faça uma ilusão se tornar real por 1 rodada (objeto ou obstáculo pequeno, a critério do Mestre).", voll: "A criação dura 1 minuto e pode ser do tamanho de uma criatura Média." },
+  { id: "wind", nome: "The Wind", base: "Reação: ao ser atacado, mova-se até 3 m sem provocar ataques de oportunidade e dê desvantagem ao ataque.", voll: "Mova-se até 6 m e use a reação duas vezes por cena." },
+  { id: "yourself", nome: "The Yourself", base: "Ação: assuma a aparência e a voz de uma criatura que você viu, por 1 hora.", voll: "Também copia 1 técnica que ela mostrou, por 1 minuto." },
 ];
 
 export const NIVEL_SCHRIFT = 10;
