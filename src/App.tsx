@@ -5,6 +5,8 @@ import Busca from "./components/Busca";
 import Capa from "./pages/Capa";
 import Livro from "./pages/Livro";
 import Capitulo from "./pages/Capitulo";
+import Ferramentas from "./pages/Ferramentas";
+import Simulador from "./pages/Simulador";
 import EmBreve from "./pages/EmBreve";
 import Fichas from "./pages/Fichas";
 import NovaFicha from "./pages/NovaFicha";
@@ -56,7 +58,8 @@ export default function App() {
         <Route path="/fichas/nova" element={<RequerLogin><NovaFicha /></RequerLogin>} />
         <Route path="/fichas/:id" element={<RequerLogin><Ficha /></RequerLogin>} />
         <Route path="/campanhas" element={<EmBreve titulo="Campanhas" texto="Mesas, convites e o Painel do Mestre chegam nas etapas finais." />} />
-        <Route path="/ferramentas" element={<EmBreve titulo="Ferramentas do Mestre" texto="Simulador, NPC pareado, Solo/Raid e Boss estão em preparação." />} />
+        <Route path="/ferramentas" element={<Ferramentas />} />
+        <Route path="/ferramentas/simulador" element={<Simulador />} />
         <Route path="/conta" element={<Conta />} />
         <Route path="*" element={<EmBreve titulo="Página não encontrada" texto="Esse caminho não existe." />} />
       </Routes>

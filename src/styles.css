@@ -927,3 +927,16 @@ select:focus-visible, .opcoes-grandes .opcao:focus-visible, .chip-btn:focus-visi
 .pontinho.erro { background: #e5173f; color: #fff; }
 .destaque-conserto { animation: destaque-conserto 2.2s ease-out; }
 @keyframes destaque-conserto { 0%, 60% { box-shadow: 0 0 0 4px #e5173f, 0 0 28px #e5173f88; } 100% { box-shadow: none; } }
+
+.sim-colunas { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 16px; margin: 16px 0; }
+.sim-grade { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 10px; }
+.sim-check { display: flex; align-items: center; gap: 8px; margin: 8px 0; font-size: 15px; }
+.sim-check input { width: auto; min-height: 0; }
+.sim-acao { display: grid; grid-template-columns: repeat(auto-fit, minmax(84px, 1fr)); gap: 8px; align-items: end; padding: 10px 0; border-top: 1px solid var(--line); }
+.sim-acao label { display: grid; gap: 4px; font-size: 13px; color: var(--muted); font-weight: 600; }
+.sim-acao input:not([type="checkbox"]) { font: inherit; color: var(--text); background: var(--bg); border: 2px solid var(--line); border-radius: 6px; padding: 8px; min-height: 40px; width: 100%; }
+.sim-acao > input:first-child { grid-column: 1 / -1; }
+.sim-acao .sim-check { grid-column: 1 / -1; }
+.sim-res { margin-top: 14px; }
+.sim-ok { border-color: #2e8b57; }
+.sim-fora { border-color: var(--accent); }
