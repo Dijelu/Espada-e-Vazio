@@ -280,7 +280,7 @@ Velocidade e força de um espadachim que devora o reishi à sua volta.
 - **Reishi:** azul.
 - **Aparência:** Asas de reishi e auréola, luvas nos dois pulsos, botas e uma espada espiritual.
 - **Canalizador:** Leiden Hant (a luva Quincy).
-- **Schrift (à parte):** The Jail (a Schrift de Quilge é outra coisa; a Sklaverei dele é da Vollständig).
+- **Schrift (à parte):** Jail (a prisão de Quilge é da Schrift; a Sklaverei dele é da Vollständig).
 - **Habilidades únicas:** Velocidade (1x), Força Espiritual (1x), Reunião Eficiente (1x), Melhoria (1x).
 - **Ações:**
   - **Hirenkyaku Dominante** (Ação bônus, 10 PR): Você voa até 18 metros sem provocar ataques de oportunidade e o seu próximo ataque no turno tem vantagem.
@@ -294,7 +294,7 @@ Voo veloz, corpo reforçado e mergulhos certeiros.
 - **Reishi:** vermelho.
 - **Aparência:** Uma coluna de reiatsu vermelho com uma enorme Cruz Quincy se ergue e se parte; ela surge com asas grandes e uma auréola em forma de estrela.
 - **Canalizador:** Leiden Hant (a luva Quincy).
-- **Schrift (à parte):** The Explode (as explosões de Bambietta são da Schrift, não da Vollständig).
+- **Schrift (à parte):** Explosion (as explosões de Bambietta são da Schrift, não da Vollständig).
 - **Habilidades únicas:** Armadura de Reishi (1x), Potência Espiritual (1x), Reserva Vital (1x), Velocidade (1x).
 - **Ações:**
   - **Voo Veloz** (Ação bônus, 8 PR): Você voa até 18 metros em linha reta sem provocar ataques de oportunidade.
@@ -308,7 +308,7 @@ Espadas feitas das próprias asas, lança arremessada e uma descarga de reishi.
 - **Reishi:** verde.
 - **Aparência:** Uma explosão de energia e seis asas verdes com bordas em forma de raio. A auréola é uma estrela de reishi e faíscas correm pelo corpo.
 - **Canalizador:** Luva Quincy.
-- **Schrift (à parte):** The Thunderbolt (o tema elétrico de Candice vem da Schrift; sem ela, use dano de Energia comum).
+- **Schrift (à parte):** Thunderbolt (o tema elétrico de Candice vem da Schrift; sem ela, use dano de Energia comum).
 - **Habilidades únicas:** Força Espiritual (1x), Potência Espiritual (1x), Olhos do Céu (1x), Velocidade (1x).
 - **Ações:**
   - **Espadas Aladas** (Ação, 15 PR): Você arranca duas asas e as usa como espadas: dois ataques corpo a corpo. Cada acerto causa o dano indicado de Energia e empurra o alvo 3 metros. Dano: 2d10 + (Espírito).
@@ -322,7 +322,7 @@ Briga corpo a corpo com dois halteres de reishi.
 - **Reishi:** rosa.
 - **Aparência:** Asas rosa de três grandes segmentos em forma de coração e auréola em estrela. Com Sklaverei surgem joelheiras e um peitoral em forma de coração, e dois halteres nas mãos.
 - **Canalizador:** Luva Quincy.
-- **Schrift (à parte):** The Power (a força extra de Meninas é da Schrift).
+- **Schrift (à parte):** Power (a força extra de Meninas é da Schrift).
 - **Habilidades únicas:** Força Espiritual (1x), Melhoria (1x), Armadura de Reishi (1x), Vigor do Reishi (1x).
 - **Ações:**
   - **Dumbbell Duster** (Ação bônus, 8 PR): Você reforça os punhos com os halteres: o seu próximo ataque corpo a corpo no turno causa o dano de Energia indicado a mais. Dano: 2d10.
@@ -336,7 +336,7 @@ Forma grotesca de asas farpadas, carne costurada e braços negros.
 - **Reishi:** roxo.
 - **Aparência:** Sangue nos olhos, carne rasgada e costurada com uma costura visível no corpo, auréola, asas de arame farpado, olhos revirados e braços negros.
 - **Canalizador:** O olho esquerdo, que o usuário revira para ativar.
-- **Schrift (à parte):** The Fear (o domo de olhos e o medo pela visão são da Schrift de Äs Nödt).
+- **Schrift (à parte):** Fear (o medo causado pela visão é da Schrift de Äs Nödt).
 - **Habilidades únicas:** Sentido Divino (1x), Defesa (1x), Reserva Vital (1x), Armadura de Reishi (1x).
 - **Ações:**
   - **Voo Farpado** (Ação bônus, 8 PR): Você voa até 18 metros com as asas de arame farpado. Cada criatura a 1,5 metro do seu caminho sofre o dano cortante indicado. Dano: 2d10.
@@ -363,7 +363,7 @@ Armadura de reishi, escudo e rajadas que arrasam quarteirões.
 - **Reishi:** dourado.
 - **Aparência:** Capacete nórdico de reishi, uma estrela sobre o escudo, padrões grossos nos braços e nas pernas, e a estrela do cabo de Hoffnung fica dourada. Pode abrir asas à vontade.
 - **Canalizador:** O próprio sangue, desenhando o símbolo Quincy no ar.
-- **Schrift (à parte):** The Miracle (a regeneração e a imortalidade de Gerard são da Schrift).
+- **Schrift (à parte):** Miracle (o poder de Gerard de realizar o impossível é da Schrift).
 - **Habilidades únicas:** Potência Espiritual (1x), Reserva Vital (1x), Vigor do Reishi (1x), Reserva Espiritual (1x).
 - **Ações:**
   - **Escudo de Hoffnung** (Reação, 10 PR): Quando você ou um aliado a 3 metros sofre dano, o escudo de reishi reduz esse dano na quantidade indicada. Dano: 2d10 + (proficiência).
@@ -377,11 +377,68 @@ Asas amarelas e uma segunda forma que se regenera depois de um ferimento fatal.
 - **Reishi:** amarelo.
 - **Aparência:** Asas amarelas de reishi. Depois de um ferimento fatal, assume uma segunda forma que regenera as partes perdidas do corpo.
 - **Canalizador:** À sua escolha.
+- **Schrift (à parte):** X-Axis (o poder de eixo de Lille Barro é da Schrift).
 - **Habilidades únicas:** Vigor do Reishi (1x), Reserva Vital (1x), Defesa (1x), Armadura de Reishi (1x).
 - **Ações:**
   - **Asas Amarelas** (Ação bônus, 8 PR): Você voa até 18 metros sem provocar ataques de oportunidade.
   - **Regeneração Amarela** (Ação, 15 PR): Você cura PV na quantidade indicada em si mesmo e regenera um membro perdido, se houver. Dano: (nível×2).
   - **Renascimento** (Reação, 30 PR): Uma vez por descanso longo, ao cair a 0 PV, você assume a segunda forma: volta com os PV indicados, regenerado. Dano: (nível×3).
+
+### Hasshein (Askin Nakk Le Vaar)
+
+Cajado que absorve reishi, com asas e auréola roxas. O mangá quase não mostra os poderes próprios dessa Vollständig; as ações abaixo seguem o que toda Vollständig faz e são estimativa para testar na mesa.
+
+- **Reishi:** roxo.
+- **Aparência:** Asas de reishi roxas e auréola em forma de estrela.
+- **Canalizador:** Cajado.
+- **Schrift (à parte):** The Deathdealing (o poder de morte de Askin é da Schrift, não da Vollständig).
+- **Habilidades únicas:** Potência Espiritual (1x), Reserva Espiritual (1x), Sentido Divino (1x), Defesa (1x).
+- **Ações:**
+  - **Voo de Hasshein** (Ação bônus, 8 PR): Você voa até 18 metros sem provocar ataques de oportunidade.
+  - **Sklaverei do Cajado** (Ação, 20 PR): O cajado absorve o reishi de uma criatura a até 9 metros. Ela faz salvaguarda de Espírito (CD 8 + proficiência + Espírito): na falha sofre o dano de Energia indicado e você recupera PR igual à metade; no sucesso, metade do dano e sem recuperação. Dano: 4d10 + (Espírito).
+  - **Golpe de Cajado** (Ação, 25 PR): Um ataque corpo a corpo com o cajado, com margem de crítico 19–20. Se acertar, causa o dano de Energia indicado. Dano: (nível/2 + 4)d10 + (Espírito).
+
+### Gudoero (PePe Waccabrada)
+
+Arqueiro de reishi magenta. O mangá quase não mostra os poderes próprios dessa Vollständig; as ações abaixo seguem o que toda Vollständig faz e são estimativa para testar na mesa.
+
+- **Reishi:** magenta.
+- **Aparência:** Asas de reishi magenta e auréola em forma de estrela.
+- **Canalizador:** Arco de reishi.
+- **Schrift (à parte):** The Love (o amor de PePe é da Schrift, não da Vollständig).
+- **Habilidades únicas:** Precisão Espiritual (1x), Potência Espiritual (1x), Velocidade (1x), Olhos do Céu (1x).
+- **Ações:**
+  - **Voo de Gudoero** (Ação bônus, 8 PR): Você voa até 18 metros sem provocar ataques de oportunidade.
+  - **Flecha Magenta** (Ação, 15 PR): Um ataque à distância com o arco de reishi, alcance de 36 metros. Se acertar, causa o dano de Energia indicado. Dano: 3d10 + (Espírito).
+  - **Chuva de Flechas** (Ação, 30 PR): Você dispara flechas de reishi numa área de 6 metros de raio a até 36 metros. Cada criatura faz salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso. Dano: (nível/2 + 4)d10 + (Espírito).
+
+### Azhalbiora (Giselle Gewelle)
+
+Ossos de reishi como arma e defesa. O mangá quase não mostra os poderes próprios dessa Vollständig; as ações abaixo seguem o que toda Vollständig faz e são estimativa para testar na mesa.
+
+- **Reishi:** índigo.
+- **Aparência:** Asas de reishi índigo e auréola em forma de estrela.
+- **Canalizador:** Ossos de reishi.
+- **Schrift (à parte):** The Zombie (os mortos-vivos de Giselle são da Schrift, não da Vollständig).
+- **Habilidades únicas:** Vigor do Reishi (1x), Reserva Vital (1x), Força Espiritual (1x), Armadura de Reishi (1x).
+- **Ações:**
+  - **Voo de Azhalbiora** (Ação bônus, 8 PR): Você voa até 18 metros sem provocar ataques de oportunidade.
+  - **Carapaça de Ossos** (Reação, 10 PR): Quando você sofre dano, os ossos de reishi se fecham à sua volta e reduzem esse dano na quantidade indicada. Dano: 2d10 + (proficiência).
+  - **Lança de Ossos** (Ação, 25 PR): Um ataque corpo a corpo ou à distância (alcance de 18 metros) com ossos de reishi. Se acertar, causa o dano de Energia indicado. Dano: (nível/2 + 4)d10 + (Espírito).
+
+### Grimaniel (Robert Accutrone)
+
+Quase não muda o corpo: só asas, auréola e muita velocidade. O mangá quase não mostra os poderes próprios dessa Vollständig; as ações abaixo seguem o que toda Vollständig faz e são estimativa para testar na mesa.
+
+- **Reishi:** verde.
+- **Aparência:** A roupa e o corpo ficam iguais; surgem asas de reishi e uma auréola verdes acima da cabeça.
+- **Canalizador:** Pistola.
+- **Schrift (à parte):** Schrift ainda não revelada no mangá.
+- **Habilidades únicas:** Velocidade (1x), Potência Espiritual (1x), Sentido Divino (1x), Precisão Espiritual (1x).
+- **Ações:**
+  - **Voo de Grimaniel** (Ação bônus, 8 PR): Você voa até 18 metros sem provocar ataques de oportunidade.
+  - **Reflexos Verdes** (Reação, 10 PR): Quando um ataque o atingiria, role o ataque contra você com desvantagem.
+  - **Tiro de Grimaniel** (Ação, 25 PR): Um ataque à distância com a pistola de reishi, alcance de 36 metros, margem de crítico 19–20. Se acertar, causa o dano de Energia indicado. Dano: (nível/2 + 4)d10 + (Espírito).
 
 ### Criando Sua Vollstanding
 

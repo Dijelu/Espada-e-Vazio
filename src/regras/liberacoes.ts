@@ -241,3 +241,22 @@ export function habilidadesDaForma(forma: FormaLib): HabForma[] {
 export function comoHabilidades(acoes: { nome: string; acao: string; pr: number; prExpr?: string; dano: string; texto: string }[]): HabForma[] {
   return acoes.map((a, i) => ({ id: `${Date.now()}-${i}-${a.nome}`, nome: a.nome, texto: a.texto, custo: a.pr ? `${a.pr} PR` : "", acao: a.acao, pr: a.pr || undefined, prExpr: a.prExpr, dano: a.dano || undefined }));
 }
+
+/** Maior custo de PR entre as habilidades da forma (lê textos como "20 PR" ou só "20"). */
+export function maiorCustoPR(habs: { custo: string }[]): number {
+  let m = 0;
+  for (const h of habs) {
+    const t = String(h.custo ?? "");
+    const achados = [...t.matchAll(/(\d+)\s*PR/gi)].map((x) => Number(x[1]));
+    if (!achados.length && /^\s*\d+\s*$/.test(t)) achados.push(Number(t));
+    for (const v of achados) m = Math.max(m, v);
+  }
+  return m;
+}
+
+/** Sugestão de custo de liberação pelo maior custo de PR entre as habilidades. Shikai 3–10 PR, Bankai 40–80 PR. */
+export function sugerirCusto(tipo: "shikai" | "bankai", habs: { custo: string }[]): number {
+  const m = maiorCustoPR(habs);
+  if (tipo === "shikai") return m <= 0 ? 3 : m <= 5 ? 4 : m <= 10 ? 6 : m <= 15 ? 8 : 10;
+  return m <= 15 ? 40 : m <= 25 ? 50 : m <= 35 ? 60 : m <= 50 ? 70 : 80;
+}

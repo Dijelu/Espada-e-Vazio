@@ -13,7 +13,7 @@
    "reuniao": 1,
    "melhoria": 1
   },
-  "schrift": "The Jail (a Schrift de Quilge é outra coisa; a Sklaverei dele é da Vollständig)"
+  "schrift": "Jail (a prisão de Quilge é da Schrift; a Sklaverei dele é da Vollständig)"
  },
  {
   "id": "zofiel",
@@ -29,7 +29,7 @@
    "reserva-vital": 1,
    "velocidade": 1
   },
-  "schrift": "The Explode (as explosões de Bambietta são da Schrift, não da Vollständig)"
+  "schrift": "Explosion (as explosões de Bambietta são da Schrift, não da Vollständig)"
  },
  {
   "id": "barbarriel",
@@ -45,7 +45,7 @@
    "olhos": 1,
    "velocidade": 1
   },
-  "schrift": "The Thunderbolt (o tema elétrico de Candice vem da Schrift; sem ela, use dano de Energia comum)"
+  "schrift": "Thunderbolt (o tema elétrico de Candice vem da Schrift; sem ela, use dano de Energia comum)"
  },
  {
   "id": "pornipora",
@@ -61,7 +61,7 @@
    "armadura": 1,
    "vigor": 1
   },
-  "schrift": "The Power (a força extra de Meninas é da Schrift)"
+  "schrift": "Power (a força extra de Meninas é da Schrift)"
  },
  {
   "id": "tatarforas",
@@ -77,7 +77,7 @@
    "reserva-vital": 1,
    "armadura": 1
   },
-  "schrift": "The Fear (o domo de olhos e o medo pela visão são da Schrift de Äs Nödt)"
+  "schrift": "Fear (o medo causado pela visão é da Schrift de Äs Nödt)"
  },
  {
   "id": "uryu",
@@ -108,7 +108,7 @@
    "vigor": 1,
    "reserva-esp": 1
   },
-  "schrift": "The Miracle (a regeneração e a imortalidade de Gerard são da Schrift)"
+  "schrift": "Miracle (o poder de Gerard de realizar o impossível é da Schrift)"
  },
  {
   "id": "jilliel",
@@ -123,6 +123,71 @@
    "reserva-vital": 1,
    "defesa": 1,
    "armadura": 1
-  }
+  },
+  "schrift": "X-Axis (o poder de eixo de Lille Barro é da Schrift)"
+ },
+ {
+  "id": "hasshein",
+  "nome": "Hasshein",
+  "personagem": "Askin Nakk Le Vaar",
+  "cor": "roxo",
+  "resumo": "Cajado que absorve reishi, com asas e auréola roxas. O mangá quase não mostra os poderes próprios dessa Vollständig; as ações abaixo seguem o que toda Vollständig faz e são estimativa para testar na mesa.",
+  "aparencia": "Asas de reishi roxas e auréola em forma de estrela.",
+  "canalizador": "Cajado",
+  "picks": {
+   "potencia": 1,
+   "reserva-esp": 1,
+   "sentido": 1,
+   "defesa": 1
+  },
+  "schrift": "The Deathdealing (o poder de morte de Askin é da Schrift, não da Vollständig)"
+ },
+ {
+  "id": "gudoero",
+  "nome": "Gudoero",
+  "personagem": "PePe Waccabrada",
+  "cor": "magenta",
+  "resumo": "Arqueiro de reishi magenta. O mangá quase não mostra os poderes próprios dessa Vollständig; as ações abaixo seguem o que toda Vollständig faz e são estimativa para testar na mesa.",
+  "aparencia": "Asas de reishi magenta e auréola em forma de estrela.",
+  "canalizador": "Arco de reishi",
+  "picks": {
+   "precisao": 1,
+   "potencia": 1,
+   "velocidade": 1,
+   "olhos": 1
+  },
+  "schrift": "The Love (o amor de PePe é da Schrift, não da Vollständig)"
+ },
+ {
+  "id": "azhalbiora",
+  "nome": "Azhalbiora",
+  "personagem": "Giselle Gewelle",
+  "cor": "índigo",
+  "resumo": "Ossos de reishi como arma e defesa. O mangá quase não mostra os poderes próprios dessa Vollständig; as ações abaixo seguem o que toda Vollständig faz e são estimativa para testar na mesa.",
+  "aparencia": "Asas de reishi índigo e auréola em forma de estrela.",
+  "canalizador": "Ossos de reishi",
+  "picks": {
+   "vigor": 1,
+   "reserva-vital": 1,
+   "forca": 1,
+   "armadura": 1
+  },
+  "schrift": "The Zombie (os mortos-vivos de Giselle são da Schrift, não da Vollständig)"
+ },
+ {
+  "id": "grimaniel",
+  "nome": "Grimaniel",
+  "personagem": "Robert Accutrone",
+  "cor": "verde",
+  "resumo": "Quase não muda o corpo: só asas, auréola e muita velocidade. O mangá quase não mostra os poderes próprios dessa Vollständig; as ações abaixo seguem o que toda Vollständig faz e são estimativa para testar na mesa.",
+  "aparencia": "A roupa e o corpo ficam iguais; surgem asas de reishi e uma auréola verdes acima da cabeça.",
+  "canalizador": "Pistola",
+  "picks": {
+   "velocidade": 1,
+   "potencia": 1,
+   "sentido": 1,
+   "precisao": 1
+  },
+  "schrift": "Schrift ainda não revelada no mangá"
  }
 ]

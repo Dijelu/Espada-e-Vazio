@@ -113,6 +113,8 @@ const POR_ESSENCIA: Record<string, FnEssencia> = {
 };
 
 const POR_TALENTO: Record<string, (c: Ctx, r: EfeitoSoma) => string | void> = {
+  "zanjutsu/defesa-agil": (c) => `CR passa a ser 10 + proficiência + Destreza (${10 + c.prof + c.atr.des}); vale a maior entre as fórmulas`,
+  "kidoshu/defesa-inteligente": (c) => `CR passa a ser 10 + proficiência + metade da Mente (${10 + c.prof + Math.floor(c.atr.men / 2)}); vale a maior entre as fórmulas`,
   "zanjutsu/armadura-natural": (_c, r) => { r.cr += 2; return "CR +2"; },
   "hueco/couraca-ossea": (_c, r) => { r.cr += 1; r.rdFis = Math.max(r.rdFis, 2); return "CR +1 e RD física 2"; },
   "vazio/reserva-vazia": (c, r) => { const v = 2 * c.n; r.pr += v; return `PR ${sinal(v)}`; },

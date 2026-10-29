@@ -329,6 +329,98 @@
      "dano": "[NIV*3]",
      "texto": "Uma vez por descanso longo, ao cair a 0 PV, você assume a segunda forma: volta com os PV indicados, regenerado."
     }
+   ],
+   "hasshein": [
+    {
+     "nome": "Voo de Hasshein",
+     "acao": "Ação bônus",
+     "pr": 8,
+     "dano": "",
+     "texto": "Você voa até 18 metros sem provocar ataques de oportunidade."
+    },
+    {
+     "nome": "Sklaverei do Cajado",
+     "acao": "Ação",
+     "pr": 20,
+     "dano": "4d10+[ESP]",
+     "texto": "O cajado absorve o reishi de uma criatura a até 9 metros. Ela faz salvaguarda de Espírito (CD 8 + proficiência + Espírito): na falha sofre o dano de Energia indicado e você recupera PR igual à metade; no sucesso, metade do dano e sem recuperação."
+    },
+    {
+     "nome": "Golpe de Cajado",
+     "acao": "Ação",
+     "pr": 25,
+     "dano": "[NIV/2+4]d10+[ESP]",
+     "texto": "Um ataque corpo a corpo com o cajado, com margem de crítico 19–20. Se acertar, causa o dano de Energia indicado."
+    }
+   ],
+   "gudoero": [
+    {
+     "nome": "Voo de Gudoero",
+     "acao": "Ação bônus",
+     "pr": 8,
+     "dano": "",
+     "texto": "Você voa até 18 metros sem provocar ataques de oportunidade."
+    },
+    {
+     "nome": "Flecha Magenta",
+     "acao": "Ação",
+     "pr": 15,
+     "dano": "3d10+[ESP]",
+     "texto": "Um ataque à distância com o arco de reishi, alcance de 36 metros. Se acertar, causa o dano de Energia indicado."
+    },
+    {
+     "nome": "Chuva de Flechas",
+     "acao": "Ação",
+     "pr": 30,
+     "dano": "[NIV/2+4]d10+[ESP]",
+     "texto": "Você dispara flechas de reishi numa área de 6 metros de raio a até 36 metros. Cada criatura faz salvaguarda de Destreza (CD 8 + proficiência + Espírito): dano de Energia na falha, metade no sucesso."
+    }
+   ],
+   "azhalbiora": [
+    {
+     "nome": "Voo de Azhalbiora",
+     "acao": "Ação bônus",
+     "pr": 8,
+     "dano": "",
+     "texto": "Você voa até 18 metros sem provocar ataques de oportunidade."
+    },
+    {
+     "nome": "Carapaça de Ossos",
+     "acao": "Reação",
+     "pr": 10,
+     "dano": "2d10+[PROF]",
+     "texto": "Quando você sofre dano, os ossos de reishi se fecham à sua volta e reduzem esse dano na quantidade indicada."
+    },
+    {
+     "nome": "Lança de Ossos",
+     "acao": "Ação",
+     "pr": 25,
+     "dano": "[NIV/2+4]d10+[ESP]",
+     "texto": "Um ataque corpo a corpo ou à distância (alcance de 18 metros) com ossos de reishi. Se acertar, causa o dano de Energia indicado."
+    }
+   ],
+   "grimaniel": [
+    {
+     "nome": "Voo de Grimaniel",
+     "acao": "Ação bônus",
+     "pr": 8,
+     "dano": "",
+     "texto": "Você voa até 18 metros sem provocar ataques de oportunidade."
+    },
+    {
+     "nome": "Reflexos Verdes",
+     "acao": "Reação",
+     "pr": 10,
+     "dano": "",
+     "texto": "Quando um ataque o atingiria, role o ataque contra você com desvantagem."
+    },
+    {
+     "nome": "Tiro de Grimaniel",
+     "acao": "Ação",
+     "pr": 25,
+     "dano": "[NIV/2+4]d10+[ESP]",
+     "texto": "Um ataque à distância com a pistola de reishi, alcance de 36 metros, margem de crítico 19–20. Se acertar, causa o dano de Energia indicado."
+    }
    ]
   }
  }

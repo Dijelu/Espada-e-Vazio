@@ -14,7 +14,7 @@ import {
 } from "../regras/liberacoes";
 import { novoId } from "./FichaPecas";
 import { AssistenteForma } from "./AssistenteForma";
-import { acoesDaForma, comoHabilidades, habilidadesDaForma, resolverDano } from "../regras/liberacoes";
+import { acoesDaForma, comoHabilidades, habilidadesDaForma, maiorCustoPR, resolverDano, sugerirCusto } from "../regras/liberacoes";
 import type { Calculo } from "../regras/ficha";
 import type { Rolagens } from "./Rolador";
 
@@ -62,7 +62,21 @@ export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
   const [r, setR] = useState<FormaLib>(f.formas[tipo] ? { ...vazia(tipo), ...f.formas[tipo]! } : vazia(tipo));
   const [aberto, setAberto] = useState("");
   const [busca, setBusca] = useState("");
-  const mud = (p: Partial<FormaLib>) => setR((x) => ({ ...x, ...p }));
+  const mud = (p: Partial<FormaLib>) =>
+    setR((x) => {
+      const n = { ...x, ...p };
+      if (p.habilidades && !n.custoManual && (tipo === "shikai" || tipo === "bankai")) n.custo = sugerirCusto(tipo, n.habilidades);
+      return n;
+    });
+  const sugestao = tipo === "shikai" || tipo === "bankai" ? sugerirCusto(tipo, r.habilidades) : 0;
+  const dicaCusto = sugestao > 0 && (
+    <small className="ajuda">
+      Sugestão: {sugestao} PR (maior custo entre as habilidades: {maiorCustoPR(r.habilidades)} PR).{" "}
+      {r.custo === sugestao && !r.custoManual ? "Em uso; muda sozinho conforme você adiciona habilidades." : (
+        <button type="button" className="link" onClick={() => mud({ custo: sugestao, custoManual: false })}>Usar a sugestão</button>
+      )}
+    </small>
+  );
 
   useEffect(() => {
     const t = (e: KeyboardEvent) => e.key === "Escape" && onFechar();
@@ -278,7 +292,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
                   </select>
                 </label>
                 <label className="campo">Espírito (aparência e personalidade)<textarea rows={2} value={r.espirito ?? ""} onChange={(e) => mud({ espirito: e.target.value })} /></label>
-                <label className="campo">Custo de liberação (3 a 10 PR)<input type="number" min={3} max={10} value={r.custo} onChange={(e) => mud({ custo: Number(e.target.value) })} /></label>
+                <label className="campo">Custo de liberação (3 a 10 PR)<input type="number" min={3} max={10} value={r.custo} onChange={(e) => mud({ custo: Number(e.target.value), custoManual: true })} />{dicaCusto}</label>
               </>
             )}
             {tipo === "bankai" && (
@@ -291,7 +305,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
                   </select>
                 </label>
                 <div className="duas">
-                  <label className="campo">Custo de liberação (40 a 80 PR)<input type="number" min={20} max={80} value={r.custo} onChange={(e) => mud({ custo: Number(e.target.value) })} /></label>
+                  <label className="campo">Custo de liberação (40 a 80 PR)<input type="number" min={20} max={80} value={r.custo} onChange={(e) => mud({ custo: Number(e.target.value), custoManual: true })} />{dicaCusto}</label>
                   <label className="campo">Duração<input value={r.duracao} onChange={(e) => mud({ duracao: e.target.value })} /></label>
                 </div>
               </>

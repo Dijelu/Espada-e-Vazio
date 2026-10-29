@@ -521,6 +521,8 @@ export interface FormaLib {
   texto: string;
   /** Shikai: Combate, Elemental, Kido ou Especial */
   categoria?: string;
+  /** true quando o jogador digitou o custo de liberação à mão (a sugestão automática para de mexer) */
+  custoManual?: boolean;
   /** Shikai: o espírito da Zanpakutou (aparência e personalidade) */
   espirito?: string;
 }
@@ -779,6 +781,10 @@ export function calcular(f: Ficha): Calculo {
     pr = c.prIni + atr.esp + ef.prIni + (n - 1) * (c.prNivel + atr.esp + ef.prNivel);
     pv += c.extraPv ? c.extraPv(n, f.subclasse) : 0;
     cr = c.cr === "plena" ? 10 + prof + atr.con + atr.des : 10 + prof + atr.des + Math.floor(atr.con / 2);
+    // Defesa Ágil (Zanjutsu) e Defesa Inteligente (Kidōshū) trocam a fórmula da CR; vale a melhor
+    const crAgil = f.classe === "zanjutsu" && f.talentos.includes("defesa-agil") ? 10 + prof + atr.des : 0;
+    const crInteligente = f.classe === "kidoshu" && f.talentos.includes("defesa-inteligente") ? 10 + prof + Math.floor(atr.men / 2) : 0;
+    cr = Math.max(cr, crAgil, crInteligente);
     if (ef.evasao) {
       cr += Math.floor(prof / 2);
       crEvasao = true;
