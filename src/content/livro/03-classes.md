@@ -176,7 +176,7 @@ Pré-Requisito: 5° nível de Zanjutsu.
 
 Pré-Requisito: Bankai.
 
-- Campeão:Vocêsetornaimuneàcondiçãoamedrontado.
+- Campeão:Você se torna imune à condição Amedrontado.
 - Crítico Brutal: Você aumenta o multiplicador de dano crítico da sua Zanpakutou em +1.
 
 Pré-Requisito: 18° nível de Zanjutsu.

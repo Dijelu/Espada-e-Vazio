@@ -13,22 +13,22 @@
   "nome": "Kuukan no Kusari",
   "rank": "B",
   "texto": "O usuário distorce o espaço ao redor de uma criatura de tamanho Grande ou menor, tornando impossível escapar através de técnicas de deslocamento espiritual. Sempre que o alvo tentar se deslocar por qualquer meio que não seja seu movimento normal, como Shunpo, técnicas de deslocamento ou teletransporte, deverá realizar um Teste de Resistência de Espírito. Em caso de falha, o deslocamento não ocorre e o recurso utilizado é gasto normalmente. Em caso de sucesso, o deslocamento ocorre normalmente.",
-  "meta": "Velocidade: Instantânea, Encantamento Normal · Custo: 14 PR"
+  "meta": "Requisito: Ação · Alcance: 18 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 14 PR"
  },
  {
   "tipo": "bakudou",
   "n": 43,
   "nome": "Meikyuu",
   "rank": "B",
-  "texto": "",
-  "meta": ""
+  "texto": "O usuário envolve uma criatura de tamanho Grande ou menor em uma distorção que altera sua visão e seus sentidos normais, fazendo com que o alvo perceba incorretamente a posição e a distância de criaturas e objetos ao seu redor. O alvo deve realizar um Teste de Resistência de Espírito; em caso de falha, ele não consegue determinar corretamente a localização de criaturas ou objetos que estejam a mais de 3 metros dele, sofrendo desvantagem em ataques e testes de Percepção que dependam de seus sentidos normais contra alvos além dessa distância. Porém, o alvo pode utilizar sua percepção espiritual normalmente.",
+  "meta": "Requisito: Ação · Alcance: 18 metros · Velocidade: Concentração até 1 minuto, Encantamento Lento · Custo: 14 PR"
  },
  {
   "tipo": "bakudou",
   "n": 44,
   "nome": "Ten’i",
   "rank": "B",
-  "texto": "metros for atingida por um ataque",
+  "texto": "O usuário altera a trajetória do ataque no momento do impacto. Este Kidou só pode ser utilizado contra ataques que tenham um único alvo e não pode afetar ataques de área, ataques automáticos ou efeitos que não possuam uma jogada de ataque.\n\nO alvo do ataque realiza um Teste de Resistência de Espírito contra o acerto do ataque. Em caso de sucesso, o ataque é desviado e não causa dano.\n\nRestrições: Este Kidou só pode ser utilizado uma vez por rodada e que não causem um efeito adicional e não pode ser utilizado contra o mesmo ataque mais de uma vez.",
   "meta": "Requisito: Reação quando você ou uma criatura a até 6 · Alcance: Pessoa · Velocidade: Instantânea, Encantamento Rápido · Custo: 18 PR"
  },
  {
@@ -36,15 +36,15 @@
   "n": 45,
   "nome": "Seishin no Shirushi",
   "rank": "B",
-  "texto": "",
-  "meta": "Requisito: Ação · Alcance: 18 metros · Custo: 15 PR"
+  "texto": "O usuário marca uma criatura que consiga perceber dentro do alcance, gravando sua assinatura espiritual em seus sentidos. Durante 1 hora, o usuário sabe a direção e a distância aproximada do alvo, desde que ambos estejam no mesmo plano de existência.\n\nA marca não revela a localização exata do alvo, nem atravessa efeitos que ocultem completamente sua presença espiritual. Caso o alvo esteja sob algum efeito de ocultação de Reiatsu, o usuário pode realizar um Teste de Percepção Espiritual para tentar localizar sua assinatura.",
+  "meta": "Requisito: Ação · Alcance: 18 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 15 PR"
  },
  {
   "tipo": "bakudou",
   "n": 46,
   "nome": "Kukan Ido",
   "rank": "B",
-  "texto": "O usuário dobra brevemente o espaço, permitindo que ele e uma criatura de tamanho Grande ou menor sejam transportados instantaneamente para um espaço desocupado que o usuário possa ver a até 24 metros. Para utilizar o Kidou, o usuário deve estar tocando a si mesmo e a criatura durante todo o encantamento. Uma criatura involuntária não pode ser transportada por este efeito. O Kidou não pode atravessar barreiras de Reiatsu, Kekkai ou espaços que impeçam teletransporte. [Central 46] - Proibido: Este Kidou é…",
+  "texto": "O usuário dobra brevemente o espaço, permitindo que ele e uma criatura de tamanho Grande ou menor sejam transportados instantaneamente para um espaço desocupado que o usuário possa ver a até 24 metros. Para utilizar o Kidou, o usuário deve estar tocando a si mesmo e a criatura durante todo o encantamento. Uma criatura involuntária não pode ser transportada por este efeito. O Kidou não pode atravessar barreiras de Reiatsu, Kekkai ou espaços que impeçam teletransporte. [Central 46] - Proibido: Este Kidou é considerado proibido pela Soul Society por violar as leis naturais. Seu uso pode resultar em intervenção da Soul Society, solicitação de prisão ou até mesmo execução do usuário.",
   "meta": "Requisito: Ação · Alcance: 24 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 15 PR"
  },
  {
@@ -60,7 +60,7 @@
   "n": 48,
   "nome": "Seishin Kekkai",
   "rank": "B",
-  "texto": "O usuário envolve uma criatura de tamanho Grande ou",
+  "texto": "O usuário envolve uma criatura de tamanho Grande ou menor com uma camada de Reiatsu que protege seu corpo contra efeitos debilitantes. Até o início do próximo turno do usuário, o alvo possui vantagem nos Testes de Resistência realizados para evitar ou encerrar uma condição.\n\nEste Kidou não remove condições que o alvo já possua.",
   "meta": "Requisito: Ação Bônus · Alcance: Toque · Velocidade: Instantânea, Encantamento Rápido · Custo: 13 PR"
  },
  {
@@ -84,7 +84,7 @@
   "n": 51,
   "nome": "Saimin Kekkai",
   "rank": "B",
-  "texto": "O usuário estende a mão na direção do alvo e manifesta uma poderosa pressão de Reiatsu que envolve todo o seu corpo, prendendo simultaneamente seus braços, mãos, pernas e boca. A criatura recebe a condição Preso com todos os membros presos e sofre 4d8 de Dano de Reiatsu. Para escapar, o alvo deve realizar um Teste de Resistência de Força ou Destreza, à sua escolha. Em caso de falha, a criatura pode optar por permanecer presa ou forçar a ruptura da contenção, encerrando a condição Preso, mas sofrendo 4d8 de Dano…",
+  "texto": "O usuário estende a mão na direção do alvo e manifesta uma poderosa pressão de Reiatsu que envolve todo o seu corpo, prendendo simultaneamente seus braços, mãos, pernas e boca. A criatura recebe a condição Preso com todos os membros presos e sofre 4d8 de Dano de Reiatsu. Para escapar, o alvo deve realizar um Teste de Resistência de Força ou Destreza, à sua escolha. Em caso de falha, a criatura pode optar por permanecer presa ou forçar a ruptura da contenção, encerrando a condição Preso, mas sofrendo 4d8 de Dano de Reiatsu adicional, que não pode ser reduzido ou prevenido por qualquer efeito.",
   "meta": "Requisito: Ação · Alcance: 18 metros · Velocidade: Concentração até 1 minuto, Encantamento Normal · Custo: 15 PR"
  },
  {
@@ -100,7 +100,7 @@
   "n": 53,
   "nome": "Kekkai no Kabe",
   "rank": "B",
-  "texto": "O usuário ergue uma das mãos e cria uma barreira",
+  "texto": "O usuário ergue uma das mãos e cria uma barreira espiritual que delimita uma área de 6 metros de raio, com origem em um ponto que possa ver a até 18 metros. Enquanto a barreira permanecer ativa, técnicas que tenham origem fora da área e tentem atravessar seus limites são enfraquecidas. O dano causado por essas técnicas às criaturas dentro da área é reduzido em 20. A barreira não impede a passagem de criaturas.",
   "meta": "Requisito: Ação · Alcance: 18 metros · Velocidade: Concentração até 1 minuto, Encantamento Lento · Custo: 16 PR"
  },
  {
@@ -116,7 +116,7 @@
   "n": 55,
   "nome": "Jakuten",
   "rank": "B",
-  "texto": "O usuário leva dois dedos até os próprios olhos e concentra Reiatsu em sua visão, tentando interpretar as características espirituais de uma criatura que possa ver. Após utilizar o Kidou, role 1d6. Se o resultado for par, o usuário consegue perceber uma informação relevante sobre a criatura, revelada pelo Mestre, como uma resistência, vulnerabilidade, imunidade, condição, habilidade ou outra característica que o Mestre considere pertinente. Se o resultado for ímpar, o fluxo espiritual não pode ser interpretado e…",
+  "texto": "O usuário leva dois dedos até os próprios olhos e concentra Reiatsu em sua visão, tentando interpretar as características espirituais de uma criatura que possa ver. Após utilizar o Kidou, role 1d6. Se o resultado for par, o usuário consegue perceber uma informação relevante sobre a criatura, revelada pelo Mestre, como uma resistência, vulnerabilidade, imunidade, condição, habilidade ou outra característica que o Mestre considere pertinente. Se o resultado for ímpar, o fluxo espiritual não pode ser interpretado e nenhuma informação é obtida.",
   "meta": "Requisito: Ação Bônus · Alcance: Pessoal · Velocidade: Concentração até 10 minutos, Encantamento Normal · Custo: 5 PR"
  },
  {
@@ -124,7 +124,7 @@
   "n": 56,
   "nome": "Kakushi",
   "rank": "B",
-  "texto": "desapareçam e que nenhum sentido encontre aquilo que está além desta barreira!",
+  "texto": "O usuário ergue uma das mãos e cria um cubo de ocultação espiritual de 6 metros de cada lado, com origem em um ponto que possa ver dentro do alcance. Enquanto permanecer ativo, o cubo abafa o fluxo de Reiatsu em seu interior, impedindo que as criaturas dentro dele sejam percebidas por meios comuns de percepção espiritual vindos do exterior.\n\nTécnicas utilizadas dentro do cubo também têm seu fluxo espiritual ocultado, impedindo que sua origem seja percebida por aqueles que estejam fora dele. Quando a duração estiver prestes a terminar, o usuário pode gastar 5 pontos de Reiatsu para sustentar o Kidou por mais 10 minutos, mantendo sua Concentração.",
   "meta": "Requisito: Ação Completa · Alcance: 18 metros · Velocidade: Concentração até 10 minutos, Encantamento Lento · Custo: 17 PR"
  },
  {
@@ -164,8 +164,8 @@
   "n": 61,
   "nome": "Rikujukourou",
   "rank": "A",
-  "texto": "",
-  "meta": ""
+  "texto": "O Shinigami estende a mão e seis barras de luz disparam do ar, atingindo a cintura de uma criatura e a prendendo no lugar. Realize um ataque à distância com Kido, se acertar, o alvo deve realizar um Teste de Resistência de Força. Em caso de falha, fica com a condição “Paralisado” até o fim do próximo turno dele; em caso de sucesso, fica apenas “Preso”. No fim de cada turno, ele pode repetir o teste para se libertar.",
+  "meta": "Requisito: Ação · Alcance: 18 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 24 PR"
  },
  {
   "tipo": "bakudou",
@@ -204,7 +204,7 @@
   "n": 66,
   "nome": "Shouheki",
   "rank": "A",
-  "texto": "O usuário escolhe uma criatura aliada dentro do alcance e envolve seu corpo em uma camada de Reiatsu.",
+  "texto": "O usuário escolhe uma criatura aliada dentro do alcance e envolve seu corpo em uma camada de Reiatsu.\n\nEnquanto o efeito durar, sempre que a criatura causar dano, ela causa +10 de dano do mesmo tipo do dano causado. Além disso, seus ataques e técnicas ignoram 10 pontos de Redução de Dano do alvo.",
   "meta": "Requisito: Ação · Alcance: 18 metros · Velocidade: Concentração até 1 minuto, Encantamento Rápido · Custo: 22 PR"
  },
  {
@@ -236,7 +236,7 @@
   "n": 70,
   "nome": "Tsuihou",
   "rank": "A",
-  "texto": "O usuário escolhe uma criatura dentro do alcance e envolve seu corpo com um círculo de Reiatsu.",
+  "texto": "O usuário escolhe uma criatura dentro do alcance e envolve seu corpo com um círculo de Reiatsu.\n\nA criatura deve realizar um Teste de Resistência de Espírito. Se falhar, ela é banida para um espaço vazio dentro do Muken, ficando incapaz de interagir com o mundo exterior e desaparecendo de sua localização atual. Enquanto estiver banida, a criatura fica Incapacitada e não pode ser alvo de ataques, técnicas ou efeitos provenientes do mundo exterior.\n\nNo final de cada um de seus turnos, a criatura pode repetir o Teste de Resistência de Espírito. Em caso de sucesso, retorna para o espaço que ocupava anteriormente ou para o espaço desocupado mais próximo.\n\nO efeito termina imediatamente se o usuário perder a concentração. [Central 46] - Proibido: Este Kidou é considerado proibido pela Soul Society por violar as leis naturais. Seu uso pode resultar em intervenção da Soul Society, solicitação de prisão ou até mesmo execução do usuário.",
   "meta": "Requisito: Ação Completa · Alcance: 9 metros · Velocidade: Concentração até 1 minuto, Encantamento Lento · Custo: 25 PR"
  },
  {
@@ -252,7 +252,7 @@
   "n": 72,
   "nome": "Shinjitsu no Tobari",
   "rank": "A",
-  "texto": "O usuário cria uma área espiritual de 6 metros de raio em um ponto que possa ver dentro do alcance.",
+  "texto": "O usuário cria uma área espiritual de 6 metros de raio em um ponto que possa ver dentro do alcance.\n\nEnquanto permanecer dentro da área, uma criatura que tentar mentir deliberadamente deve realizar um Teste de Determinação ou Teste de Manipulação, à sua escolha. Em caso de falha, ela é incapaz de pronunciar a mentira e deve permanecer em silêncio ou responder de maneira verdadeira.\n\nAlém disso, ilusões e efeitos que alterem a aparência ou a voz de uma criatura são revelados enquanto ela permanecer dentro da área, embora o Kidou não revele informações ocultas por outros meios. Uma criatura pode realizar o teste novamente sempre que tentar mentir.",
   "meta": "Requisito: Ação · Alcance: 18 metros · Velocidade: Concentração até 10 minuto, Encantamento Normal · Custo: 19 PR"
  },
  {
@@ -260,7 +260,7 @@
   "n": 73,
   "nome": "Tozansho",
   "rank": "A",
-  "texto": "Quando você ou uma criatura a até 3 metros de você for alvo de um ataque ou técnica, você pode utilizar sua Reação para criar instantaneamente uma barreira de Reiatsu em formato de pirâmide de quatro lados, envolvendo você e todas as criaturas que escolher dentro da área. A barreira possui 70 Pontos de Vida e Redução de Dano 15. Ela bloqueia completamente a passagem de criaturas, objetos e ataques através de suas paredes. A barreira permanece até você desfazer com uma ação livre ou até os Pontos de Vida serem…",
+  "texto": "Quando você ou uma criatura a até 3 metros de você for alvo de um ataque ou técnica, você pode utilizar sua Reação para criar instantaneamente uma barreira de Reiatsu em formato de pirâmide de quatro lados, envolvendo você e todas as criaturas que escolher dentro da área. A barreira possui 70 Pontos de Vida e Redução de Dano 15. Ela bloqueia completamente a passagem de criaturas, objetos e ataques através de suas paredes. A barreira permanece até você desfazer com uma ação livre ou até os Pontos de Vida serem reduzidos a 0.",
   "meta": "Requisito: Reação · Alcance: 18 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 22 PR"
  },
  {
@@ -300,7 +300,7 @@
   "n": 78,
   "nome": "Reiatsu Shoumei",
   "rank": "A",
-  "texto": "O usuário cria uma área de 9 metros de raio centrada",
+  "texto": "O usuário cria uma área de 9 metros de raio centrada em um ponto que possa ver dentro do alcance. A área permanece no local por até 1 minuto ou até o usuário desfazer ela.\n\nEnquanto estiver dentro da área, o usuário e todas as criaturas aliadas escolhidas por ele recebem +5 nas Jogadas de Ataque com Kidou e podem realizar Jogadas de Ataque com Kidou com vantagem.\n\nO benefício permanece enquanto a criatura estiver dentro da área.",
   "meta": "Requisito: Ação · Alcance: 24 metros · Velocidade: Até 1 minuto, Encantamento Lento · Custo: 15 PR"
  },
  {
@@ -324,7 +324,7 @@
   "n": 81,
   "nome": "Danku",
   "rank": "S",
-  "texto": "Quando for alvo de um ataque à distância, você pode utilizar sua Reação para criar uma barreira invisível de Reiatsu entre você e o efeito. A barreira impede que o ataque alcance você enquanto permanecer intacta. O Danku possui 100 Pontos de Vida e Redução de Dano 20, desaparecendo após o ataque terminar ou quando seus Pontos de Vida forem reduzidos a 0. Se o ataque reduzir a barreira a 0 Pontos de Vida, ele atravessa a barreira e atinge você. Nesse caso, reduza o dano sofrido pela quantidade de Pontos de Vida…",
+  "texto": "Quando for alvo de um ataque à distância, você pode utilizar sua Reação para criar uma barreira invisível de Reiatsu entre você e o efeito. A barreira impede que o ataque alcance você enquanto permanecer intacta. O Danku possui 100 Pontos de Vida e Redução de Dano 20, desaparecendo após o ataque terminar ou quando seus Pontos de Vida forem reduzidos a 0. Se o ataque reduzir a barreira a 0 Pontos de Vida, ele atravessa a barreira e atinge você. Nesse caso, reduza o dano sofrido pela quantidade de Pontos de Vida que a barreira possuía antes de ser destruída.\n\nHadou de ataque com numeração igual ou inferior a 81 são automaticamente destruídos ao entrar em contato com a barreira, fazendo com que o Hadou e a barreira desapareçam imediatamente. Hadou de numeração superior a 81 interagem normalmente com os Pontos de Vida da barreira.",
   "meta": "Requisito: Reação · Alcance: Pessoal · Velocidade: Instantânea, Encantamento Rápido · Custo: 30 PR"
  },
  {
@@ -341,15 +341,15 @@
   "nome": "Kakuremi",
   "rank": "S",
   "texto": "Ao tocar uma criatura voluntária ou um objeto, o Shinigami envolve o alvo em uma camada extremamente densa de Reiatsu, ocultando sua presença espiritual. O alvo se torna invisível e recebe -20 em Testes de Percepção Espiritual realizados para localizá-lo. O alvo não pode ser detectado por técnicas que detectem automáticamente sua presença ou permitam observar sua localização à distância.",
-  "meta": "Alcance: Toque · Velocidade: Instantânea, Encantamento Lento · Custo: 20 PR"
+  "meta": "Requisito: Ação · Alcance: Toque · Velocidade: Instantânea, Encantamento Lento · Custo: 20 PR"
  },
  {
   "tipo": "bakudou",
   "n": 84,
   "nome": "Jikan Kekkai",
   "rank": "S",
-  "texto": "",
-  "meta": ""
+  "texto": "O usuário libera uma grande quantidade de Reiatsu ao seu redor, distorcendo o fluxo espiritual dentro de uma área de 18 metros. Toda criatura dentro da área deve realizar um Teste de Resistência de Constituição. Em caso de falha, a criatura fica Enfraquecida enquanto permanecer dentro da área, sofrendo desvantagem em todos os Testes de Resistência e subtraindo 1d8 de qualquer rolagem de d20 realizada para uma ação, ataque, teste ou outra finalidade. Uma criatura que obtiver sucesso no teste não sofre os efeitos do Bakudou.\n\nPara cada 5 Reiatsu adicionais gastos, aumente o alcance em 3 metros.",
+  "meta": "Requisito: Ação · Alcance: 18 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 35 PR"
  },
  {
   "tipo": "bakudou",
@@ -364,8 +364,8 @@
   "n": 86,
   "nome": "Mugen Kagami",
   "rank": "S",
-  "texto": "",
-  "meta": "Requisito: Ação · Custo: 28 PR"
+  "texto": "O usuário cria diversos reflexos espirituais ao redor de uma criatura voluntária que possa perceber. Os reflexos permanecem ao redor da criatura até o início do próximo turno do usuário, fazendo com que todas as jogadas de ataque realizadas contra ela tenham desvantagem. Essas jogadas não podem receber vantagem de nenhuma maneira, independentemente de qualquer habilidade, condição ou efeito.",
+  "meta": "Requisito: Ação · Alcance: 36 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 28 PR"
  },
  {
   "tipo": "bakudou",
@@ -436,7 +436,7 @@
   "n": 95,
   "nome": "Shisoukeppu",
   "rank": "SS",
-  "texto": "conhcem o kido",
+  "texto": "Ao iniciar o procedimento, as caixas se dissolvem e revelam quatro grandes lanças espirituais. Os dois usuários devem perfurar os braços e as pernas do alvo com as lanças, uma em cada membro. O alvo deve então realizar um Teste de Resistência de Espírito.\n\nEm caso de falha, os usuários liberam uma enorme quantidade de Reiatsu através das lanças. O corpo do alvo começa a se desintegrar enquanto correntes espirituais envolvem seu corpo e o arrastam para dentro de um caixão de Reiatsu. As quatro lanças atravessam o caixão e o selam completamente.\n\nO alvo é então aprisionado permanentemente, sendo removido do mundo físico e espiritual. Enquanto estiver aprisionado, não pode se mover, agir, utilizar técnicas ou ser afetado por efeitos externos.\n\nO aprisionamento só pode ser desfeito por um Kidou ou ritual de poder equivalente ao Shisoukeppu, ou por intervenção direta da Central 46. [Central 46] - Proibido: O uso deste Kidou sem autorização é considerado uma violação gravíssima das leis da Soul Society. Seus componentes são fornecidos exclusivamente pela Central 46.",
   "meta": "Requisito: Ação Especial, realizado por dois usuários que · Alcance: Toque · Velocidade: Instantânea, Encantamento Lento · Custo: 50 PR"
  },
  {
@@ -444,7 +444,7 @@
   "n": 96,
   "nome": "Keikaigi",
   "rank": "SS",
-  "texto": "O usuário realiza um longo ritual para rasgar o espaço diante de si e criar uma Garganta, conectando dois mundos. A abertura da Garganta exige 30 minutos e",
+  "texto": "O usuário realiza um longo ritual para rasgar o espaço diante de si e criar uma Garganta, conectando dois mundos. A abertura da Garganta exige 30 minutos e concentração durante todo o ritual, não sendo criada imediatamente após o início da ação. Ao concluir o ritual, a passagem se abre e o usuário passa a sustentá-la por meio de um fluxo contínuo de Reiatsu, permitindo que criaturas atravessem livremente entre os dois lados. A Garganta pode conectar o Mundo Humano, Soul Society ou Hueco Mundo através do Dangai, mas o usuário deve conhecer o mundo que deseja alcançar. O efeito permanece por 10 minutos. Para retornar pelo Dangai, é necessário criar uma nova Garganta, repetindo o ritual para abrir outra passagem. [Central 46] - Proibido: Criar uma Garganta é uma violação direta das leis da Soul Society. Shinigami não possuem autorização para criar esse tipo de passagem e normalmente dependem de rotas controladas e do auxílio de um Jigokuchou para atravessar entre os mundos.",
   "meta": "Requisito: Ação Completa · Alcance: Toque · Velocidade: Instantânea, Encantamento Lento · Custo: 50 PR"
  },
  {
@@ -460,7 +460,7 @@
   "n": 98,
   "nome": "Kuukanten’i",
   "rank": "SS",
-  "texto": "O usuário escolhe uma área de até 18 metros de raio que possa ver dentro do alcance e marca outro ponto que possa ver a até 300 metros. Ao concluir o ritual, o espaço contido na área escolhida é deslocado instantaneamente para o novo ponto, como se aquela porção do mundo tivesse sido arrancada de seu lugar e colocada em outro. Tudo que estiver dentro da área é deslocado junto, incluindo criaturas, objetos, estruturas e Kidou ou outros efeitos ativos presentes no espaço. Os efeitos deslocados continuam funcionando…",
+  "texto": "O usuário escolhe uma área de até 18 metros de raio que possa ver dentro do alcance e marca outro ponto que possa ver a até 300 metros. Ao concluir o ritual, o espaço contido na área escolhida é deslocado instantaneamente para o novo ponto, como se aquela porção do mundo tivesse sido arrancada de seu lugar e colocada em outro. Tudo que estiver dentro da área é deslocado junto, incluindo criaturas, objetos, estruturas e Kidou ou outros efeitos ativos presentes no espaço. Os efeitos deslocados continuam funcionando normalmente após o transporte.\n\nCriaturas e objetos não são considerados teleportados individualmente. O que é transportado é o próprio espaço que os envolve, fazendo com que mantenham suas posições relativas após o deslocamento. [Central 46] - Proibido: O uso deste Kidou sem autorização é considerado uma violação gravíssima das leis da Soul Society. Seus componentes são fornecidos exclusivamente pela Central 46.",
   "meta": "Requisito: Ação · Alcance: 300 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 65 PR"
  },
  {
@@ -492,8 +492,8 @@
   "n": 3,
   "nome": "Tegami",
   "rank": "D",
-  "texto": "O Shinigami aponta um dedo em direção a uma criatura e envia uma mensagem mental para ela, sendo ouvida",
-  "meta": "Requisito: Ação Bônus · Alcance: 18 metros · Velocidade: Instantânea, Encantamento Rápido"
+  "texto": "O Shinigami aponta um dedo em direção a uma criatura e envia uma mensagem mental para ela, sendo ouvida apenas pelo alvo. A mensagem tem até 25 palavras e a criatura pode responder com a mesma quantidade, desde que você a veja ou conheça sua assinatura espiritual.",
+  "meta": "Requisito: Ação Bônus · Alcance: 18 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 1 PR"
  },
  {
   "tipo": "bakudou",
@@ -524,7 +524,7 @@
   "n": 7,
   "nome": "Genkai",
   "rank": "D",
-  "texto": "Enquanto recita o encantamento, o Shinigami faz um movimento com a mão de baixo para cima, rente ao corpo, criando uma barreira invisível de reiatsu ao redor dele, protegendo-o de ataques. O usuário deve escolher um tipo de dano entre Cortante, Perfurante ou de Concussão para criar um escudo de 10 pontos de absorção de dano. Quando o Shinigami for atacado por um desses tipos de dano, o escudo irá absorver o dano por ele, se desfazendo quando o escudo chegar a 0 pontos. Se o dano recebido for maior que a…",
+  "texto": "Enquanto recita o encantamento, o Shinigami faz um movimento com a mão de baixo para cima, rente ao corpo, criando uma barreira invisível de reiatsu ao redor dele, protegendo-o de ataques. O usuário deve escolher um tipo de dano entre Cortante, Perfurante ou de Concussão para criar um escudo de 10 pontos de absorção de dano. Quando o Shinigami for atacado por um desses tipos de dano, o escudo irá absorver o dano por ele, se desfazendo quando o escudo chegar a 0 pontos. Se o dano recebido for maior que a absorção restante, o excedente é sofrido normalmente. Só é possível manter um escudo por vez.",
   "meta": "Requisito: Ação Bônus · Alcance: Pessoal · Velocidade: Instantânea, Encantamento Rápido · Custo: 5 PR"
  },
  {
@@ -532,8 +532,8 @@
   "n": 8,
   "nome": "Seki",
   "rank": "D",
-  "texto": "",
-  "meta": "Requisito: Ação · Alcance: Pessoal · Velocidade: Instantânea, Encantamento Rápido"
+  "texto": "Uma barreira de Reiatsu surge diante do Shinigami, absorvendo o impacto dos golpes que se aproximam. Até o início do seu próximo turno, você recebe +2 na CR e 5 pontos de vida temporários.",
+  "meta": "Requisito: Ação · Alcance: Pessoal · Velocidade: Instantânea, Encantamento Rápido · Custo: 3 PR"
  },
  {
   "tipo": "bakudou",
@@ -556,8 +556,8 @@
   "n": 11,
   "nome": "Kyuketsu",
   "rank": "D",
-  "texto": "prende a um alvo escolhido, drenando gradualmente sua energia espiritual ao longo do tempo. Realize um ataque com Kido à distância, se atingir, o alvo deve realizar um Teste de Resistência de Espírito. Se falhar, a criatura terá 10 pontos de reiatsu sugados pela esfera, transferindo 5 pontos de reiatsu para o Shinigami. No início de cada turno enquanto o Bakudou estiver ativo, a criatura deve realizar um Teste de Resistência de Espírito para evitar a drenagem de reiatsu. Se a criatura passar no teste, o Bakudou é…",
-  "meta": "Requisito: Ação · Alcance: 18 metros"
+  "texto": "O Shinigami cria uma esfera de energia espiritual que se prende a um alvo escolhido, drenando gradualmente sua energia espiritual ao longo do tempo. Realize um ataque com Kido à distância, se atingir, o alvo deve realizar um Teste de Resistência de Espírito. Se falhar, a criatura terá 10 pontos de reiatsu sugados pela esfera, transferindo 5 pontos de reiatsu para o Shinigami. No início de cada turno enquanto o Bakudou estiver ativo, a criatura deve realizar um Teste de Resistência de Espírito para evitar a drenagem de reiatsu. Se a criatura passar no teste, o Bakudou é encerrado.",
+  "meta": "Requisito: Ação · Alcance: 18 metros · Velocidade: Concentração até 1 minuto, Encantamento Normal · Custo: 6 PR"
  },
  {
   "tipo": "bakudou",
@@ -580,8 +580,8 @@
   "n": 14,
   "nome": "Seicho",
   "rank": "D",
-  "texto": "",
-  "meta": ""
+  "texto": "O Shinigami faz o tempo ao redor de uma criatura hesitar. Realize um ataque à distância com Kido, se acertar, o alvo sofre 2d6 de dano Temporal e tem o deslocamento reduzido em 3 metros até o fim do próximo turno dele.",
+  "meta": "Requisito: Ação · Alcance: 12 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 6 PR"
  },
  {
   "tipo": "bakudou",
@@ -597,39 +597,39 @@
   "nome": "Koka no Hassha",
   "rank": "D",
   "texto": "O Shinigami toca uma criatura, inclusive a si mesmo, e recita o encantamento, concedendo à criatura um aumento de 3 metros em seu deslocamento, que dura até o final de seu próximo turno.",
-  "meta": "Requisito: Ação Bônus · Alcance: Pessoal · Velocidade: Instantânea, Encantamento Rápido"
+  "meta": "Requisito: Ação Bônus · Alcance: Pessoal · Velocidade: Instantânea, Encantamento Rápido · Custo: 3 PR"
  },
  {
   "tipo": "bakudou",
   "n": 17,
   "nome": "Shinden",
   "rank": "D",
-  "texto": "Kido.",
-  "meta": "Requisito: Ação · Alcance: 9 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 1 PR"
+  "texto": "O Shinigami recita o encantamento e cria um domo numa área de 18 metros de diâmetro centrada em você, cobrindo a região com uma fina camada de reiatsu. Essa camada dura 10 horas e qualquer criatura que adentrar a área é imediatamente detectada por você, contanto que você permaneça dentro do domo; se você sair, o Bakudou é desfeito.\n\nPara ativar completamente este Bakudou, é necessário recitar o encantamento repetidamente por 5 minutos.",
+  "meta": "Requisito: Ação · Alcance: Pessoal · Velocidade: Especial, Encantamento Lento · Custo: 1 PR"
  },
  {
   "tipo": "bakudou",
   "n": 18,
   "nome": "Hakuryoku no Yugen",
   "rank": "D",
-  "texto": "",
-  "meta": ""
+  "texto": "O Shinigami faz um gesto com os dedos, criando uma atração gravitacional em um dos lados de uma criatura. A criatura deve realizar um Teste de Resistência de Força; se falhar, será movida para o lado escolhido pelo Shinigami, em até 3 metros.\n\nSe a criatura for empurrada para dentro de um Kido ou de um efeito debilitante e precisar realizar um teste de resistência, ela fará o teste com desvantagem.",
+  "meta": "Requisito: Ação · Alcance: 9 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 5 PR"
  },
  {
   "tipo": "bakudou",
   "n": 19,
   "nome": "Kouzen Fuuin",
   "rank": "D",
-  "texto": "",
-  "meta": "Requisito: Ação · Alcance: 9 metros · Velocidade: Concentração até 1 minuto, Encantamento Lento"
+  "texto": "O Shinigami invoca cinco pilares de energia espiritual que se erguem do chão ao redor de uma criatura dentro do alcance, conectando-se com correntes de reiatsu. Faça um ataque à distância com Kido, se acertar o alvo deve realizar um teste de resistência de Força contra a CD de Kido. Em caso de falha, ela fica com a condição “Paralisado” e pode refazer o teste no começo de cada turno dela.\n\nSe o alvo tentar escapar ou receber ajuda de outros, cada pilar possui pontos de vida igual a 5 + o nível do conjurador. Um ataque bem-sucedido que destrua um pilar desfaz o Kido.",
+  "meta": "Requisito: Ação · Alcance: 9 metros · Velocidade: Concentração até 1 minuto, Encantamento Lento · Custo: 10 PR"
  },
  {
   "tipo": "bakudou",
   "n": 20,
   "nome": "Kage Tsuru",
   "rank": "D",
-  "texto": "",
-  "meta": ""
+  "texto": "O Shinigami invoca uma sombra densa e flutuante que envolve uma área de 4,5 metros de diâmetro a até 9 metros do Shinigami. Qualquer criatura ou objeto dentro dessa área fica coberto por uma sombra espessa, que obscurece sua presença. Durante 1 minuto, o alvo recebe vantagem em testes de Furtividade e não pode ser detectado visualmente por qualquer inimigo, a menos que eles realizem um teste de Percepção com CD igual à do Kido do conjurador. As criaturas podem ser detectadas pela reiatsu delas normalmente.",
+  "meta": "Requisito: Ação · Alcance: 9 metros · Velocidade: Concentração até 1 minuto, Encantamento Normal · Custo: 12 PR"
  },
  {
   "tipo": "bakudou",
@@ -644,39 +644,39 @@
   "n": 22,
   "nome": "Seishin Heiwa",
   "rank": "C",
-  "texto": "",
-  "meta": ""
+  "texto": "Você estende a mão e libera uma onda suave de reiatsu azul-clara que se espalha em um raio de tranquilidade. Escolha até três criaturas dentro do alcance. Cada uma delas tem qualquer condição de “Amedrontado” imediatamente encerrada.\n\nAlém disso, por 1 minuto, as criaturas afetadas ganham vantagem em testes de resistência contra efeitos que causem medo, sentindo a reiatsu do conjurador estabilizar suas emoções e fortalecer o espírito.",
+  "meta": "Requisito: Ação · Alcance: Raio de 9 metros (centrado no usuário) · Velocidade: Instantânea, Encantamento Lento · Custo: 8 PR"
  },
  {
   "tipo": "bakudou",
   "n": 23,
   "nome": "Keikai no Mon",
   "rank": "C",
-  "texto": "",
-  "meta": ""
+  "texto": "Você traça um pequeno selo espiritual no ar ou sobre uma superfície (como uma porta, parede ou solo), criando uma barreira de vigilância espiritual. Escolha uma área cúbica de até 6 metros de lado, ou uma entrada específica dentro do alcance.\n\nEnquanto o Bakudou estiver ativo, o selo detecta a presença de qualquer criatura que toque ou atravesse a área protegida. Quando isso ocorre, o conjurador recebe um sinal mental, uma vibração espiritual que alerta sua consciência de forma instantânea, não importando a distância, contanto que esteja no mesmo plano de existência.\n\nDurante a conjuração, você pode designar criaturas específicas que não disparam o alarme, como aliados, subordinados ou entidades espirituais familiares. O selo dura por 8 horas ou até ser desfeito. Ele pode ser percebido com um teste de Percepção Espiritual (CD 20) apenas por criaturas capazes de sentir energia espiritual.",
+  "meta": "Requisito: Ação · Alcance: Cubo de até 6 metros de lado · Velocidade: Instantânea, Encantamento Lento · Custo: 6 PR"
  },
  {
   "tipo": "bakudou",
   "n": 24,
   "nome": "Kamen no Utage",
   "rank": "C",
-  "texto": "",
-  "meta": ""
+  "texto": "Você envolve seu corpo em uma fina camada de Reiatsu ilusória, alterando completamente sua aparência física e vocal. Você decide como aparenta, podendo mudar altura, peso, traços faciais, cor do cabelo, voz e outros detalhes. A ilusão é perfeita aos olhos e ouvidos, mas não resiste ao toque físico direto, que revela sua verdadeira forma. Caso uma criatura suspeite da ilusão, ela pode tentar perceber sua aparência verdadeira com um teste de Investigação contra a CD do seu Kido.",
+  "meta": "Requisito: Ação Completa · Alcance: 9 metros · Velocidade: Concentração até 1 hora, Encantamento Lento · Custo: 10 PR"
  },
  {
   "tipo": "bakudou",
   "n": 25,
   "nome": "Joushin",
   "rank": "C",
-  "texto": "",
-  "meta": ""
+  "texto": "Ao tocar uma criatura, você canaliza sua Reiatsu para fortalecer sua alma e corpo, envolvendo-a em uma aura protetora translúcida. Escolha Força, Destreza, Mente ou Espírito. Até o fim da duração, o alvo tem vantagem em testes de resistência usando o atributo escolhido e recebe um bônus de +1 no mesmo atributo.\n\nO aprimoramento é desfeito se o Shinigami que conjurou perder a concentração ou ficar inconsciente.",
+  "meta": "Requisito: Ação · Alcance: Toque · Velocidade: Concentração até 10 minutos, Encantamento Normal · Custo: 12 PR"
  },
  {
   "tipo": "bakudou",
   "n": 26,
   "nome": "Kyokkou",
   "rank": "C",
-  "texto": "Você manipula a luz ao seu redor, criando uma distorção de Reiatsu que dobra a luminosidade e oculta",
+  "texto": "Você manipula a luz ao seu redor, criando uma distorção de Reiatsu que dobra a luminosidade e oculta completamente sua presença física. Enquanto permanecer imóvel, você se esconde sem precisar realizar um teste de Furtividade, tornando-se invisível aos olhos comuns. No entanto, se uma criatura tentar percebê-lo, ela deve realizar um teste de Percepção Espiritual CD 20. O ambiente onde você está passa a agir como uma barreira ilusória criaturas que tocarem sua posição ainda poderão sentir seu corpo, mas não o verão.\n\nEste Bakudou não pode ser utilizado em combate e você não pode se mover utilizando esse Bakudou, ficando no mesmo lugar.",
   "meta": "Requisito: Ação · Alcance: Pessoal · Velocidade: 10 minutos, Encantamento Lento · Custo: 12 PR"
  },
  {
@@ -684,40 +684,40 @@
   "n": 27,
   "nome": "Seishin Tate",
   "rank": "C",
-  "texto": "",
-  "meta": ""
+  "texto": "Você estende sua Reiatsu em forma de proteção espiritual, envolvendo até três criaturas de sua escolha dentro do alcance. Cada alvo recebe 10 pontos de vida temporários e reduz em 5 pontos todo dano físico (concussão, cortante e perfurante) recebido, até que esses pontos de vida temporários se esgotem.\n\nA aura espiritual é visível como uma película tênue de energia, que se rompe lentamente à medida que absorve o impacto dos ataques.",
+  "meta": "Requisito: Ação · Alcance: 9 metros · Velocidade: Instantânea, 1 minuto, Encantamento Rápido · Custo: 10 PR"
  },
  {
   "tipo": "bakudou",
   "n": 28,
   "nome": "Kanjou no Tobari",
   "rank": "C",
-  "texto": "",
-  "meta": ""
+  "texto": "Você lança um véu espiritual sobre a mente de uma criatura à sua escolha dentro do alcance. O alvo deve realizar um Teste de Resistência de Mente. Se falhar, ele fica sob a condição “Enfeitiçado” enquanto o Bakudou estiver ativo.\n\nEnquanto estiver sob esse efeito, a criatura afetada vê o conjurador com admiração e empatia, sendo incapaz de realizar ataques ou ações hostis contra ele. No início de cada turno da criatura, ela pode refazer o teste de resistência de Mente para tentar se libertar da condição. A condição termina imediatamente caso o conjurador ou um de seus aliados ataque o alvo ou cause dano a ele.",
+  "meta": "Requisito: Ação · Alcance: 6 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 10 PR"
  },
  {
   "tipo": "bakudou",
   "n": 29,
   "nome": "Satori",
   "rank": "C",
-  "texto": "",
-  "meta": ""
+  "texto": "O Shinigami concentra sua percepção espiritual e busca por Kido ativo dentro do alcance. Todas as áreas com Kido ativo em um raio de 18 metros são detectadas pelo usuário, permitindo que ele perceba a presença de conjurações, mesmo que invisíveis ou camufladas. O usuário deve fazer um teste de Mente (oposição, se necessário, ao conjurador do Kido detectado) para identificar o tipo e a intensidade do Kido. Se falhar, ele apenas percebe a presença de energia espiritual, sem detalhes adicionais.",
+  "meta": "Requisito: Ação · Alcance: 18 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 8 PR"
  },
  {
   "tipo": "bakudou",
   "n": 30,
   "nome": "Sansen",
   "rank": "C",
-  "texto": "",
-  "meta": ""
+  "texto": "O Shinigami traça um triângulo no ar com suas mãos, e de cada vértice emerge uma flecha de reiatsu que, ao atingir o alvo, o prende firmemente a uma superfície próxima. Realize um ataque à distância com Kido, se acertar, a criatura alvo fica presa em uma superfície do tamanho dela (parede, chão ou cobertura adequada) e recebe as condições “Preso” e “Caído”, mesmo que esteja suspensa.\n\nNo início do próximo turno da criatura, ela pode realizar um Teste de Resistência de Força para tentar se libertar, e novamente nos turnos seguintes dela.",
+  "meta": "Requisito: Ação · Alcance: 12 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 10 PR"
  },
  {
   "tipo": "bakudou",
   "n": 31,
   "nome": "Kido Shoumei",
   "rank": "C",
-  "texto": "",
-  "meta": ""
+  "texto": "O Shinigami aponta a palma da mão em direção a uma criatura, objeto ou efeito de reiatsu ativo dentro do alcance. Este Bakudou dissipa automaticamente qualquer Kido de Rank D presente no alvo. Para Kidos de Rank C ou superior, o usuário realiza um teste de acerto com Kido à distância. O conjurador do Kido alvo realiza um teste de resistência ou teste de acerto (como apropriado para a conjuração dele). Se o teste do Shinigami for bem-sucedido, o Kido é dissipado, mas se falhar o Kido permanece ativo.\n\nO conjurador do Kido deve estar no mesmo ambiente; se ele não estiver, o Kido de Rank C ou maior apenas é suprimido. O mestre pode decidir que o Kido também não pode ser dissipado.",
+  "meta": "Requisito: Ação · Alcance: 9 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 12 PR"
  },
  {
   "tipo": "bakudou",
@@ -764,7 +764,7 @@
   "n": 37,
   "nome": "Tsuriboshi",
   "rank": "C",
-  "texto": "criaturas voluntárias)",
+  "texto": "Quando você e outras criaturas estiverem caindo, você cria um colchão de reiatsu que se assemelha a uma rede, prendendo-se a objetos ou ao chão, evitando que sofram dano de queda. Utilizando sua reação enquanto estiver caindo, você pode criar esse colchão de reiatsu com raio equivalente a uma esfera de 6 metros no chão onde irá aterrissar. Você não sofre dano de queda de qualquer altura, e todas as criaturas que caírem nesse colchão também não recebem dano de queda.\n\nO colchão de reiatsu permanece ativo por 1 minuto ou até que você o desfaça com uma ação livre.",
   "meta": "Requisito: Reação · Alcance: Esfera de 6 metros (Embaixo do usuário, e · Velocidade: Instantânea, 1 minuto, Encantamento Rápido · Custo: 5 PR"
  },
  {
@@ -788,7 +788,7 @@
   "n": 40,
   "nome": "Kurokabe",
   "rank": "C",
-  "texto": "altura e 1,5 metros de largura",
+  "texto": "O Shinigami estende ambas as mãos à frente e canaliza reiatsu, formando uma barreira sólida de energia amarela em uma linha 12 metros de comprimento, 3 metros de altura e 1,5 metros de largura.\n\nTodas as criaturas que tentarem atravessar o muro devem realizar um Teste de Resistência de Força, em caso de falha, seus movimentos são totalmente bloqueados, e em caso de sucesso a barreira é quebrada. O muro dura 1 minuto ou até ser destruído.",
   "meta": "Requisito: Ação · Alcance: Linha 12 metros de comprimento, 3 metros de · Velocidade: Concentração até 1 minuto, Encantamento Lento · Custo: 10 PR"
  },
  {
@@ -796,16 +796,16 @@
   "n": 1,
   "nome": "Shou",
   "rank": "D",
-  "texto": "",
-  "meta": ""
+  "texto": "O Shinigami estende a palma da mão e libera um impacto de Reiatsu. Realize um ataque à distância com Kido, se acertar, a criatura sofre 1d6 de dano de Energia e deve realizar um Teste de Resistência de Força; em caso de falha, é empurrada 3 metros para longe de você.",
+  "meta": "Requisito: Ação · Alcance: 9 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 2 PR"
  },
  {
   "tipo": "hadou",
   "n": 2,
   "nome": "Ken",
   "rank": "D",
-  "texto": "",
-  "meta": ""
+  "texto": "O Shinigami condensa Reiatsu na mão e forma uma lâmina espiritual que dura 1 minuto. Enquanto durar, você pode realizar ataques corpo a corpo com Kido, causando 1d10 de dano Cortante. Dispensar a lâmina é uma ação livre.",
+  "meta": "Requisito: Ação · Alcance: Pessoal · Velocidade: Instantânea, Encantamento Normal · Custo: 3 PR"
  },
  {
   "tipo": "hadou",
@@ -876,7 +876,7 @@
   "n": 11,
   "nome": "Tsuzuri Raiden",
   "rank": "D",
-  "texto": "Ao encostar em um objeto de metal, você cria uma",
+  "texto": "Ao encostar em um objeto de metal, você cria uma corrente elétrica no mesmo. Se outra criatura tocar no objeto até o início do seu próximo turno, ela sofrerá 1d10 de dano Elétrico e precisará fazer um Teste de Resistência de Constituição para evitar ficar “Eletrificada”. A criatura pode refazer o teste de resistência no início de cada um de seus turnos para encerrar a condição.",
   "meta": "Requisito: Ação Bônus · Alcance: Toque · Velocidade: Instantânea, Encantamento Rápido · Custo: 5 PR"
  },
  {
@@ -900,7 +900,7 @@
   "n": 14,
   "nome": "Seishin Hari",
   "rank": "D",
-  "texto": "Você dispara finas agulhas de reiatsu espiritual concentrada em direção a até três criaturas que você possa ver em alcance. Realize um ataque de Kido contra",
+  "texto": "Você dispara finas agulhas de reiatsu espiritual concentrada em direção a até três criaturas que você possa ver em alcance. Realize um ataque de Kido contra cada uma delas. Se acertar, cada alvo sofre 1d8 de dano de Fogo e deve realizar um teste de Resistência de Espirito. Em falha, sofre –1 em testes de Concentração e conjuração até o final do próximo turno.",
   "meta": "Requisito: Ação · Alcance: 12 metros em Linha · Velocidade: Instantânea, Encantamento Lento · Custo: 5 PR"
  },
  {
@@ -924,8 +924,8 @@
   "n": 17,
   "nome": "Hakai Kyōmei",
   "rank": "D",
-  "texto": "ponto a sua escolha dentro de 9 metros de você",
-  "meta": "Requisito: Ação · Alcance: Explosão de 3 metros de raio centrada em um · Velocidade: Instantânea, Encantamento Normal · Custo: 3 PR"
+  "texto": "Você concentra sua reiatsu em uma frequência destrutiva e a libera em uma onda sonora espiritual que reverbera com violência. Todas as criaturas na área devem realizar um teste de Resistência de Constituição. Se falharem, sofrem 2d8 de dano Sonoro e ficam desorientadas por 1 turno, recebendo desvantagem em testes de Percepção. Se passarem, sofrem metade do dano e não ficam desorientadas.",
+  "meta": "Requisito: Ação · Alcance: Explosão de 3 metros de raio centrada em um ponto a sua escolha dentro de 9 metros de você · Velocidade: Instantânea, Encantamento Normal · Custo: 3 PR"
  },
  {
   "tipo": "hadou",
@@ -948,8 +948,8 @@
   "n": 20,
   "nome": "Shoutenkyu",
   "rank": "D",
-  "texto": "",
-  "meta": ""
+  "texto": "O usuário estende a palma da mão e lança uma esfera azul de energia espiritual condensada contra uma criatura dentro do alcance, realizando um ataque à distância com Kido. Ao atingir o alvo, a esfera explode em uma onda de reiatsu que impacta o corpo com muita força. Se o ataque acertar, a criatura sofre 2d10 de dano de Energia e deve realizar um Teste de Resistência de Constituição. Em caso de falha, ela ficará Atordoada até o final do próximo turno dela.\n\nPara cada 3 pontos de Reiatsu adicionais gastos, você adiciona 1d10 de dano extra.",
+  "meta": "Requisito: Ação · Alcance: 12 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 6 PR"
  },
  {
   "tipo": "hadou",
@@ -964,15 +964,15 @@
   "n": 22,
   "nome": "Enjin Gekishin",
   "rank": "C",
-  "texto": "",
-  "meta": "Requisito: Ação · Alcance: 9 metros"
+  "texto": "O Shinigami golpeia o solo e faz uma muralha circular de chamas e pedra irromper em torno de um ponto a até 9 metros, num raio de 3 metros. Todas as criaturas na área devem realizar um Teste de Resistência de Destreza. Em caso de falha, sofrem 5d6 de dano de Fogo e ficam Caídas; em caso de sucesso, sofrem metade do dano e permanecem de pé. A área se torna terreno difícil até o fim do próximo turno do usuário.",
+  "meta": "Requisito: Ação · Alcance: 9 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 10 PR"
  },
  {
   "tipo": "hadou",
   "n": 23,
   "nome": "Kiba Homura",
   "rank": "C",
-  "texto": "O Shinigami estende a mão à frente e invoca uma língua de fogo espiritual que toma a forma de chamas dentadas e agitadas, como se possuíssem uma vontade própria. As chamas explodem em um cone curto à sua frente, tentando agarrar e devorar qualquer coisa em seu caminho. Todas as criaturas na área devem realizar um Teste de Resistência de Destreza. Em caso de falha, sofrem 5d6 de dano de Fogo e ficam com desvantagem em testes de contra efeitos que causem dano de fogo até o início do próximo turno do Shinigami. Em…",
+  "texto": "O Shinigami estende a mão à frente e invoca uma língua de fogo espiritual que toma a forma de chamas dentadas e agitadas, como se possuíssem uma vontade própria. As chamas explodem em um cone curto à sua frente, tentando agarrar e devorar qualquer coisa em seu caminho. Todas as criaturas na área devem realizar um Teste de Resistência de Destreza. Em caso de falha, sofrem 5d6 de dano de Fogo e ficam com desvantagem em testes de contra efeitos que causem dano de fogo até o início do próximo turno do Shinigami. Em caso de sucesso, sofrem metade do dano e não sofrem penalidades.",
   "meta": "Requisito: Ação · Alcance: Cone de 4,5 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 10 PR"
  },
  {
@@ -1012,7 +1012,7 @@
   "n": 28,
   "nome": "Seishin Kyomei",
   "rank": "C",
-  "texto": "O Shinigami concentra o Reiatsu ao redor de seu corpo e canaliza energia espiritual em uma onda pulsante que se expande em direção aos inimigos. A onda brilha com um tom esverdeado e ressoa com a força da terra e do espírito, atingindo todos os alvos em seu caminho. Realize uma jogada de ataque de Kido contra todas as criaturas em linha dentro do alcance. Em um acerto, cada alvo sofre 2d8 de dano de Energia e recebe a condição Distorcido por 1 turno, limitando a quantidade máxima de Reiatsu que pode usar em…",
+  "texto": "O Shinigami concentra o Reiatsu ao redor de seu corpo e canaliza energia espiritual em uma onda pulsante que se expande em direção aos inimigos. A onda brilha com um tom esverdeado e ressoa com a força da terra e do espírito, atingindo todos os alvos em seu caminho. Realize uma jogada de ataque de Kido contra todas as criaturas em linha dentro do alcance. Em um acerto, cada alvo sofre 2d8 de dano de Energia e recebe a condição Distorcido por 1 turno, limitando a quantidade máxima de Reiatsu que pode usar em uma única ação até o fim do próximo turno dele.",
   "meta": "Requisito: Ação · Alcance: Linha de 24 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 7 PR"
  },
  {
@@ -1036,7 +1036,7 @@
   "n": 31,
   "nome": "Shakkahou",
   "rank": "C",
-  "texto": "O Shinigami concentra Reiatsu em sua mão e dispara uma esfera espiritual vermelha incandescente que avança em linha reta em direção ao inimigo. A esfera arde com intensidade e é capaz de perfurar obstáculos leves enquanto mantém sua energia espiritual concentrada. Realize uma jogada de ataque de Kido contra",
+  "texto": "O Shinigami concentra Reiatsu em sua mão e dispara uma esfera espiritual vermelha incandescente que avança em linha reta em direção ao inimigo. A esfera arde com intensidade e é capaz de perfurar obstáculos leves enquanto mantém sua energia espiritual concentrada. Realize uma jogada de ataque de Kido contra todas as criaturas na linha de ataque. Em um acerto, cada alvo sofre 7d12 de dano de Fogo e recebe a condição Queimado até o início do próximo turno dela. Em caso de sucesso, sofrem metade do dano e não recebem a condição.",
   "meta": "Requisito: Ação · Alcance: 30 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 12 PR"
  },
  {
@@ -1076,8 +1076,8 @@
   "n": 36,
   "nome": "Kokoro Satsu",
   "rank": "C",
-  "texto": "diretamente sobre uma criatura específica. As ondas golpeiam a mente do alvo, causando distúrbios psíquicos imediatos e intensos.",
-  "meta": "Requisito: Ação · Alcance: 15 metros · Custo: 10 PR"
+  "texto": "O Shinigami concentra seu Reiatsu em ondas que vibram com pensamentos e memórias distorcidas, projetando-as diretamente sobre uma criatura específica. As ondas golpeiam a mente do alvo, causando distúrbios psíquicos imediatos e intensos.\n\nO alvo deve realizar um Teste de Resistência de Mente. Em caso de falha, sofre 5d10 de dano Psíquico. Em caso de sucesso, sofre metade do dano.",
+  "meta": "Requisito: Ação · Alcance: 15 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 10 PR"
  },
  {
   "tipo": "hadou",
@@ -1100,8 +1100,8 @@
   "n": 39,
   "nome": "Denki",
   "rank": "C",
-  "texto": "",
-  "meta": ""
+  "texto": "O Shinigami aponta para uma criatura e faz uma descarga elétrica saltar até ela. Realize um ataque à distância com Kido, se acertar, a criatura sofre 5d6 de dano Elétrico e recebe a condição “Eletrificado”.",
+  "meta": "Requisito: Ação · Alcance: 15 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 9 PR"
  },
  {
   "tipo": "hadou",
@@ -1132,15 +1132,15 @@
   "n": 43,
   "nome": "Sokkekka",
   "rank": "B",
-  "texto": "",
-  "meta": ""
+  "texto": "O Shinigami une as duas mãos à frente e libera uma onda de choque de Reiatsu em cone. Todas as criaturas na área devem realizar um Teste de Resistência de Constituição. Em caso de falha, sofrem 6d10 de dano de Energia e são empurradas 3 metros; em caso de sucesso, sofrem metade do dano e não são empurradas.",
+  "meta": "Requisito: Ação · Alcance: Cone de 9 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 16 PR"
  },
  {
   "tipo": "hadou",
   "n": 44,
   "nome": "Hikari no Senkou",
   "rank": "B",
-  "texto": "O Shinigami estende a mão aberta em direção ao alvo, liberando um feixe concentrado de energia luminosa que percorre a linha escolhida. A luz brilha com intensidade ofuscante, atingindo a primeira criatura em seu caminho",
+  "texto": "O Shinigami traça um símbolo complexo no ar com dois dedos, canalizando seu Reiatsu através do gesto. Ao completar o sinal, uma rajada de energia espiritual luminosa em forma de cone dispara à sua frente, atingindo todos no caminho. Todas as criaturas na área devem realizar um Teste de Resistência de Constituição, falhando sofrem 8d10 de dano de Luz.",
   "meta": "Requisito: Ação · Alcance: Linha de 15 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 23 PR"
  },
  {
@@ -1148,7 +1148,7 @@
   "n": 45,
   "nome": "Jishin Reimei",
   "rank": "B",
-  "texto": "chão a até 12 metros de você)",
+  "texto": "O Shinigami bate o punho contra o solo, liberando uma poderosa descarga de Reiatsu que se propaga como rachaduras brilhantes e vibrantes, acompanhadas por um rugido trovejante. A terra e o ar tremem conforme a energia espiritual explode em uma mistura de luz dourada e trovões.\n\nTodas as criaturas na área devem realizar um Teste de Resistência de Força. Em caso de falha, sofrem 3d8 de dano Elétrico e 3d8 de dano Sonoro. Em caso de sucesso, sofrem metade do dano.",
   "meta": "Requisito: Ação · Alcance: Esfera de 6 metros (centrada em um ponto no · Velocidade: Instantânea, Encantamento Rápido · Custo: 13 PR"
  },
  {
@@ -1156,7 +1156,7 @@
   "n": 46,
   "nome": "Komyosen",
   "rank": "B",
-  "texto": "O Shinigami traça um selo no ar com dois dedos, liberando",
+  "texto": "O Shinigami traça um selo no ar com dois dedos, liberando uma linha de energia luminosa intensa que se condensa em diversas lanças espirituais. Essas lanças disparam em sequência, perfurando tudo em seu caminho com uma explosão radiante.\n\nRealize uma jogada de ataque de Kido contra toda as criaturas na linha. Em um acerto, elas sofrem 8d8 de dano de Luz.",
   "meta": "Requisito: Ação · Alcance: Linha de 12 metros · Velocidade: Instantânea, Encantamento Lento · Custo: 16 PR"
  },
  {
@@ -1188,7 +1188,7 @@
   "n": 50,
   "nome": "Shinkuha",
   "rank": "B",
-  "texto": "O Shinigami reúne seu reiatsu diante de si, moldando-o em uma lâmina translúcida que vibra com o som do ar sendo dividido. Num único gesto, ele desfere o golpe, liberando uma onda cortante invisível que rasga o espaço e tudo em seu caminho. A energia do vácuo colapsa sobre si mesma, destruindo o ar e a matéria onde toca. Realize uma jogada de ataque de Kido à distância contra uma criatura dentro do alcance. Em um acerto, o alvo sofre 5d10 de dano Sonoro, à medida que seu corpo é dilacerado pela pressão do vácuo e…",
+  "texto": "O Shinigami reúne seu reiatsu diante de si, moldando-o em uma lâmina translúcida que vibra com o som do ar sendo dividido. Num único gesto, ele desfere o golpe, liberando uma onda cortante invisível que rasga o espaço e tudo em seu caminho. A energia do vácuo colapsa sobre si mesma, destruindo o ar e a matéria onde toca. Realize uma jogada de ataque de Kido à distância contra uma criatura dentro do alcance. Em um acerto, o alvo sofre 5d10 de dano Sonoro, à medida que seu corpo é dilacerado pela pressão do vácuo e pelas vibrações da onda espiritual.",
   "meta": "Requisito: Ação · Alcance: 12 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 15 PR"
  },
  {
@@ -1196,7 +1196,7 @@
   "n": 51,
   "nome": "Ennetsu Jigoku",
   "rank": "B",
-  "texto": "metros de largura",
+  "texto": "O Shinigami finca a mão no chão, e seu reiatsu inflama em uma espiral de energia incandescente. O chão se parte, liberando colunas de fogo espiritual que emergem do solo como se o próprio inferno tivesse sido aberto. As chamas rugem e consomem tudo ao redor, deixando apenas o brilho ardente de destruição espiritual.\n\nTodas as criaturas dentro do círculo devem realizar um teste de resistência de Constituição. Em uma falha, sofrem 9d8 de dano de Fogo, em um sucesso, sofrem metade do dano.\n\nEsse pilar de chamas tem a altura de 6 metros.",
   "meta": "Requisito: Ação · Alcance: Linha de 18 metros de comprimento por 4,5 · Velocidade: Instantânea, Encantamento Lento · Custo: 28 PR"
  },
  {
@@ -1212,8 +1212,8 @@
   "n": 53,
   "nome": "Shirotenrai",
   "rank": "B",
-  "texto": "",
-  "meta": ""
+  "texto": "O Shinigami ergue a mão e um trovão branco rasga o ar em linha reta. Todas as criaturas na linha devem realizar um Teste de Resistência de Destreza. Em caso de falha, sofrem 7d10 de dano Elétrico e recebem a condição “Eletrificado”; em caso de sucesso, sofrem metade do dano e não ficam eletrificadas.",
+  "meta": "Requisito: Ação · Alcance: Linha de 24 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 17 PR"
  },
  {
   "tipo": "hadou",
@@ -1252,7 +1252,7 @@
   "n": 58,
   "nome": "Tenran",
   "rank": "B",
-  "texto": "O Shinigami realiza um gesto amplo com as mãos, canalizando Reiatsu no ar para formar um tornado de",
+  "texto": "O Shinigami realiza um gesto amplo com as mãos, canalizando Reiatsu no ar para formar um tornado de energia espiritual que se projeta em linha reta na direção do inimigo. Qualquer criatura atingida é atingida pela força do vórtice e pelo impacto da energia cortante que gira ao redor do tornado.\n\nCada criatura na área deve realizar um Teste de Resistência de Destreza. Em caso de falha, sofre 5d8 de dano Cortante e são empurradas 6 metros para trás, e em caso de sucesso, sofre metade do dano e não são empurradas.",
   "meta": "Requisito: Ação · Alcance: Linha de 12 metros, largura de 4,5 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 15 PR"
  },
  {
@@ -1284,8 +1284,8 @@
   "n": 62,
   "nome": "Hyouketsu Ryouran",
   "rank": "A",
-  "texto": "",
-  "meta": ""
+  "texto": "O Shinigami faz desabrochar flores de gelo espiritual sobre o campo de batalha, congelando tudo ao redor de um ponto. Todas as criaturas na área devem realizar um Teste de Resistência de Constituição. Em caso de falha, sofrem 8d10 de dano de Frio e recebem a condição “Congelado”; em caso de sucesso, sofrem metade do dano.",
+  "meta": "Requisito: Ação · Alcance: Esfera de 6 metros (até 24 metros do usuário) · Velocidade: Instantânea, Encantamento Normal · Custo: 22 PR"
  },
  {
   "tipo": "hadou",
@@ -1300,7 +1300,7 @@
   "n": 64,
   "nome": "Seikatsu no Kekkai",
   "rank": "A",
-  "texto": "12 metros de você)",
+  "texto": "O Shinigami ergue ambas as mãos e faz o ar vibrar com energia espiritual concentrada. Um símbolo de seis pontas surge no chão, emanando uma luz intensa que cresce até explodir em um clarão purificador. Dentro da esfera luminosa, tudo é envolto por uma força destrutiva que consome corpo e alma, deixando apenas o eco espiritual queimando no ar.\n\nTodas as criaturas na área devem ser atingidas por uma jogada de ataque de Kido. Em um acerto, cada criatura sofre 12d6 de dano de Luz, sendo empurrada 3 metros para longe do centro da explosão.",
   "meta": "Requisito: Ação · Alcance: Esfera de 6 metros (centrada em um ponto a até · Velocidade: Instantânea, Encantamento Normal · Custo: 21 PR"
  },
  {
@@ -1324,8 +1324,8 @@
   "n": 67,
   "nome": "Jikan Dangan",
   "rank": "A",
-  "texto": "",
-  "meta": ""
+  "texto": "O Shinigami dispara uma bala de Reiatsu que atravessa o próprio fluxo do tempo. Realize um ataque à distância com Kido, se acertar, o alvo sofre 7d10 de dano Temporal e deve realizar um Teste de Resistência de Espírito. Em caso de falha, perde a Reação e tem o deslocamento reduzido à metade até o fim do próximo turno dele.",
+  "meta": "Requisito: Ação · Alcance: 24 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 23 PR"
  },
  {
   "tipo": "hadou",
@@ -1340,7 +1340,7 @@
   "n": 69,
   "nome": "Hikari no Senkou",
   "rank": "A",
-  "texto": "O Shinigami estende a mão aberta em direção ao alvo, liberando um feixe concentrado de energia luminosa que percorre a linha escolhida. A luz brilha com intensidade ofuscante, atingindo a primeira criatura em seu caminho",
+  "texto": "O Shinigami estende a mão aberta em direção ao alvo, liberando um feixe concentrado de energia luminosa que percorre a linha escolhida. A luz brilha com intensidade ofuscante, atingindo a primeira criatura em seu caminho e consumindo sua visão momentaneamente, causando queimaduras espirituais nos sentidos.\n\nRealize uma jogada de ataque de Kido contra a criatura. Em um acerto, ela sofre 10d10 de dano de Luz e a criatura atingida tem desvantagem em Testes de Percepção por dois turnos dela.",
   "meta": "Requisito: Ação · Alcance: Linha de 15 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 23 PR"
  },
  {
@@ -1356,7 +1356,7 @@
   "n": 71,
   "nome": "Shinko Hoko",
   "rank": "A",
-  "texto": "36 metros de você)",
+  "texto": "O Shinigami concentra sua energia espiritual nas palmas das mãos e a dispara em forma de uma esfera sonora luminosa que explode ao tocar o solo. A explosão cria uma onda concussiva que atinge todas as criaturas na área. Cada criatura deve realizar um Teste de Resistência de Constituição. Em caso de falha, sofre 11d6 de dano Sonoro, em caso de sucesso, sofre metade do dano.",
   "meta": "Requisito: Ação · Alcance: Esfera de 9 metros (centrada em um ponto a até · Velocidade: Instantânea, Encantamento Lento · Custo: 22 PR"
  },
  {
@@ -1372,15 +1372,15 @@
   "n": 73,
   "nome": "Souren Soukatsui",
   "rank": "A",
-  "texto": "",
-  "meta": ""
+  "texto": "O Shinigami une as palmas e dispara duas rajadas de chamas azuis que giram entre si em linha reta. Todas as criaturas na linha devem realizar um Teste de Resistência de Destreza. Em caso de falha, sofrem 9d12 de dano de Fogo e recebem um acúmulo da condição “Queimado”; em caso de sucesso, sofrem metade do dano.",
+  "meta": "Requisito: Ação · Alcance: Linha de 30 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 25 PR"
  },
  {
   "tipo": "hadou",
   "n": 74,
   "nome": "Seikoko",
   "rank": "A",
-  "texto": "O Shinigami estende a mão aberta em direção ao inimigo",
+  "texto": "O Shinigami estende a mão aberta em direção ao inimigo e libera um feixe concentrado de luz espiritual pura. A energia luminosa atravessa a linha escolhida, atingindo uma criatura específica e queimando seu corpo com intensidade devastadora.\n\nRealize uma jogada de ataque de Kido contra a criatura. Em um acerto, ela sofre 11d10 de dano de Luz.",
   "meta": "Requisito: Acerto · Alcance: Linha de 12 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 25 PR"
  },
  {
@@ -1420,7 +1420,7 @@
   "n": 79,
   "nome": "Kaminari",
   "rank": "A",
-  "texto": "O Shinigami ergue a mão e convoca um raio espiritual do céu. A descarga divina cai com força esmagadora sobre",
+  "texto": "O Shinigami ergue a mão e convoca um raio espiritual do céu. A descarga divina cai com força esmagadora sobre o ponto escolhido, iluminando o campo de batalha e espalhando faíscas por todos os lados. Todas as criaturas dentro da esfera devem realizar um teste de resistência de Constituição, em caso de falha, sofrem 12d8 de dano Elétrico e ficam com a condição Eletrificado. Em caso de sucesso, sofrem metade do dano e não ficam eletrificados.",
   "meta": "Requisito: Ação · Alcance: Esfera de 9 metros (Até 36 metros de você) · Velocidade: Instantânea, Encantamento Lento · Custo: 19 PR"
  },
  {
@@ -1444,7 +1444,7 @@
   "n": 82,
   "nome": "Ennetsu Jigoku",
   "rank": "S",
-  "texto": "metros de largura",
+  "texto": "O Shinigami segura entre os dedos uma pena feita de pura energia espiritual flamejante. Ao iniciar o encantamento, a pena incendeia-se com fogo carmesim e se dissolve em fagulhas que flutuam no ar. Com um gesto preciso, o Shinigami traça um corte horizontal no vazio, e a própria pena renasce em forma de uma torrente de fogo espiritual que avança como uma fênix em linha reta, consumindo tudo em seu caminho.\n\nTodas as criaturas na área da linha são atingidas automaticamente e devem realizar um teste de resistência de Constituição. Em caso de falha, sofrem 13d10 de dano de Fogo e ficam Queimadas. Em caso de sucesso, sofrem metade do dano e não recebem a condição.\n\nO conjurador pode utilizar sua ação bônus após utilizar esse Hadou pra conjurar uma segunda explosão de chamas no mesmo local, fazendo com que as criaturas dentro da área devam realizar o Teste de Resistência de Constituição novamente, falhando recebem mais um acúmulo na condição Queimado.",
   "meta": "Requisito: Ação · Alcance: Linha de 18 metros de comprimento por 4,5 · Velocidade: Instantânea, Encantamento Lento · Custo: 28 PR"
  },
  {
@@ -1452,8 +1452,8 @@
   "n": 83,
   "nome": "Kaminari no Korin",
   "rank": "S",
-  "texto": "",
-  "meta": ""
+  "texto": "O Shinigami ergue a mão para o alto, e o céu se parte com o som ensurdecedor de trovões. Um pilar de luz elétrica cai do firmamento, atingindo o ponto indicado com força catastrófica. Relâmpagos se espalham em todas as direções, dançando como serpentes de energia espiritual que consomem tudo em seu alcance.\n\nTodas as criaturas em um raio de 12 metros a partir do ponto escolhido devem realizar um teste de resistência de Destreza. Em caso de falha, sofrem 14d10 de dano Elétrico, sendo empurradas 3 metros para longe do centro da explosão. Em caso de sucesso, sofrem metade do dano e não são empurradas.\n\nEssa área de 12 metros permanece com energia estática por 1 minuto, todas as criaturas que terminarem o turno delas dentro da área, recebem automaticamente a condição “Eletrificado”.",
+  "meta": "Requisito: Ação · Alcance: Esfera de 12 metros (até 56 metros do usuário) · Velocidade: Instantânea, Encantamento Lento · Custo: 30 PR"
  },
  {
   "tipo": "hadou",
@@ -1484,7 +1484,7 @@
   "n": 87,
   "nome": "Hyosetsu",
   "rank": "S",
-  "texto": "O Shinigami faz um simbolo com as mãos para o céu e traçando um símbolos de gelo no ar, fazendo com que uma chuva de cristais cortantes de energia espiritual fria caia sobre todos na área. Cada estilhaço rasga a carne e o o",
+  "texto": "O Shinigami faz um simbolo com as mãos para o céu e traçando um símbolos de gelo no ar, fazendo com que uma chuva de cristais cortantes de energia espiritual fria caia sobre todos na área. Cada estilhaço rasga a carne e o próprio reiatsu da criatura.\n\nTodas as criaturas na área devem realizar um Teste de Resistência de Constituição. Em caso de falha, sofrem 12d10 de dano de Frio e recebem a condição “Congelado”; em caso de sucesso, sofrem metade do dano.",
   "meta": "Requisito: Ação · Alcance: Esfera de 9 metros (Até 36 metros do usuário) · Velocidade: Instantânea, Encantamento Normal · Custo: 30 PR"
  },
  {
@@ -1492,15 +1492,15 @@
   "n": 88,
   "nome": "Hiriougeki Zoku Shinten Reihou",
   "rank": "S",
-  "texto": "",
-  "meta": ""
+  "texto": "O Shinigami invoca um dragão de trovão, que percorre o campo em linha reta rugindo. Todas as criaturas na linha devem realizar um Teste de Resistência de Destreza. Em caso de falha, sofrem 13d12 de dano Elétrico e recebem a condição “Eletrificado”; em caso de sucesso, sofrem metade do dano.",
+  "meta": "Requisito: Ação Completa · Alcance: Linha de 36 metros · Velocidade: Instantânea, Encantamento Normal · Custo: 32 PR"
  },
  {
   "tipo": "hadou",
   "n": 89,
   "nome": "Shinri Shien",
   "rank": "S",
-  "texto": "O Shinigami concentra intensamente seu reiatsu ao redor de sua cabeça, fechando os olhos e projetando ondas de",
+  "texto": "O Shinigami concentra intensamente seu reiatsu ao redor de sua cabeça, fechando os olhos e projetando ondas de energia psíquica em uma esfera de 9 metros ao seu redor. As criaturas atingidas sentem suas mentes comprimidas e dilaceradas, lutando para distinguir realidade de ilusão enquanto a dor mental os domina.\n\nTodas as criaturas na área devem realizar um Teste de Resistência de Mente, em caso de falha, sofrem 12d10 de dano Psíquico. Em caso de sucesso, sofrem metade do dano.",
   "meta": "Requisito: Ação · Alcance: Esfera de 9 metros (Centrado no usuário) · Velocidade: Instantânea, Encantamento Normal · Custo: 26 PR"
  },
  {
@@ -1508,7 +1508,7 @@
   "n": 90,
   "nome": "Kurohitsugi",
   "rank": "S",
-  "texto": "Apontando dois dedos para cima junto ao peito, o Shinigami traça um complexo símbolo no ar. Uma marcação surge no chão abaixo de uma criatura visível dentro do alcance, evocando um cubo negro que aprisiona um alvo. O cubo comprime a energia e o tempo ao redor da criatura, infligindo 15d12 de dano Temporal. A criatura deve realizar um Teste de Resistência de Força, em caso de sucesso, sofre metade do dano, e em caso de falha, recebe o dano inteiro. Se ela tiver um erro crítico quando for realizar o teste de…",
+  "texto": "Apontando dois dedos para cima junto ao peito, o Shinigami traça um complexo símbolo no ar. Uma marcação surge no chão abaixo de uma criatura visível dentro do alcance, evocando um cubo negro que aprisiona um alvo. O cubo comprime a energia e o tempo ao redor da criatura, infligindo 15d12 de dano Temporal. A criatura deve realizar um Teste de Resistência de Força, em caso de sucesso, sofre metade do dano, e em caso de falha, recebe o dano inteiro. Se ela tiver um erro crítico quando for realizar o teste de resistência, ela sofre o dano máximo desse hadou.\n\nA reiatsu da criatura acertada pelo Kurohitsugi fica selada nas próprias mãos dela. Se ela passar no teste de resistência de Força, metade de sua reiatsu atual fica selada, qualquer habilidade que ela utilize reiatsu causará dano de Energia a quantidade de reiatsu selada. Se falhar no teste, toda sua reiatsu é selada e causando dano de Energia igual a quantidade de reiatsu selada, que não pode ser reduzido de nenhuma forma. A reiatsu permanece selada por 2 turnos, reduzindo para 1 turno se o Hadou for usado novamente, e o selamento só pode ser renovado após um descanso longo do usuário.",
   "meta": "Requisito: Ação Completa · Alcance: 36 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 36 PR"
  },
  {
@@ -1556,7 +1556,7 @@
   "n": 96,
   "nome": "Ittoukasou",
   "rank": "SS",
-  "texto": "O Shinigami concentra toda sua reiatsu em uma parte do corpo, escolhida como catalisador, braço, perna ou até o corpo inteiro. Essa parte se transforma em uma massa de energia destrutiva, explodindo e liberando uma onda massiva de energia vermelha que se espalha em 56 metros ao redor do usuário. Todas as criaturas dentro do alcance sofrem 20d10 + pontos de reiatsu total do usuário em dano de Energia. Exemplo se o shinigami que conjurou esse hadou possuir uma reiatsu total de 150 pontos, ao utilizar esse hadou,…",
+  "texto": "O Shinigami concentra toda sua reiatsu em uma parte do corpo, escolhida como catalisador, braço, perna ou até o corpo inteiro. Essa parte se transforma em uma massa de energia destrutiva, explodindo e liberando uma onda massiva de energia vermelha que se espalha em 56 metros ao redor do usuário. Todas as criaturas dentro do alcance sofrem 20d10 + pontos de reiatsu total do usuário em dano de Energia. Exemplo se o shinigami que conjurou esse hadou possuir uma reiatsu total de 150 pontos, ao utilizar esse hadou, ele causará 20d10 + 150 de dano de energia.\n\nO usuário perde o membro sacrificado e seus pontos de reiatsu se torna zero. O usuário também sofre metade do dano total causado no hadou e fica com a condição Incapacitado.",
   "meta": "Requisito: Ação · Alcance: Raio de 56 metros, centrado no usuário · Velocidade: Instantânea, Encantamento Rápido · Custo: 55 PR"
  },
  {
@@ -1564,7 +1564,7 @@
   "n": 97,
   "nome": "Raikaryuu",
   "rank": "SS",
-  "texto": "O Shinigami junta ambas as mãos fazendo menção a boca de um tigre, e atrás dele então surge a silhueta de um tigre formado de pura energia elétrica. O felino ruge, sua pelagem cintilando com relâmpagos, e investe em linha reta à frente do usuário, descarregando um poderoso feixe de eletricidade que percorre toda a linha, atingindo todas as criaturas em seu caminho com força devastadora. Todas as criaturas na linha devem realizar um Teste de Resistência de Constituição. Em caso de falha, sofrem 13d12 de dano…",
+  "texto": "O Shinigami junta ambas as mãos fazendo menção a boca de um tigre, e atrás dele então surge a silhueta de um tigre formado de pura energia elétrica. O felino ruge, sua pelagem cintilando com relâmpagos, e investe em linha reta à frente do usuário, descarregando um poderoso feixe de eletricidade que percorre toda a linha, atingindo todas as criaturas em seu caminho com força devastadora. Todas as criaturas na linha devem realizar um Teste de Resistência de Constituição. Em caso de falha, sofrem 13d12 de dano Elétrico, e metade desse dano em caso de sucesso.",
   "meta": "Requisito: Ação · Alcance: Linha de 18 metros · Velocidade: Instantânea, Encantamento Rápido · Custo: 25 PR"
  },
  {

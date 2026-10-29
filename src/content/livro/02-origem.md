@@ -64,7 +64,7 @@ Todas as criaturas, exceto os Hollows mais fracos, em Bleach possuem aparência 
 
 As Almas são seres espirituais que residem na Soul Society, eram humanos que morreram e reencarnaram na Soul Society, mas não possuem memórias de suas vidas como Humanos, sendo seres novos que aguardam para reencarnar no mundo humano novamente. Algumas outras podem nascer no mundo das almas, representando um novo ser destinado a se tornar humano, diferentemente das almas que já reencarnaram várias vezes.
 
-Algumas dessasalmas têmpoderespirituallatentemaiselevado, podendo controlá-lo e utilizá-lo em batalhas. Essas almas ingressam na Academia Shinigami para se tornarem Shinigamis.
+Algumas dessas almas têm poder espiritual latente mais elevado, podendo controlá-lo e utilizá-lo em batalhas. Essas almas ingressam na Academia Shinigami para se tornarem Shinigamis.
 
 ### Traços de Origem
 
@@ -194,7 +194,7 @@ Evasão Aprimorada: Você soma à sua Classe de Resistência metade do seu bônu
 
 ### Humanização
 
-Ao longo da sua vida você pode treinar uma técnica secreta do Clã dos Lobisomens chamada “Humanização”, que permite abandonar temporariamentesuaformadeLobisomemesetornaremcompletamente humanos,tornandomuitomaisforte.ConsulteoCapítulo9:Treinamentos.
+Ao longo da sua vida você pode treinar uma técnica secreta do Clã dos Lobisomens chamada “Humanização”, que permite abandonar temporariamente sua forma de Lobisomem e se tornar completamente humano, tornando-se muito mais forte. Consulte o Capítulo 9: Treinamentos.
 
 ## Mod Soul
 

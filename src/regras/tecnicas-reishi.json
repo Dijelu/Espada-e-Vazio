@@ -7,7 +7,7 @@
  {
   "nome": "Disparo Explosivo",
   "nivel": 1,
-  "texto": "Quando você realizar um disparo com uma arma de ataque à distância, poderá criar um projétil explosivo que, ao atingir o alvo, provoca uma explosão em um raio de 3 metros. Todas as criaturas na área, incluindo o alvo atingido, devem realizar um teste de resistência de Destreza, se você atingiu a criatura com o disparo ela fará o teste com desvantagem. Em caso de falha, sofrem 2d6 de dano de Energia ou o dano causado pela arma, o que for maior. Esta técnica também pode ser utilizada em outras Técnicas de Reishi ou…"
+  "texto": "Quando você realizar um disparo com uma arma de ataque à distância, poderá criar um projétil explosivo que, ao atingir o alvo, provoca uma explosão em um raio de 3 metros. Todas as criaturas na área, incluindo o alvo atingido, devem realizar um teste de resistência de Destreza, se você atingiu a criatura com o disparo ela fará o teste com desvantagem. Em caso de falha, sofrem 2d6 de dano de Energia ou o dano causado pela arma, o que for maior. Esta técnica também pode ser utilizada em outras Técnicas de Reishi ou habilidades Quincy, desde que potencialize um projétil disparado."
  },
  {
   "nome": "Flechas de Reishi",
@@ -27,7 +27,7 @@
  {
   "nome": "Lança de Reishi",
   "nivel": 1,
-  "texto": "Você concentra uma grande quantidade de Reishi e cria uma enorme lança espiritual, arremessando-a com um gesto da mão. A lança avança até o ponto escolhido e explode no impacto, atingindo todas as criaturas em um Segundo Nível, Exclusiva BLUE BURST"
+  "texto": "Você concentra uma grande quantidade de Reishi e cria uma enorme lança espiritual, arremessando-a com um gesto da mão. A lança avança até o ponto escolhido e explode no impacto, atingindo todas as criaturas em uma esfera de 3 metros de raio. Cada criatura na área deve realizar um teste de resistência de Destreza. Em caso de falha, sofre 4d8 de dano de Energia; em caso de sucesso, sofre metade do dano."
  },
  {
   "nome": "Wolke",
@@ -47,7 +47,7 @@
  {
   "nome": "Licht Klinge",
   "nivel": 2,
-  "texto": "Ao realizar um ataque corpo a corpo, você pode imbuir sua arma com Reishi, fazendo-a brilhar em azul e aumentando Segundo Nível, Bleach"
+  "texto": "Ao realizar um ataque corpo a corpo, você pode imbuir sua arma com Reishi, fazendo-a brilhar em azul e aumentando o dano do ataque em 2d6 de Energia. A arma permanece imbuída até o fim do seu turno."
  },
  {
   "nome": "Klavier",
@@ -67,7 +67,7 @@
  {
   "nome": "Blue Burst",
   "nivel": 3,
-  "texto": "ocê concentra uma enorme quantidade de Reishi nas mãos, criando uma esfera de chamas azuladas que arremessa contra um ponto dentro do alcance. Ao atingir o local escolhido, a esfera se expande violentamente, espalhando chamas que queimam tudo ao redor em um raio de 6 metros. Cada criatura na área deve realizar um teste de resistência de Destreza. Em caso de falha, sofre 8d8 de dano de Fogo e deve realizar um teste de resistência de Constituição. Se falhar nesse segundo teste, fica Queimada. Em caso de sucesso no…"
+  "texto": "Você concentra uma enorme quantidade de Reishi nas mãos, criando uma esfera de chamas azuladas que arremessa contra um ponto dentro do alcance. Ao atingir o local escolhido, a esfera se expande violentamente, espalhando chamas que queimam tudo ao redor em um raio de 6 metros. Cada criatura na área deve realizar um teste de resistência de Destreza. Em caso de falha, sofre 8d8 de dano de Fogo e deve realizar um teste de resistência de Constituição. Se falhar nesse segundo teste, fica Queimada. Em caso de sucesso no teste de Destreza, sofre metade do dano e não fica Queimada."
  },
  {
   "nome": "Blut Vene Anhaben",
@@ -77,7 +77,7 @@
  {
   "nome": "Grande Lança de Reishi",
   "nivel": 3,
-  "texto": "Você concentra uma grande quantidade de Reishi e cria uma enorme lança espiritual, arremessando-a com um gesto da mão. A lança avança até o ponto escolhido e explode no impacto, atingindo todas as criaturas em um Segundo Nível, Exclusiva BLUE BURST"
+  "texto": "Você concentra uma grande quantidade de Reishi e cria uma enorme lança espiritual, arremessando-a com um gesto da mão. A lança avança até o ponto escolhido e explode no impacto, atingindo todas as criaturas em uma esfera de 6 metros de raio. Cada criatura na área deve realizar um teste de resistência de Destreza. Em caso de falha, sofre 8d10 de dano de Energia; em caso de sucesso, sofre metade do dano."
  },
  {
   "nome": "Prisão de Reishi",
@@ -87,12 +87,12 @@
  {
   "nome": "Shadow",
   "nivel": 3,
-  "texto": "Você expande sua sombra e a transforma em uma passagem dimensional, permitindo atravessar as sombras para alcançar outros locais e dimensões. Para utilizar essa técnica, você deve conhecer o destino desejado e dedicar 10 minutos de concentração total à abertura da passagem, sem realizar outras atividades durante esse período. A travessia reduz pela metade o tempo que normalmente seria necessário para chegar ao destino. Ao alcançar o local desejado, você pode sair da dimensão sombria instantaneamente. No entanto,…"
+  "texto": "Você expande sua sombra e a transforma em uma passagem dimensional, permitindo atravessar as sombras para alcançar outros locais e dimensões. Para utilizar essa técnica, você deve conhecer o destino desejado e dedicar 10 minutos de concentração total à abertura da passagem, sem realizar outras atividades durante esse período. A travessia reduz pela metade o tempo que normalmente seria necessário para chegar ao destino. Ao alcançar o local desejado, você pode sair da dimensão sombria instantaneamente. No entanto, uma vez iniciada a travessia, você não pode mudar o destino nem retornar pelo caminho percorrido."
  },
  {
   "nome": "Sprenger",
   "nivel": 3,
-  "texto": "Você posiciona cinco Seele Schneider no chão, formando os vértices de um pentágono. Cada Seele Schneider deve estar a até 18 metros de você, e a distância entre duas Seele Schneider consecutivas não pode ultrapassar 6 metros. Após posicionar as cinco armas, você utiliza um Gintō para ativar o selo, provocando uma violenta explosão de energia espiritual que atinge toda a área interna do pentágono. Todas as criaturas dentro da área devem realizar um teste de resistência de Constituição. Em caso de falha, sofrem…"
+  "texto": "Você posiciona cinco Seele Schneider no chão, formando os vértices de um pentágono. Cada Seele Schneider deve estar a até 18 metros de você, e a distância entre duas Seele Schneider consecutivas não pode ultrapassar 6 metros. Após posicionar as cinco armas, você utiliza um Gintō para ativar o selo, provocando uma violenta explosão de energia espiritual que atinge toda a área interna do pentágono. Todas as criaturas dentro da área devem realizar um teste de resistência de Constituição. Em caso de falha, sofrem 10d10 de dano + a quantidade de pontos de Reiatsu armazenados no Gintou em dano de Energia. Em caso de sucesso, sofrem metade do dano. A explosão consome o Gintou utilizado, mas as cinco Seele Schneider podem ser recuperadas após a ativação."
  },
  {
   "nome": "Blitz Geschoss",
