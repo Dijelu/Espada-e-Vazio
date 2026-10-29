@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { efeito, ligarEfeitos, ligarMusica, mudarVolume, useSom } from "../lib/som";
+import { efeito, ligarEfeitos, ligarMusica, mudarVolume, useSom, volumeAjustavel } from "../lib/som";
 
 /** Botão de som da barra: abre os controles de música e de efeitos. */
 export default function Som() {
@@ -57,7 +57,8 @@ export default function Som() {
             <span>Efeitos sonoros</span>
             <input type="checkbox" role="switch" checked={s.efeitos} onChange={(e) => ligarEfeitos(e.target.checked)} />
           </label>
-          <label className="som-vol" data-som="none">
+          {!volumeAjustavel && <p className="ajuda">Neste aparelho o volume da música muda pelos botões de volume do celular.</p>}
+          {volumeAjustavel && <label className="som-vol" data-som="none">
             <span>Volume da música</span>
             <input
               type="range"
@@ -67,7 +68,7 @@ export default function Som() {
               onChange={(e) => mudarVolume(Number(e.target.value))}
               aria-label="Volume da música"
             />
-          </label>
+          </label>}
           <div className="som-teste">
             <small>Ouvir os efeitos</small>
             <div>

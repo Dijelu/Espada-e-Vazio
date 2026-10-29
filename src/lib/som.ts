@@ -83,20 +83,36 @@ function srcDoTema() {
   return document.documentElement.getAttribute("data-theme") === "light" ? "/audio/musica.m4a" : "/audio/musica-hollow.m4a";
 }
 
-function tocarMusica() {
+/** iPhone e iPad ignoram o volume do elemento de áudio: lá só os botões do aparelho mudam o volume. */
+export const volumeAjustavel = (() => {
+  try {
+    const a = new Audio();
+    a.volume = 0.5;
+    return a.volume === 0.5;
+  } catch {
+    return false;
+  }
+})();
+
+function tocarMusica(aoTocar?: () => void) {
   if (!cfg.musica) return;
   if (!faixa) {
     faixa = new Audio(srcDoTema());
     faixa.loop = true;
+    faixa.preload = "auto";
     faixa.volume = 0;
   }
   const f = faixa;
   if (!f.paused) {
     irPara(alvoVolume());
+    aoTocar?.();
     return;
   }
   f.play()
-    .then(() => irPara(alvoVolume()))
+    .then(() => {
+      irPara(alvoVolume());
+      aoTocar?.();
+    })
     .catch(() => {
       /* o navegador ainda não deixou tocar; tenta no próximo toque */
     });
@@ -312,13 +328,23 @@ export function iniciarSom() {
   if (iniciado || typeof window === "undefined") return;
   iniciado = true;
 
+  // No celular o som só é liberado por toque que termina (click, touchend, pointerup), não pelo começo do toque.
+  // Por isso escutamos esses eventos e só paramos quando a música realmente começou a tocar.
+  const EVENTOS = ["pointerup", "touchend", "click", "keydown"];
   const primeiroToque = () => {
-    if (desbloqueado) return;
     desbloqueado = true;
-    tocarMusica();
+    const c = audio();
+    if (c) {
+      // toca um som mudo dentro do gesto: é o que destrava o áudio no iPhone
+      const s = c.createBufferSource();
+      s.buffer = c.createBuffer(1, 1, 22050);
+      s.connect(c.destination);
+      s.start(0);
+    }
+    if (!cfg.musica) return;
+    tocarMusica(() => EVENTOS.forEach((ev) => window.removeEventListener(ev, primeiroToque, true)));
   };
-  window.addEventListener("pointerdown", primeiroToque, { capture: true });
-  window.addEventListener("keydown", primeiroToque, { capture: true });
+  EVENTOS.forEach((ev) => window.addEventListener(ev, primeiroToque, { capture: true }));
 
   // clique em botões e links
   window.addEventListener(
@@ -332,6 +358,13 @@ export function iniciarSom() {
     },
     { capture: true }
   );
+
+  // se a música estiver ligada mas parada (por exemplo, o aparelho pausou por uma chamada), volta ao primeiro toque
+  const retomar = () => {
+    if (desbloqueado && cfg.musica && faixa && faixa.paused && !document.hidden) tocarMusica();
+  };
+  window.addEventListener("click", retomar, { capture: true });
+  window.addEventListener("touchend", retomar, { capture: true });
 
   // pausa quando a aba fica escondida
   document.addEventListener("visibilitychange", () => {
