@@ -854,7 +854,8 @@ export function calcular(f: Ficha): Calculo {
     rdFis: ef.rdFis + rdFisExtra + px.rdFis,
     rdEso: ef.rdEso + rdEsoExtra + px.rdEso,
     iniciativa: (ef.iniMente ? Math.max(atr.des, atr.men) : atr.des) + px.iniciativa,
-    danoCorpo: ef.danoCorpo + px.danoCorpo,
+    // Ritter: armas Quincy corpo a corpo causam +3 de dano do 3º ao 9º nível
+    danoCorpo: ef.danoCorpo + px.danoCorpo + (f.classe === "ritter" && n >= 3 && n <= 9 ? 3 : 0),
     crEvasao,
     percPassiva: 10 + pericias["percepcao"].total + px.percPassiva,
     saves,
