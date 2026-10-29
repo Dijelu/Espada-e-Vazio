@@ -386,6 +386,16 @@ export default function NovaFicha() {
       {passo === 5 && (
         <section>
           <h2 className="title-font">6. Essências Espirituais e equipamento</h2>
+          <details className="guia-ess" open>
+            <summary>O que são as Essências?</summary>
+            <ul>
+              <li><b>São marcas da sua alma.</b> Cada essência é uma característica que a vida e as batalhas gravaram no personagem: resistir a um tipo de dano, bater mais forte, enxergar melhor, aguentar mais.</li>
+              <li><b>Cada ponto vale uma escolha.</b> Você pode comprar uma essência nova ou subir uma etapa de uma que já tem. Etapas deixam a mesma essência mais forte (Pele de Aço, por exemplo, reduz 2 de dano físico e passa a reduzir 4).</li>
+              <li><b>Você ganha pontos aos poucos.</b> 1 na criação e 2 a cada Aprimoramento da Essência (níveis 4, 8, 12, 16 e 19).</li>
+              <li><b>A classe limita a lista.</b> Cada essência é de Shinigami, de Quincy, de Hollow ou de todos. Toque em uma essência na lista para ler o que ela faz antes de escolher.</li>
+              <li><b>Não precisa acertar de primeira.</b> A sugerida pelo livro é um bom começo, e o Mestre pode ajudar a trocar depois.</li>
+            </ul>
+          </details>
           <p className="ajuda">
             Você tem {c.pontosEssencia.total} ponto(s) de essência: cada ponto compra uma essência nova ou sobe uma etapa. Usados: {c.pontosEssencia.usados}.
             Os nomes e efeitos estão no <Link to="/livro/essencias-espirituais" target="_blank">Capítulo 4</Link>.
@@ -416,7 +426,7 @@ export default function NovaFicha() {
             <ul className="lista-ess">
               {f.essencias.filter((e) => !e.id.startsWith("origem-")).map((e) => (
                 <li key={e.id}>
-                  <NomeEssencia nome={e.nome} etapa={e.etapa} />
+                  <NomeEssencia nome={e.nome} etapa={e.etapa} completo />
                   <TrocarEssencia tipo={classe?.tipo} existentes={f.essencias.map((x) => x.nome)} onTrocar={(nome) => mudar({ essencias: f.essencias.map((x) => (x.id === e.id ? { ...x, nome, etapa: 1 } : x)) })} />
                   <Passo valor={e.etapa} min={1} max={5} rotulo={`etapa de ${e.nome}`} onChange={(v) => mudar({ essencias: f.essencias.map((x) => (x.id === e.id ? { ...x, etapa: v } : x)) })} />
                   <label className="mini"><input type="checkbox" checked={!!e.gratis} onChange={(ev) => mudar({ essencias: f.essencias.map((x) => (x.id === e.id ? { ...x, gratis: ev.target.checked } : x)) })} /> grátis</label>

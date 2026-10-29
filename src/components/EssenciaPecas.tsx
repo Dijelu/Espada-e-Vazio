@@ -11,7 +11,7 @@ export function efeitoDaEtapa(nome: string, etapa: number) {
 }
 
 /** Nome da essência com balão que explica o que ela faz e uma linha curta de resumo. */
-export function NomeEssencia({ nome, etapa }: { nome: string; etapa: number }) {
+export function NomeEssencia({ nome, etapa, completo = false }: { nome: string; etapa: number; completo?: boolean }) {
   const { livro, atual } = efeitoDaEtapa(nome, etapa);
   if (!livro) return <span className="ess-nome"><b>{nome}</b><small className="ajuda">Essência própria ou ainda fora do livro.</small></span>;
   return (
@@ -33,8 +33,9 @@ export function NomeEssencia({ nome, etapa }: { nome: string; etapa: number }) {
       {(alternar) => (
         <span className="ess-nome">
           <b>{livro.nome}</b>
-          <small className="ess-resumo">{atual.replace(/^\([^)]*\)\s*/, "")}</small>
-          <button type="button" className="btn-mini ler" onClick={alternar}>Ler</button>
+          <small className={`ess-resumo ${completo ? "completo" : ""}`}>{atual.replace(/^\([^)]*\)\s*/, "")}</small>
+          {completo && etapa <= livro.etapas.length && <small className="ess-proxima"><b>Etapa {etapa + 1}:</b> {livro.etapas[etapa - 1]}</small>}
+          {!completo && <button type="button" className="btn-mini ler" onClick={alternar}>Ler</button>}
         </span>
       )}
     </Dica>

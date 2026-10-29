@@ -977,3 +977,33 @@ img, video, svg { max-width: 100%; }
   .page { padding-left: 28px; padding-right: 28px; }
   .abas button { padding: 0 16px; }
 }
+
+/* ---------- essências: guia e seletor com a cara do sistema ---------- */
+.guia-ess { margin: 12px 0 16px; border: 2px solid var(--line); border-left: 8px solid var(--accent); background: var(--panel); padding: 0 16px; clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px)); }
+.guia-ess summary { cursor: pointer; list-style: none; min-height: 52px; display: flex; align-items: center; gap: 10px; font-family: var(--font-pincel); font-size: 26px; letter-spacing: .02em; }
+.guia-ess summary::-webkit-details-marker { display: none; }
+.guia-ess summary::after { content: "▾"; margin-left: auto; color: var(--accent); transition: transform .2s; }
+.guia-ess[open] summary::after { transform: rotate(180deg); }
+.guia-ess ul { margin: 0 0 14px; padding-left: 18px; display: grid; gap: 8px; line-height: 1.5; }
+.ess-resumo.completo { display: block; -webkit-line-clamp: unset; overflow: visible; font-size: 14.5px; color: var(--text); opacity: .85; }
+.ess-proxima { color: var(--muted); font-size: 13.5px; line-height: 1.4; border-left: 3px solid var(--accent); padding-left: 8px; margin-top: 4px; }
+.ess-proxima b { color: var(--accent); }
+
+.seletor { border-radius: 0; border: 3px solid var(--text); box-shadow: 8px 8px 0 var(--accent); clip-path: none; }
+.seletor-topo h3 { font-family: var(--font-pincel); font-weight: 400; font-size: 34px; letter-spacing: .02em; }
+.seletor-busca { border-radius: 0; border: 2px solid var(--line); border-left: 6px solid var(--accent); clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px)); }
+.seletor-busca:focus { outline: none; border-color: var(--accent); }
+.seletor .chips { gap: 8px; }
+.seletor .chip-btn { border-radius: 0; border: 2px solid var(--line); transform: skewX(-10deg); font-family: var(--font-pincel); font-size: 18px; padding: 2px 16px; min-height: 40px; transition: background .12s, border-color .12s, transform .12s; }
+.seletor .chip-btn:hover { border-color: var(--accent); transform: skewX(-10deg) translateY(-2px); }
+.seletor .chip-btn.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.seletor-lista li { border-radius: 0; border: 2px solid var(--line); border-left: 6px solid var(--line); transition: border-color .15s, transform .15s; clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%); }
+.seletor-lista li:hover { border-color: var(--accent); transform: translateX(3px); }
+.seletor-lista li.aberta { border-color: var(--accent); border-left-color: var(--accent); background: var(--panel); }
+.seletor-item b { font-family: var(--font-pincel); font-weight: 400; font-size: 24px; letter-spacing: .02em; }
+.seletor-item small { text-transform: uppercase; letter-spacing: .08em; font-size: 12px; }
+.seletor-detalhe ol { border-left: 3px solid var(--accent); padding-left: 24px; }
+.seletor-detalhe .btn { justify-self: start; }
+.add-linha { display: flex; gap: 8px; }
+.add-linha input { border-radius: 0; border-left: 6px solid var(--accent); }
+.lista-ess li { border: 2px solid var(--line); border-left: 6px solid var(--accent); background: var(--panel2); padding: 10px 12px; margin-bottom: 8px; clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%); }
