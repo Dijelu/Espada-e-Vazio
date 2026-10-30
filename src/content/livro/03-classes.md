@@ -2558,6 +2558,29 @@ Um Talento por vez, do 2º nível em diante, exceto nos níveis de Aprimoramento
 - **Predador de Almas:** vantagem para rastrear almas e reiatsu e +prof. em Percepção Espiritual.
 - **Segunda Pele:** você veste ou dispensa a máscara como ação livre.
 
+#### Predador
+
+- **Investida Brutal** (3º nível): se você se mover pelo menos 6 m em linha reta antes de atacar com a arma natural, o ataque causa +prof. d8 de dano e o alvo faz salvaguarda de Força (CD 8 + prof. + Força) ou cai no chão.
+- **Emboscador** (3º nível): você tem +prof. na iniciativa e, na primeira rodada, o primeiro ataque seu contra uma criatura que ainda não agiu causa +prof. d8 de dano.
+- **Garra Gêmea** (7º nível; requer Mordida Esmagadora): uma vez por turno, depois de acertar com a arma natural, você faz como ação bônus um ataque extra com ela, sem somar os bônus fixos de dano.
+- **Sangue na Água** (7º nível; requer Golpe Rasgador): seus ataques causam +prof. de dano contra criaturas sangrando ou abaixo da metade dos PV, e você tem vantagem em rastreá-las.
+- **Devorador de Reiatsu** (10º nível; requer Fome Insaciável): quando a mordida acerta, você drena PR do alvo iguais à prof. e os recupera. Em um acerto crítico, drena o dobro.
+- **Contra-golpe Hollow** (6º nível): com sua reação, quando uma criatura a 3 m acertar você com um ataque corpo a corpo, você faz um ataque com a arma natural contra ela (uma vez por rodada).
+
+#### Artilharia
+
+- **Bala** (5º nível): ação bônus, 4 PR: dispara uma Bala a 18 m (ataque à distância com seu acerto de Cero) que causa 2d8 + Espírito de Energia por 5 níveis de personagem (arredonde para cima).
+- **Cero Explosivo** (8º nível; requer Cero em Cone): o Cero explode no alvo em uma esfera de 3 m: criaturas na área fazem salvaguarda de Destreza e sofrem metade do dano do Cero (nada no sucesso). Custa +5 PR.
+- **Cero Sustentado** (12º nível; requer Cero Concentrado): depois de lançar o Cero Concentrado, você pode manter o feixe por mais uma rodada como ação bônus, causando metade do dano do Cero a todos em uma linha de 18 m.
+- **Cero Dissimulado** (5º nível): o Cero sai sem brilho nem som: quem não o vê não percebe de onde veio, e o primeiro Cero da cena tem vantagem no ataque se você estiver escondido.
+
+#### Resistência
+
+- **Corpo Maciço** (3º nível): você ganha 2 PV adicionais por nível (retroativo).
+- **Pele de Ferro** (9º nível; requer Couraça Óssea): sua RD contra dano físico sobe para 5 e você ganha +1 de CR. Não soma com outras RD físicas: vale a maior.
+- **Regeneração Maior** (12º nível; requer Regeneração Menor): no início do seu turno você recupera PV iguais à Constituição + prof., mesmo acima da metade dos PV. Não funciona contra dano de Energia no turno anterior.
+- **Sonido Selvagem** (5º nível): seu deslocamento aumenta em 3 m e você pode usar o Sonido uma vez por descanso curto para se mover 9 m como ação livre.
+
 ### Talentos de Vazio
 
 #### Poderes
@@ -2587,5 +2610,26 @@ Um Talento por vez, do 2º nível em diante, exceto nos níveis de Aprimoramento
 - **Vazio Silencioso:** vantagem em Suprimir Reiatsu e +prof. em Furtividade.
 - **Sentir Fraquezas:** ação bônus. Você vê as vulnerabilidades do alvo, e o próximo Poder contra ele ignora metade da RD.
 - **Cura Hollow** (5º nível): ação, 6 PR. Você ou um aliado a 6 m recupera 1d8 + Espírito por prof. em PV (3 vezes por descanso longo).
+
+#### Poderes
+
+- **Poder Ricochete** (6º nível): o Poder Inato salta para uma segunda criatura a até 6 m do alvo, causando metade do dano. Custa +4 PR.
+- **Poder Reservado** (5º nível): você pode gastar a ação para guardar um Poder Inato. Na rodada seguinte ele sai como ação bônus, com +prof. d10 de dano.
+- **Poder Sustentado** (7º nível; requer Poder em Área): o Poder em Área permanece 1 minuto como zona (concentração). Quem começar o turno dentro sofre metade do dano.
+- **Poder Penetrante** (11º nível; requer Poder Perfurante): o Poder Inato ignora também a Hierro e a CR extra de formas, e causa +prof. d10 contra criaturas com RD.
+
+#### Controle
+
+- **Pesadelo** (9º nível): criatura que falhar na salvaguarda de um Poder Inato fica amedrontada até o fim do próximo turno dela e sofre 2 × prof. de dano psíquico.
+- **Eco Mental** (6º nível): ação bônus, 4 PR: o alvo a 12 m faz salvaguarda de Espírito ou tem desvantagem em testes de Mente e em Concentração até o início do seu próximo turno.
+- **Clone do Vazio** (10º nível; requer Ilusão Persistente): ação, 10 PR: cria um duplo ilusório por 1 minuto. Ataques contra você têm 50% de chance de atingir o duplo, que se desfaz ao ser atingido.
+- **Contágio de Ponzoña** (8º nível; requer Ponzoña Persistente): quando uma criatura com carga da sua Ponzoña morre ou cai a 0 PV, as cargas passam para uma criatura a 6 m dela.
+
+#### Reserva
+
+- **Fonte do Vazio** (5º nível): no início do seu turno, enquanto estiver com menos da metade dos PR, você recupera PR iguais à prof.
+- **Poços Profundos** (8º nível; requer Reserva Vazia): você ganha +1 PR por nível (retroativo).
+- **Sussurro do Vazio** (3º nível): você se comunica por telepatia com criaturas a 18 m e, uma vez por descanso curto, planta uma sugestão simples (salvaguarda de Espírito).
+- **Vigília do Vazio** (7º nível): você tem +prof. na iniciativa e na CR contra ataques de oportunidade, e não pode ser surpreendido.
 
 Atenção: os efeitos que reduzem RD ou dão resistência (Couraça Óssea, Hierro Reativo, o Caminho Glotonería, Toxina Corrosiva e outros) seguem a regra de uma Essência de redução por tipo de dano. O Mestre deve ficar atento a pacotes de talentos defensivos que acumulem demais.

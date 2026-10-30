@@ -1677,6 +1677,146 @@
    "req": "",
    "grupo": "Utilidade e presença",
    "pre": []
+  },
+  {
+   "id": "investida-brutal",
+   "nome": "Investida Brutal",
+   "texto": "se você se mover pelo menos 6 m em linha reta antes de atacar com a arma natural, o ataque causa +prof. d8 de dano e o alvo faz salvaguarda de Força (CD 8 + prof. + Força) ou cai no chão.",
+   "nivel": 3,
+   "req": "3º nível",
+   "grupo": "Predador",
+   "pre": []
+  },
+  {
+   "id": "emboscador",
+   "nome": "Emboscador",
+   "texto": "você tem +prof. na iniciativa e, na primeira rodada, o primeiro ataque seu contra uma criatura que ainda não agiu causa +prof. d8 de dano.",
+   "nivel": 3,
+   "req": "3º nível",
+   "grupo": "Predador",
+   "pre": []
+  },
+  {
+   "id": "garra-gemea",
+   "nome": "Garra Gêmea",
+   "texto": "uma vez por turno, depois de acertar com a arma natural, você faz como ação bônus um ataque extra com ela, sem somar os bônus fixos de dano.",
+   "nivel": 7,
+   "req": "7º nível",
+   "grupo": "Predador",
+   "pre": [
+    "mordida-esmagadora"
+   ]
+  },
+  {
+   "id": "sangue-na-agua",
+   "nome": "Sangue na Água",
+   "texto": "seus ataques causam +prof. de dano contra criaturas sangrando ou abaixo da metade dos PV, e você tem vantagem em rastreá-las.",
+   "nivel": 7,
+   "req": "7º nível",
+   "grupo": "Predador",
+   "pre": [
+    "golpe-rasgador"
+   ]
+  },
+  {
+   "id": "devorador-de-reiatsu",
+   "nome": "Devorador de Reiatsu",
+   "texto": "quando a mordida acerta, você drena PR do alvo iguais à prof. e os recupera. Em um acerto crítico, drena o dobro.",
+   "nivel": 10,
+   "req": "10º nível",
+   "grupo": "Predador",
+   "pre": [
+    "fome-insaciavel"
+   ]
+  },
+  {
+   "id": "contra-golpe-hollow",
+   "nome": "Contra-golpe Hollow",
+   "texto": "com sua reação, quando uma criatura a 3 m acertar você com um ataque corpo a corpo, você faz um ataque com a arma natural contra ela (uma vez por rodada).",
+   "nivel": 6,
+   "req": "6º nível",
+   "grupo": "Predador",
+   "pre": []
+  },
+  {
+   "id": "bala-hollow",
+   "nome": "Bala",
+   "texto": "ação bônus, 4 PR: dispara uma Bala a 18 m (ataque à distância com seu acerto de Cero) que causa 2d8 + Espírito de Energia por 5 níveis de personagem (arredonde para cima).",
+   "nivel": 5,
+   "req": "5º nível",
+   "grupo": "Artilharia",
+   "pre": []
+  },
+  {
+   "id": "cero-explosivo",
+   "nome": "Cero Explosivo",
+   "texto": "o Cero explode no alvo em uma esfera de 3 m: criaturas na área fazem salvaguarda de Destreza e sofrem metade do dano do Cero (nada no sucesso). Custa +5 PR.",
+   "nivel": 8,
+   "req": "8º nível",
+   "grupo": "Artilharia",
+   "pre": [
+    "cero-em-cone"
+   ]
+  },
+  {
+   "id": "cero-sustentado",
+   "nome": "Cero Sustentado",
+   "texto": "depois de lançar o Cero Concentrado, você pode manter o feixe por mais uma rodada como ação bônus, causando metade do dano do Cero a todos em uma linha de 18 m.",
+   "nivel": 12,
+   "req": "12º nível",
+   "grupo": "Artilharia",
+   "pre": [
+    "cero-concentrado"
+   ]
+  },
+  {
+   "id": "cero-dissimulado",
+   "nome": "Cero Dissimulado",
+   "texto": "o Cero sai sem brilho nem som: quem não o vê não percebe de onde veio, e o primeiro Cero da cena tem vantagem no ataque se você estiver escondido.",
+   "nivel": 5,
+   "req": "5º nível",
+   "grupo": "Artilharia",
+   "pre": []
+  },
+  {
+   "id": "corpo-macico",
+   "nome": "Corpo Maciço",
+   "texto": "você ganha 2 PV adicionais por nível (retroativo).",
+   "nivel": 3,
+   "req": "3º nível",
+   "grupo": "Resistência",
+   "pre": []
+  },
+  {
+   "id": "pele-de-ferro",
+   "nome": "Pele de Ferro",
+   "texto": "sua RD contra dano físico sobe para 5 e você ganha +1 de CR. Não soma com outras RD físicas: vale a maior.",
+   "nivel": 9,
+   "req": "9º nível",
+   "grupo": "Resistência",
+   "pre": [
+    "couraca-ossea"
+   ]
+  },
+  {
+   "id": "regeneracao-maior",
+   "nome": "Regeneração Maior",
+   "texto": "no início do seu turno você recupera PV iguais à Constituição + prof., mesmo acima da metade dos PV. Não funciona contra dano de Energia no turno anterior.",
+   "nivel": 12,
+   "req": "12º nível",
+   "grupo": "Resistência",
+   "pre": [
+    "regeneracao-menor"
+   ]
+  },
+  {
+   "id": "sonido-selvagem",
+   "nome": "Sonido Selvagem",
+   "texto": "seu deslocamento aumenta em 3 m e você pode usar o Sonido uma vez por descanso curto para se mover 9 m como ação livre.",
+   "nivel": 5,
+   "req": "5º nível",
+   "grupo": "Resistência",
+   "pre": []
   }
  ],
  "vazio": [
@@ -1858,6 +1998,124 @@
    "nivel": 1,
    "req": "",
    "grupo": "Reserva e utilidade",
+   "pre": []
+  },
+  {
+   "id": "poder-ricochete",
+   "nome": "Poder Ricochete",
+   "texto": "o Poder Inato salta para uma segunda criatura a até 6 m do alvo, causando metade do dano. Custa +4 PR.",
+   "nivel": 6,
+   "req": "6º nível",
+   "grupo": "Poderes",
+   "pre": []
+  },
+  {
+   "id": "poder-reservado",
+   "nome": "Poder Reservado",
+   "texto": "você pode gastar a ação para guardar um Poder Inato. Na rodada seguinte ele sai como ação bônus, com +prof. d10 de dano.",
+   "nivel": 5,
+   "req": "5º nível",
+   "grupo": "Poderes",
+   "pre": []
+  },
+  {
+   "id": "poder-sustentado",
+   "nome": "Poder Sustentado",
+   "texto": "o Poder em Área permanece 1 minuto como zona (concentração). Quem começar o turno dentro sofre metade do dano.",
+   "nivel": 7,
+   "req": "7º nível",
+   "grupo": "Poderes",
+   "pre": [
+    "poder-em-area"
+   ]
+  },
+  {
+   "id": "poder-penetrante",
+   "nome": "Poder Penetrante",
+   "texto": "o Poder Inato ignora também a Hierro e a CR extra de formas, e causa +prof. d10 contra criaturas com RD.",
+   "nivel": 11,
+   "req": "11º nível",
+   "grupo": "Poderes",
+   "pre": [
+    "poder-perfurante"
+   ]
+  },
+  {
+   "id": "pesadelo",
+   "nome": "Pesadelo",
+   "texto": "criatura que falhar na salvaguarda de um Poder Inato fica amedrontada até o fim do próximo turno dela e sofre 2 × prof. de dano psíquico.",
+   "nivel": 9,
+   "req": "9º nível",
+   "grupo": "Controle",
+   "pre": []
+  },
+  {
+   "id": "eco-mental",
+   "nome": "Eco Mental",
+   "texto": "ação bônus, 4 PR: o alvo a 12 m faz salvaguarda de Espírito ou tem desvantagem em testes de Mente e em Concentração até o início do seu próximo turno.",
+   "nivel": 6,
+   "req": "6º nível",
+   "grupo": "Controle",
+   "pre": []
+  },
+  {
+   "id": "clone-do-vazio",
+   "nome": "Clone do Vazio",
+   "texto": "ação, 10 PR: cria um duplo ilusório por 1 minuto. Ataques contra você têm 50% de chance de atingir o duplo, que se desfaz ao ser atingido.",
+   "nivel": 10,
+   "req": "10º nível",
+   "grupo": "Controle",
+   "pre": [
+    "ilusao-persistente"
+   ]
+  },
+  {
+   "id": "contagio-de-ponzona",
+   "nome": "Contágio de Ponzoña",
+   "texto": "quando uma criatura com carga da sua Ponzoña morre ou cai a 0 PV, as cargas passam para uma criatura a 6 m dela.",
+   "nivel": 8,
+   "req": "8º nível",
+   "grupo": "Controle",
+   "pre": [
+    "ponzona-persistente"
+   ]
+  },
+  {
+   "id": "fonte-do-vazio",
+   "nome": "Fonte do Vazio",
+   "texto": "no início do seu turno, enquanto estiver com menos da metade dos PR, você recupera PR iguais à prof.",
+   "nivel": 5,
+   "req": "5º nível",
+   "grupo": "Reserva",
+   "pre": []
+  },
+  {
+   "id": "pocos-profundos",
+   "nome": "Poços Profundos",
+   "texto": "você ganha +1 PR por nível (retroativo).",
+   "nivel": 8,
+   "req": "8º nível",
+   "grupo": "Reserva",
+   "pre": [
+    "reserva-vazia"
+   ]
+  },
+  {
+   "id": "sussurro-do-vazio",
+   "nome": "Sussurro do Vazio",
+   "texto": "você se comunica por telepatia com criaturas a 18 m e, uma vez por descanso curto, planta uma sugestão simples (salvaguarda de Espírito).",
+   "nivel": 3,
+   "req": "3º nível",
+   "grupo": "Reserva",
+   "pre": []
+  },
+  {
+   "id": "vigilia-do-vazio",
+   "nome": "Vigília do Vazio",
+   "texto": "você tem +prof. na iniciativa e na CR contra ataques de oportunidade, e não pode ser surpreendido.",
+   "nivel": 7,
+   "req": "7º nível",
+   "grupo": "Reserva",
    "pre": []
   }
  ]
