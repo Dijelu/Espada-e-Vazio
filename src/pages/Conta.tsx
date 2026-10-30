@@ -27,7 +27,7 @@ export default function Conta() {
     if (error) setMsg({ tipo: "erro", texto: "Não foi possível trocar a senha. Peça um link novo e tente de novo." });
     else {
       setNovaSenha("");
-      setMsg({ tipo: "ok", texto: "Senha trocada. Você já está dentro da sua conta." });
+      setMsg({ tipo: "ok", texto: "Senha trocada com sucesso! Use a senha nova nos próximos acessos." });
       fimRecuperacao();
     }
   };
@@ -58,6 +58,7 @@ export default function Conta() {
       <main className="page">
         <div className="em-breve">
           <h1 className="title-font">Minha conta</h1>
+          {msg && <p className={`msg ${msg.tipo}`} role="status">{msg.texto}</p>}
           <p>Você entrou como <b>{sessao.user.email}</b>.</p>
           <div className="row">
             <Link className="btn btn-red" to="/fichas">Minhas fichas</Link>
