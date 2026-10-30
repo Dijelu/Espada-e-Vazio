@@ -19,7 +19,7 @@ export default function Topbar({ onBuscar }: { onBuscar: () => void }) {
         <NavLink to="/ferramentas" className={cls}>Ferramentas</NavLink>
         <NavLink to="/conta" className={cls}>{sessao ? "Conta" : "Entrar"}</NavLink>
       </nav>
-      <button className="search-btn" data-som="none" onClick={onBuscar} aria-label="Buscar no livro">
+      <button type="button" className="search-btn" data-som="none" onClick={onBuscar} aria-label="Buscar no livro">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
           <circle cx="11" cy="11" r="7" />
           <path d="M20 20l-4-4" />
@@ -27,7 +27,7 @@ export default function Topbar({ onBuscar }: { onBuscar: () => void }) {
         Buscar no livro…<kbd>Ctrl K</kbd>
       </button>
       <Som />
-      <button
+      <button type="button"
         className="theme-btn"
         data-som="none"
         onClick={alternar}

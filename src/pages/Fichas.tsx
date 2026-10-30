@@ -57,7 +57,7 @@ export default function Fichas() {
                   <i>CR <strong>{c.cr}</strong></i>
                 </div>
               </Link>
-              <button className="link-perigo" onClick={() => apagar(f)}>Apagar</button>
+              <button type="button" className="link-perigo" onClick={() => apagar(f)}>Apagar</button>
             </article>
           );
         })}

@@ -219,8 +219,13 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
       )}
 
       {f.origem === "visored" && f.treinos.feitos.includes("visored-2") && (
-        <div className="painel-mascara">
-          <b>Máscara Hollow</b>
+        <details className="painel-mascara" open>
+          <summary>
+            <b>Máscara Hollow</b>
+            {e.liberado === "mascara" && <span className="chip on">ativa · turno {mascaraGasta} de {tr.mascaraMax ?? 1}</span>}
+            {mascaraRecarga > 0 && <span className="chip">recarga {mascaraRecarga}</span>}
+            {tr.mascara && e.liberado !== "mascara" && mascaraRecarga === 0 && <small className="ajuda">{MASCARAS.find((m) => m.id === tr.mascara)?.nome}</small>}
+          </summary>
           <div className="acoes-linha">
             <select value={tr.mascara ?? ""} disabled={!!tr.mascara} onChange={(ev) => setTreinos({ mascara: ev.target.value as TipoMascara })} aria-label="Máscara Hollow">
               <option value="">Escolher máscara (permanente)</option>
@@ -252,7 +257,7 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
             {(e.liberado === "mascara" || mascaraRecarga > 0) && <button type="button" className="chip chip-btn" onClick={novoTurnoMascara}>Novo turno</button>}
             {tr.mascaraMax ? <button type="button" className="chip chip-btn" onClick={treinarMascara}>Ampliar tempo (teste de Determinação passou)</button> : null}
           </div>
-        </div>
+        </details>
       )}
 
       <details className="condicoes">

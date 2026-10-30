@@ -44,7 +44,7 @@ export default function Conta() {
               <input type="password" required minLength={8} autoComplete="new-password" value={novaSenha} onChange={(e) => setNovaSenha(e.target.value)} />
             </label>
             {msg && <p className={`msg ${msg.tipo}`}>{msg.texto}</p>}
-            <button className="btn btn-red" disabled={ocupado}>Salvar nova senha</button>
+            <button type="submit" className="btn btn-red" disabled={ocupado}>Salvar nova senha</button>
           </form>
         </div>
       </main>
@@ -62,7 +62,7 @@ export default function Conta() {
           <p>Você entrou como <b>{sessao.user.email}</b>.</p>
           <div className="row">
             <Link className="btn btn-red" to="/fichas">Minhas fichas</Link>
-            <button className="btn btn-paper" onClick={sair}>Sair</button>
+            <button type="button" className="btn btn-paper" onClick={sair}>Sair</button>
           </div>
         </div>
       </main>
@@ -138,7 +138,7 @@ export default function Conta() {
             </label>
           )}
           {msg && <p className={`msg ${msg.tipo}`}>{msg.texto}</p>}
-          <button className="btn btn-red" disabled={ocupado || !configurado}>
+          <button type="submit" className="btn btn-red" disabled={ocupado || !configurado}>
             {modo === "entrar" ? "Entrar" : modo === "criar" ? "Criar conta" : "Enviar link"}
           </button>
           {modo === "entrar" && (

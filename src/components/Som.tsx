@@ -27,7 +27,7 @@ export default function Som() {
 
   return (
     <div className="som-wrap" ref={caixa}>
-      <button
+      <button type="button"
         className="som-btn"
         data-som="none"
         onClick={() => setAberto((a) => !a)}
@@ -72,10 +72,10 @@ export default function Som() {
           <div className="som-teste">
             <small>Ouvir os efeitos</small>
             <div>
-              <button onClick={efeito.dado} data-som="none">Dado</button>
-              <button onClick={efeito.corte} data-som="none">Corte</button>
-              <button onClick={efeito.energia} data-som="none">Kidō</button>
-              <button onClick={efeito.cero} data-som="none">Cero</button>
+              <button type="button" onClick={efeito.dado} data-som="none">Dado</button>
+              <button type="button" onClick={efeito.corte} data-som="none">Corte</button>
+              <button type="button" onClick={efeito.energia} data-som="none">Kidō</button>
+              <button type="button" onClick={efeito.cero} data-som="none">Cero</button>
             </div>
           </div>
         </div>

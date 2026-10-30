@@ -1072,3 +1072,4 @@ img, video, svg { max-width: 100%; }
 .lista-ess li .ess-origem select, .lista-ess li .ess-origem-nome { width: 100%; min-height: 44px; padding: 0 12px; font-size: 16px; color: var(--text); background: var(--bg, #05080f); border: 2px solid var(--line); border-radius: 6px; }
 .lista-ess li .ess-origem-nome { flex: 1 1 280px; width: auto; }
 .lista-ess li .chip { flex: 0 0 auto; }
+.painel-mascara>summary{cursor:pointer;display:flex;flex-wrap:wrap;align-items:center;gap:10px;min-height:36px}.painel-mascara>summary::marker{color:var(--accent)}

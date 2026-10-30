@@ -270,7 +270,7 @@ export default function Ficha() {
 
       <nav className="abas" role="tablist" aria-label="Seções da ficha">
         {ABAS.map((a) => (
-          <button key={a} role="tab" aria-selected={aba === a} className={aba === a ? "on" : ""} onClick={() => setAba(a)}>{a}{abasComProblema.has(a) ? <i className="pontinho erro" aria-label="Há um problema nesta aba">!</i> : null}{a === "Evolução" && nPend > 0 ? <i className="pontinho" aria-label={`${nPend} pendente(s)`}>{nPend}</i> : null}</button>
+          <button type="button" key={a} role="tab" aria-selected={aba === a} className={aba === a ? "on" : ""} onClick={() => setAba(a)}>{a}{abasComProblema.has(a) ? <i className="pontinho erro" aria-label="Há um problema nesta aba">!</i> : null}{a === "Evolução" && nPend > 0 ? <i className="pontinho" aria-label={`${nPend} pendente(s)`}>{nPend}</i> : null}</button>
         ))}
       </nav>
 
@@ -368,7 +368,7 @@ export default function Ficha() {
                 <input value={a.dano} placeholder="Dano (ex.: 2d8+3)" onChange={(e) => alterar({ ataques: f.ataques.map((x) => (x.id === a.id ? { ...x, dano: e.target.value } : x)) })} aria-label="Dano" />
                 <span className="acerto">{mod(ataqueBonus(f, c, a))}</span>
                 <LinhaAtaque r={rol} nome={a.nome} bonus={ataqueBonus(f, c, a)} dano={danoFinal(f, a, c)} />
-                <button className="link-perigo" onClick={() => alterar({ ataques: f.ataques.filter((x) => x.id !== a.id) })}>Remover</button>
+                <button type="button" className="link-perigo" onClick={() => alterar({ ataques: f.ataques.filter((x) => x.id !== a.id) })}>Remover</button>
               </div>
             ))}
             <select className="arma-add" value="" aria-label="Adicionar arma do livro" onChange={(e) => {
@@ -378,7 +378,7 @@ export default function Ficha() {
               <option value="">Adicionar arma do livro…</option>
               {[...ARMAS.corpo, ...ARMAS.distancia].map((a) => <option key={a.nome} value={a.nome}>{a.nome} ({a.dano})</option>)}
             </select>
-            <button className="btn btn-paper" onClick={() => alterar({ ataques: [...f.ataques, { id: novoId(), nome: "Zanpakutou", atr: classe?.chave.startsWith("Destreza") ? "des" : "for", dano: "" }] })}>Adicionar ataque</button>
+            <button type="button" className="btn btn-paper" onClick={() => alterar({ ataques: [...f.ataques, { id: novoId(), nome: "Zanpakutou", atr: classe?.chave.startsWith("Destreza") ? "des" : "for", dano: "" }] })}>Adicionar ataque</button>
           </div>
         </section>
       )}
@@ -443,7 +443,7 @@ export default function Ficha() {
                 <TrocarEssencia tipo={classe?.tipo} existentes={f.essencias.map((x) => x.nome)} onTrocar={(nome) => alterar({ essencias: f.essencias.map((x) => (x.id === e.id ? { ...x, nome, etapa: 1 } : x)) })} />
                 <Passo valor={e.etapa} min={1} max={5} rotulo={`etapa de ${e.nome}`} onChange={(v) => alterar({ essencias: f.essencias.map((x) => (x.id === e.id ? { ...x, etapa: v } : x)) })} />
                 <label className="mini"><input type="checkbox" checked={!!e.gratis} onChange={(ev) => alterar({ essencias: f.essencias.map((x) => (x.id === e.id ? { ...x, gratis: ev.target.checked } : x)) })} /> grátis</label>
-                <button className="link-perigo" onClick={() => alterar({ essencias: f.essencias.filter((x) => x.id !== e.id) })}>Remover</button>
+                <button type="button" className="link-perigo" onClick={() => alterar({ essencias: f.essencias.filter((x) => x.id !== e.id) })}>Remover</button>
               </div>
             ))}
             <SeletorEssencia
@@ -462,12 +462,12 @@ export default function Ficha() {
                   <input value={p.nome} onChange={(e) => alterar({ poderes: f.poderes.map((x) => (x.id === p.id ? { ...x, nome: e.target.value } : x)) })} aria-label="Nome do poder" placeholder="Nome" />
                   <input value={p.tipo} onChange={(e) => alterar({ poderes: f.poderes.map((x) => (x.id === p.id ? { ...x, tipo: e.target.value } : x)) })} aria-label="Tipo" placeholder="Tipo (Kidō, Talento…)" />
                   <input value={p.custo} onChange={(e) => alterar({ poderes: f.poderes.map((x) => (x.id === p.id ? { ...x, custo: e.target.value } : x)) })} aria-label="Custo" placeholder="Custo (5 PR)" />
-                  <button className="link-perigo" onClick={() => alterar({ poderes: f.poderes.filter((x) => x.id !== p.id) })}>Remover</button>
+                  <button type="button" className="link-perigo" onClick={() => alterar({ poderes: f.poderes.filter((x) => x.id !== p.id) })}>Remover</button>
                 </div>
                 <textarea rows={3} value={p.texto} onChange={(e) => alterar({ poderes: f.poderes.map((x) => (x.id === p.id ? { ...x, texto: e.target.value } : x)) })} aria-label="Descrição" placeholder="Descrição e regras" />
               </div>
             ))}
-            <button className="btn btn-paper" onClick={() => alterar({ poderes: [...f.poderes, { id: novoId(), nome: "", tipo: "", custo: "", texto: "" }] })}>Adicionar poder</button>
+            <button type="button" className="btn btn-paper" onClick={() => alterar({ poderes: [...f.poderes, { id: novoId(), nome: "", tipo: "", custo: "", texto: "" }] })}>Adicionar poder</button>
           </div>
         </section>
       )}
@@ -514,7 +514,7 @@ export default function Ficha() {
           <Campo rotulo="Aparência"><textarea rows={4} value={f.aparencia} onChange={(e) => alterar({ aparencia: e.target.value })} /></Campo>
           <Campo rotulo="História"><textarea rows={8} value={f.historia} onChange={(e) => alterar({ historia: e.target.value })} /></Campo>
           <Campo rotulo="Anotações da campanha"><textarea rows={8} value={f.notas} onChange={(e) => alterar({ notas: e.target.value })} /></Campo>
-          <button className="btn btn-paper" onClick={() => nav("/fichas")}>Voltar para a lista</button>
+          <button type="button" className="btn btn-paper" onClick={() => nav("/fichas")}>Voltar para a lista</button>
         </section>
       )}
     </main>
@@ -539,9 +539,9 @@ function Barra({ tipo, rotulo, atual, max, pct, onChange }: { tipo: "pv" | "pr";
       <div className="trilho" aria-hidden="true"><i style={{ width: `${pct}%` }} /></div>
       <div className="barra-acoes">
         <input type="number" inputMode="numeric" placeholder="valor" value={delta} onChange={(e) => setDelta(e.target.value)} aria-label={`Valor para ${rotulo}`} />
-        <button onClick={() => aplicar(-1)}>Perder</button>
-        <button onClick={() => aplicar(1)}>Recuperar</button>
-        <button onClick={() => onChange(max)} aria-label={`Restaurar ${rotulo} ao máximo`}>Máx.</button>
+        <button type="button" onClick={() => aplicar(-1)}>Perder</button>
+        <button type="button" onClick={() => aplicar(1)}>Recuperar</button>
+        <button type="button" onClick={() => onChange(max)} aria-label={`Restaurar ${rotulo} ao máximo`}>Máx.</button>
       </div>
     </div>
   );
@@ -579,7 +579,7 @@ function Evolucao({ f, c, alterar, subir, onForma, onSub }: { f: TFicha; c: Retu
             <Campo rotulo="XP total"><input type="number" min={0} value={f.xp} onChange={(e) => alterar({ xp: Math.max(0, Number(e.target.value) || 0) })} /></Campo>
           </div>
           {podeSubir ? (
-            <button className="btn btn-red" onClick={subir}>Subir para o nível {f.nivel + 1}</button>
+            <button type="button" className="btn btn-red" onClick={subir}>Subir para o nível {f.nivel + 1}</button>
           ) : (
             <p className="ajuda">Ganhe XP para liberar o próximo nível. Seu mestre pode também definir o nível direto.</p>
           )}
