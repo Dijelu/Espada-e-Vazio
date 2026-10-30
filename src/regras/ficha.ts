@@ -494,6 +494,8 @@ export interface Treinos {
   mascaraMax?: number;
   /** como é a máscara, descrito pelo jogador (texto livre, sem regra) */
   mascaraAparencia?: string;
+  /** foto da máscara anexada pelo jogador (imagem pequena guardada na ficha) */
+  mascaraFoto?: string;
 }
 
 export type Liberacao = "" | "shikai" | "bankai" | "resurreccion" | "terror" | "vollstandig" | "mascara";

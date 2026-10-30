@@ -7,6 +7,7 @@ import { Dica } from "./Dica";
 import { custoBankai, nivelLiberacao } from "../regras/liberacoes";
 import { classePorId, type Calculo, type Ficha, type Liberacao } from "../regras/ficha";
 import { efeito as som } from "../lib/som";
+import { prepararFotoMascara } from "../lib/mascara-foto";
 import { MASCARAS, mascaraAtiva, tempMascara, type TipoMascara } from "../regras/mascara";
 
 export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alterar: (p: Partial<Ficha>) => void; r: Rolagens }) {
@@ -141,7 +142,7 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
       estado: { ...f.estado, liberado: "mascara", usos, pvTemp: Math.max(e.pvTemp, Math.floor(c.pv * t.pv)) },
     });
     som.corte();
-    dispararLiberacao("mascara", MASCARAS.find((m) => m.id === tr.mascara)?.nome, tr.mascaraAparencia?.trim() || undefined);
+    dispararLiberacao("mascara", MASCARAS.find((m) => m.id === tr.mascara)?.nome, tr.mascaraAparencia?.trim() || undefined, tr.mascaraFoto || undefined);
     setMsg(`Máscara ativada (${custo} PR). Ela dura ${max} turno(s), contando este.`);
   };
   const novoTurnoMascara = () => {
@@ -230,6 +231,20 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
             {mascaraRecarga > 0 && <span className="chip">Recarga: {mascaraRecarga} turno(s)</span>}
           </div>
           {tr.mascara && <p className="ajuda">{MASCARAS.find((m) => m.id === tr.mascara)?.texto}</p>}
+          <div className="acoes-linha foto-mascara">
+            {tr.mascaraFoto && <img src={tr.mascaraFoto} alt="Foto da sua máscara" />}
+            <label className="btn btn-paper">
+              {tr.mascaraFoto ? "Trocar foto da máscara" : "Anexar foto da máscara"}
+              <input type="file" accept="image/*" hidden onChange={async (ev) => {
+                const arq = ev.target.files?.[0];
+                ev.target.value = "";
+                if (!arq) return;
+                try { setTreinos({ mascaraFoto: await prepararFotoMascara(arq) }); setMsg("Foto anexada: ela aparece na animação quando você ativar a máscara."); }
+                catch (er) { setMsg(er instanceof Error ? er.message : "Não foi possível usar essa imagem."); }
+              }} />
+            </label>
+            {tr.mascaraFoto && <button type="button" className="chip chip-btn" onClick={() => setTreinos({ mascaraFoto: "" })}>Remover foto</button>}
+          </div>
           <label className="campo">Aparência da máscara (você descreve; aparece na animação)
             <textarea rows={2} maxLength={220} value={tr.mascaraAparencia ?? ""} onChange={(ev) => setTreinos({ mascaraAparencia: ev.target.value })} placeholder="Ex.: osso branco rachado ao meio, uma faixa vermelha cortando o olho esquerdo e dentes à mostra." />
           </label>

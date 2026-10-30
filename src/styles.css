@@ -1066,3 +1066,4 @@ img, video, svg { max-width: 100%; }
 .fx-mascara .fx-texto b { color: #f4eee0; text-shadow: 0 0 24px #e5173f, 5px 5px 0 #000, -3px -3px 0 #e5173f; }
 
 .fx-narrativa { display: block; max-width: min(640px, 86vw); margin: 10px auto 0; font-family: var(--font-corpo, serif); font-size: clamp(14px, 2.2vw, 20px); line-height: 1.35; color: #f4eee0; text-shadow: 0 2px 6px #000, 0 0 14px #e5173f; }
+.foto-mascara img{height:96px;width:auto;background:#111;border:1px solid var(--line,#444);padding:4px;border-radius:6px}

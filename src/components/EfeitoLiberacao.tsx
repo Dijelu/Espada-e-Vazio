@@ -8,15 +8,17 @@ interface Pedido {
   nome?: string;
   /** frase narrativa extra sob o título (a aparência escrita pelo jogador) */
   narrativa?: string;
+  /** foto da máscara do jogador, no lugar da máscara final padrão */
+  foto?: string;
   id: number;
 }
 
 const EVENTO = "espada:liberacao";
 
 /** Pede a animação de tela cheia de uma liberação. Não faz nada se o navegador não suportar. */
-export function dispararLiberacao(tipo: TipoEfeito, nome?: string, narrativa?: string) {
+export function dispararLiberacao(tipo: TipoEfeito, nome?: string, narrativa?: string, foto?: string) {
   try {
-    window.dispatchEvent(new CustomEvent<Pedido>(EVENTO, { detail: { tipo, nome, narrativa, id: Date.now() } }));
+    window.dispatchEvent(new CustomEvent<Pedido>(EVENTO, { detail: { tipo, nome, narrativa, foto, id: Date.now() } }));
   } catch {
     /* efeito é só enfeite */
   }
@@ -255,7 +257,7 @@ export function EfeitoLiberacao() {
           {dados.flashes.slice(0, -1).map((m, i) => (
             <img key={i} className="fx-pisca" src={imgMascara(m.id)} alt="" style={{ left: `${m.x}%`, top: `${m.y}%`, width: `${m.s}vmin` }} />
           ))}
-          <img className="fx-mascara-final" src={imgMascara(17)} alt="" />
+          <img className="fx-mascara-final" src={pedido.foto || imgMascara(17)} alt="" />
           <div className="fx-flash" />
         </>
       )}

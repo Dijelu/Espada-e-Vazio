@@ -67,6 +67,7 @@ export function repararFicha(bruta: Ficha): Reparo {
   if (!Array.isArray(f.treinos.feitos)) f.treinos.feitos = [];
   if (f.treinos.mascara && !["conquistador", "predador", "equilibrio"].includes(f.treinos.mascara)) f.treinos.mascara = "";
   if (f.treinos.mascaraAparencia !== undefined && typeof f.treinos.mascaraAparencia !== "string") f.treinos.mascaraAparencia = "";
+  if (f.treinos.mascaraFoto !== undefined && (typeof f.treinos.mascaraFoto !== "string" || !f.treinos.mascaraFoto.startsWith("data:image/") || f.treinos.mascaraFoto.length > 400000)) f.treinos.mascaraFoto = "";
   if (f.treinos.mascaraMax !== undefined) f.treinos.mascaraMax = inteiro(f.treinos.mascaraMax, 0, 99, 0);
   f.treinos.pf = inteiro(f.treinos.pf, 0, 999, 0);
   f.treinos.geralDias = inteiro(f.treinos.geralDias, 0, 9999, 0);
