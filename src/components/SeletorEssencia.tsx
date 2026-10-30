@@ -66,7 +66,7 @@ export function SeletorEssencia({ tipo, existentes, onEscolher, rotulo = "Escolh
             <input className="seletor-busca" value={busca} onChange={(e) => setBusca(e.target.value)} placeholder="Buscar por nome ou efeito" aria-label="Buscar essência" autoFocus />
             <div className="chips" role="group" aria-label="Grupo">
               <button type="button" className={`chip chip-btn ${grupo === "classe" ? "on" : ""}`} onClick={() => setGrupo("classe")}>Da minha classe</button>
-              {(["todas", "shinigami", "quincy", "hollow", "proibida"] as GrupoEssencia[]).map((g) => (
+              {permitidos.map((g) => (
                 <button key={g} type="button" className={`chip chip-btn ${grupo === g ? "on" : ""}`} onClick={() => setGrupo(g)}>
                   {ROTULO_GRUPO[g]}
                 </button>
@@ -97,7 +97,10 @@ export function SeletorEssencia({ tipo, existentes, onEscolher, rotulo = "Escolh
                         {ja && !e.repetivel ? (
                           <p className="ajuda">Você já tem esta essência: suba a etapa dela na lista.</p>
                         ) : (
-                          <button type="button" className="btn" onClick={() => escolher(e.nome)}>Adicionar {e.nome}</button>
+                          <>
+                            {e.grupo === "proibida" && <p className="ajuda">Proibida: só com a autorização do Mestre.</p>}
+                            <button type="button" className="btn" onClick={() => escolher(e.nome)}>Adicionar {e.nome}</button>
+                          </>
                         )}
                       </div>
                     )}
