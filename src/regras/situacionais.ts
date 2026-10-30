@@ -107,6 +107,8 @@ const DEFS: Def[] = [
   D(HK, "Caminho do Punho", 6, "espirito-combatente", "Espírito Combatente", "Ao usar uma Técnica de Hakuda", "Gaste o custo de reiatsu de novo para criar um espectro de reiatsu em forma de animal."),
 
   /* ---- Kidōshū ---- */
+  D(KD, undefined, 5, "economia-de-reiatsu", "Economia de Reiatsu", "Primeiro Kidō do turno", "O primeiro Kidō que você conjurar no turno custa proficiência de Reiatsu a menos (mínimo 1).", (c) => ({ resumo: `primeiro Kidō custa ${c.prof} PR a menos` })),
+  D(KD, undefined, 7, "fluxo-de-reiatsu", "Fluxo de Reiatsu", "Fim do turno, se conjurou Kidō", "Você recupera proficiência de Reiatsu.", (c) => ({ resumo: `recupera ${c.prof} PR` })),
   D(KD, "Mago", 3, "convergencia-elemental", "Convergência Elemental", "Hadō de dano esotérico que acerta", "Cria uma Marca Elemental. Cada marca gasta num Hadō seguinte soma +5 de dano Temporal. Com 4 marcas, todo o dano vira Temporal e não pode ser reduzido."),
   D(KD, "Mago", 6, "contra-feitico", "Contra Feitiço", "Reação, outro conjurador a 9 m tenta lançar Kido", "Use o Bakudō 31 (Kido Shoumei) para dissipar o Kido. Rank D é dissipado na hora; rank C ou mais exige disputa de acerto."),
   D(KD, "Mago", 10, "alteracao-de-kido", "Alteração de Kido", "Ao conjurar Hadō de dano esotérico", "Gaste o custo de 2 aprimoramentos para trocar o tipo de dano. Gera uma Marca extra e dá +2 no acerto (ou +5 de dano se for automático).", () => ({ resumo: "+2 no acerto do Hadō" })),

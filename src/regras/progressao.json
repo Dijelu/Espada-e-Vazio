@@ -319,7 +319,7 @@
   "3": {
    "kido": 8,
    "rank": "D",
-   "caract": "Tradição (Sub-classe), Talentos de Kidōshū"
+   "caract": "Maestria de Hadō (+1 × prof.), Tradição (Sub-classe), Talentos de Kidōshū"
   },
   "4": {
    "kido": 9,
@@ -329,7 +329,7 @@
   "5": {
    "kido": 10,
    "rank": "C",
-   "caract": "TTalentos de Kidōshū"
+   "caract": "Economia de Reiatsu, Talentos de Kidōshū"
   },
   "6": {
    "kido": 11,
@@ -339,17 +339,17 @@
   "7": {
    "kido": 12,
    "rank": "C",
-   "caract": "Talentos de Kidōshū"
+   "caract": "Fluxo de Reiatsu, Talentos de Kidōshū"
   },
   "8": {
    "kido": 13,
    "rank": "B",
-   "caract": "Aprimoramento da Essência"
+   "caract": "Maestria de Hadō (+2 × prof.), Aprimoramento da Essência"
   },
   "9": {
    "kido": 14,
    "rank": "B",
-   "caract": "Talentos de Kidōshū"
+   "caract": "Mente de Kido (CD +1), Talentos de Kidōshū"
   },
   "10": {
    "kido": 15,
@@ -369,7 +369,7 @@
   "13": {
    "kido": 18,
    "rank": "A",
-   "caract": "Talentos de Kidōshū"
+   "caract": "Maestria de Hadō (+3 × prof.), Talentos de Kidōshū"
   },
   "14": {
    "kido": 19,
@@ -383,28 +383,28 @@
   },
   "16": {
    "kido": 21,
-   "rank": "",
-   "caract": "S Aprimoramento da Essência"
+   "rank": "S",
+   "caract": "Mente de Kido (CD +2), Aprimoramento da Essência"
   },
   "17": {
    "kido": 22,
-   "rank": "",
-   "caract": "S Talentos de Kidōshū"
+   "rank": "S",
+   "caract": "Talentos de Kidōshū"
   },
   "18": {
    "kido": 23,
-   "rank": "",
-   "caract": "S Talentos de Kidōshū"
+   "rank": "S",
+   "caract": "Maestria de Hadō (+4 × prof.), Talentos de Kidōshū"
   },
   "19": {
    "kido": 24,
-   "rank": "",
-   "caract": "SS Aprimoramento da Essência"
+   "rank": "SS",
+   "caract": "Aprimoramento da Essência"
   },
   "20": {
    "kido": 25,
-   "rank": "",
-   "caract": "SS Tradição (Sub-classe), Talentos de Kidōshū"
+   "rank": "SS",
+   "caract": "Tradição (Sub-classe), Talentos de Kidōshū"
   }
  },
  "kyugo": {
@@ -485,28 +485,28 @@
   },
   "16": {
    "kido": 21,
-   "rank": "",
-   "caract": "S Aprimoramento da Essência"
+   "rank": "S",
+   "caract": "Aprimoramento da Essência"
   },
   "17": {
    "kido": 22,
-   "rank": "",
-   "caract": "S Talentos de Kyūgo"
+   "rank": "S",
+   "caract": "Talentos de Kyūgo"
   },
   "18": {
    "kido": 23,
-   "rank": "",
-   "caract": "S Talentos de Kyūgo"
+   "rank": "S",
+   "caract": "Talentos de Kyūgo"
   },
   "19": {
    "kido": 24,
-   "rank": "",
-   "caract": "SS Aprimoramento da Essência"
+   "rank": "SS",
+   "caract": "Aprimoramento da Essência"
   },
   "20": {
    "kido": 25,
-   "rank": "",
-   "caract": "SS Afinidade (Sub-classe), Talentos de Kyūgo"
+   "rank": "SS",
+   "caract": "Afinidade (Sub-classe), Talentos de Kyūgo"
   }
  },
  "schutze": {

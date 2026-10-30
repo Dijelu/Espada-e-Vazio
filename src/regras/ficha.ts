@@ -765,6 +765,8 @@ export interface Calculo {
   /** efeitos passivos de talentos e essências (os automáticos já estão somados acima) */
   passivas: PassivaAtiva[];
   /** bônus na CD dos Kidōs */
+  /** Dano extra de cada Hadō pela Maestria de Hadō do Kidōshū (a Shikai e a Bankai somam por fora). */
+  danoHado: number;
   cdKido: number;
   /** quanto cada essência reduz o custo de liberação */
   reducaoLib: EfeitoSoma["reducaoLib"];
@@ -925,7 +927,8 @@ export function calcular(f: Ficha): Calculo {
     proximoXp,
     avisos,
     passivas,
-    cdKido: 8 + prof + atr.esp + px.cdKido,
+    cdKido: 8 + prof + atr.esp + px.cdKido + (f.classe === "kidoshu" ? (n >= 16 ? 2 : n >= 9 ? 1 : 0) : 0),
+    danoHado: f.classe === "kidoshu" ? prof * (n >= 18 ? 4 : n >= 13 ? 3 : n >= 8 ? 2 : n >= 3 ? 1 : 0) : 0,
     reducaoLib: px.reducaoLib,
     danoGeral: sit.danoGeral + formaDano + (f.classe === "schutze" ? vollDano + (n >= 3 ? prof + Math.floor((prof * n * n) / 200) : 0) : 0),
     danoDados: sit.dados,

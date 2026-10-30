@@ -1030,25 +1030,25 @@ Nível bÔNUS DE Proficiência KIDO CONHECIDOS CLASSIFICAÇÃO DO KIDO Caracter�
 | Nível | Proficiência | Col. 1 | Col. 2 | Características |
 |---|---|---|---|---|
 | 1° | +2 | 6 | D | Zanpakutou, Kido, Estudos Avançados |
-| 2° | +2 | 7 | D | Shunpo, Talentos de Kyūgo |
-| 3° | +2 | 8 | D | Tradição (Sub-classe), Talentos de Kidōshū |
+| 2° | +2 | 7 | D | Shunpo, Talentos de Kidōshū |
+| 3° | +2 | 8 | D | Maestria de Hadō (+1 × prof.), Tradição (Sub-classe), Talentos de Kidōshū |
 | 4° | +2 | 9 | C | Aprimoramento da Essência |
-| 5° | +3 | 10 | C | TTalentos de Kidōshū |
+| 5° | +3 | 10 | C | Economia de Reiatsu, Talentos de Kidōshū |
 | 6° | +3 | 11 | C | Tradição (Sub-classe), Talentos de Kidōshū |
-| 7° | +3 | 12 | C | Talentos de Kidōshū |
-| 8° | +3 | 13 | B | Aprimoramento da Essência |
-| 9° | +4 | 14 | B | Talentos de Kidōshū |
+| 7° | +3 | 12 | C | Fluxo de Reiatsu, Talentos de Kidōshū |
+| 8° | +3 | 13 | B | Maestria de Hadō (+2 × prof.), Aprimoramento da Essência |
+| 9° | +4 | 14 | B | Mente de Kido (CD +1), Talentos de Kidōshū |
 | 10° | +4 | 15 | B | Tradição (Sub-classe), Talentos de Kidōshū |
 | 11° | +4 | 16 | B | Talentos de Kidōshū |
 | 12° | +4 | 17 | A | Aprimoramento da Essência |
-| 13° | +5 | 18 | A | Talentos de Kidōshū |
+| 13° | +5 | 18 | A | Maestria de Hadō (+3 × prof.), Talentos de Kidōshū |
 | 14° | +5 | 19 | A | Talentos de Kidōshū |
 | 15° | +5 | 20 | A | Tradição (Sub-classe), Talentos de Kidōshū |
-| 16° | +5 | 21 |  | S Aprimoramento da Essência |
-| 17° | +6 | 22 |  | S Talentos de Kidōshū |
-| 18° | +6 | 23 |  | S Talentos de Kidōshū |
-| 19° | +6 | 24 |  | SS Aprimoramento da Essência |
-| 20° | +6 | 25 |  | SS Tradição (Sub-classe), Talentos de Kidōshū |
+| 16° | +5 | 21 | S | Mente de Kido (CD +2), Aprimoramento da Essência |
+| 17° | +6 | 22 | S | Talentos de Kidōshū |
+| 18° | +6 | 23 | S | Maestria de Hadō (+4 × prof.), Talentos de Kidōshū |
+| 19° | +6 | 24 | SS | Aprimoramento da Essência |
+| 20° | +6 | 25 | SS | Tradição (Sub-classe), Talentos de Kidōshū |
 
 ## Tabela de Classe
 
@@ -1096,6 +1096,15 @@ O Kidōshū conjura o Kido com mais frequência e chega às classificações alt
 - **Hadō de rank C** desde o 4° nível, **rank B** no 8° e **rank A** no 10°.
 - **Bakudō de contenção**, a partir do 10° nível: a cada 3 rodadas, gastando PR, o alvo faz um teste de Mente e perde a ação se falhar.
 - **Acerto de Hadō** = d20 + Mente + proficiência + bônus de Foco Arcano.
+
+### Maestria de Kido
+
+O Kidōshū é o mestre do Kido: o seu poder cresce com o estudo, e não com a lâmina. Estas características valem para todas as Tradições.
+
+- **Maestria de Hadō** (3º nível): cada Hadō que você conjurar causa **+1 × proficiência** de dano. O bônus sobe para **+2 × proficiência** no 8º nível, **+3 × proficiência** no 13º e **+4 × proficiência** no 18º. O bônus se soma ao da Shikai e da Bankai.
+- **Economia de Reiatsu** (5º nível): o primeiro Kido que você conjurar em cada turno custa **proficiência** pontos de Reiatsu a menos (mínimo 1).
+- **Fluxo de Reiatsu** (7º nível): no fim do seu turno, se você conjurou algum Kido nele, recupera **proficiência** pontos de Reiatsu.
+- **Mente de Kido** (9º nível): a CD dos seus Kidōs sobe em **+1**, e em **+2** a partir do 16º nível.
 
 ### Foco Arcano
 
@@ -1429,11 +1438,11 @@ Nível bÔNUS DE Proficiência KIDO CONHECIDOS CLASSIFICAÇÃO DO KIDO Caracter�
 | 13° | +5 | 18 | A | Talentos de Kyūgo |
 | 14° | +5 | 19 | A | Talentos de Kyūgo |
 | 15° | +5 | 20 | A | Afinidade (Sub-classe), Talentos de Kyūgo |
-| 16° | +5 | 21 |  | S Aprimoramento da Essência |
-| 17° | +6 | 22 |  | S Talentos de Kyūgo |
-| 18° | +6 | 23 |  | S Talentos de Kyūgo |
-| 19° | +6 | 24 |  | SS Aprimoramento da Essência |
-| 20° | +6 | 25 |  | SS Afinidade (Sub-classe), Talentos de Kyūgo |
+| 16° | +5 | 21 | S | Aprimoramento da Essência |
+| 17° | +6 | 22 | S | Talentos de Kyūgo |
+| 18° | +6 | 23 | S | Talentos de Kyūgo |
+| 19° | +6 | 24 | SS | Aprimoramento da Essência |
+| 20° | +6 | 25 | SS | Afinidade (Sub-classe), Talentos de Kyūgo |
 
 ## Tabela de Classe
 
