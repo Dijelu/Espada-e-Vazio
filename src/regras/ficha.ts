@@ -909,7 +909,7 @@ export function calcular(f: Ficha): Calculo {
     rdEso: ef.rdEso + rdEsoExtra + px.rdEso,
     iniciativa: (ef.iniMente ? Math.max(atr.des, atr.men) : atr.des) + px.iniciativa,
     // Ritter: armas Quincy corpo a corpo causam +3 de dano do 3º ao 9º nível
-    danoCorpo: ef.danoCorpo + px.danoCorpo + sit.danoCorpo + (f.classe === "ritter" && n >= 3 && n <= 9 ? 3 : 0) + danoFixoHueco(f, prof) + (f.classe === "ritter" ? vollDano : 0),
+    danoCorpo: ef.danoCorpo + px.danoCorpo + sit.danoCorpo + (f.classe === "ritter" && n >= 3 && n <= 9 ? 3 : 0) + danoFixoHueco(f, prof) + (f.classe === "ritter" ? vollDano : 0) + (f.classe === "ritter" && n >= 10 ? prof : 0),
     crEvasao,
     percPassiva: 10 + pericias["percepcao"].total + px.percPassiva,
     saves,
@@ -925,7 +925,7 @@ export function calcular(f: Ficha): Calculo {
     passivas,
     cdKido: 8 + prof + atr.esp + px.cdKido,
     reducaoLib: px.reducaoLib,
-    danoGeral: sit.danoGeral + formaDano + (f.classe === "schutze" ? vollDano : 0),
+    danoGeral: sit.danoGeral + formaDano + (f.classe === "schutze" ? vollDano + (n >= 3 ? prof : 0) : 0),
     danoDados: sit.dados,
     acertoCorpo: sit.acertoCorpo + formaAtq + (f.classe === "ritter" ? vollAtq : 0),
     acertoDist: sit.acertoDist + formaAtq + (f.classe === "schutze" ? vollAtq : 0),

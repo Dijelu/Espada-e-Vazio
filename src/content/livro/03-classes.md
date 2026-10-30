@@ -1827,7 +1827,7 @@ Você possui um número de escolhas de Técnicas de Reishi igual ao descrito na 
 
 Acerto para suas Técnicas de Reishi = d20 + bônus de proficiência + seu atributo de Mente Classe de Dificuldade para suas Técnicas de Reishi = 8 + bônus de proficiência + seu atributo de Mente
 
-Você tem uma Técnica de Reishi desde o 1° nível, com dano base de 2d10 + Espírito, sem dados extras. No 1° e no 2° nível seus disparos não têm vantagem. O bônus de acerto das suas técnicas é 1,5 × a proficiência em todos os níveis.
+Você tem uma Técnica de Reishi desde o 1° nível, com dano base de 2d10 + Espírito, e um dado de dano a mais a cada 5 níveis (6d10 no 20º nível). No 1° e no 2° nível seus disparos não têm vantagem. O bônus de acerto das suas técnicas é 1,5 × a proficiência em todos os níveis.
 
 ### Talento de Schütze
 
@@ -2290,7 +2290,7 @@ Você liberta a forma verdadeira do corpo, sem espada: descreva a máscara, o co
 
 - CR + proficiência + 1.
 - Arma natural +1 passo e + proficiência de dano.
-- O Cero causa **x 1,7 dados**.
+- O Cero causa **x 1,4 dados**.
 - Sem PV temporários.
 - Não dá ataque extra.
 
@@ -2303,7 +2303,7 @@ Você liberta a forma verdadeira do corpo, sem espada: descreva a máscara, o co
 Ação, **12 PR**, só durante a Resurrección. Substitui os ataques da sua ação. A técnica depende do Caminho:
 
 - **Glotonería, Devorar:** um ataque que causa (nível + 10)d10 + 2 x Força de Energia. Você recupera 60% do dano causado em PV.
-- **Estallido, Gran Rey Cero:** seu Cero em Resurrección causa +proficiência d8 de dano e você lança dois Ceros por turno (a partir do 6º nível).
+- **Estallido, Gran Rey Cero:** seu Cero em Resurrección causa +proficiência d8 de dano e você lança dois Ceros por turno (a partir do 8º nível).
 - **Sonido, Golpe Fantasma:** um ataque com vantagem, crítico em 19 ou 20 e dano de (nível/2 - 3)d10 + 2 x Destreza.
 
 ### Caminhos do Hueco
@@ -2315,7 +2315,7 @@ No 3º nível você escolhe um Caminho. Ele concede características no 3º, 6º
 O Caminho da fome e da carne: um Hueco que cresce devorando o que enfrenta. Atributos-chave: Força e Constituição.
 
 - **Corpo:** +3 PV por nível, além do Corpo Hollow.
-- **3º nível:** sua arma natural causa **+5 x proficiência** de dano (**+8 x proficiência** a partir do 15º nível). No primeiro acerto da rodada, você se cura em 5 x proficiência PV.
+- **3º nível:** sua arma natural causa **+4 x proficiência** de dano (**+6 x proficiência** a partir do 15º nível). No primeiro acerto da rodada, você se cura em 5 x proficiência PV.
 - **6º nível:** você pode usar a mordida (1d8 + Constituição) como ação bônus.
 - **10º nível:** RD igual à proficiência. A partir do 15º nível, soma mais **+3 de RD**.
 - **18º nível:** +1 ataque.
@@ -2325,11 +2325,11 @@ O Caminho da fome e da carne: um Hueco que cresce devorando o que enfrenta. Atri
 
 O Caminho do Cero: um Hueco que é, antes de tudo, artilharia. Atributos-chave: Espírito e Constituição.
 
-- **3º nível:** +6 dados no Cero.
-- **6º nível:** você lança dois Ceros por turno.
+- **3º nível:** +4 dados no Cero.
+- **8º nível:** você lança dois Ceros por turno.
 - **10º nível:** o Cero causa +proficiência d8 de dano.
 - **18º nível:** +1 ataque.
-- **20º nível:** +5 dados no Cero.
+- **20º nível:** +3 dados no Cero.
 
 #### Caminho Sonido
 

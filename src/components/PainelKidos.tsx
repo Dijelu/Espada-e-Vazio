@@ -40,6 +40,9 @@ export function PainelKidos({ f, c }: { f: Ficha; c: Calculo }) {
   return (
     <details className="caixa painel-kidos" open={aberto} onToggle={(e) => alternar((e.currentTarget as HTMLDetailsElement).open)}>
       <summary><h3>Kidōs <small>{f.kidos.length} escolhido{f.kidos.length === 1 ? "" : "s"} · CD {c.cdKido}</small></h3></summary>
+      {(f.estado.liberado === "shikai" || f.estado.liberado === "bankai") && (
+        <p className="ajuda">Com a {f.estado.liberado === "bankai" ? "Bankai" : "Shikai"} ativa, cada Hadō que você lançar causa <b>+{f.estado.liberado === "bankai" ? 2 * c.prof : c.prof}</b> de dano.</p>
+      )}
       {grupo("hadou", "Hadō")}
       {grupo("bakudou", "Bakudō")}
     </details>

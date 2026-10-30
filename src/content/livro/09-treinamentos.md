@@ -138,6 +138,10 @@ Ao concluir, o Shinigami escolhe **um** dos dois caminhos. A escolha não muda d
 - Quando termina, o Shinigami fica com 1 nível de Esgotado, até um descanso curto.
 - Os demais números da Bankai não mudam.
 
+### Bônus de dano das formas
+
+Enquanto uma forma estiver liberada, cada golpe seu causa dano extra: **Shikai**, +proficiência; **Bankai** e **Segunda Etapa**, +2 × proficiência. A Bankai também dá +1 nas jogadas de ataque. Os Hadōs lançados com a Shikai ou a Bankai ativa recebem o mesmo bônus de dano, uma vez por lançamento. A Vollständig dos Quincy segue os bônus da sua própria tabela, e as Técnicas de Reishi ganham +proficiência d10 de dano de Energia enquanto ela estiver ativa.
+
 ## Espírito da Zanpakutou
 
 O espírito da Zanpakutou é a manifestação viva da alma de um Shinigami. Ele habita o mundo interior, um espaço que reflete a mente, o coração e as emoções mais profundas de seu portador. Dentro desse mundo, o espírito assume uma forma própria, pode parecer humano, uma fera mística ou até uma figura completamente simbólica, mas sempre representa aquilo que o Shinigami carrega dentro de si.
@@ -316,7 +320,7 @@ Concluído o treinamento, a Resurrección é liberada com uma ação bônus. Ela
 | Custo | 45 PR | 40 PR |
 | CR | + proficiência + 1 | + proficiência − 1 até o 15º nível; + proficiência a partir do 16º |
 | Dano | + proficiência; arma natural +1 passo | Poder Inato com dados × 1,6 |
-| Técnica base | Cero com dados × 1,7 | |
+| Técnica base | Cero com dados × 1,4 | |
 | PV temporários | Nenhum | 3 × nível até o 15º; 5 × nível a partir do 16º |
 | Ataque extra | Nenhum | |
 | Mestre Resurrección (20º) | Custo pela metade | Custo pela metade |

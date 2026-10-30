@@ -26,6 +26,12 @@ export const atrChaveTecnica = (classe: string) => (classe === "schutze" ? "men"
 /** Dados do Cero do Hueco: começa mais baixo nos três primeiros níveis, depois segue nível + 8. */
 export const dadosCero = (n: number) => (n <= 3 ? [5, 7, 9][Math.max(0, n - 1)] : n + 8);
 
+/** Dados extras do Cero do Caminho Estallido: +4 no 3º nível, +proficiência no 10º e +3 no 20º. */
+export function dadosCaminhoCero(f: Ficha, prof: number): number {
+  if (f.classe !== "hueco" || f.subclasse !== "Estallido") return 0;
+  return (f.nivel >= 3 ? 4 : 0) + (f.nivel >= 10 ? prof : 0) + (f.nivel >= 20 ? 3 : 0);
+}
+
 const TIPOS = /dano\s+(?:de\s+)?(Energia|Fogo|Frio|Elétrico|Perfurante|Cortante|Concussão|Psíquico)/i;
 
 function lerTecnica(nome: string, texto: string, bonus: number, rotuloChave: string): DanoClasse | null {
@@ -46,7 +52,7 @@ export function danosDaClasse(f: Ficha, c: Calculo): DanoClasse[] {
     const chave = atrChaveTecnica(f.classe);
     const bonus = c.atr[chave];
     const rotulo = chave === "men" ? "Mente" : "Espírito";
-    if (f.classe === "schutze") out.push({ nome: "Técnica de Reishi base", fonte: "Classe", dano: `2d10+${c.atr.esp}`, tipo: "Energia", nota: `2d10 + Espírito, sem dados extras. Acerto: ${Math.floor(c.prof * 1.5)} (1,5 × proficiência).`, acerto: true });
+    if (f.classe === "schutze") out.push({ nome: "Técnica de Reishi base", fonte: "Classe", dano: `${2 + Math.floor(f.nivel / 5)}d10+${c.atr.esp}`, tipo: "Energia", nota: `${2 + Math.floor(f.nivel / 5)}d10 + Espírito (um dado a mais a cada 5 níveis). Acerto: ${Math.floor(c.prof * 1.5)} (1,5 × proficiência).`, acerto: true });
     for (const nome of f.tecnicasReishi) {
       const t = TECNICAS_REISHI.find((x) => x.nome === nome);
       const l = t?.texto ? lerTecnica(t.nome, t.texto, bonus, rotulo) : null;
@@ -59,7 +65,7 @@ export function danosDaClasse(f: Ficha, c: Calculo): DanoClasse[] {
   }
   if (f.classe === "hueco") {
     const n = f.nivel;
-    out.push({ nome: "Cero", fonte: "Classe", dano: `${dadosCero(n)}d8+${c.atr.esp}`, tipo: "Energia", custo: "15 PR", nota: "Ação, à distância. Ignora o Hierro.", acerto: true });
+    out.push({ nome: "Cero", fonte: "Classe", dano: `${dadosCero(n) + dadosCaminhoCero(f, c.prof)}d8+${c.atr.esp}`, tipo: "Energia", custo: "15 PR", nota: "Ação, à distância. Ignora o Hierro.", acerto: true });
   }
   return out;
 }

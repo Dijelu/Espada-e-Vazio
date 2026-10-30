@@ -29,7 +29,7 @@
      "nome": "Gran Rey Cero",
      "acao": "Ação",
      "pr": 15,
-     "dano": "[(NIV+14+PROF)*1.7]d8+[ESP]",
+     "dano": "[(NIV+12+PROF)*1.4]d8+[ESP]",
      "texto": "Técnica de assinatura do Caminho Estallido. O Cero de Resurrección sai dos dois lobos e causa +proficiência d8. Ignora o Hierro. Você pode lançar dois por turno a partir do 6º nível."
     },
     {
