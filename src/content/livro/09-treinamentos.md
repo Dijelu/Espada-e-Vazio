@@ -184,9 +184,9 @@ Abaixo, você deve escolher qual Máscara Hollow possuirá. Existem três opçõ
 
 A Máscara do Conquistador é conhecida por intensificar a reiatsu do usuário, tornando-se a escolha ideal para combatentes que utilizam grandes quantidades de reiatsu. Para ativá-la, você deve gastar cinco vezes o seu bônus de proficiência em reiatsu e, ao fazê-lo, adquire as seguintes características:
 
-- Imposição Hollow: Se você utilizar uma técnica de Zanpakutou, Hadou ou Bakudou e ela exigir que a criatura realize um teste de resistência, aumente a CD do teste em um valor igual ao seu nível de personagem.
+- Imposição Hollow: Se você utilizar uma técnica de Zanpakutou, Hadou ou Bakudou e ela exigir que a criatura realize um teste de resistência, aumente a CD do teste em um valor igual ao seu bônus de proficiência.
 - Poder Aumentado: Suas técnicas de Zanpakutou, Hadou e Bakudou tornam-se mais intensas. Sempre que uma dessas técnicas causar dano, aumente o número de dados de dano em um valor igual ao dobro do seu bônus de proficiência.
-- Reiatsu Amplificada: Você recebe pontos de reiatsu temporários iguais ao total dos seus pontos de reiatsu totais.
+- Reiatsu Amplificada: Você recebe pontos de reiatsu temporários iguais à metade dos seus pontos de reiatsu totais.
 
 ### Máscara do Predador
 
@@ -194,17 +194,17 @@ A Máscara do Predador é conhecida por intensificar o poder físico do usuário
 
 Para ativá-la, você deve gastar cinco vezes o seu bônus de proficiência em reiatsu e, ao fazê-lo, adquire as seguintes características:
 
-- Corpo Hollow: Seu corpo se torna muito mais resistente, concedendo redução de dano igual ao seu nível de personagem contra todos os tipos de dano, exceto psíquico e temporal.
+- Corpo Hollow: Seu corpo se torna muito mais resistente, concedendo redução de dano igual à metade do seu nível de personagem (arredonde para baixo) contra todos os tipos de dano, exceto psíquico e temporal.
 - Golpes Amplificados: Seu poder físico se intensifica. Seus ataques com Zanpakutou ou Hakuda causam dano adicional, recebendo um número extra de dados igual à seu bônus de proficiência.
-- Vitalidade Hollow: Você recebe pontos de vida temporários iguais ao total dos seus pontos de vida totais.
+- Vitalidade Hollow: Você recebe pontos de vida temporários iguais à metade dos seus pontos de vida totais.
 
 ### Máscara do Equilíbrio
 
 A Máscara do Equilíbrio é conhecida por ser balanceada, aumentando a reiatsu e poder físico do usuário, tornandose a escolha ideal para combatentes híbridos que utilizam grandes quantidades de reiatsu e se colocam em risco. Para ativá-la, você deve gastar cinco vezes o seu bônus de proficiência em reiatsu e, ao fazê-lo, adquire as seguintes características:
 
 - Poder Amplificado: Suas técnicas de Zanpakutou, Hadou e Bakudou tornam-se mais intensas. Sempre que uma dessas técnicas causar dano, aumente o número de dados de dano em um valor igual à metade do seu bônus de proficiência. Além disso, seus ataques com Zanpakutou ou Hakuda se tornam mais devastadores, causando um dado de dano adicional em cada acerto.
-- Reiatsu Amplificada: Você recebe pontos de reiatsu temporários iguais a metade do total dos seus pontos de reiatsu totais.
-- Vitalidade Hollow: Você recebe pontos de vida temporários iguais a metade do total dos seus pontos de vida totais.
+- Reiatsu Amplificada: Você recebe pontos de reiatsu temporários iguais a um quarto do total dos seus pontos de reiatsu totais.
+- Vitalidade Hollow: Você recebe pontos de vida temporários iguais a um quarto do total dos seus pontos de vida totais.
 
 ## Regras Visored
 
