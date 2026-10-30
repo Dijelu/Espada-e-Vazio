@@ -2273,7 +2273,7 @@ Nos níveis 4, 8, 12, 16 e 19, você aumenta duas etapas de uma Essência, ou au
 
 ### Cero
 
-Ação, **15 PR**: ataque à distância que causa de dano de Energia **(nível + 8)d8 + Espírito** a partir do 4º nível. Nos três primeiros níveis o Cero é menor: 5d8 no 1º, 7d8 no 2º e 9d8 no 3º, mais Espírito. O Cero ignora o Hierro.
+Ação, **15 PR**: ataque à distância que causa **(nível + 8)d8 + Espírito** de dano de Energia a partir do 4º nível. Nos três primeiros níveis o Cero é menor: 5d8 no 1º, 7d8 no 2º e 9d8 no 3º, mais Espírito. O Cero ignora o Hierro.
 
 Exemplo: um Hueco de 10º nível lança um Cero de 18d8 + Espírito; um de 2º nível, 7d8 + Espírito.
 

@@ -1043,3 +1043,4 @@ img, video, svg { max-width: 100%; }
 .painel-kidos > summary::after { content: "▾"; font-size: 20px; transition: transform .2s; }
 .painel-kidos:not([open]) > summary::after { transform: rotate(-90deg); }
 .painel-kidos .kido p { margin: 6px 0; }
+.temas { margin: 8px 0 14px; }

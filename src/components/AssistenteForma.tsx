@@ -4,6 +4,7 @@ import { ACOES_DADOS, HAB_UNICAS, TIPO_FORMA_NOME, VOLL_PASSIVAS, picksVoll, tot
 import { novoId } from "./FichaPecas";
 import { SeletorSchrift } from "./SeletorSchrift";
 import { schriftDaFicha } from "../regras/schrifts";
+import { CANALIZADORES_EXTRA, FRAQUEZAS_EXTRA, NOMES, TEMAS, type Tema } from "../regras/forma-sugestoes";
 
 interface Props {
   f: Ficha;
@@ -150,6 +151,12 @@ function modelos(tipo: TipoForma, atr: string): HabForma[] {
     mk("Reforço", "Ação bônus", peq ? 3 : 8, "2d10", "O seu próximo ataque no turno causa o dano indicado a mais."),
     mk("Defesa", "Reação", peq ? 4 : 10, "2d10+[PROF]", "Reduz o dano sofrido por você ou por um aliado a 3 metros na quantidade indicada."),
     mk("Proteção", "Ação", peq ? 6 : 15, "[NIV]", "Você e os aliados a até 3 metros ganham PV temporários na quantidade indicada."),
+    mk("Controle", "Ação", peq ? 6 : 15, peq ? `[NIV/2]${d}+[${atr}]` : `[NIV/2+2]${d}+[${atr}]`, "Ataque que também prende, derruba ou atordoa o alvo. Salvaguarda de Força ou Constituição (CD 8 + proficiência + atributo): se falhar, fica Contido até o fim do próximo turno dele."),
+    mk("Passo veloz", "Ação bônus", peq ? 2 : 6, "", "Você se desloca até o dobro do seu deslocamento sem provocar ataques de oportunidade e depois pode atacar."),
+    mk("Contra-ataque", "Reação", peq ? 4 : 10, `[NIV/2]${d}+[${atr}]`, "Quando uma criatura o acerta em corpo a corpo, você revida e causa o dano indicado nela."),
+    mk("Marca", "Ação bônus", peq ? 3 : 8, "", "Marca uma criatura a até 18 metros. O primeiro ataque de cada aliado contra ela no turno causa 1d6 de dano a mais."),
+    mk("Regeneração", "Ação", peq ? 5 : 12, "[NIV]", "Você ou um aliado a até 3 metros recupera os PV indicados."),
+    mk("Rajada", "Ação", peq ? 7 : 18, `[NIV/2+2]${d}+[${atr}]`, "Dois golpes seguidos contra o mesmo alvo ou contra dois alvos a 3 metros um do outro, o dano indicado é dividido entre os alvos."),
   ];
 }
 
@@ -252,11 +259,33 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo }: Pro
           </>
         )}
 
+        {passo.id === "nome" && NOMES[tipo] && (
+          <>
+            <p className="ajuda">Ideias de nome e comando (toque para usar e depois mude como quiser):</p>
+            <div className="chips">
+              {NOMES[tipo]!.map((n) => <button key={n.nome} type="button" className="chip chip-btn" onClick={() => mud({ nome: n.nome, comando: n.comando })}>{n.nome}</button>)}
+            </div>
+          </>
+        )}
         {passo.id === "nome" && (
           <>
             <label className="campo">Nome<input value={r.nome} onChange={(e) => mud({ nome: e.target.value })} placeholder={tipo === "shikai" ? "Nome da Zanpakutou na Shikai" : tipo === "resurreccion" ? "Ex.: Pantera" : tipo === "vollstandig" ? "Ex.: Vollständig do Atirador" : "Nome verdadeiro da Zanpakutou"} /></label>
             <label className="campo">{tipo === "vollstandig" ? "Frase de liberação" : "Comando"}<input value={r.comando} onChange={(e) => mud({ comando: e.target.value })} placeholder={tipo === "shikai" ? "Ex.: Reduza tudo a cinzas, (nome)" : tipo === "bankai" ? "Ex.: Bankai, (nome)" : tipo === "resurreccion" ? "Ex.: Rasgue o silêncio, Pantera." : "Ex.: Quincy Vollständig"} /></label>
           </>
+        )}
+
+        {((passo.id === "aparencia" && tipo === "vollstandig") || (passo.id === "conceito" && tipo !== "shikai")) && TEMAS[tipo] && (
+          <div className="temas">
+            <p className="ajuda">Temas prontos: toque para preencher a aparência{tipo === "vollstandig" ? "" : " e o ponto fraco"} com uma ideia pronta. Dá para mudar tudo depois.</p>
+            <div className="opcoes-grandes">
+              {TEMAS[tipo]!.map((t: Tema) => (
+                <button key={t.id} type="button" className="opcao" onClick={() => mud({ aparencia: t.aparencia, ...(t.pontoFraco && !r.pontoFraco ? { pontoFraco: t.pontoFraco } : {}), ...(t.traco && !r.traco ? { traco: t.traco } : {}) })}>
+                  <b>{t.nome}</b>
+                  <small>{t.ideia}</small>
+                </button>
+              ))}
+            </div>
+          </div>
         )}
 
         {passo.id === "aparencia" && (
@@ -283,7 +312,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo }: Pro
           <>
             <label className="campo">Canalizador<input value={r.canalizador} onChange={(e) => mud({ canalizador: e.target.value })} /></label>
             <div className="chips">
-              {CANALIZADORES.map((t) => <button key={t} type="button" className="chip chip-btn" onClick={() => mud({ canalizador: t })}>{t}</button>)}
+              {[...CANALIZADORES, ...CANALIZADORES_EXTRA.filter((x) => !CANALIZADORES.includes(x))].map((t) => <button key={t} type="button" className="chip chip-btn" onClick={() => mud({ canalizador: t })}>{t}</button>)}
             </div>
             <SeletorSchrift valor={r.schrift} onChange={(nome) => mud({ schrift: nome })} sugerida={schriftDaFicha(f)?.nome} />
           </>
@@ -358,7 +387,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo }: Pro
             <label className="campo">Ponto fraco<textarea rows={3} value={r.pontoFraco} onChange={(e) => mud({ pontoFraco: e.target.value })} /></label>
             <p className="ajuda">Sugestões:</p>
             <div className="chips">
-              {FRAQUEZAS[tipo].map((t) => <button key={t} type="button" className="chip chip-btn" onClick={() => mud({ pontoFraco: t })}>{t}</button>)}
+              {[...FRAQUEZAS[tipo], ...FRAQUEZAS_EXTRA[tipo]].map((t) => <button key={t} type="button" className="chip chip-btn" onClick={() => mud({ pontoFraco: t })}>{t}</button>)}
             </div>
           </>
         )}
