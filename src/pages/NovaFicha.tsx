@@ -22,6 +22,7 @@ import {
   resumoEquip,
 } from "../regras/catalogo";
 import { efeito as som } from "../lib/som";
+import { KonAjuda } from "../components/KonAjuda";
 import {
   ATRIBUTOS,
   CLASSES,
@@ -226,6 +227,8 @@ export default function NovaFicha() {
           </li>
         ))}
       </ol>
+
+      <KonAjuda passo={passo} />
 
       {passo === 0 && (
         <section>
