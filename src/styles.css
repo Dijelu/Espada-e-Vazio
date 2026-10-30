@@ -1034,3 +1034,12 @@ img, video, svg { max-width: 100%; }
 .escala-pr { display: grid; gap: 6px; margin: 8px 0; padding: 8px; border: 1px dashed var(--line); border-radius: 8px; font-size: 13px; }
 .escala-pr b { color: var(--accent); }
 .chip-auto, .chip-manual { border-radius: 14px; }
+
+/* painel dos Kidōs: abre e fecha */
+.painel-kidos > summary { cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; min-height: 40px; }
+.painel-kidos > summary::-webkit-details-marker { display: none; }
+.painel-kidos > summary h3 { margin: 0; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.painel-kidos > summary h3 small { font-size: 13px; color: var(--muted); font-weight: 600; }
+.painel-kidos > summary::after { content: "▾"; font-size: 20px; transition: transform .2s; }
+.painel-kidos:not([open]) > summary::after { transform: rotate(-90deg); }
+.painel-kidos .kido p { margin: 6px 0; }

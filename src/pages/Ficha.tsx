@@ -3,6 +3,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { SeletorEssencia } from "../components/SeletorEssencia";
 import { NomeEssencia, TrocarEssencia } from "../components/EssenciaPecas";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { PainelKidos } from "../components/PainelKidos";
 import { CartasHabilidades, CartasSituacoes, CondicoesAtivas, EfeitosAtivos } from "../components/CartasResumo";
 import { AcoesRapidas } from "../components/AcoesRapidas";
 import { EscolhaPoderes, pendencias, subclassePendente, totalPendencias } from "../components/EscolhaPoderes";
@@ -291,6 +292,7 @@ export default function Ficha() {
           </div>
           <CartasHabilidades f={f} c={c} alterar={alterar} />
           <CartasSituacoes f={f} alterar={alterar} />
+          <PainelKidos f={f} c={c} />
           <CartasFormas f={f} c={c} r={rol} alterar={alterar} onEditar={setConstruir} />
           <div className="grade2">
             <EfeitosAtivos f={f} c={c} />
