@@ -931,3 +931,11 @@ export function ataquesPorAcao(f: Ficha): number {
 export function ataqueBonus(f: Ficha, c: Calculo, a: Ataque) {
   return c.prof + c.atr[a.atr] + (a.distancia ? c.acertoDist : c.acertoCorpo);
 }
+
+/** Modificador do atributo do ataque somado ao dano (regra do livro: dano da arma + atributo).
+ *  Se quem montou o ataque já escreveu um valor fixo (ex.: 2d8+3), não soma de novo. */
+export function danoAtributo(c: Calculo, a: Ataque): string {
+  if (!a.dano.trim() || /[+-]\s*\d+\s*$/.test(a.dano.trim())) return "";
+  const v = c.atr[a.atr];
+  return v > 0 ? `+${v}` : v < 0 ? `${v}` : "";
+}

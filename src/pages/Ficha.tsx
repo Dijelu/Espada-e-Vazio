@@ -29,6 +29,7 @@ import {
   PERICIAS,
   XP_NIVEL,
   ataqueBonus,
+  danoAtributo,
   ataquesPorAcao,
   calcular,
   classePorId,
@@ -734,7 +735,8 @@ function PoderesEscolhidos({ f }: { f: TFicha }) {
 function danoFinal(f: TFicha, a: Ataque, c: ReturnType<typeof calcular>) {
   const dano = ataqueMelhorado(f, a).dano;
   if (!dano.trim()) return dano;
+  const atr = danoAtributo(c, a);
   const geral = c.danoGeral > 0 ? `+${c.danoGeral}` : "";
-  if (a.distancia) return dano + geral;
-  return dano + geral + (c.danoCorpo > 0 ? `+${c.danoCorpo}` : "") + c.danoDados.map((d) => `+${d}`).join("");
+  if (a.distancia) return dano + atr + geral;
+  return dano + atr + geral + (c.danoCorpo > 0 ? `+${c.danoCorpo}` : "") + c.danoDados.map((d) => `+${d}`).join("");
 }
