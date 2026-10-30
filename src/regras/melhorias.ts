@@ -1,5 +1,6 @@
 /* Melhorias de equipamento Quincy (Ritter e Schütze): níveis 5, 10, 15 e 20. */
 import type { Ataque, Ficha } from "./ficha";
+import { dadosArmaNatural, PASSOS_NATURAL } from "./hueco";
 
 export type TipoMelhoria = "dano" | "critico" | "mult" | "escudo";
 
@@ -66,7 +67,7 @@ export function ataqueMelhorado(f: Ficha, a: Ataque): AtaqueMelhorado {
   const c = conta(f, a.id, "critico");
   const m = conta(f, a.id, "mult");
   return {
-    dano: subirDano(a.dano, d),
+    dano: subirDano(f.classe === "hueco" && a.nome === "Arma natural" && PASSOS_NATURAL.includes(a.dano.trim()) ? dadosArmaNatural(f) : a.dano, d),
     crit: a.crit ? Math.max(15, a.crit - c) : undefined,
     mult: a.mult ? Math.min(4, a.mult + m) : undefined,
     melhorias: d + c + m,

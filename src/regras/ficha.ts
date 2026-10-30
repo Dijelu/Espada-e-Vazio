@@ -1,4 +1,5 @@
 import { somaSituacoes } from "./situacionais";
+import { ataquesHueco, danoFixoHueco } from "./hueco";
 import { bonusEscudo, type Melhoria } from "./melhorias";
 import { atributosPassivos, passivasDaFicha, type PassivaAtiva, type EfeitoSoma } from "./passivas";
 /* Regras de criação e cálculo da ficha (Espada & vazio). Tudo o que está aqui vem dos capítulos 1, 2, 3, 4 e 8 do livro. */
@@ -896,7 +897,7 @@ export function calcular(f: Ficha): Calculo {
     rdEso: ef.rdEso + rdEsoExtra + px.rdEso,
     iniciativa: (ef.iniMente ? Math.max(atr.des, atr.men) : atr.des) + px.iniciativa,
     // Ritter: armas Quincy corpo a corpo causam +3 de dano do 3º ao 9º nível
-    danoCorpo: ef.danoCorpo + px.danoCorpo + sit.danoCorpo + (f.classe === "ritter" && n >= 3 && n <= 9 ? 3 : 0),
+    danoCorpo: ef.danoCorpo + px.danoCorpo + sit.danoCorpo + (f.classe === "ritter" && n >= 3 && n <= 9 ? 3 : 0) + danoFixoHueco(f, prof),
     crEvasao,
     percPassiva: 10 + pericias["percepcao"].total + px.percPassiva,
     saves,
@@ -921,6 +922,7 @@ export function calcular(f: Ficha): Calculo {
 
 /** Quantos ataques a ação Atacar dá: Ataque Extra (2), Golpe Triplo (3), Golpe Superior (4). */
 export function ataquesPorAcao(f: Ficha): number {
+  if (f.classe === "hueco") return ataquesHueco(f);
   const tem = (id: string) => f.talentos.some((t) => t === id || t.endsWith("/" + id));
   if (tem("golpe-superior")) return 4;
   if (tem("golpe-triplo")) return 3;
