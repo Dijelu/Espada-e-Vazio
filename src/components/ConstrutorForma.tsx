@@ -13,7 +13,7 @@ import {
   totalPicks,
 } from "../regras/liberacoes";
 import { novoId } from "./FichaPecas";
-import { AssistenteForma } from "./AssistenteForma";
+import { AssistenteForma, LIMITE_HAB } from "./AssistenteForma";
 import { SeletorSchrift } from "./SeletorSchrift";
 import { schriftDaFicha } from "../regras/schrifts";
 import { acoesDaForma, formaDaLiberacao, liberacaoDaForma, modeloResurreccionPadrao, comoHabilidades, habilidadesDaForma, maiorCustoPR, resolverDano, danoDaAcao, sugerirCusto } from "../regras/liberacoes";
@@ -318,7 +318,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
             {(tipo === "resurreccion" || tipo === "segunda") && (
               <>
                 <p className="ajuda">{tipo === "segunda" ? "Inclua abaixo as técnicas da nova forma. Você pode trazer as da sua Resurrección e deixá-las mais fortes, e criar uma técnica final." : "Inclua abaixo a técnica de assinatura do seu Caminho (12 PR, só durante a Resurrección, Capítulo 3) e as suas outras técnicas."}</p>
-                <label className="campo">Traço da forma (pequeno e claro)<textarea rows={2} value={r.traco} onChange={(e) => mud({ traco: e.target.value })} placeholder="Ex.: +3 m de alcance, voo, PV temporários por rodada" /></label>
+                <label className="campo">Traços da forma (até 3, um por linha)<textarea rows={4} value={r.traco} onChange={(e) => mud({ traco: e.target.value.split("\n").slice(0, 3).join("\n") })} placeholder="Ex.: +3 m de alcance, voo, PV temporários por rodada" /></label>
               </>
             )}
 
@@ -339,7 +339,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
                     <button type="button" className="link-perigo" onClick={() => mud({ habilidades: r.habilidades.filter((x) => x.id !== h.id) })}>Remover</button>
                   </div>
                 ))}
-                <button type="button" className="btn btn-paper" onClick={() => mud({ habilidades: [...r.habilidades, { id: novoId(), nome: "", texto: "", custo: "", acao: "Ação" }] })}>Adicionar habilidade</button>
+                <button type="button" className="btn btn-paper" disabled={r.habilidades.length >= LIMITE_HAB[tipo]} onClick={() => mud({ habilidades: [...r.habilidades, { id: novoId(), nome: "", texto: "", custo: "", acao: "Ação" }] })}>Adicionar habilidade</button>
               </div>
             )}
 
@@ -465,7 +465,7 @@ export function PainelFormaAtiva({ f, c, r, alterar, onEditar }: { f: Ficha; c: 
         </div>
       </div>
       {forma.aparencia && <p>{forma.aparencia}</p>}
-      {forma.traco && <p><b>Traço:</b> {forma.traco}</p>}
+      {forma.traco && <p className="quebra"><b>{forma.traco.includes("\n") ? "Traços" : "Traço"}:</b>{forma.traco.includes("\n") ? "\n" : " "}{forma.traco}</p>}
       {forma.pontoFraco && <p><b>Ponto fraco:</b> {forma.pontoFraco}</p>}
       {provisoria && <p className="ajuda">Você ainda não montou a sua {TIPO_FORMA_NOME[tipoForma]}. {lista.length > 0 ? "Estas são as técnicas do modelo do livro para o seu Caminho." : "Monte as habilidades para vê-las aqui."} {onEditar && <button type="button" className="link" onClick={() => onEditar(tipoForma)}>Montar a minha agora</button>}</p>}
       {msg && <p className="ajuda" role="status">{msg}</p>}
@@ -496,7 +496,7 @@ export function CartasFormas({ f, c, r, alterar, onEditar }: { f: Ficha; c: Calc
               {x.comando && <p><i>“{x.comando}”</i></p>}
               {x.aparencia && <p>{x.aparencia}</p>}
               {(x.tipo === "bankai" || x.tipo === "shikai") && <p><b>Custo:</b> {x.custo} PR{x.tipo === "bankai" ? <> · <b>Duração:</b> {x.duracao}</> : null}</p>}
-              {x.traco && <p><b>Traço:</b> {x.traco}</p>}
+              {x.traco && <p className="quebra"><b>{x.traco.includes("\n") ? "Traços" : "Traço"}:</b>{x.traco.includes("\n") ? "\n" : " "}{x.traco}</p>}
               {x.tipo === "vollstandig" && Object.keys(x.picks).length > 0 && (
                 <ul>
                   {Object.entries(x.picks).map(([id, n]) => {

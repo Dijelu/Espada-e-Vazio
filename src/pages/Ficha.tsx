@@ -268,7 +268,8 @@ export default function Ficha() {
           <div className="grade3">
             <div className="caixa">
               <h3>Ataques</h3>
-              {f.ataques.length === 0 && <p className="ajuda">Nenhum ataque ainda. Cadastre na aba Combate.</p>}
+              {f.ataques.length === 0 && danosDaClasse(f, c).length === 0 && <p className="ajuda">Nenhum ataque ainda. Cadastre na aba Combate.</p>}
+              <DanosDaClasse f={f} c={c} r={rol} />
               {f.ataques.map((a) => (
                 <div className="carta-mini" key={a.id}>
                   <b>{a.nome}</b>
@@ -304,7 +305,6 @@ export default function Ficha() {
           <CartasHabilidades f={f} c={c} alterar={alterar} />
           <CartasSituacoes f={f} alterar={alterar} />
           <PainelKidos f={f} c={c} />
-          <DanosDaClasse f={f} c={c} r={rol} />
           <CartasFormas f={f} c={c} r={rol} alterar={alterar} onEditar={setConstruir} />
           <div className="grade2">
             <EfeitosAtivos f={f} c={c} />
@@ -343,6 +343,7 @@ export default function Ficha() {
           </div>
           <div className="caixa">
             <h3>Ataques</h3>
+            <DanosDaClasse f={f} c={c} r={rol} />
             {f.ataques.map((a) => (
               <div className="linha-edit" key={a.id}>
                 <input value={a.nome} onChange={(e) => alterar({ ataques: f.ataques.map((x) => (x.id === a.id ? { ...x, nome: e.target.value } : x)) })} aria-label="Nome do ataque" />
@@ -674,13 +675,12 @@ function DanosDaClasse({ f, c, r }: { f: TFicha; c: ReturnType<typeof calcular>;
   if (lista.length === 0) return null;
   const acerto = acertoClasse(f, c);
   return (
-    <div className="caixa">
-      <h3>Ataques da classe</h3>
-      <p className="ajuda">O dano já inclui o atributo-chave. Acerto das técnicas: {mod(acerto)}.</p>
+    <>
       {lista.map((d) => (
-        <div className="poder-livro" key={d.nome}>
-          <b>{d.nome}</b> <small>{d.fonte} · {d.dano} de {d.tipo}{d.custo ? ` · ${d.custo}` : ""}</small>
-          {d.nota && <p className="ajuda">{d.nota}</p>}
+        <div className="carta-mini arma-classe" key={d.nome}>
+          <b>{d.nome}</b>
+          <span>{d.acerto ? `Acerto ${mod(acerto)} · ` : ""}Dano {d.dano} de {d.tipo}{d.custo ? ` · ${d.custo}` : ""} · <i>{d.fonte === "Classe" ? "da classe" : "técnica"}</i></span>
+          {d.nota && <small className="ajuda">{d.nota}</small>}
           {d.acerto ? <LinhaAtaque r={r} nome={d.nome} bonus={acerto} dano={d.dano} /> : (
             <span className="rolar-grupo">
               <button type="button" className="rolar" onClick={() => r.expr(`Dano: ${d.nome}`, d.dano)}>Dano</button>
@@ -688,7 +688,7 @@ function DanosDaClasse({ f, c, r }: { f: TFicha; c: ReturnType<typeof calcular>;
           )}
         </div>
       ))}
-    </div>
+    </>
   );
 }
 

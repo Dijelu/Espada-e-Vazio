@@ -107,6 +107,11 @@ const APARENCIA: Record<TipoForma, string[]> = {
   ],
 };
 
+export const MAX_TRACOS = 3;
+
+/** Quantas habilidades/técnicas cada forma aceita, para a lista não crescer sem fim. */
+export const LIMITE_HAB: Record<TipoForma, number> = { shikai: 4, bankai: 5, resurreccion: 5, segunda: 6, vollstandig: 4 };
+
 const TRACOS = [
   "Deslocamento +6 metros e Desengajar como ação livre uma vez por turno.",
   "Alcance corpo a corpo +3 metros.",
@@ -114,6 +119,27 @@ const TRACOS = [
   "Uma vez por rodada, quando um ataque erra você, ganhe PV temporários iguais à proficiência.",
   "Vantagem no primeiro ataque de cada turno.",
   "Uma vez por rodada, quando uma criatura o acerta em corpo a corpo, ela sofre 1d10 de dano de Energia.",
+  "Deslocamento de escalada e de nado iguais ao seu deslocamento.",
+  "Visão no escuro até 18 metros e vantagem em testes de Percepção para notar reiatsu.",
+  "Resistência a um tipo de dano ligado ao tema da forma.",
+  "Uma vez por turno, ao se mover pelo menos 6 metros em linha reta, seu próximo ataque causa +1d6 de dano.",
+  "Ao reduzir uma criatura a 0 PV, ganhe PV temporários iguais ao seu nível.",
+  "Uma vez por rodada, use a reação para reduzir em 1d10 + proficiência o dano de um ataque.",
+  "Seus ataques ignoram cobertura parcial.",
+  "Você pode usar Desengajar e Esconder como ação bônus.",
+  "Alcance à distância +9 metros nos ataques de Cero e técnicas à distância.",
+  "Aura de pressão: criaturas hostis a 3 metros têm -2 em salvaguardas contra medo.",
+  "Seu primeiro ataque a cada rodada contra uma criatura que se moveu neste turno tem vantagem.",
+  "Uma vez por turno, troque de lugar com um aliado a até 9 metros como ação livre.",
+  "Regeneração: recupere PV iguais à proficiência no início de cada turno enquanto estiver abaixo da metade dos PV.",
+  "Imune a ficar Agarrado, Contido ou Caído enquanto a forma estiver ativa.",
+  "Ataques corpo a corpo contra você, feitos por criaturas que o veem, têm desvantagem se você não se moveu no turno.",
+  "Uma vez por turno, ao acertar, você pode empurrar o alvo 3 metros.",
+  "Seu dano de uma arma ou técnica escolhida ao entrar na forma passa a contar como mágico/espiritual e ignora a RD comum.",
+  "Ao usar uma técnica de 20 PR ou mais, recupere 2 PR.",
+  "Seus passos não fazem barulho e deixam rastro de reishi por 1 minuto.",
+  "Ao entrar na forma, ganhe um ataque extra de oportunidade livre contra uma criatura a até 3 metros.",
+  "Sentido de reiatsu: sabe a posição de qualquer criatura com reiatsu a até 18 metros, mesmo sem vê-la.",
 ];
 
 const FRAQUEZAS: Record<TipoForma, string[]> = {
@@ -195,7 +221,15 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo }: Pro
   const lista = useMemo(() => modelos(tipo, atr), [tipo, atr]);
   const assinatura = ASSINATURA[f.subclasse];
 
-  const addHab = (h: HabForma) => mud({ habilidades: [...r.habilidades, { ...h, id: novoId() }] });
+  const maxHab = LIMITE_HAB[tipo];
+  const cheio = r.habilidades.length >= maxHab;
+  const jaTem = (nome: string) => !!nome && r.habilidades.some((x) => x.nome === nome);
+  const addHab = (h: HabForma) => {
+    if (cheio || jaTem(h.nome)) return;
+    mud({ habilidades: [...r.habilidades, { ...h, id: novoId() }] });
+  };
+  const tracos = r.traco ? r.traco.split("\n").filter((x) => x.trim()) : [];
+  const gravaTracos = (l: string[]) => mud({ traco: l.join("\n") });
   const habil = (id: string, p: Partial<HabForma>) => mud({ habilidades: r.habilidades.map((h) => (h.id === id ? { ...h, ...p } : h)) });
   const anexa = (campo: "aparencia" | "traco" | "pontoFraco", t: string) => mud({ [campo]: r[campo] ? `${r[campo]} ${t}` : t } as Partial<FormaLib>);
 
@@ -219,6 +253,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo }: Pro
   const erros: string[] = [];
   if (!r.nome.trim()) erros.push("Falta o nome.");
   if (tipo === "vollstandig" && usados < limite) erros.push(`Faltam ${limite - usados} habilidade(s) única(s).`);
+  if (r.habilidades.length > maxHab) erros.push(`Há habilidades demais: o limite é ${maxHab}.`);
   if (r.habilidades.length === 0) erros.push("Adicione pelo menos uma habilidade ou técnica.");
   if (tipo === "shikai" && !r.categoria) erros.push("Escolha a categoria.");
   if ((tipo === "bankai" || tipo === "resurreccion" || tipo === "segunda") && !r.pontoFraco.trim()) erros.push("Falta o ponto fraco.");
@@ -330,10 +365,22 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo }: Pro
 
         {passo.id === "traco" && (
           <>
-            <label className="campo">Traço<textarea rows={3} value={r.traco} onChange={(e) => mud({ traco: e.target.value })} /></label>
+            <p className="ajuda">Você pode ter até {MAX_TRACOS} traços ({tracos.length}/{MAX_TRACOS}). Toque numa sugestão para adicionar.</p>
+            {tracos.map((t, k) => (
+              <div className="hab-edit" key={k}>
+                <textarea rows={2} value={t} onChange={(e) => gravaTracos(tracos.map((x, j) => (j === k ? e.target.value.replace(/\n/g, " ") : x)))} aria-label={`Traço ${k + 1}`} />
+                <button type="button" className="link-perigo" onClick={() => gravaTracos(tracos.filter((_, j) => j !== k))}>Remover</button>
+              </div>
+            ))}
+            {tracos.length < MAX_TRACOS && (
+              <button type="button" className="btn btn-paper" onClick={() => gravaTracos([...tracos, "Novo traço: descreva aqui."])}>+ Traço em branco</button>
+            )}
             <p className="ajuda">Sugestões balanceadas:</p>
             <div className="chips">
-              {TRACOS.map((t) => <button key={t} type="button" className="chip chip-btn" onClick={() => mud({ traco: t })}>{t}</button>)}
+              {TRACOS.map((t) => {
+                const tem = tracos.includes(t);
+                return <button key={t} type="button" className="chip chip-btn" disabled={tem || tracos.length >= MAX_TRACOS} onClick={() => gravaTracos([...tracos, t])}>{t}</button>;
+              })}
             </div>
           </>
         )}
@@ -377,7 +424,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo }: Pro
             {tipo === "segunda" && f.formas.resurreccion && (
               <button type="button" className="btn btn-paper" onClick={() => {
                 const antigas = habilidadesDaForma(f.formas.resurreccion!).filter((h) => !r.habilidades.some((x) => x.nome === `${h.nome} (Segunda Etapa)`));
-                mud({ habilidades: [...r.habilidades, ...antigas.map((h) => ({ ...h, id: novoId(), nome: `${h.nome} (Segunda Etapa)`, pr: h.pr ? Math.round(h.pr * 1.25) : h.pr, custo: h.pr ? `${Math.round(h.pr * 1.25)} PR` : h.custo }))] });
+                mud({ habilidades: [...r.habilidades, ...antigas.slice(0, Math.max(0, maxHab - r.habilidades.length)).map((h) => ({ ...h, id: novoId(), nome: `${h.nome} (Segunda Etapa)`, pr: h.pr ? Math.round(h.pr * 1.25) : h.pr, custo: h.pr ? `${Math.round(h.pr * 1.25)} PR` : h.custo }))] });
               }}>Trazer as técnicas da minha Resurrección (custo +25%)</button>
             )}
             <label className="campo">Atributo usado no dano dos modelos
@@ -385,10 +432,10 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo }: Pro
                 {ATRIBUTOS_DANO.map((a) => <option key={a.v} value={a.v}>{a.n}</option>)}
               </select>
             </label>
-            <p className="ajuda">Toque num modelo para adicionar. O dano já considera o seu nível.</p>
+            <p className="ajuda">Toque num modelo para adicionar. O dano já considera o seu nível. Limite: {r.habilidades.length}/{maxHab} {cheio ? "(remova uma para trocar)" : ""}</p>
             <div className="chips">
-              {lista.map((h) => <button key={h.nome} type="button" className="chip chip-btn" onClick={() => addHab(h)}>{h.nome} · {h.acao}{h.pr ? ` · ${h.pr} PR` : ""}</button>)}
-              <button type="button" className="chip chip-btn" onClick={() => addHab({ id: "", nome: "", texto: "", custo: "", acao: "Ação" })}>+ Em branco</button>
+              {lista.map((h) => <button key={h.nome} type="button" className="chip chip-btn" disabled={cheio || jaTem(h.nome)} onClick={() => addHab(h)}>{h.nome} · {h.acao}{h.pr ? ` · ${h.pr} PR` : ""}</button>)}
+              <button type="button" className="chip chip-btn" disabled={cheio} onClick={() => addHab({ id: "", nome: "", texto: "", custo: "", acao: "Ação" })}>+ Em branco</button>
             </div>
             {r.habilidades.map((h) => (
               <div className="hab-edit" key={h.id}>
@@ -433,7 +480,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo }: Pro
             <h3>{r.nome || "(sem nome)"}</h3>
             {r.comando && <p><i>“{r.comando}”</i></p>}
             {r.aparencia && <p>{r.aparencia}</p>}
-            {r.traco && <p><b>Traço:</b> {r.traco}</p>}
+            {r.traco && <p className="quebra"><b>Traços:</b>{"\n"}{r.traco}</p>}
             {r.canalizador && <p><b>Canalizador:</b> {r.canalizador}</p>}
             {tipo === "shikai" && <p><b>{r.categoria || "Sem categoria"}</b> · {r.custo} PR</p>}
             {tipo === "bankai" && <p><b>{r.estilo || "Tipo não escolhido"}</b> · {r.custo} PR · {r.duracao}</p>}

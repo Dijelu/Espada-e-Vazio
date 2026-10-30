@@ -1,3 +1,5 @@
+import { trocarFaixaDoTema } from "./som";
+
 /* Visual secreto de Quincy: liberado ao tocar no emblema da Introdução. */
 const CHAVE = "visual-quincy";
 
@@ -13,6 +15,7 @@ function aplicar(ligado: boolean) {
   const r = document.documentElement;
   if (ligado) r.setAttribute("data-skin", "quincy");
   else r.removeAttribute("data-skin");
+  trocarFaixaDoTema();
 }
 
 function salvar(v: boolean) {

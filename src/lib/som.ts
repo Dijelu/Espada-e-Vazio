@@ -80,6 +80,7 @@ function irPara(v: number, ao_fim?: () => void) {
 
 /** Tema escuro (Hollow) toca a faixa Hollow; tema claro toca a música do site. */
 function srcDoTema() {
+  if (document.documentElement.getAttribute("data-skin") === "quincy") return "/audio/musica-quincy.m4a";
   return document.documentElement.getAttribute("data-theme") === "light" ? "/audio/musica.m4a" : "/audio/musica-hollow.m4a";
 }
 
