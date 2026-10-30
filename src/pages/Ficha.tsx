@@ -282,9 +282,13 @@ export default function Ficha() {
               {f.ataques.length === 0 && danosDaClasse(f, c).length === 0 && <p className="ajuda">Nenhum ataque ainda. Cadastre na aba Combate.</p>}
               <DanosDaClasse f={f} c={c} r={rol} />
               {f.ataques.map((a) => (
-                <div className="carta-mini" key={a.id}>
+                <div className="carta-mini carta-ataque" key={a.id}>
                   <b>{a.nome}</b>
-                  <span>Acerto {mod(ataqueBonus(f, c, a))} · Dano {danoFinal(f, a, c) || "—"}{(() => { const m = ataqueMelhorado(f, a); return m.crit ? ` · Crítico ${m.crit}–20 ×${m.mult ?? 2}` : ""; })()}</span>
+                  <div className="ca-stats">
+                    <span>Acerto <b>{mod(ataqueBonus(f, c, a))}</b></span>
+                    <span>Dano <b>{danoFinal(f, a, c) || "—"}</b></span>
+                    {(() => { const m = ataqueMelhorado(f, a); return m.crit ? <span>Crítico <b>{m.crit}–20 ×{m.mult ?? 2}</b></span> : null; })()}
+                  </div>
                   <LinhaAtaque r={rol} nome={a.nome} bonus={ataqueBonus(f, c, a)} dano={danoFinal(f, a, c)} />
                 </div>
               ))}
@@ -695,9 +699,13 @@ function DanosDaClasse({ f, c, r }: { f: TFicha; c: ReturnType<typeof calcular>;
   return (
     <>
       {lista.map((d) => (
-        <div className="carta-mini arma-classe" key={d.nome}>
-          <b>{d.nome}</b>
-          <span>{d.acerto ? `Acerto ${mod(acerto)} · ` : ""}Dano {d.dano} de {d.tipo}{d.custo ? ` · ${d.custo}` : ""} · <i>{d.fonte === "Classe" ? "da classe" : "técnica"}</i></span>
+        <div className="carta-mini carta-ataque arma-classe" key={d.nome}>
+          <b>{d.nome} <em className="ca-tag">{d.fonte === "Classe" ? "da classe" : "técnica"}</em></b>
+          <div className="ca-stats">
+            {d.acerto && <span>Acerto <b>{mod(acerto)}</b></span>}
+            <span>Dano <b>{d.dano}</b> de {d.tipo}</span>
+            {d.custo && <span>Custo <b>{d.custo}</b></span>}
+          </div>
           {d.nota && <small className="ajuda">{d.nota}</small>}
           {d.acerto ? <LinhaAtaque r={r} nome={d.nome} bonus={acerto} dano={d.dano} /> : (
             <span className="rolar-grupo">
