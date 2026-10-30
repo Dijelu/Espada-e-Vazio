@@ -460,10 +460,10 @@ Este capítulo não cria Schrift novas: usa apenas as que existem no mangá. A S
 ### Como funciona
 
 - **Obtenção:** no 10º nível, escolha uma Schrift da tabela. Ela pode ter vindo do nascimento, do sangue do Rei Quincy ou de um despertar na batalha. Trocar de Schrift depois só por um evento de história.
-- **Poder de tema:** uma vez por cena, como ação e gastando **10 PR**, você usa o poder de tema da sua Schrift. O alcance é de 18 metros, e a jogada de ataque é de Técnica de Reishi (ou o Teste de Resistência indicado).
+- **Poder de tema:** como ação e gastando **10 PR**, uma vez por cena no começo, duas a partir do 13º nível, você usa o poder de tema da sua Schrift. O alcance é de 18 metros, e a jogada de ataque é de Técnica de Reishi (ou o Teste de Resistência indicado).
 - **Uma habilidade que cresce:** a Schrift começa fraca no 10º nível e evolui com o personagem. Do 10º ao 12º nível ela está **Despertando**: alcance de 9 metros, efeito, área e duração pela metade (arredonde para cima). Do 13º ao 16º está **Dominada**: alcance de 13,5 metros e 75% da área. A partir do 17º nível está **Plena**, com o alcance de 18 metros e o efeito completo.
-- **Dano de tema:** nas Schrift de dano, o poder causa **metade da proficiência × d8** (arredondada para baixo) do 10º ao 12º nível, **75% da proficiência × d8** do 13º ao 16º e **proficiência × d8** a partir do 17º.
-- **Com a Vollständig ativa:** a Schrift fica **completa**: o poder pode ser usado **duas vezes por cena**, o dano sobe para **proficiência × d10 + proficiência**, o alcance é de 27 metros, a área fica 50% maior e o efeito adicional da tabela passa a valer.
+- **Dano de tema:** nas Schrift de dano, o poder causa **proficiência × d10** do 10º ao 12º nível, **2 × proficiência × d10** do 13º ao 16º e **3 × proficiência × d10 + proficiência** a partir do 17º.
+- **Com a Vollständig ativa:** a Schrift fica **completa**: o poder pode ser usado **três vezes por cena**, o dano sobe para **4 × proficiência × d10 + 2 × proficiência**, o alcance é de 27 metros, a área fica 50% maior e o efeito adicional da tabela passa a valer.
 - **Limite:** só um bônus de Schrift vale por turno. Ela não se soma a Força Espiritual ou Precisão Espiritual no mesmo dano.
 - **Schrift de utilidade:** As Schrift marcadas como Utilidade ou Ofensiva na tabela (Miracle, X-Axis, Love, Zombie, Antítese, The Balance e as outras sem tipo de dano) não causam dano de tema. O poder de tema delas está na tabela, e as habilidades completas de Antítese e The Balance seguem logo abaixo.
 
@@ -471,30 +471,30 @@ Este capítulo não cria Schrift novas: usa apenas as que existem no mangá. A S
 
 | Schrift | Tipo | Poder de tema (10 PR) | Com a Vollständig |
 |---|---|---|---|
-| Explosion | Dano de Fogo | Explosão de 3 m de raio. Destreza evita metade. | Raio de 4,5 m e a condição Queimado |
-| Thunderbolt | Dano Elétrico | Raio em linha de 18 m. Destreza evita metade. | A condição Eletrificado |
-| The Deathdealing | Dano de Energia | O dano dobra contra criatura com menos da metade dos PV. | Também dobra contra criatura Atordoada |
-| Fear | Dano Psíquico | O alvo faz Teste de Espírito ou fica Amedrontado por 1 rodada. | Atinge criaturas a até 9 m do alvo |
-| Jail | Controle | Ataque: se acertar, o alvo fica Preso numa jaula de Reishi. | Atinge 2 alvos; a jaula tem 5 × proficiência de PV |
-| Power | Ofensiva | Ação bônus: +proficiência ao dano corpo a corpo até o fim do turno. | Também +2 em testes de Força e empurra o alvo 3 m |
-| Miracle | Utilidade | Refaça uma jogada sua e use a nova. | Duas vezes por cena; pode obrigar um inimigo a refazer uma jogada |
-| X-Axis | Utilidade | Reposicione-se até 9 m, como ação bônus. | 18 m, levando 1 aliado adjacente |
-| The Love | Utilidade | O alvo faz Teste de Mente ou fica Enfeitiçado por 1 rodada. | Até 3 alvos, por 1 minuto |
-| The Zombie | Utilidade | Invoca 1 morto-vivo por 1 minuto (PV 5 × nível, CR 10 + proficiência). | Invoca 2 mortos-vivos |
-| Antítese | Utilidade | Troca Perfeita (veja abaixo). | O custo da Troca Perfeita cai 5 PR (mínimo 5) |
-| The Balance | Utilidade | Equilíbrio (veja abaixo). | O custo do Equilíbrio cai 5 PR (mínimo 5) |
-| The Almighty | Utilidade | Reação: um inimigo que você vê tem desvantagem na próxima jogada contra você. Exclusiva de Yhwach; só por história, com a aprovação do Mestre. | Também vale para um aliado a até 9 m, duas vezes por cena. |
-| The Compulsory | Dano de Energia | Ataque: se acertar, nervos de Reishi prendem o alvo, que faz Teste de Constituição ou perde o movimento por 1 rodada. | O alvo fica Paralisado em vez de só perder o movimento. |
-| The Glutton | Utilidade | Ataque: se acertar, você devora um pouco da energia do alvo e recupera PR igual a 2 × proficiência. | Recupera PR igual a 4 × proficiência; se o alvo tiver técnica especial, você a usa uma vez até o fim da cena. |
-| The Heat | Dano de Fogo | Chamas de calor em linha de 18 m. Destreza evita metade. | Também a condição Queimado e o dano ignora resistência a fogo. |
-| The Iron | Utilidade | Reação: sua pele endurece e você ganha resistência a um tipo de dano físico até o início do seu próximo turno. | Resistência a todo dano físico por 1 minuto; a pele também causa dano ao atacante corpo a corpo. |
-| The Overkill | Ofensiva | Ao derrubar um inimigo, a próxima jogada de dano do seu turno ganha +proficiência. | O bônus vale por 1 minuto e acumula até +2 × proficiência. |
-| The Question | Dano Psíquico | O alvo faz Teste de Espírito ou fica com dúvida: desvantagem no próximo ataque dele. | Atinge criaturas a até 9 m do alvo e a desvantagem vale por 1 minuto. |
-| The Roar | Dano Sônico | Grito em cone de 9 m. Constituição evita metade e quem falhar não ouve até o fim do próximo turno. | Cone de 13,5 m e quem falhar fica Atordoado por 1 rodada. |
-| The Superstar | Utilidade | Ação bônus: ganhe PV temporários iguais a 2 × proficiência, alimentados por quem assiste. | PV temporários iguais a 4 × proficiência e +2 na CR por 1 rodada. |
-| The Underbelly | Utilidade | Ação bônus: marque um alvo e descubra o ponto fraco do reiatsu dele; seu próximo ataque contra ele ignora 5 de CR. | O ataque ignora 10 de CR e vale para um aliado também. |
-| The Visionary | Utilidade | Ação: faça uma ilusão se tornar real por 1 rodada (objeto ou obstáculo pequeno, a critério do Mestre). | A criação dura 1 minuto e pode ser do tamanho de uma criatura Média. |
-| The Wind | Utilidade | Reação: ao ser atacado, mova-se até 3 m sem provocar ataques de oportunidade e dê desvantagem ao ataque. | Mova-se até 6 m e use a reação duas vezes por cena. |
+| Explosion | Dano de Fogo | Uma explosão de Reishi detona num ponto à sua escolha, com 4,5 m de raio. Quem estiver na área faz salvaguarda de Destreza: sofre o dano de tema, ou metade no sucesso. | Raio de 7,5 m. Quem falhar fica Queimado, e o dano ignora a resistência a fogo. |
+| Thunderbolt | Dano Elétrico | Um raio atravessa uma linha de 18 m por 1,5 m. Quem estiver nela faz salvaguarda de Destreza: sofre o dano de tema, ou metade no sucesso. Quem falhar não usa reações até o início do próximo turno. | A linha vai a 27 m. Quem falhar fica Eletrificado, e o raio salta para outra criatura a até 9 m, que sofre metade do dano. |
+| The Deathdealing | Dano de Energia | Ataque de Técnica de Reishi à distância que causa o dano de tema. Contra uma criatura com menos da metade dos PV, o dano dobra. | O dano também dobra contra criatura Atordoada, Presa ou Caída. Se o alvo tiver menos de um quarto dos PV, o acerto o derruba a 0 PV. |
+| Fear | Dano Psíquico | Uma criatura à vista faz salvaguarda de Espírito: na falha sofre o dano de tema e fica Amedrontada por 1 minuto, repetindo a salvaguarda no fim de cada turno dela. | Atinge todos os inimigos a até 9 m do alvo. Quem falhar também tem desvantagem na salvaguarda seguinte. |
+| Jail | Controle | Ataque de Técnica de Reishi: se acertar, o alvo fica Contido numa jaula de Reishi com 5 × proficiência de PV (CR 12 + proficiência). Ele só sai quebrando a jaula. | Prende até 3 alvos. A jaula tem 10 × proficiência de PV e quem está dentro tem desvantagem em salvaguardas. |
+| Power | Ofensiva | Ação bônus: até o fim do turno, todos os seus ataques somam +2 × proficiência ao dano e +2 ao acerto. | +3 × proficiência de dano e +3 ao acerto. O primeiro acerto do turno empurra o alvo 6 m e o derruba (Força evita). |
+| Miracle | Utilidade | Reação: depois de qualquer jogada sua (ataque, dano, teste ou salvaguarda), refaça-a e fique com o melhor resultado. | Também vale contra jogadas de inimigos contra você ou um aliado a até 9 m: o inimigo refaz e fica com o pior resultado. |
+| X-Axis | Utilidade | Ação bônus: teletransporte-se até 9 m para um espaço que veja, sem provocar ataques de oportunidade. O seu próximo ataque do turno tem vantagem. | Até 18 m, levando 1 aliado adjacente. A vantagem vale para todos os ataques do turno. |
+| The Love | Utilidade | Uma criatura à vista faz salvaguarda de Mente: na falha fica Enfeitiçada por 1 minuto e não ataca você nem seus aliados. Ela repete a salvaguarda sempre que sofrer dano. | Atinge até 3 alvos, e você pode usar a reação de cada um como quiser. |
+| The Zombie | Utilidade | Invoca 1 morto-vivo por 1 minuto (PV 5 × nível, CR 10 + proficiência). Ele ataca no seu turno com o seu acerto e causa proficiência d10 + proficiência de dano. | Invoca 3 mortos-vivos. |
+| Antítese | Utilidade | Libera a Troca Perfeita (veja o Capítulo 7), que inverte o que aconteceu entre dois alvos. | O custo da Troca Perfeita cai 10 PR (mínimo 5) e a Troca de Ferimentos pode ser feita com uma reação. |
+| The Balance | Utilidade | Libera o Equilíbrio (veja o Capítulo 7), que distribui a força entre você e seus aliados. | O custo do Equilíbrio cai 10 PR (mínimo 5) e o efeito vale para todos os aliados a até 18 m. |
+| The Almighty | Utilidade | Reação: um inimigo que você vê tem desvantagem na próxima jogada contra você e você ganha +proficiência na CR contra ele até o fim da rodada. Exclusiva de Yhwach; só por história, com a aprovação do Mestre. | Também protege um aliado a até 9 m, e o efeito pode ser usado sem gastar a reação. |
+| The Compulsory | Dano de Energia | Ataque de Técnica de Reishi: se acertar, causa o dano de tema e nervos de Reishi prendem o alvo, que faz salvaguarda de Constituição ou perde o movimento e a reação até o fim do próximo turno dele. | O alvo fica Paralisado em vez de só perder o movimento. |
+| The Glutton | Dano de Energia | Ataque de Técnica de Reishi: se acertar, causa o dano de tema e você devora a energia do alvo, recuperando PR igual a 3 × proficiência. | Recupera 6 × proficiência de PR. Se o alvo tiver uma técnica especial, você a usa uma vez até o fim da cena. |
+| The Heat | Dano de Fogo | Chamas de calor atravessam uma linha de 18 m por 3 m. Quem estiver nela faz salvaguarda de Destreza: sofre o dano de tema, ou metade no sucesso. | Quem falhar fica Queimado, e o dano ignora a resistência a fogo. |
+| The Iron | Utilidade | Reação: a sua pele endurece e você ganha resistência a todo dano físico até o início do seu próximo turno. | A resistência dura 1 minuto. Quem acertar você em corpo a corpo sofre proficiência d10 de dano de Energia. |
+| The Overkill | Ofensiva | Ao derrubar um inimigo, você ganha +2 × proficiência em todos os danos até o fim do seu próximo turno e faz um ataque imediato. | O bônus dura 1 minuto e acumula até +4 × proficiência. |
+| The Question | Dano Psíquico | Uma criatura à vista faz salvaguarda de Espírito: na falha sofre o dano de tema e fica com desvantagem nos ataques por 1 minuto. | Atinge todos os inimigos a até 9 m do alvo, e a desvantagem também vale para as salvaguardas. |
+| The Roar | Dano Sônico | Grito em cone de 9 m. Quem estiver nele faz salvaguarda de Constituição: sofre o dano de tema, ou metade no sucesso. Quem falhar também fica surdo e Caído. | Cone de 13,5 m. Quem falhar fica Atordoado por 1 rodada. |
+| The Superstar | Utilidade | Ação bônus: ganhe PV temporários iguais a 4 × proficiência e +2 na CR por 1 rodada, alimentados por quem assiste. | PV temporários iguais a 8 × proficiência e +3 na CR por 1 minuto. |
+| The Underbelly | Utilidade | Ação bônus: marque um alvo e descubra o ponto fraco do reiatsu dele. Seu próximo ataque contra ele ignora 8 de CR e causa +proficiência d10 de dano. | O ataque ignora 15 de CR e o bônus vale para um aliado também. |
+| The Visionary | Utilidade | Ação: faça uma ilusão se tornar real por 1 minuto (um objeto, uma parede ou um obstáculo de até 3 m, a critério do Mestre). | A criação pode ter o tamanho de uma criatura Grande e agir como você mandar. |
+| The Wind | Utilidade | Reação: ao ser atacado, mova-se até 6 m sem provocar ataques de oportunidade e dê desvantagem ao ataque. | Mova-se até 9 m, use a reação duas vezes por rodada e, depois de se mover, faça um ataque. |
 | The Yourself | Utilidade | Ação: assuma a aparência e a voz de uma criatura que você viu, por 1 hora. | Também copia 1 técnica que ela mostrou, por 1 minuto. |
 
 ### Schrift e Vollständig

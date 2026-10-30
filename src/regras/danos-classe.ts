@@ -1,5 +1,6 @@
 /* Ataques próprios de cada classe, com dano calculado pela ficha: Técnicas de Reishi dos Quincys e o Cero do Hueco. */
 import { TECNICAS_REISHI } from "./catalogo";
+import { danoSchrift, schriftDaFicha, estagioSchrift, CUSTO_SCHRIFT } from "./schrifts";
 import type { Calculo, Ficha } from "./ficha";
 
 /** Bônus de acerto do ataque da classe. */
@@ -58,6 +59,13 @@ export function danosDaClasse(f: Ficha, c: Calculo): DanoClasse[] {
       const l = t?.texto ? lerTecnica(t.nome, t.texto, bonus, rotulo) : null;
       if (l) out.push(l);
     }
+  }
+  // Schrift de dano: poder de tema que cresce com o nível e fica completo com a Vollständig
+  const sch = quincy ? schriftDaFicha(f) : undefined;
+  if (sch?.dano) {
+    const voll = f.estado.liberado === "vollstandig";
+    const est = estagioSchrift(f.nivel, voll);
+    out.push({ nome: `Schrift: ${sch.nome}`, fonte: "Schrift", dano: danoSchrift(c.prof, voll, f.nivel), tipo: sch.dano, custo: `${CUSTO_SCHRIFT} PR`, nota: `Schrift ${est.nome.toLowerCase()}, alcance ${est.alcance} m, ${est.usos} uso(s) por cena. ${sch.base}`, acerto: ["deathdealing", "compulsory", "glutton"].includes(sch.id) });
   }
   // Vollständig ativa: as Técnicas de Reishi ganham +proficiência d10 de dano de Energia
   if (quincy && f.estado.liberado === "vollstandig" && f.nivel >= (f.classe === "ritter" ? 12 : 13)) {
