@@ -139,6 +139,7 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
       estado: { ...f.estado, liberado: "mascara", usos, pvTemp: Math.max(e.pvTemp, Math.floor(c.pv * t.pv)) },
     });
     som.corte();
+    dispararLiberacao("mascara", MASCARAS.find((m) => m.id === tr.mascara)?.nome);
     setMsg(`Máscara ativada (${custo} PR). Ela dura ${max} turno(s), contando este.`);
   };
   const novoTurnoMascara = () => {

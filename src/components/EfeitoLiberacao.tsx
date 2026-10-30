@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { gsap } from "gsap";
 
-export type TipoEfeito = "bankai" | "resurreccion" | "vollstandig";
+export type TipoEfeito = "bankai" | "resurreccion" | "vollstandig" | "mascara";
 interface Pedido {
   tipo: TipoEfeito;
   nome?: string;
@@ -24,6 +24,7 @@ const TEXTOS: Record<TipoEfeito, { grande: string; pequeno: string }> = {
   bankai: { grande: "卍解", pequeno: "BANKAI" },
   resurreccion: { grande: "RESURRECCIÓN", pequeno: "Hollow" },
   vollstandig: { grande: "VOLLSTÄNDIG", pequeno: "Quincy" },
+  mascara: { grande: "仮面", pequeno: "Máscara Hollow" },
 };
 
 const rnd = (a: number, b: number) => a + Math.random() * (b - a);
@@ -146,6 +147,23 @@ export function EfeitoLiberacao() {
         tl.to(texto, { x: 0, skewX: 0, duration: 0.05 }, 1.2).to(texto, { opacity: 0, duration: 0.6 }, 2.0);
         tremer(tl, corpo, 9, 0.45, 0.05);
         tremer(tl, corpo, 20, 0.7, 0.95);
+      } else if (pedido.tipo === "mascara") {
+        // a mão cobre o rosto: tudo escurece, a aura vermelha e preta gira, a máscara se forma e bate na tela
+        tl.fromTo(q(".fx-escuro"), { opacity: 0 }, { opacity: 1, duration: 0.35 }, 0)
+          .to(q(".fx-escuro"), { opacity: 0, duration: 0.7 }, 2.0)
+          .fromTo(q(".fx-aura"), { opacity: 0, rotation: 0, scale: 0.3 }, { opacity: 1, rotation: 140, scale: 1.3, duration: 2.0, ease: "power1.out" }, 0.1)
+          .to(q(".fx-aura"), { opacity: 0, duration: 0.6 }, 1.7)
+          .fromTo(q(".fx-traco"), { strokeDashoffset: (_i: number, t: Element) => comprimento(t), opacity: 1 }, { strokeDashoffset: 0, duration: 0.45, stagger: 0.06, ease: "power3.out" }, 0.55)
+          .fromTo(q(".fx-mascara-face"), { opacity: 0, scale: 2.4, y: -40 }, { opacity: 1, scale: 1, y: 0, duration: 0.28, ease: "power4.in" }, 0.7)
+          .fromTo(q(".fx-flash"), { opacity: 0 }, { opacity: 0.95, duration: 0.05 }, 0.98)
+          .to(q(".fx-flash"), { opacity: 0, duration: 0.5 }, 1.03)
+          .fromTo(q(".fx-anel"), { scale: 0.2, opacity: 0.9 }, { scale: 3, opacity: 0, duration: 1.0, stagger: 0.15, ease: "power2.out" }, 1.0)
+          .to(q(".fx-mascara-face"), { scale: 1.06, duration: 0.9, ease: "sine.inOut" }, 1.1)
+          .to(q(".fx-mascara-face"), { opacity: 0, duration: 0.5 }, 2.0)
+          .fromTo(texto, { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2)" }, 1.05)
+          .to(texto, { opacity: 0, duration: 0.5 }, 2.2);
+        tremer(tl, corpo, 3, 0.6, 0.1);
+        tremer(tl, corpo, 22, 0.55, 0.98);
       } else {
         // luz Quincy: emblema girando, raios, anéis de reishi e centelhas subindo
         tl.fromTo(q(".fx-flash"), { opacity: 0 }, { opacity: 0.9, duration: 0.1 }, 0)
@@ -202,6 +220,25 @@ export function EfeitoLiberacao() {
           {dados.cacos.map((c, i) => (
             <div key={i} className="fx-caco" style={{ width: c.t, height: c.t * 1.8 }} />
           ))}
+        </>
+      )}
+      {pedido.tipo === "mascara" && (
+        <>
+          <div className="fx-escuro" />
+          <div className="fx-aura" />
+          {[0, 1].map((i) => <div key={i} className="fx-anel" />)}
+          <svg className="fx-mascara-face" viewBox="0 0 100 130" aria-hidden="true">
+            <path className="fx-mascara-casco" d="M50 4 C78 4 92 30 90 62 C88 96 70 126 50 126 C30 126 12 96 10 62 C8 30 22 4 50 4 Z" />
+            <path className="fx-mascara-olho" d="M22 46 L44 56 L42 66 L20 58 Z" />
+            <path className="fx-mascara-olho" d="M78 46 L56 56 L58 66 L80 58 Z" />
+            <path className="fx-traco" d="M33 62 C31 82 34 98 40 112" />
+            <path className="fx-traco" d="M67 62 C69 82 66 98 60 112" />
+            <path className="fx-traco" d="M50 6 L50 40" />
+            <path className="fx-traco" d="M30 14 C36 24 40 32 44 40" />
+            <path className="fx-traco" d="M70 14 C64 24 60 32 56 40" />
+            <path className="fx-mascara-boca" d="M36 104 L64 104" />
+          </svg>
+          <div className="fx-flash" />
         </>
       )}
       {pedido.tipo === "vollstandig" && (
