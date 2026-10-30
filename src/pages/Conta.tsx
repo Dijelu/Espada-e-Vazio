@@ -4,14 +4,52 @@ import { useAuth } from "../components/Auth";
 import { configurado, supabase } from "../lib/supabase";
 
 export default function Conta() {
-  const { sessao, carregando, sair } = useAuth();
+  const { sessao, carregando, sair, recuperando, fimRecuperacao } = useAuth();
   const local = useLocation();
   const voltar = (local.state as { voltar?: string } | null)?.voltar ?? "/fichas";
-  const [modo, setModo] = useState<"entrar" | "criar">("entrar");
+  const [modo, setModo] = useState<"entrar" | "criar" | "esqueci">("entrar");
+  const [novaSenha, setNovaSenha] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [msg, setMsg] = useState<{ tipo: "erro" | "ok"; texto: string } | null>(null);
   const [ocupado, setOcupado] = useState(false);
+
+  const trocarSenha = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!supabase) return;
+    if (novaSenha.length < 8) {
+      setMsg({ tipo: "erro", texto: "Use uma senha com pelo menos 8 caracteres." });
+      return;
+    }
+    setOcupado(true);
+    const { error } = await supabase.auth.updateUser({ password: novaSenha });
+    setOcupado(false);
+    if (error) setMsg({ tipo: "erro", texto: "Não foi possível trocar a senha. Peça um link novo e tente de novo." });
+    else {
+      setNovaSenha("");
+      setMsg({ tipo: "ok", texto: "Senha trocada. Você já está dentro da sua conta." });
+      fimRecuperacao();
+    }
+  };
+
+  if (sessao && recuperando) {
+    return (
+      <main className="page">
+        <div className="login">
+          <form className="login-card" onSubmit={trocarSenha}>
+            <h1 className="title-font">Nova senha</h1>
+            <p>Escolha a nova senha da sua conta.</p>
+            <label>
+              Nova senha
+              <input type="password" required minLength={8} autoComplete="new-password" value={novaSenha} onChange={(e) => setNovaSenha(e.target.value)} />
+            </label>
+            {msg && <p className={`msg ${msg.tipo}`}>{msg.texto}</p>}
+            <button className="btn btn-red" disabled={ocupado}>Salvar nova senha</button>
+          </form>
+        </div>
+      </main>
+    );
+  }
 
   if (!carregando && sessao && local.state) return <Navigate to={voltar} replace />;
 
@@ -35,7 +73,11 @@ export default function Conta() {
     if (!supabase) return;
     setOcupado(true);
     setMsg(null);
-    if (modo === "entrar") {
+    if (modo === "esqueci") {
+      await supabase.auth.resetPasswordForEmail(email, { redirectTo: window.location.origin + "/conta" });
+      // a resposta é a mesma exista a conta ou não, para não revelar quem tem cadastro
+      setMsg({ tipo: "ok", texto: "Se existir uma conta com esse e-mail, enviamos um link para criar uma senha nova. Olhe também o spam." });
+    } else if (modo === "entrar") {
       const { error } = await supabase.auth.signInWithPassword({ email, password: senha });
       if (error) setMsg({ tipo: "erro", texto: "E-mail ou senha incorretos." });
     } else {
@@ -67,32 +109,44 @@ export default function Conta() {
     <main className="page">
       <div className="login">
         <form className="login-card" onSubmit={enviar}>
-          <h1 className="title-font">{modo === "entrar" ? "Entrar" : "Criar conta"}</h1>
+          <h1 className="title-font">{modo === "entrar" ? "Entrar" : modo === "criar" ? "Criar conta" : "Recuperar senha"}</h1>
           {!configurado && <p className="msg erro">O login ainda não foi configurado neste site.</p>}
-          <button type="button" className="btn btn-paper" onClick={google} disabled={!configurado}>
-            Continuar com Google
-          </button>
-          <div className="ou">ou com e-mail</div>
+          {modo !== "esqueci" && (
+            <>
+              <button type="button" className="btn btn-paper" onClick={google} disabled={!configurado}>
+                Continuar com Google
+              </button>
+              <div className="ou">ou com e-mail</div>
+            </>
+          )}
+          {modo === "esqueci" && <p>Digite o e-mail da sua conta. Enviaremos um link para você criar uma senha nova.</p>}
           <label>
             E-mail
             <input type="email" required autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} />
           </label>
-          <label>
-            Senha
-            <input
-              type="password"
-              required
-              autoComplete={modo === "entrar" ? "current-password" : "new-password"}
-              value={senha}
-              onChange={(e) => setSenha(e.target.value)}
-            />
-          </label>
+          {modo !== "esqueci" && (
+            <label>
+              Senha
+              <input
+                type="password"
+                required
+                autoComplete={modo === "entrar" ? "current-password" : "new-password"}
+                value={senha}
+                onChange={(e) => setSenha(e.target.value)}
+              />
+            </label>
+          )}
           {msg && <p className={`msg ${msg.tipo}`}>{msg.texto}</p>}
           <button className="btn btn-red" disabled={ocupado || !configurado}>
-            {modo === "entrar" ? "Entrar" : "Criar conta"}
+            {modo === "entrar" ? "Entrar" : modo === "criar" ? "Criar conta" : "Enviar link"}
           </button>
-          <button type="button" className="link" onClick={() => { setModo(modo === "entrar" ? "criar" : "entrar"); setMsg(null); }}>
-            {modo === "entrar" ? "Não tenho conta: criar uma" : "Já tenho conta: entrar"}
+          {modo === "entrar" && (
+            <button type="button" className="link" onClick={() => { setModo("esqueci"); setMsg(null); }}>
+              Esqueci minha senha
+            </button>
+          )}
+          <button type="button" className="link" onClick={() => { setModo(modo === "criar" ? "entrar" : modo === "entrar" ? "criar" : "entrar"); setMsg(null); }}>
+            {modo === "entrar" ? "Não tenho conta: criar uma" : modo === "criar" ? "Já tenho conta: entrar" : "Voltar para entrar"}
           </button>
         </form>
         <div className="login-lado">
