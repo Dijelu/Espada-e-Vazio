@@ -69,6 +69,8 @@ export interface Kido {
   rank: string;
   texto?: string;
   meta?: string;
+  encantamento?: string;
+  fonte?: string;
 }
 export const KIDOS = kidosJson as unknown as Kido[];
 

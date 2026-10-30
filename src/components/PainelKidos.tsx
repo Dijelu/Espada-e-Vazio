@@ -31,7 +31,8 @@ export function PainelKidos({ f, c }: { f: Ficha; c: Calculo }) {
               {d?.rank && <small> · rank {d.rank}</small>}
             </summary>
             {d?.meta && <p className="ajuda">{d.meta}</p>}
-            {d?.texto && <p>{d.texto}</p>}
+            {d?.encantamento && <p className="ajuda"><i>“{d.encantamento}”</i></p>}
+            {d?.texto && <p className="quebra">{d.texto}</p>}
           </details>
         ))}
       </div>

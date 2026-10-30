@@ -183,7 +183,7 @@ export function EscolhaPoderes({ f, mudar }: { f: Ficha; mudar: (p: Partial<Fich
             {kidosFiltrados.map((k) => {
               const on = temKido(k);
               return (
-                <Dica key={k.tipo + k.n} balao={<><b>{k.tipo === "hadou" ? "Hadō" : "Bakudō"} {k.n} · {k.nome}</b><small>Rank {k.rank}{k.meta ? ` · ${k.meta}` : ""}</small><p>{k.texto || "Veja o texto completo no capítulo de Feitiços e Técnicas do livro."}</p></>}>
+                <Dica key={k.tipo + k.n} balao={<><b>{k.tipo === "hadou" ? "Hadō" : "Bakudō"} {k.n} · {k.nome}</b><small>Rank {k.rank}{k.meta ? ` · ${k.meta}` : ""}</small><p className="quebra">{k.texto || "Veja o texto completo no capítulo de Feitiços e Técnicas do livro."}</p></>}>
                   <button type="button" className={`kido ${on ? "on" : ""}`} onClick={() => alternarKido(k)} aria-pressed={on} disabled={!on && f.kidos.length >= maxKidos}>
                     <i>{k.n}</i>
                     <span>{k.nome}</span>
