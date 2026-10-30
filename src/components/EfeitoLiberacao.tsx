@@ -27,6 +27,18 @@ const TEXTOS: Record<TipoEfeito, { grande: string; pequeno: string }> = {
   mascara: { grande: "仮面", pequeno: "Máscara Hollow" },
 };
 
+/** Máscaras (recortes e artes) que piscam na animação da Máscara Hollow; a última é a que bate na tela no final. */
+const N_MASCARAS = 18;
+const imgMascara = (i: number) => `/art/mascaras/m${String(i).padStart(2, "0")}.png`;
+/** Baixa as imagens antes do uso para a primeira animação não piscar vazia. */
+export function precarregarMascaras() {
+  try {
+    for (let i = 1; i <= N_MASCARAS; i++) new Image().src = imgMascara(i);
+  } catch {
+    /* só enfeite */
+  }
+}
+
 const rnd = (a: number, b: number) => a + Math.random() * (b - a);
 
 /** Treme um elemento com força que vai caindo. */
@@ -73,6 +85,10 @@ export function EfeitoLiberacao() {
       pilares: Array.from({ length: 9 }, (_, i) => ({ x: 6 + i * 11 + rnd(-3, 3), l: rnd(5, 11), a: rnd(55, 95) })),
       rachaduras: Array.from({ length: 11 }, (_, i) => rachadura((Math.PI * 2 * i) / 11 + rnd(-0.2, 0.2))),
       cacos: Array.from({ length: 18 }, () => ({ ang: rnd(0, Math.PI * 2), dist: rnd(260, 760), t: rnd(10, 30), r: rnd(-540, 540) })),
+      flashes: (() => {
+        const ids = Array.from({ length: N_MASCARAS - 2 }, (_, i) => i + 1).sort(() => Math.random() - 0.5).slice(0, 10);
+        return [...ids, 18].map((id) => ({ id, x: rnd(22, 78), y: rnd(32, 68), s: rnd(26, 46), r: rnd(-14, 14) }));
+      })(),
       brilhos: Array.from({ length: 30 }, () => ({ x: rnd(2, 98), a: rnd(300, 900), t: rnd(3, 9) })),
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -148,22 +164,29 @@ export function EfeitoLiberacao() {
         tremer(tl, corpo, 9, 0.45, 0.05);
         tremer(tl, corpo, 20, 0.7, 0.95);
       } else if (pedido.tipo === "mascara") {
-        // a mão cobre o rosto: tudo escurece, a aura vermelha e preta gira, a máscara se forma e bate na tela
-        tl.fromTo(q(".fx-escuro"), { opacity: 0 }, { opacity: 1, duration: 0.35 }, 0)
-          .to(q(".fx-escuro"), { opacity: 0, duration: 0.7 }, 2.0)
-          .fromTo(q(".fx-aura"), { opacity: 0, rotation: 0, scale: 0.3 }, { opacity: 1, rotation: 140, scale: 1.3, duration: 2.0, ease: "power1.out" }, 0.1)
-          .to(q(".fx-aura"), { opacity: 0, duration: 0.6 }, 1.7)
-          .fromTo(q(".fx-traco"), { strokeDashoffset: (_i: number, t: Element) => comprimento(t), opacity: 1 }, { strokeDashoffset: 0, duration: 0.45, stagger: 0.06, ease: "power3.out" }, 0.55)
-          .fromTo(q(".fx-mascara-face"), { opacity: 0, scale: 2.4, y: -40 }, { opacity: 1, scale: 1, y: 0, duration: 0.28, ease: "power4.in" }, 0.7)
-          .fromTo(q(".fx-flash"), { opacity: 0 }, { opacity: 0.95, duration: 0.05 }, 0.98)
-          .to(q(".fx-flash"), { opacity: 0, duration: 0.5 }, 1.03)
-          .fromTo(q(".fx-anel"), { scale: 0.2, opacity: 0.9 }, { scale: 3, opacity: 0, duration: 1.0, stagger: 0.15, ease: "power2.out" }, 1.0)
-          .to(q(".fx-mascara-face"), { scale: 1.06, duration: 0.9, ease: "sine.inOut" }, 1.1)
-          .to(q(".fx-mascara-face"), { opacity: 0, duration: 0.5 }, 2.0)
-          .fromTo(texto, { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2)" }, 1.05)
-          .to(texto, { opacity: 0, duration: 0.5 }, 2.2);
-        tremer(tl, corpo, 3, 0.6, 0.1);
-        tremer(tl, corpo, 22, 0.55, 0.98);
+        // tudo escurece, a aura vermelha e preta gira e as máscaras piscam rápidas na tela, até a última bater com tudo
+        const piscas = q(".fx-pisca");
+        tl.set(piscas, { xPercent: -50, yPercent: -50, opacity: 0 }, 0)
+          .set(q(".fx-mascara-final"), { xPercent: -50, yPercent: -50, opacity: 0 }, 0)
+          .fromTo(q(".fx-escuro"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0)
+          .fromTo(q(".fx-aura"), { opacity: 0, rotation: 0, scale: 0.3 }, { opacity: 1, rotation: 160, scale: 1.3, duration: 2.6, ease: "power1.out" }, 0.05)
+          .to(q(".fx-aura"), { opacity: 0, duration: 0.6 }, 2.3);
+        piscas.forEach((el, i) => {
+          const t = 0.3 + i * 0.12;
+          tl.set(el, { opacity: 1, scale: 0.85, rotation: dados.flashes[i].r }, t)
+            .to(el, { scale: 1.12, duration: 0.1, ease: "none" }, t)
+            .set(el, { opacity: 0 }, t + 0.1);
+        });
+        const fim0 = 0.3 + piscas.length * 0.12 + 0.12;
+        tl.fromTo(q(".fx-mascara-final"), { opacity: 0, scale: 2.2 }, { opacity: 1, scale: 1, duration: 0.22, ease: "power4.in" }, fim0)
+          .fromTo(q(".fx-flash"), { opacity: 0 }, { opacity: 0.9, duration: 0.05 }, fim0 + 0.2)
+          .to(q(".fx-flash"), { opacity: 0, duration: 0.5 }, fim0 + 0.25)
+          .fromTo(q(".fx-anel"), { scale: 0.2, opacity: 0.9 }, { scale: 3, opacity: 0, duration: 1.0, stagger: 0.15, ease: "power2.out" }, fim0 + 0.2)
+          .to(q(".fx-mascara-final"), { scale: 1.06, duration: 0.8, ease: "sine.inOut" }, fim0 + 0.3)
+          .fromTo(texto, { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2)" }, fim0 + 0.25)
+          .to([q(".fx-mascara-final"), texto, q(".fx-escuro")], { opacity: 0, duration: 0.5 }, fim0 + 1.2);
+        tremer(tl, corpo, 3, 1.4, 0.3);
+        tremer(tl, corpo, 22, 0.55, fim0 + 0.2);
       } else {
         // luz Quincy: emblema girando, raios, anéis de reishi e centelhas subindo
         tl.fromTo(q(".fx-flash"), { opacity: 0 }, { opacity: 0.9, duration: 0.1 }, 0)
@@ -227,17 +250,10 @@ export function EfeitoLiberacao() {
           <div className="fx-escuro" />
           <div className="fx-aura" />
           {[0, 1].map((i) => <div key={i} className="fx-anel" />)}
-          <svg className="fx-mascara-face" viewBox="0 0 100 130" aria-hidden="true">
-            <path className="fx-mascara-casco" d="M50 4 C78 4 92 30 90 62 C88 96 70 126 50 126 C30 126 12 96 10 62 C8 30 22 4 50 4 Z" />
-            <path className="fx-mascara-olho" d="M22 46 L44 56 L42 66 L20 58 Z" />
-            <path className="fx-mascara-olho" d="M78 46 L56 56 L58 66 L80 58 Z" />
-            <path className="fx-traco" d="M33 62 C31 82 34 98 40 112" />
-            <path className="fx-traco" d="M67 62 C69 82 66 98 60 112" />
-            <path className="fx-traco" d="M50 6 L50 40" />
-            <path className="fx-traco" d="M30 14 C36 24 40 32 44 40" />
-            <path className="fx-traco" d="M70 14 C64 24 60 32 56 40" />
-            <path className="fx-mascara-boca" d="M36 104 L64 104" />
-          </svg>
+          {dados.flashes.slice(0, -1).map((m, i) => (
+            <img key={i} className="fx-pisca" src={imgMascara(m.id)} alt="" style={{ left: `${m.x}%`, top: `${m.y}%`, width: `${m.s}vmin` }} />
+          ))}
+          <img className="fx-mascara-final" src={imgMascara(17)} alt="" />
           <div className="fx-flash" />
         </>
       )}

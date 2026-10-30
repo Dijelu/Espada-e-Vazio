@@ -1060,10 +1060,7 @@ img, video, svg { max-width: 100%; }
 .fx-mascara .fx-escuro { position: absolute; inset: 0; background: radial-gradient(ellipse at center, #1a0006e6 0%, #000 85%); opacity: 0; }
 .fx-mascara .fx-aura { position: absolute; left: 50%; top: 50%; width: 200vmax; height: 200vmax; margin: -100vmax 0 0 -100vmax; background: repeating-conic-gradient(from 0deg, #e5173fcc 0deg 7deg, #000a 7deg 15deg, #0000 15deg 30deg); -webkit-mask-image: radial-gradient(circle, #000 0%, #0000 38%); mask-image: radial-gradient(circle, #000 0%, #0000 38%); opacity: 0; mix-blend-mode: screen; }
 .fx-mascara .fx-anel { position: absolute; left: 50%; top: 50%; width: 46vmin; height: 46vmin; margin: -23vmin 0 0 -23vmin; border: 5px solid #e5173f; border-radius: 50%; box-shadow: 0 0 40px #e5173f, inset 0 0 40px #e5173f; opacity: 0; }
-.fx-mascara .fx-mascara-face { position: absolute; left: 50%; top: 50%; width: min(46vmin, 380px); aspect-ratio: 100 / 130; margin: calc(min(46vmin, 380px) * -0.65) 0 0 calc(min(46vmin, 380px) / -2); opacity: 0; filter: drop-shadow(0 0 22px #e5173f) drop-shadow(0 0 60px #7a0016); }
-.fx-mascara .fx-mascara-casco { fill: #f4eee0; stroke: #1a1a1a; stroke-width: 1.6; }
-.fx-mascara .fx-mascara-olho { fill: #0a0a0a; }
-.fx-mascara .fx-traco { fill: none; stroke: #e5173f; stroke-width: 2.4; stroke-linecap: round; opacity: 0; }
-.fx-mascara .fx-mascara-boca { stroke: #1a1a1a; stroke-width: 2; stroke-dasharray: 3 3; }
-.fx-mascara .fx-texto { place-content: end center; padding-bottom: 10vh; }
+.fx-mascara .fx-pisca { position: absolute; height: auto; opacity: 0; filter: drop-shadow(0 0 18px #e5173f); }
+.fx-mascara .fx-mascara-final { position: absolute; left: 50%; top: 44%; height: min(62vmin, 540px); width: auto; opacity: 0; filter: drop-shadow(0 0 26px #e5173f) drop-shadow(0 0 70px #7a0016); }
+.fx-mascara .fx-texto { place-content: end center; padding-bottom: 5vh; }
 .fx-mascara .fx-texto b { color: #f4eee0; text-shadow: 0 0 24px #e5173f, 5px 5px 0 #000, -3px -3px 0 #e5173f; }

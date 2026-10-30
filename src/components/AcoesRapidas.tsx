@@ -1,5 +1,5 @@
-import { dispararLiberacao } from "./EfeitoLiberacao";
-import { useState } from "react";
+import { dispararLiberacao, precarregarMascaras } from "./EfeitoLiberacao";
+import { useEffect, useState } from "react";
 import { Passo } from "./FichaPecas";
 import type { Rolagens } from "./Rolador";
 import { CONDICAO_TEXTO, CONDICOES, treinoConcluido } from "../regras/catalogo";
@@ -17,6 +17,8 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
   const [msg, setMsg] = useState("");
   const [metade, setMetade] = useState(false);
   const e = f.estado;
+  const temMascara = f.origem === "visored" && f.treinos.feitos.includes("visored-2");
+  useEffect(() => { if (temMascara) precarregarMascaras(); }, [temMascara]);
   const setE = (p: Partial<Ficha["estado"]>) => alterar({ estado: { ...f.estado, ...p } });
 
   const aplicarDano = () => {
