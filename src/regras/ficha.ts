@@ -836,6 +836,8 @@ export function calcular(f: Ficha): Calculo {
     if (c?.id === "hueco") cr += prof + 2;
     if (c?.id === "vazio") cr += prof + 1;
   }
+  // Vasto Lorde: a Resurrección e a Segunda Etapa dão +1 de CR
+  if (f.origem === "vasto-lorde" && (f.estado.liberado === "resurreccion" || f.estado.liberado === "terror")) cr += 1;
   // Bankai Plena (20º nível): +2 na CR
   if (f.estado.liberado === "bankai" && f.treinos.caminhoBankai === "plena") cr += 2;
 

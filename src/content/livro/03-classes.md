@@ -2296,6 +2296,8 @@ Você liberta a forma verdadeira do corpo, sem espada: descreva a máscara, o co
 
 **Escala da Origem.** A origem escala o efeito da Resurrección: o Adjuchas ganha +1 estágio e o Vasto Lorde +2.
 
+**Resurrección do Vasto Lorde.** A Resurrección (e a Segunda Etapa) de quem tem a Origem Vasto Lorde é ligeiramente mais forte e diferente: o Cero ganha **+proficiência dados** de dano, a CR da forma recebe **+1** e, ao entrar nela, você ganha PV temporários iguais ao seu nível.
+
 **Mestre Resurrección (20º nível):** o custo da Resurrección cai pela metade.
 
 #### Técnica de Resurrección do Hueco

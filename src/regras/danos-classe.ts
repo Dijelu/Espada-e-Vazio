@@ -29,8 +29,11 @@ export const dadosCero = (n: number) => (n <= 3 ? [5, 7, 9][Math.max(0, n - 1)] 
 
 /** Dados extras do Cero do Caminho Estallido: +4 no 3º nível, +proficiência no 10º e +3 no 20º. */
 export function dadosCaminhoCero(f: Ficha, prof: number): number {
-  if (f.classe !== "hueco" || f.subclasse !== "Estallido") return 0;
-  return (f.nivel >= 3 ? 4 : 0) + (f.nivel >= 10 ? prof : 0) + (f.nivel >= 20 ? 3 : 0);
+  if (f.classe !== "hueco") return 0;
+  // Vasto Lorde na Resurrección ou na Segunda Etapa: o Cero ganha +proficiência dados
+  const vasto = f.origem === "vasto-lorde" && (f.estado.liberado === "resurreccion" || f.estado.liberado === "terror") ? prof : 0;
+  if (f.subclasse !== "Estallido") return vasto;
+  return vasto + (f.nivel >= 3 ? 4 : 0) + (f.nivel >= 10 ? prof : 0) + (f.nivel >= 20 ? 3 : 0);
 }
 
 const TIPOS = /dano\s+(?:de\s+)?(Energia|Fogo|Frio|Elétrico|Perfurante|Cortante|Concussão|Psíquico)/i;
