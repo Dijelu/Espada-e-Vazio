@@ -60,7 +60,14 @@ export function danosDaClasse(f: Ficha, c: Calculo): DanoClasse[] {
     for (const nome of f.tecnicasReishi) {
       const t = TECNICAS_REISHI.find((x) => x.nome === nome);
       const l = t?.texto ? lerTecnica(t.nome, t.texto, bonus, rotulo) : null;
-      if (l) out.push(l);
+      if (l) {
+        // As técnicas crescem com o nível: +1 dado no 6º e +1 no 11º; o Schütze e o Ritter somam também o dano fixo da classe
+        const extra = (f.nivel >= 6 ? 1 : 0) + (f.nivel >= 11 ? 1 : 0);
+        const fixo = f.classe === "schutze" ? (f.nivel >= 3 ? c.prof + Math.floor((c.prof * f.nivel * f.nivel) / 200) : 0) : f.nivel >= 3 ? c.prof : 0;
+        l.dano = l.dano.replace(/^(\d+)d(\d+)/, (_m, n, d) => `${Number(n) + extra}d${d}`) + (fixo ? `+${fixo}` : "");
+        if (extra || fixo) l.nota = [l.nota, `+${extra} dado(s) pelo nível${fixo ? ` e +${fixo} de dano fixo da classe` : ""}`].filter(Boolean).join("; ");
+        out.push(l);
+      }
     }
   }
   // Schrift de dano: poder de tema que cresce com o nível e fica completo com a Vollständig

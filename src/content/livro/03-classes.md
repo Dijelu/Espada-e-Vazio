@@ -1836,6 +1836,8 @@ Você possui um número de escolhas de Técnicas de Reishi igual ao descrito na 
 
 Acerto para suas Técnicas de Reishi = d20 + bônus de proficiência + seu atributo de Mente Classe de Dificuldade para suas Técnicas de Reishi = 8 + bônus de proficiência + seu atributo de Mente
 
+**Crescimento das técnicas.** As Técnicas de Reishi que causam dano ganham **+1 dado do mesmo tipo no 6º nível e +1 no 11º**. Além disso, elas somam o dano fixo da classe: o Schütze soma a mesma quantia que soma nos disparos (proficiência + proficiência × nível² ÷ 200, a partir do 3º nível), e o Ritter soma a proficiência (a partir do 3º nível).
+
 Você tem uma Técnica de Reishi desde o 1° nível, com dano base de 2d10 + Espírito, e um dado de dano a mais a cada 5 níveis, mais nível² ÷ 150 dados (arredondado para baixo; 8d10 no 20º nível). Além disso, o dano de todos os seus disparos cresce de forma acelerada: a partir do 3º nível você soma +proficiência, mais proficiência × nível² ÷ 200 (arredondado para baixo), ao dano de cada ataque à distância. No 1° e no 2° nível seus disparos não têm vantagem. O bônus de acerto das suas técnicas é 1,5 × a proficiência em todos os níveis.
 
 ### Talento de Schütze
