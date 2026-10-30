@@ -14,6 +14,8 @@ import {
 } from "../regras/liberacoes";
 import { novoId } from "./FichaPecas";
 import { AssistenteForma } from "./AssistenteForma";
+import { SeletorSchrift } from "./SeletorSchrift";
+import { schriftDaFicha } from "../regras/schrifts";
 import { acoesDaForma, comoHabilidades, habilidadesDaForma, maiorCustoPR, resolverDano, danoDaAcao, sugerirCusto } from "../regras/liberacoes";
 import type { Calculo } from "../regras/ficha";
 import type { Rolagens } from "./Rolador";
@@ -342,7 +344,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
             {tipo === "vollstandig" && (
               <>
                 <label className="campo">Canalizador (objeto que ativa a Vollständig)<input value={r.canalizador} onChange={(e) => mud({ canalizador: e.target.value })} placeholder="Colar, luva, máscara, símbolo de sangue..." /></label>
-                <label className="campo">Schrift (opcional)<input value={r.schrift} onChange={(e) => mud({ schrift: e.target.value })} placeholder="Ex.: O Poder, se o Mestre aprovou" /></label>
+                <SeletorSchrift valor={r.schrift} onChange={(nome) => mud({ schrift: nome })} sugerida={schriftDaFicha(f)?.nome} />
                 <div className="caixa">
                   <h3>Passivas (todo Quincy)</h3>
                   <ul>{VOLL_PASSIVAS.map((t) => <li key={t}>{t}</li>)}</ul>

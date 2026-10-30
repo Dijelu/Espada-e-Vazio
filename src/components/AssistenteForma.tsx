@@ -2,6 +2,8 @@ import { useMemo, useState } from "react";
 import { classePorId, type Ficha, type FormaLib, type HabForma, type TipoForma } from "../regras/ficha";
 import { ACOES_DADOS, HAB_UNICAS, TIPO_FORMA_NOME, VOLL_PASSIVAS, picksVoll, totalPicks } from "../regras/liberacoes";
 import { novoId } from "./FichaPecas";
+import { SeletorSchrift } from "./SeletorSchrift";
+import { schriftDaFicha } from "../regras/schrifts";
 
 interface Props {
   f: Ficha;
@@ -283,7 +285,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo }: Pro
             <div className="chips">
               {CANALIZADORES.map((t) => <button key={t} type="button" className="chip chip-btn" onClick={() => mud({ canalizador: t })}>{t}</button>)}
             </div>
-            <label className="campo">Schrift (opcional)<input value={r.schrift} onChange={(e) => mud({ schrift: e.target.value })} placeholder="Deixe vazio se não tiver" /></label>
+            <SeletorSchrift valor={r.schrift} onChange={(nome) => mud({ schrift: nome })} sugerida={schriftDaFicha(f)?.nome} />
           </>
         )}
 

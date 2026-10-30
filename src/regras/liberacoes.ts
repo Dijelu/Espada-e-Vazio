@@ -216,15 +216,54 @@ export function acoesDaForma(forma: FormaLib): AcaoForma[] {
 export const ACOES_DADOS = AC;
 
 /** Troca os valores entre colchetes pelo número calculado: "[NIV/2+5]d10+[ESP]" vira "10d10+4". */
+/** Calcula uma conta simples (+ − × ÷ e parênteses) sem usar eval, que o site bloqueia por segurança. */
+export function contaSimples(t: string): number {
+  const s = t.replace(/\s+/g, "");
+  let i = 0;
+  const numero = (): number => {
+    if (s[i] === "(") {
+      i++;
+      const v = soma();
+      if (s[i] !== ")") throw new Error("fecha");
+      i++;
+      return v;
+    }
+    if (s[i] === "-") { i++; return -numero(); }
+    const m = /^\d+(\.\d+)?/.exec(s.slice(i));
+    if (!m) throw new Error("número");
+    i += m[0].length;
+    return Number(m[0]);
+  };
+  const produto = (): number => {
+    let v = numero();
+    while (s[i] === "*" || s[i] === "/") {
+      const op = s[i++];
+      const w = numero();
+      v = op === "*" ? v * w : v / w;
+    }
+    return v;
+  };
+  const soma = (): number => {
+    let v = produto();
+    while (s[i] === "+" || s[i] === "-") {
+      const op = s[i++];
+      const w = produto();
+      v = op === "+" ? v + w : v - w;
+    }
+    return v;
+  };
+  const r = soma();
+  if (i !== s.length) throw new Error("sobra");
+  return r;
+}
+
 export function resolverDano(expr: string, f: Ficha, c: Calculo): string {
   const v: Record<string, number> = { NIV: f.nivel, PROF: c.prof, ESP: c.atr.esp, FOR: c.atr.for, DES: c.atr.des, CON: c.atr.con, MEN: c.atr.men };
   return expr.replace(/\[([^\]]+)\]/g, (_, dentro: string) => {
     const t = dentro.replace(/[A-Z]{3,4}/g, (k) => String(v[k] ?? 0));
     if (!/^[0-9+\-*/(). ]+$/.test(t)) return "0";
     try {
-      // eslint-disable-next-line no-new-func
-      const r = Function(`"use strict"; return (${t});`)() as number;
-      return String(Math.max(0, Math.floor(r)));
+      return String(Math.max(0, Math.floor(contaSimples(t))));
     } catch {
       return "0";
     }
