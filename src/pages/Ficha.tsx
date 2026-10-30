@@ -4,6 +4,7 @@ import { SeletorEssencia } from "../components/SeletorEssencia";
 import { NomeEssencia, TrocarEssencia } from "../components/EssenciaPecas";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { PainelKidos } from "../components/PainelKidos";
+import { acertoClasse, danosDaClasse } from "../regras/danos-classe";
 import { CartasHabilidades, CartasSituacoes, CondicoesAtivas, EfeitosAtivos } from "../components/CartasResumo";
 import { AcoesRapidas } from "../components/AcoesRapidas";
 import { EscolhaPoderes, pendencias, subclassePendente, totalPendencias } from "../components/EscolhaPoderes";
@@ -293,6 +294,7 @@ export default function Ficha() {
           <CartasHabilidades f={f} c={c} alterar={alterar} />
           <CartasSituacoes f={f} alterar={alterar} />
           <PainelKidos f={f} c={c} />
+          <DanosDaClasse f={f} c={c} r={rol} />
           <CartasFormas f={f} c={c} r={rol} alterar={alterar} onEditar={setConstruir} />
           <div className="grade2">
             <EfeitosAtivos f={f} c={c} />
@@ -651,6 +653,30 @@ function Evolucao({ f, c, alterar, subir, onForma, onSub }: { f: TFicha; c: Retu
         <p>{c.pontosEssencia.total - c.pontosEssencia.usados} disponível(is) de {c.pontosEssencia.total}. Gaste na aba Poderes.</p>
       </div>
     </section>
+  );
+}
+
+/** Ataques próprios da classe (Técnicas de Reishi, Cero…) com dano calculado e botões de rolar. */
+function DanosDaClasse({ f, c, r }: { f: TFicha; c: ReturnType<typeof calcular>; r: Rolagens }) {
+  const lista = danosDaClasse(f, c);
+  if (lista.length === 0) return null;
+  const acerto = acertoClasse(f, c);
+  return (
+    <div className="caixa">
+      <h3>Ataques da classe</h3>
+      <p className="ajuda">O dano já inclui o atributo-chave. Acerto das técnicas: {mod(acerto)}.</p>
+      {lista.map((d) => (
+        <div className="poder-livro" key={d.nome}>
+          <b>{d.nome}</b> <small>{d.fonte} · {d.dano} de {d.tipo}{d.custo ? ` · ${d.custo}` : ""}</small>
+          {d.nota && <p className="ajuda">{d.nota}</p>}
+          {d.acerto ? <LinhaAtaque r={r} nome={d.nome} bonus={acerto} dano={d.dano} /> : (
+            <span className="rolar-grupo">
+              <button type="button" className="rolar" onClick={() => r.expr(`Dano: ${d.nome}`, d.dano)}>Dano</button>
+            </span>
+          )}
+        </div>
+      ))}
+    </div>
   );
 }
 

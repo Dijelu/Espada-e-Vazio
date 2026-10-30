@@ -23,9 +23,11 @@ export interface Escala {
   maxPassos: number;
   /** o que cada passo soma, para mostrar na carta */
   rotuloPasso: string;
+  /** limite de passos extras pelo nível, quando menor que o máximo */
+  limiteNivel?: (n: number) => number;
 }
 export const ESCALA: Record<string, Escala> = {
-  "impacto-de-reiatsu": { custoBase: 4, porPasso: 2, maxPassos: 4, rotuloPasso: "+1d8 de Energia" },
+  "impacto-de-reiatsu": { custoBase: 4, porPasso: 2, maxPassos: 4, rotuloPasso: "+1d8 de Energia", limiteNivel: (n) => (n <= 3 ? 2 : 4) },
 };
 
 export interface Efeito {
@@ -68,7 +70,7 @@ const D = (classe: string, subclasse: string | undefined, nivel: number, id: str
 const ZJ = "zanjutsu", HK = "hakuda", KD = "kidoshu", KY = "kyugo", SC = "schutze", RT = "ritter", HU = "hueco", VZ = "vazio";
 
 /** dados de Precisão da Lâmina de Reishi (Energia), pelo nível */
-const dadosPrecisao = (n: number, prof: number) => (n <= 14 ? `${prof}d6` : n <= 16 ? "1d6" : n <= 19 ? "2d6" : "3d6");
+const dadosPrecisao = (n: number, prof: number) => (n <= 14 ? `${prof}d6` : n <= 16 ? "3d6" : n <= 19 ? "4d6" : "5d6");
 /** dano de Energia do Shunko por golpe, pelo nível */
 const dadosShunko = (n: number) => (n <= 5 ? "1d10" : n <= 9 ? "2d10" : n <= 19 ? "6d10" : "4d10");
 const dadoApoio = (n: number) => (n >= 19 ? "1d12" : n >= 16 ? "1d10" : n >= 12 ? "1d8" : n >= 8 ? "1d6" : "1d4");
@@ -76,8 +78,8 @@ const dadoApoio = (n: number) => (n >= 19 ? "1d12" : n >= 16 ? "1d10" : n >= 12 
 const DEFS: Def[] = [
   /* ---- Zanjutsu ---- */
   D(ZJ, undefined, 1, "impacto-de-reiatsu", "Impacto de Reiatsu", "Ao acertar com a Zanpakutou, ação bônus e 4 PR",
-    "Causa 2d8 de Energia a mais. Cada 2 PR a mais somam 1d8, até 6d8 no total.", (c) => {
-      const d = 2 + Math.min(c.extra ?? 0, 4);
+    "Causa 2d8 de Energia a mais. Cada 2 PR a mais somam 1d8, até 4d8 nos níveis 1 a 3 e até 6d8 a partir do 4º nível.", (c) => {
+      const d = 2 + Math.min(c.extra ?? 0, ESCALA["impacto-de-reiatsu"].limiteNivel!(c.n));
       return { dados: `${d}d8`, resumo: `+${d}d8 de Energia${c.extra ? ` (${4 + 2 * (c.extra ?? 0)} PR gastos)` : ""}` };
     }),
   D(ZJ, "Forja Espiritual", 6, "vinculo-espiritual", "Vínculo Espiritual", "Sem a Shikai liberada", "Use uma técnica da Shikai sem liberá-la. Pode trocar a técnica a cada nível novo."),

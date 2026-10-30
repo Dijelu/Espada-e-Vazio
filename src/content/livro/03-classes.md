@@ -147,7 +147,7 @@ Você tem um número de escolhas conforme descrito na tabela de classe chamada �
 
 ### Impacto de Reiatsu
 
-Quando você acertar uma criatura com um ataque com sua Zanpakutou, você pode utilizar sua ação bônus e 4 pontos de reiatsu para causar 2d8 de dano de energia adicional, além do dano normal da arma. O dano extra pode ser aumentado em 1d8 para cada 2 pontos de reiatsu adicionais gastos, até um máximo de 6d8 de dano extra.
+Quando você acertar uma criatura com um ataque com sua Zanpakutou, você pode utilizar sua ação bônus e 4 pontos de reiatsu para causar 2d8 de dano de energia adicional, além do dano normal da arma. O dano extra pode ser aumentado em 1d8 para cada 2 pontos de reiatsu adicionais gastos, até um máximo de 4d8 de dano extra nos níveis 1 a 3 e de 6d8 de dano extra a partir do 4° nível.
 
 ### Estilo de Combate
 
@@ -2110,7 +2110,7 @@ Quando atacar com uma arma Quincy corpo a corpo, você pode gastar **1 ponto de 
 
 O ataque ainda usa a jogada de ataque da arma. O dano de Energia ignora a resistência a dano físico (como o Hierro) e só sofre a RD esotérica do alvo.
 
-Além disso, cada ataque convertido causa dados de Precisão: **+1d6 de dano de Energia por ponto do seu bônus de proficiência**, até o 14º nível. Do 15º ao 19º nível, os dados caem para 35% da proficiência, arredondados para baixo. No 20º nível, sobem para 60%.
+Além disso, cada ataque convertido causa dados de Precisão: **+1d6 de dano de Energia por ponto do seu bônus de proficiência**, até o 14º nível. Do 15º ao 16º nível, os dados são 3d6; do 17º ao 19º, 4d6; no 20º nível, 5d6.
 
 | Nível | Proficiência | Dados de Precisão (Energia) |
 |---|---|---|
@@ -2118,9 +2118,9 @@ Além disso, cada ataque convertido causa dados de Precisão: **+1d6 de dano de 
 | 5º ao 8º | +3 | 3d6 |
 | 9º ao 12º | +4 | 4d6 |
 | 13º e 14º | +5 | 5d6 |
-| 15º e 16º | +5 | 1d6 |
-| 17º ao 19º | +6 | 2d6 |
-| 20º | +6 | 3d6 |
+| 15º e 16º | +5 | 3d6 |
+| 17º ao 19º | +6 | 4d6 |
+| 20º | +6 | 5d6 |
 
 Exemplo: no 9º nível, Kaito gasta 1 ponto de reiatsu e acerta um Hollow com Hierro usando a espada. O dano da espada vira Energia e ele soma +4d6 de Energia. Como o dano é de Energia, o Hierro não o reduz à metade.
 
@@ -2273,9 +2273,9 @@ Nos níveis 4, 8, 12, 16 e 19, você aumenta duas etapas de uma Essência, ou au
 
 ### Cero
 
-Ação, **15 PR**: ataque à distância que causa **(nível + 8)d8 + Espírito** de dano de Energia. O Cero ignora o Hierro.
+Ação, **15 PR**: ataque à distância que causa de dano de Energia **(nível + 8)d8 + Espírito** a partir do 4º nível. Nos três primeiros níveis o Cero é menor: 5d8 no 1º, 7d8 no 2º e 9d8 no 3º, mais Espírito. O Cero ignora o Hierro.
 
-Exemplo: um Hueco de 10º nível lança um Cero de 18d8 + Espírito.
+Exemplo: um Hueco de 10º nível lança um Cero de 18d8 + Espírito; um de 2º nível, 7d8 + Espírito.
 
 ### Resurrección do Hueco (10º nível)
 

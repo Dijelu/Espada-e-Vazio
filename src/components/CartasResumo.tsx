@@ -138,11 +138,12 @@ export function CartasSituacoes({ f, alterar }: { f: Ficha; alterar: (p: Partial
                   {ESCALA[s.id] && (() => {
                     const esc = ESCALA[s.id];
                     const k = idSituacao(s.id);
-                    const passos = f.estado.extras?.[k] ?? 0;
+                    const teto = esc.limiteNivel ? esc.limiteNivel(f.nivel) : esc.maxPassos;
+                    const passos = Math.min(f.estado.extras?.[k] ?? 0, teto);
                     return (
                       <div className="escala-pr">
-                        <span>PR a mais ({esc.rotuloPasso} a cada {esc.porPasso} PR, até +{esc.maxPassos})</span>
-                        <Passo valor={passos} max={esc.maxPassos} rotulo={`PR extras de ${s.nome}`} onChange={(v) => alterar({ estado: { ...f.estado, extras: { ...(f.estado.extras ?? {}), [k]: v } } })} />
+                        <span>PR a mais ({esc.rotuloPasso} a cada {esc.porPasso} PR, até +{teto})</span>
+                        <Passo valor={passos} max={teto} rotulo={`PR extras de ${s.nome}`} onChange={(v) => alterar({ estado: { ...f.estado, extras: { ...(f.estado.extras ?? {}), [k]: v } } })} />
                         <b>Custo total: {esc.custoBase + passos * esc.porPasso} PR</b>
                       </div>
                     );

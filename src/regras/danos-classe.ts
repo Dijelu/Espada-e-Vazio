@@ -1,0 +1,61 @@
+/* Ataques próprios de cada classe, com dano calculado pela ficha: Técnicas de Reishi dos Quincys e o Cero do Hueco. */
+import { TECNICAS_REISHI } from "./catalogo";
+import type { Calculo, Ficha } from "./ficha";
+
+/** Bônus de acerto do ataque da classe. */
+export function acertoClasse(f: Ficha, c: Calculo): number {
+  if (f.classe === "schutze") return Math.floor(c.prof * 1.5);
+  return c.prof + c.atr.esp;
+}
+
+export interface DanoClasse {
+  nome: string;
+  /** de onde vem: "Técnica de Reishi", "Classe"… */
+  fonte: string;
+  dano: string;
+  tipo: string;
+  custo?: string;
+  nota?: string;
+  /** o ataque usa jogada de acerto (senão, o alvo faz salvaguarda) */
+  acerto?: boolean;
+}
+
+/** Atributo-chave das Técnicas de Reishi: Mente para o Schütze, Espírito para o Ritter. */
+export const atrChaveTecnica = (classe: string) => (classe === "schutze" ? "men" : "esp");
+
+/** Dados do Cero do Hueco: começa mais baixo nos três primeiros níveis, depois segue nível + 8. */
+export const dadosCero = (n: number) => (n <= 3 ? [5, 7, 9][Math.max(0, n - 1)] : n + 8);
+
+const TIPOS = /dano\s+(?:de\s+)?(Energia|Fogo|Frio|Elétrico|Perfurante|Cortante|Concussão|Psíquico)/i;
+
+function lerTecnica(nome: string, texto: string, bonus: number, rotuloChave: string): DanoClasse | null {
+  const m = texto.match(/(\d+d\d+)(\s*\+\s*seu atributo-chave[^.;,]*)?/i);
+  if (!m) return null;
+  const custo = texto.match(/Custo:\s*([^·.]*?PR(?:\s+para cada Gintou)?)/i)?.[1]?.trim();
+  const tipo = texto.match(TIPOS)?.[1] ?? "Energia";
+  const soma = m[2] ? `+${bonus}` : "";
+  const salva = /teste de resist/i.test(texto);
+  return { nome, fonte: "Técnica de Reishi", dano: `${m[1]}${soma}`, tipo, custo, acerto: !salva, nota: m[2] ? `inclui ${rotuloChave}` : salva ? "o alvo faz salvaguarda; metade em caso de sucesso, quando o texto disser" : undefined };
+}
+
+/** Lista os ataques da classe que a ficha pode rolar. */
+export function danosDaClasse(f: Ficha, c: Calculo): DanoClasse[] {
+  const out: DanoClasse[] = [];
+  const quincy = f.classe === "schutze" || f.classe === "ritter";
+  if (quincy) {
+    const chave = atrChaveTecnica(f.classe);
+    const bonus = c.atr[chave];
+    const rotulo = chave === "men" ? "Mente" : "Espírito";
+    if (f.classe === "schutze") out.push({ nome: "Técnica de Reishi base", fonte: "Classe", dano: `2d10+${c.atr.esp}`, tipo: "Energia", nota: `2d10 + Espírito, sem dados extras. Acerto: ${Math.floor(c.prof * 1.5)} (1,5 × proficiência).`, acerto: true });
+    for (const nome of f.tecnicasReishi) {
+      const t = TECNICAS_REISHI.find((x) => x.nome === nome);
+      const l = t?.texto ? lerTecnica(t.nome, t.texto, bonus, rotulo) : null;
+      if (l) out.push(l);
+    }
+  }
+  if (f.classe === "hueco") {
+    const n = f.nivel;
+    out.push({ nome: "Cero", fonte: "Classe", dano: `${dadosCero(n)}d8+${c.atr.esp}`, tipo: "Energia", custo: "15 PR", nota: "Ação, à distância. Ignora o Hierro.", acerto: true });
+  }
+  return out;
+}
