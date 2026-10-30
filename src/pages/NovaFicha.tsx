@@ -2,6 +2,7 @@ import { Icone } from "../components/Icone";
 import { useEffect, useMemo, useState } from "react";
 import { SeletorEssencia } from "../components/SeletorEssencia";
 import { NomeEssencia, TrocarEssencia } from "../components/EssenciaPecas";
+import { ESSENCIAS, essenciaPorNome } from "../regras/essencias";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../components/Auth";
 import { AvisosFicha, Campo, LinhaAtributos, Passo, SeletorVariacoes, novoId } from "../components/FichaPecas";
@@ -410,12 +411,22 @@ export default function NovaFicha() {
               <ul className="lista-ess">
                 {f.essencias.filter((e) => e.id.startsWith("origem-")).map((e) => (
                   <li key={e.id}>
-                    <input value={e.nome} onChange={(ev) => mudar({ essencias: f.essencias.map((x) => (x.id === e.id ? { ...x, nome: ev.target.value } : x)) })} aria-label="Essência da Origem" />
+                    {f.origem === "visored" ? (
+                      <div className="ess-origem">
+                        <select value={essenciaPorNome(e.nome) ? e.nome : ""} onChange={(ev) => mudar({ essencias: f.essencias.map((x) => (x.id === e.id ? { ...x, nome: ev.target.value || "Essência proibida (escolha)" } : x)) })} aria-label="Essência proibida do Visored">
+                          <option value="">Escolher a essência proibida…</option>
+                          {ESSENCIAS.filter((x) => x.grupo === "proibida").map((x) => <option key={x.nome} value={x.nome}>{x.nome}</option>)}
+                        </select>
+                        {essenciaPorNome(e.nome) && <NomeEssencia nome={e.nome} etapa={1} completo />}
+                      </div>
+                    ) : (
+                      <input className="ess-origem-nome" value={e.nome} onChange={(ev) => mudar({ essencias: f.essencias.map((x) => (x.id === e.id ? { ...x, nome: ev.target.value } : x)) })} aria-label="Essência da Origem" />
+                    )}
                     <span className="chip">não gasta pontos</span>
                   </li>
                 ))}
               </ul>
-              {f.origem === "visored" && <p className="ajuda">Visored: troque o texto pelo nome da essência proibida que combinar com o Mestre.</p>}
+              {f.origem === "visored" && <p className="ajuda">Visored: escolha na lista a essência proibida que combinar com o Mestre. Ela não evolui com os níveis.</p>}
             </div>
           )}
 
