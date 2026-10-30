@@ -492,6 +492,8 @@ export interface Treinos {
   mascara?: "" | "conquistador" | "predador" | "equilibrio";
   /** turnos que a máscara dura (1d4 na primeira vez, cresce com o treino) */
   mascaraMax?: number;
+  /** como é a máscara, descrito pelo jogador (texto livre, sem regra) */
+  mascaraAparencia?: string;
 }
 
 export type Liberacao = "" | "shikai" | "bankai" | "resurreccion" | "terror" | "vollstandig" | "mascara";

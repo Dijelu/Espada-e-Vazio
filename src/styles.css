@@ -1064,3 +1064,5 @@ img, video, svg { max-width: 100%; }
 .fx-mascara .fx-mascara-final { position: absolute; left: 50%; top: 44%; height: min(62vmin, 540px); width: auto; opacity: 0; filter: drop-shadow(0 0 26px #e5173f) drop-shadow(0 0 70px #7a0016); }
 .fx-mascara .fx-texto { place-content: end center; padding-bottom: 5vh; }
 .fx-mascara .fx-texto b { color: #f4eee0; text-shadow: 0 0 24px #e5173f, 5px 5px 0 #000, -3px -3px 0 #e5173f; }
+
+.fx-narrativa { display: block; max-width: min(640px, 86vw); margin: 10px auto 0; font-family: var(--font-corpo, serif); font-size: clamp(14px, 2.2vw, 20px); line-height: 1.35; color: #f4eee0; text-shadow: 0 2px 6px #000, 0 0 14px #e5173f; }

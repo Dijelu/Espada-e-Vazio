@@ -141,7 +141,7 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
       estado: { ...f.estado, liberado: "mascara", usos, pvTemp: Math.max(e.pvTemp, Math.floor(c.pv * t.pv)) },
     });
     som.corte();
-    dispararLiberacao("mascara", MASCARAS.find((m) => m.id === tr.mascara)?.nome);
+    dispararLiberacao("mascara", MASCARAS.find((m) => m.id === tr.mascara)?.nome, tr.mascaraAparencia?.trim() || undefined);
     setMsg(`Máscara ativada (${custo} PR). Ela dura ${max} turno(s), contando este.`);
   };
   const novoTurnoMascara = () => {
@@ -230,6 +230,9 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
             {mascaraRecarga > 0 && <span className="chip">Recarga: {mascaraRecarga} turno(s)</span>}
           </div>
           {tr.mascara && <p className="ajuda">{MASCARAS.find((m) => m.id === tr.mascara)?.texto}</p>}
+          <label className="campo">Aparência da máscara (você descreve; aparece na animação)
+            <textarea rows={2} maxLength={220} value={tr.mascaraAparencia ?? ""} onChange={(ev) => setTreinos({ mascaraAparencia: ev.target.value })} placeholder="Ex.: osso branco rachado ao meio, uma faixa vermelha cortando o olho esquerdo e dentes à mostra." />
+          </label>
           <div className="acoes-linha">
             {(e.liberado === "mascara" || mascaraRecarga > 0) && <button type="button" className="chip chip-btn" onClick={novoTurnoMascara}>Novo turno</button>}
             {tr.mascaraMax ? <button type="button" className="chip chip-btn" onClick={treinarMascara}>Ampliar tempo (teste de Determinação passou)</button> : null}

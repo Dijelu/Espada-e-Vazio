@@ -6,15 +6,17 @@ export type TipoEfeito = "bankai" | "resurreccion" | "vollstandig" | "mascara";
 interface Pedido {
   tipo: TipoEfeito;
   nome?: string;
+  /** frase narrativa extra sob o título (a aparência escrita pelo jogador) */
+  narrativa?: string;
   id: number;
 }
 
 const EVENTO = "espada:liberacao";
 
 /** Pede a animação de tela cheia de uma liberação. Não faz nada se o navegador não suportar. */
-export function dispararLiberacao(tipo: TipoEfeito, nome?: string) {
+export function dispararLiberacao(tipo: TipoEfeito, nome?: string, narrativa?: string) {
   try {
-    window.dispatchEvent(new CustomEvent<Pedido>(EVENTO, { detail: { tipo, nome, id: Date.now() } }));
+    window.dispatchEvent(new CustomEvent<Pedido>(EVENTO, { detail: { tipo, nome, narrativa, id: Date.now() } }));
   } catch {
     /* efeito é só enfeite */
   }
@@ -271,6 +273,7 @@ export function EfeitoLiberacao() {
       <div className="fx-texto">
         <b>{t.grande}</b>
         <small>{pedido.nome || t.pequeno}</small>
+        {pedido.narrativa && <i className="fx-narrativa">{pedido.narrativa.slice(0, 220)}</i>}
       </div>
     </div>,
     document.body
