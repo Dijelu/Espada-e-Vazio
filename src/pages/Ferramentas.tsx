@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
 const ITENS = [
-  { t: "Simulador de combate", d: "Duelos do jogador contra o NPC pareado, com taxa de vitória, rodadas e dano por rodada.", to: "/ferramentas/simulador" },
-  { t: "NPC pareado", d: "Já está dentro do simulador: aplica o fator k, o NPC de suporte e o Hollow espelhado.", to: "/ferramentas/simulador" },
+  { t: "Simulador de combate", d: "Duelos do jogador contra o NPC, com o NPC pareado (fator k, suporte e Hollow) incluído. Mostra taxa de vitória, rodadas e dano por rodada.", to: "/ferramentas/simulador" },
+  { t: "NPCs da campanha", d: "Em preparação: o Mestre cria NPCs da mesa, coloca no combate e abre a ficha deles.", to: "" },
   { t: "Solo / Raid e Boss", d: "Em preparação.", to: "" },
 ];
 

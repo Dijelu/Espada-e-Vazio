@@ -74,25 +74,22 @@ const pct = (n: number, t: number) => `${((100 * n) / t).toFixed(1)}%`;
 export default function Simulador() {
   const [fichas, setFichas] = useState<FichaSalva[]>([]);
   const [jog, setJog] = useState<Combatente>(() => base("Jogador", { pv: 60, acoes: [acaoVazia({ nome: "Zanpakutou", acerto: 7, dano: "2d8+4" })] }));
-  const [npc, setNpc] = useState<Combatente>(() => base("NPC", { pv: 125, acoes: [acaoVazia({ nome: "Espada", acerto: 6, dano: "2d8+3" }), acaoVazia({ nome: "Técnica", acerto: 6, dano: "4d6", custo: 5, esoterico: true })] }));
+  const [npcBase, setNpc] = useState<Combatente>(() => base("NPC", { pv: 125, acoes: [acaoVazia({ nome: "Espada", acerto: 6, dano: "2d8+3" }), acaoVazia({ nome: "Técnica", acerto: 6, dano: "4d6", custo: 5, esoterico: true })] }));
   const [nivel, setNivel] = useState(5);
+  const [usarPareado, setUsarPareado] = useState(true);
   const [suporte, setSuporte] = useState(false);
   const [hollow, setHollow] = useState(false);
   const [pvExtra, setPvExtra] = useState(0);
   const [lutas, setLutas] = useState(3000);
   const [res, setRes] = useState<Resultado | null>(null);
-  const [aviso, setAviso] = useState("");
 
   useEffect(() => { listarFichas().then(setFichas).catch(() => setFichas([])); }, []);
 
   const k = FATOR_K[Math.min(20, Math.max(1, nivel)) - 1];
   const veredicto = useMemo(() => (res ? veredito(res.vitoriasA / res.lutas) : null), [res]);
 
-  const aplicarPareado = () => {
-    const novo = pareado(npc, { nivel, suporte, hollow, pvExtra });
-    setNpc(novo);
-    setAviso(`NPC pareado aplicado (nível ${nivel}, k ${k}${suporte ? ", suporte" : ""}${hollow ? ", Hierro" : ""}${pvExtra ? `, +${pvExtra}% PV` : ""}). Use sobre a ficha de ameaça comum, uma vez só: aplicar de novo multiplica de novo.`);
-  };
+  // o NPC do duelo sempre sai da ficha de ameaça comum: mudar nível ou opções recalcula do zero, sem acumular
+  const npc = useMemo(() => (usarPareado ? pareado(npcBase, { nivel, suporte, hollow, pvExtra }) : npcBase), [npcBase, usarPareado, nivel, suporte, hollow, pvExtra]);
   const rodar = () => { setRes(duelo(jog, npc, lutas)); };
 
   return (
@@ -102,12 +99,13 @@ export default function Simulador() {
       <p>Faz o duelo entre um jogador e um NPC milhares de vezes e mostra quem vence, em quantas rodadas e quanto dano cada lado causa. A meta do livro é o jogador vencer de 55% a 65% das vezes.</p>
       <div className="sim-colunas">
         <Painel titulo="Jogador" c={jog} onChange={setJog} fichas={fichas} ajuda="Importe uma das suas fichas ou preencha à mão." />
-        <Painel titulo="NPC" c={npc} onChange={setNpc} fichas={fichas} ajuda="Digite a ficha de ameaça comum e use o NPC pareado abaixo." />
+        <Painel titulo={usarPareado ? "NPC (ficha de ameaça comum)" : "NPC"} c={npcBase} onChange={setNpc} fichas={fichas} ajuda={usarPareado ? "Digite a ficha de ameaça comum. O NPC pareado é calculado a partir dela, logo abaixo, e a ficha não é alterada." : "Digite o NPC como ele vai lutar."} />
       </div>
 
       <section className="caixa">
         <h3>NPC pareado</h3>
-        <p className="ajuda">Aplica as regras do capítulo Ameaças: PV e dados de dano multiplicados pelo fator k do nível (dados arredondados para baixo).</p>
+        <label className="sim-check"><input type="checkbox" checked={usarPareado} onChange={(e) => setUsarPareado(e.target.checked)} /> Transformar a ficha em NPC pareado</label>
+        <p className="ajuda">Aplica as regras do capítulo Ameaças: PV e dados de dano multiplicados pelo fator k do nível (dados arredondados para baixo). O cálculo é refeito da ficha de ameaça a cada mudança, então trocar de nível ou de opção nunca soma por cima.</p>
         <div className="sim-grade">
           <label className="campo">Nível (k = {k})<input type="number" min={1} max={20} value={nivel} onChange={(e) => setNivel(Math.min(20, Math.max(1, num(e.target.value))))} /></label>
           <label className="campo">PV extra do 5v5
@@ -118,8 +116,12 @@ export default function Simulador() {
         </div>
         <label className="sim-check"><input type="checkbox" checked={suporte} onChange={(e) => setSuporte(e.target.checked)} /> NPC de suporte (par do Curandeiro)</label>
         <label className="sim-check"><input type="checkbox" checked={hollow} onChange={(e) => setHollow(e.target.checked)} /> Hollow espelhado (Hierro)</label>
-        <div className="row"><button type="button" className="btn btn-paper" onClick={aplicarPareado}>Aplicar ao NPC</button></div>
-        {aviso && <p className="ajuda">{aviso}</p>}
+        {usarPareado && (
+          <div className="sim-resumo-npc">
+            <b>NPC que vai lutar:</b> {npc.pv} PV · CR {npc.cr}{npc.hierro ? " · Hierro" : ""}
+            <ul>{npc.acoes.map((a) => <li key={a.id}>{a.nome}: {a.dano}{a.custo ? ` (${a.custo} PR)` : ""}</li>)}</ul>
+          </div>
+        )}
       </section>
 
       <section className="caixa">
