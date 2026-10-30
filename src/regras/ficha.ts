@@ -925,7 +925,7 @@ export function calcular(f: Ficha): Calculo {
     passivas,
     cdKido: 8 + prof + atr.esp + px.cdKido,
     reducaoLib: px.reducaoLib,
-    danoGeral: sit.danoGeral + formaDano + (f.classe === "schutze" ? vollDano + (n >= 3 ? prof : 0) : 0),
+    danoGeral: sit.danoGeral + formaDano + (f.classe === "schutze" ? vollDano + (n >= 3 ? prof + Math.floor((prof * n * n) / 200) : 0) : 0),
     danoDados: sit.dados,
     acertoCorpo: sit.acertoCorpo + formaAtq + (f.classe === "ritter" ? vollAtq : 0),
     acertoDist: sit.acertoDist + formaAtq + (f.classe === "schutze" ? vollAtq : 0),

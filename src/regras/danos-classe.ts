@@ -53,7 +53,7 @@ export function danosDaClasse(f: Ficha, c: Calculo): DanoClasse[] {
     const chave = atrChaveTecnica(f.classe);
     const bonus = c.atr[chave];
     const rotulo = chave === "men" ? "Mente" : "Espírito";
-    if (f.classe === "schutze") out.push({ nome: "Técnica de Reishi base", fonte: "Classe", dano: `${2 + Math.floor(f.nivel / 5)}d10+${c.atr.esp}`, tipo: "Energia", nota: `${2 + Math.floor(f.nivel / 5)}d10 + Espírito (um dado a mais a cada 5 níveis). Acerto: ${Math.floor(c.prof * 1.5)} (1,5 × proficiência).`, acerto: true });
+    if (f.classe === "schutze") out.push({ nome: "Técnica de Reishi base", fonte: "Classe", dano: `${2 + Math.floor(f.nivel / 5) + Math.floor((f.nivel * f.nivel) / 150)}d10+${c.atr.esp}`, tipo: "Energia", nota: `${2 + Math.floor(f.nivel / 5) + Math.floor((f.nivel * f.nivel) / 150)}d10 + Espírito (um dado a mais a cada 5 níveis). Acerto: ${Math.floor(c.prof * 1.5)} (1,5 × proficiência).`, acerto: true });
     for (const nome of f.tecnicasReishi) {
       const t = TECNICAS_REISHI.find((x) => x.nome === nome);
       const l = t?.texto ? lerTecnica(t.nome, t.texto, bonus, rotulo) : null;

@@ -166,7 +166,7 @@ const DEFS: Def[] = [
   /* ---- Hollows ---- */
   D(HU, "Glotonería", 3, "devorar", "Devorar", "Primeiro acerto da rodada", "Você se cura em 5 × proficiência PV (o dobro no 20º nível).", (c) => ({ resumo: `cura ${5 * c.prof} PV no primeiro acerto da rodada` })),
   D(HU, "Glotonería", 6, "mordida", "Mordida", "Ação bônus", "Ataque de mordida: 1d8 + Constituição."),
-  D(HU, "Estallido", 8, "cero-duplo", "Cero Duplo", "Ao lançar o Cero", "Você lança dois Ceros por turno."),
+  D(HU, "Estallido", 8, "cero-duplo", "Cero Duplo", "Ao lançar o Cero", "Você lança dois Ceros por turno; o segundo causa 75% do dano (arredonde para baixo)."),
   D(HU, "Sonido", 3, "ataque-surpresa", "Ataque Surpresa", "Primeiro ataque do turno", "Vantagem no ataque, e seus golpes causam +1 × proficiência de dano (+2,5 × a partir do 16º nível).", (c) => {
     const v = c.n >= 16 ? Math.floor(2.5 * c.prof) : c.prof;
     return { danoCorpo: v, resumo: `dano +${v} (e vantagem no primeiro ataque)` };

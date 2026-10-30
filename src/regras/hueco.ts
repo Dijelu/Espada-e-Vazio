@@ -12,11 +12,11 @@ export function dadosArmaNatural(f: Ficha): string {
   return PASSOS_NATURAL[Math.min(PASSOS_NATURAL.length - 1, i)];
 }
 
-/** Dano fixo extra da arma natural: Glotonería (+4 × prof, +6 × prof desde o 15º, +prof no 20º) e +prof na Resurrección. */
+/** Dano fixo extra da arma natural: Glotonería (+3 × prof, +4 × prof desde o 15º) e +prof na Resurrección. */
 export function danoFixoHueco(f: Ficha, prof: number): number {
   if (f.classe !== "hueco") return 0;
   let v = 0;
-  if (f.subclasse === "Glotonería" && f.nivel >= 3) v += (f.nivel >= 15 ? 6 : 4) * prof + (f.nivel >= 20 ? prof : 0);
+  if (f.subclasse === "Glotonería" && f.nivel >= 3) v += (f.nivel >= 15 ? 4 : 3) * prof;
   if (emResurreccion(f)) v += prof;
   return v;
 }
