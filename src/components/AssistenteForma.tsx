@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { classePorId, type Ficha, type FormaLib, type HabForma, type TipoForma } from "../regras/ficha";
-import { ACOES_DADOS, HAB_UNICAS, TIPO_FORMA_NOME, VOLL_PASSIVAS, picksVoll, totalPicks } from "../regras/liberacoes";
+import { ACOES_DADOS, HAB_UNICAS, habilidadesDaForma, TIPO_FORMA_NOME, VOLL_PASSIVAS, picksVoll, totalPicks } from "../regras/liberacoes";
 import { novoId } from "./FichaPecas";
 import { SeletorSchrift } from "./SeletorSchrift";
 import { schriftDaFicha } from "../regras/schrifts";
@@ -49,6 +49,15 @@ const PASSOS: Record<TipoForma, Passo[]> = {
     { id: "fraqueza", titulo: "Ponto fraco", ajuda: "Toda Resurrección tem um preço, como menos CR contra um tipo de ataque, menos deslocamento ou um custo extra." },
     { id: "revisao", titulo: "Revisão", ajuda: "Confira tudo. O Mestre aprova o traço, o ponto fraco e as técnicas." },
   ],
+  segunda: [
+    { id: "conceito", titulo: "Conceito", ajuda: "A Segunda Etapa é a Resurrección levada além: o corpo muda de novo, mais forte e mais cruel, e o Hollow mostra o que vinha escondendo. Pense no que a forma anterior segurava e no que se solta agora." },
+    { id: "nome", titulo: "Nome e comando", ajuda: "O nome costuma ser a forma verdadeira do Hollow, mais sombria que a da Resurrección. O comando é a frase dita ao liberar, que costuma ser curta e pesada." },
+    { id: "aparencia", titulo: "Transformação", ajuda: "Descreva o que muda em relação à Resurrección: o corpo, a máscara, as asas, as armas e o ambiente. A Segunda Etapa precisa parecer outra criatura." },
+    { id: "traco", titulo: "Novo traço", ajuda: "Um efeito novo e claro, no mesmo nível dos traços do livro. Ele substitui o traço da Resurrección enquanto a Segunda Etapa estiver ativa." },
+    { id: "acoes", titulo: "Técnicas", ajuda: "Traga as técnicas da Resurrección, mais fortes, e crie uma técnica final de 40 PR. Pense em uma técnica de assinatura de longo alcance e em uma de defesa ou controle." },
+    { id: "fraqueza", titulo: "Ponto fraco", ajuda: "Toda Segunda Etapa tem um preço. O livro já cobra 2 PR por turno e o Esgotado até o descanso longo. Aqui vai o ponto fraco extra da forma." },
+    { id: "revisao", titulo: "Revisão", ajuda: "Confira tudo. O Mestre aprova o traço, o ponto fraco e as técnicas. Os bônus numéricos vêm da sua classe." },
+  ],
   vollstandig: [
     { id: "nome", titulo: "Nome e frase", ajuda: "A frase de liberação pode ser “Quincy Vollständig” ou um nome próprio. Se tiver Schrift, ela influencia o nome." },
     { id: "aparencia", titulo: "Aparência", ajuda: "A Vollständig envolve o Quincy em reishi, em forma de asas e auréola. A cor costuma seguir a do reishi do Quincy." },
@@ -80,6 +89,14 @@ const APARENCIA: Record<TipoForma, string[]> = {
     "Asas membranosas e pele pálida.",
     "Pele de vidro, cristal ou carapaça.",
     "Chifres, tentáculos ou membros extras.",
+  ],
+  segunda: [
+    "A máscara cobre quase todo o rosto e o corpo fica esguio, pálido e liso.",
+    "Asas negras de osso e membrana nascem das costas.",
+    "O corpo se cobre de uma armadura natural, com chifres e cauda longa.",
+    "Os braços ganham lâminas ou garras enormes de osso.",
+    "A pele escurece e o reiatsu escorre do corpo como fumaça.",
+    "Uma coroa de chifres e uma capa de reiatsu se formam ao redor do Hollow.",
   ],
   vollstandig: [
     "Asas de reishi azuis.",
@@ -115,6 +132,12 @@ const FRAQUEZAS: Record<TipoForma, string[]> = {
     "Se nenhum aliado estiver a 9 metros, uma das técnicas custa +3 PR.",
     "Ao sofrer um acerto crítico, o traço da forma deixa de funcionar até o fim da Resurrección.",
   ],
+  segunda: [
+    "Os ataques de Energia ignoram parte da sua defesa: -2 de CR contra dano de Energia.",
+    "A forma toma o controle: no início do seu turno com menos de metade dos PV, faça um teste de Determinação ou ataque o alvo mais próximo.",
+    "As técnicas de área também atingem aliados a até 3 metros.",
+    "Depois da técnica final, você perde o traço até o início do seu próximo turno.",
+  ],
   vollstandig: [],
 };
 
@@ -141,13 +164,14 @@ const ASSINATURA: Record<string, [string, string]> = {
 
 /** Modelos de habilidade para quem nunca montou uma forma. Os valores crescem com o nível. */
 function modelos(tipo: TipoForma, atr: string): HabForma[] {
-  const d = tipo === "bankai" ? "d12" : tipo === "shikai" ? "d8" : "d10";
+  const forte = tipo === "bankai" || tipo === "segunda";
+  const d = forte ? "d12" : tipo === "shikai" ? "d8" : "d10";
   const peq = tipo === "shikai";
   const mk = (nome: string, acao: string, pr: number, dano: string, texto: string): HabForma => ({ id: novoId(), nome, acao, custo: pr ? `${pr} PR` : "", pr: pr || undefined, dano: dano || undefined, texto });
   return [
-    mk("Ataque básico", "Ação", tipo === "bankai" ? 15 : peq ? 4 : 10, peq ? `[NIV/2+1]${d}+[${atr}]` : `[NIV/2+3]${d}+[${atr}]`, "Um ataque do tema da sua forma. Descreva como ele se manifesta."),
+    mk("Ataque básico", "Ação", forte ? 15 : peq ? 4 : 10, peq ? `[NIV/2+1]${d}+[${atr}]` : `[NIV/2+3]${d}+[${atr}]`, "Um ataque do tema da sua forma. Descreva como ele se manifesta."),
     mk("Golpe em área", "Ação", peq ? 8 : 20, peq ? `[NIV/2+2]${d}+[${atr}]` : `[NIV/2+4]${d}+[${atr}]`, "Atinge criaturas numa área de 6 metros de raio. Salvaguarda de Destreza (CD 8 + proficiência + atributo): dano na falha, metade no sucesso."),
-    mk("Técnica final", "Ação", peq ? 10 : 30, tipo === "bankai" ? `[NIV]${d}+[${atr}]` : peq ? `[NIV/2+4]${d}+[${atr}]` : `[NIV/2+5]${d}+[${atr}]`, "O golpe mais forte da sua forma. Só vale a pena em momentos decisivos."),
+    mk("Técnica final", "Ação", peq ? 10 : 30, forte ? `[NIV]${d}+[${atr}]` : peq ? `[NIV/2+4]${d}+[${atr}]` : `[NIV/2+5]${d}+[${atr}]`, "O golpe mais forte da sua forma. Só vale a pena em momentos decisivos."),
     mk("Reforço", "Ação bônus", peq ? 3 : 8, "2d10", "O seu próximo ataque no turno causa o dano indicado a mais."),
     mk("Defesa", "Reação", peq ? 4 : 10, "2d10+[PROF]", "Reduz o dano sofrido por você ou por um aliado a 3 metros na quantidade indicada."),
     mk("Proteção", "Ação", peq ? 6 : 15, "[NIV]", "Você e os aliados a até 3 metros ganham PV temporários na quantidade indicada."),
@@ -197,7 +221,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo }: Pro
   if (tipo === "vollstandig" && usados < limite) erros.push(`Faltam ${limite - usados} habilidade(s) única(s).`);
   if (r.habilidades.length === 0) erros.push("Adicione pelo menos uma habilidade ou técnica.");
   if (tipo === "shikai" && !r.categoria) erros.push("Escolha a categoria.");
-  if ((tipo === "bankai" || tipo === "resurreccion") && !r.pontoFraco.trim()) erros.push("Falta o ponto fraco.");
+  if ((tipo === "bankai" || tipo === "resurreccion" || tipo === "segunda") && !r.pontoFraco.trim()) erros.push("Falta o ponto fraco.");
 
   return (
     <div className="assistente">
@@ -249,6 +273,12 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo }: Pro
               </button>
             </div>
             <p className="ajuda">Dica: a Bankai segue o tema da Shikai. Se a Shikai tem um poder, a Bankai terá algo parecido ou dentro do mesmo tema.</p>
+          </>
+        )}
+        {passo.id === "conceito" && tipo === "segunda" && (
+          <>
+            <p>Sua Resurrección: <b>{f.formas.resurreccion?.nome || "ainda não montada"}</b>{f.subclasse ? ` · Caminho ${f.subclasse}` : ""}.</p>
+            <p className="ajuda">A Segunda Etapa é uma <b>nova transformação</b> que vem depois da Resurrección, do mesmo jeito que o Hollow do anime que, ao tirar a sua arma e liberar a forma final, fica mais pálido, ganha asas e passa a usar técnicas de longo alcance. Escolha um tema pronto abaixo ou invente o seu: ele só precisa parecer um passo além da forma anterior.</p>
           </>
         )}
         {passo.id === "conceito" && tipo === "resurreccion" && (
@@ -343,6 +373,12 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo }: Pro
           <>
             {tipo === "resurreccion" && assinatura && (
               <button type="button" className="btn btn-paper" onClick={incluirAssinatura}>Incluir a técnica de assinatura: {assinatura[1]}</button>
+            )}
+            {tipo === "segunda" && f.formas.resurreccion && (
+              <button type="button" className="btn btn-paper" onClick={() => {
+                const antigas = habilidadesDaForma(f.formas.resurreccion!).filter((h) => !r.habilidades.some((x) => x.nome === `${h.nome} (Segunda Etapa)`));
+                mud({ habilidades: [...r.habilidades, ...antigas.map((h) => ({ ...h, id: novoId(), nome: `${h.nome} (Segunda Etapa)`, pr: h.pr ? Math.round(h.pr * 1.25) : h.pr, custo: h.pr ? `${Math.round(h.pr * 1.25)} PR` : h.custo }))] });
+              }}>Trazer as técnicas da minha Resurrección (custo +25%)</button>
             )}
             <label className="campo">Atributo usado no dano dos modelos
               <select value={atr} onChange={(e) => setAtr(e.target.value)}>

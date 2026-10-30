@@ -16,7 +16,7 @@ import { novoId } from "./FichaPecas";
 import { AssistenteForma } from "./AssistenteForma";
 import { SeletorSchrift } from "./SeletorSchrift";
 import { schriftDaFicha } from "../regras/schrifts";
-import { acoesDaForma, modeloResurreccionPadrao, comoHabilidades, habilidadesDaForma, maiorCustoPR, resolverDano, danoDaAcao, sugerirCusto } from "../regras/liberacoes";
+import { acoesDaForma, formaDaLiberacao, liberacaoDaForma, modeloResurreccionPadrao, comoHabilidades, habilidadesDaForma, maiorCustoPR, resolverDano, danoDaAcao, sugerirCusto } from "../regras/liberacoes";
 import type { Calculo } from "../regras/ficha";
 import type { Rolagens } from "./Rolador";
 
@@ -28,7 +28,7 @@ const vazia = (tipo: TipoForma): FormaLib => ({
   aparencia: "",
   estilo: "",
   custo: tipo === "bankai" ? 40 : tipo === "vollstandig" ? 60 : tipo === "shikai" ? 5 : 0,
-  duracao: tipo === "bankai" ? "1 minuto" : tipo === "resurreccion" ? "até o fim da cena" : "até você encerrar",
+  duracao: tipo === "bankai" ? "1 minuto" : tipo === "resurreccion" || tipo === "segunda" ? "até o fim da cena" : "até você encerrar",
   categoria: "",
   espirito: "",
   habilidades: [],
@@ -54,6 +54,8 @@ const DICAS: Record<TipoForma, string> = {
     "Escolha uma Bankai pronta do livro ou monte a sua. A Bankai Potencializadora intensifica os poderes da Shikai; a Transformadora cria um poder novo. O custo de liberação vai de 40 a 80 PR e dura 1 minuto. Toda Bankai tem um ponto fraco.",
   resurreccion:
     "Custo, duração, bônus de CR e a técnica de assinatura já vêm da sua classe e do seu Caminho. Aqui você define a forma: nome, aparência, um traço pequeno e um ponto fraco.",
+  segunda:
+    "A Segunda Etapa é a evolução da sua Resurrección: o corpo muda de novo, mais forte e mais cruel. Pense no que a Resurrección escondia e no que sobra do Hollow quando ele deixa de se segurar. Aqui você define a nova forma: nome, aparência, um traço novo, um ponto fraco e as técnicas. O custo e os bônus numéricos vêm da sua classe.",
   vollstandig:
     "As habilidades passivas são iguais para todos os Quincy. Você escolhe as habilidades únicas (uma vez definidas, não mudam), o canalizador e, se tiver, a Schrift.",
 };
@@ -172,7 +174,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
       </div>
       <p className="ajuda construtor-dica">{DICAS[tipo]}</p>
       <div className="modos" role="tablist" aria-label="Como montar">
-        <button type="button" role="tab" aria-selected={aba === "modelos"} className={aba === "modelos" ? "on" : ""} onClick={() => setAba("modelos")}>Modelos prontos</button>
+        {tipo !== "segunda" && <button type="button" role="tab" aria-selected={aba === "modelos"} className={aba === "modelos" ? "on" : ""} onClick={() => setAba("modelos")}>Modelos prontos</button>}
         <button type="button" role="tab" aria-selected={aba === "passo"} className={aba === "passo" ? "on" : ""} onClick={() => setAba("passo")}>Passo a passo</button>
         <button type="button" role="tab" aria-selected={aba === "meu"} className={aba === "meu" ? "on" : ""} onClick={() => setAba("meu")}>Editar tudo</button>
       </div>
@@ -313,9 +315,9 @@ export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
               </>
             )}
 
-            {tipo === "resurreccion" && (
+            {(tipo === "resurreccion" || tipo === "segunda") && (
               <>
-                <p className="ajuda">Inclua abaixo a técnica de assinatura do seu Caminho (12 PR, só durante a Resurrección, Capítulo 3) e as suas outras técnicas.</p>
+                <p className="ajuda">{tipo === "segunda" ? "Inclua abaixo as técnicas da nova forma. Você pode trazer as da sua Resurrección e deixá-las mais fortes, e criar uma técnica final." : "Inclua abaixo a técnica de assinatura do seu Caminho (12 PR, só durante a Resurrección, Capítulo 3) e as suas outras técnicas."}</p>
                 <label className="campo">Traço da forma (pequeno e claro)<textarea rows={2} value={r.traco} onChange={(e) => mud({ traco: e.target.value })} placeholder="Ex.: +3 m de alcance, voo, PV temporários por rodada" /></label>
               </>
             )}
@@ -393,7 +395,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
 type ItemAcao = { id: string; nome: string; texto: string; custo: string; acao: string; pr?: number; prExpr?: string; dano?: string };
 
 const formasDefinidas = (f: Ficha) =>
-  (["shikai", "bankai", "resurreccion", "vollstandig"] as TipoForma[]).map((t) => f.formas[t]).filter((x): x is FormaLib => !!x && !!x.nome);
+  (["shikai", "bankai", "resurreccion", "vollstandig", "segunda"] as TipoForma[]).map((t) => f.formas[t]).filter((x): x is FormaLib => !!x && !!x.nome);
 
 /** Uma habilidade da forma como carta, com botões de usar e rolar. */
 function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg }: { f: Ficha; c: Calculo; r: Rolagens; alterar: (p: Partial<Ficha>) => void; forma: FormaLib; h: ItemAcao; ativa: boolean; onMsg: (m: string) => void }) {
@@ -436,11 +438,11 @@ function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg }: { f: Ficha; c: 
 export function PainelFormaAtiva({ f, c, r, alterar, onEditar }: { f: Ficha; c: Calculo; r: Rolagens; alterar: (p: Partial<Ficha>) => void; onEditar?: (t: TipoForma) => void }) {
   const [msg, setMsg] = useState("");
   const tipo = f.estado.liberado as string;
-  const tipoForma = tipo === "shikai" || tipo === "bankai" || tipo === "resurreccion" || tipo === "vollstandig" ? (tipo as TipoForma) : undefined;
+  const tipoForma = formaDaLiberacao(tipo);
   const definida = tipoForma ? f.formas[tipoForma] : undefined;
   // liberou sem ter montado a forma: mostra o painel com o que o livro já tem, em vez de nada
   const provisoria: FormaLib | undefined = tipoForma && !(definida && definida.nome)
-    ? { ...vazia(tipoForma), custo: 0, nome: TIPO_FORMA_NOME[tipoForma], modelo: tipoForma === "resurreccion" ? modeloResurreccionPadrao(f.subclasse) : "" }
+    ? { ...vazia(tipoForma), custo: 0, nome: TIPO_FORMA_NOME[tipoForma], modelo: tipoForma === "resurreccion" ? modeloResurreccionPadrao(f.subclasse) : "", habilidades: tipoForma === "segunda" && f.formas.resurreccion ? habilidadesDaForma(f.formas.resurreccion) : [] }
     : undefined;
   const forma = provisoria ?? definida;
   if (!forma || !tipoForma) return null;
@@ -449,7 +451,7 @@ export function PainelFormaAtiva({ f, c, r, alterar, onEditar }: { f: Ficha; c: 
     <section className={`painel-forma painel-${forma.tipo}`} aria-label={`Painel da ${TIPO_FORMA_NOME[forma.tipo]}`}>
       <div className="painel-forma-topo">
         <div>
-          <small>{TIPO_FORMA_NOME[forma.tipo]} ativa</small>
+          <small>{TIPO_FORMA_NOME[forma.tipo]} {forma.tipo === "segunda" ? "ativa" : "ativa"}</small>
           <h2 className="title-font">{forma.nome}</h2>
           {forma.comando && <p><i>“{forma.comando}”</i></p>}
         </div>
@@ -489,7 +491,7 @@ export function CartasFormas({ f, c, r, alterar, onEditar }: { f: Ficha; c: Calc
         <div className="cartas-hab">
           {lista.map((x) => (
             <article className="carta-hab forma-card" key={x.tipo}>
-              <small className="ajuda">{TIPO_FORMA_NOME[x.tipo]}{x.estilo ? ` · ${x.estilo}` : x.categoria ? ` · ${x.categoria}` : ""}{f.estado.liberado === x.tipo ? " · ATIVA" : ""}</small>
+              <small className="ajuda">{TIPO_FORMA_NOME[x.tipo]}{x.estilo ? ` · ${x.estilo}` : x.categoria ? ` · ${x.categoria}` : ""}{f.estado.liberado === liberacaoDaForma(x.tipo) ? " · ATIVA" : ""}</small>
               <h3>{x.nome}</h3>
               {x.comando && <p><i>“{x.comando}”</i></p>}
               {x.aparencia && <p>{x.aparencia}</p>}
@@ -511,13 +513,13 @@ export function CartasFormas({ f, c, r, alterar, onEditar }: { f: Ficha; c: Calc
           ))}
         </div>
       </div>
-      {lista.some((x) => f.estado.liberado !== x.tipo) && (
+      {lista.some((x) => f.estado.liberado !== liberacaoDaForma(x.tipo)) && (
         <div className="caixa">
           <h3>Habilidades das formas</h3>
           {msg && <p className="ajuda" role="status">{msg}</p>}
           <div className="cartas-hab">
             {lista
-              .filter((x) => f.estado.liberado !== x.tipo)
+              .filter((x) => f.estado.liberado !== liberacaoDaForma(x.tipo))
               .flatMap((x) => habilidadesDaForma(x).map((h) => <CartaAcao key={x.tipo + h.id} f={f} c={c} r={r} alterar={alterar} forma={x} h={h} ativa={false} onMsg={setMsg} />))}
           </div>
         </div>

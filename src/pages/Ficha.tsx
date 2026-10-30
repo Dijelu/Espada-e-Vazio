@@ -10,7 +10,7 @@ import { AcoesRapidas } from "../components/AcoesRapidas";
 import { EscolhaPoderes, pendencias, subclassePendente, totalPendencias } from "../components/EscolhaPoderes";
 import { EscolhaSubclasse } from "../components/EscolhaSubclasse";
 import { CartasFormas, ConstrutorForma, PainelFormaAtiva } from "../components/ConstrutorForma";
-import { TIPO_FORMA_NOME, formaPendente, nivelLiberacao } from "../regras/liberacoes";
+import { TIPO_FORMA_NOME, formaPendente, nivelLiberacao, segundaLiberada } from "../regras/liberacoes";
 import { AvisosFicha, Campo, irParaAncora, LinhaAtributos, Passo, SeletorVariacoes, novoId } from "../components/FichaPecas";
 import { BotaoRolar, PainelRolagens, useRolagens, type Rolagens } from "../components/Rolador";
 import { AbaTreinamento } from "../components/Treinamento";
@@ -146,6 +146,16 @@ export default function Ficha() {
     nivelVisto.current = f.nivel;
     if (antes === null || f.nivel > antes) proxima(f);
   }, [f, proxima]);
+
+  // ao concluir o treinamento da Segunda Etapa, abre a tela para montar a nova forma
+  const segundaPronta = !!f && segundaLiberada(f);
+  const segundaAntes = useRef<boolean | null>(null);
+  useEffect(() => {
+    if (!f) return;
+    const antes = segundaAntes.current;
+    segundaAntes.current = segundaPronta;
+    if (antes === false && segundaPronta && !f.formas.segunda?.nome) setConstruir("segunda");
+  }, [f, segundaPronta]);
 
   const subirNivel = useCallback(() => {
     alterar((x) => ({ nivel: Math.min(20, x.nivel + 1) }));
@@ -580,7 +590,7 @@ function Evolucao({ f, c, alterar, subir, onForma, onSub }: { f: TFicha; c: Retu
       <h2 className="title-font sub">Poderes do nível {f.nivel}</h2>
       <EscolhaPoderes f={f} mudar={alterar} />
 
-      {(["shikai", "bankai", "resurreccion", "vollstandig"] as TipoForma[])
+      {(["shikai", "bankai", "resurreccion", "vollstandig", "segunda"] as TipoForma[])
         .filter((t) => nivelLiberacao(f.classe, classe?.tipo, t) > 0)
         .map((t) => {
           const nv = nivelLiberacao(f.classe, classe?.tipo, t);
@@ -590,12 +600,14 @@ function Evolucao({ f, c, alterar, subir, onForma, onSub }: { f: TFicha; c: Retu
               <h3>{TIPO_FORMA_NOME[t]}</h3>
               {f.nivel < nv ? (
                 <p className="ajuda">Disponível a partir do nível {nv}.</p>
+              ) : t === "segunda" && !segundaLiberada(f) ? (
+                <p className="ajuda">Conclua o treinamento da Segunda Etapa, na aba Treinamento, para montar a sua forma.</p>
               ) : forma?.nome ? (
                 <p>Definida: <b>{forma.nome}</b></p>
               ) : (
                 <p>Você já pode ter a sua {TIPO_FORMA_NOME[t]}. Escolha um modelo do livro ou monte a sua.</p>
               )}
-              {f.nivel >= nv && (
+              {f.nivel >= nv && (t !== "segunda" || segundaLiberada(f)) && (
                 <button type="button" className="btn btn-red" onClick={() => onForma(t)}>
                   {forma?.nome ? "Editar" : "Montar"} {TIPO_FORMA_NOME[t]}
                 </button>

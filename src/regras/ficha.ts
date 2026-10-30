@@ -490,7 +490,7 @@ export interface Treinos {
 
 export type Liberacao = "" | "shikai" | "bankai" | "resurreccion" | "terror" | "vollstandig" | "mascara";
 
-export type TipoForma = "shikai" | "bankai" | "resurreccion" | "vollstandig";
+export type TipoForma = "shikai" | "bankai" | "resurreccion" | "vollstandig" | "segunda";
 
 export interface HabForma {
   id: string;

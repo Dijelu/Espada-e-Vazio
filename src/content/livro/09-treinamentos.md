@@ -367,6 +367,10 @@ Em uma cena isolada, o Hollow enfrenta uma cópia de si mesmo, com a mesma ficha
 - **Sucesso:** a máscara não se rompe, ela é arrancada. O treinamento está concluído e a Segunda Etapa passa a ser liberada pela ficha.
 - **Falha:** o Hollow acorda faminto, sem dano real, e repete o duelo após 1 dia de downtime. Os PF se mantêm.
 
+### Montando a sua Segunda Etapa
+
+Ao concluir o treinamento, o Hollow monta a própria Segunda Etapa, do mesmo jeito que montou a Resurrección: um nome, um comando, a transformação, um traço novo, um ponto fraco e as técnicas. Ela é um aprimoramento da Resurrección com **uma nova forma**: o corpo muda de novo, a máscara e a aparência ficam mais cruéis, e surgem técnicas novas, mais fortes que as da forma anterior. O Mestre aprova o traço, o ponto fraco e as técnicas, e os bônus numéricos continuam vindo da classe.
+
 ### A Segunda Etapa liberada
 
 A Segunda Etapa substitui a Resurrección enquanto estiver ativa (os números não se somam). É liberado com uma ação bônus e dura até o fim da cena.

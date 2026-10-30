@@ -161,6 +161,7 @@ export function nivelLiberacao(classeId: string, tipoClasse: string | undefined,
   if (tipo === "bankai") return tipoClasse === "shinigami" ? 10 : 0;
   if (tipo === "resurreccion") return tipoClasse === "hollow" ? 10 : 0;
   if (tipo === "vollstandig") return tipoClasse === "quincy" ? (classeId === "ritter" ? 12 : 13) : 0;
+  if (tipo === "segunda") return tipoClasse === "hollow" && (classeId === "hueco" || classeId === "vazio") ? 15 : 0;
   return 0;
 }
 
@@ -176,13 +177,24 @@ export const TIPO_FORMA_NOME: Record<TipoForma, string> = {
   bankai: "Bankai",
   resurreccion: "Resurrección",
   vollstandig: "Vollständig",
+  segunda: "Segunda Etapa",
 };
 
+/** A Segunda Etapa é guardada como a liberação "terror" na ficha (nome antigo); aqui as duas pontas se encontram. */
+export const liberacaoDaForma = (t: TipoForma) => (t === "segunda" ? "terror" : t);
+export const formaDaLiberacao = (l: string): TipoForma | undefined =>
+  l === "terror" ? "segunda" : l === "shikai" || l === "bankai" || l === "resurreccion" || l === "vollstandig" ? l : undefined;
+
+/** Etapas do treinamento da Segunda Etapa. */
+export const ETAPAS_SEGUNDA = ["ter-jejum", "ter-pf", "ter-duelo"];
+export const segundaLiberada = (f: { treinos?: { feitos: string[] } }) => ETAPAS_SEGUNDA.every((e) => f.treinos?.feitos.includes(e));
+
 /** Forma pendente de configurar (ainda sem nome, ou com habilidades únicas faltando). */
-export function formaPendente(f: { classe: string; nivel: number; formas?: Partial<Record<TipoForma, FormaLib>> }, tipoClasse: string | undefined): TipoForma | null {
-  for (const t of ["shikai", "bankai", "resurreccion", "vollstandig"] as TipoForma[]) {
+export function formaPendente(f: { classe: string; nivel: number; formas?: Partial<Record<TipoForma, FormaLib>>; treinos?: { feitos: string[] } }, tipoClasse: string | undefined): TipoForma | null {
+  for (const t of ["shikai", "bankai", "resurreccion", "vollstandig", "segunda"] as TipoForma[]) {
     const n = nivelLiberacao(f.classe, tipoClasse, t);
     if (!n || f.nivel < n) continue;
+    if (t === "segunda" && !segundaLiberada(f)) continue;
     const forma = f.formas?.[t];
     if (!forma || !forma.nome.trim()) return t;
     if (t === "vollstandig" && totalPicks(forma.picks) < picksVoll(f.classe, f.nivel)) return t;

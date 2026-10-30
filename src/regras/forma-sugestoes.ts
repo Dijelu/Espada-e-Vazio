@@ -25,6 +25,12 @@ export const TEMAS: Partial<Record<TipoForma, Tema[]>> = {
     { id: "cura", nome: "Proteção e cura", ideia: "A Bankai protege aliados, fecha ferimentos e sustenta o grupo.", aparencia: "Um escudo, flores ou uma cúpula de luz cobre você e os aliados próximos.", pontoFraco: "O custo de manter a Bankai sobe em +5 PR se nenhum aliado estiver a até 9 metros." },
     { id: "fogo-gelo", nome: "Elemento puro", ideia: "O elemento da Zanpakutou domina tudo: fogo, gelo, raio, vento ou água.", aparencia: "O corpo e a arma ficam envoltos pelo elemento, e o chão ao redor reage a ele.", pontoFraco: "Vulnerável ao tipo de dano oposto ao tema da Zanpakutou." },
   ],
+  segunda: [
+    { id: "vazio-frio", nome: "Frieza absoluta", ideia: "O Hollow deixa a fera de lado e vira algo calmo, frio e cruel.", aparencia: "O corpo fica pálido e esguio, com uma máscara quase completa e asas negras de osso.", traco: "Voo igual ao seu deslocamento e Desengajar como ação livre uma vez por turno.", pontoFraco: "Os ataques de Energia ignoram parte da sua defesa: -2 de CR contra dano de Energia." },
+    { id: "bestia", nome: "Besta completa", ideia: "O animal da Resurrección se torna uma criatura gigante e primal.", aparencia: "O corpo cresce, com armadura natural, chifres, cauda longa e garras de osso.", traco: "Alcance corpo a corpo +3 metros e vantagem no primeiro ataque de cada turno.", pontoFraco: "Depois da técnica final, você perde o traço até o início do seu próximo turno." },
+    { id: "artilheiro", nome: "Artilharia total", ideia: "Toda a forma serve ao poder de fogo, com ceros maiores e mais rápidos.", aparencia: "Chifres e placas de osso se abrem, concentrando uma esfera de energia que nunca se apaga.", traco: "Seus ataques à distância ignoram cobertura parcial.", pontoFraco: "As técnicas de área também atingem aliados a até 3 metros." },
+    { id: "veloz", nome: "Velocidade fantasma", ideia: "Você fica mais rápido do que o olho acompanha.", aparencia: "O corpo se afina e deixa imagens residuais, com asas finas e uma máscara cortante.", traco: "Deslocamento +9 metros e Desengajar como ação livre.", pontoFraco: "A forma toma o controle: no início do seu turno com menos de metade dos PV, faça um teste de Determinação ou ataque o alvo mais próximo." },
+  ],
   resurreccion: [
     { id: "predador", nome: "Predador veloz", ideia: "Um caçador de garras e velocidade, que fecha a distância num piscar de olhos.", aparencia: "Corpo esguio de felino ou lobo, com garras de osso, cauda e máscara reduzida a uma crista.", traco: "Deslocamento +6 metros e Desengajar como ação livre uma vez por turno.", pontoFraco: "-2 de CR contra ataques à distância." },
     { id: "bestial", nome: "Fera devoradora", ideia: "Uma fera enorme que devora e cresce com o que come.", aparencia: "Corpo largo e musculoso, com mandíbula aberta no peito e pele de carapaça.", traco: "Vantagem no primeiro ataque de cada turno.", pontoFraco: "Deslocamento -3 metros." },
@@ -61,6 +67,13 @@ export const NOMES: Partial<Record<TipoForma, NomeComando[]>> = {
     { nome: "Escorpión de Cristal", comando: "Pique, Escorpión de Cristal" },
     { nome: "Tigre Sombrío", comando: "Caçe, Tigre Sombrío" },
   ],
+  segunda: [
+    { nome: "Murciélago Oscuro", comando: "Apague a luz, Murciélago Oscuro" },
+    { nome: "Lobo del Vacío", comando: "Devore o silêncio, Lobo del Vacío" },
+    { nome: "Cuervo Eterno", comando: "Cubra o céu, Cuervo Eterno" },
+    { nome: "Tigre Cero", comando: "Rasgue a noite, Tigre Cero" },
+    { nome: "Serpiente del Abismo", comando: "Sufoque o mundo, Serpiente del Abismo" },
+  ],
   vollstandig: [
     { nome: "Vollständig", comando: "Quincy Vollständig" },
     { nome: "Licht Vollständig", comando: "Que a luz escolha o meu caminho" },
@@ -73,6 +86,7 @@ export const CANALIZADORES_EXTRA = ["Cruz Quincy no pescoço", "Luva com o emble
 
 export const FRAQUEZAS_EXTRA: Record<TipoForma, string[]> = {
   shikai: [],
+  segunda: [],
   bankai: [
     "Depois de usar a técnica mais forte, você não pode usá-la de novo por 1d4 turnos.",
     "O custo para manter a Bankai sobe em +5 PR a cada minuto.",
