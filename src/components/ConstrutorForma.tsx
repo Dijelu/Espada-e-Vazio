@@ -172,7 +172,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
         </div>
         <button type="button" className="fechar" onClick={onFechar} aria-label="Fechar">×</button>
       </div>
-      <p className="ajuda construtor-dica">{DICAS[tipo]}</p>
+      <p className="ajuda construtor-dica">{DICAS[tipo]}{tipo === "bankai" && f.treinos.caminhoBankai === "plena" ? " Você escolheu a Bankai Plena: o custo cai pela metade, a CR sobe +2 e o dano das técnicas sobe 25%. Adicione uma ação nova para a Bankai, aprovada pelo Mestre." : ""}{tipo === "bankai" && f.treinos.caminhoBankai === "verdadeira" ? " Você escolheu a Bankai Verdadeira: mude a aparência da Bankai e crie, com o Mestre, uma técnica de assinatura nova. Dura no máximo 1 minuto e deixa você Esgotado até um descanso curto." : ""}</p>
       <div className="modos" role="tablist" aria-label="Como montar">
         {tipo !== "segunda" && <button type="button" role="tab" aria-selected={aba === "modelos"} className={aba === "modelos" ? "on" : ""} onClick={() => setAba("modelos")}>Modelos prontos</button>}
         <button type="button" role="tab" aria-selected={aba === "passo"} className={aba === "passo" ? "on" : ""} onClick={() => setAba("passo")}>Passo a passo</button>

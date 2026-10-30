@@ -6,7 +6,7 @@ import { classePorId, type Calculo, type Ficha } from "../regras/ficha";
 
 const NIVEL_TREINO: Record<string, number> = { shikai: 3, bankai: 10, resurreccion: 9, "bankai-final": 20, terror: 15 };
 
-export function AbaTreinamento({ f, c, alterar }: { f: Ficha; c: Calculo; alterar: (p: Partial<Ficha>) => void }) {
+export function AbaTreinamento({ f, c, alterar, onMontar }: { f: Ficha; c: Calculo; alterar: (p: Partial<Ficha>) => void; onMontar?: (tipo: "bankai") => void }) {
   const tipo = classePorId(f.classe)?.tipo;
   const lista = treinosDaFicha(f, tipo);
   const feitos = f.treinos.feitos;
@@ -66,6 +66,11 @@ export function AbaTreinamento({ f, c, alterar }: { f: Ficha; c: Calculo; altera
                   <option value="plena">Bankai Plena (custo pela metade, +2 na CR, técnicas +25%)</option>
                   <option value="verdadeira">Bankai Verdadeira (nova forma, técnica de assinatura, 1 minuto)</option>
                 </select>
+                {f.treinos.caminhoBankai && onMontar && (
+                  <button type="button" className="btn btn-paper" onClick={() => onMontar("bankai")}>
+                    Montar a Bankai {f.treinos.caminhoBankai === "plena" ? "Plena" : "Verdadeira"}
+                  </button>
+                )}
               </Campo2>
             )}
 

@@ -19,7 +19,7 @@ import { ARMAS, KIDOS, talentosDe } from "../regras/catalogo";
 import { lerFicha, salvarFicha } from "../lib/fichas";
 import { guardar, ler as lerLocal, marcarEnviado } from "../lib/rascunho";
 import { repararFicha } from "../regras/reparo";
-import { normalizar } from "../regras/ficha";
+import { CLASSES, normalizar } from "../regras/ficha";
 import { efeito as som } from "../lib/som";
 import {
   ATRIBUTOS,
@@ -157,6 +157,16 @@ export default function Ficha() {
     segundaAntes.current = segundaPronta;
     if (antes === false && segundaPronta && !f.formas.segunda?.nome) setConstruir("segunda");
   }, [f, segundaPronta]);
+
+  // ao escolher o caminho da Bankai final (Plena ou Verdadeira), abre a tela para montar a forma
+  const caminhoB = f?.treinos.caminhoBankai ?? "";
+  const caminhoAntes = useRef<string | null>(null);
+  useEffect(() => {
+    if (!f) return;
+    const antes = caminhoAntes.current;
+    caminhoAntes.current = caminhoB;
+    if (antes === "" && caminhoB) setConstruir("bankai");
+  }, [f, caminhoB]);
 
   const subirNivel = useCallback(() => {
     alterar((x) => ({ nivel: Math.min(20, x.nivel + 1) }));
@@ -458,7 +468,7 @@ export default function Ficha() {
         </section>
       )}
 
-      {aba === "Treinamento" && <AbaTreinamento f={f} c={c} alterar={alterar} />}
+      {aba === "Treinamento" && <AbaTreinamento f={f} c={c} alterar={alterar} onMontar={setConstruir} />}
 
       {aba === "Evolução" && <Evolucao f={f} c={c} alterar={alterar} subir={subirNivel} onForma={setConstruir} onSub={() => setSubAberta(true)} />}
 
@@ -628,7 +638,14 @@ function Evolucao({ f, c, alterar, subir, onForma, onSub }: { f: TFicha; c: Retu
               {classe.subclasses.map((s) => <option key={s}>{s}</option>)}
             </select>
           ) : (
-            <input value={f.subclasse} onChange={(e) => alterar({ subclasse: e.target.value })} placeholder="Subclasse de outra classe" aria-label="Subclasse" />
+            <>
+              <input className="seletor-busca" value={f.subclasse} onChange={(e) => alterar({ subclasse: e.target.value })} placeholder="Subclasse de outra classe" aria-label="Subclasse" />
+              <div className="chips">
+                {CLASSES.filter((x) => x.id !== classe.id && x.tipo === "shinigami").flatMap((x) => x.subclasses).map((sc) => (
+                  <button key={sc} type="button" className={`chip chip-btn ${f.subclasse === sc ? "on" : ""}`} onClick={() => alterar({ subclasse: sc })}>{sc}</button>
+                ))}
+              </div>
+            </>
           )}
         </div>
       )}
