@@ -70,6 +70,11 @@ export function danosDaClasse(f: Ficha, c: Calculo): DanoClasse[] {
       }
     }
   }
+  // Visored que aprendeu o Cero (treinamento): 8 PR, 6d8 + Espírito ou Mente
+  if (f.origem === "visored" && f.treinos.feitos.includes("visored-3")) {
+    const atrCero = Math.max(c.atr.esp, c.atr.men);
+    out.push({ nome: "Cero (Visored)", fonte: "Origem", dano: `6d8+${atrCero}`, tipo: "Energia", custo: "8 PR", nota: `Ação, à distância. Se o alvo falhar na salvaguarda de Constituição, sofre mais 4d8. Cada 2 PR a mais somam +1d8 (máximo 12d8). CD ${8 + c.prof + atrCero}.`, acerto: true });
+  }
   // Schrift de dano: poder de tema que cresce com o nível e fica completo com a Vollständig
   const sch = quincy ? schriftDaFicha(f) : undefined;
   if (sch?.dano) {

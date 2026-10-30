@@ -1,3 +1,4 @@
+import { efeitoMascara } from "./mascara";
 import { somaSituacoes } from "./situacionais";
 import { ataquesHueco, danoFixoHueco } from "./hueco";
 import { bonusEscudo, type Melhoria } from "./melhorias";
@@ -487,6 +488,10 @@ export interface Treinos {
   geralDias: number;
   /** forma final da Bankai (20º nível): plena ou verdadeira */
   caminhoBankai: "" | "plena" | "verdadeira";
+  /** Máscara Hollow escolhida pelo Visored (permanente) */
+  mascara?: "" | "conquistador" | "predador" | "equilibrio";
+  /** turnos que a máscara dura (1d4 na primeira vez, cresce com o treino) */
+  mascaraMax?: number;
 }
 
 export type Liberacao = "" | "shikai" | "bankai" | "resurreccion" | "terror" | "vollstandig" | "mascara";
@@ -767,6 +772,8 @@ export interface Calculo {
   /** bônus na CD dos Kidōs */
   /** Dano extra de cada Hadō pela Maestria de Hadō do Kidōshū (a Shikai e a Bankai somam por fora). */
   danoHado: number;
+  /** dados extras nas técnicas de Zanpakutou, Hadō e Bakudō pela Máscara Hollow ativa */
+  dadosTecnicaMascara: number;
   cdKido: number;
   /** quanto cada essência reduz o custo de liberação */
   reducaoLib: EfeitoSoma["reducaoLib"];
@@ -846,6 +853,7 @@ export function calcular(f: Ficha): Calculo {
   const sit = somaSituacoes(f, { n, prof, atr });
   cr += sit.cr + bonusEscudo(f);
 
+  const mk = efeitoMascara(f, prof, n);
   let rdFisExtra = 0;
   let rdEsoExtra = 0;
   let deslocExtra = 0;
@@ -909,8 +917,8 @@ export function calcular(f: Ficha): Calculo {
     pr,
     cr,
     desloc: Math.max(ef.desloc + deslocExtra + px.desloc + sit.desloc, f.estado.liberado === "terror" ? 12 : 0),
-    rdFis: ef.rdFis + rdFisExtra + px.rdFis,
-    rdEso: ef.rdEso + rdEsoExtra + px.rdEso,
+    rdFis: Math.max(ef.rdFis + rdFisExtra + px.rdFis, mk.rd),
+    rdEso: Math.max(ef.rdEso + rdEsoExtra + px.rdEso, mk.rd),
     iniciativa: (ef.iniMente ? Math.max(atr.des, atr.men) : atr.des) + px.iniciativa,
     // Ritter: armas Quincy corpo a corpo causam +3 de dano do 3º ao 9º nível
     danoCorpo: ef.danoCorpo + px.danoCorpo + sit.danoCorpo + (f.classe === "ritter" && n >= 3 && n <= 9 ? 3 : 0) + danoFixoHueco(f, prof) + (f.classe === "ritter" ? vollDano : 0) + (f.classe === "ritter" && n >= 10 ? prof : 0),
@@ -927,11 +935,12 @@ export function calcular(f: Ficha): Calculo {
     proximoXp,
     avisos,
     passivas,
-    cdKido: 8 + prof + atr.esp + px.cdKido + (f.classe === "kidoshu" ? (n >= 16 ? 2 : n >= 9 ? 1 : 0) : 0),
+    cdKido: 8 + prof + atr.esp + px.cdKido + mk.cd + (f.classe === "kidoshu" ? (n >= 16 ? 2 : n >= 9 ? 1 : 0) : 0),
     danoHado: f.classe === "kidoshu" ? prof * (n >= 18 ? 4 : n >= 13 ? 3 : n >= 8 ? 2 : n >= 3 ? 1 : 0) : 0,
     reducaoLib: px.reducaoLib,
     danoGeral: sit.danoGeral + formaDano + (f.classe === "schutze" ? vollDano + (n >= 3 ? prof + Math.floor((prof * n * n) / 200) : 0) : 0),
-    danoDados: sit.dados,
+    danoDados: mk.dadosGolpe ? [...sit.dados, `${mk.dadosGolpe}d8`] : sit.dados,
+    dadosTecnicaMascara: mk.dadosTecnica,
     acertoCorpo: sit.acertoCorpo + formaAtq + (f.classe === "ritter" ? vollAtq : 0),
     acertoDist: sit.acertoDist + formaAtq + (f.classe === "schutze" ? vollAtq : 0),
   };

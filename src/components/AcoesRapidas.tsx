@@ -7,6 +7,7 @@ import { Dica } from "./Dica";
 import { custoBankai, nivelLiberacao } from "../regras/liberacoes";
 import { classePorId, type Calculo, type Ficha, type Liberacao } from "../regras/ficha";
 import { efeito as som } from "../lib/som";
+import { MASCARAS, mascaraAtiva, tempMascara, type TipoMascara } from "../regras/mascara";
 
 export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alterar: (p: Partial<Ficha>) => void; r: Rolagens }) {
   const classe = classePorId(f.classe);
@@ -105,7 +106,60 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
     setMsg("Novo turno com a Segunda Etapa ativa: −2 PR.");
   };
 
+  const tr = f.treinos;
+  const mascaraGasta = e.usos["mascara-turnos"] ?? 0;
+  const mascaraRecarga = e.usos["mascara-recarga"] ?? 0;
+  const setTreinos = (p: Partial<Ficha["treinos"]>) => alterar({ treinos: { ...f.treinos, ...p } });
+  /** Tira a máscara: no fim do tempo fica Esgotado; antes dele, só entra em recarga (dobro do tempo usado). */
+  const tirarMascara = (porTempo: boolean) => {
+    const usos = { ...e.usos };
+    delete usos["mascara-turnos"];
+    const temp = tempMascara(mascaraAtiva(f));
+    const prAtual = temp.pr ? Math.min(c.pr, f.prAtual) : f.prAtual;
+    if (porTempo) {
+      alterar({ prAtual, estado: { ...f.estado, liberado: "", usos, condicoes: e.condicoes.includes("Esgotado") ? e.condicoes : [...e.condicoes, "Esgotado"] } });
+      setMsg("O tempo da máscara acabou: ela se desfez e você ficou Esgotado.");
+    } else {
+      usos["mascara-recarga"] = Math.max(1, 2 * mascaraGasta);
+      alterar({ prAtual, estado: { ...f.estado, liberado: "", usos } });
+      setMsg(`Máscara retirada: em recarga por ${usos["mascara-recarga"]} turno(s). Você não ficou Esgotado.`);
+    }
+  };
+  const ativarMascara = () => {
+    if (!tr.mascara) return setMsg("Escolha a sua Máscara Hollow antes de ativá-la.");
+    if (mascaraRecarga > 0) return setMsg(`A máscara está em recarga por mais ${mascaraRecarga} turno(s).`);
+    let max = tr.mascaraMax ?? 0;
+    if (!max) { max = 1 + Math.floor(Math.random() * 4); setTreinos({ mascaraMax: max }); }
+    const custo = custoLib("mascara");
+    const t = tempMascara(tr.mascara as TipoMascara);
+    const usos = { ...e.usos, "mascara-turnos": 1 };
+    alterar({
+      prAtual: Math.max(0, f.prAtual - custo) + Math.floor(c.pr * t.pr),
+      treinos: { ...f.treinos, mascaraMax: max },
+      estado: { ...f.estado, liberado: "mascara", usos, pvTemp: Math.max(e.pvTemp, Math.floor(c.pv * t.pv)) },
+    });
+    som.corte();
+    setMsg(`Máscara ativada (${custo} PR). Ela dura ${max} turno(s), contando este.`);
+  };
+  const novoTurnoMascara = () => {
+    if (e.liberado === "mascara") {
+      const gasta = mascaraGasta + 1;
+      if (gasta > (tr.mascaraMax ?? 1)) return tirarMascara(true);
+      setE({ usos: { ...e.usos, "mascara-turnos": gasta } });
+      setMsg(`Turno ${gasta} de ${tr.mascaraMax ?? 1} com a máscara.`);
+    } else if (mascaraRecarga > 0) {
+      setE({ usos: { ...e.usos, "mascara-recarga": mascaraRecarga - 1 } });
+      setMsg(`Recarga da máscara: faltam ${mascaraRecarga - 1} turno(s).`);
+    }
+  };
+  const treinarMascara = () => {
+    const ganho = Math.max(1, Math.floor((1 + Math.floor(Math.random() * 6)) / 2));
+    setTreinos({ mascaraMax: (tr.mascaraMax ?? 1) + ganho });
+    setMsg(`Teste de Determinação bem-sucedido: a máscara agora dura +${ganho} turno(s).`);
+  };
+
   const liberar = (id: Liberacao) => {
+    if (id === "mascara") return e.liberado === "mascara" ? tirarMascara(false) : ativarMascara();
     if (e.liberado === id) {
       const fim = encerrarForma();
       setE(fim);
@@ -157,6 +211,26 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
           ))}
           {e.liberado === "terror" && <button type="button" className="chip chip-btn" onClick={proximoTurno}>Novo turno (−2 PR)</button>}
           {e.liberado && <span className="ajuda">CR atual {c.cr}.</span>}
+        </div>
+      )}
+
+      {f.origem === "visored" && f.treinos.feitos.includes("visored-2") && (
+        <div className="painel-mascara">
+          <b>Máscara Hollow</b>
+          <div className="acoes-linha">
+            <select value={tr.mascara ?? ""} disabled={!!tr.mascara} onChange={(ev) => setTreinos({ mascara: ev.target.value as TipoMascara })} aria-label="Máscara Hollow">
+              <option value="">Escolher máscara (permanente)</option>
+              {MASCARAS.map((m) => <option key={m.id} value={m.id}>{m.nome}</option>)}
+            </select>
+            <span className="ajuda">{tr.mascaraMax ? `Dura ${tr.mascaraMax} turno(s)` : "Tempo ainda não definido (1d4 na primeira vez)"}</span>
+            {e.liberado === "mascara" && <span className="chip on">Turno {mascaraGasta} de {tr.mascaraMax ?? 1}</span>}
+            {mascaraRecarga > 0 && <span className="chip">Recarga: {mascaraRecarga} turno(s)</span>}
+          </div>
+          {tr.mascara && <p className="ajuda">{MASCARAS.find((m) => m.id === tr.mascara)?.texto}</p>}
+          <div className="acoes-linha">
+            {(e.liberado === "mascara" || mascaraRecarga > 0) && <button type="button" className="chip chip-btn" onClick={novoTurnoMascara}>Novo turno</button>}
+            {tr.mascaraMax ? <button type="button" className="chip chip-btn" onClick={treinarMascara}>Ampliar tempo (teste de Determinação passou)</button> : null}
+          </div>
         </div>
       )}
 

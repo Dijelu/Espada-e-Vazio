@@ -1055,3 +1055,4 @@ img, video, svg { max-width: 100%; }
 .carta-ataque small.ajuda { margin: 0; }
 .carta-ataque .rolar-grupo { display: grid; grid-template-columns: repeat(auto-fit, minmax(84px, 1fr)); gap: 6px; grid-row: auto; grid-column: auto; }
 .carta-ataque .rolar-grupo .rolar { min-height: 44px; font-size: 15px; padding: 0 6px; width: 100%; }
+.painel-mascara{border:1px solid var(--line,#444);border-left:6px solid var(--accent);padding:8px 12px;margin:10px 0}.painel-mascara select{max-width:100%}
