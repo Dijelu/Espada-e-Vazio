@@ -8,6 +8,7 @@ export interface Capitulo {
 }
 
 import lista from "./chapters.json";
+import { textosDoBanco } from "../lib/livroBanco";
 
 export const capitulos: Capitulo[] = lista as Capitulo[];
 
@@ -15,10 +16,16 @@ const arquivos = import.meta.glob("./livro/*.md", { query: "?raw", import: "defa
   string,
   () => Promise<string>
 >;
-export function carregarCapitulo(c: Capitulo): Promise<string> {
+/** Texto do capítulo: vem do banco; na falta dele, usa o arquivo guardado junto do site. */
+export async function carregarCapitulo(c: Capitulo): Promise<string> {
+  const doBanco = (await textosDoBanco()).get(c.slug);
+  if (doBanco) return doBanco;
   const f = arquivos["./livro/" + c.file];
-  return f ? f() : Promise.resolve("");
+  return f ? f() : "";
 }
+
+/** Arquivos de capítulo guardados junto do site (usados só para enviar ao banco). */
+export const arquivosDoLivro = arquivos;
 
 export function slugify(t: string): string {
   return t

@@ -18,6 +18,7 @@ const Fichas = lazy(() => import("./pages/Fichas"));
 const NovaFicha = lazy(() => import("./pages/NovaFicha"));
 const Ficha = lazy(() => import("./pages/Ficha"));
 const Conta = lazy(() => import("./pages/Conta"));
+const ImportarLivro = lazy(() => import("./pages/ImportarLivro"));
 
 export default function App() {
   const [busca, setBusca] = useState(false);
@@ -66,6 +67,7 @@ export default function App() {
         <Route path="/ferramentas" element={<Ferramentas />} />
         <Route path="/ferramentas/simulador" element={<Simulador />} />
         <Route path="/conta" element={<Conta />} />
+        <Route path="/admin/livro" element={<RequerLogin><ImportarLivro /></RequerLogin>} />
         <Route path="*" element={<EmBreve titulo="Página não encontrada" texto="Esse caminho não existe." />} />
       </Routes>
       </Suspense>
