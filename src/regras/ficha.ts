@@ -845,10 +845,17 @@ export function calcular(f: Ficha): Calculo {
   let rdFisExtra = 0;
   let rdEsoExtra = 0;
   let deslocExtra = 0;
-  // Vollständig do Ritter (arma espiritual corpo a corpo): ataque +1 (12º–16º), +2 (17º–19º), +4 (20º); dano +2, depois +3; CR +1
-  const vollRitter = f.estado.liberado === "vollstandig" && f.classe === "ritter" && n >= 12;
-  const vollAtq = vollRitter ? (n >= 20 ? 4 : n >= 17 ? 2 : 1) : 0;
-  const vollDano = vollRitter ? (n >= 17 ? 3 : 2) : 0;
+  // Vollständig dos Quincy: bônus de ataque, dano e CR do livro. Ritter (arma corpo a corpo): 12º; Schütze (à distância): 13º, e o segundo degrau vem 5 níveis depois.
+  const vollQ = f.estado.liberado === "vollstandig" && (f.classe === "ritter" || f.classe === "schutze");
+  const vollIni = f.classe === "ritter" ? 12 : 13;
+  const vollOk = vollQ && n >= vollIni;
+  const vollAtq = vollOk ? (n >= 20 ? 4 : n >= vollIni + 5 ? 2 : 1) : 0;
+  const vollDano = vollOk ? (n >= vollIni + 5 ? 3 : 2) : 0;
+  const vollRitter = vollOk;
+  // Formas liberadas dão dano extra a cada golpe: Shikai +proficiência, Bankai +2 × proficiência (+1 de ataque), Segunda Etapa +2 × proficiência
+  const lib = f.estado.liberado;
+  const formaDano = (lib === "shikai" ? prof : 0) + (lib === "bankai" ? 2 * prof : 0) + (lib === "terror" ? 2 * prof : 0);
+  const formaAtq = lib === "bankai" ? 1 : 0;
   if (f.estado.liberado === "vollstandig") {
     const pk = f.formas?.vollstandig?.picks ?? {};
     cr += 3 * (pk["defesa"] ?? 0);
@@ -902,7 +909,7 @@ export function calcular(f: Ficha): Calculo {
     rdEso: ef.rdEso + rdEsoExtra + px.rdEso,
     iniciativa: (ef.iniMente ? Math.max(atr.des, atr.men) : atr.des) + px.iniciativa,
     // Ritter: armas Quincy corpo a corpo causam +3 de dano do 3º ao 9º nível
-    danoCorpo: ef.danoCorpo + px.danoCorpo + sit.danoCorpo + (f.classe === "ritter" && n >= 3 && n <= 9 ? 3 : 0) + danoFixoHueco(f, prof) + vollDano,
+    danoCorpo: ef.danoCorpo + px.danoCorpo + sit.danoCorpo + (f.classe === "ritter" && n >= 3 && n <= 9 ? 3 : 0) + danoFixoHueco(f, prof) + (f.classe === "ritter" ? vollDano : 0),
     crEvasao,
     percPassiva: 10 + pericias["percepcao"].total + px.percPassiva,
     saves,
@@ -918,10 +925,10 @@ export function calcular(f: Ficha): Calculo {
     passivas,
     cdKido: 8 + prof + atr.esp + px.cdKido,
     reducaoLib: px.reducaoLib,
-    danoGeral: sit.danoGeral,
+    danoGeral: sit.danoGeral + formaDano + (f.classe === "schutze" ? vollDano : 0),
     danoDados: sit.dados,
-    acertoCorpo: sit.acertoCorpo + vollAtq,
-    acertoDist: sit.acertoDist,
+    acertoCorpo: sit.acertoCorpo + formaAtq + (f.classe === "ritter" ? vollAtq : 0),
+    acertoDist: sit.acertoDist + formaAtq + (f.classe === "schutze" ? vollAtq : 0),
   };
 }
 

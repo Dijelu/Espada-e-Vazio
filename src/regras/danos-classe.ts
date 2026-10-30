@@ -53,6 +53,10 @@ export function danosDaClasse(f: Ficha, c: Calculo): DanoClasse[] {
       if (l) out.push(l);
     }
   }
+  // Vollständig ativa: as Técnicas de Reishi ganham +proficiência d10 de dano de Energia
+  if (quincy && f.estado.liberado === "vollstandig" && f.nivel >= (f.classe === "ritter" ? 12 : 13)) {
+    for (const d of out) d.dano = `${d.dano}+${c.prof}d10`;
+  }
   if (f.classe === "hueco") {
     const n = f.nivel;
     out.push({ nome: "Cero", fonte: "Classe", dano: `${dadosCero(n)}d8+${c.atr.esp}`, tipo: "Energia", custo: "15 PR", nota: "Ação, à distância. Ignora o Hierro.", acerto: true });

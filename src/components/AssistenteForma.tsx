@@ -195,9 +195,9 @@ function modelos(tipo: TipoForma, atr: string): HabForma[] {
   const peq = tipo === "shikai";
   const mk = (nome: string, acao: string, pr: number, dano: string, texto: string): HabForma => ({ id: novoId(), nome, acao, custo: pr ? `${pr} PR` : "", pr: pr || undefined, dano: dano || undefined, texto });
   return [
-    mk("Ataque básico", "Ação", forte ? 15 : peq ? 4 : 10, peq ? `[NIV/2+1]${d}+[${atr}]` : `[NIV/2+3]${d}+[${atr}]`, "Um ataque do tema da sua forma. Descreva como ele se manifesta."),
+    mk("Ataque básico", "Ação", forte ? 15 : peq ? 4 : 10, peq ? `[NIV/2+1]${d}+[${atr}]` : `[NIV/2+${forte ? 4 : 3}]${d}+[${atr}]`, "Um ataque do tema da sua forma. Descreva como ele se manifesta."),
     mk("Golpe em área", "Ação", peq ? 8 : 20, peq ? `[NIV/2+2]${d}+[${atr}]` : `[NIV/2+4]${d}+[${atr}]`, "Atinge criaturas numa área de 6 metros de raio. Salvaguarda de Destreza (CD 8 + proficiência + atributo): dano na falha, metade no sucesso."),
-    mk("Técnica final", "Ação", peq ? 10 : 30, forte ? `[NIV]${d}+[${atr}]` : peq ? `[NIV/2+4]${d}+[${atr}]` : `[NIV/2+5]${d}+[${atr}]`, "O golpe mais forte da sua forma. Só vale a pena em momentos decisivos."),
+    mk("Técnica final", "Ação", peq ? 10 : 30, forte ? `[NIV+4]${d}+[${atr}]` : peq ? `[NIV/2+4]${d}+[${atr}]` : `[NIV/2+5]${d}+[${atr}]`, "O golpe mais forte da sua forma. Só vale a pena em momentos decisivos."),
     mk("Reforço", "Ação bônus", peq ? 3 : 8, "2d10", "O seu próximo ataque no turno causa o dano indicado a mais."),
     mk("Defesa", "Reação", peq ? 4 : 10, "2d10+[PROF]", "Reduz o dano sofrido por você ou por um aliado a 3 metros na quantidade indicada."),
     mk("Proteção", "Ação", peq ? 6 : 15, "[NIV]", "Você e os aliados a até 3 metros ganham PV temporários na quantidade indicada."),
