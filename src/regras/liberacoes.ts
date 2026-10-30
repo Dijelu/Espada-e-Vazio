@@ -215,6 +215,18 @@ export function acoesDaForma(forma: FormaLib): AcaoForma[] {
 
 export const ACOES_DADOS = AC;
 
+/** Modelo de Resurrección do livro que combina com o Caminho do Hueco (para quem ainda não montou a própria). */
+export function modeloResurreccionPadrao(subclasse: string): string {
+  const s = subclasse.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+  if (s.includes("sonido")) return "pantera";
+  if (s.includes("estallido")) return "los-lobos";
+  if (s.includes("glotoner")) return "santa-teresa";
+  if (s.includes("ilusion")) return "murcielago";
+  if (s.includes("ponzona")) return "fornicaras";
+  if (s.includes("reflejo")) return "espejo-negro";
+  return "";
+}
+
 /** Troca os valores entre colchetes pelo número calculado: "[NIV/2+5]d10+[ESP]" vira "10d10+4". */
 /** Calcula uma conta simples (+ − × ÷ e parênteses) sem usar eval, que o site bloqueia por segurança. */
 export function contaSimples(t: string): number {

@@ -461,8 +461,9 @@ Este capítulo não cria Schrift novas: usa apenas as que existem no mangá. A S
 
 - **Obtenção:** no 10º nível, escolha uma Schrift da tabela. Ela pode ter vindo do nascimento, do sangue do Rei Quincy ou de um despertar na batalha. Trocar de Schrift depois só por um evento de história.
 - **Poder de tema:** uma vez por cena, como ação e gastando **10 PR**, você usa o poder de tema da sua Schrift. O alcance é de 18 metros, e a jogada de ataque é de Técnica de Reishi (ou o Teste de Resistência indicado).
-- **Dano de tema:** nas Schrift de dano, o poder causa **proficiência × d8** do tipo indicado.
-- **Com a Vollständig ativa:** o poder pode ser usado **duas vezes por cena**, o dano sobe para **proficiência × d10 + proficiência**, o alcance e a área ficam 50% maiores e o efeito adicional da tabela passa a valer.
+- **Uma habilidade que cresce:** a Schrift começa fraca no 10º nível e evolui com o personagem. Do 10º ao 12º nível ela está **Despertando**: alcance de 9 metros, efeito, área e duração pela metade (arredonde para cima). Do 13º ao 16º está **Dominada**: alcance de 13,5 metros e 75% da área. A partir do 17º nível está **Plena**, com o alcance de 18 metros e o efeito completo.
+- **Dano de tema:** nas Schrift de dano, o poder causa **metade da proficiência × d8** (arredondada para baixo) do 10º ao 12º nível, **75% da proficiência × d8** do 13º ao 16º e **proficiência × d8** a partir do 17º.
+- **Com a Vollständig ativa:** a Schrift fica **completa**: o poder pode ser usado **duas vezes por cena**, o dano sobe para **proficiência × d10 + proficiência**, o alcance é de 27 metros, a área fica 50% maior e o efeito adicional da tabela passa a valer.
 - **Limite:** só um bônus de Schrift vale por turno. Ela não se soma a Força Espiritual ou Precisão Espiritual no mesmo dano.
 - **Schrift de utilidade:** As Schrift marcadas como Utilidade ou Ofensiva na tabela (Miracle, X-Axis, Love, Zombie, Antítese, The Balance e as outras sem tipo de dano) não causam dano de tema. O poder de tema delas está na tabela, e as habilidades completas de Antítese e The Balance seguem logo abaixo.
 

@@ -232,7 +232,7 @@ export default function Ficha() {
 
       <AcoesRapidas f={f} c={c} alterar={alterar} r={rol} />
 
-      <PainelFormaAtiva f={f} c={c} r={rol} alterar={alterar} />
+      <PainelFormaAtiva f={f} c={c} r={rol} alterar={alterar} onEditar={setConstruir} />
 
       {(podeSubir || nPend > 0) && (
         <div className="banner-evolucao" role="status">

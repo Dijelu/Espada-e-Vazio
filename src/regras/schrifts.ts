@@ -50,5 +50,29 @@ export const schriftPendente = (f: Pick<Ficha, "classe" | "nivel" | "schrift">) 
 export const schriftDaFicha = (f: Pick<Ficha, "classe" | "nivel" | "schrift">) =>
   temSchrift(f) && f.nivel >= NIVEL_SCHRIFT ? SCHRIFTS.find((s) => s.id === f.schrift) : undefined;
 
-/** Dano do poder de tema, já com a proficiência. */
-export const danoSchrift = (prof: number, voll: boolean) => (voll ? `${prof}d10+${prof}` : `${prof}d8`);
+/** A Schrift cresce com o nível e fica completa com a Vollständig ativa. */
+export interface EstagioSchrift {
+  nome: string;
+  /** alcance do poder de tema, em metros */
+  alcance: number;
+  /** usos por cena */
+  usos: number;
+  /** quanto do efeito vale (para os poderes sem dano): reduzido pela metade no começo */
+  texto: string;
+}
+export function estagioSchrift(nivel: number, voll: boolean): EstagioSchrift {
+  if (voll) return { nome: "Completa", alcance: 27, usos: 2, texto: "Alcance e área 50% maiores e o efeito adicional vale." };
+  if (nivel <= 12) return { nome: "Despertando", alcance: 9, usos: 1, texto: "Efeito reduzido: alcance, área e duração pela metade (arredonde para cima)." };
+  if (nivel <= 16) return { nome: "Dominada", alcance: 13.5, usos: 1, texto: "Efeito quase completo: alcance e área em 75%, e a duração normal." };
+  return { nome: "Plena", alcance: 18, usos: 1, texto: "Efeito completo fora da Vollständig." };
+}
+
+/** Dano do poder de tema, já com a proficiência: fraco no 10º nível, cresce e fica completo com a Vollständig. */
+export function danoSchrift(prof: number, voll: boolean, nivel = 20) {
+  if (voll) return `${prof}d10+${prof}`;
+  if (nivel <= 12) return `${Math.max(1, Math.floor(prof / 2))}d8`;
+  if (nivel <= 16) return `${Math.max(1, Math.floor(prof * 0.75))}d8`;
+  return `${prof}d8`;
+}
+
+export const CUSTO_SCHRIFT = 10;

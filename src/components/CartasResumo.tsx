@@ -3,6 +3,7 @@ import { CONDICAO_TEXTO } from "../regras/catalogo";
 import { efeitosContinuos, habilidadesDaFicha, usosRestantes } from "../regras/habilidades";
 import { mod, type Calculo, type Ficha } from "../regras/ficha";
 import { ESCALA, idSituacao, situacoesDaFicha } from "../regras/situacionais";
+import { CUSTO_SCHRIFT, estagioSchrift } from "../regras/schrifts";
 import { Passo } from "./FichaPecas";
 import { efeito as som } from "../lib/som";
 
@@ -145,6 +146,20 @@ export function CartasSituacoes({ f, alterar }: { f: Ficha; alterar: (p: Partial
                         <span>PR a mais ({esc.rotuloPasso} a cada {esc.porPasso} PR, até +{teto})</span>
                         <Passo valor={passos} max={teto} rotulo={`PR extras de ${s.nome}`} onChange={(v) => alterar({ estado: { ...f.estado, extras: { ...(f.estado.extras ?? {}), [k]: v } } })} />
                         <b>Custo total: {esc.custoBase + passos * esc.porPasso} PR</b>
+                      </div>
+                    );
+                  })()}
+                  {s.id === "schrift" && (() => {
+                    const voll = f.estado.liberado === "vollstandig";
+                    const est = estagioSchrift(f.nivel, voll);
+                    const gastos = f.estado.usos["schrift"] ?? 0;
+                    const restam = Math.max(0, est.usos - gastos);
+                    return (
+                      <div className="escala-pr">
+                        <span>Schrift <b>{est.nome}</b>: alcance {est.alcance} m · {restam} de {est.usos} uso(s) na cena</span>
+                        <button type="button" className="btn-mini" disabled={restam === 0 || f.prAtual < CUSTO_SCHRIFT} onClick={() => { alterar({ prAtual: Math.max(0, f.prAtual - CUSTO_SCHRIFT), estado: { ...f.estado, usos: { ...f.estado.usos, schrift: gastos + 1 } } }); som.energia(); }}>
+                          Usar ({CUSTO_SCHRIFT} PR)
+                        </button>
                       </div>
                     );
                   })()}

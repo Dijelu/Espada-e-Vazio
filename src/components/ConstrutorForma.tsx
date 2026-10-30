@@ -16,7 +16,7 @@ import { novoId } from "./FichaPecas";
 import { AssistenteForma } from "./AssistenteForma";
 import { SeletorSchrift } from "./SeletorSchrift";
 import { schriftDaFicha } from "../regras/schrifts";
-import { acoesDaForma, comoHabilidades, habilidadesDaForma, maiorCustoPR, resolverDano, danoDaAcao, sugerirCusto } from "../regras/liberacoes";
+import { acoesDaForma, modeloResurreccionPadrao, comoHabilidades, habilidadesDaForma, maiorCustoPR, resolverDano, danoDaAcao, sugerirCusto } from "../regras/liberacoes";
 import type { Calculo } from "../regras/ficha";
 import type { Rolagens } from "./Rolador";
 
@@ -433,11 +433,17 @@ function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg }: { f: Ficha; c: 
 }
 
 /** Painel especial que aparece enquanto a Bankai, a Resurrección ou a Vollständig está ativa. */
-export function PainelFormaAtiva({ f, c, r, alterar }: { f: Ficha; c: Calculo; r: Rolagens; alterar: (p: Partial<Ficha>) => void }) {
+export function PainelFormaAtiva({ f, c, r, alterar, onEditar }: { f: Ficha; c: Calculo; r: Rolagens; alterar: (p: Partial<Ficha>) => void; onEditar?: (t: TipoForma) => void }) {
   const [msg, setMsg] = useState("");
   const tipo = f.estado.liberado as string;
-  const forma = tipo === "shikai" || tipo === "bankai" || tipo === "resurreccion" || tipo === "vollstandig" ? f.formas[tipo] : undefined;
-  if (!forma || !forma.nome) return null;
+  const tipoForma = tipo === "shikai" || tipo === "bankai" || tipo === "resurreccion" || tipo === "vollstandig" ? (tipo as TipoForma) : undefined;
+  const definida = tipoForma ? f.formas[tipoForma] : undefined;
+  // liberou sem ter montado a forma: mostra o painel com o que o livro já tem, em vez de nada
+  const provisoria: FormaLib | undefined = tipoForma && !(definida && definida.nome)
+    ? { ...vazia(tipoForma), custo: 0, nome: TIPO_FORMA_NOME[tipoForma], modelo: tipoForma === "resurreccion" ? modeloResurreccionPadrao(f.subclasse) : "" }
+    : undefined;
+  const forma = provisoria ?? definida;
+  if (!forma || !tipoForma) return null;
   const lista = habilidadesDaForma(forma);
   return (
     <section className={`painel-forma painel-${forma.tipo}`} aria-label={`Painel da ${TIPO_FORMA_NOME[forma.tipo]}`}>
@@ -459,6 +465,7 @@ export function PainelFormaAtiva({ f, c, r, alterar }: { f: Ficha; c: Calculo; r
       {forma.aparencia && <p>{forma.aparencia}</p>}
       {forma.traco && <p><b>Traço:</b> {forma.traco}</p>}
       {forma.pontoFraco && <p><b>Ponto fraco:</b> {forma.pontoFraco}</p>}
+      {provisoria && <p className="ajuda">Você ainda não montou a sua {TIPO_FORMA_NOME[tipoForma]}. {lista.length > 0 ? "Estas são as técnicas do modelo do livro para o seu Caminho." : "Monte as habilidades para vê-las aqui."} {onEditar && <button type="button" className="link" onClick={() => onEditar(tipoForma)}>Montar a minha agora</button>}</p>}
       {msg && <p className="ajuda" role="status">{msg}</p>}
       <div className="cartas-hab">
         {lista.map((h) => (
