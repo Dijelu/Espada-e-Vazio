@@ -1027,3 +1027,4 @@ img, video, svg { max-width: 100%; }
 @keyframes kon-pula { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 @media (prefers-reduced-motion: reduce) { .kon-img { animation: none; } }
 @media (max-width: 560px) { .kon-img { width: 80px; } .kon-balao { margin-bottom: 24px; } }
+.kon-volta { margin: 0 0 12px; text-align: right; } .kon-volta .link { background: none; border: 0; padding: 0; color: var(--muted); font-size: 13px; text-decoration: underline; cursor: pointer; }

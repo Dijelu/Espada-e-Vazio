@@ -11,8 +11,8 @@ const DICAS = [
     "A subclasse vem depois, quando a classe pede. Sem pressa!",
   ],
   [
-    "Os atributos são a sua força bruta. Cada um vai até 15 no começo, e o modificador sai da conta sozinho.",
-    "Dica do Kon: ponha os números mais altos no que a sua classe mais usa.",
+    "Todos os atributos começam em 0. Você tem 12 pontos para distribuir, e cada atributo pode ficar com no máximo 4 na criação. Os bônus da Origem entram depois, sozinhos.",
+    "Dica do Kon: ponha os pontos mais altos no que a sua classe mais usa.",
   ],
   [
     "Perícias são o que você sabe fazer fora da luta: perceber, enganar, correr, estudar. Marque as que a sua classe e a sua história pedem.",
@@ -44,7 +44,7 @@ export function KonAjuda({ passo }: { passo: number }) {
   const img = passo % 2 === 0 ? "/art/kon-fala.png" : "/art/kon-pensa.png";
 
   if (!aberto) {
-    return <button type="button" className="kon-chamar" onClick={() => fechar(true)} aria-label="Chamar o Kon para ajudar"><img src={img} alt="" /></button>;
+    return <p className="kon-volta"><button type="button" className="link" onClick={() => fechar(true)}>Chamar o Kon para ajudar</button></p>;
   }
   return (
     <aside className="kon" aria-label="Dica do Kon" role="note">
