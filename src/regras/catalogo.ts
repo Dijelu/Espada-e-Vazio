@@ -273,13 +273,13 @@ export const TREINOS: Treino[] = [
   },
   {
     id: "terror",
-    nome: "Terror do Vazio (Vasto Lorde)",
+    nome: "Segunda Etapa (Vasto Lorde)",
     resumo: "A segunda etapa do Hollow, depois da Resurrección: fome profunda, 8 Pontos de Fome e um duelo contra uma cópia sua com a Resurrección ativa. Só vale a partir do 15º nível.",
-    capitulo: "Treinamento do Terror do Vazio",
+    capitulo: "Treinamento da Segunda Etapa",
     etapas: [
       { id: "ter-jejum", nome: "Etapa 1: Fome Profunda", texto: "7 dias sem devorar nada. Falhar só obriga a repetir.", teste: "Constituição CD 15", nivelMin: 15 },
       { id: "ter-pf", nome: "Etapa 2: 8 Pontos de Fome", texto: "Os PF da Trilha da Fome continuam valendo: chegue a 8 PF no total. Cada PF acima de 8 dá +1 de acerto no duelo, até +2.", nivelMin: 15 },
-      { id: "ter-duelo", nome: "Etapa 3: Duelo contra o Terror", texto: "Duelo 1v1 contra uma cópia sua, com a Resurrección ativa. Falhar só obriga a repetir após 1 dia.", nivelMin: 15 },
+      { id: "ter-duelo", nome: "Etapa 3: Duelo da Segunda Etapa", texto: "Duelo 1v1 contra uma cópia sua, com a Resurrección ativa. Falhar só obriga a repetir após 1 dia.", nivelMin: 15 },
     ],
     aplica: (f, t) => t === "hollow" && (f.classe === "hueco" || f.classe === "vazio") && f.nivel >= 12,
   },

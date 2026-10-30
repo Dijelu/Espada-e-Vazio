@@ -343,9 +343,9 @@ Só o primeiro teste, de Constituição contra CD 12, é igual ao da Bankai. Dep
 3. Anote os PF na ficha, como se fossem XP: eles saem de combates que já aconteceriam.
 4. Prepare o duelo como um combate normal, usando a ficha do jogador sem Resurrección.
 
-## Treinamento do Terror do Vazio
+## Treinamento da Segunda Etapa
 
-O Terror do Vazio é a forma de Vasto Lorde: o Hollow deixa de ser apenas uma fera que cresceu e vira algo que o mundo aprende a temer. É a segunda etapa de um Hueco ou de um Vazio, depois da Resurrección. Assim como a Resurrección, o treinamento é uma porta de acesso e não muda nenhum número da forma liberada.
+A Segunda Etapa é a forma de Vasto Lorde: o Hollow deixa de ser apenas uma fera que cresceu e vira algo que o mundo aprende a temer. Vem depois da Resurrección, para um Hueco ou um Vazio. Assim como a Resurrección, o treinamento é uma porta de acesso e não muda nenhum número da forma liberada.
 
 **Pré-requisito:** classe Hueco ou Vazio, com a Resurrección concluída. O treinamento só vale a partir do 15º nível.
 
@@ -358,18 +358,18 @@ Durante 7 dias, o Hollow não devora nem absorve nada. A fome agora é uma prese
 
 ### Etapa 2: 8 Pontos de Fome
 
-Os Pontos de Fome (PF) funcionam como na Trilha da Fome e continuam valendo depois da Resurrección. Para o Terror, o Hollow precisa chegar a **8 PF** no total. Cada PF acima de 8 dá +1 de acerto no duelo, até +2.
+Os Pontos de Fome (PF) funcionam como na Trilha da Fome e continuam valendo depois da Resurrección. Para a Segunda Etapa, o Hollow precisa chegar a **8 PF** no total. Cada PF acima de 8 dá +1 de acerto no duelo, até +2.
 
-### Etapa 3: Duelo contra o Terror
+### Etapa 3: Duelo da Segunda Etapa
 
 Em uma cena isolada, o Hollow enfrenta uma cópia de si mesmo, com a mesma ficha e com a Resurrección ativa. O duelo é um 1v1 normal. PV, PR e condições voltam ao estado anterior quando a cena termina.
 
-- **Sucesso:** a máscara não se rompe, ela é arrancada. O treinamento está concluído e o Terror passa a ser liberado pela ficha.
+- **Sucesso:** a máscara não se rompe, ela é arrancada. O treinamento está concluído e a Segunda Etapa passa a ser liberada pela ficha.
 - **Falha:** o Hollow acorda faminto, sem dano real, e repete o duelo após 1 dia de downtime. Os PF se mantêm.
 
-### O Terror liberado
+### A Segunda Etapa liberada
 
-O Terror substitui a Resurrección enquanto estiver ativo (os números não se somam). É liberado com uma ação bônus e dura até o fim da cena.
+A Segunda Etapa substitui a Resurrección enquanto estiver ativa (os números não se somam). É liberado com uma ação bônus e dura até o fim da cena.
 
 | | Hueco | Vazio |
 |---|---|---|
@@ -380,6 +380,6 @@ O Terror substitui a Resurrección enquanto estiver ativo (os números não se s
 | Deslocamento | 12 metros, com voo | 12 metros, com voo |
 | Defesa | Imune à condição Amedrontado | Imune à condição Amedrontado |
 
-**Preço do Terror.** No início de cada turno do Hollow, ele perde 2 PR. Quando a forma termina, o Hollow fica com 1 nível de Esgotado até um descanso longo. O Mestre pode pedir um teste de Determinação para quem tentar liberar o Terror com menos de metade dos PV.
+**Preço da Segunda Etapa.** No início de cada turno do Hollow, ele perde 2 PR. Quando a forma termina, o Hollow fica com 1 nível de Esgotado até um descanso longo. O Mestre pode pedir um teste de Determinação para quem tentar liberar o Terror com menos de metade dos PV.
 
 Como usar na mesa: comece a Fome Profunda numa pausa de 7 dias, anote os PF como XP e prepare o duelo como um combate normal.

@@ -60,7 +60,7 @@ export function EfeitosAtivos({ f, c }: { f: Ficha; c: Calculo }) {
   if (c.iniciativa !== c.atr.des) chips.push(`Iniciativa com Mente (${mod(c.iniciativa)})`);
   if (c.desloc !== 9) chips.push(`Deslocamento ${c.desloc} m`);
   if (c.cdKido !== c.cd) chips.push(`CD dos Kidōs ${c.cdKido}`);
-  if (f.estado.liberado) chips.push(`Liberação: ${{ shikai: "Shikai", bankai: "Bankai", resurreccion: "Resurrección", terror: "Terror do Vazio", vollstandig: "Vollständig", mascara: "Máscara Hollow", "": "" }[f.estado.liberado]}`);
+  if (f.estado.liberado) chips.push(`Liberação: ${{ shikai: "Shikai", bankai: "Bankai", resurreccion: "Resurrección", terror: "Segunda Etapa", vollstandig: "Vollständig", mascara: "Máscara Hollow", "": "" }[f.estado.liberado]}`);
 
   return (
     <div className="caixa">

@@ -830,7 +830,7 @@ export function calcular(f: Ficha): Calculo {
     if (c?.id === "hueco") cr += prof + 1;
     if (c?.id === "vazio") cr += n >= 16 ? prof : prof - 1;
   }
-  // Terror do Vazio (Vasto Lorde) substitui a Resurrección
+  // Segunda Etapa (Vasto Lorde) substitui a Resurrección
   if (f.estado.liberado === "terror") {
     if (c?.id === "hueco") cr += prof + 2;
     if (c?.id === "vazio") cr += prof + 1;

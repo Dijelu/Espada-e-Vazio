@@ -73,7 +73,7 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
   }
   if (tipo === "hollow" && (treinoConcluido(f, "resurreccion") || pronta("resurreccion") || f.estado.liberado === "resurreccion")) libs.push({ id: "resurreccion", nome: "Resurrección" });
   if (tipo === "quincy" && (pronta("vollstandig") || f.nivel >= nivelLiberacao(f.classe, tipo, "vollstandig") || f.estado.liberado === "vollstandig")) libs.push({ id: "vollstandig", nome: "Vollständig" });
-  if (tipo === "hollow" && treinoConcluido(f, "terror")) libs.push({ id: "terror", nome: "Terror do Vazio" });
+  if (tipo === "hollow" && treinoConcluido(f, "terror")) libs.push({ id: "terror", nome: "Segunda Etapa" });
   if (f.origem === "visored" && f.treinos.feitos.includes("visored-2")) libs.push({ id: "mascara", nome: "Máscara Hollow" });
 
   const custoLib = (id: Liberacao) => {
@@ -102,14 +102,14 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
   const proximoTurno = () => {
     if (e.liberado !== "terror") return;
     alterar({ prAtual: Math.max(0, f.prAtual - 2) });
-    setMsg("Novo turno com o Terror ativo: −2 PR.");
+    setMsg("Novo turno com a Segunda Etapa ativa: −2 PR.");
   };
 
   const liberar = (id: Liberacao) => {
     if (e.liberado === id) {
       const fim = encerrarForma();
       setE(fim);
-      if (fim.condicoes) setMsg(id === "terror" ? "Terror encerrado: você ficou Esgotado até o descanso longo." : "Bankai Verdadeira encerrada: você ficou Esgotado até o descanso curto.");
+      if (fim.condicoes) setMsg(id === "terror" ? "Segunda Etapa encerrada: você ficou Esgotado até o descanso longo." : "Bankai Verdadeira encerrada: você ficou Esgotado até o descanso curto.");
       return;
     }
     const custo = custoLib(id);
