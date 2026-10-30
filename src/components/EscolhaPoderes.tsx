@@ -69,7 +69,6 @@ export function EscolhaPoderes({ f, mudar }: { f: Ficha; mudar: (p: Partial<Fich
 
   const [tipoKido, setTipoKido] = useState<"hadou" | "bakudou">("hadou");
   const [busca, setBusca] = useState("");
-  const [aberto, setAberto] = useState<string>("");
 
   const grupos = useMemo(() => {
     const m = new Map<string, typeof todos>();

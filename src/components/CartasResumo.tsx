@@ -1,5 +1,4 @@
 import { useState } from "react";
-import type { Rolagens } from "./Rolador";
 import { CONDICAO_TEXTO } from "../regras/catalogo";
 import { efeitosContinuos, habilidadesDaFicha, usosRestantes } from "../regras/habilidades";
 import { mod, type Calculo, type Ficha } from "../regras/ficha";
@@ -7,7 +6,7 @@ import { idSituacao, situacoesDaFicha } from "../regras/situacionais";
 import { efeito as som } from "../lib/som";
 
 /** Habilidades da Origem que se usam em jogo, em forma de carta. */
-export function CartasHabilidades({ f, c, alterar, r }: { f: Ficha; c: Calculo; alterar: (p: Partial<Ficha>) => void; r: Rolagens }) {
+export function CartasHabilidades({ f, c, alterar }: { f: Ficha; c: Calculo; alterar: (p: Partial<Ficha>) => void }) {
   const lista = habilidadesDaFicha(f);
   const [msg, setMsg] = useState("");
   if (lista.length === 0) return null;

@@ -1,20 +1,23 @@
-import { useEffect, useRef, useState } from "react";
+import { Suspense, lazy, useEffect, useRef, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Topbar from "./components/Topbar";
 import Busca from "./components/Busca";
 import Capa from "./pages/Capa";
-import Livro from "./pages/Livro";
-import Capitulo from "./pages/Capitulo";
-import Ferramentas from "./pages/Ferramentas";
-import Simulador from "./pages/Simulador";
 import EmBreve from "./pages/EmBreve";
-import Fichas from "./pages/Fichas";
-import NovaFicha from "./pages/NovaFicha";
-import Ficha from "./pages/Ficha";
-import Conta from "./pages/Conta";
 import { RequerLogin } from "./components/Auth";
+import { ErroTela } from "./components/ErroTela";
 import { efeito } from "./lib/som";
 import { EfeitoLiberacao } from "./components/EfeitoLiberacao";
+
+// páginas carregadas só quando abertas, para o site abrir mais rápido
+const Livro = lazy(() => import("./pages/Livro"));
+const Capitulo = lazy(() => import("./pages/Capitulo"));
+const Ferramentas = lazy(() => import("./pages/Ferramentas"));
+const Simulador = lazy(() => import("./pages/Simulador"));
+const Fichas = lazy(() => import("./pages/Fichas"));
+const NovaFicha = lazy(() => import("./pages/NovaFicha"));
+const Ficha = lazy(() => import("./pages/Ficha"));
+const Conta = lazy(() => import("./pages/Conta"));
 
 export default function App() {
   const [busca, setBusca] = useState(false);
@@ -50,6 +53,8 @@ export default function App() {
       <Topbar onBuscar={() => setBusca(true)} />
       <Busca aberto={busca} onFechar={() => setBusca(false)} />
       <EfeitoLiberacao />
+      <ErroTela>
+      <Suspense fallback={<main className="page"><p>Carregando…</p></main>}>
       <Routes>
         <Route path="/" element={<Capa />} />
         <Route path="/livro" element={<Livro />} />
@@ -63,6 +68,8 @@ export default function App() {
         <Route path="/conta" element={<Conta />} />
         <Route path="*" element={<EmBreve titulo="Página não encontrada" texto="Esse caminho não existe." />} />
       </Routes>
+      </Suspense>
+      </ErroTela>
       <footer className="footer">
         Obra de fã, sem fins lucrativos. Bleach © Tite Kubo / Shueisha. Créditos e fontes no último capítulo do livro.
       </footer>
