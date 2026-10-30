@@ -924,10 +924,15 @@ export function calcular(f: Ficha): Calculo {
 export function ataquesPorAcao(f: Ficha): number {
   if (f.classe === "hueco") return ataquesHueco(f);
   const tem = (id: string) => f.talentos.some((t) => t === id || t.endsWith("/" + id));
-  if (tem("golpe-superior")) return 4;
-  if (tem("golpe-triplo")) return 3;
-  if (tem("ataque-extra")) return 2;
-  return 1;
+  let n = tem("golpe-superior") ? 4 : tem("golpe-triplo") ? 3 : tem("ataque-extra") ? 2 : 1;
+  // Tokubetsu recebe Ataque Extra no 5º nível pela subclasse de combate (Zanjutsu ou Hakuda), sem talento
+  if (f.classe === "tokubetsu" && f.nivel >= 5) {
+    const combate = CLASSES.filter((x) => x.id === "zanjutsu" || x.id === "hakuda").some((x) => x.subclasses.includes(f.subclasse));
+    if (combate) n = Math.max(n, 2);
+  }
+  // Médico de Combate (Kyūgo): Ataque Extra no 5º, Golpe Triplo no 11º e Golpe Superior no 15º nível
+  if (f.classe === "kyugo" && f.subclasse === "Médico de Combate") n = Math.max(n, f.nivel >= 15 ? 4 : f.nivel >= 11 ? 3 : f.nivel >= 5 ? 2 : 1);
+  return n;
 }
 
 export function ataqueBonus(f: Ficha, c: Calculo, a: Ataque) {

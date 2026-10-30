@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { listarFichas, type FichaSalva } from "../lib/fichas";
-import { ataqueBonus, danoAtributo, calcular, type Ficha } from "../regras/ficha";
+import { ataqueBonus, ataquesPorAcao, danoAtributo, calcular, type Ficha } from "../regras/ficha";
 import { ataqueMelhorado } from "../regras/melhorias";
+import { acertoClasse, danosDaClasse } from "../regras/danos-classe";
 import { duelo, mediaDano, pareado, veredito, FATOR_K, type Acao, type Combatente, type Resultado } from "../regras/simulador";
 
 let seq = 0;
@@ -17,8 +18,14 @@ function deFicha(nome: string, f: Ficha): Combatente {
     const m = ataqueMelhorado(f, a);
     const geral = c.danoGeral > 0 ? `+${c.danoGeral}` : "";
     const corpo = a.distancia ? "" : (c.danoCorpo > 0 ? `+${c.danoCorpo}` : "") + c.danoDados.map((x) => `+${x}`).join("");
-    return acaoVazia({ nome: a.nome, acerto: ataqueBonus(f, c, a), dano: m.dano + danoAtributo(c, a) + geral + corpo, crit: m.crit ?? 20, mult: m.mult ?? 2 });
+    return acaoVazia({ nome: a.nome, acerto: ataqueBonus(f, c, a), golpes: ataquesPorAcao(f), dano: m.dano + danoAtributo(c, a) + geral + corpo, crit: m.crit ?? 20, mult: m.mult ?? 2 });
   });
+  // ataques da classe (Cero, técnicas de Reishi): uma ação por uso, dano de Energia
+  for (const d of danosDaClasse(f, c)) {
+    if (!d.acerto) continue;
+    const custo = Number(d.custo?.match(/\d+/)?.[0] ?? 0);
+    acoes.push(acaoVazia({ nome: d.nome, acerto: acertoClasse(f, c), dano: d.dano, custo, esoterico: true, golpes: 1 }));
+  }
   return { nome, pv: c.pv, pr: c.pr, cr: c.cr, iniciativa: c.iniciativa, rdFis: c.rdFis, rdEso: c.rdEso, hierro: false, acoes: acoes.length ? acoes : [acaoVazia()] };
 }
 
