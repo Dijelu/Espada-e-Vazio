@@ -845,9 +845,14 @@ export function calcular(f: Ficha): Calculo {
   let rdFisExtra = 0;
   let rdEsoExtra = 0;
   let deslocExtra = 0;
+  // Vollständig do Ritter (arma espiritual corpo a corpo): ataque +1 (12º–16º), +2 (17º–19º), +4 (20º); dano +2, depois +3; CR +1
+  const vollRitter = f.estado.liberado === "vollstandig" && f.classe === "ritter" && n >= 12;
+  const vollAtq = vollRitter ? (n >= 20 ? 4 : n >= 17 ? 2 : 1) : 0;
+  const vollDano = vollRitter ? (n >= 17 ? 3 : 2) : 0;
   if (f.estado.liberado === "vollstandig") {
     const pk = f.formas?.vollstandig?.picks ?? {};
     cr += 3 * (pk["defesa"] ?? 0);
+    if (vollRitter) cr += 1;
     pv += 40 * (pk["reserva-vital"] ?? 0);
     pr += 40 * (pk["reserva-esp"] ?? 0);
     rdFisExtra = 5 * (pk["armadura"] ?? 0);
@@ -897,7 +902,7 @@ export function calcular(f: Ficha): Calculo {
     rdEso: ef.rdEso + rdEsoExtra + px.rdEso,
     iniciativa: (ef.iniMente ? Math.max(atr.des, atr.men) : atr.des) + px.iniciativa,
     // Ritter: armas Quincy corpo a corpo causam +3 de dano do 3º ao 9º nível
-    danoCorpo: ef.danoCorpo + px.danoCorpo + sit.danoCorpo + (f.classe === "ritter" && n >= 3 && n <= 9 ? 3 : 0) + danoFixoHueco(f, prof),
+    danoCorpo: ef.danoCorpo + px.danoCorpo + sit.danoCorpo + (f.classe === "ritter" && n >= 3 && n <= 9 ? 3 : 0) + danoFixoHueco(f, prof) + vollDano,
     crEvasao,
     percPassiva: 10 + pericias["percepcao"].total + px.percPassiva,
     saves,
@@ -915,7 +920,7 @@ export function calcular(f: Ficha): Calculo {
     reducaoLib: px.reducaoLib,
     danoGeral: sit.danoGeral,
     danoDados: sit.dados,
-    acertoCorpo: sit.acertoCorpo,
+    acertoCorpo: sit.acertoCorpo + vollAtq,
     acertoDist: sit.acertoDist,
   };
 }
