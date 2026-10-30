@@ -1028,3 +1028,9 @@ img, video, svg { max-width: 100%; }
 @media (prefers-reduced-motion: reduce) { .kon-img { animation: none; } }
 @media (max-width: 560px) { .kon-img { width: 80px; } .kon-balao { margin-bottom: 24px; } }
 .kon-volta { margin: 0 0 12px; text-align: right; } .kon-volta .link { background: none; border: 0; padding: 0; color: var(--muted); font-size: 13px; text-decoration: underline; cursor: pointer; }
+
+/* efeitos ativos: o resumo comprido quebra de linha em vez de cortar */
+.chip-auto, .chip-manual { display: inline-block; max-width: 100%; white-space: normal; overflow-wrap: anywhere; line-height: 1.35; padding-block: 3px; margin-top: 4px; }
+.escala-pr { display: grid; gap: 6px; margin: 8px 0; padding: 8px; border: 1px dashed var(--line); border-radius: 8px; font-size: 13px; }
+.escala-pr b { color: var(--accent); }
+.chip-auto, .chip-manual { border-radius: 14px; }

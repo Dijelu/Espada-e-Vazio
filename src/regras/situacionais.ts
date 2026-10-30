@@ -9,7 +9,24 @@ export interface Ctx {
   n: number;
   prof: number;
   atr: Record<Atr, number>;
+  /** passos de PR extra escolhidos para a habilidade (veja ESCALA) */
+  extra?: number;
 }
+
+/** Habilidades que ficam mais fortes gastando PR a mais, até um limite. */
+export interface Escala {
+  /** PR gastos só de ligar */
+  custoBase: number;
+  /** PR por passo extra */
+  porPasso: number;
+  /** quantos passos extras no máximo */
+  maxPassos: number;
+  /** o que cada passo soma, para mostrar na carta */
+  rotuloPasso: string;
+}
+export const ESCALA: Record<string, Escala> = {
+  "impacto-de-reiatsu": { custoBase: 4, porPasso: 2, maxPassos: 4, rotuloPasso: "+1d8 de Energia" },
+};
 
 export interface Efeito {
   cr?: number;
@@ -59,7 +76,10 @@ const dadoApoio = (n: number) => (n >= 19 ? "1d12" : n >= 16 ? "1d10" : n >= 12 
 const DEFS: Def[] = [
   /* ---- Zanjutsu ---- */
   D(ZJ, undefined, 1, "impacto-de-reiatsu", "Impacto de Reiatsu", "Ao acertar com a Zanpakutou, ação bônus e 4 PR",
-    "Causa 2d8 de Energia a mais. Cada 2 PR a mais somam 1d8, até 6d8 no total.", () => ({ dados: "2d8", resumo: "+2d8 de Energia (mais 1d8 por 2 PR extras, até 6d8)" })),
+    "Causa 2d8 de Energia a mais. Cada 2 PR a mais somam 1d8, até 6d8 no total.", (c) => {
+      const d = 2 + Math.min(c.extra ?? 0, 4);
+      return { dados: `${d}d8`, resumo: `+${d}d8 de Energia${c.extra ? ` (${4 + 2 * (c.extra ?? 0)} PR gastos)` : ""}` };
+    }),
   D(ZJ, "Forja Espiritual", 6, "vinculo-espiritual", "Vínculo Espiritual", "Sem a Shikai liberada", "Use uma técnica da Shikai sem liberá-la. Pode trocar a técnica a cada nível novo."),
   D(ZJ, "Ryoka", 3, "ryodan", "Técnica: Ryodan", "Ação, 8 PR", "Ataque com a Asauchi: 5d10 + Força de dano cortante. Não combina com Impacto de Reiatsu. +1d10 por 3 PR extras, no máximo Espírito dados."),
   D(ZJ, "Ryoka", 3, "hozuri", "Técnica: Hozuri", "Ação, 10 PR", "Ataque: 5d10 + Força. O alvo faz salvaguarda de Constituição ou fica com CR −5 até o fim do próximo turno dele."),
@@ -205,7 +225,7 @@ export function somaSituacoes(f: Ficha, c: Ctx): SomaSituacao {
   const out: SomaSituacao = { cr: 0, danoCorpo: 0, acertoCorpo: 0, acertoDist: 0, danoGeral: 0, desloc: 0, dados: [], resumos: [] };
   for (const s of situacoesDaFicha(f)) {
     if (!f.estado.ativas.includes(idSituacao(s.id))) continue;
-    const e = s.efeito?.(c);
+    const e = s.efeito?.({ ...c, extra: f.estado.extras?.[idSituacao(s.id)] ?? 0 });
     if (!e) {
       out.resumos.push({ nome: s.nome, resumo: "ligada" });
       continue;

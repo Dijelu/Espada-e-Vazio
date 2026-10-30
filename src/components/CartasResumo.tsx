@@ -2,7 +2,8 @@ import { useState } from "react";
 import { CONDICAO_TEXTO } from "../regras/catalogo";
 import { efeitosContinuos, habilidadesDaFicha, usosRestantes } from "../regras/habilidades";
 import { mod, type Calculo, type Ficha } from "../regras/ficha";
-import { idSituacao, situacoesDaFicha } from "../regras/situacionais";
+import { ESCALA, idSituacao, situacoesDaFicha } from "../regras/situacionais";
+import { Passo } from "./FichaPecas";
 import { efeito as som } from "../lib/som";
 
 /** Habilidades da Origem que se usam em jogo, em forma de carta. */
@@ -134,6 +135,18 @@ export function CartasSituacoes({ f, alterar }: { f: Ficha; alterar: (p: Partial
                   <header><b>{s.nome}</b></header>
                   <p className="acao-hab">Vale quando: {s.quando}</p>
                   <p>{s.texto}</p>
+                  {ESCALA[s.id] && (() => {
+                    const esc = ESCALA[s.id];
+                    const k = idSituacao(s.id);
+                    const passos = f.estado.extras?.[k] ?? 0;
+                    return (
+                      <div className="escala-pr">
+                        <span>PR a mais ({esc.rotuloPasso} a cada {esc.porPasso} PR, até +{esc.maxPassos})</span>
+                        <Passo valor={passos} max={esc.maxPassos} rotulo={`PR extras de ${s.nome}`} onChange={(v) => alterar({ estado: { ...f.estado, extras: { ...(f.estado.extras ?? {}), [k]: v } } })} />
+                        <b>Custo total: {esc.custoBase + passos * esc.porPasso} PR</b>
+                      </div>
+                    );
+                  })()}
                   <button type="button" className={`btn ${on ? "btn-red" : "btn-paper"}`} aria-pressed={on} onClick={() => ligar(s.id)}>{on ? "Ligada · desligar" : "Ligar"}</button>
                 </article>
               );

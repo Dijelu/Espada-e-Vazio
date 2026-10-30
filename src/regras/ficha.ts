@@ -544,6 +544,8 @@ export interface Estado {
   ativas: string[];
   /** usos gastos de habilidades limitadas, por id */
   usos: Record<string, number>;
+  /** passos de PR extra gastos em habilidades de situação ligadas, por id */
+  extras?: Record<string, number>;
 }
 
 export interface Ficha {
