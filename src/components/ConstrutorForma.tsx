@@ -62,6 +62,7 @@ const DICAS: Record<TipoForma, string> = {
 
 export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
   const classe = classePorId(f.classe);
+  const caminhoFinal = tipo === "bankai" ? f.treinos.caminhoBankai : "";
   const [aba, setAba] = useState<"modelos" | "passo" | "meu">(f.formas[tipo]?.nome ? "meu" : "passo");
   const [r, setR] = useState<FormaLib>(f.formas[tipo] ? { ...vazia(tipo), ...f.formas[tipo]! } : vazia(tipo));
   const [aberto, setAberto] = useState("");
@@ -174,7 +175,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
       </div>
       <p className="ajuda construtor-dica">{DICAS[tipo]}{tipo === "bankai" && f.treinos.caminhoBankai === "plena" ? " Você escolheu a Bankai Plena: o custo cai pela metade, a CR sobe +2 e o dano das técnicas sobe 25%. Adicione uma ação nova para a Bankai, aprovada pelo Mestre." : ""}{tipo === "bankai" && f.treinos.caminhoBankai === "verdadeira" ? " Você escolheu a Bankai Verdadeira: mude a aparência da Bankai e crie, com o Mestre, uma técnica de assinatura nova. Dura no máximo 1 minuto e deixa você Esgotado até um descanso curto." : ""}</p>
       <div className="modos" role="tablist" aria-label="Como montar">
-        {tipo !== "segunda" && <button type="button" role="tab" aria-selected={aba === "modelos"} className={aba === "modelos" ? "on" : ""} onClick={() => setAba("modelos")}>Modelos prontos</button>}
+        {tipo !== "segunda" && !caminhoFinal && <button type="button" role="tab" aria-selected={aba === "modelos"} className={aba === "modelos" ? "on" : ""} onClick={() => setAba("modelos")}>Modelos prontos</button>}
         <button type="button" role="tab" aria-selected={aba === "passo"} className={aba === "passo" ? "on" : ""} onClick={() => setAba("passo")}>Passo a passo</button>
         <button type="button" role="tab" aria-selected={aba === "meu"} className={aba === "meu" ? "on" : ""} onClick={() => setAba("meu")}>Editar tudo</button>
       </div>
@@ -301,6 +302,30 @@ export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
             )}
             {tipo === "bankai" && (
               <>
+                {caminhoFinal === "plena" && (
+                  <div className="caixa painel-caminho">
+                    <h3>Bankai Plena</h3>
+                    <ul>
+                      <li>Custo de liberação pela metade: você paga <b>{Math.ceil(r.custo / 2)} PR</b> (base {r.custo} PR).</li>
+                      <li>+2 na CR enquanto a Bankai estiver ativa (já aplicado na ficha).</li>
+                      <li>Dano das técnicas +25%, arredondado para baixo (já aplicado nos botões de dano).</li>
+                      <li>Uma ação nova, aprovada pelo Mestre.</li>
+                    </ul>
+                    <button type="button" className="btn btn-paper" disabled={r.habilidades.length >= LIMITE_HAB.bankai} onClick={() => mud({ habilidades: [...r.habilidades, { id: novoId(), nome: "Ação da Bankai Plena", texto: "", custo: "", acao: "Ação" }] })}>+ Adicionar a ação nova da Plena</button>
+                  </div>
+                )}
+                {caminhoFinal === "verdadeira" && (
+                  <div className="caixa painel-caminho">
+                    <h3>Bankai Verdadeira</h3>
+                    <ul>
+                      <li>A Bankai muda de aparência: descreva a nova forma no campo Aparência.</li>
+                      <li>Duração: no máximo <b>1 minuto</b> por vez.</li>
+                      <li>Ao terminar, você fica com 1 nível de <b>Esgotado</b> até um descanso curto.</li>
+                      <li>Os demais números da Bankai não mudam. Crie com o Mestre uma técnica de assinatura nova.</li>
+                    </ul>
+                    <button type="button" className="btn btn-paper" disabled={r.habilidades.length >= LIMITE_HAB.bankai} onClick={() => mud({ habilidades: [...r.habilidades, { id: novoId(), nome: "Técnica de assinatura (Bankai Verdadeira)", texto: "", custo: "", acao: "Ação" }] })}>+ Adicionar a técnica de assinatura</button>
+                  </div>
+                )}
                 <label className="campo">Tipo
                   <select value={r.estilo} onChange={(e) => mud({ estilo: e.target.value as FormaLib["estilo"] })}>
                     <option value="">Escolha</option>
@@ -309,8 +334,8 @@ export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
                   </select>
                 </label>
                 <div className="duas">
-                  <label className="campo">Custo de liberação (40 a 80 PR)<input type="number" min={20} max={80} value={r.custo} onChange={(e) => mud({ custo: Number(e.target.value), custoManual: true })} />{dicaCusto}</label>
-                  <label className="campo">Duração<input value={r.duracao} onChange={(e) => mud({ duracao: e.target.value })} /></label>
+                  <label className="campo">{caminhoFinal === "plena" ? "Custo base (você paga a metade)" : "Custo de liberação (40 a 80 PR)"}<input type="number" min={20} max={80} value={r.custo} onChange={(e) => mud({ custo: Number(e.target.value), custoManual: true })} />{dicaCusto}</label>
+                  <label className="campo">Duração<input value={caminhoFinal === "verdadeira" ? "1 minuto (máximo)" : r.duracao} readOnly={caminhoFinal === "verdadeira"} onChange={(e) => mud({ duracao: e.target.value })} /></label>
                 </div>
               </>
             )}

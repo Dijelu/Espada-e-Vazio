@@ -1045,3 +1045,4 @@ img, video, svg { max-width: 100%; }
 .painel-kidos .kido p { margin: 6px 0; }
 .temas { margin: 8px 0 14px; }
 .quebra{white-space:pre-line}
+.painel-caminho{border-left:6px solid var(--accent)}.painel-caminho ul{margin:6px 0 10px 18px;padding:0}.painel-caminho li{margin:4px 0}
