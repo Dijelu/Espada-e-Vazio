@@ -74,6 +74,13 @@ const ESS_ATRIBUTO: Record<string, Atr> = {
   virtuoso: "esp",
 };
 
+/** Limite do atributo em cada etapa das essências de atributo: 16, 17, 18, 20 e 20. */
+const LIMITE_ETAPA = [16, 17, 18, 20, 20];
+/** Totais acumulados das essências com valores que não crescem em linha reta. */
+const ROBUSTO_PV = [15, 30, 50, 70, 95];
+const VITALIDADE_PR = [10, 25, 45, 70, 100];
+const REFLEXOS_EXTRA = [0, 1, 2, 4, 6];
+
 const etapaDe = (nome: string, etapa: number) => {
   const e = ESS_POR_NOME.get(norm(nome));
   const max = e ? e.etapas.length + 1 : 5;
@@ -87,7 +94,7 @@ export function atributosPassivos(f: Ficha): PassivasAtributos {
     if (!a) continue;
     const e = etapaDe(x.nome, x.etapa);
     out.atr[a] = (out.atr[a] ?? 0) + e;
-    out.limite[a] = Math.max(out.limite[a] ?? 15, 15 + e);
+    out.limite[a] = Math.max(out.limite[a] ?? 15, LIMITE_ETAPA[e - 1] ?? 20);
     if (!out.saves.includes(a)) out.saves.push(a);
   }
   return out;
@@ -102,11 +109,12 @@ const POR_ESSENCIA: Record<string, FnEssencia> = {
   "pele de aco": (e, _c, r) => { const v = 2 * e; r.rdFis = Math.max(r.rdFis, v); return `RD física ${v}`; },
   "revestimento de reiatsu": (e, _c, r) => { const v = 4 * e; r.rdEso = Math.max(r.rdEso, v); return `RD esotérica ${v}`; },
   "hierro reforcado": (e, _c, r) => { const v = 2 * e; r.rdFis = Math.max(r.rdFis, v); return `RD física ${v}`; },
-  robusto: (e, _c, r) => { const v = 15 * e; r.pv += v; return `PV ${sinal(v)} (os +2 por nível ficam no ajuste manual)`; },
-  "vitalidade espiritual": (e, _c, r) => { const v = 10 + 15 * (e - 1); r.pr += v; return `PR ${sinal(v)} (os +2 por nível ficam no ajuste manual)`; },
+  "pele imortal": (e, _c, r) => { const v = 5 + 5 * e; r.rdFis = Math.max(r.rdFis, v); r.rdEso = Math.max(r.rdEso, v); return `RD ${v} contra todos os tipos`; },
+  robusto: (e, _c, r) => { const v = ROBUSTO_PV[e - 1] ?? 95; r.pv += v; return `PV ${sinal(v)} (os +2 por nível ficam no ajuste manual)`; },
+  "vitalidade espiritual": (e, _c, r) => { const v = VITALIDADE_PR[e - 1] ?? 100; r.pr += v; return `PR ${sinal(v)} (os +2 por nível ficam no ajuste manual)`; },
   velocista: (e, _c, r) => { const v = 3 + 1.5 * (e - 1); r.desloc += v; return `deslocamento ${sinal(v)} m`; },
   "sonido bestial": (e, _c, r) => { const v = 1.5 * e; r.desloc += v; return `deslocamento ${sinal(v)} m`; },
-  "reflexos aprimorados": (e, c, r) => { const v = c.prof + (e - 1); r.iniciativa += v; return `iniciativa ${sinal(v)}`; },
+  "reflexos aprimorados": (e, c, r) => { const v = c.prof + (REFLEXOS_EXTRA[e - 1] ?? 6); r.iniciativa += v; return `iniciativa ${sinal(v)}`; },
   feroz: (e, _c, r) => { const v = 2 * e; r.danoCorpo += v; return `dano corpo a corpo ${sinal(v)}`; },
   "garras afiadas": (e, _c, r) => { const v = 2 * e; r.danoCorpo += v; return `dano da arma natural ${sinal(v)}`; },
   "diminuicao de custo shikai": (e, _c, r) => { r.reducaoLib.shikai += e; return `custo da Shikai −${e}`; },

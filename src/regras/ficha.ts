@@ -917,6 +917,15 @@ export function calcular(f: Ficha): Calculo {
   };
 }
 
+/** Quantos ataques a ação Atacar dá: Ataque Extra (2), Golpe Triplo (3), Golpe Superior (4). */
+export function ataquesPorAcao(f: Ficha): number {
+  const tem = (id: string) => f.talentos.some((t) => t === id || t.endsWith("/" + id));
+  if (tem("golpe-superior")) return 4;
+  if (tem("golpe-triplo")) return 3;
+  if (tem("ataque-extra")) return 2;
+  return 1;
+}
+
 export function ataqueBonus(f: Ficha, c: Calculo, a: Ataque) {
   return c.prof + c.atr[a.atr] + (a.distancia ? c.acertoDist : c.acertoCorpo);
 }

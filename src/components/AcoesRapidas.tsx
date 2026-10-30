@@ -1,4 +1,3 @@
-import { Icone } from "./Icone";
 import { dispararLiberacao } from "./EfeitoLiberacao";
 import { useState } from "react";
 import { Passo } from "./FichaPecas";
@@ -124,26 +123,26 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
   return (
     <section className="caixa acoes" aria-label="Ações rápidas">
       <div className="acoes-linha">
-        <button type="button" className="btn btn-paper" onClick={() => r.d20("Iniciativa", c.iniciativa)}><Icone nome="dado" /> Iniciativa</button>
         <button type="button" className="btn btn-paper" onClick={curto} disabled={e.curtosUsados >= 2}>Descanso curto ({2 - e.curtosUsados} restante{e.curtosUsados === 1 ? "" : "s"})</button>
         <button type="button" className="btn btn-paper" onClick={longo}>Descanso longo</button>
         <button type="button" className="btn btn-paper" onClick={encerrar}>Encerrar combate</button>
         <button type="button" className="btn btn-paper" onClick={() => window.print()}>Imprimir</button>
       </div>
 
-      <div className="acoes-linha">
-        <label className="mini">Dano recebido
-          <input type="number" inputMode="numeric" min={0} value={dano} onChange={(ev) => setDano(ev.target.value)} onKeyDown={(ev) => ev.key === "Enter" && aplicarDano()} aria-label="Dano recebido" />
-        </label>
-        <select value={tipoDano} onChange={(ev) => setTipoDano(ev.target.value as typeof tipoDano)} aria-label="Tipo de dano">
-          <option value="fis">Físico (RD {c.rdFis})</option>
-          <option value="eso">Esotérico (RD {c.rdEso})</option>
-          <option value="direto">Ignora RD</option>
-        </select>
-        {f.origem === "lobisomem" && (
-          <label className="mini"><input type="checkbox" checked={metade} onChange={(ev) => setMetade(ev.target.checked)} /> metade (Corpo Animalesco)</label>
-        )}
-        <button type="button" className="btn btn-paper" onClick={aplicarDano}>Aplicar dano</button>
+      <div className="bloco-dano">
+        <b>Receber dano</b>
+        <div className="acoes-linha">
+          <input type="number" inputMode="numeric" min={0} placeholder="Dano" value={dano} onChange={(ev) => setDano(ev.target.value)} onKeyDown={(ev) => ev.key === "Enter" && aplicarDano()} aria-label="Dano recebido" />
+          <select value={tipoDano} onChange={(ev) => setTipoDano(ev.target.value as typeof tipoDano)} aria-label="Tipo de dano">
+            <option value="fis">Físico (−{c.rdFis})</option>
+            <option value="eso">Esotérico (−{c.rdEso})</option>
+            <option value="direto">Ignora RD</option>
+          </select>
+          {f.origem === "lobisomem" && (
+            <label className="mini"><input type="checkbox" checked={metade} onChange={(ev) => setMetade(ev.target.checked)} /> metade (Corpo Animalesco)</label>
+          )}
+          <button type="button" className="btn btn-red" onClick={aplicarDano}>Aplicar</button>
+        </div>
         <div className="mini">PV temporários <Passo valor={e.pvTemp} min={0} max={999} rotulo="PV temporários" onChange={(v) => setE({ pvTemp: v })} /></div>
       </div>
       {msg && <p className="ajuda" role="status">{msg}</p>}

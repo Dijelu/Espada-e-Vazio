@@ -27,6 +27,7 @@ import {
   PERICIAS,
   XP_NIVEL,
   ataqueBonus,
+  ataquesPorAcao,
   calcular,
   classePorId,
   mod,
@@ -219,6 +220,9 @@ export default function Ficha() {
           <div><small>Desloc.</small><b>{c.desloc} m</b></div>
           <div><small>Perc. passiva</small><b>{c.percPassiva}</b></div>
           <div><small>CD</small><b>{c.cd}</b></div>
+          <div className="txt"><small>Ataques</small><b>{ataquesPorAcao(f)} por ação</b></div>
+          <div className="txt"><small>RD</small><b>{c.rdFis} fís. · {c.rdEso} eso.</b></div>
+          <div><small>Dano corpo</small><b>{c.danoCorpo}</b></div>
         </div>
       </section>
 
