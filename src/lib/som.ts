@@ -79,8 +79,10 @@ function irPara(v: number, ao_fim?: () => void) {
 }
 
 /** Tema escuro (Hollow) toca a faixa Hollow; tema claro toca a música do site. */
+let quincyForcado = false;
+
 function srcDoTema() {
-  if (document.documentElement.getAttribute("data-skin") === "quincy") return "/audio/musica-quincy.m4a";
+  if (quincyForcado || document.documentElement.getAttribute("data-skin") === "quincy") return "/audio/musica-quincy.m4a";
   return document.documentElement.getAttribute("data-theme") === "light" ? "/audio/musica.m4a" : "/audio/musica-hollow.m4a";
 }
 
@@ -142,6 +144,13 @@ function pararMusica() {
   if (!faixa || faixa.paused) return;
   const f = faixa;
   irPara(0, () => f.pause());
+}
+
+/** Começa a música dos Quincy no início da animação, antes do visual mudar. */
+export function musicaQuincy(on: boolean) {
+  quincyForcado = on;
+  trocarFaixaDoTema();
+  if (on && (!faixa || faixa.paused)) tocarMusica();
 }
 
 export function ligarMusica(on: boolean) {

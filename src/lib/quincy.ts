@@ -1,4 +1,4 @@
-import { trocarFaixaDoTema } from "./som";
+import { musicaQuincy, trocarFaixaDoTema } from "./som";
 
 /* Visual secreto de Quincy: liberado ao tocar no emblema da Introdução. */
 const CHAVE = "visual-quincy";
@@ -44,6 +44,7 @@ let rodando = false;
 
 function retorno() {
   rodando = true;
+  musicaQuincy(true);
   const el = document.createElement("div");
   el.className = "quincy-retorno";
   el.setAttribute("role", "presentation");
@@ -63,6 +64,7 @@ function retorno() {
     if (feito) return;
     feito = true;
     aplicar(true);
+    musicaQuincy(false);
     el.classList.add("qr-sai");
     window.setTimeout(() => {
       el.remove();
