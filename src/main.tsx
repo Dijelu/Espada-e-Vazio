@@ -7,7 +7,14 @@ import { ThemeProvider } from "./components/Theme";
 import { iniciarSom } from "./lib/som";
 import { iniciarProtecao } from "./lib/protecao";
 import { iniciarQuincy } from "./lib/quincy";
+import { recarregarUmaVez } from "./components/ErroTela";
 import "./styles.css";
+
+// pedaço do site que sumiu depois de uma atualização: busca a versão nova
+window.addEventListener("vite:preloadError", (ev) => {
+  ev.preventDefault();
+  recarregarUmaVez();
+});
 
 iniciarSom();
 iniciarProtecao();

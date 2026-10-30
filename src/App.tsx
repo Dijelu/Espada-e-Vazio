@@ -54,7 +54,7 @@ export default function App() {
       <Topbar onBuscar={() => setBusca(true)} />
       <Busca aberto={busca} onFechar={() => setBusca(false)} />
       <EfeitoLiberacao />
-      <ErroTela>
+      <ErroTela chave={pathname}>
       <Suspense fallback={<main className="page"><p>Carregando…</p></main>}>
       <Routes>
         <Route path="/" element={<Capa />} />
