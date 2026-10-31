@@ -17,6 +17,8 @@ const Simulador = lazy(() => import("./pages/Simulador"));
 const Fichas = lazy(() => import("./pages/Fichas"));
 const NovaFicha = lazy(() => import("./pages/NovaFicha"));
 const Ficha = lazy(() => import("./pages/Ficha"));
+const Campanhas = lazy(() => import("./pages/Campanhas"));
+const CampanhaPagina = lazy(() => import("./pages/Campanha"));
 const Conta = lazy(() => import("./pages/Conta"));
 const ImportarLivro = lazy(() => import("./pages/ImportarLivro"));
 
@@ -63,7 +65,8 @@ export default function App() {
         <Route path="/fichas" element={<RequerLogin><Fichas /></RequerLogin>} />
         <Route path="/fichas/nova" element={<RequerLogin><NovaFicha /></RequerLogin>} />
         <Route path="/fichas/:id" element={<RequerLogin><Ficha /></RequerLogin>} />
-        <Route path="/campanhas" element={<EmBreve titulo="Campanhas" texto="Mesas, convites e o Painel do Mestre chegam nas etapas finais." />} />
+        <Route path="/campanhas" element={<Campanhas />} />
+        <Route path="/campanhas/:id" element={<RequerLogin><CampanhaPagina /></RequerLogin>} />
         <Route path="/ferramentas" element={<Ferramentas />} />
         <Route path="/ferramentas/simulador" element={<Simulador />} />
         <Route path="/conta" element={<Conta />} />

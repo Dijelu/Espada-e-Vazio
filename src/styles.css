@@ -1077,3 +1077,10 @@ img, video, svg { max-width: 100%; }
 .dano-hado p{margin:2px 0}
 .dano-hado .linha-rolar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .dano-hado .linha-rolar select{max-width:100%}
+.codigo-mesa{font-family:monospace;font-size:1.2em;letter-spacing:.08em;padding:2px 8px;border:2px dashed var(--line);border-radius:6px}
+.npcs{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin:12px 0}
+.npc{display:grid;gap:10px;align-content:start;padding:14px;border:2px solid var(--line);border-radius:8px;background:var(--bg)}
+.npc-nums{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.npc-pv{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.npc-pv .btn{min-height:40px;padding:4px 10px}
+.marcar{display:flex;gap:8px;align-items:center;min-height:36px}
