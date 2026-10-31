@@ -319,7 +319,7 @@ export default function Ficha() {
           </div>
           <CartasHabilidades f={f} c={c} alterar={alterar} />
           <CartasSituacoes f={f} alterar={alterar} />
-          <PainelKidos f={f} c={c} />
+          <PainelKidos f={f} c={c} r={rol} />
           <CartasFormas f={f} c={c} r={rol} alterar={alterar} onEditar={setConstruir} />
           <div className="grade2">
             <EfeitosAtivos f={f} c={c} />

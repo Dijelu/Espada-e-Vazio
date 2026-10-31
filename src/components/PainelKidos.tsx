@@ -1,14 +1,50 @@
 import { useState } from "react";
 import { KIDOS } from "../regras/catalogo";
 import type { Calculo, Ficha } from "../regras/ficha";
+import { danoDoHado, expressaoHado, mediaHado, passosMaximos, type DanoHado } from "../regras/hado";
+import type { Rolagens } from "./Rolador";
 
 const CHAVE = "esv:painel-kido";
 const lerAberto = () => {
   try { return localStorage.getItem(CHAVE) !== "fechado"; } catch { return true; }
 };
 
+/** Dano calculado de um Hadō: escolhe os reforços de PR e rola. */
+function DanoDoHado({ d, nome, c, r }: { d: DanoHado; nome: string; c: Calculo; r: Rolagens }) {
+  const [passos, setPassos] = useState(0);
+  const max = passosMaximos(d, c.pr);
+  const p = Math.min(passos, max);
+  const expr = expressaoHado(d, p, c.pr);
+  return (
+    <div className="dano-hado">
+      <p>
+        <b>Dano: {expr.replace(/\+/g, " + ")}</b> <small>(média {mediaHado(d, p, c.pr).toFixed(1).replace(/\.0$/, "")})</small>
+        {d.origens.length > 0 && <small> · {d.origens.join(" · ")}</small>}
+        {d.dadosMascara > 0 && <small> · Máscara +{d.dadosMascara} dado(s)</small>}
+      </p>
+      {(d.critico19 || d.ignoraRd > 0) && (
+        <p className="ajuda">{d.critico19 ? "Crítico em 19 ou 20 (Alinhamento). " : ""}{d.ignoraRd > 0 ? `Ignora ${d.ignoraRd} de RD.` : ""}</p>
+      )}
+      <div className="linha-rolar">
+        {d.reforco && max > 0 && (
+          <label>
+            Reforço{" "}
+            <select value={p} onChange={(e) => setPassos(Number(e.target.value))}>
+              {Array.from({ length: max + 1 }, (_, i) => (
+                <option key={i} value={i}>{i === 0 ? `nenhum (${d.custo} PR)` : `+${i} (${d.custo + i * d.reforco!.cada} PR)`}</option>
+              ))}
+            </select>
+          </label>
+        )}
+        <button type="button" className="rolar" onClick={() => r.expr(`Dano: ${nome}`, expr)}>Rolar dano</button>
+        <button type="button" className="rolar" onClick={() => r.expr(`Dano crítico: ${nome}`, expr, true)}>Crítico</button>
+      </div>
+    </div>
+  );
+}
+
 /** Painel que abre e fecha com os Hadōs e Bakudōs que a pessoa escolheu na ficha. */
-export function PainelKidos({ f, c }: { f: Ficha; c: Calculo }) {
+export function PainelKidos({ f, c, r }: { f: Ficha; c: Calculo; r: Rolagens }) {
   const [aberto, setAberto] = useState(lerAberto);
   if (f.kidos.length === 0) return null;
   const alternar = (v: boolean) => {
@@ -31,6 +67,7 @@ export function PainelKidos({ f, c }: { f: Ficha; c: Calculo }) {
               {d?.rank && <small> · rank {d.rank}</small>}
             </summary>
             {d?.meta && <p className="ajuda">{d.meta}</p>}
+            {tipo === "hadou" && d && (() => { const dd = danoDoHado(f, c, d); return dd ? <DanoDoHado d={dd} nome={`${titulo} ${k.n}: ${k.nome}`} c={c} r={r} /> : null; })()}
             {d?.encantamento && <p className="ajuda"><i>“{d.encantamento}”</i></p>}
             {d?.texto && <p className="quebra">{d.texto}</p>}
           </details>

@@ -1073,3 +1073,7 @@ img, video, svg { max-width: 100%; }
 .lista-ess li .ess-origem-nome { flex: 1 1 280px; width: auto; }
 .lista-ess li .chip { flex: 0 0 auto; }
 .painel-mascara>summary{cursor:pointer;display:flex;flex-wrap:wrap;align-items:center;gap:10px;min-height:36px}.painel-mascara>summary::marker{color:var(--accent)}
+.dano-hado{margin:6px 0;padding:6px 10px;border-left:3px solid var(--accent)}
+.dano-hado p{margin:2px 0}
+.dano-hado .linha-rolar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.dano-hado .linha-rolar select{max-width:100%}
