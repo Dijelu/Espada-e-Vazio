@@ -29,24 +29,30 @@ export interface DanoHado {
   somaReiatsu: boolean;
 }
 
-const RE_DANO = /(\d+)d(\d+)(?=\s+(?:pontos\s+)?de\s+dano)/;
-const RE_REFORCO = /[Pp]ara cada (\d+) pontos? de Reiatsu adicionais?[^.]*?adicion[ae] (\d+)d(\d+)/;
+const RE_DANO = /(\d+)d(\d+)(?=\s+(?:pontos\s+)?de\s+dano)/i;
+const RE_REFORCO = /[Pp]ara cada (\d+) (?:pontos? de )?Reiatsu adicionais?[^.]*?(?:adicion[ae]|aumente[^.]*? em) (\d+)d(\d+)/;
+/** Kidōs cujo texto no livro está misturado com outros: não dá para calcular. */
+const QUEBRADOS = new Set(["bakudou/11", "bakudou/99"]);
 const RE_CUSTO = /Custo: (\d+) PR/;
 
 /** Lê o dano de um Hadō no texto do livro e soma o que a ficha acrescenta. Devolve null se o Hadō não causa dano em dados. */
-export function danoDoHado(f: Ficha, c: Calculo, k: { n: number; texto: string; meta?: string }): DanoHado | null {
-  const base = RE_DANO.exec(k.texto) ?? /(\d+)d(\d+)/.exec(k.texto);
+export function danoDoHado(f: Ficha, c: Calculo, k: { tipo?: string; n: number; texto: string; meta?: string }): DanoHado | null {
+  const bakudou = k.tipo === "bakudou";
+  if (QUEBRADOS.has(`${k.tipo}/${k.n}`)) return null;
+  const base = RE_DANO.exec(k.texto) ?? (k.tipo === "hadou" && k.n === 96 ? /(\d+)d(\d+)/.exec(k.texto) : null);
   if (!base) return null;
   const rf = RE_REFORCO.exec(k.texto);
   const custo = Number(RE_CUSTO.exec(k.meta ?? "")?.[1] ?? 0);
   const origens: string[] = [];
   let fixo = 0;
   const soma = (v: number, nome: string) => { if (v > 0) { fixo += v; origens.push(`${nome} +${v}`); } };
-  soma(c.danoHado, "Maestria de Hadō");
-  if (f.talentos.includes("hadou-poderoso")) soma(c.atr.men, "Hadō Poderoso (Mente)");
-  if (f.estado.liberado === "shikai") soma(c.prof, "Shikai");
-  if (f.estado.liberado === "bankai") soma(2 * c.prof, "Bankai");
-  const acerto = /Jogada: Acerto/.test(k.meta ?? "");
+  if (!bakudou) {
+    soma(c.danoHado, "Maestria de Hadō");
+    if (f.talentos.includes("hadou-poderoso")) soma(c.atr.men, "Hadō Poderoso (Mente)");
+    if (f.estado.liberado === "shikai") soma(c.prof, "Shikai");
+    if (f.estado.liberado === "bankai") soma(2 * c.prof, "Bankai");
+  }
+  const acerto = !bakudou && /Jogada: Acerto/.test(k.meta ?? "");
   return {
     n: Number(base[1]),
     lados: Number(base[2]),
@@ -56,7 +62,7 @@ export function danoDoHado(f: Ficha, c: Calculo, k: { n: number; texto: string; 
     origens,
     dadosMascara: c.dadosTecnicaMascara,
     critico19: acerto && f.classe === "kidoshu" && f.talentos.includes("alinhamento"),
-    ignoraRd: f.classe === "kidoshu" ? (f.talentos.includes("perfuracao-arcana") ? 5 : f.talentos.includes("perfuracao-elemental") ? 5 : 0) : 0,
+    ignoraRd: f.classe === "kidoshu" ? (f.talentos.includes("perfuracao-arcana") || (!bakudou && f.talentos.includes("perfuracao-elemental")) ? 5 : 0) : 0,
     somaReiatsu: k.n === 96,
   };
 }

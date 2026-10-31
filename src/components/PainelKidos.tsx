@@ -67,7 +67,7 @@ export function PainelKidos({ f, c, r }: { f: Ficha; c: Calculo; r: Rolagens }) 
               {d?.rank && <small> · rank {d.rank}</small>}
             </summary>
             {d?.meta && <p className="ajuda">{d.meta}</p>}
-            {tipo === "hadou" && d && (() => { const dd = danoDoHado(f, c, d); return dd ? <DanoDoHado d={dd} nome={`${titulo} ${k.n}: ${k.nome}`} c={c} r={r} /> : null; })()}
+            {d && (() => { const dd = danoDoHado(f, c, { ...d, tipo: k.tipo }); return dd ? <DanoDoHado d={dd} nome={`${titulo} ${k.n}: ${k.nome}`} c={c} r={r} /> : null; })()}
             {d?.encantamento && <p className="ajuda"><i>“{d.encantamento}”</i></p>}
             {d?.texto && <p className="quebra">{d.texto}</p>}
           </details>
