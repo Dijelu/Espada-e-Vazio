@@ -13,6 +13,7 @@ import {
   picksVoll,
   totalPicks,
 } from "../regras/liberacoes";
+import { valor, QUANDO_NOME, type Faz } from "../regras/efeitos-forma";
 import { novoId } from "./FichaPecas";
 import { AssistenteForma, LIMITE_HAB } from "./AssistenteForma";
 import { SeletorSchrift } from "./SeletorSchrift";
@@ -475,6 +476,48 @@ function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg }: { f: Ficha; c: 
   );
 }
 
+/** Resumo dos efeitos da forma ativa e botões dos que dependem de um momento do jogo. */
+function EfeitosAtivos({ f, c, r, alterar, onMsg }: { f: Ficha; c: Calculo; r: Rolagens; alterar: (p: Partial<Ficha>) => void; onMsg: (m: string) => void }) {
+  const fx = c.forma;
+  if (!fx || (fx.linhas.length === 0 && fx.gatilhos.length === 0)) return null;
+  const ctx = { n: f.nivel, prof: c.prof, atr: c.atr };
+  const usos = f.estado.usos ?? {};
+  const aplicar = (g: { rotulo: string; faz: Faz; limite?: string; peca: string }) => {
+    const chave = `fx:${g.peca}:${g.rotulo}`;
+    if (g.limite && usos[chave]) { onMsg(`${g.rotulo}: já usado (${g.limite}).`); return; }
+    const z = g.faz;
+    const parte: Partial<Ficha> = {};
+    const est = { ...f.estado };
+    const dito: string[] = [];
+    if (z.curaPv !== undefined) { const v = valor(z.curaPv, ctx); parte.pvAtual = Math.min(c.pvMax, f.pvAtual + v); dito.push(`+${v} PV`); }
+    if (z.pvTemp !== undefined) { const v = valor(z.pvTemp, ctx); est.pvTemp = Math.max(est.pvTemp ?? 0, v); dito.push(`${v} PV temporários`); }
+    if (z.pr !== undefined) { const v = valor(z.pr, ctx); parte.prAtual = Math.min(c.prMax, (parte.prAtual ?? f.prAtual) + v); dito.push(`+${v} PR`); }
+    if (z.prTemp !== undefined) { const v = valor(z.prTemp, ctx); parte.prAtual = (parte.prAtual ?? f.prAtual) + v; dito.push(`+${v} PR extras`); }
+    if (z.dano) { r.expr(g.rotulo, resolverDano(z.dano.expr, f, c)); dito.push(`${z.dano.tipo}${z.dano.area ? ` (${z.dano.area})` : ""}`); }
+    if (z.texto) dito.push(z.texto);
+    if (g.limite) est.usos = { ...usos, [chave]: 1 };
+    alterar({ ...parte, estado: est });
+    onMsg(`${g.rotulo}: ${dito.join(", ") || "feito"}.`);
+  };
+  return (
+    <div className="efeitos-ativos">
+      {fx.linhas.length > 0 && (
+        <ul className="chips-forma" aria-label="Efeitos ativos da forma">
+          {fx.linhas.map((l, i) => <li key={i} className="chip" title={l.fonte}>{l.rotulo} {l.valor}</li>)}
+        </ul>
+      )}
+      {fx.gatilhos.length > 0 && (
+        <div className="acao-botoes">
+          {fx.gatilhos.map((g, i) => {
+            const usado = !!g.limite && !!usos[`fx:${g.peca}:${g.rotulo}`];
+            return <button key={i} type="button" className="btn-mini" disabled={usado} title={`${QUANDO_NOME[g.quando]}${g.limite ? `, 1 por ${g.limite}` : ""}`} onClick={() => aplicar(g)}>{g.rotulo}</button>;
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
 /** Painel especial que aparece enquanto a Bankai, a Resurrección ou a Vollständig está ativa. */
 export function PainelFormaAtiva({ f, c, r, alterar, onEditar }: { f: Ficha; c: Calculo; r: Rolagens; alterar: (p: Partial<Ficha>) => void; onEditar?: (t: TipoForma) => void }) {
   const [msg, setMsg] = useState("");
@@ -509,6 +552,7 @@ export function PainelFormaAtiva({ f, c, r, alterar, onEditar }: { f: Ficha; c: 
       {forma.traco && <p className="quebra"><b>{forma.traco.includes("\n") ? "Traços" : "Traço"}:</b>{forma.traco.includes("\n") ? "\n" : " "}{forma.traco}</p>}
       {forma.pontoFraco && <p><b>Ponto fraco:</b> {forma.pontoFraco}</p>}
       {provisoria && <p className="ajuda">Você ainda não montou a sua {TIPO_FORMA_NOME[tipoForma]}. {lista.length > 0 ? "Estas são as técnicas do modelo do livro para o seu Caminho." : "Monte as habilidades para vê-las aqui."} {onEditar && <button type="button" className="link" onClick={() => onEditar(tipoForma)}>Montar a minha agora</button>}</p>}
+      <EfeitosAtivos f={f} c={c} r={r} alterar={alterar} onMsg={setMsg} />
       {msg && <p className="ajuda" role="status">{msg}</p>}
       <div className="cartas-hab">
         {lista.map((h) => (
