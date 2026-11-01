@@ -52,6 +52,17 @@ export default function CampanhaPagina() {
 
   useEffect(() => { void carregar(); }, [carregar]);
 
+  // atualização quase em tempo real: fichas da mesa (e NPCs revelados, para os jogadores) a cada 5 s
+  useEffect(() => {
+    if (!camp) return;
+    const t = window.setInterval(() => {
+      if (document.hidden) return;
+      void fichasDaMesa(id).then(setFichas).catch(() => undefined);
+      if (camp.dono !== meuId) void listarNpcs(id).then(setNpcs).catch(() => undefined);
+    }, 5000);
+    return () => window.clearInterval(t);
+  }, [camp, id, meuId]);
+
   const tentar = async (acao: () => Promise<void>, msg: string) => {
     setErro("");
     try { await acao(); } catch { setErro(msg); }

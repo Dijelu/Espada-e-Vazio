@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { calcular } from "../regras/ficha";
 import { calcularAmeaca } from "../regras/ameacas";
 import { publicarCombate, type FichaDaMesa, type Npc } from "../lib/campanhas";
@@ -45,6 +45,8 @@ interface Participante {
   /** os jogadores veem "Criatura desconhecida" no lugar do nome */
   oculto: boolean;
   acoes: AcaoNpc[];
+  /** ficha de origem (jogadores) */
+  fichaId?: string;
 }
 
 interface Estado {
@@ -83,6 +85,23 @@ export function CombateMesa({ campanhaId, fichas, npcs, pastas }: { campanhaId: 
   useEffect(() => {
     try { localStorage.setItem(chave(campanhaId), JSON.stringify(est)); } catch { /* sem armazenamento */ }
   }, [campanhaId, est]);
+
+  // a ficha do jogador mudou (dano, cura, PR gasto)? o painel acompanha; ajustes do Mestre valem até a ficha mudar de novo
+  const vistas = useRef<Record<string, string>>({});
+  useEffect(() => {
+    const mudancas: Record<string, { pv: number; pvMax: number; pr: number; prMax: number; cr: number }> = {};
+    for (const f of fichas) {
+      const c = calcular(f.ficha);
+      const marca = `${f.ficha.pvAtual}|${f.ficha.prAtual}|${c.pv}|${c.pr}|${c.cr}`;
+      if (vistas.current[f.id] === undefined) { vistas.current[f.id] = marca; continue; }
+      if (vistas.current[f.id] !== marca) {
+        vistas.current[f.id] = marca;
+        mudancas[f.id] = { pv: Math.min(f.ficha.pvAtual, c.pv), pvMax: c.pv, pr: Math.min(f.ficha.prAtual, c.pr), prMax: c.pr, cr: c.cr };
+      }
+    }
+    if (Object.keys(mudancas).length === 0) return;
+    setEst((e) => ({ ...e, lista: e.lista.map((p) => (p.fichaId && mudancas[p.fichaId] ? { ...p, ...mudancas[p.fichaId] } : p)) }));
+  }, [fichas]);
 
   // os jogadores só veem a ordem; PV dos NPCs ficam com o Mestre
   useEffect(() => {
@@ -153,7 +172,7 @@ export function CombateMesa({ campanhaId, fichas, npcs, pastas }: { campanhaId: 
       const c = calcular(f.ficha);
       novos.push({
         id: novoId(), nome: f.nome, tipo: "jogador", ini: null, bonus: Math.floor(c.atr.des / 2) + (c.iniciativa - c.atr.des),
-        pv: Math.min(f.ficha.pvAtual, c.pv), pvMax: c.pv, pr: Math.min(f.ficha.prAtual, c.pr), prMax: c.pr, cr: c.cr, fora: false, nota: "", grupo, oculto: false, acoes: [],
+        pv: Math.min(f.ficha.pvAtual, c.pv), pvMax: c.pv, pr: Math.min(f.ficha.prAtual, c.pr), prMax: c.pr, cr: c.cr, fora: false, nota: "", grupo, oculto: false, acoes: [], fichaId: f.id,
       });
     } else {
       const ids = tipo === "p" ? npcs.filter((x) => x.dados.pasta === id).map((x) => x.id) : [id];
@@ -320,7 +339,7 @@ export function CombateMesa({ campanhaId, fichas, npcs, pastas }: { campanhaId: 
           </li>
         ))}
       </ol>
-      {est.lista.length > 0 && <p className="ajuda">Iniciativa = d20 + metade da Destreza (mais bônus da ficha). NPCs adicionados juntos rolam uma vez só. Os jogadores veem a ordem de iniciativa (sem PV dos NPCs). Os PV dos jogadores aqui são só um controle do Mestre: a ficha deles não muda.</p>}
+      {est.lista.length > 0 && <p className="ajuda">Iniciativa = d20 + metade da Destreza (mais bônus da ficha). NPCs adicionados juntos rolam uma vez só. Os jogadores veem a ordem de iniciativa (sem PV dos NPCs). O PV/PR dos jogadores acompanha a ficha deles (atualiza sozinho); seus ajustes aqui não mudam a ficha.</p>}
     </section>
   );
 }
