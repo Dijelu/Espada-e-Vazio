@@ -1129,3 +1129,7 @@ img, video, svg { max-width: 100%; }
 .criar-npc .sub-passivas { margin: 0; }
 .criar-npc .btn { justify-self: start; margin-bottom: 8px; }
 .criar-npc .campo input, .criar-npc .campo select { min-height: 48px; }
+.npc-hab { border: 2px solid var(--line); border-radius: 6px; padding: 0 12px; background: var(--panel); }
+.npc-hab > summary { cursor: pointer; min-height: 42px; display: flex; align-items: center; font-weight: 700; }
+.npc-hab[open] { padding-bottom: 10px; }
+.npc-edicao > .btn { margin: 6px 0 14px; }

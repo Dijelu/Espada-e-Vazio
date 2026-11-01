@@ -63,6 +63,8 @@ const atrRaid = (nd: number) => (nd <= 5 ? 5 : nd <= 10 ? 7 : nd <= 15 ? 9 : 11)
 export interface AtaqueAmeaca { nome: string; atr: ChaveAtr; dados: string; tipo: string }
 export interface TecnicaAmeaca { nome: string; dados: string; custo: number; atr: ChaveAtr; texto: string }
 
+export interface HabilidadeAmeaca { titulo: string; texto: string }
+
 export interface Ameaca {
   categoria: Categoria;
   formato: Formato;
@@ -78,6 +80,8 @@ export interface Ameaca {
   ataques: AtaqueAmeaca[];
   tecnicas: TecnicaAmeaca[];
   caracteristicas: string;
+  /** Reação, Ação Suprema, Zanpakutō, Bankai, Kidō… (texto livre) */
+  habilidades: HabilidadeAmeaca[];
 }
 
 /** Modelo de ameaça pronta do livro (capítulo 14). */
@@ -92,12 +96,13 @@ export interface ModeloAmeaca {
   caracteristicas: string;
   ataques: AtaqueAmeaca[];
   tecnicas: TecnicaAmeaca[];
+  habilidades?: HabilidadeAmeaca[];
 }
 
 export function ameacaDoModelo(m: ModeloAmeaca, nd = m.nd): Ameaca {
   const base: Ameaca = { ...ameacaPadrao(m.categoria, nd), formato: m.formato, grau: m.grau };
   const pontos = pontosDeAtributo({ categoria: m.categoria, formato: m.formato, nd, grau: m.grau });
-  return normalizarAmeaca({ ...base, atr: distribuir(pontos, m.estilo), ataques: m.ataques, tecnicas: m.tecnicas, caracteristicas: m.caracteristicas });
+  return normalizarAmeaca({ ...base, atr: distribuir(pontos, m.estilo), ataques: m.ataques, tecnicas: m.tecnicas, caracteristicas: m.caracteristicas, habilidades: m.habilidades ?? [] });
 }
 
 export function ameacaPadrao(categoria: Categoria = "shinigami", nd = 1): Ameaca {
@@ -106,7 +111,7 @@ export function ameacaPadrao(categoria: Categoria = "shinigami", nd = 1): Ameaca
   return {
     categoria, formato: "solo", nd, grau: 0, dificuldade: "medio", atr, modo: "comum", jogadores: 4, pvExtra: 0,
     ataques: [{ nome: categoria === "hollow" ? "Garras" : categoria === "quincy" ? "Lâmina de Reishi" : "Katana", atr: categoria === "shinigami" ? "des" : "for", dados: "1d8", tipo: "Cortante" }],
-    tecnicas: [], caracteristicas: "",
+    tecnicas: [], caracteristicas: "", habilidades: [],
   };
 }
 
@@ -228,5 +233,6 @@ export function normalizarAmeaca(raw: unknown): Ameaca {
     ataques: Array.isArray(o.ataques) ? o.ataques.slice(0, 8).map((x) => ({ nome: txt(x?.nome, "Ataque"), atr: em(x?.atr, ["for", "des", "con", "men", "esp"] as const, "for"), dados: txt(x?.dados, "1d8"), tipo: txt(x?.tipo) })) : base.ataques,
     tecnicas: Array.isArray(o.tecnicas) ? o.tecnicas.slice(0, 10).map((x) => ({ nome: txt(x?.nome, "Técnica"), dados: txt(x?.dados, "2d6"), custo: num(x?.custo, 0, 0, 999), atr: em(x?.atr, ["for", "des", "con", "men", "esp"] as const, "esp"), texto: txt(x?.texto) })) : [],
     caracteristicas: txt(o.caracteristicas),
+    habilidades: Array.isArray(o.habilidades) ? o.habilidades.slice(0, 16).map((x) => ({ titulo: txt(x?.titulo, "Habilidade"), texto: txt(x?.texto) })) : [],
   };
 }

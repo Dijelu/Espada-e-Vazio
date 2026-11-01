@@ -22,7 +22,8 @@
     "tipo": "Cortante"
    }
   ],
-  "tecnicas": []
+  "tecnicas": [],
+  "habilidades": []
  },
  {
   "id": "grupo-hollows",
@@ -44,10 +45,16 @@
   "tecnicas": [
    {
     "nome": "Investida Predatória",
-    "dados": "4d10",
     "custo": 6,
+    "dados": "4d10",
     "atr": "for",
     "texto": "O Grupo se move até metade de seu deslocamento, atingindo todas as criaturas que estiverem em seu caminho. Cada criatura deve realizar um Teste de Resistência de Destreza ou Constituição (CD 8 + proficiência + Força), a escolha da criatura atingida. Dano: 4d10 + Força de dano de Concussão em caso de falha, ou nada em caso de sucesso. O Grupo após usar Investida perde todo seu deslocamento."
+   }
+  ],
+  "habilidades": [
+   {
+    "titulo": "Reação",
+    "texto": "Retaliação Feral: Quando o Grupo de Hollows é atingido, sua ferocidade ativa uma reação instintiva. Eles podem realizar um ataque contra a criatura que os acertou, utilizando o Ataque em Massa."
    }
   ]
  },
@@ -74,7 +81,8 @@
     "tipo": "Concussão"
    }
   ],
-  "tecnicas": []
+  "tecnicas": [],
+  "habilidades": []
  },
  {
   "id": "grupo-gillian",
@@ -93,7 +101,8 @@
     "tipo": "Concussão"
    }
   ],
-  "tecnicas": []
+  "tecnicas": [],
+  "habilidades": []
  },
  {
   "id": "adjuchas",
@@ -118,7 +127,17 @@
     "tipo": "Energia"
    }
   ],
-  "tecnicas": []
+  "tecnicas": [],
+  "habilidades": [
+   {
+    "titulo": "Reação",
+    "texto": "Contra-Ataque: Quando uma criatura acertar o Adjuchas com um ataque corpo a corpo, o Adjuchas pode realizar um ataque focado contra ela."
+   },
+   {
+    "titulo": "Características Animais (opcional)",
+    "texto": "Canino: ataque Mordida Brutal 2d10 + Força cortante; Con CD 17 ou Amedrontado. Felino: ataques corpo a corpo +1d8 e Con CD 16 ou Sangramento. Réptil: Golpe de Cauda 2d8 + Força perfurante e 2d8 veneno (Con CD 8 + prof. + Espírito ou Envenenado). Serpente: atravessa espaços sem ataque de oportunidade e causa Envenenado (Con CD 8 + prof. + Espírito)."
+   }
+  ]
  },
  {
   "id": "vasto-lorde",
@@ -128,7 +147,7 @@
   "formato": "solo",
   "nd": 12,
   "estilo": "fisico",
-  "caracteristicas": "Aura Predatória: A simples existência de um Vasto Lorde é uma sentença de morte para seres espirituais mais fracos. Sempre que o Vasto Lorde entra em combate, ele utiliza “Liberar Reiatsu” como ação livre, sem custo (CD igual 10 + Nível de Desafio + Espírito).\nCoroa da Desolação: A presença espiritual de um Vasto Lorde é sufocante. Criaturas que comecem o turno a até 6 metros dele devem fazer um teste de Resistência de Espírito (CD igual 10 + Nível de Desafio + Espírito) ou sofrem 3d10 de dano psíquico e ficam com desvantagem no próximo ataque que realizarem contra o Vasto Lorde.\nRegeneração de Alta Velocidade: O Vasto Lorde recupera duas vezes a ND em pontos de vida no início do turno dele, desde que ainda possua ao menos 1 ponto de vida.\nSonido: O Vasto Lorde pode utilizar Sonido, que funciona da mesma forma que o Shunpo. Para determinar seus efeitos, utilize a versão do Shunpo sugerida para a classe Zanjutsu. Ao utilizar Sonido, os próximos dois ataques do Vasto Lorde têm vantagem nas jogadas de dano.\nPercepção Espiritual Passiva: 32. (10 + Espírito + proficiência)\nHierro: Resistência a danos Físicos.\nRedução de Dano: 0 dano Físico e 10 dano Esotérico.\nTeste de Resistência: Força, Mente e Espiríto.",
+  "caracteristicas": "Aura Predatória: A simples existência de um Vasto Lorde é uma sentença de morte para seres espirituais mais fracos. Sempre que o Vasto Lorde entra em combate, ele utiliza “Liberar Reiatsu” como ação livre, sem custo (CD igual 10 + Nível de Desafio + Espírito).\nCoroa da Desolação: A presença espiritual de um Vasto Lorde é sufocante. Criaturas que comecem o turno a até 6 metros dele devem fazer um teste de Resistência de Espírito (CD igual 10 + Nível de Desafio + Espírito) ou sofrem 3d10 de dano psíquico e ficam com desvantagem no próximo ataque que realizarem contra o Vasto Lorde.\nRegeneração de Alta Velocidade: O Vasto Lorde recupera duas vezes a ND em pontos de vida no início do turno dele, desde que ainda possua ao menos 1 ponto de vida.\nSonido: O Vasto Lorde pode utilizar Sonido, que funciona da mesma forma que o Shunpo. Para determinar seus efeitos, utilize a versão do Shunpo sugerida para a classe Zanjutsu. Ao utilizar Sonido, os próximos dois ataques do Vasto Lorde têm vantagem nas jogadas de dano.\nHierro: Resistência a danos Físicos.\nRedução de Dano: 0 dano Físico e 10 dano Esotérico.",
   "ataques": [
    {
     "nome": "Impacto Brutal",
@@ -140,24 +159,34 @@
   "tecnicas": [
    {
     "nome": "Explosão de Reiatsu",
-    "dados": "NDd8",
     "custo": 30,
+    "dados": "NDd8",
     "atr": "esp",
     "texto": "O Vasto Lorde libera violentamente seu poder espiritual. Todas as criaturas à sua escolha a até 6 metros dele devem realizar um Teste de Resistência de Força (CD 8 + proficiência + Espírito). Em uma falha, sofrem ND em d8s de dano de Energia e são empurradas 6 metros. Em um sucesso, sofrem metade do dano e não são empurradas."
    },
    {
     "nome": "Cero",
-    "dados": "NDd8",
     "custo": 20,
+    "dados": "NDd8",
     "atr": "esp",
     "texto": "ND em d8s de dano de Energia em falha, ou metade em sucesso no teste."
    },
    {
     "nome": "Reação Cero",
-    "dados": "NDd8",
     "custo": 30,
+    "dados": "NDd8",
     "atr": "esp",
     "texto": "Quando for alvo de um ataque à distância, o Vasto Lord pode utilizar o Cero para se proteger e tentar causar dano ao inimigo. Ele reduz o dano do ataque pelo valor rolado nos dados do Cero. Se o dano excedente for maior que zero, a criatura pode realizar o Teste de Resistência de Constituição para evitar o dano. Se obtiver sucesso, não sofre dano, se falhar, sofre o dano excedente."
+   }
+  ],
+  "habilidades": [
+   {
+    "titulo": "Reação",
+    "texto": "Contra-Ataque: Quando uma criatura acertar o Vasto Lord com um ataque corpo a corpo, o Vasto Lord pode realizar um ataque Impacto Brutal contra ela. Técnica: Reação Cero (30 PR): Quando for alvo de um ataque à distância, o Vasto Lord pode utilizar o Cero para se proteger e tentar causar dano ao inimigo. Ele reduz o dano do ataque pelo valor rolado nos dados do Cero. Se o dano excedente for maior que zero, a criatura pode realizar o Teste de Resistência de Constituição para evitar o dano. Se obtiver sucesso, não sofre dano, se falhar, sofre o dano excedente."
+   },
+   {
+    "titulo": "Ação Suprema",
+    "texto": "Resistência Suprema: Duas vezes por combate, o Vasto Lord pode passar automaticamente em um Teste de Resistência."
    }
   ]
  },
@@ -187,24 +216,54 @@
   "tecnicas": [
    {
     "nome": "Grand Rey Cero",
-    "dados": "2NDd10",
     "custo": 30,
+    "dados": "2NDd10",
     "atr": "esp",
     "texto": "O Vasto Lorde dispara um Cero concentrado contra uma criatura que possa ver a até 24 metros. Ataque à Distância: proficiência + Espírito para atingir. Se acertar, a criatura sofre 2 × ND d10 de dano de energia"
    },
    {
     "nome": "Cero",
-    "dados": "NDd12",
     "custo": 25,
+    "dados": "NDd12",
     "atr": "esp",
     "texto": "ND em d12s de dano de Energia em falha, ou metade em sucesso no teste."
    },
    {
     "nome": "Reação Cero",
-    "dados": "NDd12",
     "custo": 30,
+    "dados": "NDd12",
     "atr": "esp",
     "texto": "Quando for alvo de um ataque à distância, o Vasto Lord pode utilizar o Cero para se proteger e tentar causar dano ao inimigo. Ele reduz o dano do ataque pelo valor rolado nos dados do Cero. Se o dano excedente for maior que zero, a criatura pode realizar o Teste de Resistência de Constituição para evitar o dano. Se obtiver sucesso, não sofre dano, se falhar, sofre o dano excedente."
+   }
+  ],
+  "habilidades": [
+   {
+    "titulo": "Reação",
+    "texto": "Contra-Ataque: Quando uma criatura acertar o Arrancar com um ataque corpo a corpo, o Arrancar pode realizar um ataque com Katana ou Técnica: Cero contra ela. Técnica: Reação Cero (30 PR): Quando for alvo de um ataque à distância, o Vasto Lord pode utilizar o Cero para se proteger e tentar causar dano ao inimigo. Ele reduz o dano do ataque pelo valor rolado nos dados do Cero. Se o dano excedente for maior que zero, a criatura pode realizar o Teste de Resistência de Constituição para evitar o dano. Se obtiver sucesso, não sofre dano, se falhar, sofre o dano excedente."
+   },
+   {
+    "titulo": "Ação Suprema",
+    "texto": "Resistência Suprema: Duas vezes por combate, o Arrancar pode passar automaticamente em um Teste de Resistência."
+   },
+   {
+    "titulo": "Resurrección",
+    "texto": "O Arrancar é capaz de liberar seu poder selado a partir da sua Ressurrección, permitindo que ele retorne à essência de suas habilidades Hollow e manifeste sua verdadeira forma de combate. Ele pode ativar ela usando sua Ação. Enquanto estiver nessa forma, o Arrancar pode utilizar as habilidades de sua Ressurrección. Ele permanece transformado até ser derrotado ou até utilizar uma Ação Livre para encerrar a transformação."
+   },
+   {
+    "titulo": "Liberação",
+    "texto": "Quando o Arrancar se transforma, ele libera uma aura de escuridão. Todas as criaturas que possam vê-lo ou sentir sua energia espiritual devem realizar um Teste de Resistência de Determinação (CD 8 + proficiência + Espírito). Em caso de falha, a criatura fica Paralisada até o final do próximo turno do Arrancar. O Arrancar rcupera uma quantidade de pontos de vida igual à metade de seus pontos de vida totais, e sua Redução de Dano aumenta em 10."
+   },
+   {
+    "titulo": "Transformação",
+    "texto": "A transformação é a volta de sua forma Hollow, fazendo com que ele ganhe seus poderes novamente. Você pode criar uma transformação usando de base a transformação abaixo. MURCIELAGO MURCIELAGO Quando a transformação é realizada, uma grande quantidade de energia verde é liberada por todo o campo de batalha. O Arrancar assume uma forma semelhante à de um morcego, com grandes asas negras, enquanto sua máscara Hollow se transforma em dois grandes chifres. As linhas de estigma em seu rosto ficam negras, mais largas e triangulares, e suas unhas se alongam. Seu traje de Arrancar se torna mais justo e fechado na parte superior, assumindo a aparência de um manto na parte inferior. A Resurrección é liberada quando o Arrancar concentra sua energia e pronuncia o nome “Murciélago”. Para isso, ele deve gastar 50 Pontos de Reiatsu e a ação necessária. Nessa forma, todos os seus atributos são intensificados, recebendo 5 pontos adicionais em cada atributo, podendo ultrapassar o limite normal de atributos. Além disso, seu deslocamento pode ser utilizado como deslocamento de voo."
+   },
+   {
+    "titulo": "Luz de La Luna",
+    "texto": "O Arrancar pode utilizar sua Ação Bônus e gastar 20 Pontos de Reiatsu para criar uma lança de energia verde. Ele pode utilizá-la em seus ataques, causando 3d10 + Força ou Destreza de dano de energia, com uma jogada de ataque igual a proficiência + Força ou Destreza. Quando uma criatura for atingida pela lança, o Arrancar pode fazê-la explodir. A criatura deve realizar um Teste de Resistência de Constituição ou sofrerá 6d10 de dano de energia. CD igual ao Cero. Alternativamente, o Arrancar pode arremessar a lança. Se atingir uma criatura, a lança explode automaticamente."
+   },
+   {
+    "titulo": "Cero Obscuras",
+    "texto": "Seu Cero se torna negro e extremamente poderoso. Você soma seu ND ao dano do Cero e, quando uma criatura for alvo dele, ela não pode reduzir seu dano por meio de Resistência. Se a criatura possuir Imunidade, ela sofre o dano como se tivesse Resistência. Se você atingir uma criatura com seu Cero, ou se ela falhar em um Teste de Resistência contra ele, ela fica Vulnerável ao seu próximo Cero durante 1 minuto."
    }
   ]
  },
@@ -216,7 +275,7 @@
   "formato": "solo",
   "nd": 1,
   "estilo": "equilibrado",
-  "caracteristicas": "Resistência Melhorada: O Shinigami recebe +1 na sua Classe de Resistência (Já adicionado).\nCaracterística Adicional: O Tenente Shinigami recebe um talento ou caracteristica de uma Classe. O talento sugerido é “Domínio Temporário” da classe Tokubetsu.\nShunpo: O Tenente Shinigami pode utilizar Shunpo, seguindo a versão sugerida da classe Tokubetsu.",
+  "caracteristicas": "Resistência Melhorada: O Shinigami recebe +1 na sua Classe de Resistência (Já adicionado).",
   "ataques": [
    {
     "nome": "Katana (Crítico 19 x2)",
@@ -225,7 +284,17 @@
     "tipo": "Cortante"
    }
   ],
-  "tecnicas": []
+  "tecnicas": [],
+  "habilidades": [
+   {
+    "titulo": "Reação",
+    "texto": "O Shinigami pode utilizar uma reação lançando um Kido, como no exemplo sugerido de Kido: 8º Bakudou: Seki."
+   },
+   {
+    "titulo": "Kido",
+    "texto": "Escolha Kido da lista de Bakudou ou Hadou (Rank D), um número igual ao atributo de Mente. Para realizar ataques com esses Kido, utilize o atributo de Mente, somando proficiência + Mente no acerto. A CD para resistir a esses Kido é igual a 10 + metade do ND (arredondado para baixo) + Mente. Sugestões de Kido: - 1º Bakudou: Sai - 8º Bakudou: Seki - 1º Hadou: Shou"
+   }
+  ]
  },
  {
   "id": "tenente",
@@ -233,7 +302,40 @@
   "categoria": "shinigami",
   "grau": 1,
   "formato": "solo",
-  "nd": 9,
+  "nd": 3,
+  "estilo": "kido",
+  "caracteristicas": "Característica Adicional: O Tenente Shinigami recebe um talento ou caracteristica de uma Classe. O talento sugerido é “Domínio Temporário” da classe Tokubetsu.\nShunpo: O Tenente Shinigami pode utilizar Shunpo, seguindo a versão sugerida da classe Tokubetsu.",
+  "ataques": [
+   {
+    "nome": "Katana (Crítico 19 x2)",
+    "atr": "for",
+    "dados": "1d8",
+    "tipo": "Cortante"
+   }
+  ],
+  "tecnicas": [],
+  "habilidades": [
+   {
+    "titulo": "Reação",
+    "texto": "O Shinigami pode utilizar uma reação lançando um Kido ou utilizando uma característica da sua Zanpakutou. - 1º Bakudou: Sai - 8º Bakudou: Seki - 9º Bakudou: Geki - 4º Hadou: Byakurai - 9º Hadou: Kageho - 20º Hadou: Shoutenkyu Médio Médio Atributos:"
+   },
+   {
+    "titulo": "Zanpakutou",
+    "texto": "Um Tenente Shinigami pode liberar sua Shikai usando uma ação bônus em seu turno. Escolha ou crie uma Zanpakutou a partir da lista disponível de Zanpakutous. O acerto das técnicas da Zanpakutou, use d20 + Nível de Desafio + atributo de Mente. A Classe de Dificuldade (CD) para resistir às técnicas da Zanpakutou é 8 + Nível de Desafio + atributo de Mente."
+   },
+   {
+    "titulo": "Kido",
+    "texto": "Escolha Kido da lista de Bakudou ou Hadou (Rank D), um número igual ao atributo de Mente + ND. Para realizar ataques com esses Kido, utilize o atributo de Mente, somando proficiência + Mente no acerto. A CD para resistir a esses Kido é igual a 10 + metade do ND (arredondado para baixo) + Mente. Abaixo Sugestões de Kido:"
+   }
+  ]
+ },
+ {
+  "id": "tenente-raid",
+  "nome": "Tenente (Raid)",
+  "categoria": "shinigami",
+  "grau": 1,
+  "formato": "raid",
+  "nd": 3,
   "estilo": "equilibrado",
   "caracteristicas": "Característica Adicional: O Tenente Shinigami recebe um talento ou caracteristica de uma Classe. O talento sugerido é “Desvio Instintivo” da classe Zanjutsu.\nImpacto de Reiatsu: Quando o Tenente acertar uma criatura com sua Zanpakutou, pode utilizar 4 pontos de reiatsu para causar 2d4 de dano de energia adicional, além do dano normal da arma. O dano extra pode ser aumentado em 1d4 para cada 2 pontos de reiatsu adicionais gastos, até um máximo de 5d4.\nKido Adicional: O Tenente Shinigami possui um Kido rank C adicional.\nShunpo: O Tenente Shinigami pode utilizar Shunpo, seguindo a versão sugerida da classe Zanjutsu.",
   "ataques": [
@@ -250,7 +352,21 @@
     "tipo": "Cortante"
    }
   ],
-  "tecnicas": []
+  "tecnicas": [],
+  "habilidades": [
+   {
+    "titulo": "Reação",
+    "texto": "O Shinigami pode utilizar uma reação lançando um Kido ou utilizando uma característica da sua Zanpakutou. - 1º Bakudou: Sai - 8º Bakudou: Seki - 9º Bakudou: Geki - 12º Bakudou: Fushibi - 4º Hadou: Byakurai - 9º Hadou: Kageho - 20º Hadou: Shoutenkyu - 33º Hadou: Soukatsui"
+   },
+   {
+    "titulo": "Zanpakutou",
+    "texto": "Um Tenente Shinigami pode liberar sua Shikai usando uma ação bônus em seu turno. Escolha ou crie uma Zanpakutou a partir da lista disponível de Zanpakutous. O acerto das técnicas da Zanpakutou, use d20 + Nível de Desafio + atributo de Espírito. A Classe de Dificuldade (CD) para resistir às técnicas da Zanpakutou é 8 + Nível de Desafio + atributo de Espírito."
+   },
+   {
+    "titulo": "Kido",
+    "texto": "Escolha Kido da lista de Bakudou ou Hadou (Rank D), um número igual ao atributo de Espírito + ND. Para realizar ataques com esses Kido, utilize o atributode Espírito, somando proficiência + Espírito no acerto. A CD para resistir a esses Kido é igual a 10 + metade do ND (arredondado para baixo) + Espírito. Sugestões de Kido:"
+   }
+  ]
  },
  {
   "id": "capitao",
@@ -258,7 +374,44 @@
   "categoria": "shinigami",
   "grau": 2,
   "formato": "solo",
-  "nd": 12,
+  "nd": 10,
+  "estilo": "equilibrado",
+  "caracteristicas": "Autoridade Espiritual: A presença de um Capitão é sufocante para criaturas comuns. Criaturas que dependem de reiatsu percebem imediatamente a pressão esmagadora. Sempre que o Capitão entrar em combate ele utiliza a ação “Liberar Reiatsu” com uma ação livre (CD igual 10 + Nível de Desafio + Espírito).\nCaracterística Adicional (2x): O Capitão Shinigami recebe dois talentos ou caracteristicas de uma Classe. Os talentos sugeridos é “Análise” da classe Kyūgo e “Estilo Veloz” da classe Hakuda.\nShunpo Aprimorado: O Capitão Shinigami pode utilizar Shunpo, seguindo a versão sugerida da classe Zanjutsu. Mas quando ele utiliza Shunpo os próximos dois ataques dele tem vantagem.\nTécnicas Dominadas: Quando o Capitão Shinigami utiliza uma técnica de sua Zanpakutou, ele adiciona 2 dados de dano adicionais a técnica.",
+  "ataques": [
+   {
+    "nome": "Katana (Crítico 19 - x3)",
+    "atr": "des",
+    "dados": "1d8",
+    "tipo": "Cortante"
+   }
+  ],
+  "tecnicas": [],
+  "habilidades": [
+   {
+    "titulo": "Reação",
+    "texto": "O Shinigami pode utilizar uma reação lançando um Kido ou utilizando uma característica da sua Zanpakutou. - 9º Bakudou: Geki - 12º Bakudou: Fushibi - 26º Bakudou: Kyokkou - 39º Bakudou: Enkosen - 4º Hadou: Byakurai - 20º Hadou: Shoutenkyu - 33º Hadou: Soukatsui - 63° Hadou: Raikouhou"
+   },
+   {
+    "titulo": "Zanpakutou",
+    "texto": "Um Capitão Shinigami pode liberar sua Shikai usando uma ação bônus em seu turno. Escolha ou crie uma Zanpakutou a partir da lista disponível de Zanpakutous. O acerto das técnicas da Zanpakutou, use d20 + Nível de Desafio + atributo de Mente. A Classe de Dificuldade (CD) para resistir às técnicas da Zanpakutou é 8 + Nível de Desafio + atributo de Mente."
+   },
+   {
+    "titulo": "Bankai",
+    "texto": "O Capitão Shinigami é capaz de liberar a Bankai de sua Zanpakutou. Ele pode ativá-la usando sua ação em seu turno. Ao fazê-lo, todas as criaturas inimigas que possam vê-lo no momento da liberação sofrem dano Psíquico igual a cinco vezes seu atributo de Espírito."
+   },
+   {
+    "titulo": "Kido",
+    "texto": "Escolha Kido da lista de Bakudou ou Hadou (Rank D-A), um número igual ao atributo de Mente + ND. Para realizar ataques com esses Kido, utilize o atributo de Mente, somando proficiência + Mente no acerto. A CD para resistir a esses Kido é igual a 10 + metade do ND (arredondado para baixo) + Mente. Sugestões de Kido:"
+   }
+  ]
+ },
+ {
+  "id": "capitao-raid",
+  "nome": "Capitão (Raid)",
+  "categoria": "shinigami",
+  "grau": 2,
+  "formato": "raid",
+  "nd": 10,
   "estilo": "equilibrado",
   "caracteristicas": "Autoridade Espiritual: A presença de um Capitão é sufocante para criaturas comuns. Criaturas que dependem de reiatsu percebem imediatamente a pressão esmagadora. Sempre que o Capitão entrar em combate ele utiliza a ação “Liberar Reiatsu” com uma ação livre (CD igual 10 + Nível de Desafio + Espírito).\nCaracterística Adicional (2x): O Capitão Shinigami recebe dois talentos ou caracteristicas de uma Classe. Os talentos sugeridos é “Análise” da classe Kyūgo e “Estilo Veloz” da classe Hakuda.\nDomínio da Zanpakutou: Uma vez por turno, quando o Capitão acertar um ataque ou técnica da Zanpakutou, ele causa dano adicional igual ao seu ND a todas as criaturas inimigas a até 3 m do alvo original.\nSequência de Kido: Se o Shinigami utilizar um Kido em seu turno, ele pode conjurar outros Kidos adicionais, em número igual à quantidade de ataques que possui, mas cada Kido subsequente deve ser de Rank inferior ao anterior.\nShunpo Aprimorado: O Capitão Shinigami pode utilizar Shunpo, seguindo a versão sugerida da classe Zanjutsu. Mas quando ele utiliza Shunpo os próximos dois ataques dele tem vantagem.\nTécnicas Dominadas: Quando o Capitão Shinigami utiliza uma técnica de sua Zanpakutou, ele adiciona 2 dados de dano adicionais a técnica.",
   "ataques": [
@@ -269,7 +422,70 @@
     "tipo": "Cortante"
    }
   ],
-  "tecnicas": []
+  "tecnicas": [],
+  "habilidades": [
+   {
+    "titulo": "Reação",
+    "texto": "O Shinigami pode utilizar uma reação lançando um Kido ou utilizando uma característica da sua Zanpakutou."
+   },
+   {
+    "titulo": "Ação Suprema",
+    "texto": "Corte Devastador: Duas vezes por rodada, quando uma criatura dentro do alcance da arma realizar um ataque contra ele, o Capitão pode realizar um ataque com sua Zanpakutou contra essa criatura. Caso utilize sua reação contra o mesmo ataque, ele não poderá ativar Corte Devastador. Resistência Suprema: Duas vezes por combate, o Capitão Shinigami pode passar automaticamente em um Teste de Resistência. - 9º Bakudou: Geki - 12º Bakudou: Fushibi - 26º Bakudou: Kyokkou - 39º Bakudou: Enkosen - 4º Hadou: Byakurai - 20º Hadou: Shoutenkyu - 33º Hadou: Soukatsui - 63° Hadou: Raikouhou"
+   },
+   {
+    "titulo": "Zanpakutou",
+    "texto": "Um Capitão Shinigami pode liberar sua Shikai usando uma ação bônus em seu turno. Escolha ou crie uma Zanpakutou a partir da lista disponível de Zanpakutous. O acerto das técnicas da Zanpakutou, use d20 + Nível de Desafio + atributo de Espírito. A Classe de Dificuldade (CD) para resistir às técnicas da Zanpakutou é 8 + Nível de Desafio + atributo de Espírito."
+   },
+   {
+    "titulo": "Bankai",
+    "texto": "O Capitão Shinigami é capaz de liberar a Bankai de sua Zanpakutou. Ele pode ativá-la usando sua ação em seu turno. Ao fazê-lo, todas as criaturas inimigas que possam vê-lo no momento da liberação sofrem dano Psíquico igual a dez vezes seu atributo de Espírito."
+   },
+   {
+    "titulo": "Kido",
+    "texto": "Escolha Kido da lista de Bakudou ou Hadou (Rank D-A), um número igual ao atributo de Mente + ND. Para realizar ataques com esses Kido, utilize o atributo de Espírito, somando proficiência + Espírito no acerto. A CD para resistir a esses Kido é igual a 10 + metade do ND (arredondado para baixo) + Espírito. Sugestões de Kido: Para representar um Capitão Comandante, utilize uma das fichas de Capitão, seja a Solo ou a Raid, e adicione +5 ao ND , refletindo seu poder superior. O Capitão Comandante possui ND 15, tornando-se significativamente mais forte que um Capitão comum, capaz de enfrentar múltiplos adversários com maestria e de alterar o curso de uma batalha com sua presença. Este NPC representa o ápice da força shinigami dentro da Gotei 13: suas habilidades, Shikai, Bankai e domínio de Kido são mais refinados, suas decisões estratégicas são precisas, e seu impacto em combate é devastador. É o líder que inspira respeito, temor e disciplina entre os oficiais das divisões, e sua aparição indica que algo realmente sério está acontecendo no campo de batalha."
+   }
+  ]
+ },
+ {
+  "id": "capitao-comandante",
+  "nome": "Capitão Comandante",
+  "categoria": "shinigami",
+  "grau": 3,
+  "formato": "solo",
+  "nd": 15,
+  "estilo": "equilibrado",
+  "caracteristicas": "Autoridade Espiritual: A presença de um Capitão é sufocante para criaturas comuns. Criaturas que dependem de reiatsu percebem imediatamente a pressão esmagadora. Sempre que o Capitão entrar em combate ele utiliza a ação “Liberar Reiatsu” com uma ação livre (CD igual 10 + Nível de Desafio + Espírito).\nCaracterística Adicional (2x): O Capitão Shinigami recebe dois talentos ou caracteristicas de uma Classe. Os talentos sugeridos é “Análise” da classe Kyūgo e “Estilo Veloz” da classe Hakuda.\nShunpo Aprimorado: O Capitão Shinigami pode utilizar Shunpo, seguindo a versão sugerida da classe Zanjutsu. Mas quando ele utiliza Shunpo os próximos dois ataques dele tem vantagem.\nTécnicas Dominadas: Quando o Capitão Shinigami utiliza uma técnica de sua Zanpakutou, ele adiciona 2 dados de dano adicionais a técnica.",
+  "ataques": [
+   {
+    "nome": "Katana (Crítico 19 - x3)",
+    "atr": "des",
+    "dados": "1d8",
+    "tipo": "Cortante"
+   }
+  ],
+  "tecnicas": [],
+  "habilidades": [
+   {
+    "titulo": "Capitão Comandante",
+    "texto": "Use a ficha de Capitão com ND 15 (ND do Capitão +5)."
+   },
+   {
+    "titulo": "Reação",
+    "texto": "O Shinigami pode utilizar uma reação lançando um Kido ou utilizando uma característica da sua Zanpakutou. - 9º Bakudou: Geki - 12º Bakudou: Fushibi - 26º Bakudou: Kyokkou - 39º Bakudou: Enkosen - 4º Hadou: Byakurai - 20º Hadou: Shoutenkyu - 33º Hadou: Soukatsui - 63° Hadou: Raikouhou"
+   },
+   {
+    "titulo": "Zanpakutou",
+    "texto": "Um Capitão Shinigami pode liberar sua Shikai usando uma ação bônus em seu turno. Escolha ou crie uma Zanpakutou a partir da lista disponível de Zanpakutous. O acerto das técnicas da Zanpakutou, use d20 + Nível de Desafio + atributo de Mente. A Classe de Dificuldade (CD) para resistir às técnicas da Zanpakutou é 8 + Nível de Desafio + atributo de Mente."
+   },
+   {
+    "titulo": "Bankai",
+    "texto": "O Capitão Shinigami é capaz de liberar a Bankai de sua Zanpakutou. Ele pode ativá-la usando sua ação em seu turno. Ao fazê-lo, todas as criaturas inimigas que possam vê-lo no momento da liberação sofrem dano Psíquico igual a cinco vezes seu atributo de Espírito."
+   },
+   {
+    "titulo": "Kido",
+    "texto": "Escolha Kido da lista de Bakudou ou Hadou (Rank D-A), um número igual ao atributo de Mente + ND. Para realizar ataques com esses Kido, utilize o atributo de Mente, somando proficiência + Mente no acerto. A CD para resistir a esses Kido é igual a 10 + metade do ND (arredondado para baixo) + Mente. Sugestões de Kido:"
+   }
+  ]
  },
  {
   "id": "quincy-soldat",
@@ -286,8 +502,192 @@
     "atr": "des",
     "dados": "1d4",
     "tipo": "Perfurante"
+   },
+   {
+    "nome": "Arco Curto (Crítico 17 - x2)",
+    "atr": "des",
+    "dados": "1d6",
+    "tipo": "Perfurante"
    }
   ],
-  "tecnicas": []
+  "tecnicas": [],
+  "habilidades": []
+ },
+ {
+  "id": "quincy-oficial",
+  "nome": "Quincy Oficial",
+  "categoria": "quincy",
+  "grau": 1,
+  "formato": "solo",
+  "nd": 5,
+  "estilo": "equilibrado",
+  "caracteristicas": "Arsenal Quincy: O Soldat possúi com ele um Arco Curto e uma Adaga sem aprimoramentos.\nDisparo Poderoso (3 PR): Quando realizar um ataque à distância com uma arma, você pode adicionar ao dano um dado de dano de energia igual ao dado de dano da arma.",
+  "ataques": [
+   {
+    "nome": "Adaga (Crítico 19 - x3) (1 PR)",
+    "atr": "des",
+    "dados": "1d4",
+    "tipo": "Perfurante"
+   },
+   {
+    "nome": "Arco Curto (Crítico 17 - x2)",
+    "atr": "des",
+    "dados": "1d6",
+    "tipo": "Perfurante"
+   }
+  ],
+  "tecnicas": [],
+  "habilidades": [
+   {
+    "titulo": "Variação de grau",
+    "texto": "O livro traz só o Quincy Soldat; esta é a mesma ficha com o Grau (CR e atributos extras) da tabela de Quincy."
+   }
+  ]
+ },
+ {
+  "id": "quincy-sternritter",
+  "nome": "Quincy Sternritter",
+  "categoria": "quincy",
+  "grau": 2,
+  "formato": "solo",
+  "nd": 10,
+  "estilo": "equilibrado",
+  "caracteristicas": "Arsenal Quincy: O Soldat possúi com ele um Arco Curto e uma Adaga sem aprimoramentos.\nDisparo Poderoso (3 PR): Quando realizar um ataque à distância com uma arma, você pode adicionar ao dano um dado de dano de energia igual ao dado de dano da arma.",
+  "ataques": [
+   {
+    "nome": "Adaga (Crítico 19 - x3) (1 PR)",
+    "atr": "des",
+    "dados": "1d4",
+    "tipo": "Perfurante"
+   },
+   {
+    "nome": "Arco Curto (Crítico 17 - x2)",
+    "atr": "des",
+    "dados": "1d6",
+    "tipo": "Perfurante"
+   }
+  ],
+  "tecnicas": [],
+  "habilidades": [
+   {
+    "titulo": "Variação de grau",
+    "texto": "O livro traz só o Quincy Soldat; esta é a mesma ficha com o Grau (CR e atributos extras) da tabela de Quincy."
+   }
+  ]
+ },
+ {
+  "id": "quincy-schutzstaffel",
+  "nome": "Quincy Schutzstaffel",
+  "categoria": "quincy",
+  "grau": 3,
+  "formato": "solo",
+  "nd": 15,
+  "estilo": "equilibrado",
+  "caracteristicas": "Arsenal Quincy: O Soldat possúi com ele um Arco Curto e uma Adaga sem aprimoramentos.\nDisparo Poderoso (3 PR): Quando realizar um ataque à distância com uma arma, você pode adicionar ao dano um dado de dano de energia igual ao dado de dano da arma.",
+  "ataques": [
+   {
+    "nome": "Adaga (Crítico 19 - x3) (1 PR)",
+    "atr": "des",
+    "dados": "1d4",
+    "tipo": "Perfurante"
+   },
+   {
+    "nome": "Arco Curto (Crítico 17 - x2)",
+    "atr": "des",
+    "dados": "1d6",
+    "tipo": "Perfurante"
+   }
+  ],
+  "tecnicas": [],
+  "habilidades": [
+   {
+    "titulo": "Variação de grau",
+    "texto": "O livro traz só o Quincy Soldat; esta é a mesma ficha com o Grau (CR e atributos extras) da tabela de Quincy."
+   }
+  ]
+ },
+ {
+  "id": "rukia",
+  "nome": "Kuchiki Rukia (lendária)",
+  "categoria": "shinigami",
+  "grau": 2,
+  "formato": "solo",
+  "nd": 12,
+  "estilo": "kido",
+  "caracteristicas": "Domínio Temporário: Quando Rukia fizer um teste, pode gastar 4 pontos de reiatsu para tornar-se treinada na perícia para esse teste.\nEspecialista em Kido: Kuchiki Rukia é um gênio na arte de manipular Kido. Todo Kido que ela conjura recebe um aprimoramento grátis.\nSequência de Kido: Se ela conjurar um Kido no turno dela, pode lançar Kidos adicionais naquele mesmo turno, em uma quantidade igual ao número de ataques que possui. Como também pode alternar seus ataques com Kido.\nShunpo: Kuchiki Rukia pode utilizar Shunpo, seguindo a versão da classe Tokubetsu.\nTécnicas Dominadas: Quando Kuchiki Rukia utiliza uma das técnica da sua Zanpakutou, ela adiciona 2 dados de dano adicionais a técnica.",
+  "ataques": [
+   {
+    "nome": "Katana (Crítico 19 - x2)",
+    "atr": "des",
+    "dados": "1d10",
+    "tipo": "Cortante"
+   }
+  ],
+  "tecnicas": [],
+  "habilidades": [
+   {
+    "titulo": "Personagem lendário",
+    "texto": "O livro não usa a criação padrão para este personagem; os números aqui são calculados pela tabela (ND 12, grau Capitão) e servem de ponto de partida. A ficha original tem valores próprios mais altos."
+   },
+   {
+    "titulo": "Reação",
+    "texto": "A Rukia pode utilizar uma reação lançando um Kido ou utilizando uma característica da sua Zanpakutou."
+   },
+   {
+    "titulo": "Ação Suprema",
+    "texto": "Resistência Suprema: Três vezes por combate, a Rukia pode passar automaticamente em um Teste de Resistência. - 1º Bakudou: Sai - 9º Bakudou: Geki - 61º Bakudou: Rikujyou Kouro - 4º Hadou: Byakurai - 31º Hadou: Shakkahou - 33º Hadou: Soukatsui - 73° Hadou: Souren Soukatsui"
+   },
+   {
+    "titulo": "Kido",
+    "texto": "Para realizar ataques com Kido, utilize o atributo de Mente, somando proficiência + Mente no acerto. A CD para resistir a esses Kido é igual a 10 + metade do ND (arredondado para baixo) + Mente. Kido conhecidos:"
+   },
+   {
+    "titulo": "Sode no Shirayuki",
+    "texto": "A Zanpakutou de Rukia é a Sode no Shirayuki, e ela pode ativar sua Shikai com uma ação bônus e sua Bankai com uma ação. O acerto das técnicas da Zanpakutou, use d20 + Nível de Desafio + atributo de Mente. A Classe de Dificuldade (CD) para resistir às técnicas da Zanpakutou é 8 + Nível de Desafio + atributo de Mente."
+   }
+  ]
+ },
+ {
+  "id": "ichigo",
+  "nome": "Kurosaki Ichigo Visored (lendário)",
+  "categoria": "shinigami",
+  "grau": 2,
+  "formato": "solo",
+  "nd": 12,
+  "estilo": "fisico",
+  "caracteristicas": "Impacto de Reiatsu: Quando Ichigo atacar uma criatura com a Zangetsu, ele pode utilizar 10 pontos de reiatsu para causar 2d10 de dano de energia adicional, além do dano normal da arma. O dano extra pode ser aumentado em 1d10 para cada 5 pontos de reiatsu adicionais gastos, até um máximo de 6d10 de dano extra.\nMestre Zanjutsu: Ataques com a Zanpakutou recebem um dado a mais de dano. Ja adicionado a Shikai.\nShunpo: Kurosaki Ichigo pode utilizar Shunpo, seguindo a versão da classe Hakuda.\nTécnicas Dominadas: Quando Kurosaki Ichigo utiliza uma das técnica da sua Zanpakutou, ela adiciona 3 dados de dano adicionais a técnica.",
+  "ataques": [
+   {
+    "nome": "Hakuda",
+    "atr": "for",
+    "dados": "1d8",
+    "tipo": "Concussão"
+   },
+   {
+    "nome": "Zangetsu Shikai (Crítico 18 - x3)",
+    "atr": "for",
+    "dados": "3d10",
+    "tipo": "Cortante"
+   }
+  ],
+  "tecnicas": [],
+  "habilidades": [
+   {
+    "titulo": "Personagem lendário",
+    "texto": "O livro não usa a criação padrão para este personagem; os números aqui são calculados pela tabela (ND 12, grau Capitão) e servem de ponto de partida. A ficha original tem valores próprios mais altos. Na ficha original ele tem 1116 PV; se quiser, use o campo PV extra (%) para chegar perto."
+   },
+   {
+    "titulo": "Ação Suprema",
+    "texto": "Resistência Suprema: Três vezes por combate, a Rukia pode passar automaticamente em um Teste de Resistência."
+   },
+   {
+    "titulo": "Visored",
+    "texto": "Ichigo consegue colocar a máscara Hollow com uma ação bônus e pode mantê-la por 1 minuto. Enquanto estiver com a máscara, ele recebe um aumento significativo de poder. Ganha 300 pontos de PV e PR temporários, todas as técnicas da Zanpakutou recebem 6 dados extras em vez dos 3 concedidos por “Técnicas Dominadas”, e seus ataques com a Zanpakutou causam 3 dados adicionais de dano."
+   },
+   {
+    "titulo": "Zangetsu",
+    "texto": "A Zanpakutou do Ichigo é a Zangetsu. Sua Shikai permanece ativa o tempo todo, e para ativar a Bankai ele deve utilizar uma ação bônus. O acerto das técnicas da Zanpakutou, use d20 + Nível de Desafio + atributo de Espírito. A Classe de Dificuldade (CD) para resistir às técnicas da Zanpakutou é 8 + Nível de Desafio + atributo de Espírito."
+   }
+  ]
  }
 ]

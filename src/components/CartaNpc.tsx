@@ -79,6 +79,12 @@ export function CartaNpc({ npc, onMudar, onSalvar, onApagar }: Props) {
       {c.ataques.map((a) => <p key={a.nome} className="npc-acao"><b>{a.nome}:</b> +{a.acerto} para acertar · {a.dano} {a.tipo} <small>(média {a.media.toFixed(1).replace(/\.0$/, "")})</small></p>)}
       {c.tecnicas.map((t) => <p key={t.nome} className="npc-acao"><b>{t.nome}</b> ({t.custo} PR): {t.dados} · CD {t.cd}{t.texto ? ` — ${t.texto}` : ""}</p>)}
       {am.caracteristicas && <p className="quebra">{am.caracteristicas}</p>}
+      {am.habilidades.map((h, i) => (
+        <details className="npc-hab" key={i}>
+          <summary>{h.titulo}</summary>
+          <p className="quebra">{h.texto}</p>
+        </details>
+      ))}
 
       <details className="npc-edicao" open={aberto} onToggle={(e) => setAberto((e.currentTarget as HTMLDetailsElement).open)}>
         <summary>Montar ameaça (regras do livro)</summary>
@@ -170,6 +176,20 @@ export function CartaNpc({ npc, onMudar, onSalvar, onApagar }: Props) {
           </div>
         ))}
         {am.tecnicas.length < 10 && <button type="button" className="btn btn-paper" onClick={() => mudarAmeaca({ tecnicas: [...am.tecnicas, { nome: "Nova técnica", dados: "2d6", custo: 4, atr: "esp", texto: "" }] }, true)}>Adicionar técnica</button>}
+
+        {am.habilidades.length > 0 && (
+          <>
+            <h4 className="sub-passivas">Habilidades do modelo</h4>
+            {am.habilidades.map((h, i) => (
+              <div className="npc-item" key={i}>
+                <label className="campo">Título<input value={h.titulo} onChange={(e) => mudarAmeaca({ habilidades: am.habilidades.map((x, j) => (j === i ? { ...x, titulo: e.target.value } : x)) })} onBlur={() => onSalvar(npc)} /></label>
+                <label className="campo npc-larga">Texto<textarea rows={3} value={h.texto} onChange={(e) => mudarAmeaca({ habilidades: am.habilidades.map((x, j) => (j === i ? { ...x, texto: e.target.value } : x)) })} onBlur={() => onSalvar(npc)} /></label>
+                <button type="button" className="link-perigo" onClick={() => mudarAmeaca({ habilidades: am.habilidades.filter((_, j) => j !== i) }, true)}>Remover habilidade</button>
+              </div>
+            ))}
+          </>
+        )}
+        <button type="button" className="btn btn-paper" onClick={() => mudarAmeaca({ habilidades: [...am.habilidades, { titulo: "Nova habilidade", texto: "" }] }, true)}>Adicionar habilidade</button>
 
         <label className="campo">Características e habilidades
           <textarea rows={4} value={am.caracteristicas} placeholder="Resistências, Redução de Dano, Shikai, Kidō… (use as ameaças prontas do livro como referência)" onChange={(e) => mudarAmeaca({ caracteristicas: e.target.value })} onBlur={() => onSalvar(npc)} />
