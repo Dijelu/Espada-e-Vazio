@@ -24,6 +24,7 @@ export default function CampanhaPagina() {
   const [livres, setLivres] = useState<{ id: string; nome: string }[]>([]);
   const [escolha, setEscolha] = useState("");
   const [novoNpc, setNovoNpc] = useState("");
+  const [pastaNova, setPastaNova] = useState("");
   const [modelo, setModelo] = useState("");
   const [ndNovo, setNdNovo] = useState(1);
   const [categoriaNova, setCategoriaNova] = useState<Categoria>("shinigami");
@@ -71,6 +72,7 @@ export default function CampanhaPagina() {
     try { await navigator.clipboard.writeText(camp.codigo); setCopiado(true); setTimeout(() => setCopiado(false), 1800); } catch { /* sem área de transferência */ }
   };
 
+  const pastas = Array.from(new Set(["", ...npcs.map((n) => n.dados.pasta)])).sort((a, b) => (a === "" ? -1 : b === "" ? 1 : a.localeCompare(b, "pt-BR")));
   const guardar = (n: Npc) => tentar(() => salvarNpc(n), "Não foi possível salvar o NPC.");
 
   return (
@@ -129,31 +131,51 @@ export default function CampanhaPagina() {
       <section className="caixa">
         <h3>{mestre ? "NPCs" : "NPCs revelados"}</h3>
         {npcs.length === 0 && <p>{mestre ? "Nenhum NPC ainda." : "O Mestre ainda não revelou nenhum NPC."}</p>}
-        <div className="npcs">
-          {npcs.map((n) => (
-            mestre ? (
-              <CartaNpc
-                key={n.id}
-                npc={n}
-                onMudar={(novo, salvar) => { setNpcs((l) => l.map((x) => (x.id === novo.id ? novo : x))); if (salvar) void guardar(novo); }}
-                onSalvar={(novo) => void guardar(novo)}
-                onApagar={(x) => { if (window.confirm(`Apagar o NPC ${x.nome}?`)) void tentar(async () => { await apagarNpc(x.id); setNpcs((l) => l.filter((y) => y.id !== x.id)); }, "Não foi possível apagar o NPC."); }}
-              />
-            ) : (
+        {mestre ? (
+          <>
+            <datalist id="pastas-npc">{pastas.filter(Boolean).map((p) => <option key={p} value={p} />)}</datalist>
+            {pastas.map((pasta) => {
+              const lista = npcs.filter((n) => n.dados.pasta === pasta);
+              const cartas = (
+                <div className="npcs">
+                  {lista.map((n) => (
+                    <CartaNpc
+                      key={n.id}
+                      npc={n}
+                      onMudar={(novo, salvar) => { setNpcs((l) => l.map((x) => (x.id === novo.id ? novo : x))); if (salvar) void guardar(novo); }}
+                      onSalvar={(novo) => void guardar(novo)}
+                      onApagar={(x) => { if (window.confirm(`Apagar o NPC ${x.nome}?`)) void tentar(async () => { await apagarNpc(x.id); setNpcs((l) => l.filter((y) => y.id !== x.id)); }, "Não foi possível apagar o NPC."); }}
+                    />
+                  ))}
+                </div>
+              );
+              return pasta === "" ? (
+                lista.length > 0 && <div key="sem" className="pasta-sem">{pastas.length > 1 && <h4 className="sub-passivas">Sem pasta</h4>}{cartas}</div>
+              ) : (
+                <details className="pasta" key={pasta}>
+                  <summary><b>{pasta}</b> <small>{lista.length} {lista.length === 1 ? "NPC" : "NPCs"}</small></summary>
+                  {cartas}
+                </details>
+              );
+            })}
+          </>
+        ) : (
+          <div className="npcs">
+            {npcs.map((n) => (
               <article className="npc" key={n.id}>
                 <b className="title-font">{n.nome}</b>
                 <small>{CATEGORIAS.find((x) => x.id === n.dados.ameaca.categoria)?.nome} · ND {n.dados.ameaca.nd}</small>
                 {n.dados.notas && <p className="quebra">{n.dados.notas}</p>}
               </article>
-            )
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
         {mestre && (
           <form className="criar-npc" onSubmit={(e) => {
             e.preventDefault();
             const m = MODELOS.find((x) => x.id === modelo);
             const ameaca = m ? ameacaDoModelo(m, ndNovo) : ameacaPadrao(categoriaNova, ndNovo);
-            void tentar(async () => { const n = await criarNpc(id, novoNpc.trim() || m?.nome || "", ameaca); setNpcs((l) => [...l, n]); setNovoNpc(""); }, "Não foi possível criar o NPC.");
+            void tentar(async () => { const n = await criarNpc(id, novoNpc.trim() || m?.nome || "", ameaca); n.dados.pasta = pastaNova.trim(); if (n.dados.pasta) await salvarNpc(n); setNpcs((l) => [...l, n]); setNovoNpc(""); }, "Não foi possível criar o NPC.");
           }}>
             <h4 className="sub-passivas">Novo NPC</h4>
             <div className="npc-form">
@@ -173,6 +195,9 @@ export default function CampanhaPagina() {
               <label className="campo">Nível de Desafio
                 <input type="number" min={1} max={20} value={ndNovo} onChange={(e) => setNdNovo(Math.min(20, Math.max(1, Number(e.target.value) || 1)))} />
               </label>
+              <label className="campo">Pasta (encontro)
+                <input list="pastas-npc" value={pastaNova} maxLength={60} placeholder="Opcional" onChange={(e) => setPastaNova(e.target.value)} />
+              </label>
               <label className="campo">Nome
                 <input value={novoNpc} maxLength={80} placeholder="Nome do NPC" onChange={(e) => setNovoNpc(e.target.value)} />
               </label>
@@ -182,7 +207,7 @@ export default function CampanhaPagina() {
         )}
       </section>
 
-      {mestre ? <CombateMesa campanhaId={id} fichas={fichas} npcs={npcs} /> : <OrdemCombate campanhaId={id} />}
+      {mestre ? <CombateMesa campanhaId={id} fichas={fichas} npcs={npcs} pastas={pastas.filter(Boolean)} /> : <OrdemCombate campanhaId={id} />}
 
       <div className="row">
         {mestre ? (

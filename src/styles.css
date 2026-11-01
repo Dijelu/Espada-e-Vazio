@@ -1164,3 +1164,21 @@ img, video, svg { max-width: 100%; }
 .combate-resultado p { margin: 0 0 8px; line-height: 1.5; }
 .combate-acoes-npc { display: flex; flex-wrap: wrap; gap: 8px 10px; margin-top: 10px; }
 .combate-item .npc-hab { padding-bottom: 10px; }
+.npc-toggle { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; align-items: center; width: 100%; text-align: left; padding: 10px 12px; margin: 0; color: var(--text); background: var(--panel); border: 2px solid var(--line); border-radius: 6px; cursor: pointer; font: inherit; }
+.npc-toggle-nome { font-family: var(--font-title); font-weight: 800; font-size: 20px; overflow-wrap: anywhere; }
+.npc-toggle-info { grid-column: 1; color: var(--muted); font-size: 13px; }
+.npc-toggle-seta { grid-column: 2; grid-row: 1 / span 2; color: var(--accent); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: .05em; }
+.npc.aberta { grid-column: 1 / -1; }
+.npc-corpo { display: grid; gap: 14px; }
+.npc-texto { display: grid; gap: 10px; }
+.npc-texto p { margin: 0; line-height: 1.6; }
+.npc-hab .npc-texto { padding: 4px 0 6px; }
+.pasta { border: 2px solid var(--line); border-radius: 8px; padding: 0 14px; margin: 14px 0; background: var(--panel); }
+.pasta > summary { cursor: pointer; min-height: 52px; display: flex; align-items: center; gap: 12px; }
+.pasta > summary small { color: var(--muted); }
+.pasta[open] { padding-bottom: 6px; }
+.pasta .npcs { margin: 8px 0 14px; }
+.pasta-sem > .sub-passivas { margin: 18px 0 4px; }
+.combate-acoes-box { display: grid; gap: 10px; padding: 12px; border: 2px dashed var(--line); border-radius: 8px; }
+.combate-acoes-box .combate-acoes-npc { margin-top: 0; }
+.combate-acoes-box select { min-height: 44px; }

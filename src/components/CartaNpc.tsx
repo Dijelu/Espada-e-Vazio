@@ -19,9 +19,22 @@ interface Props {
   onApagar: (n: Npc) => void;
 }
 
+/** Texto corrido do livro em parágrafos separados, com o título (antes dos dois-pontos) em negrito. */
+function Paragrafos({ texto }: { texto: string }) {
+  return (
+    <div className="npc-texto">
+      {texto.split("\n").map((l) => l.trim()).filter(Boolean).map((l, i) => {
+        const m = /^([^:.]{2,40}):\s*(.*)$/.exec(l);
+        return m ? <p key={i}><b>{m[1]}:</b> {m[2]}</p> : <p key={i}>{l}</p>;
+      })}
+    </div>
+  );
+}
+
 /** Ficha de um NPC do Mestre: resumo para jogar e, recolhido, o formulário de criação do livro. */
 export function CartaNpc({ npc, onMudar, onSalvar, onApagar }: Props) {
   const [aberto, setAberto] = useState(false);
+  const [aberta, setAberta] = useState(false);
   const am = npc.dados.ameaca;
   const c = calcularAmeaca(am);
   const pv = Math.min(npc.dados.pvAtual ?? c.pv, c.pv);
@@ -44,7 +57,13 @@ export function CartaNpc({ npc, onMudar, onSalvar, onApagar }: Props) {
   const excesso = c.usados - c.pontos;
 
   return (
-    <article className="npc">
+    <article className={`npc${aberta ? " aberta" : ""}`}>
+      <button type="button" className="npc-toggle" aria-expanded={aberta} onClick={() => setAberta((v) => !v)}>
+        <span className="npc-toggle-nome">{npc.nome}</span>
+        <span className="npc-toggle-info">ND {c.nd} · {c.grauNome} · PV {pv}/{c.pv} · PR {pr}/{c.pr}</span>
+        <span className="npc-toggle-seta" aria-hidden="true">{aberta ? "Recolher" : "Abrir"}</span>
+      </button>
+      {aberta && <div className="npc-corpo">
       <div className="npc-cabeca">
         <label className="campo npc-nome">Nome
           <input value={npc.nome} maxLength={80} onChange={(e) => onMudar({ ...npc, nome: e.target.value })} onBlur={() => onSalvar(npc)} />
@@ -78,11 +97,11 @@ export function CartaNpc({ npc, onMudar, onSalvar, onApagar }: Props) {
       {c.hierro && <p className="ajuda"><b>Hierro:</b> dano físico sofrido pela metade (não reduz energia nem dano esotérico).</p>}
       {c.ataques.map((a) => <p key={a.nome} className="npc-acao"><b>{a.nome}:</b> +{a.acerto} para acertar · {a.dano} {a.tipo} <small>(média {a.media.toFixed(1).replace(/\.0$/, "")})</small></p>)}
       {c.tecnicas.map((t) => <p key={t.nome} className="npc-acao"><b>{t.nome}</b> ({t.custo} PR): {t.dados} · CD {t.cd}{t.texto ? ` — ${t.texto}` : ""}</p>)}
-      {am.caracteristicas && <p className="quebra">{am.caracteristicas}</p>}
+      {am.caracteristicas && <Paragrafos texto={am.caracteristicas} />}
       {am.habilidades.map((h, i) => (
         <details className="npc-hab" key={i}>
           <summary>{h.titulo}</summary>
-          <p className="quebra">{h.texto}</p>
+          <Paragrafos texto={h.texto} />
         </details>
       ))}
 
@@ -199,8 +218,12 @@ export function CartaNpc({ npc, onMudar, onSalvar, onApagar }: Props) {
       <label className="campo">Anotações do Mestre
         <textarea rows={3} value={npc.dados.notas} onChange={(e) => mudarDados({ notas: e.target.value }, false)} onBlur={() => onSalvar(npc)} />
       </label>
+      <label className="campo">Pasta (encontro)
+        <input list="pastas-npc" value={npc.dados.pasta} maxLength={60} placeholder="Ex.: Emboscada na ponte" onChange={(e) => mudarDados({ pasta: e.target.value }, false)} onBlur={() => onSalvar(npc)} />
+      </label>
       <label className="marcar"><input type="checkbox" checked={npc.dados.revelado} onChange={(e) => mudarDados({ revelado: e.target.checked })} /> Mostrar aos jogadores</label>
       <button type="button" className="link-perigo" onClick={() => onApagar(npc)}>Apagar NPC</button>
+      </div>}
     </article>
   );
 }

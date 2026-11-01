@@ -72,7 +72,7 @@ function ler(id: string): Estado {
 }
 
 /** Rastreador de combate do Mestre: iniciativa, turnos, PV e PR dos jogadores e NPCs da mesa. */
-export function CombateMesa({ campanhaId, fichas, npcs }: { campanhaId: string; fichas: FichaDaMesa[]; npcs: Npc[] }) {
+export function CombateMesa({ campanhaId, fichas, npcs, pastas }: { campanhaId: string; fichas: FichaDaMesa[]; npcs: Npc[]; pastas: string[] }) {
   const [est, setEst] = useState<Estado>(() => ler(campanhaId));
   const [origem, setOrigem] = useState("");
   const [qtd, setQtd] = useState(1);
@@ -104,7 +104,8 @@ export function CombateMesa({ campanhaId, fichas, npcs }: { campanhaId: string; 
     ],
     [fichas, npcs]
   );
-  const escolhida = origem || opcoes[0]?.id || "";
+  const primeira = fichas[0] ? `f:${fichas[0].id}` : pastas[0] ? `p:${pastas[0]}` : npcs[0] ? `n:${npcs[0].id}` : "";
+  const escolhida = origem || primeira;
 
   const ordenada = useMemo(
     () => [...est.lista].sort((a, b) => (b.ini ?? -99) - (a.ini ?? -99)),
@@ -115,9 +116,36 @@ export function CombateMesa({ campanhaId, fichas, npcs }: { campanhaId: string; 
   const mudar = (id: string, parte: Partial<Participante>) =>
     setEst((e) => ({ ...e, lista: e.lista.map((p) => (p.id === id ? { ...p, ...parte } : p)) }));
 
-  const adicionar = () => {
-    const [tipo, id] = escolhida.split(":");
+  const doNpc = (n: Npc, qtdN: number): Participante[] => {
+    const c = calcularAmeaca(n.dados.ameaca);
+    const am = n.dados.ameaca;
+    const acoes: AcaoNpc[] = [
+      ...c.ataques.map((a) => ({
+        nome: a.nome, tipo: "ataque" as const, acerto: a.acerto, dano: a.dano, custo: Number(/\((\d+) PR\)/.exec(a.nome)?.[1] ?? 0),
+        cd: 0, crit: Number(/Crítico (\d+)/.exec(a.nome)?.[1] ?? 20), mult: Number(/x(\d)/.exec(a.nome)?.[1] ?? 2),
+      })),
+      ...c.tecnicas.map((t, i) => ({
+        nome: t.nome, tipo: "tecnica" as const, acerto: 0, dano: `${t.dados} + ${am.atr[am.tecnicas[i]?.atr ?? "esp"]}`, custo: t.custo, cd: t.cd, crit: 21, mult: 1,
+      })),
+    ];
+    const total = Math.max(1, Math.min(20, qtdN));
     const grupo = novoId();
+    return Array.from({ length: total }, (_, i) => ({
+      id: novoId(), nome: total > 1 ? `${n.nome} ${i + 1}` : n.nome, tipo: "npc" as const, ini: null, bonus: Math.floor(am.atr.des / 2),
+      pv: Math.min(n.dados.pvAtual ?? c.pv, c.pv), pvMax: c.pv, pr: Math.min(n.dados.prAtual ?? c.pr, c.pr), prMax: c.pr, cr: c.cr, fora: false, nota: "", grupo, oculto: false, acoes,
+    }));
+  };
+
+  const adicionar = () => {
+    try { adicionarSeguro(); } catch { setAviso("Não consegui colocar este NPC no combate."); }
+  };
+
+  const adicionarSeguro = () => {
+    const corte = escolhida.indexOf(":");
+    const tipo = escolhida.slice(0, corte);
+    const id = escolhida.slice(corte + 1);
+    const grupo = novoId();
+    setAviso("");
     const novos: Participante[] = [];
     if (tipo === "f") {
       const f = fichas.find((x) => x.id === id);
@@ -128,24 +156,10 @@ export function CombateMesa({ campanhaId, fichas, npcs }: { campanhaId: string; 
         pv: Math.min(f.ficha.pvAtual, c.pv), pvMax: c.pv, pr: Math.min(f.ficha.prAtual, c.pr), prMax: c.pr, cr: c.cr, fora: false, nota: "", grupo, oculto: false, acoes: [],
       });
     } else {
-      const n = npcs.find((x) => x.id === id);
-      if (!n) return;
-      const c = calcularAmeaca(n.dados.ameaca);
-      const acoes: AcaoNpc[] = [
-        ...c.ataques.map((a) => ({
-          nome: a.nome, tipo: "ataque" as const, acerto: a.acerto, dano: a.dano, custo: Number(/\((\d+) PR\)/.exec(a.nome)?.[1] ?? 0),
-          cd: 0, crit: Number(/Crítico (\d+)/.exec(a.nome)?.[1] ?? 20), mult: Number(/x(\d)/.exec(a.nome)?.[1] ?? 2),
-        })),
-        ...c.tecnicas.map((t, i) => ({
-          nome: t.nome, tipo: "tecnica" as const, acerto: 0, dano: `${t.dados} + ${n.dados.ameaca.atr[n.dados.ameaca.tecnicas[i]?.atr ?? "esp"]}`, custo: t.custo, cd: t.cd, crit: 21, mult: 1,
-        })),
-      ];
-      const total = Math.max(1, Math.min(20, qtd));
-      for (let i = 0; i < total; i++) {
-        novos.push({
-          id: novoId(), nome: total > 1 ? `${n.nome} ${i + 1}` : n.nome, tipo: "npc", ini: null, bonus: Math.floor(n.dados.ameaca.atr.des / 2),
-          pv: Math.min(n.dados.pvAtual ?? c.pv, c.pv), pvMax: c.pv, pr: Math.min(n.dados.prAtual ?? c.pr, c.pr), prMax: c.pr, cr: c.cr, fora: false, nota: "", grupo, oculto: false, acoes,
-        });
+      const ids = tipo === "p" ? npcs.filter((x) => x.dados.pasta === id).map((x) => x.id) : [id];
+      for (const nid of ids) {
+        const n = npcs.find((x) => x.id === nid);
+        if (n) novos.push(...doNpc(n, tipo === "p" ? 1 : qtd));
       }
     }
     setEst((e) => {
@@ -226,7 +240,9 @@ export function CombateMesa({ campanhaId, fichas, npcs }: { campanhaId: string; 
       ) : (
         <div className="linha-rolar">
           <select value={escolhida} onChange={(e) => setOrigem(e.target.value)} aria-label="Quem entra no combate">
-            {opcoes.map((o) => <option key={o.id} value={o.id}>{o.rotulo}</option>)}
+            {fichas.length > 0 && <optgroup label="Jogadores">{opcoes.filter((o) => o.id.startsWith("f:")).map((o) => <option key={o.id} value={o.id}>{o.nome}</option>)}</optgroup>}
+            {pastas.length > 0 && <optgroup label="Pastas de NPCs (todos de uma vez)">{pastas.map((p) => <option key={p} value={`p:${p}`}>Pasta: {p}</option>)}</optgroup>}
+            {npcs.length > 0 && <optgroup label="NPCs">{opcoes.filter((o) => o.id.startsWith("n:")).map((o) => <option key={o.id} value={o.id}>{o.nome}</option>)}</optgroup>}
           </select>
           {escolhida.startsWith("n:") && (
             <label className="combate-qtd">Quantos
@@ -277,8 +293,7 @@ export function CombateMesa({ campanhaId, fichas, npcs }: { campanhaId: string; 
               <span className="npc-botoes">{[-5, -1, 1, 5].map((d) => <button type="button" key={d} className="btn btn-paper" onClick={() => ajustar(p, "pr", d)}>{d > 0 ? `+${d}` : d}</button>)}</span>
             </div>
             {p.acoes.length > 0 && (
-              <details className="npc-hab">
-                <summary>Ações de {p.nome}</summary>
+              <div className="combate-acoes-box">
                 <label className="campo">Alvo
                   <select value={alvos[p.id] ?? ""} onChange={(e) => setAlvos((m) => ({ ...m, [p.id]: e.target.value }))}>
                     <option value="">Automático (um dos jogadores)</option>
@@ -292,7 +307,7 @@ export function CombateMesa({ campanhaId, fichas, npcs }: { campanhaId: string; 
                     </button>
                   ))}
                 </div>
-              </details>
+              </div>
             )}
             <label className="campo">Condições e notas
               <input value={p.nota} maxLength={120} placeholder="Sangramento, Preso…" onChange={(e) => mudar(p.id, { nota: e.target.value })} />
