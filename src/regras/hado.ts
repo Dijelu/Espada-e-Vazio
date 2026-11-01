@@ -21,6 +21,8 @@ export interface DanoHado {
   origens: string[];
   /** dados extras da Máscara Hollow (no mesmo tamanho do dado básico) */
   dadosMascara: number;
+  /** dados extras que a forma ativa dá (ex.: 2d8) */
+  dadosForma: string[];
   /** a margem de crítico passa de 20 para 19 (Alinhamento) */
   critico19: boolean;
   /** ignora esta quantidade de RD */
@@ -52,6 +54,9 @@ export function danoDoHado(f: Ficha, c: Calculo, k: { tipo?: string; n: number; 
     if (f.estado.liberado === "shikai") soma(c.prof, "Shikai");
     if (f.estado.liberado === "bankai" || f.estado.liberado === "bankai2") soma(2 * c.prof, "Bankai");
   }
+  const bf = c.forma;
+  const alvo = bakudou ? "bakudo" : "hado";
+  soma(bf?.dano[alvo] ?? 0, "Forma");
   const acerto = !bakudou && /Jogada: Acerto/.test(k.meta ?? "");
   return {
     n: Number(base[1]),
@@ -61,8 +66,9 @@ export function danoDoHado(f: Ficha, c: Calculo, k: { tipo?: string; n: number; 
     fixo,
     origens,
     dadosMascara: c.dadosTecnicaMascara,
+    dadosForma: bf?.dados[alvo] ?? [],
     critico19: acerto && f.classe === "kidoshu" && f.talentos.includes("alinhamento"),
-    ignoraRd: f.classe === "kidoshu" ? (f.talentos.includes("perfuracao-arcana") || (!bakudou && f.talentos.includes("perfuracao-elemental")) ? 5 : 0) : 0,
+    ignoraRd: Math.max(bf?.ignoraRd[alvo] ?? 0, f.classe === "kidoshu" ? (f.talentos.includes("perfuracao-arcana") || (!bakudou && f.talentos.includes("perfuracao-elemental")) ? 5 : 0) : 0),
     somaReiatsu: k.n === 96,
   };
 }
@@ -71,6 +77,7 @@ export function danoDoHado(f: Ficha, c: Calculo, k: { tipo?: string; n: number; 
 export function expressaoHado(d: DanoHado, passos: number, prMax: number): string {
   const partes = [`${d.n + d.dadosMascara}d${d.lados}`];
   if (d.reforco && passos > 0) partes.push(`${d.reforco.n * passos}d${d.reforco.lados}`);
+  partes.push(...d.dadosForma);
   const fixo = d.fixo + (d.somaReiatsu ? prMax : 0);
   if (fixo > 0) partes.push(String(fixo));
   return partes.join("+");
@@ -79,7 +86,8 @@ export function expressaoHado(d: DanoHado, passos: number, prMax: number): strin
 const media = (n: number, l: number) => (n * (l + 1)) / 2;
 
 export function mediaHado(d: DanoHado, passos: number, prMax: number): number {
-  return media(d.n + d.dadosMascara, d.lados) + (d.reforco ? media(d.reforco.n * passos, d.reforco.lados) : 0) + d.fixo + (d.somaReiatsu ? prMax : 0);
+  const forma = d.dadosForma.reduce((s, x) => { const m = /^(\d+)d(\d+)$/.exec(x); return m ? s + media(Number(m[1]), Number(m[2])) : s; }, 0);
+  return forma + media(d.n + d.dadosMascara, d.lados) + (d.reforco ? media(d.reforco.n * passos, d.reforco.lados) : 0) + d.fixo + (d.somaReiatsu ? prMax : 0);
 }
 
 /** Quantos reforços cabem no PR da ficha (no máximo 8). */

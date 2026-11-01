@@ -299,9 +299,15 @@ export function resolverDano(expr: string, f: Ficha, c: Calculo): string {
 
 /** Bankai Plena (20º nível): o dano das técnicas da Bankai sobe em 25% (dados, arredondado para baixo). */
 export function danoDaAcao(expr: string, f: Ficha, c: Calculo, forma: FormaLib): string {
-  const base = resolverDano(expr, f, c);
-  if (forma.tipo !== "bankai" || f.treinos.caminhoBankai !== "plena") return base;
-  return base.replace(/(\d+)d(\d+)/g, (_, n: string, d: string) => `${Math.floor(Number(n) * 1.25)}d${d}`);
+  let base = resolverDano(expr, f, c);
+  if (forma.tipo === "bankai" && f.treinos.caminhoBankai === "plena") base = base.replace(/(\d+)d(\d+)/g, (_, n: string, d: string) => `${Math.floor(Number(n) * 1.25)}d${d}`);
+  // efeitos montados na forma ativa para as técnicas da forma
+  const t = c.forma;
+  if (t && /\d/.test(base)) {
+    for (const d of t.dados.tecnica) base += `+${d}`;
+    if (t.dano.tecnica > 0) base += `+${t.dano.tecnica}`;
+  }
+  return base;
 }
 
 /** Custo de liberação da Bankai: a Plena paga metade. */

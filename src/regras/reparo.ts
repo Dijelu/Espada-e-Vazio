@@ -3,6 +3,7 @@ import kidosJson from "./kidos.json";
 import tecnicasJson from "./tecnicas-reishi.json";
 import { ATRIBUTOS, PERICIAS, calcular, classePorId, normalizar, origemPorId, type Atr, type Ficha } from "./ficha";
 import { SCHRIFTS } from "./schrifts";
+import { normalizarEfeitos } from "./efeitos-forma";
 
 const LIBERACOES = ["", "shikai", "bankai", "bankai2", "resurreccion", "terror", "vollstandig", "mascara"];
 const ATR_IDS = ATRIBUTOS.map((a) => a.id);
@@ -63,6 +64,13 @@ export function repararFicha(bruta: Ficha): Reparo {
     nota("A Schrift salva não é válida para esta ficha e foi limpa. Escolha de novo na aba de poderes.");
   }
 
+  // efeitos montados nas formas: tira o que não for válido
+  for (const forma of Object.values(f.formas ?? {})) {
+    if (!forma || forma.efeitos === undefined) continue;
+    const antes = JSON.stringify(forma.efeitos);
+    forma.efeitos = normalizarEfeitos(forma.efeitos);
+    if (JSON.stringify(forma.efeitos) !== antes) nota(`Alguns efeitos da forma ${forma.nome || forma.tipo} estavam inválidos e foram ajustados.`);
+  }
   if (!["", "plena", "verdadeira"].includes(f.treinos.caminhoBankai)) { f.treinos.caminhoBankai = ""; nota("O caminho da Bankai estava inválido e foi limpo."); }
   if (!Array.isArray(f.treinos.feitos)) f.treinos.feitos = [];
   if (f.treinos.mascara && !["conquistador", "predador", "equilibrio"].includes(f.treinos.mascara)) f.treinos.mascara = "";

@@ -1,4 +1,5 @@
 import { efeitoMascara } from "./mascara";
+import { somarForma, type InstEfeito, type SomaForma } from "./efeitos-forma";
 import { somaSituacoes } from "./situacionais";
 import { ataquesHueco, danoFixoHueco } from "./hueco";
 import { bonusEscudo, type Melhoria } from "./melhorias";
@@ -542,6 +543,10 @@ export interface FormaLib {
   custoManual?: boolean;
   /** Shikai: o espírito da Zanpakutou (aparência e personalidade) */
   espirito?: string;
+  /** peças de efeito montadas no construtor (bônus automáticos enquanto a forma estiver ativa) */
+  efeitos?: InstEfeito[];
+  /** Bankai potencializadora: os efeitos da Shikai valem também aqui, por metade do custo */
+  herdaShikai?: boolean;
 }
 
 export interface Estado {
@@ -781,6 +786,12 @@ export interface Calculo {
   cdKido: number;
   /** quanto cada essência reduz o custo de liberação */
   reducaoLib: EfeitoSoma["reducaoLib"];
+  /** dano fixo extra só dos ataques à distância pela forma ativa */
+  danoDisparo: number;
+  /** dados extras só dos ataques à distância pela forma ativa */
+  danoDadosDisparo: string[];
+  /** efeitos da forma ativa, já somados (null quando nenhuma forma com efeitos está ativa) */
+  forma: SomaForma | null;
 }
 
 const soma = (r: Record<Atr, number>) => ATRIBUTOS.reduce((s, a) => s + (r[a.id] ?? 0), 0);
@@ -793,10 +804,15 @@ export function calcular(f: Ficha): Calculo {
   const avisos: Aviso[] = [];
 
   const pas = atributosPassivos(f);
-  const atr = zero();
+  const atrB = zero();
   ATRIBUTOS.forEach(({ id }) => {
-    atr[id] = (f.base[id] ?? 0) + ef.atr[id] + (f.livre[id] ?? 0) + (f.nivelAtr[id] ?? 0) + (pas.atr[id] ?? 0);
+    atrB[id] = (f.base[id] ?? 0) + ef.atr[id] + (f.livre[id] ?? 0) + (f.nivelAtr[id] ?? 0) + (pas.atr[id] ?? 0);
   });
+
+  // efeitos da forma ativa: atributos da forma valem para acerto, dano, CR e testes, mas não mudam PV nem PR máximos
+  const fx: SomaForma | null = somarForma(f, { n, prof, atr: atrB });
+  const atr = zero();
+  ATRIBUTOS.forEach(({ id }) => { atr[id] = atrB[id] + (fx?.atr[id] ?? 0); });
 
   const pontosNivel = pontosAtributoDeNivel(n);
   const pa = {
@@ -812,7 +828,7 @@ export function calcular(f: Ficha): Calculo {
   ATRIBUTOS.forEach(({ id, nome }) => {
     if ((f.base[id] ?? 0) > f.maxInicial) avisos.push({ texto: `${nome} passa do máximo de ${f.maxInicial} na criação.`, destino: "atributos" });
     const lim = pas.limite[id] ?? 15;
-    if (atr[id] > lim) avisos.push({ texto: `${nome} passa do limite de ${lim}.`, destino: "atributos" });
+    if (atrB[id] > lim) avisos.push({ texto: `${nome} passa do limite de ${lim}.`, destino: "atributos" });
   });
   if (pa.nivelUsados > pa.nivel) avisos.push({ texto: "Você gastou mais pontos de atributo de nível do que ganhou.", destino: "atributos" });
   if (pa.livreUsados > pa.livre) avisos.push({ texto: "Você gastou mais pontos livres de variação do que a Origem dá.", destino: "atributos" });
@@ -822,8 +838,8 @@ export function calcular(f: Ficha): Calculo {
   let cr = 0;
   let crEvasao = false;
   if (c) {
-    pv = c.pvIni + atr.con + ef.pvIni + (n - 1) * (c.pvNivel + atr.con + ef.pvNivel);
-    pr = c.prIni + atr.esp + ef.prIni + (n - 1) * (c.prNivel + atr.esp + ef.prNivel);
+    pv = c.pvIni + atrB.con + ef.pvIni + (n - 1) * (c.pvNivel + atrB.con + ef.pvNivel);
+    pr = c.prIni + atrB.esp + ef.prIni + (n - 1) * (c.prNivel + atrB.esp + ef.prNivel);
     pv += c.extraPv ? c.extraPv(n, f.subclasse) : 0;
     cr = c.cr === "plena" ? 10 + prof + atr.con + atr.des : 10 + prof + atr.des + Math.floor(atr.con / 2);
     // Defesa Ágil (Zanjutsu) e Defesa Inteligente (Kidōshū) trocam a fórmula da CR; vale a melhor
@@ -857,7 +873,7 @@ export function calcular(f: Ficha): Calculo {
   if (f.estado.liberado === "bankai2") cr += 1;
 
   const sit = somaSituacoes(f, { n, prof, atr });
-  cr += sit.cr + bonusEscudo(f);
+  cr += sit.cr + bonusEscudo(f) + (fx?.cr ?? 0);
 
   const mk = efeitoMascara(f, prof, n);
   let rdFisExtra = 0;
@@ -922,12 +938,12 @@ export function calcular(f: Ficha): Calculo {
     pv,
     pr,
     cr,
-    desloc: Math.max(ef.desloc + deslocExtra + px.desloc + sit.desloc, f.estado.liberado === "terror" ? 12 : 0),
-    rdFis: Math.max(ef.rdFis + rdFisExtra + px.rdFis, mk.rd),
-    rdEso: Math.max(ef.rdEso + rdEsoExtra + px.rdEso, mk.rd),
+    desloc: Math.max(ef.desloc + deslocExtra + px.desloc + sit.desloc + (fx?.desloc ?? 0), f.estado.liberado === "terror" ? 12 : 0),
+    rdFis: Math.max(ef.rdFis + rdFisExtra + px.rdFis, mk.rd) + (fx?.rdFis ?? 0),
+    rdEso: Math.max(ef.rdEso + rdEsoExtra + px.rdEso, mk.rd) + (fx?.rdEso ?? 0),
     iniciativa: (ef.iniMente ? Math.max(atr.des, atr.men) : atr.des) + px.iniciativa,
     // Ritter: armas Quincy corpo a corpo causam +3 de dano do 3º ao 9º nível
-    danoCorpo: ef.danoCorpo + px.danoCorpo + sit.danoCorpo + (f.classe === "ritter" && n >= 3 && n <= 9 ? 3 : 0) + danoFixoHueco(f, prof) + (f.classe === "ritter" ? vollDano : 0) + (f.classe === "ritter" && n >= 10 ? prof : 0),
+    danoCorpo: Math.max(0, (fx?.dano.golpe ?? 0) - (fx?.dano.disparo ?? 0)) + ef.danoCorpo + px.danoCorpo + sit.danoCorpo + (f.classe === "ritter" && n >= 3 && n <= 9 ? 3 : 0) + danoFixoHueco(f, prof) + (f.classe === "ritter" ? vollDano : 0) + (f.classe === "ritter" && n >= 10 ? prof : 0),
     crEvasao,
     percPassiva: 10 + pericias["percepcao"].total + px.percPassiva,
     saves,
@@ -941,19 +957,26 @@ export function calcular(f: Ficha): Calculo {
     proximoXp,
     avisos,
     passivas,
-    cdKido: 8 + prof + atr.esp + px.cdKido + mk.cd + (f.classe === "kidoshu" ? (n >= 16 ? 2 : n >= 9 ? 1 : 0) : 0),
+    cdKido: 8 + prof + atr.esp + px.cdKido + mk.cd + (fx?.cd ?? 0) + (f.classe === "kidoshu" ? (n >= 16 ? 2 : n >= 9 ? 1 : 0) : 0),
     danoHado: f.classe === "kidoshu" ? prof * (n >= 18 ? 4 : n >= 13 ? 3 : n >= 8 ? 2 : n >= 3 ? 1 : 0) : 0,
     reducaoLib: px.reducaoLib,
-    danoGeral: sit.danoGeral + formaDano + (f.classe === "schutze" ? vollDano + (n >= 3 ? prof + Math.floor((prof * n * n) / 200) : 0) : 0),
-    danoDados: mk.dadosGolpe ? [...sit.dados, `${mk.dadosGolpe}d8`] : sit.dados,
+    danoGeral: sit.danoGeral + formaDano + Math.min(fx?.dano.golpe ?? 0, fx?.dano.disparo ?? 0) + (f.classe === "schutze" ? vollDano + (n >= 3 ? prof + Math.floor((prof * n * n) / 200) : 0) : 0),
+    danoDados: [...(mk.dadosGolpe ? [...sit.dados, `${mk.dadosGolpe}d8`] : sit.dados), ...(fx?.dados.golpe ?? [])],
+    danoDisparo: Math.max(0, (fx?.dano.disparo ?? 0) - (fx?.dano.golpe ?? 0)),
+    danoDadosDisparo: fx?.dados.disparo ?? [],
+    forma: fx,
     dadosTecnicaMascara: mk.dadosTecnica,
-    acertoCorpo: sit.acertoCorpo + formaAtq + (f.classe === "ritter" ? vollAtq : 0),
-    acertoDist: sit.acertoDist + formaAtq + (f.classe === "schutze" ? vollAtq : 0),
+    acertoCorpo: sit.acertoCorpo + formaAtq + (fx?.acerto.golpe ?? 0) + (f.classe === "ritter" ? vollAtq : 0),
+    acertoDist: sit.acertoDist + formaAtq + (fx?.acerto.disparo ?? 0) + (f.classe === "schutze" ? vollAtq : 0),
   };
 }
 
 /** Quantos ataques a ação Atacar dá: Ataque Extra (2), Golpe Triplo (3), Golpe Superior (4). */
-export function ataquesPorAcao(f: Ficha): number {
+export function ataquesPorAcao(f: Ficha, extra = 0): number {
+  return ataquesBase(f) + extra;
+}
+
+function ataquesBase(f: Ficha): number {
   if (f.classe === "hueco") return ataquesHueco(f);
   const tem = (id: string) => f.talentos.some((t) => t === id || t.endsWith("/" + id));
   let n = tem("golpe-superior") ? 4 : tem("golpe-triplo") ? 3 : tem("ataque-extra") ? 2 : 1;

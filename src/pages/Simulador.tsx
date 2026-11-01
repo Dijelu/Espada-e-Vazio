@@ -17,8 +17,8 @@ function deFicha(nome: string, f: Ficha): Combatente {
   const acoes: Acao[] = f.ataques.filter((a) => a.dano.trim()).map((a) => {
     const m = ataqueMelhorado(f, a);
     const geral = c.danoGeral > 0 ? `+${c.danoGeral}` : "";
-    const corpo = a.distancia ? "" : (c.danoCorpo > 0 ? `+${c.danoCorpo}` : "") + c.danoDados.map((x) => `+${x}`).join("");
-    return acaoVazia({ nome: a.nome, acerto: ataqueBonus(f, c, a), golpes: ataquesPorAcao(f), dano: m.dano + danoAtributo(c, a) + geral + corpo, crit: m.crit ?? 20, mult: m.mult ?? 2 });
+    const corpo = a.distancia ? (c.danoDisparo > 0 ? `+${c.danoDisparo}` : "") + c.danoDadosDisparo.map((x) => `+${x}`).join("") : (c.danoCorpo > 0 ? `+${c.danoCorpo}` : "") + c.danoDados.map((x) => `+${x}`).join("");
+    return acaoVazia({ nome: a.nome, acerto: ataqueBonus(f, c, a), golpes: ataquesPorAcao(f, c.forma?.ataques ?? 0), dano: m.dano + danoAtributo(c, a) + geral + corpo, crit: m.crit ?? 20, mult: m.mult ?? 2 });
   });
   // ataques da classe (Cero, técnicas de Reishi): uma ação por uso, dano de Energia
   for (const d of danosDaClasse(f, c)) {

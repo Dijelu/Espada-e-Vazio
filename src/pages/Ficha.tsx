@@ -243,7 +243,7 @@ export default function Ficha() {
           <div><small>Desloc.</small><b>{c.desloc} m</b></div>
           <div><small>Perc. passiva</small><b>{c.percPassiva}</b></div>
           <div><small>CD</small><b>{c.cd}</b></div>
-          <div className="txt"><small>Ataques</small><b>{ataquesPorAcao(f)} por ação</b></div>
+          <div className="txt"><small>Ataques</small><b>{ataquesPorAcao(f, c.forma?.ataques ?? 0)} por ação</b></div>
           <div className="txt"><small>RD</small><b>{c.rdFis} fís. · {c.rdEso} eso.</b></div>
           <div><small>Dano corpo</small><b>{c.danoCorpo}</b></div>
         </div>
@@ -494,6 +494,7 @@ export default function Ficha() {
           f={f}
           tipo={construir}
           onFechar={() => setConstruir(null)}
+          onGravar={(forma) => alterar({ formas: { ...f.formas, [construir]: forma } })}
           onSalvar={(forma) => {
             alterar({ formas: { ...f.formas, [construir]: forma }, ...(construir === "shikai" ? { zanpakutou: { nome: forma.nome, frase: forma.comando } } : {}) });
             setConstruir(null);
@@ -762,6 +763,6 @@ function danoFinal(f: TFicha, a: Ataque, c: ReturnType<typeof calcular>) {
   if (!dano.trim()) return dano;
   const atr = danoAtributo(c, a);
   const geral = c.danoGeral > 0 ? `+${c.danoGeral}` : "";
-  if (a.distancia) return dano + atr + geral;
+  if (a.distancia) return dano + atr + geral + (c.danoDisparo > 0 ? `+${c.danoDisparo}` : "") + c.danoDadosDisparo.map((d) => `+${d}`).join("");
   return dano + atr + geral + (c.danoCorpo > 0 ? `+${c.danoCorpo}` : "") + c.danoDados.map((d) => `+${d}`).join("");
 }

@@ -1,3 +1,4 @@
+import { EfeitosForma } from "./EfeitosForma";
 import { Icone } from "./Icone";
 import { useEffect, useState } from "react";
 import { classePorId, type Ficha, type FormaLib, type HabForma, type TipoForma } from "../regras/ficha";
@@ -44,6 +45,8 @@ interface Props {
   f: Ficha;
   tipo: TipoForma;
   onSalvar: (forma: FormaLib) => void;
+  /** grava sem fechar (confirmar escolhas de efeitos) */
+  onGravar?: (forma: FormaLib) => void;
   onFechar: () => void;
 }
 
@@ -62,11 +65,11 @@ const DICAS: Record<TipoForma, string> = {
     "As habilidades passivas são iguais para todos os Quincy. Você escolhe as habilidades únicas (uma vez definidas, não mudam), o canalizador e, se tiver, a Schrift.",
 };
 
-export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
+export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props) {
   const classe = classePorId(f.classe);
   const ehBankai = tipo === "bankai" || tipo === "bankai2";
   const caminhoFinal = tipo === "bankai" ? f.treinos.caminhoBankai : tipo === "bankai2" ? "verdadeira" : "";
-  const [aba, setAba] = useState<"modelos" | "passo" | "meu">(f.formas[tipo]?.nome ? "meu" : "passo");
+  const [aba, setAba] = useState<"modelos" | "passo" | "efeitos" | "meu">(f.formas[tipo]?.nome ? "meu" : "passo");
   const [r, setR] = useState<FormaLib>(() => {
     if (f.formas[tipo]) return { ...vazia(tipo), ...f.formas[tipo]! };
     // a Verdadeira parte da Bankai que você já tem: muda o nome e a aparência e ganha uma técnica nova
@@ -185,6 +188,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
       <div className="modos" role="tablist" aria-label="Como montar">
         {tipo !== "segunda" && !caminhoFinal && <button type="button" role="tab" aria-selected={aba === "modelos"} className={aba === "modelos" ? "on" : ""} onClick={() => setAba("modelos")}>Modelos prontos</button>}
         <button type="button" role="tab" aria-selected={aba === "passo"} className={aba === "passo" ? "on" : ""} onClick={() => setAba("passo")}>Passo a passo</button>
+        {tipo !== "vollstandig" && <button type="button" role="tab" aria-selected={aba === "efeitos"} className={aba === "efeitos" ? "on" : ""} onClick={() => setAba("efeitos")}>Efeitos</button>}
         <button type="button" role="tab" aria-selected={aba === "meu"} className={aba === "meu" ? "on" : ""} onClick={() => setAba("meu")}>Editar tudo</button>
       </div>
 
@@ -287,6 +291,10 @@ export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
 
         {aba === "passo" && (
           <AssistenteForma f={f} tipo={tipo} r={r} mud={mud} onSalvar={() => onSalvar(r)} onEditarTudo={() => setAba("meu")} />
+        )}
+
+        {aba === "efeitos" && tipo !== "vollstandig" && (
+          <EfeitosForma f={f} tipo={tipo} r={r} mud={mud} onGravar={onGravar} />
         )}
 
         {aba === "meu" && (

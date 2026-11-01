@@ -1186,3 +1186,15 @@ img, video, svg { max-width: 100%; }
 .npc-hab > b { display: block; margin-top: 8px; }
 .npc-liberar { display: grid; gap: 8px; justify-items: start; }
 .npc-liberar .aviso { margin: 0; }
+
+/* Efeitos da forma */
+.medidor-pp { display: grid; gap: 4px; padding: 10px 12px; border: 1px solid var(--linha, #8884); border-radius: 8px; margin: 8px 0; }
+.medidor-pp .barra { display: block; height: 8px; border-radius: 4px; background: #8883; overflow: hidden; }
+.medidor-pp .barra i { display: block; height: 100%; background: var(--destaque, #b8892b); }
+.medidor-pp.estourou .barra i { background: #b3261e; }
+.efeitos-lista { list-style: none; margin: 8px 0; padding: 0; display: grid; gap: 8px; }
+.efeitos-lista li { display: flex; justify-content: space-between; gap: 12px; padding: 10px 12px; border: 1px solid var(--linha, #8884); border-radius: 8px; }
+.efeitos-lista li.travado { opacity: .85; border-style: dashed; }
+.efeitos-resumo { font-weight: 600; }
+.efeitos-catalogo .carta-hab.travada { opacity: .55; }
+.aviso-mini { color: #b3261e; font-size: .85rem; margin: 4px 0; }
