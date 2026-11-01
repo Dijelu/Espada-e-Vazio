@@ -8,6 +8,7 @@ import prontas from "../regras/ameacas-prontas.json";
 const MODELOS = prontas as unknown as ModeloAmeaca[];
 import { CartaNpc } from "../components/CartaNpc";
 import { CombateMesa } from "../components/CombateMesa";
+import { OrdemCombate } from "../components/OrdemCombate";
 import {
   apagarCampanha, apagarNpc, criarNpc, fichasDaMesa, lerCampanha, ligarFicha, listarNpcs, minhasFichasSemMesa, salvarNpc, sairDaCampanha,
   type Campanha, type FichaDaMesa, type Npc,
@@ -181,7 +182,7 @@ export default function CampanhaPagina() {
         )}
       </section>
 
-      {mestre && <CombateMesa campanhaId={id} fichas={fichas} npcs={npcs} />}
+      {mestre ? <CombateMesa campanhaId={id} fichas={fichas} npcs={npcs} /> : <OrdemCombate campanhaId={id} />}
 
       <div className="row">
         {mestre ? (

@@ -1152,3 +1152,15 @@ img, video, svg { max-width: 100%; }
 .combate-acoes { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 14px; }
 .combate .btn { box-shadow: 3px 3px 0 var(--accent); }
 .combate-item .btn { min-height: 38px; padding: 0 12px; font-size: 14px; margin: 0 3px 3px 0; }
+.ordem-publica { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 10px; }
+.ordem-publica li { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; padding: 10px 14px; border: 2px solid var(--line); border-radius: 8px; background: var(--bg); }
+.ordem-publica li.jog { border-left: 6px solid var(--muted); }
+.ordem-publica li.vez { border-color: var(--accent); box-shadow: 4px 4px 0 var(--accent); }
+.ordem-publica li.fora { opacity: .55; }
+.ordem-publica b { min-width: 40px; font-size: 20px; text-align: center; }
+.ordem-publica span { flex: 1 1 140px; font-weight: 600; overflow-wrap: anywhere; }
+.ordem-publica em { font-style: normal; font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--accent); }
+.combate-resultado { margin: 14px 0; padding: 14px 16px; border: 2px solid var(--accent); border-radius: 8px; background: var(--panel); }
+.combate-resultado p { margin: 0 0 8px; line-height: 1.5; }
+.combate-acoes-npc { display: flex; flex-wrap: wrap; gap: 8px 10px; margin-top: 10px; }
+.combate-item .npc-hab { padding-bottom: 10px; }

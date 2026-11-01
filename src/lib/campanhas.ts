@@ -129,3 +129,31 @@ export async function apagarNpc(id: string): Promise<void> {
   const { error } = await banco().from("npcs").delete().eq("id", id);
   if (error) throw error;
 }
+
+/** O que os jogadores veem do combate: só a ordem, sem PV dos NPCs. */
+export interface CombatePublico {
+  rodada: number;
+  ordem: { nome: string; jogador: boolean; ini: number | null; fora: boolean; vez: boolean }[];
+}
+
+export async function publicarCombate(id: string, c: CombatePublico | null): Promise<void> {
+  const { error } = await banco().from("campaigns").update({ combate: c }).eq("id", id);
+  if (error) throw error;
+}
+
+export async function lerCombate(id: string): Promise<CombatePublico | null> {
+  const { data, error } = await banco().from("campaigns").select("combate").eq("id", id).maybeSingle();
+  if (error) throw error;
+  const o = (data as { combate: Partial<CombatePublico> | null } | null)?.combate;
+  if (!o || !Array.isArray(o.ordem)) return null;
+  return {
+    rodada: Math.max(1, Number(o.rodada) || 1),
+    ordem: o.ordem.slice(0, 60).map((x) => ({
+      nome: typeof x?.nome === "string" ? x.nome : "?",
+      jogador: x?.jogador === true,
+      ini: typeof x?.ini === "number" ? x.ini : null,
+      fora: x?.fora === true,
+      vez: x?.vez === true,
+    })),
+  };
+}
