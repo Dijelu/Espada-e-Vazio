@@ -1184,3 +1184,5 @@ img, video, svg { max-width: 100%; }
 .combate-acoes-box select { min-height: 44px; }
 .npc-rodape { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
 .npc-hab > b { display: block; margin-top: 8px; }
+.npc-liberar { display: grid; gap: 8px; justify-items: start; }
+.npc-liberar .aviso { margin: 0; }

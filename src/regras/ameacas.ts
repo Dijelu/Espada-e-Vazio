@@ -61,6 +61,42 @@ export const proficienciaDoND = (nd: number) => (nd <= 4 ? 2 : nd <= 8 ? 3 : nd 
 const atrRaid = (nd: number) => (nd <= 5 ? 5 : nd <= 10 ? 7 : nd <= 15 ? 9 : 11);
 
 export interface AtaqueAmeaca { nome: string; atr: ChaveAtr; dados: string; tipo: string; custo?: number; crit?: number }
+/** Forma liberada: Bankai (Shinigami), Resurrección (Hollow), Vollständig (Quincy). */
+export interface LiberacaoAmeaca {
+  /** a ameaça tem uma forma liberada */
+  existe: boolean;
+  nome: string;
+  bonusCr: number;
+  bonusAtr: Record<ChaveAtr, number>;
+  /** % dos PV máximos recuperados ao liberar */
+  cura: number;
+  /** dano em área ao liberar: mult × atributo (0 = não tem) */
+  explosao: { mult: number; atr: ChaveAtr; tipo: string };
+  /** ataques e técnicas daqui substituem os normais (em vez de somar) */
+  trocar: boolean;
+  ataques: AtaqueAmeaca[];
+  tecnicas: TecnicaAmeaca[];
+  texto: string;
+}
+
+export const NOME_LIBERACAO: Record<Categoria, string> = { shinigami: "Bankai", hollow: "Resurrección", quincy: "Vollständig" };
+
+export function liberacaoVazia(categoria: Categoria = "shinigami"): LiberacaoAmeaca {
+  return { existe: false, nome: NOME_LIBERACAO[categoria], bonusCr: 0, bonusAtr: { for: 0, des: 0, con: 0, men: 0, esp: 0 }, cura: 0, explosao: { mult: 0, atr: "esp", tipo: "Psíquico" }, trocar: false, ataques: [], tecnicas: [], texto: "" };
+}
+
+/** Ponto de partida de mesa: CR +1, +2 no atributo mais alto; Shinigami com explosão de 5× Espírito, Hollow que cura metade dos PV. */
+export function liberacaoPadrao(a: Pick<Ameaca, "categoria" | "formato" | "atr">): LiberacaoAmeaca {
+  const l = liberacaoVazia(a.categoria);
+  const maior = ATRS.map((x) => x.id).sort((x, y) => a.atr[y] - a.atr[x])[0];
+  l.existe = true;
+  l.bonusCr = 1;
+  l.bonusAtr[maior] = 2;
+  if (a.categoria === "shinigami") l.explosao = { mult: a.formato === "raid" ? 10 : 5, atr: "esp", tipo: "Psíquico" };
+  if (a.categoria === "hollow") l.cura = 50;
+  return l;
+}
+
 export interface ZanpakutouAmeaca { nome: string; shikai: string; bankai: string }
 export interface TecnicaAmeaca { nome: string; dados: string; custo: number; atr: ChaveAtr; texto: string }
 
@@ -84,6 +120,7 @@ export interface Ameaca {
   /** subtítulo: cargo, divisão, apelido */
   titulo: string;
   zanpakutou: ZanpakutouAmeaca;
+  liberacao: LiberacaoAmeaca;
   /** Reação, Ação Suprema, Zanpakutō, Bankai, Kidō… (texto livre) */
   habilidades: HabilidadeAmeaca[];
 }
@@ -106,7 +143,10 @@ export interface ModeloAmeaca {
 export function ameacaDoModelo(m: ModeloAmeaca, nd = m.nd): Ameaca {
   const base: Ameaca = { ...ameacaPadrao(m.categoria, nd), formato: m.formato, grau: m.grau };
   const pontos = pontosDeAtributo({ categoria: m.categoria, formato: m.formato, nd, grau: m.grau });
-  return normalizarAmeaca({ ...base, atr: distribuir(pontos, m.estilo), ataques: m.ataques, tecnicas: m.tecnicas, caracteristicas: m.caracteristicas, habilidades: m.habilidades ?? [] });
+  const atr = distribuir(pontos, m.estilo);
+  const COM_FORMA = /^(capitao|arrancar|rukia|ichigo|quincy-(oficial|sternritter|schutzstaffel))/;
+  const liberacao = COM_FORMA.test(m.id) ? liberacaoPadrao({ categoria: m.categoria, formato: m.formato, atr }) : liberacaoVazia(m.categoria);
+  return normalizarAmeaca({ ...base, atr, liberacao, ataques: m.ataques, tecnicas: m.tecnicas, caracteristicas: m.caracteristicas, habilidades: m.habilidades ?? [] });
 }
 
 export function ameacaPadrao(categoria: Categoria = "shinigami", nd = 1): Ameaca {
@@ -115,7 +155,7 @@ export function ameacaPadrao(categoria: Categoria = "shinigami", nd = 1): Ameaca
   return {
     categoria, formato: "solo", nd, grau: 0, dificuldade: "medio", atr, modo: "comum", jogadores: 4, pvExtra: 0,
     ataques: [{ nome: categoria === "hollow" ? "Garras" : categoria === "quincy" ? "Lâmina de Reishi" : "Katana", atr: categoria === "shinigami" ? "des" : "for", dados: "1d8", tipo: "Cortante" }],
-    tecnicas: [], caracteristicas: "", titulo: "", zanpakutou: { nome: "", shikai: "", bankai: "" }, habilidades: [],
+    tecnicas: [], caracteristicas: "", titulo: "", zanpakutou: { nome: "", shikai: "", bankai: "" }, liberacao: liberacaoVazia(categoria), habilidades: [],
   };
 }
 
@@ -173,7 +213,29 @@ const mediaExpr = (e: string) => {
   return t;
 };
 
-export function calcularAmeaca(a: Ameaca): AmeacaCalculada {
+/** Aplica a forma liberada: atributos, ataques e técnicas. O bônus de CR entra em calcularAmeaca. */
+export function comLiberacao(a: Ameaca): Ameaca {
+  const l = a.liberacao;
+  const atr = { ...a.atr };
+  ATRS.forEach((x) => { atr[x.id] = a.atr[x.id] + l.bonusAtr[x.id]; });
+  return { ...a, atr, ataques: l.trocar ? l.ataques : [...a.ataques, ...l.ataques], tecnicas: l.trocar ? l.tecnicas : [...a.tecnicas, ...l.tecnicas] };
+}
+
+/** Dano em área e cura de quando a forma é liberada (valores do NPC já liberado). */
+export function efeitosDaLiberacao(a: Ameaca): { dano: number; tipo: string; curaPv: number } {
+  const l = a.liberacao;
+  const lib = comLiberacao(a);
+  const pvMax = calcularAmeaca(a, true).pv;
+  return { dano: l.explosao.mult * lib.atr[l.explosao.atr], tipo: l.explosao.tipo, curaPv: Math.floor((pvMax * l.cura) / 100) };
+}
+
+export function calcularAmeaca(original: Ameaca, liberado = false): AmeacaCalculada {
+  const a = liberado && original.liberacao.existe ? comLiberacao(original) : original;
+  const r = calcularBase(a);
+  return liberado && original.liberacao.existe ? { ...r, cr: r.cr + original.liberacao.bonusCr } : r;
+}
+
+function calcularBase(a: Ameaca): AmeacaCalculada {
   const nd = Math.min(20, Math.max(1, Math.round(a.nd)));
   const t = TABELA[a.categoria];
   const prof = proficienciaDoND(nd);
@@ -218,6 +280,25 @@ const txt = (v: unknown, p = "") => (typeof v === "string" ? v : p);
 const em = <T extends string>(v: unknown, l: readonly T[], p: T): T => (l.includes(v as T) ? (v as T) : p);
 
 /** Aceita qualquer coisa vinda do banco e devolve uma ameaça válida. */
+function normalizarLiberacao(raw: unknown, categoria: Categoria): LiberacaoAmeaca {
+  const o = (raw && typeof raw === "object" ? raw : {}) as Partial<LiberacaoAmeaca>;
+  const v = liberacaoVazia(categoria);
+  const bonusAtr = { ...v.bonusAtr };
+  ATRS.forEach((x) => { bonusAtr[x.id] = num(o.bonusAtr?.[x.id], 0, -10, 20); });
+  return {
+    existe: o.existe === true,
+    nome: txt(o.nome, v.nome).slice(0, 60) || v.nome,
+    bonusCr: num(o.bonusCr, 0, -5, 10),
+    bonusAtr,
+    cura: num(o.cura, 0, 0, 100),
+    explosao: { mult: num(o.explosao?.mult, 0, 0, 30), atr: em(o.explosao?.atr, ["for", "des", "con", "men", "esp"] as const, "esp"), tipo: txt(o.explosao?.tipo, "Psíquico").slice(0, 30) },
+    trocar: o.trocar === true,
+    ataques: Array.isArray(o.ataques) ? o.ataques.slice(0, 8).map((x) => ({ nome: txt(x?.nome, "Ataque"), atr: em(x?.atr, ["for", "des", "con", "men", "esp"] as const, "for"), dados: txt(x?.dados, "1d8"), tipo: txt(x?.tipo), custo: num(x?.custo, 0, 0, 999), crit: num(x?.crit, 20, 15, 20) })) : [],
+    tecnicas: Array.isArray(o.tecnicas) ? o.tecnicas.slice(0, 10).map((x) => ({ nome: txt(x?.nome, "Técnica"), dados: txt(x?.dados, "2d6"), custo: num(x?.custo, 0, 0, 999), atr: em(x?.atr, ["for", "des", "con", "men", "esp"] as const, "esp"), texto: txt(x?.texto) })) : [],
+    texto: txt(o.texto),
+  };
+}
+
 export function normalizarAmeaca(raw: unknown): Ameaca {
   const o = (raw && typeof raw === "object" ? raw : {}) as Partial<Ameaca>;
   const categoria = em(o.categoria, ["hollow", "shinigami", "quincy"] as const, "shinigami");
@@ -239,6 +320,7 @@ export function normalizarAmeaca(raw: unknown): Ameaca {
     caracteristicas: txt(o.caracteristicas),
     titulo: txt(o.titulo).slice(0, 80),
     zanpakutou: { nome: txt(o.zanpakutou?.nome).slice(0, 60), shikai: txt(o.zanpakutou?.shikai), bankai: txt(o.zanpakutou?.bankai) },
+    liberacao: normalizarLiberacao(o.liberacao, categoria),
     habilidades: Array.isArray(o.habilidades) ? o.habilidades.slice(0, 16).map((x) => ({ titulo: txt(x?.titulo, "Habilidade"), texto: txt(x?.texto) })) : [],
   };
 }

@@ -19,6 +19,8 @@ export interface DadosNpc {
   revelado: boolean;
   /** pasta (encontro) do Mestre; vazio = sem pasta */
   pasta: string;
+  /** forma liberada (Bankai, Resurrección, Vollständig) ativa */
+  liberado: boolean;
 }
 
 export interface Npc {
@@ -39,7 +41,7 @@ const banco = () => {
   return supabase;
 };
 
-export const npcVazio = (): DadosNpc => ({ ameaca: ameacaPadrao(), pvAtual: null, prAtual: null, notas: "", revelado: false, pasta: "" });
+export const npcVazio = (): DadosNpc => ({ ameaca: ameacaPadrao(), pvAtual: null, prAtual: null, notas: "", revelado: false, pasta: "", liberado: false });
 
 export function normalizarNpc(d: Partial<DadosNpc> | null): DadosNpc {
   const o = d ?? {};
@@ -51,6 +53,7 @@ export function normalizarNpc(d: Partial<DadosNpc> | null): DadosNpc {
     notas: typeof o.notas === "string" ? o.notas : "",
     revelado: o.revelado === true,
     pasta: typeof o.pasta === "string" ? o.pasta.slice(0, 60) : "",
+    liberado: o.liberado === true,
   };
 }
 

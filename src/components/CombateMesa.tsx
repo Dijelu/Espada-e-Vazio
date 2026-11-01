@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { calcular } from "../regras/ficha";
-import { calcularAmeaca } from "../regras/ameacas";
+import { calcularAmeaca, comLiberacao, efeitosDaLiberacao, type Ameaca } from "../regras/ameacas";
 import { publicarCombate, type FichaDaMesa, type Npc } from "../lib/campanhas";
 import { rolarExpressao } from "../lib/dados";
 
@@ -47,13 +47,33 @@ interface Participante {
   acoes: AcaoNpc[];
   /** ficha de origem (jogadores) */
   fichaId?: string;
+  /** forma liberada (Bankai, Resurrección, Vollständig) */
+  lib?: { nome: string; ativo: boolean; base: Forma; liberada: Forma; efeito: { dano: number; tipo: string; curaPv: number } };
 }
+
+interface Forma { acoes: AcaoNpc[]; cr: number; pvMax: number; prMax: number }
 
 interface Estado {
   ativo: boolean;
   rodada: number;
   vez: string | null;
   lista: Participante[];
+}
+
+function formaDe(am: Ameaca, liberado: boolean): Forma {
+  const c = calcularAmeaca(am, liberado);
+  const atr = liberado ? comLiberacao(am).atr : am.atr;
+  const fonte = liberado ? comLiberacao(am) : am;
+  const acoes: AcaoNpc[] = [
+    ...c.ataques.map((a) => ({
+      nome: a.nome, tipo: "ataque" as const, acerto: a.acerto, dano: a.dano, custo: a.custo || Number(/\((\d+) PR\)/.exec(a.nome)?.[1] ?? 0),
+      cd: 0, crit: a.crit !== 20 ? a.crit : Number(/Crítico (\d+)/.exec(a.nome)?.[1] ?? 20), mult: Number(/x(\d)/.exec(a.nome)?.[1] ?? 2),
+    })),
+    ...c.tecnicas.map((t, i) => ({
+      nome: t.nome, tipo: "tecnica" as const, acerto: 0, dano: `${t.dados} + ${atr[fonte.tecnicas[i]?.atr ?? "esp"]}`, custo: t.custo, cd: t.cd, crit: 21, mult: 1,
+    })),
+  ];
+  return { acoes, cr: c.cr, pvMax: c.pv, prMax: c.pr };
 }
 
 const vazio: Estado = { ativo: false, rodada: 1, vez: null, lista: [] };
@@ -136,22 +156,17 @@ export function CombateMesa({ campanhaId, fichas, npcs, pastas }: { campanhaId: 
     setEst((e) => ({ ...e, lista: e.lista.map((p) => (p.id === id ? { ...p, ...parte } : p)) }));
 
   const doNpc = (n: Npc, qtdN: number): Participante[] => {
-    const c = calcularAmeaca(n.dados.ameaca);
     const am = n.dados.ameaca;
-    const acoes: AcaoNpc[] = [
-      ...c.ataques.map((a) => ({
-        nome: a.nome, tipo: "ataque" as const, acerto: a.acerto, dano: a.dano, custo: a.custo || Number(/\((\d+) PR\)/.exec(a.nome)?.[1] ?? 0),
-        cd: 0, crit: a.crit !== 20 ? a.crit : Number(/Crítico (\d+)/.exec(a.nome)?.[1] ?? 20), mult: Number(/x(\d)/.exec(a.nome)?.[1] ?? 2),
-      })),
-      ...c.tecnicas.map((t, i) => ({
-        nome: t.nome, tipo: "tecnica" as const, acerto: 0, dano: `${t.dados} + ${am.atr[am.tecnicas[i]?.atr ?? "esp"]}`, custo: t.custo, cd: t.cd, crit: 21, mult: 1,
-      })),
-    ];
+    const base = formaDe(am, false);
+    const liberada = am.liberacao.existe ? formaDe(am, true) : null;
+    const ativo = n.dados.liberado && liberada !== null;
+    const c = ativo && liberada ? liberada : base;
     const total = Math.max(1, Math.min(20, qtdN));
     const grupo = novoId();
     return Array.from({ length: total }, (_, i) => ({
       id: novoId(), nome: total > 1 ? `${n.nome} ${i + 1}` : n.nome, tipo: "npc" as const, ini: null, bonus: Math.floor(am.atr.des / 2),
-      pv: Math.min(n.dados.pvAtual ?? c.pv, c.pv), pvMax: c.pv, pr: Math.min(n.dados.prAtual ?? c.pr, c.pr), prMax: c.pr, cr: c.cr, fora: false, nota: "", grupo, oculto: false, acoes,
+      pv: Math.min(n.dados.pvAtual ?? c.pvMax, c.pvMax), pvMax: c.pvMax, pr: Math.min(n.dados.prAtual ?? c.prMax, c.prMax), prMax: c.prMax, cr: c.cr, fora: false, nota: "", grupo, oculto: false, acoes: c.acoes,
+      lib: liberada ? { nome: am.liberacao.nome, ativo, base, liberada, efeito: efeitosDaLiberacao(am) } : undefined,
     }));
   };
 
@@ -238,6 +253,20 @@ export function CombateMesa({ campanhaId, fichas, npcs, pastas }: { campanhaId: 
     }
   };
 
+  const alternarForma = (p: Participante) => {
+    if (!p.lib) return;
+    if (!p.lib.ativo) {
+      const f = p.lib.liberada;
+      const ef = p.lib.efeito;
+      mudar(p.id, { lib: { ...p.lib, ativo: true }, acoes: f.acoes, cr: f.cr, pvMax: f.pvMax, prMax: f.prMax, pv: Math.min(f.pvMax, p.pv + ef.curaPv) });
+      setRes({ texto: `${p.nome} libera ${p.lib.nome}! CR ${f.cr}.${ef.dano > 0 ? ` Todos os inimigos que o vejam sofrem ${ef.dano} de dano ${ef.tipo}.` : ""}${ef.curaPv > 0 ? ` Recupera ${ef.curaPv} PV.` : ""}`, dano: 0, alvoId: "", tecnica: false, acertou: false });
+    } else {
+      const f = p.lib.base;
+      mudar(p.id, { lib: { ...p.lib, ativo: false }, acoes: f.acoes, cr: f.cr, pvMax: f.pvMax, prMax: f.prMax, pv: Math.min(f.pvMax, p.pv), pr: Math.min(f.prMax, p.pr) });
+      setRes({ texto: `${p.nome} encerra ${p.lib.nome}.`, dano: 0, alvoId: "", tecnica: false, acertou: false });
+    }
+  };
+
   const aplicar = (valor: number) => {
     if (!res) return;
     const alvo = est.lista.find((x) => x.id === res.alvoId);
@@ -311,6 +340,7 @@ export function CombateMesa({ campanhaId, fichas, npcs, pastas }: { campanhaId: 
             <div className="npc-linha"><b>PR {p.pr}/{p.prMax}</b>
               <span className="npc-botoes">{[-5, -1, 1, 5].map((d) => <button type="button" key={d} className="btn btn-paper" onClick={() => ajustar(p, "pr", d)}>{d > 0 ? `+${d}` : d}</button>)}</span>
             </div>
+            {p.lib && <button type="button" className={`btn ${p.lib.ativo ? "btn-paper" : "btn-red"}`} onClick={() => alternarForma(p)}>{p.lib.ativo ? `Encerrar ${p.lib.nome}` : `Liberar ${p.lib.nome}`}</button>}
             {p.acoes.length > 0 && (
               <div className="combate-acoes-box">
                 <label className="campo">Alvo

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {
-  ATRS, CATEGORIAS, ESTILOS, GRAUS, calcularAmeaca, distribuir, normalizarAmeaca, pontosDeAtributo,
+  ATRS, CATEGORIAS, ESTILOS, GRAUS, calcularAmeaca, distribuir, efeitosDaLiberacao, liberacaoPadrao, normalizarAmeaca, pontosDeAtributo,
+  type LiberacaoAmeaca,
   type Ameaca, type ChaveAtr, type Categoria, type Modo,
 } from "../regras/ameacas";
 import type { Npc } from "../lib/campanhas";
@@ -37,8 +38,11 @@ function Paragrafos({ texto }: { texto: string }) {
 export function CartaNpc({ npc, onMudar, onSalvar, onApagar, onModelo, onDuplicar }: Props) {
   const [aberto, setAberto] = useState(false);
   const [aberta, setAberta] = useState(false);
+  const [avisoLib, setAvisoLib] = useState("");
   const am = npc.dados.ameaca;
-  const c = calcularAmeaca(am);
+  const lib = am.liberacao;
+  const liberado = npc.dados.liberado && lib.existe;
+  const c = calcularAmeaca(am, liberado);
   const pv = Math.min(npc.dados.pvAtual ?? c.pv, c.pv);
   const pr = Math.min(npc.dados.prAtual ?? c.pr, c.pr);
   const raid = am.formato === "raid";
@@ -50,6 +54,18 @@ export function CartaNpc({ npc, onMudar, onSalvar, onApagar, onModelo, onDuplica
   const mudarDados = (parte: Partial<Npc["dados"]>, salvar = true) => onMudar({ ...npc, dados: { ...npc.dados, ...parte } }, salvar);
   const ajustar = (campo: "pvAtual" | "prAtual", atual: number, max: number, d: number) =>
     mudarDados({ [campo]: Math.max(0, Math.min(max, atual + d)) } as Partial<Npc["dados"]>);
+  const mudarLib = (parte: Partial<LiberacaoAmeaca>, salvar = false) => mudarAmeaca({ liberacao: { ...lib, ...parte } }, salvar);
+  const alternarLiberacao = () => {
+    if (!liberado) {
+      const ef = efeitosDaLiberacao(am);
+      const novoMax = calcularAmeaca(am, true).pv;
+      mudarDados({ liberado: true, pvAtual: Math.min(novoMax, pv + ef.curaPv) });
+      setAvisoLib(ef.dano > 0 ? `${lib.nome}! Todos os inimigos que o vejam sofrem ${ef.dano} de dano ${ef.tipo}.${ef.curaPv > 0 ? ` Recupera ${ef.curaPv} PV.` : ""}` : `${lib.nome}!${ef.curaPv > 0 ? ` Recupera ${ef.curaPv} PV.` : ""}`);
+    } else {
+      mudarDados({ liberado: false, pvAtual: Math.min(pv, calcularAmeaca(am, false).pv) });
+      setAvisoLib("");
+    }
+  };
   const num = (v: string) => (v === "" ? 0 : Number(v) || 0);
   const trocarCategoria = (categoria: Categoria) => {
     const pontos = pontosDeAtributo({ categoria, formato: am.formato, nd: am.nd, grau: 0 });
@@ -62,7 +78,7 @@ export function CartaNpc({ npc, onMudar, onSalvar, onApagar, onModelo, onDuplica
     <article className={`npc${aberta ? " aberta" : ""}`}>
       <button type="button" className="npc-toggle" aria-expanded={aberta} onClick={() => setAberta((v) => !v)}>
         <span className="npc-toggle-nome">{npc.nome}</span>
-        <span className="npc-toggle-info">{am.titulo ? `${am.titulo} · ` : ""}ND {c.nd} · {c.grauNome} · PV {pv}/{c.pv} · PR {pr}/{c.pr}</span>
+        <span className="npc-toggle-info">{liberado ? `${lib.nome} liberado · ` : ""}{am.titulo ? `${am.titulo} · ` : ""}ND {c.nd} · {c.grauNome} · PV {pv}/{c.pv} · PR {pr}/{c.pr}</span>
         <span className="npc-toggle-seta" aria-hidden="true">{aberta ? "Recolher" : "Abrir"}</span>
       </button>
       {aberta && <div className="npc-corpo">
@@ -83,6 +99,13 @@ export function CartaNpc({ npc, onMudar, onSalvar, onApagar, onModelo, onDuplica
         <div><small>Perc. Esp.</small><b>{c.percepcaoEsp}</b></div>
       </div>
 
+      {lib.existe && (
+        <div className="npc-liberar">
+          <button type="button" className={`btn ${liberado ? "btn-paper" : "btn-red"}`} onClick={alternarLiberacao}>{liberado ? `Encerrar ${lib.nome}` : `Liberar ${lib.nome}`}</button>
+          {liberado && <small>CR +{lib.bonusCr} e atributos mudados enquanto liberado.</small>}
+          {avisoLib && <p className="aviso" role="status">{avisoLib}</p>}
+        </div>
+      )}
       <div className="npc-barra">
         <div className="npc-linha"><b>PV {pv}/{c.pv}</b>
           <span className="npc-botoes">{[-10, -5, -1, 1, 5, 10].map((d) => <button type="button" key={d} className="btn btn-paper" onClick={() => ajustar("pvAtual", pv, c.pv, d)}>{d > 0 ? `+${d}` : d}</button>)}</span>
@@ -192,6 +215,50 @@ export function CartaNpc({ npc, onMudar, onSalvar, onApagar, onModelo, onDuplica
           </div>
         ))}
         {am.ataques.length < 8 && <button type="button" className="btn btn-paper" onClick={() => mudarAmeaca({ ataques: [...am.ataques, { nome: "Novo ataque", atr: "for", dados: "1d8", tipo: "" }] }, true)}>Adicionar ataque</button>}
+
+        <h4 className="sub-passivas">Forma liberada ({lib.nome})</h4>
+        <label className="marcar"><input type="checkbox" checked={lib.existe} onChange={(e) => mudarLib(e.target.checked && lib.bonusCr === 0 && Object.values(lib.bonusAtr).every((v) => v === 0) ? { ...liberacaoPadrao(am), nome: lib.nome } : { existe: e.target.checked }, true)} /> Esta ameaça tem {lib.nome}</label>
+        {lib.existe && (
+          <div className="npc-item">
+            <label className="campo">Nome da forma<input value={lib.nome} onChange={(e) => mudarLib({ nome: e.target.value })} onBlur={() => onSalvar(npc)} /></label>
+            <label className="campo">CR extra<input type="number" value={lib.bonusCr} onChange={(e) => mudarLib({ bonusCr: Number(e.target.value) || 0 })} onBlur={() => onSalvar(npc)} /></label>
+            {ATRS.map((a) => (
+              <label className="campo" key={a.id}>{a.nome} +<input type="number" value={lib.bonusAtr[a.id]} onChange={(e) => mudarLib({ bonusAtr: { ...lib.bonusAtr, [a.id]: Number(e.target.value) || 0 } })} onBlur={() => onSalvar(npc)} /></label>
+            ))}
+            <label className="campo">Cura ao liberar (% dos PV)<input type="number" min={0} max={100} value={lib.cura} onChange={(e) => mudarLib({ cura: Number(e.target.value) || 0 })} onBlur={() => onSalvar(npc)} /></label>
+            <label className="campo">Explosão: vezes o atributo<input type="number" min={0} value={lib.explosao.mult} onChange={(e) => mudarLib({ explosao: { ...lib.explosao, mult: Number(e.target.value) || 0 } })} onBlur={() => onSalvar(npc)} /></label>
+            <label className="campo">Atributo da explosão
+              <select value={lib.explosao.atr} onChange={(e) => mudarLib({ explosao: { ...lib.explosao, atr: e.target.value as ChaveAtr } }, true)}>{ATRS.map((x) => <option key={x.id} value={x.id}>{x.nome}</option>)}</select>
+            </label>
+            <label className="campo">Tipo da explosão<input value={lib.explosao.tipo} onChange={(e) => mudarLib({ explosao: { ...lib.explosao, tipo: e.target.value } })} onBlur={() => onSalvar(npc)} /></label>
+            <label className="marcar npc-larga"><input type="checkbox" checked={lib.trocar} onChange={(e) => mudarLib({ trocar: e.target.checked }, true)} /> Os ataques e técnicas abaixo substituem os normais (desmarcado: somam)</label>
+            <label className="campo npc-larga">Descrição<textarea rows={3} value={lib.texto} onChange={(e) => mudarLib({ texto: e.target.value })} onBlur={() => onSalvar(npc)} /></label>
+            <h4 className="sub-passivas npc-larga">Ataques da forma liberada</h4>
+            {lib.ataques.map((a, i) => (
+              <div className="npc-item npc-larga" key={i}>
+                <label className="campo">Nome<input value={a.nome} onChange={(e) => mudarLib({ ataques: lib.ataques.map((x, j) => (j === i ? { ...x, nome: e.target.value } : x)) })} onBlur={() => onSalvar(npc)} /></label>
+                <label className="campo">Atributo<select value={a.atr} onChange={(e) => mudarLib({ ataques: lib.ataques.map((x, j) => (j === i ? { ...x, atr: e.target.value as ChaveAtr } : x)) }, true)}>{ATRS.map((x) => <option key={x.id} value={x.id}>{x.nome}</option>)}</select></label>
+                <label className="campo">Dados<input value={a.dados} onChange={(e) => mudarLib({ ataques: lib.ataques.map((x, j) => (j === i ? { ...x, dados: e.target.value } : x)) })} onBlur={() => onSalvar(npc)} /></label>
+                <label className="campo">Custo (PR)<input type="number" min={0} value={a.custo ?? 0} onChange={(e) => mudarLib({ ataques: lib.ataques.map((x, j) => (j === i ? { ...x, custo: num(e.target.value) } : x)) })} onBlur={() => onSalvar(npc)} /></label>
+                <label className="campo">Tipo de dano<input value={a.tipo} onChange={(e) => mudarLib({ ataques: lib.ataques.map((x, j) => (j === i ? { ...x, tipo: e.target.value } : x)) })} onBlur={() => onSalvar(npc)} /></label>
+                <button type="button" className="link-perigo" onClick={() => mudarLib({ ataques: lib.ataques.filter((_, j) => j !== i) }, true)}>Remover</button>
+              </div>
+            ))}
+            <button type="button" className="btn btn-paper npc-larga" onClick={() => mudarLib({ ataques: [...lib.ataques, { nome: "Golpe liberado", atr: "for", dados: "2d8", tipo: "", custo: 0, crit: 20 }] }, true)}>Adicionar ataque da forma</button>
+            <h4 className="sub-passivas npc-larga">Técnicas da forma liberada</h4>
+            {lib.tecnicas.map((t, i) => (
+              <div className="npc-item npc-larga" key={i}>
+                <label className="campo">Nome<input value={t.nome} onChange={(e) => mudarLib({ tecnicas: lib.tecnicas.map((x, j) => (j === i ? { ...x, nome: e.target.value } : x)) })} onBlur={() => onSalvar(npc)} /></label>
+                <label className="campo">Dados<input value={t.dados} onChange={(e) => mudarLib({ tecnicas: lib.tecnicas.map((x, j) => (j === i ? { ...x, dados: e.target.value } : x)) })} onBlur={() => onSalvar(npc)} /></label>
+                <label className="campo">Custo (PR)<input type="number" min={0} value={t.custo} onChange={(e) => mudarLib({ tecnicas: lib.tecnicas.map((x, j) => (j === i ? { ...x, custo: num(e.target.value) } : x)) })} onBlur={() => onSalvar(npc)} /></label>
+                <label className="campo">Atributo da CD<select value={t.atr} onChange={(e) => mudarLib({ tecnicas: lib.tecnicas.map((x, j) => (j === i ? { ...x, atr: e.target.value as ChaveAtr } : x)) }, true)}>{ATRS.map((x) => <option key={x.id} value={x.id}>{x.nome}</option>)}</select></label>
+                <label className="campo npc-larga">Descrição<textarea rows={2} value={t.texto} onChange={(e) => mudarLib({ tecnicas: lib.tecnicas.map((x, j) => (j === i ? { ...x, texto: e.target.value } : x)) })} onBlur={() => onSalvar(npc)} /></label>
+                <button type="button" className="link-perigo" onClick={() => mudarLib({ tecnicas: lib.tecnicas.filter((_, j) => j !== i) }, true)}>Remover</button>
+              </div>
+            ))}
+            <button type="button" className="btn btn-paper npc-larga" onClick={() => mudarLib({ tecnicas: [...lib.tecnicas, { nome: "Técnica liberada", dados: "3d8", custo: 6, atr: "esp", texto: "" }] }, true)}>Adicionar técnica da forma</button>
+          </div>
+        )}
 
         <h4 className="sub-passivas">Zanpakutō</h4>
         <div className="npc-item">
