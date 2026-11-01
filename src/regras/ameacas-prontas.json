@@ -1,0 +1,293 @@
+[
+ {
+  "id": "hollow-comum",
+  "nome": "Hollow Comum",
+  "categoria": "hollow",
+  "grau": 0,
+  "formato": "solo",
+  "nd": 1,
+  "estilo": "fisico",
+  "caracteristicas": "Fúria Faminta: Quando o Hollow estiver com menos da metade dos pontos de vida, ele faz ataques com vantagem.",
+  "ataques": [
+   {
+    "nome": "Garras",
+    "atr": "for",
+    "dados": "1d8",
+    "tipo": "Cortante"
+   },
+   {
+    "nome": "Mordida (3 PR)",
+    "atr": "for",
+    "dados": "1d8",
+    "tipo": "Cortante"
+   }
+  ],
+  "tecnicas": []
+ },
+ {
+  "id": "grupo-hollows",
+  "nome": "Grupo de Hollows",
+  "categoria": "hollow",
+  "grau": 0,
+  "formato": "raid",
+  "nd": 1,
+  "estilo": "fisico",
+  "caracteristicas": "Alcateia: Enquanto o Grupo de Hollows tiver mais da metade dos seus pontos de vida, ele causa +2 no dano de seus ataques devido à quantidade superior de criaturas atacando ao mesmo tempo.\nApressar Presa: O Grupo de Hollows pode se mover através de outras criaturas e terminar seu turno no mesmo espaço que elas sem sofrer penalidades. Além disso, todos os ataques feitos pelo Grupo têm vantagem contra criaturas que estejam dentro do espaço que ele ocupa.\nCheiro de Sangue: Quando uma criatura é atingida por um ataque do Grupo de Hollows e sofre dano, ela deve realizar um Teste de Resistência de Constituição (CD definida pelo Mestre). Em caso de falha, a criatura recebe a condição Sangramento.",
+  "ataques": [
+   {
+    "nome": "Ataque em Massa",
+    "atr": "for",
+    "dados": "3d6",
+    "tipo": "Cortante"
+   }
+  ],
+  "tecnicas": [
+   {
+    "nome": "Investida Predatória",
+    "dados": "4d10",
+    "custo": 6,
+    "atr": "for",
+    "texto": "O Grupo se move até metade de seu deslocamento, atingindo todas as criaturas que estiverem em seu caminho. Cada criatura deve realizar um Teste de Resistência de Destreza ou Constituição (CD 8 + proficiência + Força), a escolha da criatura atingida. Dano: 4d10 + Força de dano de Concussão em caso de falha, ou nada em caso de sucesso. O Grupo após usar Investida perde todo seu deslocamento."
+   }
+  ]
+ },
+ {
+  "id": "gillian",
+  "nome": "Gillian",
+  "categoria": "hollow",
+  "grau": 1,
+  "formato": "solo",
+  "nd": 4,
+  "estilo": "fisico",
+  "caracteristicas": "Corpo Colossal: O Gillian tem vantagem em testes para resistir a ser empurrado, agarrado ou derrubado devido ao seu tamanho massivo.\nCorpo de Alta Densidade: Resistência a dano Físico.\nKumon: O Gillian pode levar 1 hora para abrir uma Garganta, permanecendo totalmente concentrado durante todo o processo. A Garganta permite que ele, e outros Hollows transitem entre os mundos.",
+  "ataques": [
+   {
+    "nome": "Garras Pesadas",
+    "atr": "for",
+    "dados": "2d8",
+    "tipo": "Cortante"
+   },
+   {
+    "nome": "Pisada",
+    "atr": "for",
+    "dados": "2d6",
+    "tipo": "Concussão"
+   }
+  ],
+  "tecnicas": []
+ },
+ {
+  "id": "grupo-gillian",
+  "nome": "Grupo de Gillian",
+  "categoria": "hollow",
+  "grau": 1,
+  "formato": "raid",
+  "nd": 4,
+  "estilo": "fisico",
+  "caracteristicas": "Massa Colossal: O Grupo de Gillians não podem ser empurrados, agarrados ou derrubados devido ao seu tamanho massivo.\nCorpo de Alta Densidade: Resistência a dano Físico.\nKumon: Os Gillians podem levar 1 hora para abrir uma Garganta, permanecendo totalmente concentrado durante todo o processo. A Garganta permite que ele, e outros Hollows transitem entre os mundos.\nPresença Aterradora: Criaturas a até 9 metros do Grupo de Gillians que possam vê-lo devem realizar um Teste de Resistência de Espírito (CD = 8 + Nível de Desafio + Espírito) no início do combate. Uma criatura que falhar fica Amedrontada e deve repetir o teste no começo do turno dela. Uma criatura que passar no teste é imune a esta característica por 24 horas.\nMassa Avançanda: O Grupo de Gillians pode moverse através do espaço de criaturas Grandes ou menores sem sofrer penalidades. A primeira vez por turno que o grupo entrar no espaço de uma criatura, ela deve realizar um Teste de Destreza (CD = 8 + Nível de Desafio + Força) ou sofre 20 (4d8) de dano de Concussão devido.",
+  "ataques": [
+   {
+    "nome": "Garras Pesadas",
+    "atr": "for",
+    "dados": "2d10",
+    "tipo": "Concussão"
+   }
+  ],
+  "tecnicas": []
+ },
+ {
+  "id": "adjuchas",
+  "nome": "Adjuchas",
+  "categoria": "hollow",
+  "grau": 2,
+  "formato": "solo",
+  "nd": 8,
+  "estilo": "veloz",
+  "caracteristicas": "Corpo Ágil: O Adjuchas pode utilizar a ação Desengajar como ação bônus.\nInstinto Afiado: O Adjuchas tem vantagem em testes de Percepção e de Iniciativa.\nPredador Calculista: Uma vez por rodada, quando causar dano a uma criatura, o Adjuchas reduz em 3 a classe de resistência dessa criatura até o final do próximo turno dela.\nMovimento Predatório: O Adjuchas pode se mover até metade do deslocamento dele sem provocar ataques de oportunidade, desde que tenha atacado uma criatura no mesmo turno.",
+  "ataques": [
+   {
+    "nome": "Ataque Focado",
+    "atr": "des",
+    "dados": "3d10",
+    "tipo": "Perfurante"
+   },
+   {
+    "nome": "Bala de Cero (5 PR)",
+    "atr": "esp",
+    "dados": "4d8",
+    "tipo": "Energia"
+   }
+  ],
+  "tecnicas": []
+ },
+ {
+  "id": "vasto-lorde",
+  "nome": "Vasto Lorde",
+  "categoria": "hollow",
+  "grau": 3,
+  "formato": "solo",
+  "nd": 12,
+  "estilo": "fisico",
+  "caracteristicas": "Aura Predatória: A simples existência de um Vasto Lorde é uma sentença de morte para seres espirituais mais fracos. Sempre que o Vasto Lorde entra em combate, ele utiliza “Liberar Reiatsu” como ação livre, sem custo (CD igual 10 + Nível de Desafio + Espírito).\nCoroa da Desolação: A presença espiritual de um Vasto Lorde é sufocante. Criaturas que comecem o turno a até 6 metros dele devem fazer um teste de Resistência de Espírito (CD igual 10 + Nível de Desafio + Espírito) ou sofrem 3d10 de dano psíquico e ficam com desvantagem no próximo ataque que realizarem contra o Vasto Lorde.\nRegeneração de Alta Velocidade: O Vasto Lorde recupera duas vezes a ND em pontos de vida no início do turno dele, desde que ainda possua ao menos 1 ponto de vida.\nSonido: O Vasto Lorde pode utilizar Sonido, que funciona da mesma forma que o Shunpo. Para determinar seus efeitos, utilize a versão do Shunpo sugerida para a classe Zanjutsu. Ao utilizar Sonido, os próximos dois ataques do Vasto Lorde têm vantagem nas jogadas de dano.\nPercepção Espiritual Passiva: 32. (10 + Espírito + proficiência)\nHierro: Resistência a danos Físicos.\nRedução de Dano: 0 dano Físico e 10 dano Esotérico.\nTeste de Resistência: Força, Mente e Espiríto.",
+  "ataques": [
+   {
+    "nome": "Impacto Brutal",
+    "atr": "for",
+    "dados": "3d10",
+    "tipo": "Concussão"
+   }
+  ],
+  "tecnicas": [
+   {
+    "nome": "Explosão de Reiatsu",
+    "dados": "NDd8",
+    "custo": 30,
+    "atr": "esp",
+    "texto": "O Vasto Lorde libera violentamente seu poder espiritual. Todas as criaturas à sua escolha a até 6 metros dele devem realizar um Teste de Resistência de Força (CD 8 + proficiência + Espírito). Em uma falha, sofrem ND em d8s de dano de Energia e são empurradas 6 metros. Em um sucesso, sofrem metade do dano e não são empurradas."
+   },
+   {
+    "nome": "Cero",
+    "dados": "NDd8",
+    "custo": 20,
+    "atr": "esp",
+    "texto": "ND em d8s de dano de Energia em falha, ou metade em sucesso no teste."
+   },
+   {
+    "nome": "Reação Cero",
+    "dados": "NDd8",
+    "custo": 30,
+    "atr": "esp",
+    "texto": "Quando for alvo de um ataque à distância, o Vasto Lord pode utilizar o Cero para se proteger e tentar causar dano ao inimigo. Ele reduz o dano do ataque pelo valor rolado nos dados do Cero. Se o dano excedente for maior que zero, a criatura pode realizar o Teste de Resistência de Constituição para evitar o dano. Se obtiver sucesso, não sofre dano, se falhar, sofre o dano excedente."
+   }
+  ]
+ },
+ {
+  "id": "arrancar",
+  "nome": "Arrancar",
+  "categoria": "hollow",
+  "grau": 4,
+  "formato": "solo",
+  "nd": 14,
+  "estilo": "equilibrado",
+  "caracteristicas": "Destruidor de Escudos: Os ataques do Arrancar ignoram 10 pontos de Redução de Dano.\nImbuir com Cero: Quando o Arrancar acerta uma criatura com sua Zanpakutou, ele pode gastar 10 pontos de Reiatsu para imbuir o golpe com Cero, causando 2d10 de dano de energia adicional. O dano adicional aumenta em 1d10 para cada 5 pontos de Reiatsu adicionais gastos, até o máximo de 5d10.\nRegeneração de Alta Velocidade: O Arrancar recupera duas vezes a ND em pontos de vida no início do turno dele, desde que ainda possua ao menos 1 ponto de vida.\nSonido: O Arrancar pode utilizar Sonido, que funciona da mesma forma que o Shunpo. Para determinar seus efeitos, utilize a versão do Shunpo sugerida para a classe Zanjutsu. Ao utilizar Sonido, os próximos dois ataques do Arrancar têm vantagem nas jogadas de dano.",
+  "ataques": [
+   {
+    "nome": "Katana (Crítico 18 - x2)",
+    "atr": "for",
+    "dados": "2d10",
+    "tipo": "Cortante"
+   },
+   {
+    "nome": "Punho (Crítico 19 - x3)",
+    "atr": "for",
+    "dados": "3d10",
+    "tipo": "Concussão"
+   }
+  ],
+  "tecnicas": [
+   {
+    "nome": "Grand Rey Cero",
+    "dados": "2NDd10",
+    "custo": 30,
+    "atr": "esp",
+    "texto": "O Vasto Lorde dispara um Cero concentrado contra uma criatura que possa ver a até 24 metros. Ataque à Distância: proficiência + Espírito para atingir. Se acertar, a criatura sofre 2 × ND d10 de dano de energia"
+   },
+   {
+    "nome": "Cero",
+    "dados": "NDd12",
+    "custo": 25,
+    "atr": "esp",
+    "texto": "ND em d12s de dano de Energia em falha, ou metade em sucesso no teste."
+   },
+   {
+    "nome": "Reação Cero",
+    "dados": "NDd12",
+    "custo": 30,
+    "atr": "esp",
+    "texto": "Quando for alvo de um ataque à distância, o Vasto Lord pode utilizar o Cero para se proteger e tentar causar dano ao inimigo. Ele reduz o dano do ataque pelo valor rolado nos dados do Cero. Se o dano excedente for maior que zero, a criatura pode realizar o Teste de Resistência de Constituição para evitar o dano. Se obtiver sucesso, não sofre dano, se falhar, sofre o dano excedente."
+   }
+  ]
+ },
+ {
+  "id": "shinigami",
+  "nome": "Shinigami",
+  "categoria": "shinigami",
+  "grau": 0,
+  "formato": "solo",
+  "nd": 1,
+  "estilo": "equilibrado",
+  "caracteristicas": "Resistência Melhorada: O Shinigami recebe +1 na sua Classe de Resistência (Já adicionado).\nCaracterística Adicional: O Tenente Shinigami recebe um talento ou caracteristica de uma Classe. O talento sugerido é “Domínio Temporário” da classe Tokubetsu.\nShunpo: O Tenente Shinigami pode utilizar Shunpo, seguindo a versão sugerida da classe Tokubetsu.",
+  "ataques": [
+   {
+    "nome": "Katana (Crítico 19 x2)",
+    "atr": "des",
+    "dados": "1d8",
+    "tipo": "Cortante"
+   }
+  ],
+  "tecnicas": []
+ },
+ {
+  "id": "tenente",
+  "nome": "Tenente",
+  "categoria": "shinigami",
+  "grau": 1,
+  "formato": "solo",
+  "nd": 9,
+  "estilo": "equilibrado",
+  "caracteristicas": "Característica Adicional: O Tenente Shinigami recebe um talento ou caracteristica de uma Classe. O talento sugerido é “Desvio Instintivo” da classe Zanjutsu.\nImpacto de Reiatsu: Quando o Tenente acertar uma criatura com sua Zanpakutou, pode utilizar 4 pontos de reiatsu para causar 2d4 de dano de energia adicional, além do dano normal da arma. O dano extra pode ser aumentado em 1d4 para cada 2 pontos de reiatsu adicionais gastos, até um máximo de 5d4.\nKido Adicional: O Tenente Shinigami possui um Kido rank C adicional.\nShunpo: O Tenente Shinigami pode utilizar Shunpo, seguindo a versão sugerida da classe Zanjutsu.",
+  "ataques": [
+   {
+    "nome": "Hakuda",
+    "atr": "for",
+    "dados": "1d6",
+    "tipo": "Concussão"
+   },
+   {
+    "nome": "Uchigatana (Crítico 19)",
+    "atr": "for",
+    "dados": "1d12",
+    "tipo": "Cortante"
+   }
+  ],
+  "tecnicas": []
+ },
+ {
+  "id": "capitao",
+  "nome": "Capitão",
+  "categoria": "shinigami",
+  "grau": 2,
+  "formato": "solo",
+  "nd": 12,
+  "estilo": "equilibrado",
+  "caracteristicas": "Autoridade Espiritual: A presença de um Capitão é sufocante para criaturas comuns. Criaturas que dependem de reiatsu percebem imediatamente a pressão esmagadora. Sempre que o Capitão entrar em combate ele utiliza a ação “Liberar Reiatsu” com uma ação livre (CD igual 10 + Nível de Desafio + Espírito).\nCaracterística Adicional (2x): O Capitão Shinigami recebe dois talentos ou caracteristicas de uma Classe. Os talentos sugeridos é “Análise” da classe Kyūgo e “Estilo Veloz” da classe Hakuda.\nDomínio da Zanpakutou: Uma vez por turno, quando o Capitão acertar um ataque ou técnica da Zanpakutou, ele causa dano adicional igual ao seu ND a todas as criaturas inimigas a até 3 m do alvo original.\nSequência de Kido: Se o Shinigami utilizar um Kido em seu turno, ele pode conjurar outros Kidos adicionais, em número igual à quantidade de ataques que possui, mas cada Kido subsequente deve ser de Rank inferior ao anterior.\nShunpo Aprimorado: O Capitão Shinigami pode utilizar Shunpo, seguindo a versão sugerida da classe Zanjutsu. Mas quando ele utiliza Shunpo os próximos dois ataques dele tem vantagem.\nTécnicas Dominadas: Quando o Capitão Shinigami utiliza uma técnica de sua Zanpakutou, ele adiciona 2 dados de dano adicionais a técnica.",
+  "ataques": [
+   {
+    "nome": "Katana (Crítico 18 - x3)",
+    "atr": "for",
+    "dados": "1d8",
+    "tipo": "Cortante"
+   }
+  ],
+  "tecnicas": []
+ },
+ {
+  "id": "quincy-soldat",
+  "nome": "Quincy Soldat",
+  "categoria": "quincy",
+  "grau": 0,
+  "formato": "solo",
+  "nd": 1,
+  "estilo": "equilibrado",
+  "caracteristicas": "Arsenal Quincy: O Soldat possúi com ele um Arco Curto e uma Adaga sem aprimoramentos.\nDisparo Poderoso (3 PR): Quando realizar um ataque à distância com uma arma, você pode adicionar ao dano um dado de dano de energia igual ao dado de dano da arma.",
+  "ataques": [
+   {
+    "nome": "Adaga (Crítico 19 - x3) (1 PR)",
+    "atr": "des",
+    "dados": "1d4",
+    "tipo": "Perfurante"
+   }
+  ],
+  "tecnicas": []
+ }
+]

@@ -80,6 +80,26 @@ export interface Ameaca {
   caracteristicas: string;
 }
 
+/** Modelo de ameaça pronta do livro (capítulo 14). */
+export interface ModeloAmeaca {
+  id: string;
+  nome: string;
+  categoria: Categoria;
+  grau: number;
+  formato: Formato;
+  nd: number;
+  estilo: string;
+  caracteristicas: string;
+  ataques: AtaqueAmeaca[];
+  tecnicas: TecnicaAmeaca[];
+}
+
+export function ameacaDoModelo(m: ModeloAmeaca, nd = m.nd): Ameaca {
+  const base: Ameaca = { ...ameacaPadrao(m.categoria, nd), formato: m.formato, grau: m.grau };
+  const pontos = pontosDeAtributo({ categoria: m.categoria, formato: m.formato, nd, grau: m.grau });
+  return normalizarAmeaca({ ...base, atr: distribuir(pontos, m.estilo), ataques: m.ataques, tecnicas: m.tecnicas, caracteristicas: m.caracteristicas });
+}
+
 export function ameacaPadrao(categoria: Categoria = "shinigami", nd = 1): Ameaca {
   const pontos = pontosDeAtributo({ categoria, formato: "solo", nd, grau: 0 });
   const atr = distribuir(pontos, "equilibrado");
@@ -168,7 +188,9 @@ export function calcularAmeaca(a: Ameaca): AmeacaCalculada {
     if (modo === "boss") pv = Math.floor(pv * Math.max(1, a.jogadores) * (nd >= 11 ? 2.3 : 1.8));
   }
   if (a.pvExtra) pv = Math.floor(pv * (1 + a.pvExtra / 100));
-  const esc = (e: string) => escalarDados(escalarDados(e, k), fs === 1 ? 1 : fs);
+  // "NDd8" e "2NDd10" valem ND (ou 2 × ND) dados
+  const comND = (e: string) => e.replace(/(\d*)ND(?=d\d)/gi, (_, m: string) => String((m ? Number(m) : 1) * nd));
+  const esc = (e: string) => escalarDados(escalarDados(comND(e), k), fs === 1 ? 1 : fs);
   const ataques = a.ataques.map((x) => {
     const dano = `${esc(x.dados)} + ${a.atr[x.atr]}`;
     return { nome: x.nome, acerto: prof + a.atr[x.atr], dano, media: mediaExpr(dano), tipo: x.tipo };

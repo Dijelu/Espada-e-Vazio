@@ -2,7 +2,10 @@ import { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../components/Auth";
 import { calcular, classePorId } from "../regras/ficha";
-import { CATEGORIAS } from "../regras/ameacas";
+import { CATEGORIAS, ameacaDoModelo, ameacaPadrao, type Categoria, type ModeloAmeaca } from "../regras/ameacas";
+import prontas from "../regras/ameacas-prontas.json";
+
+const MODELOS = prontas as unknown as ModeloAmeaca[];
 import { CartaNpc } from "../components/CartaNpc";
 import {
   apagarCampanha, apagarNpc, criarNpc, fichasDaMesa, lerCampanha, ligarFicha, listarNpcs, minhasFichasSemMesa, salvarNpc, sairDaCampanha,
@@ -19,6 +22,9 @@ export default function CampanhaPagina() {
   const [livres, setLivres] = useState<{ id: string; nome: string }[]>([]);
   const [escolha, setEscolha] = useState("");
   const [novoNpc, setNovoNpc] = useState("");
+  const [modelo, setModelo] = useState("");
+  const [ndNovo, setNdNovo] = useState(1);
+  const [categoriaNova, setCategoriaNova] = useState<Categoria>("shinigami");
   const [erro, setErro] = useState("");
   const [copiado, setCopiado] = useState(false);
 
@@ -141,8 +147,34 @@ export default function CampanhaPagina() {
           ))}
         </div>
         {mestre && (
-          <form className="linha-rolar" onSubmit={(e) => { e.preventDefault(); void tentar(async () => { const n = await criarNpc(id, novoNpc.trim()); setNpcs((l) => [...l, n]); setNovoNpc(""); }, "Não foi possível criar o NPC."); }}>
-            <input value={novoNpc} maxLength={80} placeholder="Nome do novo NPC" aria-label="Nome do novo NPC" onChange={(e) => setNovoNpc(e.target.value)} />
+          <form className="criar-npc" onSubmit={(e) => {
+            e.preventDefault();
+            const m = MODELOS.find((x) => x.id === modelo);
+            const ameaca = m ? ameacaDoModelo(m, ndNovo) : ameacaPadrao(categoriaNova, ndNovo);
+            void tentar(async () => { const n = await criarNpc(id, novoNpc.trim() || m?.nome || "", ameaca); setNpcs((l) => [...l, n]); setNovoNpc(""); }, "Não foi possível criar o NPC.");
+          }}>
+            <h4 className="sub-passivas">Novo NPC</h4>
+            <div className="npc-form">
+              <label className="campo">Modelo do livro
+                <select value={modelo} onChange={(e) => { setModelo(e.target.value); const m = MODELOS.find((x) => x.id === e.target.value); if (m) setNdNovo(m.nd); }}>
+                  <option value="">Em branco (monto do zero)</option>
+                  {MODELOS.map((m) => <option key={m.id} value={m.id}>{m.nome} ({m.formato === "raid" ? "Raid" : "Solo"})</option>)}
+                </select>
+              </label>
+              {!modelo && (
+                <label className="campo">Categoria
+                  <select value={categoriaNova} onChange={(e) => setCategoriaNova(e.target.value as Categoria)}>
+                    {CATEGORIAS.map((c) => <option key={c.id} value={c.id}>{c.nome}</option>)}
+                  </select>
+                </label>
+              )}
+              <label className="campo">Nível de Desafio
+                <input type="number" min={1} max={20} value={ndNovo} onChange={(e) => setNdNovo(Math.min(20, Math.max(1, Number(e.target.value) || 1)))} />
+              </label>
+              <label className="campo">Nome
+                <input value={novoNpc} maxLength={80} placeholder="Nome do NPC" onChange={(e) => setNovoNpc(e.target.value)} />
+              </label>
+            </div>
             <button type="submit" className="btn btn-red">Adicionar NPC</button>
           </form>
         )}
