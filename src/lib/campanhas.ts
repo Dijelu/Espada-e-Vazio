@@ -160,3 +160,24 @@ export async function lerCombate(id: string): Promise<CombatePublico | null> {
     })),
   };
 }
+
+/** Modelo de NPC salvo pelo Mestre, valendo para todas as mesas dele. */
+export interface ModeloSalvo { id: string; nome: string; ameaca: Ameaca }
+
+export async function listarModelosSalvos(): Promise<ModeloSalvo[]> {
+  const { data, error } = await banco().from("npc_modelos").select("id,name,data").order("name");
+  if (error) throw error;
+  return (data as { id: string; name: string; data: unknown }[]).map((l) => ({ id: l.id, nome: l.name, ameaca: normalizarAmeaca(l.data) }));
+}
+
+export async function salvarModelo(donoId: string, nome: string, ameaca: Ameaca): Promise<ModeloSalvo> {
+  const { data, error } = await banco().from("npc_modelos").insert({ owner_id: donoId, name: nome || "Modelo sem nome", data: ameaca }).select("id,name,data").single();
+  if (error) throw error;
+  const l = data as { id: string; name: string; data: unknown };
+  return { id: l.id, nome: l.name, ameaca: normalizarAmeaca(l.data) };
+}
+
+export async function apagarModelo(id: string): Promise<void> {
+  const { error } = await banco().from("npc_modelos").delete().eq("id", id);
+  if (error) throw error;
+}

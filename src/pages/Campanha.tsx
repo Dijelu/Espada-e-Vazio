@@ -10,7 +10,7 @@ import { CartaNpc } from "../components/CartaNpc";
 import { CombateMesa } from "../components/CombateMesa";
 import { OrdemCombate } from "../components/OrdemCombate";
 import {
-  apagarCampanha, apagarNpc, criarNpc, fichasDaMesa, lerCampanha, ligarFicha, listarNpcs, minhasFichasSemMesa, salvarNpc, sairDaCampanha,
+  apagarCampanha, apagarNpc, criarNpc, fichasDaMesa, lerCampanha, ligarFicha, listarNpcs, minhasFichasSemMesa, salvarNpc, sairDaCampanha, listarModelosSalvos, salvarModelo, apagarModelo, type ModeloSalvo,
   type Campanha, type FichaDaMesa, type Npc,
 } from "../lib/campanhas";
 
@@ -25,6 +25,8 @@ export default function CampanhaPagina() {
   const [escolha, setEscolha] = useState("");
   const [novoNpc, setNovoNpc] = useState("");
   const [pastaNova, setPastaNova] = useState("");
+  const [salvos, setSalvos] = useState<ModeloSalvo[]>([]);
+  const [okMsg, setOkMsg] = useState("");
   const [modelo, setModelo] = useState("");
   const [ndNovo, setNdNovo] = useState(1);
   const [categoriaNova, setCategoriaNova] = useState<Categoria>("shinigami");
@@ -40,6 +42,7 @@ export default function CampanhaPagina() {
       setCamp(c);
       if (!c) return;
       const [fs, ns, ls] = await Promise.all([fichasDaMesa(id), listarNpcs(id), minhasFichasSemMesa()]);
+      listarModelosSalvos().then(setSalvos).catch(() => undefined);
       setFichas(fs);
       setNpcs(ns);
       setLivres(ls);
@@ -155,6 +158,8 @@ export default function CampanhaPagina() {
                       npc={n}
                       onMudar={(novo, salvar) => { setNpcs((l) => l.map((x) => (x.id === novo.id ? novo : x))); if (salvar) void guardar(novo); }}
                       onSalvar={(novo) => void guardar(novo)}
+                      onModelo={(x) => void tentar(async () => { const m = await salvarModelo(meuId, x.nome, x.dados.ameaca); setSalvos((l) => [...l, m]); setOkMsg(`"${x.nome}" salvo nos seus modelos.`); }, "Não foi possível salvar o modelo.")}
+                      onDuplicar={(x) => void tentar(async () => { const n = await criarNpc(id, `${x.nome} (cópia)`, x.dados.ameaca); n.dados.pasta = x.dados.pasta; if (n.dados.pasta) await salvarNpc(n); setNpcs((l) => [...l, n]); }, "Não foi possível duplicar o NPC.")}
                       onApagar={(x) => { if (window.confirm(`Apagar o NPC ${x.nome}?`)) void tentar(async () => { await apagarNpc(x.id); setNpcs((l) => l.filter((y) => y.id !== x.id)); }, "Não foi possível apagar o NPC."); }}
                     />
                   ))}
@@ -184,16 +189,18 @@ export default function CampanhaPagina() {
         {mestre && (
           <form className="criar-npc" onSubmit={(e) => {
             e.preventDefault();
+            const ms = salvos.find((x) => `s:${x.id}` === modelo);
             const m = MODELOS.find((x) => x.id === modelo);
-            const ameaca = m ? ameacaDoModelo(m, ndNovo) : ameacaPadrao(categoriaNova, ndNovo);
-            void tentar(async () => { const n = await criarNpc(id, novoNpc.trim() || m?.nome || "", ameaca); n.dados.pasta = pastaNova.trim(); if (n.dados.pasta) await salvarNpc(n); setNpcs((l) => [...l, n]); setNovoNpc(""); }, "Não foi possível criar o NPC.");
+            const ameaca = ms ? { ...ms.ameaca, nd: ndNovo } : m ? ameacaDoModelo(m, ndNovo) : ameacaPadrao(categoriaNova, ndNovo);
+            void tentar(async () => { const n = await criarNpc(id, novoNpc.trim() || ms?.nome || m?.nome || "", ameaca); n.dados.pasta = pastaNova.trim(); if (n.dados.pasta) await salvarNpc(n); setNpcs((l) => [...l, n]); setNovoNpc(""); }, "Não foi possível criar o NPC.");
           }}>
             <h4 className="sub-passivas">Novo NPC</h4>
             <div className="npc-form">
               <label className="campo">Modelo do livro
-                <select value={modelo} onChange={(e) => { setModelo(e.target.value); const m = MODELOS.find((x) => x.id === e.target.value); if (m) setNdNovo(m.nd); }}>
+                <select value={modelo} onChange={(e) => { setModelo(e.target.value); const m = MODELOS.find((x) => x.id === e.target.value); if (m) setNdNovo(m.nd); const ms = salvos.find((x) => `s:${x.id}` === e.target.value); if (ms) setNdNovo(ms.ameaca.nd); }}>
                   <option value="">Em branco (monto do zero)</option>
-                  {MODELOS.map((m) => <option key={m.id} value={m.id}>{m.nome} ({m.formato === "raid" ? "Raid" : "Solo"})</option>)}
+                  {salvos.length > 0 && <optgroup label="Meus modelos">{salvos.map((m) => <option key={m.id} value={`s:${m.id}`}>{m.nome}</option>)}</optgroup>}
+                  <optgroup label="Do livro">{MODELOS.map((m) => <option key={m.id} value={m.id}>{m.nome} ({m.formato === "raid" ? "Raid" : "Solo"})</option>)}</optgroup>
                 </select>
               </label>
               {!modelo && (
@@ -214,6 +221,8 @@ export default function CampanhaPagina() {
               </label>
             </div>
             <button type="submit" className="btn btn-red">Adicionar NPC</button>
+            {okMsg && <p className="ajuda" role="status">{okMsg}</p>}
+            {modelo.startsWith("s:") && <button type="button" className="link-perigo" onClick={() => { const ms = salvos.find((x) => `s:${x.id}` === modelo); if (ms && window.confirm(`Apagar o modelo ${ms.nome}?`)) void tentar(async () => { await apagarModelo(ms.id); setSalvos((l) => l.filter((x) => x.id !== ms.id)); setModelo(""); }, "Não foi possível apagar o modelo."); }}>Apagar este modelo salvo</button>}
           </form>
         )}
       </section>

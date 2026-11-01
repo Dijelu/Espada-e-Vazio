@@ -60,7 +60,8 @@ const CR_BASE: Record<Categoria, Record<Dificuldade, number>> = {
 export const proficienciaDoND = (nd: number) => (nd <= 4 ? 2 : nd <= 8 ? 3 : nd <= 12 ? 4 : nd <= 16 ? 5 : 6);
 const atrRaid = (nd: number) => (nd <= 5 ? 5 : nd <= 10 ? 7 : nd <= 15 ? 9 : 11);
 
-export interface AtaqueAmeaca { nome: string; atr: ChaveAtr; dados: string; tipo: string }
+export interface AtaqueAmeaca { nome: string; atr: ChaveAtr; dados: string; tipo: string; custo?: number; crit?: number }
+export interface ZanpakutouAmeaca { nome: string; shikai: string; bankai: string }
 export interface TecnicaAmeaca { nome: string; dados: string; custo: number; atr: ChaveAtr; texto: string }
 
 export interface HabilidadeAmeaca { titulo: string; texto: string }
@@ -80,6 +81,9 @@ export interface Ameaca {
   ataques: AtaqueAmeaca[];
   tecnicas: TecnicaAmeaca[];
   caracteristicas: string;
+  /** subtítulo: cargo, divisão, apelido */
+  titulo: string;
+  zanpakutou: ZanpakutouAmeaca;
   /** Reação, Ação Suprema, Zanpakutō, Bankai, Kidō… (texto livre) */
   habilidades: HabilidadeAmeaca[];
 }
@@ -111,7 +115,7 @@ export function ameacaPadrao(categoria: Categoria = "shinigami", nd = 1): Ameaca
   return {
     categoria, formato: "solo", nd, grau: 0, dificuldade: "medio", atr, modo: "comum", jogadores: 4, pvExtra: 0,
     ataques: [{ nome: categoria === "hollow" ? "Garras" : categoria === "quincy" ? "Lâmina de Reishi" : "Katana", atr: categoria === "shinigami" ? "des" : "for", dados: "1d8", tipo: "Cortante" }],
-    tecnicas: [], caracteristicas: "", habilidades: [],
+    tecnicas: [], caracteristicas: "", titulo: "", zanpakutou: { nome: "", shikai: "", bankai: "" }, habilidades: [],
   };
 }
 
@@ -156,7 +160,7 @@ export interface AmeacaCalculada {
   k: number;
   hierro: boolean;
   grauNome: string;
-  ataques: { nome: string; acerto: number; dano: string; media: number; tipo: string }[];
+  ataques: { nome: string; acerto: number; dano: string; media: number; tipo: string; custo: number; crit: number }[];
   tecnicas: { nome: string; dados: string; cd: number; custo: number; texto: string }[];
   percepcao: number;
   percepcaoEsp: number;
@@ -198,7 +202,7 @@ export function calcularAmeaca(a: Ameaca): AmeacaCalculada {
   const esc = (e: string) => escalarDados(escalarDados(comND(e), k), fs === 1 ? 1 : fs);
   const ataques = a.ataques.map((x) => {
     const dano = `${esc(x.dados)} + ${a.atr[x.atr]}`;
-    return { nome: x.nome, acerto: prof + a.atr[x.atr], dano, media: mediaExpr(dano), tipo: x.tipo };
+    return { nome: x.nome, acerto: prof + a.atr[x.atr], dano, media: mediaExpr(dano), tipo: x.tipo, custo: x.custo ?? 0, crit: x.crit ?? 20 };
   });
   const tecnicas = a.tecnicas.map((x) => ({ nome: x.nome, dados: esc(x.dados), cd: 8 + prof + a.atr[x.atr], custo: x.custo, texto: x.texto }));
   return {
@@ -230,9 +234,11 @@ export function normalizarAmeaca(raw: unknown): Ameaca {
     modo: em(o.modo, ["comum", "pareado", "suporte", "boss"] as const, "comum"),
     jogadores: num(o.jogadores, 4, 1, 8),
     pvExtra: num(o.pvExtra, 0, -50, 100),
-    ataques: Array.isArray(o.ataques) ? o.ataques.slice(0, 8).map((x) => ({ nome: txt(x?.nome, "Ataque"), atr: em(x?.atr, ["for", "des", "con", "men", "esp"] as const, "for"), dados: txt(x?.dados, "1d8"), tipo: txt(x?.tipo) })) : base.ataques,
+    ataques: Array.isArray(o.ataques) ? o.ataques.slice(0, 8).map((x) => ({ nome: txt(x?.nome, "Ataque"), atr: em(x?.atr, ["for", "des", "con", "men", "esp"] as const, "for"), dados: txt(x?.dados, "1d8"), tipo: txt(x?.tipo), custo: num(x?.custo, 0, 0, 999), crit: num(x?.crit, 20, 15, 20) })) : base.ataques,
     tecnicas: Array.isArray(o.tecnicas) ? o.tecnicas.slice(0, 10).map((x) => ({ nome: txt(x?.nome, "Técnica"), dados: txt(x?.dados, "2d6"), custo: num(x?.custo, 0, 0, 999), atr: em(x?.atr, ["for", "des", "con", "men", "esp"] as const, "esp"), texto: txt(x?.texto) })) : [],
     caracteristicas: txt(o.caracteristicas),
+    titulo: txt(o.titulo).slice(0, 80),
+    zanpakutou: { nome: txt(o.zanpakutou?.nome).slice(0, 60), shikai: txt(o.zanpakutou?.shikai), bankai: txt(o.zanpakutou?.bankai) },
     habilidades: Array.isArray(o.habilidades) ? o.habilidades.slice(0, 16).map((x) => ({ titulo: txt(x?.titulo, "Habilidade"), texto: txt(x?.texto) })) : [],
   };
 }

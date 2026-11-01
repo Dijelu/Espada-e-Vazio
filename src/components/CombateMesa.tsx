@@ -140,8 +140,8 @@ export function CombateMesa({ campanhaId, fichas, npcs, pastas }: { campanhaId: 
     const am = n.dados.ameaca;
     const acoes: AcaoNpc[] = [
       ...c.ataques.map((a) => ({
-        nome: a.nome, tipo: "ataque" as const, acerto: a.acerto, dano: a.dano, custo: Number(/\((\d+) PR\)/.exec(a.nome)?.[1] ?? 0),
-        cd: 0, crit: Number(/Crítico (\d+)/.exec(a.nome)?.[1] ?? 20), mult: Number(/x(\d)/.exec(a.nome)?.[1] ?? 2),
+        nome: a.nome, tipo: "ataque" as const, acerto: a.acerto, dano: a.dano, custo: a.custo || Number(/\((\d+) PR\)/.exec(a.nome)?.[1] ?? 0),
+        cd: 0, crit: a.crit !== 20 ? a.crit : Number(/Crítico (\d+)/.exec(a.nome)?.[1] ?? 20), mult: Number(/x(\d)/.exec(a.nome)?.[1] ?? 2),
       })),
       ...c.tecnicas.map((t, i) => ({
         nome: t.nome, tipo: "tecnica" as const, acerto: 0, dano: `${t.dados} + ${am.atr[am.tecnicas[i]?.atr ?? "esp"]}`, custo: t.custo, cd: t.cd, crit: 21, mult: 1,
