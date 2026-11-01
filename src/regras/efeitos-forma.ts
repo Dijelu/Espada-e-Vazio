@@ -248,7 +248,7 @@ export function orcamentoBase(tipo: FormaLib["tipo"], n: number, extra: { plena?
     case "bankai2": return 6 + piso((n - 10) / 2) + 4;
     case "resurreccion": return 5 + piso((n - 10) / 2) + (extra.origem === "adjuchas" ? 1 : extra.origem === "vasto-lorde" ? 2 : 0);
     case "segunda": return 4;
-    case "vollstandig": return 0;
+    case "vollstandig": return 4 + 2 * piso((n - 13) / 5);
   }
 }
 

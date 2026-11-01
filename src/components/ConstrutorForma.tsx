@@ -189,7 +189,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
       <div className="modos" role="tablist" aria-label="Como montar">
         {tipo !== "segunda" && !caminhoFinal && <button type="button" role="tab" aria-selected={aba === "modelos"} className={aba === "modelos" ? "on" : ""} onClick={() => setAba("modelos")}>Modelos prontos</button>}
         <button type="button" role="tab" aria-selected={aba === "passo"} className={aba === "passo" ? "on" : ""} onClick={() => setAba("passo")}>Passo a passo</button>
-        {tipo !== "vollstandig" && <button type="button" role="tab" aria-selected={aba === "efeitos"} className={aba === "efeitos" ? "on" : ""} onClick={() => setAba("efeitos")}>Efeitos</button>}
+        {<button type="button" role="tab" aria-selected={aba === "efeitos"} className={aba === "efeitos" ? "on" : ""} onClick={() => setAba("efeitos")}>Efeitos</button>}
         <button type="button" role="tab" aria-selected={aba === "meu"} className={aba === "meu" ? "on" : ""} onClick={() => setAba("meu")}>Editar tudo</button>
       </div>
 
@@ -294,7 +294,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
           <AssistenteForma f={f} tipo={tipo} r={r} mud={mud} onSalvar={() => onSalvar(r)} onEditarTudo={() => setAba("meu")} />
         )}
 
-        {aba === "efeitos" && tipo !== "vollstandig" && (
+        {aba === "efeitos" && (
           <EfeitosForma f={f} tipo={tipo} r={r} mud={mud} onGravar={onGravar} />
         )}
 

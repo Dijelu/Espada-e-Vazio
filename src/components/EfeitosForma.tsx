@@ -31,7 +31,7 @@ export function EfeitosForma({ f, tipo, r, mud, onGravar }: Props) {
   const efeitos = r.efeitos ?? [];
   const orc = orcamentoDaForma(f, tipo, r, ctx);
   const potencializadora = r.estilo === "potencializadora";
-  const lista = presetsDaFamilia(tipo, { potencializadora });
+  const lista = presetsDaFamilia(tipo, { potencializadora, schrift: f.schrift });
   const [busca, setBusca] = useState("");
   const [cat, setCat] = useState<Categoria | "">("");
   const [params, setParams] = useState<Record<string, ParamPreset>>({});

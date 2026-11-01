@@ -2,8 +2,8 @@
 import { ARMADOS, type Alvo, type Efeito } from "./efeitos-forma";
 import type { Atr, TipoForma } from "./ficha";
 
-export type Categoria = "Atributos" | "Ofensivo" | "Kidō" | "Defesa" | "Mobilidade" | "Recursos" | "Gatilhos" | "Pontos fracos";
-export const CATEGORIAS: Categoria[] = ["Atributos", "Ofensivo", "Kidō", "Defesa", "Mobilidade", "Recursos", "Gatilhos", "Pontos fracos"];
+export type Categoria = "Atributos" | "Ofensivo" | "Kidō" | "Defesa" | "Mobilidade" | "Recursos" | "Gatilhos" | "Schrift" | "Pontos fracos";
+export const CATEGORIAS: Categoria[] = ["Atributos", "Ofensivo", "Kidō", "Defesa", "Mobilidade", "Recursos", "Gatilhos", "Schrift", "Pontos fracos"];
 
 export interface ParamPreset {
   atr?: Atr;
@@ -33,12 +33,15 @@ export interface Preset {
   caminho?: string;
   /** só para a Bankai potencializadora */
   soPotencializadora?: boolean;
+  /** id da Schrift a que a peça pertence (Vollständig) */
+  schrift?: string;
 }
 
 const SHIK: TipoForma[] = ["shikai"];
 const BANK: TipoForma[] = ["bankai", "bankai2"];
 const RES: TipoForma[] = ["resurreccion"];
 const SEG: TipoForma[] = ["segunda"];
+const VOL: TipoForma[] = ["vollstandig"];
 
 const A = (v: number, atr: Atr = "for"): Efeito => ({ k: "atr", atr, v });
 const todos = (v: number): Efeito[] => (["for", "des", "con", "men", "esp"] as Atr[]).map((a) => A(v, a));
@@ -105,6 +108,30 @@ export const PRESETS: Preset[] = [
   { id: "rs-pf-pesado", nome: "Corpo Pesado", familias: RES, categoria: "Pontos fracos", texto: "-3 m de deslocamento.", monta: () => [{ k: "desloc", modo: "chao", v: -3 }], pp: -1 },
   { id: "rs-pf-fome", nome: "Fome Crescente", familias: RES, categoria: "Pontos fracos", texto: "Manter a Resurrección custa 2 PR por turno.", monta: () => [{ k: "custo", pr: 2 }] },
 
+  /* ---------------- Quincy: Vollständig (peças gerais de Reishi) ---------------- */
+  { id: "vq-reishi", nome: "Reishi Concentrado", familias: VOL, categoria: "Ofensivo", texto: "Dados extras de Energia nas Técnicas de Reishi.", param: "n", rotuloParam: "Dados (d10)", nPadrao: 1, monta: (p) => [{ k: "dados", em: ["reishi"], n: p.n ?? 1, d: 10, tipo: "Energia" }] },
+  { id: "vq-flecha", nome: "Flecha Longa", familias: VOL, categoria: "Ofensivo", texto: "+12 m de alcance nos disparos e nas Técnicas de Reishi.", monta: () => [{ k: "alcance", em: ["disparo", "reishi"], m: 12 }] },
+  { id: "vq-perfura", nome: "Disparo Perfurante", familias: VOL, categoria: "Ofensivo", texto: "Suas Técnicas de Reishi e disparos ignoram 5 de redução de dano.", monta: () => [{ k: "ignoraRd", em: ["disparo", "reishi"], v: 5 }] },
+  { id: "vq-asas", nome: "Asas de Reishi", familias: VOL, categoria: "Mobilidade", texto: "+6 m de voo.", monta: () => [{ k: "desloc", modo: "voo", v: 6 }] },
+  { id: "vq-folego", nome: "Fôlego do Reishi", familias: VOL, categoria: "Recursos", texto: "Ao derrubar um inimigo, recupera proficiência em PR.", monta: () => [{ k: "gatilho", quando: "abate", faz: { pr: "[PROF]" }, rotulo: "Fôlego do Reishi" }], pp: 2 },
+  { id: "vq-mira", nome: "Mira Divina", familias: VOL, categoria: "Ofensivo", texto: "+2 de acerto nos disparos e nas Técnicas de Reishi.", monta: () => [{ k: "acerto", em: ["disparo", "reishi"], v: 2 }] },
+
+  /* ---------------- Quincy: peças ligadas à Schrift ---------------- */
+  { id: "vs-explosion", nome: "Corpo de Chamas", familias: VOL, categoria: "Schrift", schrift: "explosion", texto: "Resistência a dano de Fogo e +1d6 de Fogo nos disparos.", monta: () => [{ k: "resist", dano: "Fogo", grau: "resist" }, { k: "dados", em: ["disparo"], n: 1, d: 6, tipo: "Fogo" }], pp: 4 },
+  { id: "vs-thunder", nome: "Carga Elétrica", familias: VOL, categoria: "Schrift", schrift: "thunderbolt", texto: "+1d6 de dano Elétrico nos golpes e disparos.", monta: () => [{ k: "dados", em: ["golpe", "disparo"], n: 1, d: 6, tipo: "Elétrico" }], pp: 3 },
+  { id: "vs-deathdealing", nome: "Golpe de Misericórdia", familias: VOL, categoria: "Schrift", schrift: "deathdealing", texto: "+1d8 de Energia na Schrift e nas Técnicas de Reishi.", monta: () => [{ k: "dados", em: ["schrift", "reishi"], n: 1, d: 8, tipo: "Energia" }], pp: 4 },
+  { id: "vs-power", nome: "Poder de Deus", familias: VOL, categoria: "Schrift", schrift: "power", texto: "+2 em Força.", monta: () => [A(2, "for")], pp: 2 },
+  { id: "vs-iron", nome: "Pele de Ferro", familias: VOL, categoria: "Schrift", schrift: "iron", texto: "Redução de dano física igual à proficiência.", monta: () => [{ k: "rd", tipo: "fis", v: "[PROF]" }], pp: 2 },
+  { id: "vs-wind", nome: "Passo do Vento", familias: VOL, categoria: "Schrift", schrift: "wind", texto: "Reação: ao ser atacado, mova-se até 6 m sem provocar ataques de oportunidade.", monta: () => [{ k: "gatilho", quando: "atingido", limite: "rodada", faz: { texto: "Mova-se até 6 m sem provocar ataques de oportunidade." }, rotulo: "Passo do Vento" }], pp: 2 },
+  { id: "vs-glutton", nome: "Devorador", familias: VOL, categoria: "Schrift", schrift: "glutton", texto: "Ao acertar, 1 vez por turno, recupera proficiência em PR.", monta: () => [{ k: "gatilho", quando: "acerto", limite: "turno", faz: { pr: "[PROF]" }, rotulo: "Devorador" }], pp: 2 },
+  { id: "vs-heat", nome: "Calor Abrasador", familias: VOL, categoria: "Schrift", schrift: "heat", texto: "+1d6 de Fogo na Schrift.", monta: () => [{ k: "dados", em: ["schrift"], n: 1, d: 6, tipo: "Fogo" }], pp: 2 },
+  { id: "vs-roar", nome: "Rugido Ensurdecedor", familias: VOL, categoria: "Schrift", schrift: "roar", texto: "+1d6 de dano Sônico na Schrift.", monta: () => [{ k: "dados", em: ["schrift"], n: 1, d: 6, tipo: "Sônico" }], pp: 2 },
+  { id: "vs-visionary", nome: "Ilusão Sólida", familias: VOL, categoria: "Schrift", schrift: "visionary", texto: "+1d8 de Energia na Schrift.", monta: () => [{ k: "dados", em: ["schrift"], n: 1, d: 8, tipo: "Energia" }], pp: 3 },
+  { id: "vs-superstar", nome: "Aclamação", familias: VOL, categoria: "Schrift", schrift: "superstar", texto: "Ao liberar, ganha PV temporários iguais a 4 × proficiência.", monta: () => [{ k: "gatilho", quando: "liberar", faz: { pvTemp: "[PROF]*4" }, rotulo: "Aclamação" }], pp: 2 },
+  { id: "vs-overkill", nome: "Sede de Abate", familias: VOL, categoria: "Schrift", schrift: "overkill", texto: "Ao derrubar um inimigo, +proficiência nos danos até o fim da cena (o Mestre controla o acúmulo).", monta: () => [{ k: "gatilho", quando: "abate", faz: { texto: "+proficiência em todos os danos e no acerto até o fim da cena (acumula)." }, rotulo: "Sede de Abate" }], pp: 3, aprovacao: true },
+  { id: "vs-underbelly", nome: "Ponto Fraco", familias: VOL, categoria: "Schrift", schrift: "underbelly", texto: "Seus golpes e disparos ignoram 5 de redução de dano.", monta: () => [{ k: "ignoraRd", em: ["golpe", "disparo"], v: 5 }], pp: 2 },
+  { id: "vs-miracle", nome: "Milagre Garantido", familias: VOL, categoria: "Schrift", schrift: "miracle", texto: "Uma vez por cena, refaça uma jogada e fique com a melhor (o Mestre aprova).", monta: () => [{ k: "texto", t: "1 vez por cena, refaça uma jogada e fique com a melhor." }], pp: 3, aprovacao: true },
+
   /* ---------------- Hollow: Segunda Etapa ---------------- */
   { id: "se-asas", nome: "Asas do Vasto Lorde", familias: SEG, categoria: "Mobilidade", texto: "Voo de 12 m.", monta: () => [{ k: "desloc", modo: "voo", v: 12 }] },
   { id: "se-oscuras", nome: "Cero Oscuras", familias: SEG, categoria: "Ofensivo", texto: "+2d8 no Cero e ignora 5 de redução de dano.", monta: () => [{ k: "dados", em: ["cero"], n: 2, d: 8, tipo: "Energia" }, { k: "ignoraRd", em: ["cero"], v: 5 }] },
@@ -119,8 +146,8 @@ export const PRESETS: Preset[] = [
 
 export const presetPorId = (id: string) => PRESETS.find((p) => p.id === id);
 
-export function presetsDaFamilia(tipo: TipoForma, opts: { potencializadora?: boolean } = {}): Preset[] {
-  return PRESETS.filter((p) => p.familias.includes(tipo) && (!p.soPotencializadora || opts.potencializadora));
+export function presetsDaFamilia(tipo: TipoForma, opts: { potencializadora?: boolean; schrift?: string } = {}): Preset[] {
+  return PRESETS.filter((p) => p.familias.includes(tipo) && (!p.soPotencializadora || opts.potencializadora) && (!p.schrift || p.schrift === opts.schrift));
 }
 
 export const ALVOS_LIVRES: Alvo[] = ["golpe", "disparo", "hado", "bakudo", "tecnica", "reishi", "cero", "inato", "schrift"];
