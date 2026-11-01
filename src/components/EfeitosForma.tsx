@@ -153,7 +153,10 @@ export function EfeitosForma({ f, tipo, r, mud, onGravar }: Props) {
 function nomeComParam(p: Preset, par: ParamPreset): string {
   if (p.param === "atr" && par.atr) return `${p.nome} (${ATR_NOME[par.atr]}${par.n ? ` +${par.n}` : ""})`;
   if (p.param === "tipo" && par.tipo) return `${p.nome} (${par.tipo})`;
-  if (p.param === "n" && par.n) return `${p.nome} (${par.n})`;
+  if (p.param === "n" && par.n) {
+    const d = /\(d(\d+)\)/.exec(p.rotuloParam ?? "");
+    return `${p.nome} (${d ? `+${par.n}d${d[1]}` : par.n})`;
+  }
   return p.nome;
 }
 
@@ -250,6 +253,24 @@ function PecaPropria({ ctx, livre, onCriar, onFechar }: { ctx: CtxForma; livre: 
         <button type="button" className="btn-mini" disabled={!ok} onClick={() => efeito && onCriar({ id: novoId(), nome: nome.trim() || "Peça própria", efeitos: [efeito], pp: tipo === "texto" ? 1 : undefined })}>Adicionar peça</button>
         <button type="button" className="link-perigo" onClick={onFechar}>Cancelar</button>
       </div>
+    </div>
+  );
+}
+
+/** Um seletor de atributo para cada "Aumento de Atributo" escolhido na Vollständig. */
+export function EscolhaAtributos({ n, valor, onChange }: { n: number; valor: Atr[] | undefined; onChange: (v: Atr[]) => void }) {
+  if (n <= 0) return null;
+  const atual = valor ?? [];
+  return (
+    <div className="escolha-atr">
+      {Array.from({ length: n }, (_, i) => (
+        <label key={i} className="campo">Aumento {i + 1}: +2 em
+          <select value={atual[i] ?? ""} onChange={(e) => { const novo = [...atual]; novo[i] = e.target.value as Atr; onChange(novo.slice(0, n)); }}>
+            <option value="">Escolha</option>
+            {ATRS.map((a) => <option key={a} value={a}>{ATR_NOME[a]}</option>)}
+          </select>
+        </label>
+      ))}
     </div>
   );
 }

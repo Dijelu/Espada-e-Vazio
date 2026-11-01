@@ -113,7 +113,7 @@ export interface HabUnica {
 }
 
 export const HAB_UNICAS: HabUnica[] = [
-  { id: "atributo", nome: "Aumento de Atributo", texto: "Escolha um atributo: ele aumenta em +2 (aplique à mão na ficha)." },
+  { id: "atributo", nome: "Aumento de Atributo", texto: "Escolha um atributo: ele aumenta em +2 enquanto a Vollständig estiver ativa." },
   { id: "armadura", nome: "Armadura de Reishi", texto: "Reduz em 5 todo dano sofrido, exceto Psíquico." },
   { id: "defesa", nome: "Defesa", texto: "+3 na Classe de Resistência." },
   { id: "tokubetsu", nome: "Tokubetsu", texto: "+3 em testes de perícia." },

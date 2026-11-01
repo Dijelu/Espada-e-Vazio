@@ -535,6 +535,8 @@ export interface FormaLib {
   schrift: string;
   /** Vollständig: habilidades únicas escolhidas (id -> vezes) */
   picks: Record<string, number>;
+  /** Vollständig: o atributo de cada "Aumento de Atributo" escolhido, na ordem */
+  atrPicks?: Atr[];
   /** texto de referência do modelo pronto */
   texto: string;
   /** Shikai: Combate, Elemental, Kido ou Especial */

@@ -116,9 +116,38 @@ export function pecasAtivas(f: Ficha): { inst: InstEfeito; fonte: Fonte }[] {
   if (lib === "bankai2") return de(fm.bankai2, "forma");
   if (lib === "resurreccion") return de(fm.resurreccion, "forma");
   if (lib === "terror") return [...de(fm.resurreccion, "resurreccion"), ...de(fm.segunda, "forma")];
-  if (lib === "vollstandig") return de(fm.vollstandig, "forma");
+  if (lib === "vollstandig") return [...picksComoPecas(fm.vollstandig).map((inst) => ({ inst, fonte: "forma" as Fonte })), ...de(fm.vollstandig, "forma")];
   return [];
 }
+
+/** Habilidades únicas da Vollständig que entram sozinhas na ficha. CR, PV, PR, redução e deslocamento já são somados em `calcular`. */
+export function picksComoPecas(forma: FormaLib | undefined): InstEfeito[] {
+  const pk = forma?.picks ?? {};
+  const out: InstEfeito[] = [];
+  const nome = (id: string) => HAB_NOMES[id] ?? id;
+  const arma: Alvo[] = ["golpe", "disparo"];
+  const peca = (id: string, efeitos: Efeito[]) => out.push({ id: `pk-${id}`, nome: nome(id), efeitos, confirmado: true });
+  const n = (id: string) => Math.max(0, Math.min(8, Math.floor(pk[id] ?? 0)));
+  const atrs = forma?.atrPicks ?? [];
+  for (let i = 0; i < n("atributo"); i++) {
+    const a = atrs[i];
+    if (a && ATRIBUTOS.includes(a)) out.push({ id: `pk-atributo-${i}`, nome: `${nome("atributo")} (${ATR_NOME[a]})`, efeitos: [{ k: "atr", atr: a, v: 2 }], confirmado: true });
+  }
+  if (n("forca")) peca("forca", [{ k: "dano", em: arma, v: 5 }]);
+  if (n("precisao")) peca("precisao", [{ k: "acerto", em: arma, v: 3 }]);
+  if (n("potencia")) peca("potencia", [{ k: "dano", em: ["reishi"], v: 5 * n("potencia") }]);
+  if (n("olhos")) peca("olhos", [{ k: "alcance", em: ["disparo", "reishi"], m: 6 * n("olhos") }]);
+  if (n("vigor")) peca("vigor", [{ k: "gatilho", quando: "inicioTurno", rotulo: "Vigor do Reishi", faz: { curaPv: 5 * n("vigor") } }]);
+  if (n("tokubetsu")) peca("tokubetsu", [{ k: "texto", t: `+${3 * n("tokubetsu")} em testes de perícia` }]);
+  if (n("sentido")) peca("sentido", [{ k: "texto", t: `+${12 * n("sentido")} m no alcance da Consciência Espiritual Expandida` }]);
+  if (n("reuniao")) peca("reuniao", [{ k: "texto", t: `+${5 * n("reuniao")} PR ao recuperar com Sklaverei` }]);
+  return out;
+}
+
+const HAB_NOMES: Record<string, string> = {
+  atributo: "Aumento de Atributo", forca: "Força Espiritual", precisao: "Precisão Espiritual", potencia: "Potência Espiritual", olhos: "Olhos do Céu",
+  vigor: "Vigor do Reishi", tokubetsu: "Tokubetsu", sentido: "Sentido Divino", reuniao: "Reunião Eficiente",
+};
 
 /* ---------- soma dos efeitos ---------- */
 

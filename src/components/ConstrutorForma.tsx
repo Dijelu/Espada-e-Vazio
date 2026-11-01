@@ -1,4 +1,4 @@
-import { EfeitosForma } from "./EfeitosForma";
+import { EfeitosForma, EscolhaAtributos } from "./EfeitosForma";
 import { Icone } from "./Icone";
 import { useEffect, useState } from "react";
 import { classePorId, type Ficha, type FormaLib, type HabForma, type TipoForma } from "../regras/ficha";
@@ -409,6 +409,8 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
                           <span aria-live="polite">{n}</span>
                           <button type="button" className="btn-mini" onClick={() => mudarPick(h.id, 1, h.unica)} disabled={usados >= limite || (h.unica && n >= 1)} aria-label={`Escolher ${h.nome}`}>+</button>
                         </div>
+                        {h.id === "atributo" && <EscolhaAtributos n={n} valor={r.atrPicks} onChange={(v) => mud({ atrPicks: v })} />}
+
                       </div>
                     );
                   })}

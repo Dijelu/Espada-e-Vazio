@@ -86,6 +86,15 @@ export function danosDaClasse(f: Ficha, c: Calculo): DanoClasse[] {
   if (quincy && f.estado.liberado === "vollstandig" && f.nivel >= (f.classe === "ritter" ? 12 : 13)) {
     for (const d of out) d.dano = `${d.dano}+${c.prof}d10`;
   }
+  // efeitos montados na forma ativa (peças da forma e habilidades únicas da Vollständig)
+  if (c.forma) {
+    for (const d of out) {
+      const alvo = d.fonte === "Técnica de Reishi" || d.nome.startsWith("Técnica de Reishi") ? "reishi" : d.fonte === "Schrift" ? "schrift" : "";
+      if (!alvo) continue;
+      for (const x of c.forma.dados[alvo]) d.dano += `+${x}`;
+      if (c.forma.dano[alvo] > 0) d.dano += `+${c.forma.dano[alvo]}`;
+    }
+  }
   if (f.classe === "hueco") {
     const n = f.nivel;
     out.push({ nome: "Cero", fonte: "Classe", dano: `${dadosCero(n) + dadosCaminhoCero(f, c.prof)}d8+${c.atr.esp}`, tipo: "Energia", custo: "15 PR", nota: "Ação, à distância. Ignora o Hierro.", acerto: true });
