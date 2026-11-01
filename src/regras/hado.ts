@@ -50,7 +50,7 @@ export function danoDoHado(f: Ficha, c: Calculo, k: { tipo?: string; n: number; 
     soma(c.danoHado, "Maestria de Hadō");
     if (f.talentos.includes("hadou-poderoso")) soma(c.atr.men, "Hadō Poderoso (Mente)");
     if (f.estado.liberado === "shikai") soma(c.prof, "Shikai");
-    if (f.estado.liberado === "bankai") soma(2 * c.prof, "Bankai");
+    if (f.estado.liberado === "bankai" || f.estado.liberado === "bankai2") soma(2 * c.prof, "Bankai");
   }
   const acerto = !bakudou && /Jogada: Acerto/.test(k.meta ?? "");
   return {

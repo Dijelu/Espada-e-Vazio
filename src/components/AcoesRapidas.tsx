@@ -73,7 +73,8 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
   const libs: { id: Liberacao; nome: string }[] = [];
   if (tipo === "shinigami") {
     if (treinoConcluido(f, "shikai") || pronta("shikai") || f.estado.liberado === "shikai") libs.push({ id: "shikai", nome: "Shikai" });
-    if (treinoConcluido(f, "bankai") || pronta("bankai") || f.estado.liberado === "bankai") libs.push({ id: "bankai", nome: "Bankai" });
+    if (treinoConcluido(f, "bankai") || pronta("bankai") || f.estado.liberado === "bankai") libs.push({ id: "bankai", nome: f.treinos.caminhoBankai === "plena" ? "Bankai Plena" : "Bankai" });
+    if (f.treinos.caminhoBankai === "verdadeira" && f.nivel >= 20) libs.push({ id: "bankai2", nome: "Bankai Verdadeira" });
   }
   if (tipo === "hollow" && (treinoConcluido(f, "resurreccion") || pronta("resurreccion") || f.estado.liberado === "resurreccion")) libs.push({ id: "resurreccion", nome: "Resurrección" });
   if (tipo === "quincy" && (pronta("vollstandig") || f.nivel >= nivelLiberacao(f.classe, tipo, "vollstandig") || f.estado.liberado === "vollstandig")) libs.push({ id: "vollstandig", nome: "Vollständig" });
@@ -88,6 +89,7 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
     if (id === "mascara") return 5 * c.prof;
     if (id === "vollstandig") return Math.max(1, 60 - c.reducaoLib.vollstandig);
     if (id === "bankai") return Math.max(1, custoBankai(f) - c.reducaoLib.bankai);
+    if (id === "bankai2") return Math.max(1, (f.formas?.bankai2?.custo ?? 0) - c.reducaoLib.bankai);
     if (id === "shikai") return Math.max(1, (f.formas?.shikai?.custo ?? 0) - c.reducaoLib.shikai);
     if (id === "terror") return 60;
     return 0;
@@ -96,7 +98,7 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
   /** Terror e Bankai Verdadeira deixam o personagem Esgotado quando terminam (Terror até o descanso longo, Bankai até o descanso curto). */
   const encerrarForma = (): Partial<Ficha["estado"]> => {
     const terror = e.liberado === "terror";
-    const verdadeira = e.liberado === "bankai" && f.treinos.caminhoBankai === "verdadeira";
+    const verdadeira = e.liberado === "bankai2";
     if (!terror && !verdadeira) return { liberado: "" };
     const usos = { ...e.usos };
     if (verdadeira) usos["esgotado-curto"] = 1;
@@ -174,8 +176,9 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
     const ganhoTemp = (id === "resurreccion" || id === "terror") && classe?.id === "vazio" ? (f.nivel >= 16 ? 5 : 3) * f.nivel : 0;
     alterar({ prAtual: Math.max(0, f.prAtual - custo), estado: { ...f.estado, liberado: id, pvTemp: Math.max(e.pvTemp, ganhoTemp) } });
     if (id === "bankai" || id === "resurreccion" || id === "vollstandig") dispararLiberacao(id, f.formas?.[id]?.nome);
+    if (id === "bankai2") dispararLiberacao("bankai", f.formas?.bankai2?.nome);
     if (id === "terror") dispararLiberacao("resurreccion", id === "terror" ? f.formas?.segunda?.nome || f.formas?.resurreccion?.nome : f.formas?.resurreccion?.nome);
-    setMsg(custo ? `${id === "mascara" ? "Máscara" : id === "vollstandig" ? "Vollständig" : id === "bankai" ? "Bankai" : id === "shikai" ? "Shikai" : id === "terror" ? "Segunda Etapa" : "Resurrección"} ativada: ${custo} PR gastos.` : "Liberação marcada. O custo está na descrição da sua Zanpakutou.");
+    setMsg(custo ? `${id === "mascara" ? "Máscara" : id === "vollstandig" ? "Vollständig" : id === "bankai2" ? "Bankai Verdadeira" : id === "bankai" ? "Bankai" : id === "shikai" ? "Shikai" : id === "terror" ? "Segunda Etapa" : "Resurrección"} ativada: ${custo} PR gastos.` : "Liberação marcada. O custo está na descrição da sua Zanpakutou.");
   };
 
   return (

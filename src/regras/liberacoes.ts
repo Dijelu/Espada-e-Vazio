@@ -159,6 +159,7 @@ export const VOLL_PRONTAS = modelosVoll as unknown as ProntaVoll[];
 export function nivelLiberacao(classeId: string, tipoClasse: string | undefined, tipo: TipoForma): number {
   if (tipo === "shikai") return tipoClasse === "shinigami" ? 3 : 0;
   if (tipo === "bankai") return tipoClasse === "shinigami" ? 10 : 0;
+  if (tipo === "bankai2") return tipoClasse === "shinigami" ? 20 : 0;
   if (tipo === "resurreccion") return tipoClasse === "hollow" ? 10 : 0;
   if (tipo === "vollstandig") return tipoClasse === "quincy" ? (classeId === "ritter" ? 12 : 13) : 0;
   if (tipo === "segunda") return tipoClasse === "hollow" && (classeId === "hueco" || classeId === "vazio") ? 15 : 0;
@@ -175,6 +176,7 @@ export const totalPicks = (p: Record<string, number>) => Object.values(p).reduce
 export const TIPO_FORMA_NOME: Record<TipoForma, string> = {
   shikai: "Shikai",
   bankai: "Bankai",
+  bankai2: "Bankai Verdadeira",
   resurreccion: "Resurrección",
   vollstandig: "Vollständig",
   segunda: "Segunda Etapa",
@@ -183,15 +185,16 @@ export const TIPO_FORMA_NOME: Record<TipoForma, string> = {
 /** A Segunda Etapa é guardada como a liberação "terror" na ficha (nome antigo); aqui as duas pontas se encontram. */
 export const liberacaoDaForma = (t: TipoForma) => (t === "segunda" ? "terror" : t);
 export const formaDaLiberacao = (l: string): TipoForma | undefined =>
-  l === "terror" ? "segunda" : l === "shikai" || l === "bankai" || l === "resurreccion" || l === "vollstandig" ? l : undefined;
+  l === "terror" ? "segunda" : l === "shikai" || l === "bankai" || l === "bankai2" || l === "resurreccion" || l === "vollstandig" ? l : undefined;
 
 /** Etapas do treinamento da Segunda Etapa. */
 export const ETAPAS_SEGUNDA = ["ter-jejum", "ter-pf", "ter-duelo"];
 export const segundaLiberada = (f: { treinos?: { feitos: string[] } }) => ETAPAS_SEGUNDA.every((e) => f.treinos?.feitos.includes(e));
 
 /** Forma pendente de configurar (ainda sem nome, ou com habilidades únicas faltando). */
-export function formaPendente(f: { classe: string; nivel: number; formas?: Partial<Record<TipoForma, FormaLib>>; treinos?: { feitos: string[] } }, tipoClasse: string | undefined): TipoForma | null {
-  for (const t of ["shikai", "bankai", "resurreccion", "vollstandig", "segunda"] as TipoForma[]) {
+export function formaPendente(f: { classe: string; nivel: number; formas?: Partial<Record<TipoForma, FormaLib>>; treinos?: { feitos: string[]; caminhoBankai?: string } }, tipoClasse: string | undefined): TipoForma | null {
+  for (const t of ["shikai", "bankai", "bankai2", "resurreccion", "vollstandig", "segunda"] as TipoForma[]) {
+    if (t === "bankai2" && f.treinos?.caminhoBankai !== "verdadeira") continue;
     const n = nivelLiberacao(f.classe, tipoClasse, t);
     if (!n || f.nivel < n) continue;
     if (t === "segunda" && !segundaLiberada(f)) continue;
@@ -331,7 +334,7 @@ export function maiorCustoPR(habs: { custo: string }[]): number {
 }
 
 /** Sugestão de custo de liberação pelo maior custo de PR entre as habilidades. Shikai 3–10 PR, Bankai 40–80 PR. */
-export function sugerirCusto(tipo: "shikai" | "bankai", habs: { custo: string }[]): number {
+export function sugerirCusto(tipo: "shikai" | "bankai" | "bankai2", habs: { custo: string }[]): number {
   const m = maiorCustoPR(habs);
   if (tipo === "shikai") return m <= 0 ? 3 : m <= 5 ? 4 : m <= 10 ? 6 : m <= 15 ? 8 : 10;
   return m <= 15 ? 40 : m <= 25 ? 50 : m <= 35 ? 60 : m <= 50 ? 70 : 80;

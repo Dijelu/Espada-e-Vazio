@@ -165,7 +165,7 @@ export default function Ficha() {
     if (!f) return;
     const antes = caminhoAntes.current;
     caminhoAntes.current = caminhoB;
-    if (antes === "" && caminhoB) setConstruir("bankai");
+    if (antes === "" && caminhoB) setConstruir(caminhoB === "verdadeira" ? "bankai2" : "bankai");
   }, [f, caminhoB]);
 
   const subirNivel = useCallback(() => {
@@ -606,8 +606,8 @@ function Evolucao({ f, c, alterar, subir, onForma, onSub }: { f: TFicha; c: Retu
       <h2 className="title-font sub">Poderes do nível {f.nivel}</h2>
       <EscolhaPoderes f={f} mudar={alterar} />
 
-      {(["shikai", "bankai", "resurreccion", "vollstandig", "segunda"] as TipoForma[])
-        .filter((t) => nivelLiberacao(f.classe, classe?.tipo, t) > 0)
+      {(["shikai", "bankai", "bankai2", "resurreccion", "vollstandig", "segunda"] as TipoForma[])
+        .filter((t) => nivelLiberacao(f.classe, classe?.tipo, t) > 0 && (t !== "bankai2" || f.treinos.caminhoBankai === "verdadeira"))
         .map((t) => {
           const nv = nivelLiberacao(f.classe, classe?.tipo, t);
           const forma = f.formas[t];

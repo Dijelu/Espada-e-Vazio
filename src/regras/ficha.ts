@@ -498,9 +498,9 @@ export interface Treinos {
   mascaraFoto?: string;
 }
 
-export type Liberacao = "" | "shikai" | "bankai" | "resurreccion" | "terror" | "vollstandig" | "mascara";
+export type Liberacao = "" | "shikai" | "bankai" | "bankai2" | "resurreccion" | "terror" | "vollstandig" | "mascara";
 
-export type TipoForma = "shikai" | "bankai" | "resurreccion" | "vollstandig" | "segunda";
+export type TipoForma = "shikai" | "bankai" | "bankai2" | "resurreccion" | "vollstandig" | "segunda";
 
 export interface HabForma {
   id: string;
@@ -853,6 +853,8 @@ export function calcular(f: Ficha): Calculo {
   if (f.origem === "vasto-lorde" && (f.estado.liberado === "resurreccion" || f.estado.liberado === "terror")) cr += 1;
   // Bankai Plena (20º nível): +2 na CR
   if (f.estado.liberado === "bankai" && f.treinos.caminhoBankai === "plena") cr += 2;
+  // Bankai Verdadeira: CR igual à da Bankai e um degrau a mais, por ser a forma final
+  if (f.estado.liberado === "bankai2") cr += 1;
 
   const sit = somaSituacoes(f, { n, prof, atr });
   cr += sit.cr + bonusEscudo(f);
@@ -870,8 +872,8 @@ export function calcular(f: Ficha): Calculo {
   const vollRitter = vollOk;
   // Formas liberadas dão dano extra a cada golpe: Shikai +proficiência, Bankai +2 × proficiência (+1 de ataque), Segunda Etapa +2 × proficiência
   const lib = f.estado.liberado;
-  const formaDano = (lib === "shikai" ? prof : 0) + (lib === "bankai" ? 2 * prof : 0) + (lib === "terror" ? 2 * prof : 0);
-  const formaAtq = lib === "bankai" ? 1 : 0;
+  const formaDano = (lib === "shikai" ? prof : 0) + (lib === "bankai" || lib === "bankai2" ? 2 * prof : 0) + (lib === "terror" ? 2 * prof : 0);
+  const formaAtq = lib === "bankai" || lib === "bankai2" ? 1 : 0;
   if (f.estado.liberado === "vollstandig") {
     const pk = f.formas?.vollstandig?.picks ?? {};
     cr += 3 * (pk["defesa"] ?? 0);

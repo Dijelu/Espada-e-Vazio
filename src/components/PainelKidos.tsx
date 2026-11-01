@@ -80,8 +80,8 @@ export function PainelKidos({ f, c, r }: { f: Ficha; c: Calculo; r: Rolagens }) 
       <summary><h3>Kidōs <small>{f.kidos.length} escolhido{f.kidos.length === 1 ? "" : "s"} · CD {c.cdKido}</small></h3></summary>
       {c.dadosTecnicaMascara > 0 && <p className="ajuda">Máscara Hollow: suas técnicas de Zanpakutou, Hadō e Bakudō que causam dano ganham <b>+{c.dadosTecnicaMascara}</b> dado(s) de dano.</p>}
       {c.danoHado > 0 && <p className="ajuda">Maestria de Hadō: cada Hadō que você lançar causa <b>+{c.danoHado}</b> de dano.</p>}
-      {(f.estado.liberado === "shikai" || f.estado.liberado === "bankai") && (
-        <p className="ajuda">Com a {f.estado.liberado === "bankai" ? "Bankai" : "Shikai"} ativa, cada Hadō que você lançar causa <b>+{f.estado.liberado === "bankai" ? 2 * c.prof : c.prof}</b> de dano.</p>
+      {(f.estado.liberado === "shikai" || f.estado.liberado === "bankai" || f.estado.liberado === "bankai2") && (
+        <p className="ajuda">Com a {f.estado.liberado === "bankai2" ? "Bankai Verdadeira" : f.estado.liberado === "bankai" ? "Bankai" : "Shikai"} ativa, cada Hadō que você lançar causa <b>+{f.estado.liberado === "bankai" ? 2 * c.prof : c.prof}</b> de dano.</p>
       )}
       {grupo("hadou", "Hadō")}
       {grupo("bakudou", "Bakudō")}

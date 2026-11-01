@@ -190,7 +190,7 @@ const ASSINATURA: Record<string, [string, string]> = {
 
 /** Modelos de habilidade para quem nunca montou uma forma. Os valores crescem com o nível. */
 function modelos(tipo: TipoForma, atr: string): HabForma[] {
-  const forte = tipo === "bankai" || tipo === "segunda";
+  const forte = tipo === "bankai" || tipo === "bankai2" || tipo === "segunda";
   const d = forte ? "d12" : tipo === "shikai" ? "d8" : "d10";
   const peq = tipo === "shikai";
   const mk = (nome: string, acao: string, pr: number, dano: string, texto: string): HabForma => ({ id: novoId(), nome, acao, custo: pr ? `${pr} PR` : "", pr: pr || undefined, dano: dano || undefined, texto });
@@ -256,7 +256,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo }: Pro
   if (r.habilidades.length > maxHab) erros.push(`Há habilidades demais: o limite é ${maxHab}.`);
   if (r.habilidades.length === 0) erros.push("Adicione pelo menos uma habilidade ou técnica.");
   if (tipo === "shikai" && !r.categoria) erros.push("Escolha a categoria.");
-  if ((tipo === "bankai" || tipo === "resurreccion" || tipo === "segunda") && !r.pontoFraco.trim()) erros.push("Falta o ponto fraco.");
+  if ((tipo === "bankai" || tipo === "bankai2" || tipo === "resurreccion" || tipo === "segunda") && !r.pontoFraco.trim()) erros.push("Falta o ponto fraco.");
 
   return (
     <div className="assistente">
@@ -295,7 +295,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo }: Pro
           <label className="campo">Espírito da Zanpakutou<textarea rows={4} value={r.espirito ?? ""} onChange={(e) => mud({ espirito: e.target.value })} placeholder="Aparência e personalidade. Ex.: um dragão de gelo calmo e orgulhoso." /></label>
         )}
 
-        {passo.id === "conceito" && tipo === "bankai" && (
+        {passo.id === "conceito" && (tipo === "bankai" || tipo === "bankai2") && (
           <>
             <div className="opcoes-grandes">
               <button type="button" className={`opcao ${r.estilo === "potencializadora" ? "on" : ""}`} onClick={() => mud({ estilo: "potencializadora" })}>
@@ -483,7 +483,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo }: Pro
             {r.traco && <p className="quebra"><b>Traços:</b>{"\n"}{r.traco}</p>}
             {r.canalizador && <p><b>Canalizador:</b> {r.canalizador}</p>}
             {tipo === "shikai" && <p><b>{r.categoria || "Sem categoria"}</b> · {r.custo} PR</p>}
-            {tipo === "bankai" && <p><b>{r.estilo || "Tipo não escolhido"}</b> · {r.custo} PR · {r.duracao}</p>}
+            {(tipo === "bankai" || tipo === "bankai2") && <p><b>{r.estilo || "Tipo não escolhido"}</b> · {r.custo} PR · {r.duracao}</p>}
             {Object.keys(r.picks).length > 0 && (
               <ul>{Object.entries(r.picks).map(([id, n]) => <li key={id}>{HAB_UNICAS.find((h) => h.id === id)?.nome} ({n}x)</li>)}</ul>
             )}

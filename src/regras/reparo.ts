@@ -4,7 +4,7 @@ import tecnicasJson from "./tecnicas-reishi.json";
 import { ATRIBUTOS, PERICIAS, calcular, classePorId, normalizar, origemPorId, type Atr, type Ficha } from "./ficha";
 import { SCHRIFTS } from "./schrifts";
 
-const LIBERACOES = ["", "shikai", "bankai", "resurreccion", "terror", "vollstandig", "mascara"];
+const LIBERACOES = ["", "shikai", "bankai", "bankai2", "resurreccion", "terror", "vollstandig", "mascara"];
 const ATR_IDS = ATRIBUTOS.map((a) => a.id);
 const kidosValidos = new Set((kidosJson as { tipo: string; n: number }[]).map((k) => `${k.tipo}:${k.n}`));
 const tecnicasValidas = new Set((tecnicasJson as { nome: string }[]).map((t) => t.nome));

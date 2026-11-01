@@ -27,8 +27,8 @@ const vazia = (tipo: TipoForma): FormaLib => ({
   comando: "",
   aparencia: "",
   estilo: "",
-  custo: tipo === "bankai" ? 40 : tipo === "vollstandig" ? 60 : tipo === "shikai" ? 5 : 0,
-  duracao: tipo === "bankai" ? "1 minuto" : tipo === "resurreccion" || tipo === "segunda" ? "até o fim da cena" : "até você encerrar",
+  custo: tipo === "bankai" || tipo === "bankai2" ? 40 : tipo === "vollstandig" ? 60 : tipo === "shikai" ? 5 : 0,
+  duracao: tipo === "bankai" || tipo === "bankai2" ? "1 minuto" : tipo === "resurreccion" || tipo === "segunda" ? "até o fim da cena" : "até você encerrar",
   categoria: "",
   espirito: "",
   habilidades: [],
@@ -48,6 +48,8 @@ interface Props {
 }
 
 const DICAS: Record<TipoForma, string> = {
+  bankai2:
+    "A Bankai Verdadeira é a forma final da sua Bankai. Mude a aparência, dê um nome novo e crie, com o Mestre, uma técnica de assinatura nova. Dura no máximo 1 minuto e deixa você Esgotado até um descanso curto.",
   shikai:
     "A Shikai é o primeiro estágio da sua Zanpakutou. Escolha uma Zanpakutou pronta do livro, siga o passo a passo ou edite tudo de uma vez. O custo de liberação vai de 3 a 10 PR.",
   bankai:
@@ -62,18 +64,24 @@ const DICAS: Record<TipoForma, string> = {
 
 export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
   const classe = classePorId(f.classe);
-  const caminhoFinal = tipo === "bankai" ? f.treinos.caminhoBankai : "";
+  const ehBankai = tipo === "bankai" || tipo === "bankai2";
+  const caminhoFinal = tipo === "bankai" ? f.treinos.caminhoBankai : tipo === "bankai2" ? "verdadeira" : "";
   const [aba, setAba] = useState<"modelos" | "passo" | "meu">(f.formas[tipo]?.nome ? "meu" : "passo");
-  const [r, setR] = useState<FormaLib>(f.formas[tipo] ? { ...vazia(tipo), ...f.formas[tipo]! } : vazia(tipo));
+  const [r, setR] = useState<FormaLib>(() => {
+    if (f.formas[tipo]) return { ...vazia(tipo), ...f.formas[tipo]! };
+    // a Verdadeira parte da Bankai que você já tem: muda o nome e a aparência e ganha uma técnica nova
+    if (tipo === "bankai2" && f.formas.bankai) return { ...vazia(tipo), ...f.formas.bankai, tipo, nome: "", comando: "", aparencia: "", habilidades: f.formas.bankai.habilidades.map((h) => ({ ...h, id: `${h.id}-v` })) };
+    return vazia(tipo);
+  });
   const [aberto, setAberto] = useState("");
   const [busca, setBusca] = useState("");
   const mud = (p: Partial<FormaLib>) =>
     setR((x) => {
       const n = { ...x, ...p };
-      if (p.habilidades && !n.custoManual && (tipo === "shikai" || tipo === "bankai")) n.custo = sugerirCusto(tipo, n.habilidades);
+      if (p.habilidades && !n.custoManual && (tipo === "shikai" || ehBankai)) n.custo = sugerirCusto(tipo, n.habilidades);
       return n;
     });
-  const sugestao = tipo === "shikai" || tipo === "bankai" ? sugerirCusto(tipo, r.habilidades) : 0;
+  const sugestao = tipo === "shikai" || ehBankai ? sugerirCusto(tipo, r.habilidades) : 0;
   const dicaCusto = sugestao > 0 && (
     <small className="ajuda">
       Sugestão: {sugestao} PR (maior custo entre as habilidades: {maiorCustoPR(r.habilidades)} PR).{" "}
@@ -100,7 +108,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
   const usarBankai = (id: string) => {
     const m = BANKAIS.find((b) => b.id === id)!;
     setR({
-      ...vazia("bankai"),
+      ...vazia(tipo),
       modelo: m.id,
       nome: m.nome,
       comando: `Bankai, ${m.nome}`,
@@ -205,7 +213,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
           </>
         )}
 
-        {aba === "modelos" && tipo === "bankai" && (
+        {aba === "modelos" && ehBankai && (
           <>
             <input className="seletor-busca" value={busca} onChange={(e) => setBusca(e.target.value)} placeholder="Buscar Bankai" aria-label="Buscar Bankai" />
             <ul className="seletor-lista">
@@ -300,7 +308,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
                 <label className="campo">Custo de liberação (3 a 10 PR)<input type="number" min={3} max={10} value={r.custo} onChange={(e) => mud({ custo: Number(e.target.value), custoManual: true })} />{dicaCusto}</label>
               </>
             )}
-            {tipo === "bankai" && (
+            {ehBankai && (
               <>
                 {caminhoFinal === "plena" && (
                   <div className="caixa painel-caminho">
@@ -349,7 +357,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
 
             {(
               <div className="caixa">
-                <h3>{tipo === "bankai" ? "Habilidades e técnicas" : "Habilidades e técnicas da forma"}</h3>
+                <h3>{ehBankai ? "Habilidades e técnicas" : "Habilidades e técnicas da forma"}</h3>
                 <p className="ajuda">Cada habilidade com PR ou dano vira uma carta nova no Resumo, com botões de usar e rolar.</p>
                 {r.habilidades.map((h) => (
                   <div className="hab-edit" key={h.id}>
@@ -420,7 +428,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onFechar }: Props) {
 type ItemAcao = { id: string; nome: string; texto: string; custo: string; acao: string; pr?: number; prExpr?: string; dano?: string };
 
 const formasDefinidas = (f: Ficha) =>
-  (["shikai", "bankai", "resurreccion", "vollstandig", "segunda"] as TipoForma[]).map((t) => f.formas[t]).filter((x): x is FormaLib => !!x && !!x.nome);
+  (["shikai", "bankai", "bankai2", "resurreccion", "vollstandig", "segunda"] as TipoForma[]).map((t) => f.formas[t]).filter((x): x is FormaLib => !!x && !!x.nome);
 
 /** Uma habilidade da forma como carta, com botões de usar e rolar. */
 function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg }: { f: Ficha; c: Calculo; r: Rolagens; alterar: (p: Partial<Ficha>) => void; forma: FormaLib; h: ItemAcao; ativa: boolean; onMsg: (m: string) => void }) {
@@ -481,7 +489,7 @@ export function PainelFormaAtiva({ f, c, r, alterar, onEditar }: { f: Ficha; c: 
           {forma.comando && <p><i>“{forma.comando}”</i></p>}
         </div>
         <div className="painel-forma-botoes">
-          {forma.tipo === "bankai" && forma.custo > 0 && (
+          {(forma.tipo === "bankai" || forma.tipo === "bankai2") && forma.custo > 0 && (
             <button type="button" className="btn-mini" disabled={f.prAtual < forma.custo} onClick={() => { alterar({ prAtual: Math.max(0, f.prAtual - forma.custo) }); setMsg(`Bankai mantida por mais ${forma.duracao}: ${forma.custo} PR.`); }}>
               Manter ({forma.custo} PR)
             </button>
@@ -520,7 +528,7 @@ export function CartasFormas({ f, c, r, alterar, onEditar }: { f: Ficha; c: Calc
               <h3>{x.nome}</h3>
               {x.comando && <p><i>“{x.comando}”</i></p>}
               {x.aparencia && <p>{x.aparencia}</p>}
-              {(x.tipo === "bankai" || x.tipo === "shikai") && <p><b>Custo:</b> {x.custo} PR{x.tipo === "bankai" ? <> · <b>Duração:</b> {x.duracao}</> : null}</p>}
+              {(x.tipo === "bankai" || x.tipo === "bankai2" || x.tipo === "shikai") && <p><b>Custo:</b> {x.custo} PR{x.tipo !== "shikai" ? <> · <b>Duração:</b> {x.duracao}</> : null}</p>}
               {x.traco && <p className="quebra"><b>{x.traco.includes("\n") ? "Traços" : "Traço"}:</b>{x.traco.includes("\n") ? "\n" : " "}{x.traco}</p>}
               {x.tipo === "vollstandig" && Object.keys(x.picks).length > 0 && (
                 <ul>

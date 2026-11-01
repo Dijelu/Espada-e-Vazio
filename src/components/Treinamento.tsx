@@ -67,7 +67,7 @@ export function AbaTreinamento({ f, c, alterar, onMontar }: { f: Ficha; c: Calcu
                   <option value="verdadeira">Bankai Verdadeira (nova forma, técnica de assinatura, 1 minuto)</option>
                 </select>
                 {f.treinos.caminhoBankai && onMontar && (
-                  <button type="button" className="btn btn-paper" onClick={() => onMontar("bankai")}>
+                  <button type="button" className="btn btn-paper" onClick={() => onMontar(f.treinos.caminhoBankai === "verdadeira" ? "bankai2" : "bankai")}>
                     Montar a Bankai {f.treinos.caminhoBankai === "plena" ? "Plena" : "Verdadeira"}
                   </button>
                 )}
