@@ -2,6 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../components/Auth";
 import { calcular, classePorId } from "../regras/ficha";
+import { CATEGORIAS } from "../regras/ameacas";
+import { CartaNpc } from "../components/CartaNpc";
 import {
   apagarCampanha, apagarNpc, criarNpc, fichasDaMesa, lerCampanha, ligarFicha, listarNpcs, minhasFichasSemMesa, salvarNpc, sairDaCampanha,
   type Campanha, type FichaDaMesa, type Npc,
@@ -61,10 +63,7 @@ export default function CampanhaPagina() {
     try { await navigator.clipboard.writeText(camp.codigo); setCopiado(true); setTimeout(() => setCopiado(false), 1800); } catch { /* sem área de transferência */ }
   };
 
-  const mudarNpc = (n: Npc, parte: Partial<Npc["dados"]>, nome?: string) =>
-    setNpcs((l) => l.map((x) => (x.id === n.id ? { ...x, nome: nome ?? x.nome, dados: { ...x.dados, ...parte } } : x)));
   const guardar = (n: Npc) => tentar(() => salvarNpc(n), "Não foi possível salvar o NPC.");
-  const num = (v: string) => (v === "" ? 0 : Number(v) || 0);
 
   return (
     <main className="page">
@@ -100,10 +99,10 @@ export default function CampanhaPagina() {
                   </div>
                 </div>
                 {m.dono === meuId && (
-                  <>
+                  <div className="carta-acoes">
                     <Link className="link-perigo" to={`/fichas/${m.id}`}>Abrir</Link>
                     <button type="button" className="link-perigo" onClick={() => tentar(async () => { await ligarFicha(m.id, null); await carregar(); }, "Não foi possível desligar a ficha.")}>Tirar da mesa</button>
-                  </>
+                  </div>
                 )}
               </article>
             );
@@ -125,29 +124,17 @@ export default function CampanhaPagina() {
         <div className="npcs">
           {npcs.map((n) => (
             mestre ? (
-              <article className="npc" key={n.id}>
-                <label className="campo">Nome<input value={n.nome} onChange={(e) => mudarNpc(n, {}, e.target.value)} onBlur={() => guardar(n)} /></label>
-                <div className="npc-nums">
-                  <label className="campo">Nível<input type="number" min={1} value={n.dados.nivel} onChange={(e) => mudarNpc(n, { nivel: Math.max(1, num(e.target.value)) })} onBlur={() => guardar(n)} /></label>
-                  <label className="campo">CR<input type="number" min={0} value={n.dados.cr} onChange={(e) => mudarNpc(n, { cr: num(e.target.value) })} onBlur={() => guardar(n)} /></label>
-                  <label className="campo">PV máx.<input type="number" min={1} value={n.dados.pvMax} onChange={(e) => mudarNpc(n, { pvMax: Math.max(1, num(e.target.value)) })} onBlur={() => guardar(n)} /></label>
-                </div>
-                <div className="npc-pv">
-                  <b>PV {n.dados.pv}/{n.dados.pvMax}</b>
-                  {[-10, -5, -1, 1, 5, 10].map((d) => (
-                    <button type="button" key={d} className="btn btn-paper" onClick={() => { const novo = { ...n, dados: { ...n.dados, pv: Math.max(0, Math.min(n.dados.pvMax, n.dados.pv + d)) } }; setNpcs((l) => l.map((x) => (x.id === n.id ? novo : x))); void guardar(novo); }}>{d > 0 ? `+${d}` : d}</button>
-                  ))}
-                </div>
-                <label className="campo">Ataque<input value={n.dados.ataque} onChange={(e) => mudarNpc(n, { ataque: e.target.value })} onBlur={() => guardar(n)} placeholder="Ex.: garras, +6 para acertar" /></label>
-                <label className="campo">Dano<input value={n.dados.dano} onChange={(e) => mudarNpc(n, { dano: e.target.value })} onBlur={() => guardar(n)} placeholder="Ex.: 2d8+4" /></label>
-                <label className="campo">Anotações<textarea rows={3} value={n.dados.notas} onChange={(e) => mudarNpc(n, { notas: e.target.value })} onBlur={() => guardar(n)} /></label>
-                <label className="marcar"><input type="checkbox" checked={n.dados.revelado} onChange={(e) => { const novo = { ...n, dados: { ...n.dados, revelado: e.target.checked } }; setNpcs((l) => l.map((x) => (x.id === n.id ? novo : x))); void guardar(novo); }} /> Mostrar aos jogadores</label>
-                <button type="button" className="link-perigo" onClick={() => { if (window.confirm(`Apagar o NPC ${n.nome}?`)) void tentar(async () => { await apagarNpc(n.id); setNpcs((l) => l.filter((x) => x.id !== n.id)); }, "Não foi possível apagar o NPC."); }}>Apagar NPC</button>
-              </article>
+              <CartaNpc
+                key={n.id}
+                npc={n}
+                onMudar={(novo, salvar) => { setNpcs((l) => l.map((x) => (x.id === novo.id ? novo : x))); if (salvar) void guardar(novo); }}
+                onSalvar={(novo) => void guardar(novo)}
+                onApagar={(x) => { if (window.confirm(`Apagar o NPC ${x.nome}?`)) void tentar(async () => { await apagarNpc(x.id); setNpcs((l) => l.filter((y) => y.id !== x.id)); }, "Não foi possível apagar o NPC."); }}
+              />
             ) : (
               <article className="npc" key={n.id}>
                 <b className="title-font">{n.nome}</b>
-                <small>Nível {n.dados.nivel}</small>
+                <small>{CATEGORIAS.find((x) => x.id === n.dados.ameaca.categoria)?.nome} · ND {n.dados.ameaca.nd}</small>
                 {n.dados.notas && <p className="quebra">{n.dados.notas}</p>}
               </article>
             )

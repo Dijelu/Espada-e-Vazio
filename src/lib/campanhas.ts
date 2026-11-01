@@ -1,5 +1,6 @@
 import { supabase } from "./supabase";
 import { normalizar, type Ficha } from "../regras/ficha";
+import { ameacaPadrao, normalizarAmeaca, type Ameaca } from "../regras/ameacas";
 
 export interface Campanha {
   id: string;
@@ -9,12 +10,10 @@ export interface Campanha {
 }
 
 export interface DadosNpc {
-  nivel: number;
-  pv: number;
-  pvMax: number;
-  cr: number;
-  ataque: string;
-  dano: string;
+  ameaca: Ameaca;
+  /** PV e PR de agora; null quer dizer cheio */
+  pvAtual: number | null;
+  prAtual: number | null;
   notas: string;
   /** os jogadores da mesa veem este NPC */
   revelado: boolean;
@@ -38,19 +37,15 @@ const banco = () => {
   return supabase;
 };
 
-export const npcVazio = (): DadosNpc => ({ nivel: 1, pv: 20, pvMax: 20, cr: 12, ataque: "", dano: "", notas: "", revelado: false });
+export const npcVazio = (): DadosNpc => ({ ameaca: ameacaPadrao(), pvAtual: null, prAtual: null, notas: "", revelado: false });
 
 export function normalizarNpc(d: Partial<DadosNpc> | null): DadosNpc {
-  const b = npcVazio();
   const o = d ?? {};
-  const num = (v: unknown, p: number, min = 0) => (typeof v === "number" && Number.isFinite(v) ? Math.max(min, Math.round(v)) : p);
+  const val = (v: unknown) => (typeof v === "number" && Number.isFinite(v) ? Math.max(0, Math.round(v)) : null);
   return {
-    nivel: num(o.nivel, b.nivel, 1),
-    pv: num(o.pv, b.pv, 0),
-    pvMax: num(o.pvMax, b.pvMax, 1),
-    cr: num(o.cr, b.cr, 0),
-    ataque: typeof o.ataque === "string" ? o.ataque : "",
-    dano: typeof o.dano === "string" ? o.dano : "",
+    ameaca: normalizarAmeaca(o.ameaca),
+    pvAtual: val(o.pvAtual),
+    prAtual: val(o.prAtual),
     notas: typeof o.notas === "string" ? o.notas : "",
     revelado: o.revelado === true,
   };
@@ -117,8 +112,8 @@ export async function listarNpcs(id: string): Promise<Npc[]> {
   return (data as { id: string; name: string; data: Partial<DadosNpc> }[]).map((l) => ({ id: l.id, nome: l.name, dados: normalizarNpc(l.data) }));
 }
 
-export async function criarNpc(campanhaId: string, nome: string): Promise<Npc> {
-  const dados = npcVazio();
+export async function criarNpc(campanhaId: string, nome: string, ameaca?: Ameaca): Promise<Npc> {
+  const dados = { ...npcVazio(), ...(ameaca ? { ameaca } : {}) };
   const { data, error } = await banco().from("npcs").insert({ campaign_id: campanhaId, name: nome || "NPC sem nome", data: dados }).select("id,name,data").single();
   if (error) throw error;
   const l = data as { id: string; name: string; data: Partial<DadosNpc> };
