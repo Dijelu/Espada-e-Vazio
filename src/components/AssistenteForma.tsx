@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { calcular, classePorId, type Ficha, type FormaLib, type HabForma, type TipoForma } from "../regras/ficha";
 import { ACOES_DADOS, HAB_UNICAS, habilidadesDaForma, TIPO_FORMA_NOME, VOLL_PASSIVAS, picksVoll, totalPicks } from "../regras/liberacoes";
 import { EfeitosForma, EscolhaAtributos } from "./EfeitosForma";
+import { calcularLiberacao } from "../regras/liberacao-forma";
 import { SeletorDano } from "./SeletorFormula";
 import { novoId } from "./FichaPecas";
 import { SeletorSchrift } from "./SeletorSchrift";
@@ -75,7 +76,18 @@ const PASSOS_BASE: Record<Exclude<TipoForma, "bankai2">, Passo[]> = {
     { id: "revisao", titulo: "Revisão", ajuda: "Confira tudo. Ativar custa 60 PR e usa uma ação." },
   ],
 };
-const PASSOS: Record<TipoForma, Passo[]> = { ...PASSOS_BASE, bankai2: PASSOS_BASE.bankai };
+function ordenarPassos(base: Passo[]): Passo[] {
+  const fraq = base.find((p) => p.id === "fraqueza");
+  const custo = base.find((p) => p.id === "custo");
+  const rev = base.find((p) => p.id === "revisao")!;
+  const meio = base
+    .filter((p) => !["efeitos", "fraqueza", "custo", "revisao"].includes(p.id))
+    .map((p) => (p.id === "acoes" ? { ...p, titulo: "Habilidades e efeitos", ajuda: `${p.ajuda} Logo abaixo, monte os efeitos com números: eles entram sozinhos na ficha enquanto a forma estiver ativa.` } : p));
+  const pf: Passo = { id: "fraqueza", titulo: "Pontos fracos", ajuda: `${fraq?.ajuda ?? "Todo grande poder cobra um preço."} Escolha cartões: quanto mais pesado o ponto fraco, mais pontos ele devolve para montar a forma.` };
+  return [...meio, pf, ...(custo ? [{ ...custo, titulo: "Custo e duração", ajuda: "O custo de liberação e a duração são calculados sozinhos a partir das peças e dos pontos fracos que você escolheu." }] : []), rev];
+}
+const PASSOS_FULL: Record<TipoForma, Passo[]> = { ...PASSOS_BASE, bankai2: PASSOS_BASE.bankai };
+const PASSOS = Object.fromEntries(Object.entries(PASSOS_FULL).map(([k, v]) => [k, ordenarPassos(v)])) as Record<TipoForma, Passo[]>;
 
 const APARENCIA_BASE: Record<Exclude<TipoForma, "bankai2">, string[]> = {
   shikai: [
@@ -228,6 +240,10 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
     const k = calcular({ ...f, estado: { ...f.estado, liberado: "" } });
     return { n: f.nivel, prof: k.prof, atr: k.atr };
   }, [f]);
+  const lib = useMemo(
+    () => calcularLiberacao(tipo, [...(r.efeitos ?? [])], ctxAtual, { plena: tipo === "bankai" && f.treinos.caminhoBankai === "plena" }),
+    [tipo, r.efeitos, ctxAtual, f.treinos.caminhoBankai],
+  );
   const [i, setI] = useState(0);
   const [atr, setAtr] = useState("ESP");
   const passo = passos[i];
@@ -481,30 +497,32 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
           </>
         )}
 
-        {passo.id === "custo" && tipo === "shikai" && (
-          <label className="campo">Custo de liberação (3 a 10 PR)<input type="number" min={3} max={10} value={r.custo} onChange={(e) => mud({ custo: Number(e.target.value) })} /></label>
-        )}
-        {passo.id === "custo" && tipo !== "shikai" && (
-          <>
+        {passo.id === "custo" && (
+          <div className="liberacao-calculada">
             <div className="duas">
-              <label className="campo">Custo de liberação (PR)<input type="number" min={20} max={80} value={r.custo} onChange={(e) => mud({ custo: Number(e.target.value) })} /></label>
-              <label className="campo">Duração<input value={r.duracao} onChange={(e) => mud({ duracao: e.target.value })} /></label>
+              <div className="selo-grande"><small>Custo de liberação</small><b>{lib.custoPr ?? r.custo} PR</b></div>
+              <div className="selo-grande"><small>Duração</small><b>{lib.duracaoTexto}</b></div>
             </div>
-            <p className="ajuda">Referência do livro: 40 PR para Bankais mais simples, 60 para as completas e 80 para as mais poderosas.</p>
-          </>
+            <ul className="conta-liberacao">{lib.conta.map((c) => <li key={c}>{c}</li>)}</ul>
+            <p className="ajuda">Um turno dura 6 segundos: 10 turnos são 1 minuto. No combate, o botão "Novo turno" conta a duração sozinho e avisa quando a forma termina.</p>
+            {(r.efeitos?.length ?? 0) === 0 && <p className="aviso-mini">Sem peças de efeito, o custo e a duração ficam como no modelo. Escolha peças no passo anterior para o cálculo valer.</p>}
+          </div>
         )}
 
         {passo.id === "fraqueza" && (
           <>
-            <label className="campo">Ponto fraco<textarea rows={3} value={r.pontoFraco} onChange={(e) => mud({ pontoFraco: e.target.value })} /></label>
-            <p className="ajuda">Sugestões:</p>
-            <div className="chips">
+            <EfeitosForma f={f} tipo={tipo} r={r} mud={mud} onGravar={onGravar} modo="fracos" />
+            <label className="campo">Ponto fraco, com as suas palavras
+              <textarea rows={3} value={r.pontoFraco} onChange={(e) => mud({ pontoFraco: e.target.value })} placeholder="Como esse preço aparece na história e na mesa" />
+            </label>
+            <p className="ajuda">Ideias de texto:</p>
+            <div className="filtros-pecas">
               {[...FRAQUEZAS[tipo], ...FRAQUEZAS_EXTRA[tipo]].map((t) => <button key={t} type="button" className="chip chip-btn" onClick={() => mud({ pontoFraco: t })}>{t}</button>)}
             </div>
           </>
         )}
 
-        {passo.id === "efeitos" && <EfeitosForma f={f} tipo={tipo} r={r} mud={mud} onGravar={onGravar} />}
+        {passo.id === "acoes" && <EfeitosForma f={f} tipo={tipo} r={r} mud={mud} onGravar={onGravar} modo="poder" />}
 
         {passo.id === "revisao" && (
           <>
@@ -521,6 +539,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
             {r.habilidades.map((h) => <p key={h.id}><b>{h.nome}</b> ({[h.acao, h.custo].filter(Boolean).join(", ")}): {h.texto}</p>)}
             {(r.efeitos?.length ?? 0) > 0 && <p><b>Efeitos:</b> {r.efeitos!.map((e) => e.nome).join(", ")}</p>}
             {r.pontoFraco && <p><b>Ponto fraco:</b> {r.pontoFraco}</p>}
+            {(tipo === "shikai" || tipo === "bankai" || tipo === "bankai2") && <p><b>Custo e duração:</b> {lib.custoPr ?? r.custo} PR · {lib.duracaoTexto}</p>}
             {erros.length > 0 && <ul className="avisos">{erros.map((e) => <li key={e}>{e}</li>)}</ul>}
             <div className="assistente-fim">
               <button type="button" className="btn" disabled={!r.nome.trim()} onClick={onSalvar}>Salvar {TIPO_FORMA_NOME[tipo]}</button>

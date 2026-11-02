@@ -41,6 +41,8 @@ export interface Faz {
   dano?: { expr: string; tipo: string; area?: string };
   /** texto livre do que acontece (o Mestre resolve) */
   texto?: string;
+  /** dano que o próprio usuário sofre (sem resistência) */
+  autoDano?: Num;
   /** condição que o alvo sofre, com salvaguarda opcional (CD = 8 + proficiência + Espírito) */
   condicao?: { nome: string; salva?: Atr; duracao?: string };
 }
@@ -65,6 +67,10 @@ export type Efeito =
   | { k: "duracao"; turnos: Num }
   | { k: "texto"; t: string }
   | { k: "frenesi"; nivel: "leve" | "grande" | "total" }
+  /** ponto fraco forte: devolve `pp` pontos (fora do teto de um terço) e pode ferir quem usa a cada turno */
+  | { k: "preco"; pp: number; texto: string; autoDano?: Num }
+  /** a forma dura mais alguns turnos (10 turnos = 1 minuto) */
+  | { k: "duracaoMais"; turnos: Num }
   | { k: "invoca"; nome: string; tipo: "clone" | "invocacao"; max: Num; pv: Num; cr: Num; acerto: Num; dano: string; custoPr: Num; texto?: string };
 
 /** Uma peça escolhida no construtor: um preset (com parâmetros) ou algo criado à mão. */
@@ -193,6 +199,8 @@ export interface SomaForma {
   /** clones e invocações que a forma permite criar, com os números já calculados */
   invocacoes: ModeloInvocacao[];
   manutencao: number;
+  /** turnos somados à duração por peças de duração extra */
+  duracaoMais: number;
   fim?: "curto" | "longo";
   duracao?: number;
   textos: { nome: string; t: string }[];
@@ -214,7 +222,7 @@ export function somarForma(f: Ficha, ctx: CtxForma): SomaForma | null {
   const s: SomaForma = {
     atr: { for: 0, des: 0, con: 0, men: 0, esp: 0 }, cr: 0, rdFis: 0, rdEso: 0, desloc: 0, voo: 0, ataques: 0, reacoes: 0, bonus: 0, cd: 0,
     acerto: porAlvo(0), dano: porAlvo(0), dados: porAlvo<string[]>([]), ignoraRd: porAlvo(0), alcance: porAlvo(0),
-    vant: [], resist: [], gatilhos: [], invocacoes: [], manutencao: 0, textos: [], linhas: [],
+    vant: [], resist: [], gatilhos: [], invocacoes: [], manutencao: 0, duracaoMais: 0, textos: [], linhas: [],
   };
   const linha = (rotulo: string, v: string, fonte: string) => s.linhas.push({ rotulo, valor: v, fonte });
   for (const { inst, fonte } of pecas) {
@@ -248,6 +256,13 @@ export function somarForma(f: Ficha, ctx: CtxForma): SomaForma | null {
           linha("Frenesi", e.nivel === "leve" ? "salvaguarda de Mente a cada turno; falhou: ataca o mais próximo" : e.nivel === "grande" ? "salvaguarda de Mente a cada turno; falhou: o Mestre joga o seu turno" : "o Mestre controla você enquanto a forma durar", nome);
           break;
         }
+        case "preco": {
+          s.textos.push({ nome, t: e.texto });
+          linha("Preço", e.texto, nome);
+          if (e.autoDano !== undefined) s.gatilhos.push({ rotulo: `Preço: ${inst.nome}`, quando: "inicioTurno", faz: { autoDano: e.autoDano, texto: "dano que você sofre" }, peca: nome });
+          break;
+        }
+        case "duracaoMais": { const v = Math.max(0, valor(e.turnos, ctx)); s.duracaoMais += v; linha("Duração", `+${v} turnos`, nome); break; }
         case "invoca": {
           const max = Math.max(1, Math.min(10, Math.floor(valor(e.max, ctx))));
           s.invocacoes.push({ chave: `${inst.id}:${s.invocacoes.length}`, peca: nome, nome: e.nome || nome, tipo: e.tipo, max, pv: Math.max(1, Math.floor(valor(e.pv, ctx))), cr: Math.floor(valor(e.cr, ctx)), acerto: Math.floor(valor(e.acerto, ctx)), dano: e.dano, custoPr: Math.max(0, Math.floor(valor(e.custoPr, ctx))), texto: e.texto });
@@ -256,6 +271,21 @@ export function somarForma(f: Ficha, ctx: CtxForma): SomaForma | null {
         }
       }
     }
+  }
+  // quem paga dano por turno não se cura no início do turno com a mesma forma: a cura anularia o preço
+  if (pecas.some(({ inst }) => inst.efeitos.some((e) => e.k === "preco" && e.autoDano !== undefined))) {
+    const antes = s.gatilhos.length;
+    s.gatilhos = s.gatilhos.filter((g) => !(g.quando === "inicioTurno" && g.faz.curaPv !== undefined));
+    if (s.gatilhos.length < antes) s.textos.push({ nome: "Preço", t: "A cura de início de turno desta forma não funciona enquanto você paga o dano por turno." });
+  }
+  // a Bankai dura 1 minuto (10 turnos); peças de duração curta ou extra mudam isso
+  const lib = f.estado.liberado;
+  if (lib === "bankai" || lib === "bankai2") {
+    const base = 10;
+    const limite = s.duracao !== undefined && s.duracao > 0 ? Math.min(base, s.duracao) : base;
+    s.duracao = limite + s.duracaoMais;
+  } else if (s.duracao !== undefined && s.duracaoMais > 0) {
+    s.duracao += s.duracaoMais;
   }
   return s;
 }
@@ -324,7 +354,9 @@ export function custoEfeito(e: Efeito, ctx: CtxForma): number {
     case "fim": return e.esgotado === "longo" ? -3 : -2;
     case "duracao": return valor(e.turnos, ctx) <= ctx.prof ? -2 : 0;
     case "texto": return 1;
-    case "frenesi": return e.nivel === "leve" ? -3 : e.nivel === "grande" ? -6 : -9;
+    case "frenesi": return e.nivel === "leve" ? -2 : e.nivel === "grande" ? -6 : -9;
+    case "preco": return -Math.max(1, Math.min(9, Math.floor(e.pp)));
+    case "duracaoMais": return Math.max(1, Math.ceil(valor(e.turnos, ctx) / 3));
     case "invoca": {
       const max = Math.max(1, Math.min(10, Math.floor(valor(e.max, ctx))));
       const pv = Math.max(1, valor(e.pv, ctx));
@@ -366,11 +398,13 @@ export function orcamentoDaForma(f: Ficha, tipo: FormaLib["tipo"], forma: FormaL
   let frenesiDev = 0;
   const somar = (p: InstEfeito, fator: number) => {
     const c = custoPeca(p, ctx) * fator;
-    if (p.efeitos.some((e) => e.k === "frenesi")) { if (c < 0) frenesiDev = Math.min(9, Math.max(frenesiDev, -c)); return; }
+    if (p.efeitos.some((e) => e.k === "frenesi" || e.k === "preco")) { if (c < 0) frenesiDev = Math.min(Math.min(9, total), frenesiDev + -c); else gasto += c; return; }
     if (c >= 0) gasto += c; else devolucao += -c;
   };
   for (const p of forma?.efeitos ?? []) somar(p, 1);
   if (tipo === "bankai" && forma?.herdaShikai) for (const p of f.formas.shikai?.efeitos ?? []) somar(p, 0.5);
+  const todas = [...(forma?.efeitos ?? [])];
+  if (todas.some((p) => p.efeitos.some((e) => e.k === "duracao")) && todas.some((p) => p.efeitos.some((e) => e.k === "duracaoMais"))) avisos.push("Duração curta e duração extra na mesma forma se anulam: escolha só uma.");
   const devolvido = Math.min(devolucao, Math.floor(total / 3));
   if (devolucao > devolvido) avisos.push(`Os pontos fracos devolvem no máximo ${devolvido} PP (um terço do total).`);
   const liquido = Math.ceil(gasto - devolvido - frenesiDev);
@@ -398,7 +432,7 @@ export const totalAtr = (s: SomaForma | null | undefined) => (s ? ATRIBUTOS.redu
 /** Limpa o que veio de um arquivo ou de uma ficha antiga: tipos desconhecidos saem e valores soltos viram 0. */
 export function normalizarEfeitos(raw: unknown): InstEfeito[] {
   if (!Array.isArray(raw)) return [];
-  const ok = new Set(["atr", "cr", "acerto", "dano", "dados", "cd", "ignoraRd", "alcance", "rd", "resist", "desloc", "acoes", "vant", "gatilho", "custo", "fim", "duracao", "texto", "invoca", "frenesi"]);
+  const ok = new Set(["atr", "cr", "acerto", "dano", "dados", "cd", "ignoraRd", "alcance", "rd", "resist", "desloc", "acoes", "vant", "gatilho", "custo", "fim", "duracao", "texto", "invoca", "frenesi", "preco", "duracaoMais"]);
   const alvos = new Set(ALVOS.map((a) => a.id));
   const num = (v: unknown): Num => (typeof v === "number" && Number.isFinite(v) ? v : typeof v === "string" && /^[\[\]A-Z0-9+\-*/(). ]{1,40}$/.test(v) ? v : 0);
   const lista = (v: unknown): Alvo[] => (Array.isArray(v) ? (v.filter((x) => typeof x === "string" && alvos.has(x as Alvo)) as Alvo[]) : []);
@@ -425,6 +459,8 @@ export function normalizarEfeitos(raw: unknown): InstEfeito[] {
         case "fim": return [{ k, esgotado: x.esgotado === "longo" ? "longo" : "curto" }];
         case "duracao": return [{ k, turnos: num(x.turnos) }];
         case "texto": return [{ k, t: String(x.t ?? "").slice(0, 400) }];
+        case "preco": return [{ k, pp: Math.max(1, Math.min(9, Math.floor(Number(x.pp) || 1))), texto: String(x.texto ?? "").slice(0, 300), autoDano: x.autoDano === undefined ? undefined : num(x.autoDano) }];
+        case "duracaoMais": return [{ k, turnos: num(x.turnos) }];
         case "frenesi": return [{ k, nivel: x.nivel === "total" ? "total" : x.nivel === "grande" ? "grande" : "leve" }];
         case "invoca": return [{ k, nome: String(x.nome ?? "Invocação").slice(0, 40), tipo: x.tipo === "clone" ? "clone" : "invocacao", max: num(x.max), pv: num(x.pv), cr: num(x.cr), acerto: num(x.acerto), dano: typeof x.dano === "string" && /^[\[\]A-Z0-9d+\-*/(). ]{0,40}$/.test(x.dano) ? x.dano : "", custoPr: num(x.custoPr), texto: typeof x.texto === "string" ? x.texto.slice(0, 300) : undefined }];
         case "gatilho": {
@@ -436,6 +472,7 @@ export function normalizarEfeitos(raw: unknown): InstEfeito[] {
           if (z.pvTemp !== undefined) faz.pvTemp = num(z.pvTemp);
           if (z.prTemp !== undefined) faz.prTemp = num(z.prTemp);
           if (z.pr !== undefined) faz.pr = num(z.pr);
+          if (z.autoDano !== undefined) faz.autoDano = num(z.autoDano);
           if (typeof z.texto === "string") faz.texto = z.texto.slice(0, 300);
           const cd = z.condicao as { nome?: unknown; salva?: unknown; duracao?: unknown } | undefined;
           if (cd && typeof cd.nome === "string" && cd.nome.trim()) faz.condicao = { nome: cd.nome.slice(0, 30), salva: ATRIBUTOS.includes(cd.salva as Atr) ? (cd.salva as Atr) : undefined, duracao: typeof cd.duracao === "string" ? cd.duracao.slice(0, 30) : undefined };

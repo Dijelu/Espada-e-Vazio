@@ -22,6 +22,7 @@ export function aplicarFaz(f: Ficha, c: Calculo, z: Faz): ResultadoFaz {
   let rolar: string | undefined;
   if (z.curaPv !== undefined) { const v = valor(z.curaPv, ctx); parte.pvAtual = Math.min(c.pv, f.pvAtual + v); dito.push(`+${v} PV`); }
   if (z.pvTemp !== undefined) { const v = valor(z.pvTemp, ctx); pvTemp = Math.max(f.estado.pvTemp ?? 0, v); dito.push(`${v} PV temporários`); }
+  if (z.autoDano !== undefined) { const v = Math.max(0, valor(z.autoDano, ctx)); parte.pvAtual = Math.max(0, (parte.pvAtual ?? f.pvAtual) - v); dito.push(`você sofre ${v} de dano`); }
   if (z.pr !== undefined) { const v = valor(z.pr, ctx); parte.prAtual = Math.min(c.pr, f.prAtual + v); dito.push(`+${v} PR`); }
   if (z.prTemp !== undefined) { const v = valor(z.prTemp, ctx); parte.prAtual = (parte.prAtual ?? f.prAtual) + v; dito.push(`+${v} PR extras`); }
   if (z.dano) { rolar = resolverDano(z.dano.expr, f, c); dito.push(`${z.dano.tipo}${z.dano.area ? ` (${z.dano.area})` : ""}`); }

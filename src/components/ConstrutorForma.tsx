@@ -1,3 +1,4 @@
+import { calcularLiberacao } from "../regras/liberacao-forma";
 import { EfeitosForma, EscolhaAtributos } from "./EfeitosForma";
 import { SeletorDano } from "./SeletorFormula";
 import { Icone } from "./Icone";
@@ -89,6 +90,12 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
     setR((x) => {
       const n = { ...x, ...p };
       if (p.habilidades && !n.custoManual && (tipo === "shikai" || ehBankai)) n.custo = sugerirCusto(tipo, n.habilidades);
+      // com peças de efeito, o custo e a duração vêm da conta das peças
+      if ((p.efeitos || p.habilidades) && !n.custoManual && (n.efeitos?.length ?? 0) > 0) {
+        const l = calcularLiberacao(tipo, n.efeitos ?? [], ctxAtual, { plena: tipo === "bankai" && f.treinos.caminhoBankai === "plena" });
+        if (l.custoPr !== null) n.custo = l.custoPr;
+        if (ehBankai || l.turnos !== null) n.duracao = l.duracaoTexto;
+      }
       return n;
     });
   const sugestao = tipo === "shikai" || ehBankai ? sugerirCusto(tipo, r.habilidades) : 0;

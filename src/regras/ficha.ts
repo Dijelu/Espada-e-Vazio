@@ -537,6 +537,8 @@ export interface FormaLib {
   picks: Record<string, number>;
   /** Pontos de Poder extras concedidos pelo Mestre (forma lendária) */
   ppExtra?: number;
+  /** Schrift cujas peças já foram postas na Vollständig (para não repor se o jogador tirar) */
+  schriftAuto?: string;
   /** Vollständig: o atributo de cada "Aumento de Atributo" escolhido, na ordem */
   atrPicks?: Atr[];
   /** texto de referência do modelo pronto */
