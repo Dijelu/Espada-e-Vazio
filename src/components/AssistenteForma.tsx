@@ -1,6 +1,6 @@
 import { analisarDano } from "../regras/teto-dano";
 import type { CtxForma } from "../regras/efeitos-forma";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { calcular, classePorId, type Ficha, type FormaLib, type HabForma, type TipoForma } from "../regras/ficha";
 import { ACOES_DADOS, HAB_UNICAS, habilidadesDaForma, TIPO_FORMA_NOME, VOLL_PASSIVAS, picksVoll, totalPicks } from "../regras/liberacoes";
 import { EfeitosForma, EscolhaAtributos } from "./EfeitosForma";
@@ -271,6 +271,11 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
   const lista = useMemo(() => modelos(tipo, atr, ctxAtual), [tipo, atr, ctxAtual]);
   const assinatura = ASSINATURA[f.subclasse];
 
+  const estiloHerdado = tipo === "bankai2" ? (f.formas.bankai?.estilo ?? "") : "";
+  useEffect(() => {
+    if (estiloHerdado && r.estilo !== estiloHerdado) mud({ estilo: estiloHerdado });
+  }, [estiloHerdado, r.estilo]); // eslint-disable-line react-hooks/exhaustive-deps
+
   const maxHab = LIMITE_HAB[tipo];
   const cheio = r.habilidades.length >= maxHab;
   const jaTem = (nome: string) => !!nome && r.habilidades.some((x) => x.nome === nome);
@@ -359,7 +364,13 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
           <label className="campo">Espírito da Zanpakutou<textarea rows={4} value={r.espirito ?? ""} onChange={(e) => mud({ espirito: e.target.value })} placeholder="Aparência e personalidade. Ex.: um dragão de gelo calmo e orgulhoso." /></label>
         )}
 
-        {passo.id === "conceito" && (tipo === "bankai" || tipo === "bankai2") && (
+        {passo.id === "conceito" && tipo === "bankai2" && estiloHerdado && (
+          <>
+            <p>Sua Bankai é <b>{estiloHerdado}</b>, e a Bankai Verdadeira segue o mesmo tipo: ela leva essa Bankai ao limite.</p>
+            <p className="ajuda">Os cartões exclusivos da Verdadeira (marcados com ★) já aparecem de acordo com esse tipo. Para mudar, volte à sua primeira Bankai.</p>
+          </>
+        )}
+        {passo.id === "conceito" && (tipo === "bankai" || (tipo === "bankai2" && !estiloHerdado)) && (
           <>
             <div className="opcoes-grandes">
               <button type="button" className={`opcao ${r.estilo === "potencializadora" ? "on" : ""}`} onClick={() => mud({ estilo: "potencializadora" })}>
