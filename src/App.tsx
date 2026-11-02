@@ -1,8 +1,9 @@
-import { Suspense, lazy, useEffect, useRef, useState } from "react";
+import { Suspense, lazy, useCallback, useEffect, useRef, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Topbar from "./components/Topbar";
 import Busca from "./components/Busca";
 import Capa from "./pages/Capa";
+import Abertura, { aberturaJaVista } from "./components/Abertura";
 import EmBreve from "./pages/EmBreve";
 import { RequerLogin } from "./components/Auth";
 import { ErroTela } from "./components/ErroTela";
@@ -47,12 +48,16 @@ export default function App() {
     return () => window.removeEventListener("keydown", f);
   }, []);
 
+  const [abertura, setAbertura] = useState(() => pathname === "/" && !aberturaJaVista() && !window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  const fimAbertura = useCallback(() => setAbertura(false), []);
+
   useEffect(() => {
     if (!window.location.hash) window.scrollTo(0, 0);
   }, [pathname]);
 
   return (
     <>
+      {abertura && <Abertura onFim={fimAbertura} />}
       <Topbar onBuscar={() => setBusca(true)} />
       <Busca aberto={busca} onFechar={() => setBusca(false)} />
       <EfeitoLiberacao />
