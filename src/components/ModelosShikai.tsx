@@ -1,7 +1,10 @@
 import { useState } from "react";
 import type { FormaLib } from "../regras/ficha";
-import type { CtxForma } from "../regras/efeitos-forma";
+import { orcamentoBase, type CtxForma } from "../regras/efeitos-forma";
 import { SHIKAIS_MONTADAS, formaDaShikai } from "../regras/modelos-shikai";
+
+/** Tira do texto antigo as frases que falam de níveis e deixa só o que diz respeito à Bankai. */
+const semNiveis = (t?: string) => (t ?? "").split(/(?<=\.)\s+/).filter((x) => !/^N[íi]veis? \d/.test(x)).join(" ").trim();
 
 interface Props { ctx: CtxForma; onUsar: (forma: Partial<FormaLib>) => void }
 
@@ -12,7 +15,7 @@ export function ModelosShikai({ ctx, onUsar }: Props) {
     <section className="modelos-montados">
       <h3>Shikais prontas, montadas com cartões</h3>
       <p className="ajuda">Cada modelo já vem com as peças, as habilidades, o ponto fraco e o custo de liberação calculado. Você pode mudar tudo depois. As que têm Bankai pronta combinam com ela.</p>
-      {ctx.n < 13 && <p className="regra-cartao">Estes modelos foram pensados para o nível 15. No seu nível o orçamento é menor: depois de usar um, tire algumas peças até a conta fechar.</p>}
+      <p className="regra-cartao">A Shikai começa no nível 5 com 4 PP e cresce até 8 PP no nível 13. O modelo já vem com as peças que cabem no seu nível ({orcamentoBase("shikai", ctx.n)} PP); as que sobram ficam anotadas no texto da forma para você acrescentar ao evoluir.</p>
       <div className="cartas-hab modelos-montados-lista">
         {SHIKAIS_MONTADAS.map((m) => {
           const aberta = aberto === m.id;
@@ -28,7 +31,7 @@ export function ModelosShikai({ ctx, onUsar }: Props) {
                 <>
                   <p className="regra-cartao"><b>Comando:</b> {m.comando}</p>
                   <p className="ajuda">{m.aparencia}</p>
-                  {m.crescimento && <p className="ajuda"><b>Como cresce:</b> {m.crescimento}</p>}
+                  {semNiveis(m.crescimento) && <p className="ajuda"><b>Na Bankai:</b> {semNiveis(m.crescimento)}</p>}
                   <ul className="lista-hab-resumo">
                     {m.habilidades.map((h) => <li key={h.nome}><b>{h.nome}</b> ({h.acao}): {h.regra}</li>)}
                   </ul>

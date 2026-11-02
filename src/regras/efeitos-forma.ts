@@ -310,7 +310,8 @@ export function bonusDoAlvo(forma: SomaForma | null | undefined, a: Alvo) {
 export function orcamentoBase(tipo: FormaLib["tipo"], n: number, extra: { plena?: boolean; origem?: string } = {}): number {
   const piso = (v: number) => Math.max(0, Math.floor(v));
   switch (tipo) {
-    case "shikai": return Math.min(8, 3 + piso((n - 3) / 3));
+    // o Shikai começa no nível 5 com 4 PP e chega ao máximo de 8 PP no nível 13
+    case "shikai": return n < 5 ? 3 : Math.min(8, 4 + piso((n - 5) / 2));
     case "bankai": return 10 + piso(n - 10) + (extra.plena ? 3 : 0);
     case "bankai2": return 17 + piso(n - 10);
     case "resurreccion": return 10 + piso(n - 10) + (extra.origem === "adjuchas" ? 2 : extra.origem === "vasto-lorde" ? 3 : 0);
@@ -393,6 +394,17 @@ export interface Orcamento {
 }
 
 /** Soma do que a forma gastou contra o orçamento. Peças herdadas da Shikai custam metade. */
+/** Custo líquido (gasto menos o que os pontos fracos devolvem) de um conjunto de peças, na mesma conta do orçamento da forma. */
+export function liquidoPecas(pecas: InstEfeito[], total: number, ctx: CtxForma): number {
+  let gasto = 0, devolucao = 0, frenesiDev = 0;
+  for (const p of pecas) {
+    const c = custoPeca(p, ctx);
+    if (p.efeitos.some((e) => e.k === "frenesi" || e.k === "preco")) { if (c < 0) frenesiDev = Math.min(Math.min(9, total), frenesiDev + -c); else gasto += c; continue; }
+    if (c >= 0) gasto += c; else devolucao += -c;
+  }
+  return Math.ceil(gasto - Math.min(devolucao, Math.floor(total / 3)) - frenesiDev);
+}
+
 /** Limite de uso e requisito viram ponto fraco: 1 por cena +1, por descanso curto +2, por descanso longo +3, requisito +1 (no máximo 4 no total). A técnica especial já tem a sua troca. */
 export function devolucaoLimites(habs: { limite?: string; requisito?: string; especial?: unknown }[]): number {
   let t = 0;

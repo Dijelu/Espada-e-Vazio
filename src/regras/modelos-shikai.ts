@@ -1,6 +1,6 @@
 import type { FormaLib, HabForma } from "./ficha";
 import { presetPorId } from "./efeitos-presets";
-import type { CtxForma, InstEfeito } from "./efeitos-forma";
+import { liquidoPecas, orcamentoBase, type CtxForma, type InstEfeito } from "./efeitos-forma";
 import { analisarDano, mediaExtraPecas } from "./teto-dano";
 import { calcularLiberacao } from "./liberacao-forma";
 
@@ -949,10 +949,20 @@ function nomeDaPeca(nome: string, param?: { atr?: string; tipo?: string; n?: num
 /** Monta a Shikai pronta com peças, habilidades, ponto fraco, custo e duração calculados. */
 export function formaDaShikai(m: ModeloShikaiMontado, ctx: CtxForma): Partial<FormaLib> {
   const efeitos: InstEfeito[] = [];
-  for (const e of [...m.efeitos, { id: m.pontoFraco, param: m.pontoFracoParam }]) {
+  const total = orcamentoBase("shikai", ctx.n);
+  const fora: string[] = [];
+  const nova = (e: { id: string; param?: { atr?: string; tipo?: string; n?: number } }) => {
     const p = presetPorId(e.id);
-    if (!p) continue;
-    efeitos.push({ id: novoId(), preset: p.id, nome: nomeDaPeca(p.nome, e.param), texto: p.texto, efeitos: p.monta((e.param ?? {}) as never), pp: p.pp });
+    return p ? { id: novoId(), preset: p.id, nome: nomeDaPeca(p.nome, e.param), texto: p.texto, efeitos: p.monta((e.param ?? {}) as never), pp: p.pp } as InstEfeito : null;
+  };
+  // o ponto fraco entra primeiro (ele devolve pontos); as peças entram na ordem do modelo enquanto couberem no orçamento do nível
+  const fraco = nova({ id: m.pontoFraco, param: m.pontoFracoParam });
+  if (fraco) efeitos.push(fraco);
+  for (const e of m.efeitos) {
+    const x = nova(e);
+    if (!x) continue;
+    if (liquidoPecas([...efeitos, x], total, ctx) <= total) efeitos.push(x);
+    else fora.push(x.nome);
   }
   const cx = { ...ctx, tipo: "shikai", extra: mediaExtraPecas(efeitos, ctx) };
   const habilidades: HabForma[] = m.habilidades.map((h) => {
@@ -961,5 +971,5 @@ export function formaDaShikai(m: ModeloShikaiMontado, ctx: CtxForma): Partial<Fo
     return { id: novoId(), nome: h.nome, acao: h.acao, custo: pr ? `${pr} PR` : "", pr: pr || undefined, dano: h.dano || undefined, modelo: h.modelo || undefined, regra: h.regra, desc: h.desc, especial: (h as { especial?: { condicao: string; duracao: string } }).especial, limite: (h as { especial?: unknown }).especial ? undefined : (/uma vez por cena/i.test(h.regra) ? "cena" as const : undefined), texto: [h.desc, h.regra].filter(Boolean).join("\n") };
   });
   const lib = calcularLiberacao("shikai", efeitos, ctx, {});
-  return { tipo: "shikai", modelo: m.id, nome: m.nome, comando: m.comando, categoria: m.categoria, aparencia: m.aparencia, espirito: m.espirito, efeitos, habilidades, pontoFraco: presetPorId(m.pontoFraco)?.nome ?? "", custo: lib.custoPr ?? 5, duracao: "até você encerrar", texto: m.resumo };
+  return { tipo: "shikai", modelo: m.id, nome: m.nome, comando: m.comando, categoria: m.categoria, aparencia: m.aparencia, espirito: m.espirito, efeitos, habilidades, pontoFraco: presetPorId(m.pontoFraco)?.nome ?? "", custo: lib.custoPr ?? 5, duracao: "até você encerrar", texto: fora.length ? `${m.resumo}\nPeças que ainda não cabem no seu nível e entram quando a Shikai crescer (até 8 PP no nível 13): ${fora.join(", ")}.` : m.resumo };
 }
