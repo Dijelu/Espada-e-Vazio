@@ -515,6 +515,12 @@ export interface HabForma {
   prExpr?: string;
   /** dano ou valor rolável, como "4d10+[ESP]" */
   dano?: string;
+  /** cartão-montagem de onde a habilidade saiu (só para mostrar) */
+  modelo?: string;
+  /** regra do cartão (o que ele faz no jogo) */
+  regra?: string;
+  /** descrição escrita pelo jogador: característica e tema da forma neste ataque */
+  desc?: string;
 }
 
 /** Forma de liberação avançada do personagem (Bankai, Resurrección ou Vollständig). */

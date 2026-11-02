@@ -217,7 +217,7 @@ export function EfeitosForma({ f, tipo, r, mud, onGravar, modo = "tudo" }: Props
 /** Em que "família" de classe a forma cai, para dar o visual certo ao cartão. */
 const exclusiva = (p: Preset) => p.familias.length === 1 && (p.familias[0] === "bankai2" || p.familias[0] === "segunda");
 
-function classeDe(tipo: FormaLib["tipo"]): "shinigami" | "hollow" | "quincy" {
+export function classeDe(tipo: FormaLib["tipo"]): "shinigami" | "hollow" | "quincy" {
   return tipo === "resurreccion" || tipo === "segunda" ? "hollow" : tipo === "vollstandig" ? "quincy" : "shinigami";
 }
 

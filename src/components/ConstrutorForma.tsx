@@ -1,4 +1,5 @@
 import { analisarDano } from "../regras/teto-dano";
+import { CartaoHabilidade } from "./CartoesHabilidade";
 import { calcularLiberacao } from "../regras/liberacao-forma";
 import { EfeitosForma, EscolhaAtributos } from "./EfeitosForma";
 import { SeletorDano } from "./SeletorFormula";
@@ -390,19 +391,11 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
               <div className="caixa">
                 <h3>{ehBankai ? "Habilidades e técnicas" : "Habilidades e técnicas da forma"}</h3>
                 <p className="ajuda">Cada habilidade com PR ou dano vira uma carta nova no Resumo, com botões de usar e rolar.</p>
-                {r.habilidades.map((h) => (
-                  <div className="hab-edit" key={h.id}>
-                    <div className="linha-edit">
-                      <input value={h.nome} onChange={(e) => habil(h.id, { nome: e.target.value })} placeholder="Nome" aria-label="Nome da habilidade" />
-                      <input value={h.acao} onChange={(e) => habil(h.id, { acao: e.target.value })} placeholder="Ação, bônus, reação" aria-label="Ação" />
-                      <input value={h.custo} readOnly={!!h.dano} title={h.dano ? "Calculado pelo dano" : undefined} onChange={(e) => habil(h.id, { custo: e.target.value })} placeholder="Custo (ex.: 20 PR)" aria-label="Custo" />
-                      <input type="number" min={0} value={h.pr ?? ""} readOnly={!!h.dano} title={h.dano ? "Calculado pelo dano" : undefined} onChange={(e) => habil(h.id, { pr: e.target.value === "" ? undefined : Number(e.target.value) })} placeholder="PR do botão" aria-label="PR gastos ao usar" />
-                    </div>
-                    <SeletorDano rotulo="Dano rolável" valor={h.dano ?? ""} ctx={ctxAtual} analise={analisarDano(h.dano, h.acao, ctxAtual, (r.ppExtra ?? 0) > 0)} onChange={(x) => habil(h.id, { dano: x })} />
-                    <textarea rows={3} value={h.texto} onChange={(e) => habil(h.id, { texto: e.target.value })} placeholder="O que faz, dano e alcance" aria-label="Texto da habilidade" />
-                    <button type="button" className="link-perigo" onClick={() => mud({ habilidades: r.habilidades.filter((x) => x.id !== h.id) })}>Remover</button>
-                  </div>
-                ))}
+                <div className="cartas-hab cartoes-montados">
+                  {r.habilidades.map((h) => (
+                    <CartaoHabilidade key={h.id} h={h} tipo={tipo} ctx={ctxAtual} ppExtra={(r.ppExtra ?? 0) > 0} nomeForma={r.nome} onChange={(p) => habil(h.id, p)} onRemover={() => mud({ habilidades: r.habilidades.filter((x) => x.id !== h.id) })} />
+                  ))}
+                </div>
                 <button type="button" className="btn btn-paper" disabled={r.habilidades.length >= LIMITE_HAB[tipo]} onClick={() => mud({ habilidades: [...r.habilidades, { id: novoId(), nome: "", texto: "", custo: "", acao: "Ação" }] })}>Adicionar habilidade</button>
               </div>
             )}

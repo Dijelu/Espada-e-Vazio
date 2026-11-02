@@ -1,8 +1,10 @@
 import { analisarDano } from "../regras/teto-dano";
+import type { CtxForma } from "../regras/efeitos-forma";
 import { useMemo, useState } from "react";
 import { calcular, classePorId, type Ficha, type FormaLib, type HabForma, type TipoForma } from "../regras/ficha";
 import { ACOES_DADOS, HAB_UNICAS, habilidadesDaForma, TIPO_FORMA_NOME, VOLL_PASSIVAS, picksVoll, totalPicks } from "../regras/liberacoes";
 import { EfeitosForma, EscolhaAtributos } from "./EfeitosForma";
+import { CartaoHabilidade, GaleriaCartoes } from "./CartoesHabilidade";
 import { calcularLiberacao } from "../regras/liberacao-forma";
 import { SeletorDano } from "./SeletorFormula";
 import { novoId } from "./FichaPecas";
@@ -213,11 +215,27 @@ const ASSINATURA: Record<string, [string, string]> = {
 };
 
 /** Modelos de habilidade para quem nunca montou uma forma. Os valores crescem com o nível. */
-function modelos(tipo: TipoForma, atr: string): HabForma[] {
+function modelos(tipo: TipoForma, atr: string, ctx: CtxForma): HabForma[] {
   const forte = tipo === "bankai" || tipo === "bankai2" || tipo === "segunda";
   const d = forte ? "d12" : tipo === "shikai" ? "d8" : "d10";
   const peq = tipo === "shikai";
-  const mk = (nome: string, acao: string, pr: number, dano: string, texto: string): HabForma => ({ id: novoId(), nome, acao, custo: pr ? `${pr} PR` : "", pr: pr || undefined, dano: dano || undefined, texto });
+  /** Deixa o dano do cartão dentro do teto do nível: tira dados e baixa o dado até caber. */
+  const caber = (dano: string, acao: string): string => {
+    const m = dano.match(/^(.+?)d(\d+)(.*)$/);
+    if (!m || !analisarDano(dano, acao, ctx)?.erros.length) return dano;
+    const contagens = ["[NIV/2+4]", "[NIV/2+3]", "[NIV/2+2]", "[NIV/2+1]", "[NIV/2]", ...Array.from({ length: Math.floor(ctx.n / 2) + 4 }, (_, k) => String(Math.floor(ctx.n / 2) + 4 - k))];
+    for (const f of [Number(m[2]), 10, 8, 6].filter((x, i, a) => x <= Number(m[2]) && a.indexOf(x) === i)) {
+      for (const c of contagens) {
+        const e = `${c}d${f}${m[3]}`;
+        if (!analisarDano(e, acao, ctx)?.erros.length) return e;
+      }
+    }
+    return dano;
+  };
+  const mk = (nome: string, acao: string, pr: number, dano: string, texto: string): HabForma => {
+    const dn = dano ? caber(dano, acao) : "";
+    return { id: novoId(), nome, acao, custo: pr ? `${pr} PR` : "", pr: pr || undefined, dano: dn || undefined, texto };
+  };
   return [
     mk("Ataque básico", "Ação", forte ? 15 : peq ? 4 : 10, peq ? `[NIV/2+1]${d}+[${atr}]` : `[NIV/2+${forte ? 4 : 3}]${d}+[${atr}]`, "Um ataque do tema da sua forma. Descreva como ele se manifesta."),
     mk("Golpe em área", "Ação", peq ? 8 : 20, peq ? `[NIV/2+2]${d}+[${atr}]` : `[NIV/2+4]${d}+[${atr}]`, "Atinge criaturas numa área de 6 metros de raio. Salvaguarda de Destreza (CD 8 + proficiência + atributo): dano na falha, metade no sucesso."),
@@ -250,14 +268,14 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
   const passo = passos[i];
   const limite = picksVoll(f.classe, f.nivel);
   const usados = totalPicks(r.picks);
-  const lista = useMemo(() => modelos(tipo, atr), [tipo, atr]);
+  const lista = useMemo(() => modelos(tipo, atr, ctxAtual), [tipo, atr, ctxAtual]);
   const assinatura = ASSINATURA[f.subclasse];
 
   const maxHab = LIMITE_HAB[tipo];
   const cheio = r.habilidades.length >= maxHab;
   const jaTem = (nome: string) => !!nome && r.habilidades.some((x) => x.nome === nome);
   const addHab = (h: HabForma) => {
-    if (cheio || jaTem(h.nome)) return;
+    if (cheio || (h.nome && jaTem(h.nome))) return;
     mud({ habilidades: [...r.habilidades, { ...h, id: novoId() }] });
   };
   const tracos = r.traco ? r.traco.split("\n").filter((x) => x.trim()) : [];
@@ -492,47 +510,13 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
                 {ATRIBUTOS_DANO.map((a) => <option key={a.v} value={a.v}>{a.n}</option>)}
               </select>
             </label>
-            <p className="ajuda">Toque num modelo para adicionar. O dano já considera o seu nível. Limite: {r.habilidades.length}/{maxHab} {cheio ? "(remova uma para trocar)" : ""}</p>
-            <div className="chips">
-              {lista.map((h) => <button key={h.nome} type="button" className="chip chip-btn" disabled={cheio || jaTem(h.nome)} onClick={() => addHab(h)}>{h.nome} · {h.acao}{h.pr ? ` · ${h.pr} PR` : ""}</button>)}
-              <button type="button" className="chip chip-btn" disabled={cheio} onClick={() => addHab({ id: "", nome: "", texto: "", custo: "", acao: "Ação" })}>+ Em branco</button>
-            </div>
-            {r.habilidades.map((h) => (
-              <div className="hab-edit" key={h.id}>
-                <div className="linha-edit">
-                  <input value={h.nome} onChange={(e) => habil(h.id, { nome: e.target.value })} placeholder="Nome" aria-label="Nome" />
-                  <input value={h.acao} onChange={(e) => habil(h.id, { acao: e.target.value })} placeholder="Ação" aria-label="Ação" />
-                  <input type="number" min={0} value={h.pr ?? ""} readOnly={!!h.dano} title={h.dano ? "Calculado pelo dano" : undefined} onChange={(e) => { const v = e.target.value === "" ? undefined : Number(e.target.value); habil(h.id, { pr: v, custo: v ? `${v} PR` : "" }); }} placeholder="PR" aria-label="PR" />
-                </div>
-                <SeletorDano rotulo="Dano" valor={h.dano ?? ""} ctx={ctxAtual} analise={analisarDano(h.dano, h.acao, ctxAtual, (r.ppExtra ?? 0) > 0)} onChange={(x) => habil(h.id, { dano: x })} />
-                <textarea rows={2} value={h.texto} onChange={(e) => habil(h.id, { texto: e.target.value })} aria-label="O que faz" />
-                <button type="button" className="link-perigo" onClick={() => mud({ habilidades: r.habilidades.filter((x) => x.id !== h.id) })}>Remover</button>
-              </div>
-            ))}
-          </>
-        )}
-
-        {passo.id === "custo" && (
-          <div className="liberacao-calculada">
-            <div className="duas">
-              <div className="selo-grande"><small>Custo de liberação</small><b>{lib.custoPr ?? r.custo} PR</b></div>
-              <div className="selo-grande"><small>Duração</small><b>{lib.duracaoTexto}</b></div>
-            </div>
-            <ul className="conta-liberacao">{lib.conta.map((c) => <li key={c}>{c}</li>)}</ul>
-            <p className="ajuda">Um turno dura 6 segundos: 10 turnos são 1 minuto. No combate, o botão "Novo turno" conta a duração sozinho e avisa quando a forma termina.</p>
-            {(r.efeitos?.length ?? 0) === 0 && <p className="aviso-mini">Sem peças de efeito, o custo e a duração ficam como no modelo. Escolha peças no passo anterior para o cálculo valer.</p>}
-          </div>
-        )}
-
-        {passo.id === "fraqueza" && (
-          <>
-            <EfeitosForma f={f} tipo={tipo} r={r} mud={mud} onGravar={onGravar} modo="fracos" />
-            <label className="campo">Ponto fraco, com as suas palavras
-              <textarea rows={3} value={r.pontoFraco} onChange={(e) => mud({ pontoFraco: e.target.value })} placeholder="Como esse preço aparece na história e na mesa" />
-            </label>
-            <p className="ajuda">Ideias de texto:</p>
-            <div className="filtros-pecas">
-              {[...FRAQUEZAS[tipo], ...FRAQUEZAS_EXTRA[tipo]].map((t) => <button key={t} type="button" className="chip chip-btn" onClick={() => mud({ pontoFraco: t })}>{t}</button>)}
+            <p className="ajuda">Escolha um cartão neutro e monte a sua habilidade a partir dele. Depois escreva, na descrição, a característica e o tema da sua forma neste ataque. Limite: {r.habilidades.length}/{maxHab} {cheio ? "(remova um para trocar)" : ""}</p>
+            <GaleriaCartoes modelos={lista} tipo={tipo} ctx={ctxAtual} cheio={cheio} jaTem={jaTem} onUsar={(h) => addHab({ ...h, modelo: h.nome, regra: h.texto, desc: "" })} />
+            {r.habilidades.length > 0 && <h4 className="sub-passivas">Seus cartões</h4>}
+            <div className="cartas-hab cartoes-montados">
+              {r.habilidades.map((h) => (
+                <CartaoHabilidade key={h.id} h={h} tipo={tipo} ctx={ctxAtual} ppExtra={(r.ppExtra ?? 0) > 0} nomeForma={r.nome} onChange={(p) => habil(h.id, p)} onRemover={() => mud({ habilidades: r.habilidades.filter((x) => x.id !== h.id) })} />
+              ))}
             </div>
           </>
         )}
