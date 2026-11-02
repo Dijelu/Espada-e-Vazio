@@ -52,20 +52,23 @@ function lerResolvido(txt: string) {
   return { qtd, faces, media: media + fixo, fixo };
 }
 
-export function analisarDano(expr: string | undefined, acao: string, ctx: CtxForma, comAval = false): AnaliseDano | null {
+/** Técnica especial (1 uso por cena + condição para quem usa): o teto sobe 40% e cabem mais 3 dados. */
+export const BONUS_ESPECIAL = 1.4;
+
+export function analisarDano(expr: string | undefined, acao: string, ctx: CtxForma, comAval = false, especial = false): AnaliseDano | null {
   const txt = (expr ?? "").replace(/\s+/g, "");
   if (!txt || !/\d+d\d+/.test(txt) && !/\[.*\]d\d+/.test(txt)) return null;
   const resolvido = resolverDano(txt, { nivel: ctx.n } as never, { prof: ctx.prof, atr: ctx.atr } as never);
   if (!/\d+d\d+/.test(resolvido)) return null;
   const { qtd, faces, media, fixo } = lerResolvido(resolvido);
   const tipo = tipoDeAcao(acao);
-  const ref = referenciaDano(ctx) * FATOR[tipo];
+  const ref = referenciaDano(ctx) * FATOR[tipo] * (especial ? BONUS_ESPECIAL : 1);
   const custoMax = CUSTO_MAX[tipo];
   const teto = ref * (comAval ? 1.25 : 1);
   const bruto = Math.max(PISO, (media / ref - 0.5) / 0.5);
   const custoPr = Math.max(1, Math.min(custoMax, Math.ceil(custoMax * bruto)));
-  const qtdMax = Math.floor(ctx.n / 2) + 5;
-  const facesMax = custoPr <= custoMax / 2 ? 12 : 10;
+  const qtdMax = Math.floor(ctx.n / 2) + 5 + (especial ? 3 : 0);
+  const facesMax = especial || custoPr <= custoMax / 2 ? 12 : 10;
   const bonusMax = maiorAtr(ctx) + ctx.prof;
   const erros: string[] = [];
   if (qtd > qtdMax) erros.push(`Dados demais: o máximo no seu nível é ${qtdMax} (metade do nível mais 5).`);

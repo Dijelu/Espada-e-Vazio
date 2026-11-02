@@ -204,7 +204,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
   const q = busca.trim().toLowerCase();
   const bankais = BANKAIS.filter((b) => !q || b.nome.toLowerCase().includes(q));
 
-  const errosDano = r.habilidades.filter((h) => !h.fixa).flatMap((h) => (analisarDano(h.dano, h.acao, ctxAtual, (r.ppExtra ?? 0) > 0)?.erros ?? []).map((e) => `${h.nome || "Habilidade"}: ${e}`));
+  const errosDano = r.habilidades.filter((h) => !h.fixa).flatMap((h) => (analisarDano(h.dano, h.acao, ctxAtual, (r.ppExtra ?? 0) > 0, !!h.especial)?.erros ?? []).map((e) => `${h.nome || "Habilidade"}: ${e}`));
   const podeSalvar = r.nome.trim().length > 0 && errosDano.length === 0;
 
   return (
@@ -484,6 +484,19 @@ const formasDefinidas = (f: Ficha) =>
 function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg }: { f: Ficha; c: Calculo; r: Rolagens; alterar: (p: Partial<Ficha>) => void; forma: FormaLib; h: ItemAcao; ativa: boolean; onMsg: (m: string) => void }) {
   const dano = h.dano ? danoDaAcao(h.dano, f, c, forma) : "";
   const gasta = h.prExpr ? Number(resolverDano(h.prExpr, f, c)) || (h.pr ?? 0) : h.pr ?? 0;
+  const esp = (h as { especial?: { condicao: string; duracao: string } }).especial;
+  const chaveEsp = `esp:${h.id}`;
+  const espUsada = !!esp && !!(f.estado.usos ?? {})[chaveEsp];
+  const usar = () => {
+    if (esp) {
+      const condicoes = f.estado.condicoes.includes(esp.condicao) ? f.estado.condicoes : [...f.estado.condicoes, esp.condicao];
+      alterar({ prAtual: Math.max(0, f.prAtual - gasta), estado: { ...f.estado, condicoes, usos: { ...(f.estado.usos ?? {}), [chaveEsp]: 1 } } });
+      onMsg(`${h.nome}: técnica especial usada${gasta ? ` (${gasta} PR)` : ""}. Você ficou ${esp.condicao} ${esp.duracao}.`);
+    } else {
+      alterar({ prAtual: Math.max(0, f.prAtual - gasta) });
+      onMsg(`${h.nome}: ${gasta} PR gastos.`);
+    }
+  };
   return (
     <article className={`carta-hab acao-carta ${ativa ? "" : "travada"}`}>
       <small className="ajuda">{TIPO_FORMA_NOME[forma.tipo]} · {forma.nome}</small>
@@ -496,13 +509,10 @@ function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg }: { f: Ficha; c: 
             <button
               type="button"
               className="btn-mini"
-              disabled={!ativa || f.prAtual < gasta}
-              onClick={() => {
-                alterar({ prAtual: Math.max(0, f.prAtual - gasta) });
-                onMsg(`${h.nome}: ${gasta} PR gastos.`);
-              }}
+              disabled={!ativa || f.prAtual < gasta || espUsada}
+              onClick={usar}
             >
-              Usar ({gasta} PR)
+              {espUsada ? "Já usada nesta cena" : esp ? `Usar técnica especial (${gasta} PR)` : `Usar (${gasta} PR)`}
             </button>
           )}
           {/\d/.test(dano) && (

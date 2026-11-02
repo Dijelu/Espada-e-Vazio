@@ -7,7 +7,12 @@ import { SeletorDano } from "./SeletorFormula";
 const ACOES = ["Ação", "Ação bônus", "Reação"];
 
 /** O texto que a ficha mostra: a descrição do jogador e, depois, a regra do cartão. */
-export const comporTexto = (desc: string, regra: string) => [desc.trim(), regra.trim()].filter(Boolean).join("\n");
+export const comporTexto = (desc: string, regra: string, especial?: HabForma["especial"]) =>
+  [desc.trim(), regra.trim(), especial ? `Técnica especial: 1 uso por cena. Depois de usar, você fica ${especial.condicao} ${especial.duracao}.` : ""].filter(Boolean).join("\n");
+
+/** Condições que a técnica especial pode cobrar de quem a usa. */
+export const CONDICOES_ESPECIAL = ["Esgotado", "Amedrontado", "Atordoado", "Caído", "Cego", "Surdo", "Distorcido", "Queimado", "Sangramento", "Congelado", "Preso", "Agarrado"];
+export const DURACOES_ESPECIAL = ["até o fim do próximo turno", "até o fim da cena", "até um descanso curto", "até um descanso longo"];
 
 interface GaleriaProps {
   modelos: HabForma[];
@@ -62,7 +67,7 @@ interface CartaoProps {
 
 /** Cartão de habilidade já montado: nome, ação, dano, custo calculado e a descrição do jogador. */
 export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, onChange, onRemover }: CartaoProps) {
-  const a = h.fixa ? null : analisarDano(h.dano, h.acao, ctx, ppExtra);
+  const a = h.fixa ? null : analisarDano(h.dano, h.acao, ctx, ppExtra, !!h.especial);
   const novo = h.regra !== undefined || h.desc !== undefined;
   const regra = h.regra ?? "";
   const desc = novo ? (h.desc ?? "") : h.texto;
@@ -85,13 +90,42 @@ export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, onChange, o
       </div>
       <SeletorDano rotulo="Dano" valor={h.dano ?? ""} ctx={ctx} analise={a} onChange={(x) => onChange({ dano: x })} />
       {temDano && <p className="ajuda">O custo em PR é calculado pelo dano: quanto mais forte o golpe, mais PR.</p>}
+      {temDano && !h.fixa && (
+        <div className="especial-cartao">
+          <label className="check">
+            <input
+              type="checkbox"
+              checked={!!h.especial}
+              onChange={(e) => {
+                const esp = e.target.checked ? { condicao: "Esgotado", duracao: "até o fim da cena" } : undefined;
+                onChange({ especial: esp, ...(novo ? { texto: comporTexto(h.desc ?? "", regra, esp) } : {}) });
+              }}
+            />
+            Técnica especial: só 1 vez por cena e, depois, você recebe uma condição. Em troca, o dano máximo sobe 40%.
+          </label>
+          {h.especial && (
+            <div className="duas">
+              <label className="campo">Condição que você recebe
+                <select value={h.especial.condicao} onChange={(e) => { const esp = { ...h.especial!, condicao: e.target.value }; onChange({ especial: esp, ...(novo ? { texto: comporTexto(h.desc ?? "", regra, esp) } : {}) }); }}>
+                  {CONDICOES_ESPECIAL.map((c) => <option key={c} value={c}>{c}</option>)}
+                </select>
+              </label>
+              <label className="campo">Por quanto tempo
+                <select value={h.especial.duracao} onChange={(e) => { const esp = { ...h.especial!, duracao: e.target.value }; onChange({ especial: esp, ...(novo ? { texto: comporTexto(h.desc ?? "", regra, esp) } : {}) }); }}>
+                  {DURACOES_ESPECIAL.map((c) => <option key={c} value={c}>{c}</option>)}
+                </select>
+              </label>
+            </div>
+          )}
+        </div>
+      )}
       {regra && <p className="regra-cartao"><b>Regra do cartão:</b> {regra}</p>}
       <label className="campo">Descrição do ataque
         <textarea
           rows={4}
           value={desc}
           placeholder={`Escreva como a característica e o tema d${tipo === "shikai" ? "a sua Shikai" : "a sua forma"}${nomeForma ? ` (${nomeForma})` : ""} aparecem neste ataque: o que se vê, o que se sente, como atinge o alvo.`}
-          onChange={(e) => onChange(novo ? { desc: e.target.value, texto: comporTexto(e.target.value, regra) } : { texto: e.target.value })}
+          onChange={(e) => onChange(novo ? { desc: e.target.value, texto: comporTexto(e.target.value, regra, h.especial) } : { texto: e.target.value })}
         />
       </label>
       <button type="button" className="link-perigo" onClick={onRemover}>Remover este cartão</button>

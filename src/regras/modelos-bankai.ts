@@ -5,7 +5,7 @@ import type { CtxForma, InstEfeito } from "./efeitos-forma";
 import { analisarDano } from "./teto-dano";
 import { calcularLiberacao } from "./liberacao-forma";
 
-export interface HabModelo { nome: string; acao: string; dano: string; regra: string; desc: string; modelo: string }
+export interface HabModelo { nome: string; acao: string; dano: string; regra: string; desc: string; modelo: string; especial?: { condicao: string; duracao: string } }
 export interface FormaModelo {
   nome: string; comando: string; aparencia: string; estilo?: "potencializadora" | "transformadora";
   efeitos: { id: string; param?: { atr?: string; tipo?: string; n?: number } }[];
@@ -1371,7 +1371,8 @@ export const MODELOS_BANKAI: ModeloMontado[] = [
     "nome": "Hakka no Togame: Zero Absoluto",
     "acao": "Ação",
     "dano": "[NIV/2+4]d10+[ESP]",
-    "regra": "Uma vez por cena. Área de 6 m ao redor de você: salvaguarda de Constituição; na falha, dano total e Congelado até o fim do próximo turno do alvo; no sucesso, metade. Você fica Esgotado ao fim da cena.",
+    "regra": "Área de 6 m ao redor de você: salvaguarda de Constituição; na falha, dano total e Congelado até o fim do próximo turno do alvo; no sucesso, metade.",
+    "especial": { "condicao": "Esgotado", "duracao": "até o fim da cena" },
     "desc": "A lâmina toca o chão e tudo ao redor vira cristal, num silêncio de inverno.",
     "modelo": "Técnica final"
    },
@@ -1403,6 +1404,168 @@ export const MODELOS_BANKAI: ModeloMontado[] = [
   "ppGasto": 16
  },
  "verdadeira": null
+},
+{
+ "id": "kyoka-alter-ego",
+ "nome": "Kyōka Suigetsu: Alter-ego",
+ "dono": "Sōsuke Aizen (versão da mesa)",
+ "resumo": "O alter-ego da Kyōka Suigetsu: você se divide em reflexos que agem por você, e ninguém sabe qual é o real.",
+ "tema": "Ilusão e reflexos",
+ "bankai": {
+  "nome": "Kyōka Suigetsu: Alter-ego",
+  "comando": "Bankai. Kyōka Suigetsu, mostre o outro eu.",
+  "estilo": "transformadora",
+  "aparencia": "O ar ao redor vira um espelho calmo; várias cópias suas surgem lado a lado, todas sorrindo do mesmo jeito, e o som da lâmina vem sempre de algum outro lugar.",
+  "efeitos": [
+   {
+    "id": "bk-clones"
+   },
+   {
+    "id": "bk-passo-clones"
+   },
+   {
+    "id": "bk-concentrado"
+   },
+   {
+    "id": "bk-sentidos"
+   },
+   {
+    "id": "bk-forca",
+    "param": {
+     "atr": "men"
+    }
+   },
+   {
+    "id": "bk-dominio"
+   },
+   {
+    "id": "bk-reacao"
+   }
+  ],
+  "pontoFraco": "pg-vista",
+  "ppGasto": 16,
+  "nota": "Versão da mesa: o Aizen não mostra uma Bankai na obra. Esta é inspirada na ideia de que a Bankai é o alter-ego da Zanpakutō. Precisa de aprovação do Mestre.",
+  "habilidades": [
+   {
+    "nome": "Ilusão Completa",
+    "acao": "Ação",
+    "dano": "[NIV/2+2]d8+[MEN]",
+    "regra": "Salvaguarda de Mente: na falha, dano total e Enfeitiçado até o fim do próximo turno do alvo, que ataca o reflexo errado; no sucesso, metade.",
+    "desc": "Você sorri e o alvo vê, com todos os sentidos, o que você quer que veja.",
+    "modelo": "Ataque básico"
+   },
+   {
+    "nome": "Troca de Reflexo",
+    "acao": "Reação",
+    "dano": "",
+    "regra": "Quando um ataque acerta você, troque de lugar com um clone seu a até 9 m: o ataque acerta o clone e some com ele.",
+    "desc": "Onde você estava, só um reflexo que se desfaz como água.",
+    "modelo": "Barreira"
+   },
+   {
+    "nome": "Mundo de Espelhos",
+    "acao": "Ação bônus",
+    "dano": "4d8+[MEN]",
+    "regra": "Cone de 9 m: salvaguarda de Mente; na falha, dano total e Distorcido até o fim do próximo turno do alvo; no sucesso, metade.",
+    "desc": "Cada superfície devolve um você diferente, e o chão deixa de parecer chão.",
+    "modelo": "Reforço"
+   },
+   {
+    "nome": "Despertar do Alter-ego",
+    "acao": "Ação",
+    "dano": "[NIV/2+4]d12+[MEN]",
+    "regra": "Todos os seus clones atacam ao mesmo tempo o alvo à sua escolha a até 9 m: salvaguarda de Mente; na falha, dano total e Atordoado até o fim do próximo turno do alvo; no sucesso, metade.",
+    "desc": "Todos os reflexos erguem a lâmina no mesmo instante e nenhum deles é falso.",
+    "modelo": "Técnica final",
+    "especial": {
+     "condicao": "Esgotado",
+     "duracao": "até o fim da cena"
+    }
+   }
+  ]
+ },
+ "verdadeira": null
+},
+{
+ "id": "kamishini-no-yari",
+ "nome": "Kamishini no Yari",
+ "dono": "Gin Ichimaru",
+ "resumo": "A lança que se estica sem fim e desfaz o que toca, e um golpe que explode por dentro.",
+ "tema": "Alcance e dissolução",
+ "bankai": {
+  "nome": "Kamishini no Yari",
+  "comando": "Bankai. Kamishini no Yari.",
+  "estilo": "potencializadora",
+  "aparencia": "A lâmina curta vira uma ponta estreita que corre pelo ar numa velocidade que o olho não acompanha. Gin continua com o mesmo sorriso, e o cabo some na mão dele.",
+  "efeitos": [
+   {
+    "id": "bk-corte-distante"
+   },
+   {
+    "id": "bk-perfura"
+   },
+   {
+    "id": "bk-fio-mortal"
+   },
+   {
+    "id": "bk-veloz"
+   },
+   {
+    "id": "bk-precisao"
+   },
+   {
+    "id": "bk-reacao"
+   },
+   {
+    "id": "bk-forca",
+    "param": {
+     "atr": "des"
+    }
+   }
+  ],
+  "pontoFraco": "pg-tiro",
+  "ppGasto": 16,
+  "nota": "Os detalhes dessa Bankai vêm de fontes de fãs e a obra mostra pouco dela. Trate como adaptação da mesa e confirme com o Mestre.",
+  "habilidades": [
+   {
+    "nome": "Estocada Infinita",
+    "acao": "Ação",
+    "dano": "[NIV/2+3]d8+[DES]",
+    "regra": "Golpe à distância (alcance estendido); o alvo não ganha bônus de cobertura parcial.",
+    "desc": "A ponta cresce a cada instante e chega antes de o som voltar.",
+    "modelo": "Ataque básico"
+   },
+   {
+    "nome": "Desfazer Molecular",
+    "acao": "Ação bônus",
+    "dano": "3d8+[DES]",
+    "regra": "Depois de acertar um golpe nesta rodada, o alvo faz salvaguarda de Constituição; na falha, sofre dano total e Sangramento até o fim do próximo turno dele; no sucesso, metade.",
+    "desc": "Onde a ponta toca, a matéria vira poeira fina.",
+    "modelo": "Reforço"
+   },
+   {
+    "nome": "Recolher a Lâmina",
+    "acao": "Reação",
+    "dano": "",
+    "regra": "Quando um inimigo entra a 3 m, a lâmina volta de uma vez e você faz um ataque corpo a corpo contra ele, com +2 no acerto.",
+    "desc": "Num estalo a lança já estava de volta na mão.",
+    "modelo": "Barreira"
+   },
+   {
+    "nome": "Butō: Renjin",
+    "acao": "Ação",
+    "dano": "[NIV/2+3]d12+[DES]",
+    "regra": "Um golpe que injeta um fragmento no alvo e o detona por dentro: ignora toda a redução de dano do alvo. Salvaguarda de Constituição; na falha, dano total e Sangramento até o fim do próximo turno do alvo; no sucesso, metade.",
+    "desc": "A lâmina entra, solta um pedaço, e o corpo do inimigo responde por dentro.",
+    "modelo": "Técnica final",
+    "especial": {
+     "condicao": "Esgotado",
+     "duracao": "até o fim da cena"
+    }
+   }
+  ]
+ },
+ "verdadeira": null
 }
 ];
 
@@ -1430,9 +1593,9 @@ export function formaDoModelo(m: ModeloMontado, qual: "bankai" | "bankai2", ctx:
     efeitos.push({ id: novoId(), preset: p.id, nome: nomeDaPeca(p.nome, e.param), texto: p.texto, efeitos: p.monta(par as never), pp: p.pp });
   }
   const habilidades: HabForma[] = base.habilidades.map((h) => {
-    const a = h.dano ? analisarDano(h.dano, h.acao, ctx) : null;
+    const a = h.dano ? analisarDano(h.dano, h.acao, ctx, false, !!h.especial) : null;
     const pr = a ? a.custoPr : 0;
-    return { id: novoId(), nome: h.nome, acao: h.acao, custo: pr ? `${pr} PR` : "", pr: pr || undefined, dano: h.dano || undefined, modelo: h.modelo || undefined, regra: h.regra, desc: h.desc, texto: [h.desc, h.regra].filter(Boolean).join("\n") };
+    return { id: novoId(), nome: h.nome, acao: h.acao, custo: pr ? `${pr} PR` : "", pr: pr || undefined, dano: h.dano || undefined, modelo: h.modelo || undefined, regra: h.regra, desc: h.desc, especial: h.especial, texto: [h.desc, h.regra, h.especial ? `Técnica especial: 1 uso por cena. Depois de usar, você fica ${h.especial.condicao} ${h.especial.duracao}.` : ""].filter(Boolean).join("\n") };
   });
   const lib = calcularLiberacao(qual, efeitos, ctx, {});
   const ponto = presetPorId(base.pontoFraco);

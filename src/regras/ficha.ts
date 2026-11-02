@@ -523,6 +523,8 @@ export interface HabForma {
   desc?: string;
   /** técnica de regra do livro: dano e custo fixos, fora da conferência do teto */
   fixa?: boolean;
+  /** técnica especial: 1 uso por cena; em troca, você recebe uma condição e o teto de dano sobe */
+  especial?: { condicao: string; duracao: string };
 }
 
 /** Forma de liberação avançada do personagem (Bankai, Resurrección ou Vollständig). */

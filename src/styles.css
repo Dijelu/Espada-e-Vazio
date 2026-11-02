@@ -1304,3 +1304,6 @@ img, video, svg { max-width: 100%; }
 .modelos-montados .travada { opacity: .6; }
 .lista-hab-resumo { margin: 4px 0; padding-left: 18px; font-size: 14px; }
 .lista-hab-resumo li { margin-bottom: 4px; }
+
+.especial-cartao { padding: 8px 10px; border: 1px dashed var(--line); border-radius: 6px; display: grid; gap: 8px; }
+.especial-cartao .check { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; }
