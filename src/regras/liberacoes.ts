@@ -192,13 +192,15 @@ export const ETAPAS_SEGUNDA = ["ter-jejum", "ter-pf", "ter-duelo"];
 export const segundaLiberada = (f: { treinos?: { feitos: string[] } }) => ETAPAS_SEGUNDA.every((e) => f.treinos?.feitos.includes(e));
 
 /** Forma pendente de configurar (ainda sem nome, ou com habilidades únicas faltando). */
-export function formaPendente(f: { classe: string; nivel: number; formas?: Partial<Record<TipoForma, FormaLib>>; treinos?: { feitos: string[]; caminhoBankai?: string } }, tipoClasse: string | undefined): TipoForma | null {
+export function formaPendente(f: { classe: string; nivel: number; formas?: Partial<Record<TipoForma, FormaLib>>; treinos?: { feitos: string[]; caminhoBankai?: string } }, tipoClasse: string | undefined, treinoOk: (t: TipoForma) => boolean = () => true): TipoForma | null {
   for (const t of ["shikai", "bankai", "bankai2", "resurreccion", "vollstandig", "segunda"] as TipoForma[]) {
     if (t === "bankai2" && f.treinos?.caminhoBankai !== "verdadeira") continue;
     const n = nivelLiberacao(f.classe, tipoClasse, t);
     if (!n || f.nivel < n) continue;
     if (t === "segunda" && !segundaLiberada(f)) continue;
     const forma = f.formas?.[t];
+    // sem o treinamento concluído, a montagem ainda não é oferecida
+    if ((!forma || !forma.nome.trim()) && !treinoOk(t)) continue;
     if (!forma || !forma.nome.trim()) return t;
     if (t === "vollstandig" && totalPicks(forma.picks) < picksVoll(f.classe, f.nivel)) return t;
   }

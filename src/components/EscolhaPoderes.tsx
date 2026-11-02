@@ -11,6 +11,7 @@ import {
   slotsTalento,
   talentoLiberado,
   talentosDe,
+  treinoConcluido,
   tecnicasConhecidas,
 } from "../regras/catalogo";
 import { classePorId, type Ficha } from "../regras/ficha";
@@ -45,7 +46,7 @@ export function pendencias(f: Ficha): Pendencias {
     talentos: Math.max(0, slotsTalento(f.nivel) - tals),
     kidos: Math.max(0, kidosConhecidos(f.classe, f.nivel) - f.kidos.length),
     tecnicas: Math.max(0, tecnicasConhecidas(f.classe, f.nivel) - f.tecnicasReishi.length),
-    forma: formaPendente(f, classePorId(f.classe)?.tipo) ? 1 : 0,
+    forma: formaPendente(f, classePorId(f.classe)?.tipo, (k) => !["shikai", "bankai", "resurreccion"].includes(k) || treinoConcluido(f, k)) ? 1 : 0,
     subclasse: subclassePendente(f) ? 1 : 0,
     melhorias: melhoriasPendentes(f),
     schrift: schriftPendente(f) ? 1 : 0,

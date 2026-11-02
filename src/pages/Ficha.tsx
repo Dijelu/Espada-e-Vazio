@@ -16,7 +16,7 @@ import { AbaInvocacoes } from "../components/Invocacoes";
 import { BotaoRolar, PainelRolagens, useRolagens, type Rolagens } from "../components/Rolador";
 import { AbaTreinamento } from "../components/Treinamento";
 import { ataqueMelhorado } from "../regras/melhorias";
-import { ARMAS, KIDOS, talentosDe } from "../regras/catalogo";
+import { ARMAS, KIDOS, talentosDe, treinoConcluido } from "../regras/catalogo";
 import { lerFicha, salvarFicha } from "../lib/fichas";
 import { guardar, ler as lerLocal, marcarEnviado } from "../lib/rascunho";
 import { repararFicha } from "../regras/reparo";
@@ -44,6 +44,9 @@ import {
   type Ficha as TFicha,
   type TipoForma,
 } from "../regras/ficha";
+
+/** Formas que só podem ser montadas depois do treinamento de liberação. */
+const TREINA_ANTES: TipoForma[] = ["shikai", "bankai", "resurreccion"];
 
 const ABAS = ["Resumo", "Combate", "Invocações", "Perícias", "Poderes", "Treinamento", "Evolução", "Notas"] as const;
 type Aba = (typeof ABAS)[number];
@@ -143,7 +146,7 @@ export default function Ficha() {
       setSubAberta(true);
       return;
     }
-    const t = formaPendente(x, classePorId(x.classe)?.tipo);
+    const t = formaPendente(x, classePorId(x.classe)?.tipo, (k) => !TREINA_ANTES.includes(k) || treinoConcluido(x, k === "resurreccion" ? "resurreccion" : k));
     if (t) setConstruir(t);
   }, []);
 
@@ -494,7 +497,7 @@ export default function Ficha() {
           onEscolher={(nome) => {
             alterar({ subclasse: nome });
             setSubAberta(false);
-            const t = formaPendente({ ...f, subclasse: nome }, classePorId(f.classe)?.tipo);
+            const t = formaPendente({ ...f, subclasse: nome }, classePorId(f.classe)?.tipo, (k) => !TREINA_ANTES.includes(k) || treinoConcluido(f, k));
             if (t) setConstruir(t);
           }}
         />
@@ -627,6 +630,8 @@ function Evolucao({ f, c, alterar, subir, onForma, onSub }: { f: TFicha; c: Retu
               <h3>{TIPO_FORMA_NOME[t]}</h3>
               {f.nivel < nv ? (
                 <p className="ajuda">Disponível a partir do nível {nv}.</p>
+              ) : TREINA_ANTES.includes(t) && !forma?.nome && !treinoConcluido(f, t) ? (
+                <p className="ajuda">Conclua o treinamento de {TIPO_FORMA_NOME[t]}, na aba Treinamento, para montar a sua forma.</p>
               ) : t === "segunda" && !segundaLiberada(f) ? (
                 <p className="ajuda">Conclua o treinamento da Segunda Etapa, na aba Treinamento, para montar a sua forma.</p>
               ) : forma?.nome ? (
@@ -634,7 +639,7 @@ function Evolucao({ f, c, alterar, subir, onForma, onSub }: { f: TFicha; c: Retu
               ) : (
                 <p>Você já pode ter a sua {TIPO_FORMA_NOME[t]}. Escolha um modelo do livro ou monte a sua.</p>
               )}
-              {f.nivel >= nv && (t !== "segunda" || segundaLiberada(f)) && (
+              {f.nivel >= nv && (t !== "segunda" || segundaLiberada(f)) && (!TREINA_ANTES.includes(t) || !!forma?.nome || treinoConcluido(f, t)) && (
                 <button type="button" className="btn btn-red" onClick={() => onForma(t)}>
                   {forma?.nome ? "Editar" : "Montar"} {TIPO_FORMA_NOME[t]}
                 </button>
