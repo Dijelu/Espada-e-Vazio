@@ -1,3 +1,4 @@
+import { resumoAnalise, type AnaliseDano } from "../regras/teto-dano";
 import { useState } from "react";
 import { valor, type CtxForma } from "../regras/efeitos-forma";
 import { resolverDano } from "../regras/liberacoes";
@@ -95,6 +96,8 @@ interface PropsDano {
   valor: string;
   onChange: (v: string) => void;
   ctx?: CtxForma;
+  /** limites e custo calculados (teto de dano) */
+  analise?: AnaliseDano | null;
 }
 
 const DADOS = [4, 6, 8, 10, 12, 20];
@@ -102,7 +105,7 @@ const dentro = (formula: string) => formula.replace(/\[([A-Z]{3,4})\]/g, "$1");
 const embrulha = (formula: string) => (/^\d+$/.test(formula) ? formula : `[${dentro(formula)}]`);
 
 /** Dano em dados escolhido por seleção: quantidade de dados (fixa ou por nível/proficiência), tipo de dado e bônus. */
-export function SeletorDano({ rotulo = "Dano", valor: v, onChange, ctx }: PropsDano) {
+export function SeletorDano({ rotulo = "Dano", valor: v, onChange, ctx, analise }: PropsDano) {
   const txt = (v ?? "").replace(/\s+/g, "");
   const m = /^(\[[^\]]+\]|\d+)d(\d+)(?:\+(\[[^\]]+\]|\d+))?$/.exec(txt);
   const [livre, setLivre] = useState(false);
@@ -148,11 +151,13 @@ export function SeletorDano({ rotulo = "Dano", valor: v, onChange, ctx }: PropsD
       <SeletorValor rotulo="Quantidade de dados" valor={q} semAtributos onChange={(x) => onChange(gera(x === "0" ? "1" : x, d, b))} ctx={ctx} />
       <label className="soma-sel">Dado
         <select aria-label={`${rotulo}: tipo de dado`} value={d} onChange={(e) => onChange(gera(q, Number(e.target.value), b))}>
-          {DADOS.map((x) => <option key={x} value={x}>d{x}</option>)}
+          {DADOS.filter((x) => !analise || x <= analise.facesMax || x === d).map((x) => <option key={x} value={x}>d{x}</option>)}
         </select>
       </label>
       <SeletorValor rotulo="Bônus fixo no dano" valor={b} onChange={(x) => onChange(gera(q, d, x))} ctx={ctx} />
       <p className="ajuda">Rola: <b>{previa || txt}</b></p>
+      {analise && <p className={`ajuda teto-dano ${analise.erros.length ? "estourou" : ""}`}>{resumoAnalise(analise)}</p>}
+      {analise?.erros.map((e) => <p key={e} className="aviso-mini" role="alert">{e}</p>)}
       <button type="button" className="link-perigo" onClick={() => onChange("")}>Tirar o dano</button>
     </div>
   );

@@ -1,3 +1,4 @@
+import { analisarDano } from "../regras/teto-dano";
 import { useMemo, useState } from "react";
 import { calcular, classePorId, type Ficha, type FormaLib, type HabForma, type TipoForma } from "../regras/ficha";
 import { ACOES_DADOS, HAB_UNICAS, habilidadesDaForma, TIPO_FORMA_NOME, VOLL_PASSIVAS, picksVoll, totalPicks } from "../regras/liberacoes";
@@ -261,7 +262,19 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
   };
   const tracos = r.traco ? r.traco.split("\n").filter((x) => x.trim()) : [];
   const gravaTracos = (l: string[]) => mud({ traco: l.join("\n") });
-  const habil = (id: string, p: Partial<HabForma>) => mud({ habilidades: r.habilidades.map((h) => (h.id === id ? { ...h, ...p } : h)) });
+  const habil = (id: string, p: Partial<HabForma>) =>
+    mud({
+      habilidades: r.habilidades.map((h) => {
+        if (h.id !== id) return h;
+        const n = { ...h, ...p };
+        // com dano em dados, o custo em PR é calculado pelo teto de dano
+        if ("dano" in p || "acao" in p) {
+          const a = analisarDano(n.dano, n.acao, ctxAtual, (r.ppExtra ?? 0) > 0);
+          if (a) { n.pr = a.custoPr; n.custo = `${a.custoPr} PR`; }
+        }
+        return n;
+      }),
+    });
   const anexa = (campo: "aparencia" | "traco" | "pontoFraco", t: string) => mud({ [campo]: r[campo] ? `${r[campo]} ${t}` : t } as Partial<FormaLib>);
 
   const incluirAssinatura = () => {
@@ -286,6 +299,8 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
   if (tipo === "vollstandig" && usados < limite) erros.push(`Faltam ${limite - usados} habilidade(s) única(s).`);
   if (r.habilidades.length > maxHab) erros.push(`Há habilidades demais: o limite é ${maxHab}.`);
   if (r.habilidades.length === 0) erros.push("Adicione pelo menos uma habilidade ou técnica.");
+  const errosDano = r.habilidades.flatMap((h) => (analisarDano(h.dano, h.acao, ctxAtual, (r.ppExtra ?? 0) > 0)?.erros ?? []).map((e) => `${h.nome || "Habilidade"}: ${e}`));
+  erros.push(...errosDano);
   if (tipo === "shikai" && !r.categoria) erros.push("Escolha a categoria.");
   if ((tipo === "bankai" || tipo === "bankai2" || tipo === "resurreccion" || tipo === "segunda") && !r.pontoFraco.trim()) erros.push("Falta o ponto fraco.");
 
@@ -487,9 +502,9 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
                 <div className="linha-edit">
                   <input value={h.nome} onChange={(e) => habil(h.id, { nome: e.target.value })} placeholder="Nome" aria-label="Nome" />
                   <input value={h.acao} onChange={(e) => habil(h.id, { acao: e.target.value })} placeholder="Ação" aria-label="Ação" />
-                  <input type="number" min={0} value={h.pr ?? ""} onChange={(e) => { const v = e.target.value === "" ? undefined : Number(e.target.value); habil(h.id, { pr: v, custo: v ? `${v} PR` : "" }); }} placeholder="PR" aria-label="PR" />
+                  <input type="number" min={0} value={h.pr ?? ""} readOnly={!!h.dano} title={h.dano ? "Calculado pelo dano" : undefined} onChange={(e) => { const v = e.target.value === "" ? undefined : Number(e.target.value); habil(h.id, { pr: v, custo: v ? `${v} PR` : "" }); }} placeholder="PR" aria-label="PR" />
                 </div>
-                <SeletorDano rotulo="Dano" valor={h.dano ?? ""} ctx={ctxAtual} onChange={(x) => habil(h.id, { dano: x })} />
+                <SeletorDano rotulo="Dano" valor={h.dano ?? ""} ctx={ctxAtual} analise={analisarDano(h.dano, h.acao, ctxAtual, (r.ppExtra ?? 0) > 0)} onChange={(x) => habil(h.id, { dano: x })} />
                 <textarea rows={2} value={h.texto} onChange={(e) => habil(h.id, { texto: e.target.value })} aria-label="O que faz" />
                 <button type="button" className="link-perigo" onClick={() => mud({ habilidades: r.habilidades.filter((x) => x.id !== h.id) })}>Remover</button>
               </div>
@@ -542,7 +557,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
             {(tipo === "shikai" || tipo === "bankai" || tipo === "bankai2") && <p><b>Custo e duração:</b> {lib.custoPr ?? r.custo} PR · {lib.duracaoTexto}</p>}
             {erros.length > 0 && <ul className="avisos">{erros.map((e) => <li key={e}>{e}</li>)}</ul>}
             <div className="assistente-fim">
-              <button type="button" className="btn" disabled={!r.nome.trim()} onClick={onSalvar}>Salvar {TIPO_FORMA_NOME[tipo]}</button>
+              <button type="button" className="btn" disabled={!r.nome.trim() || errosDano.length > 0} onClick={onSalvar}>Salvar {TIPO_FORMA_NOME[tipo]}</button>
               <button type="button" className="btn btn-paper" onClick={onEditarTudo}>Editar tudo em uma tela</button>
             </div>
           </>

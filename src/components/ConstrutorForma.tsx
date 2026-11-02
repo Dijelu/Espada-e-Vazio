@@ -1,3 +1,4 @@
+import { analisarDano } from "../regras/teto-dano";
 import { calcularLiberacao } from "../regras/liberacao-forma";
 import { EfeitosForma, EscolhaAtributos } from "./EfeitosForma";
 import { SeletorDano } from "./SeletorFormula";
@@ -171,7 +172,19 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
     setAba("meu");
   };
 
-  const habil = (id: string, p: Partial<HabForma>) => mud({ habilidades: r.habilidades.map((h) => (h.id === id ? { ...h, ...p } : h)) });
+  const habil = (id: string, p: Partial<HabForma>) =>
+    mud({
+      habilidades: r.habilidades.map((h) => {
+        if (h.id !== id) return h;
+        const n = { ...h, ...p };
+        // com dano em dados, o custo em PR é calculado pelo teto de dano
+        if ("dano" in p || "acao" in p) {
+          const a = analisarDano(n.dano, n.acao, ctxAtual, (r.ppExtra ?? 0) > 0);
+          if (a) { n.pr = a.custoPr; n.custo = `${a.custoPr} PR`; }
+        }
+        return n;
+      }),
+    });
 
   const mudarPick = (id: string, delta: number, unica?: boolean) => {
     const atual = r.picks[id] ?? 0;
@@ -187,7 +200,8 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
   const q = busca.trim().toLowerCase();
   const bankais = BANKAIS.filter((b) => !q || b.nome.toLowerCase().includes(q));
 
-  const podeSalvar = r.nome.trim().length > 0;
+  const errosDano = r.habilidades.flatMap((h) => (analisarDano(h.dano, h.acao, ctxAtual, (r.ppExtra ?? 0) > 0)?.erros ?? []).map((e) => `${h.nome || "Habilidade"}: ${e}`));
+  const podeSalvar = r.nome.trim().length > 0 && errosDano.length === 0;
 
   return (
     <div className="construtor" role="dialog" aria-modal="true" aria-label={`Montar ${nomeTipo}`}>
@@ -381,10 +395,10 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
                     <div className="linha-edit">
                       <input value={h.nome} onChange={(e) => habil(h.id, { nome: e.target.value })} placeholder="Nome" aria-label="Nome da habilidade" />
                       <input value={h.acao} onChange={(e) => habil(h.id, { acao: e.target.value })} placeholder="Ação, bônus, reação" aria-label="Ação" />
-                      <input value={h.custo} onChange={(e) => habil(h.id, { custo: e.target.value })} placeholder="Custo (ex.: 20 PR)" aria-label="Custo" />
-                      <input type="number" min={0} value={h.pr ?? ""} onChange={(e) => habil(h.id, { pr: e.target.value === "" ? undefined : Number(e.target.value) })} placeholder="PR do botão" aria-label="PR gastos ao usar" />
+                      <input value={h.custo} readOnly={!!h.dano} title={h.dano ? "Calculado pelo dano" : undefined} onChange={(e) => habil(h.id, { custo: e.target.value })} placeholder="Custo (ex.: 20 PR)" aria-label="Custo" />
+                      <input type="number" min={0} value={h.pr ?? ""} readOnly={!!h.dano} title={h.dano ? "Calculado pelo dano" : undefined} onChange={(e) => habil(h.id, { pr: e.target.value === "" ? undefined : Number(e.target.value) })} placeholder="PR do botão" aria-label="PR gastos ao usar" />
                     </div>
-                    <SeletorDano rotulo="Dano rolável" valor={h.dano ?? ""} ctx={ctxAtual} onChange={(x) => habil(h.id, { dano: x })} />
+                    <SeletorDano rotulo="Dano rolável" valor={h.dano ?? ""} ctx={ctxAtual} analise={analisarDano(h.dano, h.acao, ctxAtual, (r.ppExtra ?? 0) > 0)} onChange={(x) => habil(h.id, { dano: x })} />
                     <textarea rows={3} value={h.texto} onChange={(e) => habil(h.id, { texto: e.target.value })} placeholder="O que faz, dano e alcance" aria-label="Texto da habilidade" />
                     <button type="button" className="link-perigo" onClick={() => mud({ habilidades: r.habilidades.filter((x) => x.id !== h.id) })}>Remover</button>
                   </div>
@@ -436,6 +450,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
         )}
       </div>
 
+      {errosDano.length > 0 && <ul className="avisos" role="alert">{errosDano.map((e) => <li key={e}>{e}</li>)}</ul>}
       <div className="construtor-rodape">
         <button type="button" className="btn btn-paper" onClick={onFechar}>Decidir depois</button>
         <button type="button" className="btn" disabled={!podeSalvar} onClick={() => onSalvar(r)}>
