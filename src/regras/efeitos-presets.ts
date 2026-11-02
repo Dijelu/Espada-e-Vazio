@@ -42,6 +42,7 @@ const BANK: TipoForma[] = ["bankai", "bankai2"];
 const RES: TipoForma[] = ["resurreccion"];
 const SEG: TipoForma[] = ["segunda"];
 const VOL: TipoForma[] = ["vollstandig"];
+const PF_TODAS: TipoForma[] = ["shikai", "bankai", "bankai2", "resurreccion", "segunda", "vollstandig"];
 
 const A = (v: number, atr: Atr = "for"): Efeito => ({ k: "atr", atr, v });
 const todos = (v: number): Efeito[] => (["for", "des", "con", "men", "esp"] as Atr[]).map((a) => A(v, a));
@@ -140,6 +141,22 @@ export const PRESETS: Preset[] = [
   { id: "rs-cria", nome: "Cria do Hollow", familias: RES, categoria: "Invocações", texto: "Chama até 2 crias para lutar ao seu lado.", monta: () => [{ k: "invoca", nome: "Cria do Hollow", tipo: "invocacao", max: 2, pv: "[PROF]*3", cr: "10+[PROF]", acerto: "[PROF]+[FOR]", dano: "1d10+[PROF]", custoPr: 3 }] },
   { id: "vs-zombie", nome: "Mortos-vivos", familias: VOL, categoria: "Invocações", schrift: "zombie", texto: "Invoca 2 mortos-vivos com 1 PV e CR 10 + proficiência, que atacam com proficiência d10 de dano.", monta: () => [{ k: "invoca", nome: "Morto-vivo", tipo: "invocacao", max: 2, pv: 1, cr: "10+[PROF]", acerto: "[PROF]+[DES]", dano: "[PROF]d10", custoPr: 0 }] },
   { id: "vs-clones", nome: "Clones Imaginados", familias: VOL, categoria: "Invocações", schrift: "visionary", texto: "Cria até 2 clones imaginados, que somem quando você perde a concentração.", monta: () => [{ k: "invoca", nome: "Clone imaginado", tipo: "clone", max: 2, pv: "[PROF]*3", cr: "10+[PROF]", acerto: "[PROF]+[MEN]", dano: "[PROF]d8", custoPr: 3 }] },
+
+  /* ---------------- Pontos fracos com nome (valem para quase todas as formas) ---------------- */
+  { id: "pf-casca", nome: "Casca de Vidro", familias: PF_TODAS, categoria: "Pontos fracos", texto: "A forma deixa o corpo exposto: CR -3 e Constituição -1 enquanto durar.", monta: () => [{ k: "cr", v: -3 }, A(-1, "con")] },
+  { id: "pf-guarda", nome: "Guarda Aberta", familias: PF_TODAS, categoria: "Pontos fracos", texto: "CR -2 enquanto a forma durar.", monta: () => [{ k: "cr", v: -2 }] },
+  { id: "pf-esgota", nome: "Corpo em Brasa", familias: PF_TODAS, categoria: "Pontos fracos", texto: "O poder queima o corpo: Constituição -2 enquanto durar.", monta: () => [A(-2, "con")] },
+  { id: "pf-visao", nome: "Visão Turva", familias: PF_TODAS, categoria: "Pontos fracos", texto: "-2 de acerto nos golpes, disparos e Hadō.", monta: () => [{ k: "acerto", em: ["golpe", "disparo", "hado"], v: -2 }] },
+  { id: "pf-corte", nome: "Corte Cego", familias: PF_TODAS, categoria: "Pontos fracos", texto: "-3 de dano fixo nos golpes, disparos e Hadō.", monta: () => [{ k: "dano", em: ["golpe", "disparo", "hado"], v: -3 }] },
+  { id: "pf-passos", nome: "Passos Pesados", familias: PF_TODAS, categoria: "Pontos fracos", texto: "-3 m de deslocamento.", monta: () => [{ k: "desloc", modo: "chao", v: -3 }] },
+  { id: "pf-mente", nome: "Mente Fraturada", familias: PF_TODAS, categoria: "Pontos fracos", texto: "Mente -2 e -1 na CD dos Kidōs e técnicas.", monta: () => [A(-2, "men"), { k: "cd", v: -1 }] },
+  { id: "pf-reiatsu", nome: "Reiatsu Instável", familias: PF_TODAS, categoria: "Pontos fracos", texto: "-2 na CD dos Kidōs e técnicas.", monta: () => [{ k: "cd", v: -2 }] },
+  { id: "pf-peso", nome: "Peso do Poder", familias: PF_TODAS, categoria: "Pontos fracos", texto: "Força -1 e Destreza -1: a forma pesa no corpo.", monta: () => [A(-1, "for"), A(-1, "des")] },
+  { id: "pf-ferida", nome: "Ferida Aberta", familias: PF_TODAS, categoria: "Pontos fracos", texto: "Você fica vulnerável a um tipo de dano enquanto a forma durar.", param: "tipo", rotuloParam: "Tipo de dano", monta: (p) => [{ k: "resist", dano: p.tipo || "Fogo", grau: "vulner" }] },
+  { id: "pf-sede", nome: "Sede de Reiatsu", familias: PF_TODAS, categoria: "Pontos fracos", texto: "Manter a forma custa 3 PR por turno.", monta: () => [{ k: "custo", pr: 3 }] },
+  { id: "pf-pacto", nome: "Pacto de Sangue", familias: PF_TODAS, categoria: "Pontos fracos", texto: "Manter a forma custa 2 PR por turno e, ao terminar, você fica Esgotado até um descanso curto.", monta: () => [{ k: "custo", pr: 2 }, { k: "fim", esgotado: "curto" }] },
+  { id: "pf-colapso", nome: "Colapso Final", familias: PF_TODAS, categoria: "Pontos fracos", texto: "Ao terminar, você fica Esgotado até um descanso longo.", monta: () => [{ k: "fim", esgotado: "longo" }] },
+  { id: "pf-brasa", nome: "Brasa Curta", familias: PF_TODAS, categoria: "Pontos fracos", texto: "A forma dura só a proficiência em turnos.", monta: () => [{ k: "duracao", turnos: "[PROF]" }] },
 
   { id: "pf-frenesi-leve", nome: "Fúria Contida", familias: ["shikai", "bankai", "bankai2", "resurreccion", "segunda"], categoria: "Pontos fracos", texto: "No início de cada turno, salvaguarda de Mente (CD 10 + proficiência). Na falha, o seu primeiro ataque do turno vai contra a criatura mais próxima, amiga ou inimiga. Devolve 3 pontos.", monta: () => [{ k: "frenesi", nivel: "leve" }] },
   { id: "pf-frenesi-grande", nome: "Frenesi Sanguinário", familias: ["shikai", "bankai", "bankai2", "resurreccion", "segunda"], categoria: "Pontos fracos", texto: "No início de cada turno, salvaguarda de Mente (CD 12 + proficiência). Na falha, você perde o controle e o Mestre joga o seu turno inteiro. Devolve 6 pontos (fora do teto de um terço).", monta: () => [{ k: "frenesi", nivel: "grande" }], aprovacao: true },

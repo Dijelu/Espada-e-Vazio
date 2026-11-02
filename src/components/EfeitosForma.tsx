@@ -273,7 +273,6 @@ function PecaPropria({ ctx, livre, onCriar, onFechar }: { ctx: CtxForma; livre: 
             <option value="fcusto">Pagar PR a cada turno</option>
             <option value="ffim">Ficar Esgotado quando acabar</option>
             <option value="fdur">Duração curta (poucos turnos)</option>
-            <option value="fraco">Outro ponto fraco (texto, vale 1 PP)</option>
           </optgroup>
         </select>
       </label>
