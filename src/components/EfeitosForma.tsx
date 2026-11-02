@@ -197,6 +197,7 @@ function descreveFaz(z: import("../regras/efeitos-forma").Faz, ctx: CtxForma): s
   if (z.prTemp !== undefined) partes.push(`${v(z.prTemp)} PR temporários`);
   if (z.pr !== undefined) partes.push(`recupera ${v(z.pr)} PR`);
   if (z.dano) partes.push(`${v(z.dano.expr)} de ${z.dano.tipo}${z.dano.area ? ` (${z.dano.area})` : ""}`);
+  if (z.condicao) partes.push(`alvo fica ${z.condicao.nome}${z.condicao.salva ? ` (salva de ${ATR_NOME[z.condicao.salva]})` : ""}`);
   if (z.texto) partes.push(z.texto);
   return partes.join(", ");
 }

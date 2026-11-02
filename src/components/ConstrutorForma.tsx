@@ -13,7 +13,7 @@ import {
   picksVoll,
   totalPicks,
 } from "../regras/liberacoes";
-import { valor, QUANDO_NOME, type Faz } from "../regras/efeitos-forma";
+import { valor, QUANDO_NOME, ATR_NOME, type Faz } from "../regras/efeitos-forma";
 import { novoId } from "./FichaPecas";
 import { AssistenteForma, LIMITE_HAB } from "./AssistenteForma";
 import { SeletorSchrift } from "./SeletorSchrift";
@@ -496,6 +496,10 @@ function EfeitosAtivos({ f, c, r, alterar, onMsg }: { f: Ficha; c: Calculo; r: R
     if (z.pr !== undefined) { const v = valor(z.pr, ctx); parte.prAtual = Math.min(c.prMax, (parte.prAtual ?? f.prAtual) + v); dito.push(`+${v} PR`); }
     if (z.prTemp !== undefined) { const v = valor(z.prTemp, ctx); parte.prAtual = (parte.prAtual ?? f.prAtual) + v; dito.push(`+${v} PR extras`); }
     if (z.dano) { r.expr(g.rotulo, resolverDano(z.dano.expr, f, c)); dito.push(`${z.dano.tipo}${z.dano.area ? ` (${z.dano.area})` : ""}`); }
+    if (z.condicao) {
+      const cdv = 8 + c.prof + c.atr.esp;
+      dito.push(`o alvo fica ${z.condicao.nome}${z.condicao.salva ? ` (salvaguarda de ${ATR_NOME[z.condicao.salva]}, CD ${cdv}; na falha)` : ""}${z.condicao.duracao ? ` por ${z.condicao.duracao}` : ""}`);
+    }
     if (z.texto) dito.push(z.texto);
     if (g.limite) est.usos = { ...usos, [chave]: 1 };
     alterar({ ...parte, estado: est });

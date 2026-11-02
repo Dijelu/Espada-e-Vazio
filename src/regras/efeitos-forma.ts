@@ -41,6 +41,8 @@ export interface Faz {
   dano?: { expr: string; tipo: string; area?: string };
   /** texto livre do que acontece (o Mestre resolve) */
   texto?: string;
+  /** condição que o alvo sofre, com salvaguarda opcional (CD = 8 + proficiência + Espírito) */
+  condicao?: { nome: string; salva?: Atr; duracao?: string };
 }
 
 export type Efeito =
@@ -303,6 +305,7 @@ export function custoEfeito(e: Efeito, ctx: CtxForma): number {
       const x = Math.max(valor(f.curaPv, ctx), valor(f.pvTemp, ctx), valor(f.prTemp, ctx), valor(f.pr, ctx));
       let base = 1 + Math.floor(x / Math.max(1, ctx.prof * 4));
       if (f.dano) { try { base += 1 + Math.floor(mediaRapida(f.dano.expr, ctx) / (ctx.prof * 5)); } catch { base += 1; } }
+      if (f.condicao) base += 1;
       if (e.quando === "inicioTurno") base += 1;
       return e.limite ? Math.max(1, Math.ceil(base * 0.7)) : base;
     }
@@ -419,6 +422,8 @@ export function normalizarEfeitos(raw: unknown): InstEfeito[] {
           if (z.prTemp !== undefined) faz.prTemp = num(z.prTemp);
           if (z.pr !== undefined) faz.pr = num(z.pr);
           if (typeof z.texto === "string") faz.texto = z.texto.slice(0, 300);
+          const cd = z.condicao as { nome?: unknown; salva?: unknown; duracao?: unknown } | undefined;
+          if (cd && typeof cd.nome === "string" && cd.nome.trim()) faz.condicao = { nome: cd.nome.slice(0, 30), salva: ATRIBUTOS.includes(cd.salva as Atr) ? (cd.salva as Atr) : undefined, duracao: typeof cd.duracao === "string" ? cd.duracao.slice(0, 30) : undefined };
           const d = z.dano as { expr?: unknown; tipo?: unknown; area?: unknown } | undefined;
           if (d && typeof d.expr === "string" && /^[\[\]A-Z0-9d+\-*/(). ]{1,40}$/.test(d.expr)) faz.dano = { expr: d.expr, tipo: String(d.tipo ?? "").slice(0, 30), area: typeof d.area === "string" ? d.area.slice(0, 40) : undefined };
           return [{ k, quando: q, limite: x.limite === "turno" || x.limite === "rodada" || x.limite === "cena" ? x.limite : undefined, faz, rotulo: typeof x.rotulo === "string" ? x.rotulo.slice(0, 80) : undefined }];
