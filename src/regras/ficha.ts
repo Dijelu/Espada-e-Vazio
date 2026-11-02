@@ -521,6 +521,8 @@ export interface HabForma {
   regra?: string;
   /** descrição escrita pelo jogador: característica e tema da forma neste ataque */
   desc?: string;
+  /** técnica de regra do livro: dano e custo fixos, fora da conferência do teto */
+  fixa?: boolean;
 }
 
 /** Forma de liberação avançada do personagem (Bankai, Resurrección ou Vollständig). */

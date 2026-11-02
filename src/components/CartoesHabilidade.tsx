@@ -62,7 +62,7 @@ interface CartaoProps {
 
 /** Cartão de habilidade já montado: nome, ação, dano, custo calculado e a descrição do jogador. */
 export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, onChange, onRemover }: CartaoProps) {
-  const a = analisarDano(h.dano, h.acao, ctx, ppExtra);
+  const a = h.fixa ? null : analisarDano(h.dano, h.acao, ctx, ppExtra);
   const novo = h.regra !== undefined || h.desc !== undefined;
   const regra = h.regra ?? "";
   const desc = novo ? (h.desc ?? "") : h.texto;

@@ -330,7 +330,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
   if (tipo === "vollstandig" && usados < limite) erros.push(`Faltam ${limite - usados} habilidade(s) única(s).`);
   if (r.habilidades.length > maxHab) erros.push(`Há habilidades demais: o limite é ${maxHab}.`);
   if (r.habilidades.length === 0) erros.push("Adicione pelo menos uma habilidade ou técnica.");
-  const errosDano = r.habilidades.flatMap((h) => (analisarDano(h.dano, h.acao, ctxAtual, (r.ppExtra ?? 0) > 0)?.erros ?? []).map((e) => `${h.nome || "Habilidade"}: ${e}`));
+  const errosDano = r.habilidades.filter((h) => !h.fixa).flatMap((h) => (analisarDano(h.dano, h.acao, ctxAtual, (r.ppExtra ?? 0) > 0)?.erros ?? []).map((e) => `${h.nome || "Habilidade"}: ${e}`));
   erros.push(...errosDano);
   if (tipo === "shikai" && !r.categoria) erros.push("Escolha a categoria.");
   if ((tipo === "bankai" || tipo === "bankai2" || tipo === "resurreccion" || tipo === "segunda") && !r.pontoFraco.trim()) erros.push("Falta o ponto fraco.");
