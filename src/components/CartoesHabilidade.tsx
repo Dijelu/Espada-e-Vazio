@@ -30,7 +30,7 @@ export function GaleriaCartoes({ modelos, tipo, ctx, cheio, jaTem, onUsar }: Gal
           <article key={h.nome} className={`carta-hab carta-peca carta-neutra ${usado ? "travada" : ""}`} data-classe={classe}>
             <div className="carta-topo">
               <small className="ajuda">{h.acao}</small>
-              <span className="selo-pp">{h.pr ?? 0}<i>PR</i></span>
+              <span className="selo-pp">{a ? a.custoPr : (h.pr ?? 0)}<i>PR</i></span>
             </div>
             <h3>{h.nome}</h3>
             <p>{h.texto}</p>
