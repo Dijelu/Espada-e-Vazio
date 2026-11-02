@@ -90,6 +90,10 @@ export interface CtxForma {
   n: number;
   prof: number;
   atr: Record<Atr, number>;
+  /** tipo da forma que está sendo montada (muda o teto de dano das habilidades) */
+  tipo?: string;
+  /** dano médio extra que as peças da forma somam em cada técnica (conta no teto) */
+  extra?: number;
 }
 
 export const ATR_NOME: Record<Atr, string> = { for: "Força", des: "Destreza", con: "Constituição", men: "Mente", esp: "Espírito" };
@@ -389,6 +393,17 @@ export interface Orcamento {
 }
 
 /** Soma do que a forma gastou contra o orçamento. Peças herdadas da Shikai custam metade. */
+/** Limite de uso e requisito viram ponto fraco: 1 por cena +1, por descanso curto +2, por descanso longo +3, requisito +1 (no máximo 4 no total). A técnica especial já tem a sua troca. */
+export function devolucaoLimites(habs: { limite?: string; requisito?: string; especial?: unknown }[]): number {
+  let t = 0;
+  for (const h of habs) {
+    if (h.especial) continue;
+    t += h.limite === "longo" ? 3 : h.limite === "curto" ? 2 : h.limite === "cena" ? 1 : 0;
+    if (h.requisito) t += 1;
+  }
+  return Math.min(4, t);
+}
+
 export function orcamentoDaForma(f: Ficha, tipo: FormaLib["tipo"], forma: FormaLib | undefined, ctx: CtxForma): Orcamento {
   const extraMestre = Math.max(0, Math.min(PP_EXTRA_MAX, Math.floor(Number(forma?.ppExtra) || 0)));
   const total = orcamentoBase(tipo, ctx.n, { plena: tipo === "bankai" && f.treinos.caminhoBankai === "plena", origem: f.origem }) + extraMestre;
@@ -405,6 +420,8 @@ export function orcamentoDaForma(f: Ficha, tipo: FormaLib["tipo"], forma: FormaL
   if (tipo === "bankai" && forma?.herdaShikai) for (const p of f.formas.shikai?.efeitos ?? []) somar(p, 0.5);
   const todas = [...(forma?.efeitos ?? [])];
   if (todas.some((p) => p.efeitos.some((e) => e.k === "duracao")) && todas.some((p) => p.efeitos.some((e) => e.k === "duracaoMais"))) avisos.push("Duração curta e duração extra na mesma forma se anulam: escolha só uma.");
+  const dLim = devolucaoLimites(forma?.habilidades ?? []);
+  if (dLim) { devolucao += dLim; avisos.push(`Habilidades com limite de uso devolvem ${dLim} PP como ponto fraco.`); }
   const devolvido = Math.min(devolucao, Math.floor(total / 3));
   if (devolucao > devolvido) avisos.push(`Os pontos fracos devolvem no máximo ${devolvido} PP (um terço do total).`);
   const liquido = Math.ceil(gasto - devolvido - frenesiDev);

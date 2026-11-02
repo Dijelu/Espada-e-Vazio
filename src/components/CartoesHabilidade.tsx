@@ -119,6 +119,24 @@ export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, onChange, o
           )}
         </div>
       )}
+      {!h.fixa && !h.especial && (
+        <div className="especial-cartao">
+          <p className="ajuda">Limite de uso e requisito são pontos fracos: cada um devolve pontos para a forma (até 4 no total).</p>
+          <div className="duas">
+            <label className="campo">Limite de uso
+              <select value={h.limite ?? ""} onChange={(e) => { const v = (e.target.value || undefined) as HabForma["limite"]; onChange({ limite: v }); }}>
+                <option value="">Sem limite</option>
+                <option value="cena">1 vez por cena (+1 PP)</option>
+                <option value="curto">1 vez por descanso curto (+2 PP)</option>
+                <option value="longo">1 vez por descanso longo (+3 PP)</option>
+              </select>
+            </label>
+            <label className="campo">Requisito (opcional, +1 PP)
+              <input value={h.requisito ?? ""} onChange={(e) => onChange({ requisito: e.target.value || undefined })} placeholder="Ex.: o alvo foi marcado pela tinta" />
+            </label>
+          </div>
+        </div>
+      )}
       {regra && <p className="regra-cartao"><b>Regra do cartão:</b> {regra}</p>}
       <label className="campo">Descrição do ataque
         <textarea

@@ -2,7 +2,7 @@ import type { HabForma } from "./ficha";
 import type { FormaLib } from "./ficha";
 import { presetPorId } from "./efeitos-presets";
 import type { CtxForma, InstEfeito } from "./efeitos-forma";
-import { analisarDano } from "./teto-dano";
+import { analisarDano, mediaExtraPecas } from "./teto-dano";
 import { calcularLiberacao } from "./liberacao-forma";
 
 const novoId = () => (typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : String(Date.now() + Math.random()));
@@ -1289,10 +1289,11 @@ function montar(tipo: "resurreccion" | "segunda", m: ModeloResHollow | ModeloSeg
     if (!p) continue;
     efeitos.push({ id: novoId(), preset: p.id, nome: nomeDaPeca(p.nome, e.param), texto: p.texto, efeitos: p.monta((e.param ?? {}) as never), pp: p.pp });
   }
+  const cx = { ...ctx, tipo, extra: mediaExtraPecas(efeitos, ctx) };
   const habilidades: HabForma[] = m.habilidades.map((h) => {
-    const a = !h.fixa && h.dano ? analisarDano(h.dano, h.acao, ctx, false, !!(h as { especial?: unknown }).especial) : null;
+    const a = !h.fixa && h.dano ? analisarDano(h.dano, h.acao, cx, false, !!(h as { especial?: unknown }).especial) : null;
     const pr = h.fixa ? (h.prFixo ?? 12) : a ? a.custoPr : 0;
-    return { id: novoId(), nome: h.nome, acao: h.acao, custo: pr ? `${pr} PR` : "", pr: pr || undefined, dano: h.dano || undefined, modelo: h.modelo || undefined, regra: h.regra, desc: h.desc, especial: (h as { especial?: { condicao: string; duracao: string } }).especial, fixa: h.fixa || undefined, texto: [h.desc, h.regra].filter(Boolean).join("\n") };
+    return { id: novoId(), nome: h.nome, acao: h.acao, custo: pr ? `${pr} PR` : "", pr: pr || undefined, dano: h.dano || undefined, modelo: h.modelo || undefined, regra: h.regra, desc: h.desc, especial: (h as { especial?: { condicao: string; duracao: string } }).especial, fixa: h.fixa || undefined, limite: (h as { especial?: unknown }).especial ? undefined : (/uma vez por cena/i.test(h.regra) ? "cena" as const : undefined), texto: [h.desc, h.regra].filter(Boolean).join("\n") };
   });
   const lib = calcularLiberacao(tipo, efeitos, ctx, {});
   const ponto = presetPorId(m.pontoFraco);

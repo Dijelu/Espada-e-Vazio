@@ -1,4 +1,4 @@
-import { analisarDano } from "../regras/teto-dano";
+import { analisarDano, mediaExtraPecas } from "../regras/teto-dano";
 import type { CtxForma } from "../regras/efeitos-forma";
 import { useEffect, useMemo, useState } from "react";
 import { calcular, classePorId, type Ficha, type FormaLib, type HabForma, type TipoForma } from "../regras/ficha";
@@ -265,8 +265,9 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
   const passos = PASSOS[tipo];
   const ctxAtual = useMemo(() => {
     const k = calcular({ ...f, estado: { ...f.estado, liberado: "" } });
-    return { n: f.nivel, prof: k.prof, atr: k.atr };
-  }, [f]);
+    const base = { n: f.nivel, prof: k.prof, atr: k.atr };
+    return { ...base, tipo, extra: mediaExtraPecas(r.efeitos ?? [], base) };
+  }, [f, tipo, r.efeitos]);
   const lib = useMemo(
     () => calcularLiberacao(tipo, [...(r.efeitos ?? [])], ctxAtual, { plena: tipo === "bankai" && f.treinos.caminhoBankai === "plena" }),
     [tipo, r.efeitos, ctxAtual, f.treinos.caminhoBankai],

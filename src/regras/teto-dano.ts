@@ -1,7 +1,18 @@
 /* Teto de dano das habilidades criadas pelo jogador e custo em PR calculado a partir do dano.
    Referência: o golpe mais forte dos modelos do livro (Golpe em área, 20 PR): (nível/2 + 4) dados de d10 + o maior atributo. */
 import { resolverDano } from "./liberacoes";
-import type { CtxForma } from "./efeitos-forma";
+import { valor, type CtxForma, type InstEfeito } from "./efeitos-forma";
+
+/** Dano médio que as peças da forma somam em cada técnica (dados extras das peças), para entrar na conta do teto. */
+export function mediaExtraPecas(efeitos: InstEfeito[], ctx: CtxForma): number {
+  let t = 0;
+  for (const p of efeitos) for (const e of p.efeitos) {
+    if (e.k !== "dados" || !e.em.includes("tecnica")) continue;
+    const n = valor(e.n, ctx);
+    if (n > 0) t += (n * (e.d + 1)) / 2;
+  }
+  return t;
+}
 
 export type TipoAcao = "acao" | "bonus" | "reacao";
 
@@ -14,6 +25,16 @@ export function tipoDeAcao(acao: string): TipoAcao {
 
 /** Quanto do dano de referência cada tipo de ação pode causar. */
 const FATOR: Record<TipoAcao, number> = { acao: 1.15, bonus: 0.6, reacao: 0.85 };
+/** As transformações são o ponto alto da história do personagem, então o teto de dano delas é mais folgado que o de uma habilidade comum. */
+const FORMA: Record<string, { fator: number; dados: number }> = {
+  shikai: { fator: 1.15, dados: 0 },
+  bankai: { fator: 1.3, dados: 2 },
+  resurreccion: { fator: 1.3, dados: 2 },
+  vollstandig: { fator: 1.3, dados: 2 },
+  bankai2: { fator: 1.45, dados: 3 },
+  segunda: { fator: 1.45, dados: 3 },
+};
+const FORMA_PADRAO = FORMA.bankai;
 /** Custo em PR no teto de cada tipo de ação (como nos modelos do livro). */
 const CUSTO_MAX: Record<TipoAcao, number> = { acao: 20, bonus: 8, reacao: 10 };
 /** Todo ataque com dano custa pelo menos esta parte do custo máximo. */
@@ -62,19 +83,21 @@ export function analisarDano(expr: string | undefined, acao: string, ctx: CtxFor
   if (!/\d+d\d+/.test(resolvido)) return null;
   const { qtd, faces, media, fixo } = lerResolvido(resolvido);
   const tipo = tipoDeAcao(acao);
-  const ref = referenciaDano(ctx) * FATOR[tipo] * (especial ? BONUS_ESPECIAL : 1);
+  const forma = FORMA[ctx.tipo ?? ""] ?? FORMA_PADRAO;
+  const ref = referenciaDano(ctx) * FATOR[tipo] * forma.fator * (especial ? BONUS_ESPECIAL : 1);
   const custoMax = CUSTO_MAX[tipo];
   const teto = ref * (comAval ? 1.25 : 1);
   const bruto = Math.max(PISO, (media / ref - 0.5) / 0.5);
   const custoPr = Math.max(1, Math.min(custoMax, Math.ceil(custoMax * bruto)));
-  const qtdMax = Math.floor(ctx.n / 2) + 5 + (especial ? 3 : 0);
-  const facesMax = especial || custoPr <= custoMax / 2 ? 12 : 10;
+  const qtdMax = Math.floor(ctx.n / 2) + 5 + forma.dados + (especial ? 3 : 0);
+  const facesMax = especial || forma.dados > 0 || custoPr <= custoMax / 2 ? 12 : 10;
+  const extra = ctx.extra ?? 0;
   const bonusMax = maiorAtr(ctx) + ctx.prof;
   const erros: string[] = [];
   if (qtd > qtdMax) erros.push(`Dados demais: o máximo no seu nível é ${qtdMax} (metade do nível mais 5).`);
   if (faces > facesMax) erros.push(`O d${faces} só vale em ataques baratos (até ${Math.floor(custoMax / 2)} PR). Use d${facesMax} ou menor.`);
   if (fixo > bonusMax) erros.push(`Bônus fixo alto demais: o máximo é ${bonusMax} (maior atributo mais proficiência).`);
-  if (media > teto + 0.01) erros.push(`Dano médio ${Math.round(media)} passa do teto de ${Math.round(teto)} para esta ação no nível ${ctx.n}.`);
+  if (media + extra > teto + 0.01) erros.push(`Dano médio ${Math.round(media + extra)}${extra ? ` (contando os dados extras das peças da forma)` : ""} passa do teto de ${Math.round(teto)} para esta ação no nível ${ctx.n}.`);
   return { media, teto, custoPr, qtdMax, facesMax, bonusMax, erros };
 }
 

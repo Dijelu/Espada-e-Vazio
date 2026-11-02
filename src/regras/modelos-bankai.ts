@@ -2,10 +2,10 @@ import type { FormaLib, HabForma, TipoForma } from "./ficha";
 const novoId = () => (typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : String(Date.now() + Math.random()));
 import { presetPorId } from "./efeitos-presets";
 import type { CtxForma, InstEfeito } from "./efeitos-forma";
-import { analisarDano } from "./teto-dano";
+import { analisarDano, mediaExtraPecas } from "./teto-dano";
 import { calcularLiberacao } from "./liberacao-forma";
 
-export interface HabModelo { nome: string; acao: string; dano: string; regra: string; desc: string; modelo: string; especial?: { condicao: string; duracao: string } }
+export interface HabModelo { nome: string; acao: string; dano: string; regra: string; desc: string; modelo: string; especial?: { condicao: string; duracao: string }; limite?: "cena" | "curto" | "longo"; requisito?: string }
 export interface FormaModelo {
   nome: string; comando: string; aparencia: string; estilo?: "potencializadora" | "transformadora";
   efeitos: { id: string; param?: { atr?: string; tipo?: string; n?: number } }[];
@@ -1698,6 +1698,7 @@ export const MODELOS_BANKAI: ModeloMontado[] = [
   "habilidades": [
    {
     "nome": "Nome Pela Metade",
+"requisito": "alvo marcado pela tinta da Shikai",
     "acao": "Ação",
     "dano": "[NIV/2+2]d8+[MEN]",
     "regra": "Alvo já marcado pela tinta: salvaguarda de Constituição; na falha, dano total e o alvo causa só metade do dano com ataques até o fim do próximo turno dele; no sucesso, metade e sem o efeito.",
@@ -1714,6 +1715,7 @@ export const MODELOS_BANKAI: ModeloMontado[] = [
    },
    {
     "nome": "Rasura",
+"requisito": "alvo marcado pela tinta da Shikai",
     "acao": "Reação",
     "dano": "",
     "regra": "Quando um inimigo marcado pela tinta acerta você ou um aliado a 9 m, risque o ataque: o dano cai pela metade e o atacante perde um ataque no próximo turno dele.",
@@ -1722,6 +1724,7 @@ export const MODELOS_BANKAI: ModeloMontado[] = [
    },
    {
     "nome": "Novo Nome",
+"requisito": "alvo marcado pela tinta da Shikai",
     "acao": "Ação",
     "dano": "[NIV/2+4]d12+[MEN]",
     "regra": "Alvo marcado: salvaguarda de Mente; na falha, dano total e você dá ao alvo um novo nome menor, como Formiga Negra. Ele fica Atordoado até o fim do próximo turno e, até o fim da cena, só causa metade do dano. No sucesso, metade e sem novo nome. Não funciona contra quem tem uma habilidade que reescreve o próprio nome ou o destino.",
@@ -1761,10 +1764,11 @@ export function formaDoModelo(m: ModeloMontado, qual: "bankai" | "bankai2", ctx:
     const par = { ...(e.param ?? {}) } as never as { atr?: never; tipo?: string; n?: number };
     efeitos.push({ id: novoId(), preset: p.id, nome: nomeDaPeca(p.nome, e.param), texto: p.texto, efeitos: p.monta(par as never), pp: p.pp });
   }
+  const cx = { ...ctx, tipo: qual, extra: mediaExtraPecas(efeitos, ctx) };
   const habilidades: HabForma[] = base.habilidades.map((h) => {
-    const a = h.dano ? analisarDano(h.dano, h.acao, ctx, false, !!h.especial) : null;
+    const a = h.dano ? analisarDano(h.dano, h.acao, cx, false, !!h.especial) : null;
     const pr = a ? a.custoPr : 0;
-    return { id: novoId(), nome: h.nome, acao: h.acao, custo: pr ? `${pr} PR` : "", pr: pr || undefined, dano: h.dano || undefined, modelo: h.modelo || undefined, regra: h.regra, desc: h.desc, especial: h.especial, texto: [h.desc, h.regra, h.especial ? `Técnica especial: 1 uso por cena. Depois de usar, você fica ${h.especial.condicao} ${h.especial.duracao}.` : ""].filter(Boolean).join("\n") };
+    return { id: novoId(), nome: h.nome, acao: h.acao, custo: pr ? `${pr} PR` : "", pr: pr || undefined, dano: h.dano || undefined, modelo: h.modelo || undefined, regra: h.regra, desc: h.desc, especial: h.especial, limite: h.especial ? undefined : (h.limite ?? (/uma vez por cena/i.test(h.regra) ? "cena" : undefined)), requisito: h.requisito, texto: [h.desc, h.regra, h.especial ? `Técnica especial: 1 uso por cena. Depois de usar, você fica ${h.especial.condicao} ${h.especial.duracao}.` : ""].filter(Boolean).join("\n") };
   });
   const lib = calcularLiberacao(qual, efeitos, ctx, {});
   const ponto = presetPorId(base.pontoFraco);

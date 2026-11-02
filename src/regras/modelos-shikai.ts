@@ -1,7 +1,7 @@
 import type { FormaLib, HabForma } from "./ficha";
 import { presetPorId } from "./efeitos-presets";
 import type { CtxForma, InstEfeito } from "./efeitos-forma";
-import { analisarDano } from "./teto-dano";
+import { analisarDano, mediaExtraPecas } from "./teto-dano";
 import { calcularLiberacao } from "./liberacao-forma";
 
 const novoId = () => (typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : String(Date.now() + Math.random()));
@@ -954,10 +954,11 @@ export function formaDaShikai(m: ModeloShikaiMontado, ctx: CtxForma): Partial<Fo
     if (!p) continue;
     efeitos.push({ id: novoId(), preset: p.id, nome: nomeDaPeca(p.nome, e.param), texto: p.texto, efeitos: p.monta((e.param ?? {}) as never), pp: p.pp });
   }
+  const cx = { ...ctx, tipo: "shikai", extra: mediaExtraPecas(efeitos, ctx) };
   const habilidades: HabForma[] = m.habilidades.map((h) => {
-    const a = h.dano ? analisarDano(h.dano, h.acao, ctx, false, !!(h as { especial?: unknown }).especial) : null;
+    const a = h.dano ? analisarDano(h.dano, h.acao, cx, false, !!(h as { especial?: unknown }).especial) : null;
     const pr = a ? a.custoPr : 0;
-    return { id: novoId(), nome: h.nome, acao: h.acao, custo: pr ? `${pr} PR` : "", pr: pr || undefined, dano: h.dano || undefined, modelo: h.modelo || undefined, regra: h.regra, desc: h.desc, especial: (h as { especial?: { condicao: string; duracao: string } }).especial, texto: [h.desc, h.regra].filter(Boolean).join("\n") };
+    return { id: novoId(), nome: h.nome, acao: h.acao, custo: pr ? `${pr} PR` : "", pr: pr || undefined, dano: h.dano || undefined, modelo: h.modelo || undefined, regra: h.regra, desc: h.desc, especial: (h as { especial?: { condicao: string; duracao: string } }).especial, limite: (h as { especial?: unknown }).especial ? undefined : (/uma vez por cena/i.test(h.regra) ? "cena" as const : undefined), texto: [h.desc, h.regra].filter(Boolean).join("\n") };
   });
   const lib = calcularLiberacao("shikai", efeitos, ctx, {});
   return { tipo: "shikai", modelo: m.id, nome: m.nome, comando: m.comando, categoria: m.categoria, aparencia: m.aparencia, espirito: m.espirito, efeitos, habilidades, pontoFraco: presetPorId(m.pontoFraco)?.nome ?? "", custo: lib.custoPr ?? 5, duracao: "até você encerrar", texto: m.resumo };

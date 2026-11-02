@@ -525,6 +525,10 @@ export interface HabForma {
   fixa?: boolean;
   /** técnica especial: 1 uso por cena; em troca, você recebe uma condição e o teto de dano sobe */
   especial?: { condicao: string; duracao: string };
+  /** limite de uso: vira ponto fraco (devolve pontos da forma) e trava o botão em jogo */
+  limite?: "cena" | "curto" | "longo";
+  /** o que precisa ter acontecido antes de usar (marcado à mão em jogo); também devolve pontos */
+  requisito?: string;
 }
 
 /** Forma de liberação avançada do personagem (Bankai, Resurrección ou Vollständig). */

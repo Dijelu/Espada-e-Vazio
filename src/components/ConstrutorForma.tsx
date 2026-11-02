@@ -1,4 +1,4 @@
-import { analisarDano } from "../regras/teto-dano";
+import { analisarDano, mediaExtraPecas } from "../regras/teto-dano";
 import { CartaoHabilidade } from "./CartoesHabilidade";
 import { ModelosBankai } from "./ModelosBankai";
 import { ModelosHollow } from "./ModelosHollow";
@@ -87,8 +87,9 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
   });
   const ctxAtual = useMemo(() => {
     const k = calcular({ ...f, estado: { ...f.estado, liberado: "" } });
-    return { n: f.nivel, prof: k.prof, atr: k.atr };
-  }, [f]);
+    const base = { n: f.nivel, prof: k.prof, atr: k.atr };
+    return { ...base, tipo, extra: mediaExtraPecas(r.efeitos ?? [], base) };
+  }, [f, tipo, r.efeitos]);
   const [aberto, setAberto] = useState("");
   const [busca, setBusca] = useState("");
   const mud = (p: Partial<FormaLib>) =>
@@ -475,7 +476,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
   );
 }
 
-type ItemAcao = { id: string; nome: string; texto: string; custo: string; acao: string; pr?: number; prExpr?: string; dano?: string };
+type ItemAcao = { id: string; nome: string; texto: string; custo: string; acao: string; pr?: number; prExpr?: string; dano?: string; limite?: "cena" | "curto" | "longo"; requisito?: string };
 
 const formasDefinidas = (f: Ficha) =>
   (["shikai", "bankai", "bankai2", "resurreccion", "vollstandig", "segunda"] as TipoForma[]).map((t) => f.formas[t]).filter((x): x is FormaLib => !!x && !!x.nome);
@@ -486,37 +487,55 @@ function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg }: { f: Ficha; c: 
   const gasta = h.prExpr ? Number(resolverDano(h.prExpr, f, c)) || (h.pr ?? 0) : h.pr ?? 0;
   const esp = (h as { especial?: { condicao: string; duracao: string } }).especial;
   const chaveEsp = `esp:${h.id}`;
-  const espUsada = !!esp && !!(f.estado.usos ?? {})[chaveEsp];
+  const usos = f.estado.usos ?? {};
+  const espUsada = !!esp && !!usos[chaveEsp];
+  const lim = esp ? undefined : h.limite;
+  const chaveLim = `lim-${lim}:${h.id}`;
+  const limUsada = !!lim && !!usos[chaveLim];
+  const chaveReq = `req:${h.id}`;
+  const reqOk = !h.requisito || !!usos[chaveReq];
+  const bloqueada = espUsada || limUsada || !reqOk;
   const usar = () => {
+    const gasto = { prAtual: Math.max(0, f.prAtual - gasta) };
     if (esp) {
       const condicoes = f.estado.condicoes.includes(esp.condicao) ? f.estado.condicoes : [...f.estado.condicoes, esp.condicao];
-      alterar({ prAtual: Math.max(0, f.prAtual - gasta), estado: { ...f.estado, condicoes, usos: { ...(f.estado.usos ?? {}), [chaveEsp]: 1 } } });
+      alterar({ ...gasto, estado: { ...f.estado, condicoes, usos: { ...usos, [chaveEsp]: 1 } } });
       onMsg(`${h.nome}: técnica especial usada${gasta ? ` (${gasta} PR)` : ""}. Você ficou ${esp.condicao} ${esp.duracao}.`);
+    } else if (lim) {
+      alterar({ ...gasto, estado: { ...f.estado, usos: { ...usos, [chaveLim]: 1 } } });
+      onMsg(`${h.nome}: usada${gasta ? ` (${gasta} PR)` : ""}. Só pode usar de novo ${lim === "cena" ? "na próxima cena" : lim === "curto" ? "depois de um descanso curto" : "depois de um descanso longo"}.`);
     } else {
-      alterar({ prAtual: Math.max(0, f.prAtual - gasta) });
+      alterar(gasto);
       onMsg(`${h.nome}: ${gasta} PR gastos.`);
     }
   };
+  const rotulo = espUsada ? "Já usada nesta cena" : limUsada ? "Já usada" : esp ? `Usar técnica especial (${gasta} PR)` : lim ? `Usar (${gasta ? `${gasta} PR, ` : ""}${lim === "cena" ? "1 por cena" : lim === "curto" ? "1 por descanso curto" : "1 por descanso longo"})` : `Usar (${gasta} PR)`;
   return (
     <article className={`carta-hab acao-carta ${ativa ? "" : "travada"}`}>
       <small className="ajuda">{TIPO_FORMA_NOME[forma.tipo]} · {forma.nome}</small>
       <h3>{h.nome || "Habilidade"}</h3>
       <p className="ajuda">{[h.acao, h.custo].filter(Boolean).join(" · ")}</p>
       <p>{h.texto}</p>
-      {(gasta > 0 || /\d/.test(dano)) && (
+      {h.requisito && (
+        <label className="check">
+          <input type="checkbox" checked={!!usos[chaveReq]} onChange={(e) => { const u = { ...usos }; if (e.target.checked) u[chaveReq] = 1; else delete u[chaveReq]; alterar({ estado: { ...f.estado, usos: u } }); }} />
+          Requisito cumprido: {h.requisito}
+        </label>
+      )}
+      {(gasta > 0 || /\d/.test(dano) || esp || lim) && (
         <div className="acao-botoes">
-          {gasta > 0 && (
+          {(gasta > 0 || esp || lim) && (
             <button
               type="button"
               className="btn-mini"
-              disabled={!ativa || f.prAtual < gasta || espUsada}
+              disabled={!ativa || f.prAtual < gasta || bloqueada}
               onClick={usar}
             >
-              {espUsada ? "Já usada nesta cena" : esp ? `Usar técnica especial (${gasta} PR)` : `Usar (${gasta} PR)`}
+              {!reqOk ? "Falta o requisito" : rotulo}
             </button>
           )}
           {/\d/.test(dano) && (
-            <button type="button" className="btn-mini" disabled={!ativa} onClick={() => r.expr(h.nome, dano)}>
+            <button type="button" className="btn-mini" disabled={!ativa || !reqOk} onClick={() => r.expr(h.nome, dano)}>
               <Icone nome="dado" /> {dano}
             </button>
           )}

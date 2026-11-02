@@ -44,7 +44,7 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
     const usos = { ...e.usos };
     const limpa = !!usos["esgotado-curto"];
     delete usos["esgotado-curto"];
-    for (const k of Object.keys(usos)) if (k.startsWith("esp:")) delete usos[k];
+    for (const k of Object.keys(usos)) if (/^(esp:|lim-cena:|lim-curto:|req:)/.test(k)) delete usos[k];
     alterar({
       pvAtual: Math.min(c.pv, f.pvAtual + Math.floor(c.pv / 2)),
       prAtual: Math.min(c.pr, f.prAtual + Math.floor(c.pr / 2)),
@@ -107,7 +107,7 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
     const usos = { ...e.usos };
     delete usos["forma-turnos"];
     delete usos["forma-de"];
-    for (const k of Object.keys(usos)) if (k.startsWith("fx:")) delete usos[k];
+    for (const k of Object.keys(usos)) if (/^(fx:|esp:|lim-cena:|req:)/.test(k)) delete usos[k];
     if (!terror && !verdadeira && !fimFx) return { liberado: "", usos };
     if (verdadeira || fimFx === "curto") usos["esgotado-curto"] = 1;
     else delete usos["esgotado-curto"];
