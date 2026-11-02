@@ -1322,7 +1322,88 @@ export const MODELOS_BANKAI: ModeloMontado[] = [
    "nota": "Troca o domo por visão, voo e um corpo Hollow: Forma Final, +2d10 nas técnicas e resistência a Energia.",
    "ppGasto": 23
   }
- }
+ },
+ {
+ "id": "hakka-no-togame",
+ "nome": "Hakka no Togame",
+ "dono": "Rukia Kuchiki",
+ "resumo": "A neve mais branca: um único golpe que congela tudo à volta, inclusive quem o usa.",
+ "tema": "Gelo absoluto e custo extremo",
+ "bankai": {
+  "nome": "Hakka no Togame",
+  "comando": "Bankai. Hakka no Togame.",
+  "estilo": "potencializadora",
+  "aparencia": "Rukia veste um quimono branco de manga longa, o cabelo se solta e esbranquiça, e uma fita de gelo sai da guarda da lâmina branca. A neve flutua em volta e o ar vira pó de cristal.",
+  "efeitos": [
+   {
+    "id": "bk-elemento",
+    "param": {
+     "tipo": "Gelo"
+    }
+   },
+   {
+    "id": "bk-gelo-lento"
+   },
+   {
+    "id": "bk-forca",
+    "param": {
+     "atr": "esp"
+    }
+   },
+   {
+    "id": "bk-veloz"
+   },
+   {
+    "id": "bk-reacao"
+   },
+   {
+    "id": "bk-barreira"
+   },
+   {
+    "id": "bk-perfura"
+   },
+    {"id": "bk-pele", "param": {"tipo": "Gelo"}},
+    {"id": "bk-sentidos"}
+  ],
+  "pontoFraco": "pg-degelo",
+  "habilidades": [
+   {
+    "nome": "Hakka no Togame: Zero Absoluto",
+    "acao": "Ação",
+    "dano": "[NIV/2+4]d10+[ESP]",
+    "regra": "Uma vez por cena. Área de 6 m ao redor de você: salvaguarda de Constituição; na falha, dano total e Congelado até o fim do próximo turno do alvo; no sucesso, metade. Você fica Esgotado ao fim da cena.",
+    "desc": "A lâmina toca o chão e tudo ao redor vira cristal, num silêncio de inverno.",
+    "modelo": "Técnica final"
+   },
+   {
+    "nome": "Lâmina de Geada",
+    "acao": "Ação",
+    "dano": "[NIV/2+2]d10+[ESP]",
+    "regra": "Golpe corpo a corpo; se falhar na salvaguarda de Constituição, o alvo fica Preso até o fim do próximo turno dele.",
+    "desc": "A ponta deixa uma linha de gelo que sobe pelo corpo do inimigo.",
+    "modelo": "Ataque básico"
+   },
+   {
+    "nome": "Dança da Neve",
+    "acao": "Ação bônus",
+    "dano": "4d10+[ESP]",
+    "regra": "Cone de 9 m: salvaguarda de Destreza, metade no sucesso.",
+    "desc": "A manga branca gira e solta uma rajada de neve cortante.",
+    "modelo": "Reforço"
+   },
+   {
+    "nome": "Cortina Branca",
+    "acao": "Reação",
+    "dano": "",
+    "regra": "Uma vez por cena, quando um ataque acerta você: o atacante refaz o ataque com desvantagem, porque acertou uma imagem de neve.",
+    "desc": "Onde Rukia estava resta só neve soprada.",
+    "modelo": "Barreira"
+   }
+  ],
+  "ppGasto": 16
+ },
+ "verdadeira": null
+}
 ];
 
 export const FONTES_MODELOS: string[] = ["https://www.cbr.com/bleach-toshiro-hitsugaya-zanpakuto-explained/", "https://fandomwire.com/bleach-thousand-year-blood-war-the-calamity-toshiro-hitsugaya-complete-bankai-explained/", "https://bleach.fandom.com/wiki/Sennen_Hy%C5%8Dr%C5%8D", "https://sportskeeda.com/anime/what-renji-s-true-bankai-bleach-explained", "https://comicbook.com/anime/news/bleach-tybw-renji-bankai-so-oh-zabimaru-true-form", "https://www.animeexplained.com/explained/bleach-byakuya-kuchikis-zanpakuto-senbonzakura-explained", "https://sportskeeda.com/anime/what-byakuya-s-bankai-bleach-senbonzakura-kageyoshi-explained", "https://animehunch.com/bankai-of-yamamoto-genryusai-explained-in-detail/", "https://sportskeeda.com/anime/bleach-tybw-yamamoto-s-bankai-zanka-tachi-explained", "https://www.soapcentral.com/anime/bleach-what-katen-kyokotsu-karamatsu-shinju", "https://sportskeeda.com/anime/why-shunsui-s-bankai-banned-bleach-explained", "https://fictionhorizon.com/bleach-komamuras-human-form-explained-how-powerful-is-it/", "https://fictionhorizon.com/what-is-mayuri-kurotsuchis-bankai-in-bleach-including-modified-explained/", "https://sportskeeda.com/anime/what-mayuri-s-bankai-ability-bleach-explained", "https://www.sportskeeda.com/anime/does-soifon-weakest-bankai-among-soul-reaper-captains-bleach-explored", "https://sportskeeda.com/anime/bleach-why-urahara-s-bankai-broken-ability-entire-series", "https://gotai13.blogspot.com/2010/03/tosen-kaname.html", "https://comicbook.com/anime/list/bleach-every-ichigo-form-explained-list"];
