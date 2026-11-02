@@ -1406,13 +1406,13 @@ export const MODELOS_BANKAI: ModeloMontado[] = [
  "verdadeira": null
 },
 {
- "id": "kyoka-alter-ego",
- "nome": "Kyōka Suigetsu: Alter-ego",
+ "id": "kyoka-reflexos",
+ "nome": "Kyōka Suigetsu: Mundo de Reflexos",
  "dono": "Sōsuke Aizen (versão da mesa)",
- "resumo": "O alter-ego da Kyōka Suigetsu: você se divide em reflexos que agem por você, e ninguém sabe qual é o real.",
+ "resumo": "A Kyōka Suigetsu levada ao extremo: você se divide em reflexos que agem por você, e ninguém sabe qual é o real.",
  "tema": "Ilusão e reflexos",
  "bankai": {
-  "nome": "Kyōka Suigetsu: Alter-ego",
+  "nome": "Kyōka Suigetsu: Mundo de Reflexos",
   "comando": "Bankai. Kyōka Suigetsu, mostre o outro eu.",
   "estilo": "transformadora",
   "aparencia": "O ar ao redor vira um espelho calmo; várias cópias suas surgem lado a lado, todas sorrindo do mesmo jeito, e o som da lâmina vem sempre de algum outro lugar.",
@@ -1444,7 +1444,7 @@ export const MODELOS_BANKAI: ModeloMontado[] = [
   ],
   "pontoFraco": "pg-vista",
   "ppGasto": 16,
-  "nota": "Versão da mesa: o Aizen não mostra uma Bankai na obra. Esta é inspirada na ideia de que a Bankai é o alter-ego da Zanpakutō. Precisa de aprovação do Mestre.",
+  "nota": "Versão da mesa: o Aizen não mostra uma Bankai na obra. Esta é uma adaptação da mesa, inspirada nas ilusões da Zanpakutō. Precisa de aprovação do Mestre.",
   "habilidades": [
    {
     "nome": "Ilusão Completa",
@@ -1471,7 +1471,7 @@ export const MODELOS_BANKAI: ModeloMontado[] = [
     "modelo": "Reforço"
    },
    {
-    "nome": "Despertar do Alter-ego",
+    "nome": "Despertar dos Reflexos",
     "acao": "Ação",
     "dano": "[NIV/2+4]d12+[MEN]",
     "regra": "Todos os seus clones atacam ao mesmo tempo o alvo à sua escolha a até 9 m: salvaguarda de Mente; na falha, dano total e Atordoado até o fim do próximo turno do alvo; no sucesso, metade.",

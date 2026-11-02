@@ -40,7 +40,7 @@ const PASSOS_BASE: Record<Exclude<TipoForma, "bankai2">, Passo[]> = {
     { id: "revisao", titulo: "Revisão", ajuda: "Confira tudo. Ao salvar, o nome e a frase vão para a sua ficha e as habilidades viram cartas no Resumo." },
   ],
   bankai: [
-    { id: "conceito", titulo: "Conceito", ajuda: "A Shikai é o ego da Zanpakutō; a Bankai é o alter-ego, o outro lado dela, o que o Shinigami esconde de si mesmo. Pense no que está escondido e escolha como a Bankai se comporta em relação à sua Shikai." },
+    { id: "conceito", titulo: "Conceito", ajuda: "A Bankai reflete a alma do Shinigami. Pense no que ele esconde dentro de si e escolha como ela vai se comportar em relação à sua Shikai." },
     { id: "nome", titulo: "Nome e comando", ajuda: "O nome verdadeiro do espírito aparece na Bankai. O comando é a frase dita ao liberar, seguida do nome." },
     { id: "aparencia", titulo: "Aparência", ajuda: "Na Bankai o espírito aparece no mundo real. A forma pode ficar igual ou mudar por completo. Pode ser algo grande ou pequeno." },
     { id: "acoes", titulo: "Habilidades e técnicas", ajuda: "Escolha de 3 a 4 habilidades. Quanto mais forte a habilidade, maior o custo de reiatsu. Use os modelos abaixo e edite o que quiser." },
