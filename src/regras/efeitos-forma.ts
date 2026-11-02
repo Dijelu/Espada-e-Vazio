@@ -291,21 +291,24 @@ export const PP_EXTRA_MAX = 12;
 const teto = (v: number, max: number) => Math.min(v, max);
 
 /** Preço em PP de um único efeito, no nível atual. Cada alvo a mais soma +50%. */
+const devol = (x: number) => -Math.max(1, Math.ceil(x * 0.75));
+
 export function custoEfeito(e: Efeito, ctx: CtxForma): number {
   // golpes, disparos e Hadō contam como um grupo só ("ataques armados, podendo ser kidōs"); cada outro alvo soma +50%
   const mais = (em: Alvo[], base: number) => Math.ceil(base * (1 + 0.5 * Math.max(0, new Set(em.map((x) => (ARMADOS.includes(x) ? "armado" : x))).size - 1)));
   switch (e.k) {
-    case "atr": return Math.max(0, valor(e.v, ctx));
-    case "cr": return Math.ceil((2 * Math.max(0, valor(e.v, ctx))) / 3);
-    case "acerto": return mais(e.em, Math.ceil((2 * Math.max(0, valor(e.v, ctx))) / 3));
-    case "dano": return mais(e.em, Math.ceil(Math.max(0, valor(e.v, ctx)) / 2.5));
+    // valores negativos são pontos fracos: devolvem 3/4 do que o mesmo bônus custaria
+    case "atr": { const v = valor(e.v, ctx); return v < 0 ? devol(-v) : v; }
+    case "cr": { const v = valor(e.v, ctx); return v < 0 ? devol(Math.ceil((2 * -v) / 3)) : Math.ceil((2 * v) / 3); }
+    case "acerto": { const v = valor(e.v, ctx); return v < 0 ? devol(Math.ceil((2 * -v) / 3)) : mais(e.em, Math.ceil((2 * v) / 3)); }
+    case "dano": { const v = valor(e.v, ctx); return v < 0 ? devol(Math.ceil(-v / 2.5)) : mais(e.em, Math.ceil(v / 2.5)); }
     case "dados": { const n = valor(e.n, ctx); return mais(e.em, Math.ceil((2 * n * e.d) / 8)); }
-    case "cd": return Math.max(0, valor(e.v, ctx));
+    case "cd": { const v = valor(e.v, ctx); return v < 0 ? devol(-v) : v; }
     case "ignoraRd": return mais(e.em, Math.ceil(valor(e.v, ctx) / 5));
     case "alcance": return mais(e.em, Math.ceil(valor(e.m, ctx) / 6));
     case "rd": { const b = Math.ceil(valor(e.v, ctx) / 2.5); return e.tipo === "fis" ? Math.ceil(b * 0.6) : b; }
     case "resist": return e.grau === "imune" ? 5 : e.grau === "vulner" ? -2 : 2;
-    case "desloc": return Math.ceil(valor(e.v, ctx) / 3);
+    case "desloc": { const v = valor(e.v, ctx); return v < 0 ? devol(Math.ceil(-v / 3)) : Math.ceil(v / 3); }
     case "acoes": return e.tipo === "ataque" ? 4 : e.tipo === "bonus" ? 3 : 2;
     case "vant": return 1;
     case "gatilho": {

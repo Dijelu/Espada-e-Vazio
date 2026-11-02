@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { calcular, type Atr, type Ficha, type FormaLib } from "../regras/ficha";
 import {
   ALVOS, ARMADOS, ATR_NOME, QUANDO_NOME, avisosDeTeto, custoEfeito, custoPeca, orcamentoDaForma, somarForma,
-  type Alvo, type CtxForma, type Efeito, type InstEfeito,
+  type Alvo, type CtxForma, type Efeito, type InstEfeito, type Num,
 } from "../regras/efeitos-forma";
 import { SeletorDano, SeletorValor } from "./SeletorFormula";
 import { CATEGORIAS, presetsDaFamilia, type Categoria, type ParamPreset, type Preset } from "../regras/efeitos-presets";
@@ -206,7 +206,7 @@ function descreveFaz(z: import("../regras/efeitos-forma").Faz, ctx: CtxForma): s
 
 /** Editor de peça própria: escolhe o tipo de efeito e preenche só o que ele precisa. */
 function PecaPropria({ ctx, livre, onCriar, onFechar }: { ctx: CtxForma; livre: number; onCriar: (p: InstEfeito) => void; onFechar: () => void }) {
-  const [tipo, setTipo] = useState<"atr" | "cr" | "acerto" | "dano" | "dados" | "cd" | "rd" | "desloc" | "pvTemp" | "texto" | "fraco" | "invoca">("atr");
+  const [tipo, setTipo] = useState<"atr" | "cr" | "acerto" | "dano" | "dados" | "cd" | "rd" | "desloc" | "pvTemp" | "texto" | "fraco" | "invoca" | "fatr" | "fcr" | "facerto" | "fdano" | "fcd" | "fdesloc" | "fvulner" | "fcusto" | "ffim" | "fdur">("atr");
   const [nome, setNome] = useState("");
   const [atr, setAtr] = useState<Atr>("for");
   const [grupo, setGrupo] = useState<Grupo>("armados");
@@ -218,6 +218,10 @@ function PecaPropria({ ctx, livre, onCriar, onFechar }: { ctx: CtxForma; livre: 
   const [inv, setInv] = useState({ tipo: "clone" as "clone" | "invocacao", max: "2", pv: "[PROF]*2", cr: "10+[PROF]", acerto: "[PROF]", dano: "1d8+[PROF]", custoPr: "2" });
   const em = GRUPOS.find((x) => x.id === grupo)?.em ?? ARMADOS;
   const num = v.trim() === "" ? 0 : v.trim();
+  // pontos fracos: o jogador digita o tamanho da perda e a peça aplica com sinal negativo
+  const neg = (x: string): Num => { const t = x.trim(); if (t === "") return 0; return /^\d+(\.\d+)?$/.test(t) ? -Number(t) : `0-(${t})`; };
+  const [vuln, setVuln] = useState("fogo");
+  const [fim, setFim] = useState<"curto" | "longo">("curto");
   const efeito: Efeito | null =
     tipo === "atr" ? { k: "atr", atr, v: num }
     : tipo === "cr" ? { k: "cr", v: num }
@@ -227,11 +231,22 @@ function PecaPropria({ ctx, livre, onCriar, onFechar }: { ctx: CtxForma; livre: 
     : tipo === "cd" ? { k: "cd", v: num }
     : tipo === "rd" ? { k: "rd", tipo: rd, v: num }
     : tipo === "desloc" ? { k: "desloc", modo, v: num }
+    : tipo === "fatr" ? { k: "atr", atr, v: neg(v) }
+    : tipo === "fcr" ? { k: "cr", v: neg(v) }
+    : tipo === "facerto" ? { k: "acerto", em, v: neg(v) }
+    : tipo === "fdano" ? { k: "dano", em, v: neg(v) }
+    : tipo === "fcd" ? { k: "cd", v: neg(v) }
+    : tipo === "fdesloc" ? { k: "desloc", modo, v: neg(v) }
+    : tipo === "fvulner" ? { k: "resist", dano: vuln.trim() || "fogo", grau: "vulner" }
+    : tipo === "fcusto" ? { k: "custo", pr: num }
+    : tipo === "ffim" ? { k: "fim", esgotado: fim }
+    : tipo === "fdur" ? { k: "duracao", turnos: num }
     : tipo === "fraco" ? { k: "texto", t: texto }
     : tipo === "pvTemp" ? { k: "gatilho", quando: "liberar", faz: { pvTemp: num }, rotulo: nome || "PV temporários" }
     : { k: "texto", t: texto };
+  const ehFraqueza = tipo === "fatr" || tipo === "fcr" || tipo === "facerto" || tipo === "fdano" || tipo === "fcd" || tipo === "fdesloc" || tipo === "fvulner" || tipo === "fcusto" || tipo === "ffim" || tipo === "fdur" || tipo === "fraco";
   const custo = efeito ? custoEfeito(efeito, ctx) : 0;
-  const ok = !!efeito && ((tipo !== "texto" && tipo !== "fraco") || texto.trim().length > 0) && (tipo === "fraco" || custo <= livre);
+  const ok = !!efeito && ((tipo !== "texto" && tipo !== "fraco") || texto.trim().length > 0) && (ehFraqueza || custo <= livre);
   return (
     <div className="npc-item peca-propria">
       <label className="campo">O que a peça faz
@@ -247,15 +262,27 @@ function PecaPropria({ ctx, livre, onCriar, onFechar }: { ctx: CtxForma; livre: 
           <option value="pvTemp">PV temporários ao liberar</option>
           <option value="texto">Efeito em texto (o Mestre aprova)</option>
           <option value="invoca">Clone ou invocação</option>
-          <option value="fraco">Ponto fraco (devolve pontos)</option>
+          <optgroup label="Pontos fracos (devolvem pontos)">
+            <option value="fatr">Perder um atributo</option>
+            <option value="fcr">Perder CR</option>
+            <option value="facerto">Perder acerto</option>
+            <option value="fdano">Perder dano fixo</option>
+            <option value="fcd">Perder CD dos Kidōs e técnicas</option>
+            <option value="fdesloc">Perder deslocamento ou voo</option>
+            <option value="fvulner">Ficar vulnerável a um tipo de dano</option>
+            <option value="fcusto">Pagar PR a cada turno</option>
+            <option value="ffim">Ficar Esgotado quando acabar</option>
+            <option value="fdur">Duração curta (poucos turnos)</option>
+            <option value="fraco">Outro ponto fraco (texto, vale 1 PP)</option>
+          </optgroup>
         </select>
       </label>
       <label className="campo">Nome<input value={nome} maxLength={60} onChange={(e) => setNome(e.target.value)} placeholder="Nome da peça" /></label>
-      {tipo === "atr" && <label className="campo">Atributo<select value={atr} onChange={(e) => setAtr(e.target.value as Atr)}>{ATRS.map((a) => <option key={a} value={a}>{ATR_NOME[a]}</option>)}</select></label>}
-      {(tipo === "acerto" || tipo === "dano" || tipo === "dados") && <label className="campo">Vale para<select value={grupo} onChange={(e) => setGrupo(e.target.value as Grupo)}>{GRUPOS.map((g) => <option key={g.id} value={g.id}>{g.nome}</option>)}</select></label>}
+      {(tipo === "atr" || tipo === "fatr") && <label className="campo">Atributo<select value={atr} onChange={(e) => setAtr(e.target.value as Atr)}>{ATRS.map((a) => <option key={a} value={a}>{ATR_NOME[a]}</option>)}</select></label>}
+      {(tipo === "acerto" || tipo === "dano" || tipo === "dados" || tipo === "facerto" || tipo === "fdano") && <label className="campo">Vale para<select value={grupo} onChange={(e) => setGrupo(e.target.value as Grupo)}>{GRUPOS.map((g) => <option key={g.id} value={g.id}>{g.nome}</option>)}</select></label>}
       {tipo === "dados" && <label className="campo">Dado<select value={d} onChange={(e) => setD(Number(e.target.value))}>{[4, 6, 8, 10, 12].map((x) => <option key={x} value={x}>d{x}</option>)}</select></label>}
       {tipo === "rd" && <label className="campo">Contra<select value={rd} onChange={(e) => setRd(e.target.value as typeof rd)}><option value="ambos">Tudo</option><option value="fis">Físico</option><option value="eso">Esotérico</option></select></label>}
-      {tipo === "desloc" && <label className="campo">Tipo<select value={modo} onChange={(e) => setModo(e.target.value as typeof modo)}><option value="chao">No chão</option><option value="voo">Voo</option></select></label>}
+      {(tipo === "desloc" || tipo === "fdesloc") && <label className="campo">Tipo<select value={modo} onChange={(e) => setModo(e.target.value as typeof modo)}><option value="chao">No chão</option><option value="voo">Voo</option></select></label>}
       {tipo === "invoca" && (
         <>
           <label className="campo">Tipo<select value={inv.tipo} onChange={(e) => setInv({ ...inv, tipo: e.target.value as "clone" | "invocacao" })}><option value="clone">Clone</option><option value="invocacao">Invocação</option></select></label>
@@ -268,9 +295,11 @@ function PecaPropria({ ctx, livre, onCriar, onFechar }: { ctx: CtxForma; livre: 
           <label className="campo npc-larga">Anotação (opcional)<textarea rows={2} maxLength={300} value={texto} onChange={(e) => setTexto(e.target.value)} /></label>
         </>
       )}
-      {tipo !== "texto" && tipo !== "fraco" && tipo !== "invoca" && <SeletorValor rotulo={tipo === "pvTemp" ? "PV temporários" : "Valor"} valor={v} ctx={ctx} onChange={setV} />}
+      {tipo === "fvulner" && <label className="campo">Tipo de dano<input value={vuln} maxLength={30} onChange={(e) => setVuln(e.target.value)} placeholder="ex.: fogo, gelo, espiritual" /></label>}
+      {tipo === "ffim" && <label className="campo">Descanso para se recuperar<select value={fim} onChange={(e) => setFim(e.target.value as typeof fim)}><option value="curto">Descanso curto (-2 PP)</option><option value="longo">Descanso longo (-3 PP)</option></select></label>}
+      {tipo !== "texto" && tipo !== "fraco" && tipo !== "invoca" && tipo !== "fvulner" && tipo !== "ffim" && <SeletorValor rotulo={tipo === "pvTemp" ? "PV temporários" : tipo === "fcusto" ? "PR por turno" : tipo === "fdur" ? "Turnos de duração" : ehFraqueza ? "Quanto perde" : "Valor"} valor={v} ctx={ctx} onChange={setV} />}
       {(tipo === "texto" || tipo === "fraco") && <label className="campo npc-larga">{tipo === "fraco" ? "Qual é o preço ou fraqueza" : "Descrição"}<textarea rows={2} maxLength={300} value={texto} onChange={(e) => setTexto(e.target.value)} /></label>}
-      <p className="ajuda npc-larga">Custo: <b>{custo} PP</b>{custo > livre ? ` (faltam ${custo - livre})` : ""}</p>
+      <p className="ajuda npc-larga">{custo < 0 ? "Devolve" : "Custo"}: <b>{Math.abs(custo)} PP</b>{custo > livre ? ` (faltam ${custo - livre})` : ""}</p>
       <div className="acoes-linha npc-larga">
         <button type="button" className="btn-mini" disabled={!ok} onClick={() => efeito && onCriar({ id: novoId(), nome: nome.trim() || "Peça própria", efeitos: [efeito], pp: tipo === "texto" ? 1 : tipo === "fraco" ? -1 : undefined })}>Adicionar peça</button>
         <button type="button" className="link-perigo" onClick={onFechar}>Cancelar</button>
