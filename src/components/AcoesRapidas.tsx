@@ -5,10 +5,13 @@ import type { Rolagens } from "./Rolador";
 import { CONDICAO_TEXTO, CONDICOES, treinoConcluido } from "../regras/catalogo";
 import { Dica } from "./Dica";
 import { custoBankai, nivelLiberacao } from "../regras/liberacoes";
+import { aplicarFaz } from "../regras/aplicar-faz";
 import { classePorId, type Calculo, type Ficha, type Liberacao } from "../regras/ficha";
 import { efeito as som } from "../lib/som";
 import { prepararFotoMascara } from "../lib/mascara-foto";
 import { MASCARAS, mascaraAtiva, tempMascara, type TipoMascara } from "../regras/mascara";
+
+const LIB_NUM: Record<string, number> = { shikai: 1, bankai: 2, bankai2: 3, resurreccion: 4, terror: 5, vollstandig: 6 };
 
 export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alterar: (p: Partial<Ficha>) => void; r: Rolagens }) {
   const classe = classePorId(f.classe);
@@ -99,16 +102,58 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
   const encerrarForma = (): Partial<Ficha["estado"]> => {
     const terror = e.liberado === "terror";
     const verdadeira = e.liberado === "bankai2";
-    if (!terror && !verdadeira) return { liberado: "" };
+    const fimFx = c.forma?.fim;
     const usos = { ...e.usos };
-    if (verdadeira) usos["esgotado-curto"] = 1;
+    delete usos["forma-turnos"];
+    delete usos["forma-de"];
+    for (const k of Object.keys(usos)) if (k.startsWith("fx:")) delete usos[k];
+    if (!terror && !verdadeira && !fimFx) return { liberado: "", usos };
+    if (verdadeira || fimFx === "curto") usos["esgotado-curto"] = 1;
     else delete usos["esgotado-curto"];
     return { liberado: "", usos, condicoes: e.condicoes.includes("Esgotado") ? e.condicoes : [...e.condicoes, "Esgotado"] };
   };
+  const fx = c.forma;
+  /** Há algo que muda a cada turno na forma ativa? */
+  const temTurnoDeForma = e.liberado === "terror" || (!!fx && (fx.manutencao > 0 || !!fx.duracao || fx.gatilhos.some((g) => g.quando === "inicioTurno" || g.limite === "turno" || g.limite === "rodada")));
+  /** Novo turno: renova os usos por turno, cobra a manutenção, aplica os efeitos de início de turno e conta a duração. */
   const proximoTurno = () => {
-    if (e.liberado !== "terror") return;
-    alterar({ prAtual: Math.max(0, f.prAtual - 2) });
-    setMsg("Novo turno com a Segunda Etapa ativa: −2 PR.");
+    if (!e.liberado || e.liberado === "mascara") return;
+    const usos = { ...e.usos };
+    if (usos["forma-de"] !== undefined && usos["forma-de"] !== LIB_NUM[e.liberado]) usos["forma-turnos"] = 0;
+    usos["forma-de"] = LIB_NUM[e.liberado] ?? 0;
+    for (const g of fx?.gatilhos ?? []) if (g.limite === "turno" || g.limite === "rodada") delete usos[`fx:${g.peca}:${g.rotulo}`];
+    const partes: string[] = [];
+    let pr = f.prAtual;
+    const custo = (e.liberado === "terror" ? 2 : 0) + (fx?.manutencao ?? 0);
+    if (custo > 0) {
+      if (pr < custo) {
+        alterar({ estado: { ...f.estado, ...encerrarForma() } });
+        setMsg(`Sem ${custo} PR para manter a forma: ela terminou.`);
+        return;
+      }
+      pr -= custo;
+      partes.push(`−${custo} PR de manutenção`);
+    }
+    let pv = f.pvAtual;
+    let pvTemp = e.pvTemp;
+    for (const g of fx?.gatilhos ?? []) {
+      if (g.quando !== "inicioTurno") continue;
+      const res = aplicarFaz({ ...f, pvAtual: pv, prAtual: pr, estado: { ...f.estado, pvTemp } }, c, g.faz);
+      if (res.parte.pvAtual !== undefined) pv = res.parte.pvAtual;
+      if (res.parte.prAtual !== undefined) pr = res.parte.prAtual;
+      if (res.pvTemp !== undefined) pvTemp = res.pvTemp;
+      if (res.rolar) r.expr(g.rotulo, res.rolar);
+      partes.push(`${g.rotulo}: ${res.dito.join(", ") || "feito"}`);
+    }
+    usos["forma-turnos"] = (usos["forma-turnos"] ?? 0) + 1;
+    if (fx?.duracao && usos["forma-turnos"] >= fx.duracao) {
+      const fim = encerrarForma();
+      alterar({ pvAtual: pv, prAtual: pr, estado: { ...f.estado, pvTemp, ...fim } });
+      setMsg(`${[...partes, `a duração de ${fx.duracao} turnos acabou: a forma terminou`].join(". ")}.`);
+      return;
+    }
+    alterar({ pvAtual: pv, prAtual: pr, estado: { ...f.estado, pvTemp, usos } });
+    setMsg(`Novo turno${fx?.duracao ? ` (${usos["forma-turnos"]} de ${fx.duracao})` : ""}: ${partes.join("; ") || "nada a cobrar"}.`);
   };
 
   const tr = f.treinos;
@@ -216,7 +261,7 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
               {l.nome}{custoLib(l.id) ? ` (${custoLib(l.id)} PR)` : ""}
             </button>
           ))}
-          {e.liberado === "terror" && <button type="button" className="chip chip-btn" onClick={proximoTurno}>Novo turno (−2 PR)</button>}
+          {temTurnoDeForma && <button type="button" className="chip chip-btn" onClick={proximoTurno}>Novo turno{e.liberado === "terror" ? " (−2 PR)" : ""}</button>}
           {e.liberado && <span className="ajuda">CR atual {c.cr}.</span>}
         </div>
       )}

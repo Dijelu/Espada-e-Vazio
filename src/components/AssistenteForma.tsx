@@ -22,7 +22,7 @@ interface Passo {
   ajuda: string;
 }
 
-const PASSOS: Record<TipoForma, Passo[]> = {
+const PASSOS_BASE: Record<Exclude<TipoForma, "bankai2">, Passo[]> = {
   shikai: [
     { id: "categoria", titulo: "Categoria", ajuda: "Defina o tipo da sua Zanpakutou. Combate é voltada só para lutar. Elemental usa um elemento da natureza. Kido tem uma habilidade que faz tudo funcionar. Especial é o que não cabe nas outras." },
     { id: "espirito", titulo: "Espírito", ajuda: "A alma do Shinigami se reflete na Zanpakutou. Crie a aparência e a personalidade do espírito com base no seu personagem (ou no contrário dele). O espírito pode ter vontades diferentes das suas." },
@@ -68,8 +68,9 @@ const PASSOS: Record<TipoForma, Passo[]> = {
     { id: "revisao", titulo: "Revisão", ajuda: "Confira tudo. Ativar custa 60 PR e usa uma ação." },
   ],
 };
+const PASSOS: Record<TipoForma, Passo[]> = { ...PASSOS_BASE, bankai2: PASSOS_BASE.bankai };
 
-const APARENCIA: Record<TipoForma, string[]> = {
+const APARENCIA_BASE: Record<Exclude<TipoForma, "bankai2">, string[]> = {
   shikai: [
     "A Asauchi se transforma numa espada de lâmina diferente.",
     "A lâmina se desfaz em milhares de pétalas ou lâminas minúsculas.",
@@ -107,11 +108,12 @@ const APARENCIA: Record<TipoForma, string[]> = {
     "Reishi dourado e cheio de faíscas.",
   ],
 };
+const APARENCIA: Record<TipoForma, string[]> = { ...APARENCIA_BASE, bankai2: APARENCIA_BASE.bankai };
 
 export const MAX_TRACOS = 3;
 
 /** Quantas habilidades/técnicas cada forma aceita, para a lista não crescer sem fim. */
-export const LIMITE_HAB: Record<TipoForma, number> = { shikai: 4, bankai: 5, resurreccion: 5, segunda: 6, vollstandig: 4 };
+export const LIMITE_HAB: Record<TipoForma, number> = { shikai: 4, bankai: 5, bankai2: 5, resurreccion: 5, segunda: 6, vollstandig: 4 };
 
 const TRACOS = [
   "Deslocamento +6 metros e Desengajar como ação livre uma vez por turno.",
@@ -143,7 +145,7 @@ const TRACOS = [
   "Sentido de reiatsu: sabe a posição de qualquer criatura com reiatsu a até 18 metros, mesmo sem vê-la.",
 ];
 
-const FRAQUEZAS: Record<TipoForma, string[]> = {
+const FRAQUEZAS_BASE: Record<Exclude<TipoForma, "bankai2">, string[]> = {
   shikai: [],
   bankai: [
     "Só pode ser liberada longe de aliados, porque o poder também os atinge.",
@@ -167,6 +169,7 @@ const FRAQUEZAS: Record<TipoForma, string[]> = {
   ],
   vollstandig: [],
 };
+const FRAQUEZAS: Record<TipoForma, string[]> = { ...FRAQUEZAS_BASE, bankai2: FRAQUEZAS_BASE.bankai };
 
 const CANALIZADORES = ["Colar com a cruz Quincy", "Luva com o emblema", "Máscara", "Sangue desenhando o símbolo no ar", "Anel de prata"];
 

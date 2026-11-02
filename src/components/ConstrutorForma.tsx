@@ -13,7 +13,8 @@ import {
   picksVoll,
   totalPicks,
 } from "../regras/liberacoes";
-import { valor, QUANDO_NOME, ATR_NOME, type Faz } from "../regras/efeitos-forma";
+import { QUANDO_NOME, type Faz } from "../regras/efeitos-forma";
+import { aplicarFaz } from "../regras/aplicar-faz";
 import { novoId } from "./FichaPecas";
 import { AssistenteForma, LIMITE_HAB } from "./AssistenteForma";
 import { SeletorSchrift } from "./SeletorSchrift";
@@ -487,20 +488,12 @@ function EfeitosAtivos({ f, c, r, alterar, onMsg }: { f: Ficha; c: Calculo; r: R
   const aplicar = (g: { rotulo: string; faz: Faz; limite?: string; peca: string }) => {
     const chave = `fx:${g.peca}:${g.rotulo}`;
     if (g.limite && usos[chave]) { onMsg(`${g.rotulo}: já usado (${g.limite}).`); return; }
-    const z = g.faz;
-    const parte: Partial<Ficha> = {};
+    const res = aplicarFaz(f, c, g.faz);
     const est = { ...f.estado };
-    const dito: string[] = [];
-    if (z.curaPv !== undefined) { const v = valor(z.curaPv, ctx); parte.pvAtual = Math.min(c.pvMax, f.pvAtual + v); dito.push(`+${v} PV`); }
-    if (z.pvTemp !== undefined) { const v = valor(z.pvTemp, ctx); est.pvTemp = Math.max(est.pvTemp ?? 0, v); dito.push(`${v} PV temporários`); }
-    if (z.pr !== undefined) { const v = valor(z.pr, ctx); parte.prAtual = Math.min(c.prMax, (parte.prAtual ?? f.prAtual) + v); dito.push(`+${v} PR`); }
-    if (z.prTemp !== undefined) { const v = valor(z.prTemp, ctx); parte.prAtual = (parte.prAtual ?? f.prAtual) + v; dito.push(`+${v} PR extras`); }
-    if (z.dano) { r.expr(g.rotulo, resolverDano(z.dano.expr, f, c)); dito.push(`${z.dano.tipo}${z.dano.area ? ` (${z.dano.area})` : ""}`); }
-    if (z.condicao) {
-      const cdv = 8 + c.prof + c.atr.esp;
-      dito.push(`o alvo fica ${z.condicao.nome}${z.condicao.salva ? ` (salvaguarda de ${ATR_NOME[z.condicao.salva]}, CD ${cdv}; na falha)` : ""}${z.condicao.duracao ? ` por ${z.condicao.duracao}` : ""}`);
-    }
-    if (z.texto) dito.push(z.texto);
+    if (res.pvTemp !== undefined) est.pvTemp = res.pvTemp;
+    if (res.rolar) r.expr(g.rotulo, res.rolar);
+    const parte = res.parte;
+    const dito = res.dito;
     if (g.limite) est.usos = { ...usos, [chave]: 1 };
     alterar({ ...parte, estado: est });
     onMsg(`${g.rotulo}: ${dito.join(", ") || "feito"}.`);

@@ -6,7 +6,7 @@ import { classePorId, type Calculo, type Ficha } from "../regras/ficha";
 
 const NIVEL_TREINO: Record<string, number> = { shikai: 3, bankai: 10, resurreccion: 9, "bankai-final": 20, terror: 15 };
 
-export function AbaTreinamento({ f, c, alterar, onMontar }: { f: Ficha; c: Calculo; alterar: (p: Partial<Ficha>) => void; onMontar?: (tipo: "bankai") => void }) {
+export function AbaTreinamento({ f, c, alterar, onMontar }: { f: Ficha; c: Calculo; alterar: (p: Partial<Ficha>) => void; onMontar?: (tipo: "bankai" | "bankai2") => void }) {
   const tipo = classePorId(f.classe)?.tipo;
   const lista = treinosDaFicha(f, tipo);
   const feitos = f.treinos.feitos;

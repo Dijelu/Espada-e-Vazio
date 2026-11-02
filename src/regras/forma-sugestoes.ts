@@ -84,7 +84,7 @@ export const NOMES: Partial<Record<TipoForma, NomeComando[]>> = {
 
 export const CANALIZADORES_EXTRA = ["Cruz Quincy no pescoço", "Luva com o emblema", "Máscara", "Sangue desenhando o símbolo no ar", "Anel de prata", "Livro de orações", "Relógio de bolso", "Brinco de prata", "Bracelete com a estrela"];
 
-export const FRAQUEZAS_EXTRA: Record<TipoForma, string[]> = {
+const FRAQUEZAS_EXTRA_BASE: Record<Exclude<TipoForma, "bankai2">, string[]> = {
   shikai: [],
   segunda: [
     "A forma consome 3 PR no início de cada turno e termina se você ficar sem reiatsu.",
@@ -125,3 +125,4 @@ export const FRAQUEZAS_EXTRA: Record<TipoForma, string[]> = {
     "Se um aliado cair a 0 PV na sua frente, você fica com desvantagem no próximo ataque.",
   ],
 };
+export const FRAQUEZAS_EXTRA: Record<TipoForma, string[]> = { ...FRAQUEZAS_EXTRA_BASE, bankai2: FRAQUEZAS_EXTRA_BASE.bankai };
