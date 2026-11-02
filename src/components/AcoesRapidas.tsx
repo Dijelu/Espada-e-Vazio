@@ -114,7 +114,7 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
   };
   const fx = c.forma;
   /** Há algo que muda a cada turno na forma ativa? */
-  const temTurnoDeForma = e.liberado === "terror" || (!!fx && (fx.manutencao > 0 || !!fx.duracao || fx.gatilhos.some((g) => g.quando === "inicioTurno" || g.limite === "turno" || g.limite === "rodada")));
+  const temTurnoDeForma = e.liberado === "terror" || (!!fx && (fx.manutencao > 0 || !!fx.duracao || !!fx.frenesi || fx.gatilhos.some((g) => g.quando === "inicioTurno" || g.limite === "turno" || g.limite === "rodada")));
   /** Novo turno: renova os usos por turno, cobra a manutenção, aplica os efeitos de início de turno e conta a duração. */
   const proximoTurno = () => {
     if (!e.liberado || e.liberado === "mascara") return;
@@ -133,6 +133,16 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
       }
       pr -= custo;
       partes.push(`−${custo} PR de manutenção`);
+    }
+    // frenesi: a forma pode tirar o controle de você neste turno
+    if (fx?.frenesi === "total") {
+      partes.push("FRENESI: o Mestre controla o seu personagem neste turno");
+    } else if (fx?.frenesi) {
+      const cd = (fx.frenesi === "grande" ? 12 : 10) + c.prof;
+      const dado = 1 + Math.floor(Math.random() * 20);
+      const total = dado + (c.saves.men?.total ?? c.atr.men);
+      const passou = dado === 20 || (dado !== 1 && total >= cd);
+      partes.push(`Frenesi: salvaguarda de Mente ${dado} + ${total - dado} = ${total} contra CD ${cd}. ${passou ? "Você mantém o controle" : fx.frenesi === "grande" ? "FALHOU: o Mestre joga o seu turno inteiro" : "FALHOU: o seu primeiro ataque vai contra a criatura mais próxima, amiga ou inimiga"}`);
     }
     let pv = f.pvAtual;
     let pvTemp = e.pvTemp;

@@ -1199,3 +1199,11 @@ img, video, svg { max-width: 100%; }
 .efeitos-catalogo .carta-hab.travada { opacity: .55; }
 .aviso-mini { color: #b3261e; font-size: .85rem; margin: 4px 0; }
 .chips-forma { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; padding: 0; margin: 8px 0; }
+
+/* Seleção de fórmulas */
+.seletor-formula { display: grid; gap: 6px; padding: 8px 10px; border: 1px solid var(--linha, #8884); border-radius: 8px; margin: 6px 0; }
+.seletor-formula .rotulo-sel { font-weight: 600; }
+.seletor-formula .linha-sel { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.seletor-formula .soma-sel { display: inline-flex; gap: 6px; align-items: center; }
+.seletor-formula .soma-sel input { width: 5rem; }
+.seletor-dano { border-style: dashed; }

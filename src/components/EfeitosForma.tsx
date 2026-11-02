@@ -4,6 +4,7 @@ import {
   ALVOS, ARMADOS, ATR_NOME, QUANDO_NOME, avisosDeTeto, custoEfeito, custoPeca, orcamentoDaForma, somarForma,
   type Alvo, type CtxForma, type Efeito, type InstEfeito,
 } from "../regras/efeitos-forma";
+import { SeletorDano, SeletorValor } from "./SeletorFormula";
 import { CATEGORIAS, presetsDaFamilia, type Categoria, type ParamPreset, type Preset } from "../regras/efeitos-presets";
 
 const novoId = () => `fx-${Math.random().toString(36).slice(2, 9)}`;
@@ -49,6 +50,7 @@ export function EfeitosForma({ f, tipo, r, mud, onGravar }: Props) {
     if (p.pp === undefined) inst.pp = undefined;
     const custo = custoPeca(inst, ctx);
     if (custo > orc.livre && custo > 0) { setMsg(`Faltam ${custo - orc.livre} PP para ${p.nome}.`); return; }
+    if (p.monta({}).some((x) => x.k === "frenesi") && efeitos.some((e) => e.efeitos.some((x) => x.k === "frenesi"))) { setMsg("Só pode haver um frenesi na forma."); return; }
     if (p.unico && efeitos.some((e) => e.preset === p.id)) { setMsg(`${p.nome} só pode entrar uma vez.`); return; }
     setMsg("");
     mud({ efeitos: [...efeitos, inst] });
@@ -257,16 +259,16 @@ function PecaPropria({ ctx, livre, onCriar, onFechar }: { ctx: CtxForma; livre: 
       {tipo === "invoca" && (
         <>
           <label className="campo">Tipo<select value={inv.tipo} onChange={(e) => setInv({ ...inv, tipo: e.target.value as "clone" | "invocacao" })}><option value="clone">Clone</option><option value="invocacao">Invocação</option></select></label>
-          <label className="campo">Quantidade máxima<input value={inv.max} maxLength={30} onChange={(e) => setInv({ ...inv, max: e.target.value })} /></label>
-          <label className="campo">PV de cada<input value={inv.pv} maxLength={30} onChange={(e) => setInv({ ...inv, pv: e.target.value })} /></label>
-          <label className="campo">CR<input value={inv.cr} maxLength={30} onChange={(e) => setInv({ ...inv, cr: e.target.value })} /></label>
-          <label className="campo">Acerto<input value={inv.acerto} maxLength={30} onChange={(e) => setInv({ ...inv, acerto: e.target.value })} /></label>
-          <label className="campo">Dano (ex.: 1d8+[PROF])<input value={inv.dano} maxLength={30} onChange={(e) => setInv({ ...inv, dano: e.target.value })} /></label>
-          <label className="campo">Custo de cada em PR<input value={inv.custoPr} maxLength={30} onChange={(e) => setInv({ ...inv, custoPr: e.target.value })} /></label>
+          <SeletorValor rotulo="Quantidade máxima" valor={inv.max} ctx={ctx} onChange={(x) => setInv({ ...inv, max: x })} />
+          <SeletorValor rotulo="PV de cada" valor={inv.pv} ctx={ctx} onChange={(x) => setInv({ ...inv, pv: x })} />
+          <SeletorValor rotulo="CR" valor={inv.cr} ctx={ctx} onChange={(x) => setInv({ ...inv, cr: x })} />
+          <SeletorValor rotulo="Acerto" valor={inv.acerto} ctx={ctx} onChange={(x) => setInv({ ...inv, acerto: x })} />
+          <SeletorDano rotulo="Dano de cada" valor={inv.dano} ctx={ctx} onChange={(x) => setInv({ ...inv, dano: x })} />
+          <SeletorValor rotulo="Custo de cada em PR" valor={inv.custoPr} ctx={ctx} onChange={(x) => setInv({ ...inv, custoPr: x })} />
           <label className="campo npc-larga">Anotação (opcional)<textarea rows={2} maxLength={300} value={texto} onChange={(e) => setTexto(e.target.value)} /></label>
         </>
       )}
-      {tipo !== "texto" && tipo !== "fraco" && tipo !== "invoca" && <label className="campo">Valor (número ou conta com [PROF], [NIV], [FOR]…)<input value={v} maxLength={30} onChange={(e) => setV(e.target.value)} /></label>}
+      {tipo !== "texto" && tipo !== "fraco" && tipo !== "invoca" && <SeletorValor rotulo={tipo === "pvTemp" ? "PV temporários" : "Valor"} valor={v} ctx={ctx} onChange={setV} />}
       {(tipo === "texto" || tipo === "fraco") && <label className="campo npc-larga">{tipo === "fraco" ? "Qual é o preço ou fraqueza" : "Descrição"}<textarea rows={2} maxLength={300} value={texto} onChange={(e) => setTexto(e.target.value)} /></label>}
       <p className="ajuda npc-larga">Custo: <b>{custo} PP</b>{custo > livre ? ` (faltam ${custo - livre})` : ""}</p>
       <div className="acoes-linha npc-larga">

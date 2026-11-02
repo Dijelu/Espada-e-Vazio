@@ -64,6 +64,7 @@ export type Efeito =
   | { k: "fim"; esgotado: "curto" | "longo" }
   | { k: "duracao"; turnos: Num }
   | { k: "texto"; t: string }
+  | { k: "frenesi"; nivel: "leve" | "grande" | "total" }
   | { k: "invoca"; nome: string; tipo: "clone" | "invocacao"; max: Num; pv: Num; cr: Num; acerto: Num; dano: string; custoPr: Num; texto?: string };
 
 /** Uma peça escolhida no construtor: um preset (com parâmetros) ou algo criado à mão. */
@@ -187,6 +188,8 @@ export interface SomaForma {
   vant: string[];
   resist: { dano: string; grau: string }[];
   gatilhos: { rotulo: string; quando: Quando; limite?: string; faz: Faz; peca: string }[];
+  /** a forma tira o controle de você: a cada turno, salvaguarda (leve e grande) ou o Mestre sempre joga (total) */
+  frenesi?: "leve" | "grande" | "total";
   /** clones e invocações que a forma permite criar, com os números já calculados */
   invocacoes: ModeloInvocacao[];
   manutencao: number;
@@ -240,6 +243,11 @@ export function somarForma(f: Ficha, ctx: CtxForma): SomaForma | null {
         case "fim": { s.fim = e.esgotado; linha("Ao terminar", `Esgotado até o descanso ${e.esgotado === "curto" ? "curto" : "longo"}`, nome); break; }
         case "duracao": { s.duracao = valor(e.turnos, ctx); linha("Duração", `${s.duracao} turnos`, nome); break; }
         case "texto": { s.textos.push({ nome, t: e.t }); break; }
+        case "frenesi": {
+          s.frenesi = e.nivel;
+          linha("Frenesi", e.nivel === "leve" ? "salvaguarda de Mente a cada turno; falhou: ataca o mais próximo" : e.nivel === "grande" ? "salvaguarda de Mente a cada turno; falhou: o Mestre joga o seu turno" : "o Mestre controla você enquanto a forma durar", nome);
+          break;
+        }
         case "invoca": {
           const max = Math.max(1, Math.min(10, Math.floor(valor(e.max, ctx))));
           s.invocacoes.push({ chave: `${inst.id}:${s.invocacoes.length}`, peca: nome, nome: e.nome || nome, tipo: e.tipo, max, pv: Math.max(1, Math.floor(valor(e.pv, ctx))), cr: Math.floor(valor(e.cr, ctx)), acerto: Math.floor(valor(e.acerto, ctx)), dano: e.dano, custoPr: Math.max(0, Math.floor(valor(e.custoPr, ctx))), texto: e.texto });
@@ -313,6 +321,7 @@ export function custoEfeito(e: Efeito, ctx: CtxForma): number {
     case "fim": return e.esgotado === "longo" ? -3 : -2;
     case "duracao": return valor(e.turnos, ctx) <= ctx.prof ? -2 : 0;
     case "texto": return 1;
+    case "frenesi": return e.nivel === "leve" ? -3 : e.nivel === "grande" ? -6 : -9;
     case "invoca": {
       const max = Math.max(1, Math.min(10, Math.floor(valor(e.max, ctx))));
       const pv = Math.max(1, valor(e.pv, ctx));
@@ -351,17 +360,19 @@ export function orcamentoDaForma(f: Ficha, tipo: FormaLib["tipo"], forma: FormaL
   let gasto = 0;
   let devolucao = 0;
   const avisos: string[] = [];
+  let frenesiDev = 0;
   const somar = (p: InstEfeito, fator: number) => {
     const c = custoPeca(p, ctx) * fator;
+    if (p.efeitos.some((e) => e.k === "frenesi")) { if (c < 0) frenesiDev = Math.min(9, Math.max(frenesiDev, -c)); return; }
     if (c >= 0) gasto += c; else devolucao += -c;
   };
   for (const p of forma?.efeitos ?? []) somar(p, 1);
   if (tipo === "bankai" && forma?.herdaShikai) for (const p of f.formas.shikai?.efeitos ?? []) somar(p, 0.5);
   const devolvido = Math.min(devolucao, Math.floor(total / 3));
   if (devolucao > devolvido) avisos.push(`Os pontos fracos devolvem no máximo ${devolvido} PP (um terço do total).`);
-  const liquido = Math.ceil(gasto - devolvido);
+  const liquido = Math.ceil(gasto - devolvido - frenesiDev);
   if (liquido > total) avisos.push(`Passou ${liquido - total} PP do que a forma permite no nível ${ctx.n}.`);
-  return { total, gasto: liquido, devolvido, livre: total - liquido, avisos };
+  return { total, gasto: liquido, devolvido: devolvido + frenesiDev, livre: total - liquido, avisos };
 }
 
 /** Tetos por efeito (não bloqueiam; viram aviso para o Mestre aprovar). */
@@ -384,7 +395,7 @@ export const totalAtr = (s: SomaForma | null | undefined) => (s ? ATRIBUTOS.redu
 /** Limpa o que veio de um arquivo ou de uma ficha antiga: tipos desconhecidos saem e valores soltos viram 0. */
 export function normalizarEfeitos(raw: unknown): InstEfeito[] {
   if (!Array.isArray(raw)) return [];
-  const ok = new Set(["atr", "cr", "acerto", "dano", "dados", "cd", "ignoraRd", "alcance", "rd", "resist", "desloc", "acoes", "vant", "gatilho", "custo", "fim", "duracao", "texto", "invoca"]);
+  const ok = new Set(["atr", "cr", "acerto", "dano", "dados", "cd", "ignoraRd", "alcance", "rd", "resist", "desloc", "acoes", "vant", "gatilho", "custo", "fim", "duracao", "texto", "invoca", "frenesi"]);
   const alvos = new Set(ALVOS.map((a) => a.id));
   const num = (v: unknown): Num => (typeof v === "number" && Number.isFinite(v) ? v : typeof v === "string" && /^[\[\]A-Z0-9+\-*/(). ]{1,40}$/.test(v) ? v : 0);
   const lista = (v: unknown): Alvo[] => (Array.isArray(v) ? (v.filter((x) => typeof x === "string" && alvos.has(x as Alvo)) as Alvo[]) : []);
@@ -411,6 +422,7 @@ export function normalizarEfeitos(raw: unknown): InstEfeito[] {
         case "fim": return [{ k, esgotado: x.esgotado === "longo" ? "longo" : "curto" }];
         case "duracao": return [{ k, turnos: num(x.turnos) }];
         case "texto": return [{ k, t: String(x.t ?? "").slice(0, 400) }];
+        case "frenesi": return [{ k, nivel: x.nivel === "total" ? "total" : x.nivel === "grande" ? "grande" : "leve" }];
         case "invoca": return [{ k, nome: String(x.nome ?? "Invocação").slice(0, 40), tipo: x.tipo === "clone" ? "clone" : "invocacao", max: num(x.max), pv: num(x.pv), cr: num(x.cr), acerto: num(x.acerto), dano: typeof x.dano === "string" && /^[\[\]A-Z0-9d+\-*/(). ]{0,40}$/.test(x.dano) ? x.dano : "", custoPr: num(x.custoPr), texto: typeof x.texto === "string" ? x.texto.slice(0, 300) : undefined }];
         case "gatilho": {
           const q = x.quando as Quando;

@@ -1,7 +1,8 @@
 import { useMemo, useState } from "react";
-import { classePorId, type Ficha, type FormaLib, type HabForma, type TipoForma } from "../regras/ficha";
+import { calcular, classePorId, type Ficha, type FormaLib, type HabForma, type TipoForma } from "../regras/ficha";
 import { ACOES_DADOS, HAB_UNICAS, habilidadesDaForma, TIPO_FORMA_NOME, VOLL_PASSIVAS, picksVoll, totalPicks } from "../regras/liberacoes";
 import { EscolhaAtributos } from "./EfeitosForma";
+import { SeletorDano } from "./SeletorFormula";
 import { novoId } from "./FichaPecas";
 import { SeletorSchrift } from "./SeletorSchrift";
 import { schriftDaFicha } from "../regras/schrifts";
@@ -217,6 +218,10 @@ function modelos(tipo: TipoForma, atr: string): HabForma[] {
 export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo }: Props) {
   const classe = classePorId(f.classe);
   const passos = PASSOS[tipo];
+  const ctxAtual = useMemo(() => {
+    const k = calcular({ ...f, estado: { ...f.estado, liberado: "" } });
+    return { n: f.nivel, prof: k.prof, atr: k.atr };
+  }, [f]);
   const [i, setI] = useState(0);
   const [atr, setAtr] = useState("ESP");
   const passo = passos[i];
@@ -449,8 +454,8 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo }: Pro
                   <input value={h.nome} onChange={(e) => habil(h.id, { nome: e.target.value })} placeholder="Nome" aria-label="Nome" />
                   <input value={h.acao} onChange={(e) => habil(h.id, { acao: e.target.value })} placeholder="Ação" aria-label="Ação" />
                   <input type="number" min={0} value={h.pr ?? ""} onChange={(e) => { const v = e.target.value === "" ? undefined : Number(e.target.value); habil(h.id, { pr: v, custo: v ? `${v} PR` : "" }); }} placeholder="PR" aria-label="PR" />
-                  <input value={h.dano ?? ""} onChange={(e) => habil(h.id, { dano: e.target.value })} placeholder="Dano" aria-label="Dano" />
                 </div>
+                <SeletorDano rotulo="Dano" valor={h.dano ?? ""} ctx={ctxAtual} onChange={(x) => habil(h.id, { dano: x })} />
                 <textarea rows={2} value={h.texto} onChange={(e) => habil(h.id, { texto: e.target.value })} aria-label="O que faz" />
                 <button type="button" className="link-perigo" onClick={() => mud({ habilidades: r.habilidades.filter((x) => x.id !== h.id) })}>Remover</button>
               </div>

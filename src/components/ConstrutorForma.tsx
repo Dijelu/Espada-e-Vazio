@@ -1,7 +1,8 @@
 import { EfeitosForma, EscolhaAtributos } from "./EfeitosForma";
+import { SeletorDano } from "./SeletorFormula";
 import { Icone } from "./Icone";
-import { useEffect, useState } from "react";
-import { classePorId, type Ficha, type FormaLib, type HabForma, type TipoForma } from "../regras/ficha";
+import { useEffect, useMemo, useState } from "react";
+import { calcular, classePorId, type Ficha, type FormaLib, type HabForma, type TipoForma } from "../regras/ficha";
 import {
   BANKAIS,
   SHIKAIS,
@@ -78,6 +79,10 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
     if (tipo === "bankai2" && f.formas.bankai) return { ...vazia(tipo), ...f.formas.bankai, tipo, nome: "", comando: "", aparencia: "", habilidades: f.formas.bankai.habilidades.map((h) => ({ ...h, id: `${h.id}-v` })) };
     return vazia(tipo);
   });
+  const ctxAtual = useMemo(() => {
+    const k = calcular({ ...f, estado: { ...f.estado, liberado: "" } });
+    return { n: f.nivel, prof: k.prof, atr: k.atr };
+  }, [f]);
   const [aberto, setAberto] = useState("");
   const [busca, setBusca] = useState("");
   const mud = (p: Partial<FormaLib>) =>
@@ -376,8 +381,8 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
                       <input value={h.acao} onChange={(e) => habil(h.id, { acao: e.target.value })} placeholder="Ação, bônus, reação" aria-label="Ação" />
                       <input value={h.custo} onChange={(e) => habil(h.id, { custo: e.target.value })} placeholder="Custo (ex.: 20 PR)" aria-label="Custo" />
                       <input type="number" min={0} value={h.pr ?? ""} onChange={(e) => habil(h.id, { pr: e.target.value === "" ? undefined : Number(e.target.value) })} placeholder="PR do botão" aria-label="PR gastos ao usar" />
-                      <input value={h.dano ?? ""} onChange={(e) => habil(h.id, { dano: e.target.value })} placeholder="Dano (ex.: 8d10+5)" aria-label="Dano rolável" />
                     </div>
+                    <SeletorDano rotulo="Dano rolável" valor={h.dano ?? ""} ctx={ctxAtual} onChange={(x) => habil(h.id, { dano: x })} />
                     <textarea rows={3} value={h.texto} onChange={(e) => habil(h.id, { texto: e.target.value })} placeholder="O que faz, dano e alcance" aria-label="Texto da habilidade" />
                     <button type="button" className="link-perigo" onClick={() => mud({ habilidades: r.habilidades.filter((x) => x.id !== h.id) })}>Remover</button>
                   </div>
