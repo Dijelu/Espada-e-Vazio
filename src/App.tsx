@@ -48,7 +48,8 @@ export default function App() {
     return () => window.removeEventListener("keydown", f);
   }, []);
 
-  const [abertura, setAbertura] = useState(() => pathname === "/" && !aberturaJaVista() && !window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  const ABERTURA_ATIVA = false; // mude para true para reativar a abertura
+  const [abertura, setAbertura] = useState(() => ABERTURA_ATIVA && pathname === "/" && !aberturaJaVista() && !window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   const fimAbertura = useCallback(() => setAbertura(false), []);
 
   useEffect(() => {
