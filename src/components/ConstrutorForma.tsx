@@ -1,5 +1,6 @@
 import { analisarDano } from "../regras/teto-dano";
 import { CartaoHabilidade } from "./CartoesHabilidade";
+import { ModelosBankai } from "./ModelosBankai";
 import { calcularLiberacao } from "../regras/liberacao-forma";
 import { EfeitosForma, EscolhaAtributos } from "./EfeitosForma";
 import { SeletorDano } from "./SeletorFormula";
@@ -75,7 +76,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
   const classe = classePorId(f.classe);
   const ehBankai = tipo === "bankai" || tipo === "bankai2";
   const caminhoFinal = tipo === "bankai" ? f.treinos.caminhoBankai : tipo === "bankai2" ? "verdadeira" : "";
-  const [aba, setAba] = useState<"modelos" | "passo" | "efeitos" | "meu">(f.formas[tipo]?.nome ? "meu" : "passo");
+  const [aba, setAba] = useState<"modelos" | "passo" | "efeitos" | "meu">(f.formas[tipo]?.nome ? "meu" : (tipo === "bankai" || tipo === "bankai2") ? "modelos" : "passo");
   const [r, setR] = useState<FormaLib>(() => {
     if (f.formas[tipo]) return { ...vazia(tipo), ...f.formas[tipo]! };
     // a Verdadeira parte da Bankai que você já tem: muda o nome e a aparência e ganha uma técnica nova
@@ -214,8 +215,9 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
         <button type="button" className="fechar" onClick={onFechar} aria-label="Fechar">×</button>
       </div>
       <p className="ajuda construtor-dica">{DICAS[tipo]}{tipo === "bankai" && f.treinos.caminhoBankai === "plena" ? " Você escolheu a Bankai Plena: o custo cai pela metade, a CR sobe +2 e o dano das técnicas sobe 25%. Adicione uma ação nova para a Bankai, aprovada pelo Mestre." : ""}{tipo === "bankai" && f.treinos.caminhoBankai === "verdadeira" ? " Você escolheu a Bankai Verdadeira: mude a aparência da Bankai e crie, com o Mestre, uma técnica de assinatura nova. Dura no máximo 1 minuto e deixa você Esgotado até um descanso curto." : ""}</p>
+      {r.preRequisito && <p className="regra-cartao construtor-dica"><b>Pré-requisito:</b> {r.preRequisito}</p>}
       <div className="modos" role="tablist" aria-label="Como montar">
-        {tipo !== "segunda" && !caminhoFinal && <button type="button" role="tab" aria-selected={aba === "modelos"} className={aba === "modelos" ? "on" : ""} onClick={() => setAba("modelos")}>Modelos prontos</button>}
+        {tipo !== "segunda" && (!caminhoFinal || ehBankai) && <button type="button" role="tab" aria-selected={aba === "modelos"} className={aba === "modelos" ? "on" : ""} onClick={() => setAba("modelos")}>Modelos prontos</button>}
         <button type="button" role="tab" aria-selected={aba === "passo"} className={aba === "passo" ? "on" : ""} onClick={() => setAba("passo")}>Passo a passo</button>
         <button type="button" role="tab" aria-selected={aba === "meu"} className={aba === "meu" ? "on" : ""} onClick={() => setAba("meu")}>Editar tudo</button>
       </div>
@@ -247,6 +249,10 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
 
         {aba === "modelos" && ehBankai && (
           <>
+            <ModelosBankai f={f} tipo={tipo as "bankai" | "bankai2"} ctx={ctxAtual} onUsar={(x) => { setR({ ...vazia(tipo), ...x } as FormaLib); setAba("meu"); }} />
+            {tipo === "bankai" && <h3 className="sub-passivas">Bankais do livro</h3>}
+            {tipo === "bankai" && (
+              <>
             <input className="seletor-busca" value={busca} onChange={(e) => setBusca(e.target.value)} placeholder="Buscar Bankai" aria-label="Buscar Bankai" />
             <ul className="seletor-lista">
               {bankais.map((b) => (
@@ -265,6 +271,8 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
                 </li>
               ))}
             </ul>
+              </>
+            )}
           </>
         )}
 

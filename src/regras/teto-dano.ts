@@ -13,7 +13,7 @@ export function tipoDeAcao(acao: string): TipoAcao {
 }
 
 /** Quanto do dano de referência cada tipo de ação pode causar. */
-const FATOR: Record<TipoAcao, number> = { acao: 1, bonus: 0.5, reacao: 0.75 };
+const FATOR: Record<TipoAcao, number> = { acao: 1.15, bonus: 0.6, reacao: 0.85 };
 /** Custo em PR no teto de cada tipo de ação (como nos modelos do livro). */
 const CUSTO_MAX: Record<TipoAcao, number> = { acao: 20, bonus: 8, reacao: 10 };
 /** Todo ataque com dano custa pelo menos esta parte do custo máximo. */
@@ -64,11 +64,11 @@ export function analisarDano(expr: string | undefined, acao: string, ctx: CtxFor
   const teto = ref * (comAval ? 1.25 : 1);
   const bruto = Math.max(PISO, (media / ref - 0.5) / 0.5);
   const custoPr = Math.max(1, Math.min(custoMax, Math.ceil(custoMax * bruto)));
-  const qtdMax = Math.floor(ctx.n / 2) + 4;
+  const qtdMax = Math.floor(ctx.n / 2) + 5;
   const facesMax = custoPr <= custoMax / 2 ? 12 : 10;
   const bonusMax = maiorAtr(ctx) + ctx.prof;
   const erros: string[] = [];
-  if (qtd > qtdMax) erros.push(`Dados demais: o máximo no seu nível é ${qtdMax} (metade do nível mais 4).`);
+  if (qtd > qtdMax) erros.push(`Dados demais: o máximo no seu nível é ${qtdMax} (metade do nível mais 5).`);
   if (faces > facesMax) erros.push(`O d${faces} só vale em ataques baratos (até ${Math.floor(custoMax / 2)} PR). Use d${facesMax} ou menor.`);
   if (fixo > bonusMax) erros.push(`Bônus fixo alto demais: o máximo é ${bonusMax} (maior atributo mais proficiência).`);
   if (media > teto + 0.01) erros.push(`Dano médio ${Math.round(media)} passa do teto de ${Math.round(teto)} para esta ação no nível ${ctx.n}.`);

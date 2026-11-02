@@ -1,4 +1,5 @@
 /* Biblioteca de peças prontas para montar transformações. Cada peça gera efeitos automáticos na ficha. Os preços são de mesa (PP). */
+import { PRESETS_NOVOS } from "./efeitos-presets-novos";
 import { ARMADOS, type Alvo, type Efeito } from "./efeitos-forma";
 import type { Atr, TipoForma } from "./ficha";
 
@@ -278,6 +279,7 @@ export const PRESETS: Preset[] = [
   { id: "pg-divida", nome: "Dívida de Reiatsu", familias: PF_TODAS, categoria: "Pontos fracos", texto: "Ao terminar, você fica Esgotado e o seu PR máximo cai pela metade até um descanso longo. Devolve 6 pontos.", monta: () => [{ k: "fim", esgotado: "longo" }, { k: "preco", pp: 3, texto: "Ao terminar, o seu PR máximo cai pela metade até o próximo descanso longo." }] },
   { id: "pg-contagem", nome: "Contagem Regressiva", familias: PF_TODAS, categoria: "Pontos fracos", texto: "A forma dura só a proficiência em turnos, não pode ser renovada na cena e, ao terminar, você cai a 0 PV (estável). Devolve 8 pontos.", monta: () => [{ k: "duracao", turnos: "[PROF]" }, { k: "preco", pp: 6, texto: "Não pode ser renovada na mesma cena. Ao terminar, você cai a 0 PV (estável)." }], aprovacao: true },
 
+  ...PRESETS_NOVOS,
 ];
 
 export const presetPorId = (id: string) => PRESETS.find((p) => p.id === id);

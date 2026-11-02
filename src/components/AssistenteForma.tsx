@@ -249,6 +249,14 @@ function modelos(tipo: TipoForma, atr: string, ctx: CtxForma): HabForma[] {
     mk("Marca", "Ação bônus", peq ? 3 : 8, "", "Marca uma criatura a até 18 metros. O primeiro ataque de cada aliado contra ela no turno causa 1d6 de dano a mais."),
     mk("Regeneração", "Ação", peq ? 5 : 12, "[NIV]", "Você ou um aliado a até 3 metros recupera os PV indicados."),
     mk("Rajada", "Ação", peq ? 7 : 18, `[NIV/2+2]${d}+[${atr}]`, "Dois golpes seguidos contra o mesmo alvo ou contra dois alvos a 3 metros um do outro, o dano indicado é dividido entre os alvos."),
+    mk("Golpe atravessante", "Ação", peq ? 6 : 14, peq ? `[NIV/2+1]${d}+[${atr}]` : `[NIV/2+3]${d}+[${atr}]`, "Um golpe contra um único alvo que ignora parte da armadura: o alvo sofre desvantagem na salvaguarda, se houver."),
+    mk("Onda de choque", "Ação bônus", peq ? 3 : 7, peq ? `2d6+[${atr}]` : `3d8+[${atr}]`, "Empurra o alvo 6 metros. Se ele bater em algo sólido, sofre o dano indicado."),
+    mk("Investida", "Ação", peq ? 5 : 12, peq ? `[NIV/2]${d}+[${atr}]` : `[NIV/2+2]${d}+[${atr}]`, "Você se move em linha reta até 12 metros e ataca no fim do deslocamento. Quem estiver no caminho faz salvaguarda de Destreza ou cai no chão."),
+    mk("Barreira", "Reação", peq ? 4 : 9, "", "Cria uma barreira que reduz a zero o dano de um único ataque contra você ou contra um aliado a 3 metros. A barreira some depois."),
+    mk("Provocação", "Ação bônus", peq ? 2 : 5, "", "Uma criatura a até 18 metros faz salvaguarda de Mente (CD 8 + proficiência + atributo): se falhar, só pode atacar você até o fim do próximo turno dela."),
+    mk("Cura em área", "Ação", peq ? 6 : 14, "[NIV]", "Você e os aliados a até 6 metros recuperam os PV indicados."),
+    mk("Corte distante", "Ação", peq ? 5 : 12, peq ? `[NIV/2]${d}+[${atr}]` : `[NIV/2+2]${d}+[${atr}]`, "Um corte de reiatsu atinge um alvo a até 36 metros. Salvaguarda de Destreza: metade do dano no sucesso."),
+    mk("Explosão final", "Ação", peq ? 12 : 25, forte ? `[NIV/2+4]${d}+[${atr}]` : `[NIV/2+3]${d}+[${atr}]`, "Libera o reiatsu em volta de você num raio de 9 metros. Você fica sem reação até o início do seu próximo turno."),
   ];
 }
 
@@ -567,6 +575,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
             {r.traco && <p className="quebra"><b>Traços:</b>{"\n"}{r.traco}</p>}
             {r.canalizador && <p><b>Canalizador:</b> {r.canalizador}</p>}
             {tipo === "shikai" && <p><b>{r.categoria || "Sem categoria"}</b> · {r.custo} PR</p>}
+            {r.preRequisito && <p className="regra-cartao"><b>Pré-requisito:</b> {r.preRequisito}</p>}
             {(tipo === "bankai" || tipo === "bankai2") && <p><b>{r.estilo || "Tipo não escolhido"}</b> · {r.custo} PR · {r.duracao}</p>}
             {Object.keys(r.picks).length > 0 && (
               <ul>{Object.entries(r.picks).map(([id, n]) => <li key={id}>{HAB_UNICAS.find((h) => h.id === id)?.nome} ({n}x)</li>)}</ul>

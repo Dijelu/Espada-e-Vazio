@@ -307,10 +307,10 @@ export function orcamentoBase(tipo: FormaLib["tipo"], n: number, extra: { plena?
   const piso = (v: number) => Math.max(0, Math.floor(v));
   switch (tipo) {
     case "shikai": return Math.min(8, 3 + piso((n - 3) / 3));
-    case "bankai": return 8 + piso(n - 10) + (extra.plena ? 3 : 0);
-    case "bankai2": return 14 + piso(n - 10);
-    case "resurreccion": return 8 + piso(n - 10) + (extra.origem === "adjuchas" ? 2 : extra.origem === "vasto-lorde" ? 3 : 0);
-    case "segunda": return 6 + piso(n - 15);
+    case "bankai": return 10 + piso(n - 10) + (extra.plena ? 3 : 0);
+    case "bankai2": return 17 + piso(n - 10);
+    case "resurreccion": return 10 + piso(n - 10) + (extra.origem === "adjuchas" ? 2 : extra.origem === "vasto-lorde" ? 3 : 0);
+    case "segunda": return 8 + piso(n - 15);
     case "vollstandig": return 6 + 2 * piso((n - 13) / 5);
   }
 }

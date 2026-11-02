@@ -1296,3 +1296,11 @@ img, video, svg { max-width: 100%; }
 .regra-cartao { margin: 0; padding: 8px 10px; border-left: 3px solid var(--cor); background: #0003; border-radius: 4px; font-size: 14px; }
 .carta-estourou { border-color: #c81830 !important; box-shadow: 0 0 14px #c8183044; }
 .teto-dano.estourou { color: #ff9aa6; }
+
+/* ===== Bankais prontas (modelos montados) ===== */
+.modelos-montados { margin-bottom: 18px; }
+.modelos-montados-lista { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 14px; margin: 10px 0; }
+.modelos-montados .carta-topo h3 { margin: 0; font-size: 18px; }
+.modelos-montados .travada { opacity: .6; }
+.lista-hab-resumo { margin: 4px 0; padding-left: 18px; font-size: 14px; }
+.lista-hab-resumo li { margin-bottom: 4px; }

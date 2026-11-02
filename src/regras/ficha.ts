@@ -557,6 +557,10 @@ export interface FormaLib {
   espirito?: string;
   /** peças de efeito montadas no construtor (bônus automáticos enquanto a forma estiver ativa) */
   efeitos?: InstEfeito[];
+  /** Bankai Verdadeira: condição de tempo ou de estado para assumir a forma */
+  preRequisito?: string;
+  /** Bankai Verdadeira: o modelo pronto de Bankai em que ela se apoia */
+  baseModelo?: string;
   /** Bankai potencializadora: os efeitos da Shikai valem também aqui, por metade do custo */
   herdaShikai?: boolean;
 }
