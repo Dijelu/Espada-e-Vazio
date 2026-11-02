@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { calcular, classePorId, type Ficha, type FormaLib, type HabForma, type TipoForma } from "../regras/ficha";
 import { ACOES_DADOS, HAB_UNICAS, habilidadesDaForma, TIPO_FORMA_NOME, VOLL_PASSIVAS, picksVoll, totalPicks } from "../regras/liberacoes";
-import { EscolhaAtributos } from "./EfeitosForma";
+import { EfeitosForma, EscolhaAtributos } from "./EfeitosForma";
 import { SeletorDano } from "./SeletorFormula";
 import { novoId } from "./FichaPecas";
 import { SeletorSchrift } from "./SeletorSchrift";
@@ -15,6 +15,7 @@ interface Props {
   mud: (p: Partial<FormaLib>) => void;
   onSalvar: () => void;
   onEditarTudo: () => void;
+  onGravar?: (forma: FormaLib) => void;
 }
 
 interface Passo {
@@ -31,6 +32,7 @@ const PASSOS_BASE: Record<Exclude<TipoForma, "bankai2">, Passo[]> = {
     { id: "aparencia", titulo: "Forma", ajuda: "Ao liberar, a Zanpakutou pode ter outra forma: outra arma ou algo exótico. Pode ser dupla (duas armas). Ela usa o mesmo atributo da Asauchi nos ataques." },
     { id: "acoes", titulo: "Habilidades e técnicas", ajuda: "Habilidades são poderes passivos da Shikai. Técnicas são ativadas de propósito. Quanto mais forte, maior o custo. Use os modelos e edite." },
     { id: "custo", titulo: "Custo de liberação", ajuda: "De 3 a 10 PR. Custos altos são para Shikais completas e poderosas; custos baixos, para as mais simples ou incompletas." },
+    { id: "efeitos", titulo: "Efeitos e pontos", ajuda: "Aqui a forma ganha números de verdade: atributos, CR, dano, redução, clones e mais. Você tem pontos de poder para gastar, e os pontos fracos com nome devolvem pontos. Tudo entra sozinho na ficha enquanto a forma estiver ativa." },
     { id: "revisao", titulo: "Revisão", ajuda: "Confira tudo. Ao salvar, o nome e a frase vão para a sua ficha e as habilidades viram cartas no Resumo." },
   ],
   bankai: [
@@ -40,6 +42,7 @@ const PASSOS_BASE: Record<Exclude<TipoForma, "bankai2">, Passo[]> = {
     { id: "acoes", titulo: "Habilidades e técnicas", ajuda: "Escolha de 3 a 4 habilidades. Quanto mais forte a habilidade, maior o custo de reiatsu. Use os modelos abaixo e edite o que quiser." },
     { id: "custo", titulo: "Custo e duração", ajuda: "O custo de liberação vai de 40 a 80 PR: mais poder, mais custo. A Bankai dura 1 minuto e precisa de novo custo para continuar." },
     { id: "fraqueza", titulo: "Ponto fraco", ajuda: "Quase toda Bankai tem uma fraqueza: um efeito colateral para quem usa ou uma vulnerabilidade que os inimigos podem explorar." },
+    { id: "efeitos", titulo: "Efeitos e pontos", ajuda: "Aqui a forma ganha números de verdade: atributos, CR, dano, redução, clones e mais. Você tem pontos de poder para gastar, e os pontos fracos com nome devolvem pontos. Tudo entra sozinho na ficha enquanto a forma estiver ativa." },
     { id: "revisao", titulo: "Revisão", ajuda: "Confira tudo. Depois de salvar, as habilidades viram cartas no Resumo e aparecem no painel quando a Bankai estiver ativa." },
   ],
   resurreccion: [
@@ -49,6 +52,7 @@ const PASSOS_BASE: Record<Exclude<TipoForma, "bankai2">, Passo[]> = {
     { id: "traco", titulo: "Traço da forma", ajuda: "Um efeito pequeno e claro, na escala dos modelos do livro. O dano já vem da forma, então nada de bônus grandes." },
     { id: "acoes", titulo: "Técnicas", ajuda: "Inclua a técnica de assinatura do seu Caminho (12 PR) e mais uma ou duas técnicas: uma básica e uma final de 30 PR." },
     { id: "fraqueza", titulo: "Ponto fraco", ajuda: "Toda Resurrección tem um preço, como menos CR contra um tipo de ataque, menos deslocamento ou um custo extra." },
+    { id: "efeitos", titulo: "Efeitos e pontos", ajuda: "Aqui a forma ganha números de verdade: atributos, CR, dano, redução, clones e mais. Você tem pontos de poder para gastar, e os pontos fracos com nome devolvem pontos. Tudo entra sozinho na ficha enquanto a forma estiver ativa." },
     { id: "revisao", titulo: "Revisão", ajuda: "Confira tudo. O Mestre aprova o traço, o ponto fraco e as técnicas." },
   ],
   segunda: [
@@ -58,6 +62,7 @@ const PASSOS_BASE: Record<Exclude<TipoForma, "bankai2">, Passo[]> = {
     { id: "traco", titulo: "Novo traço", ajuda: "Um efeito novo e claro, no mesmo nível dos traços do livro. Ele substitui o traço da Resurrección enquanto a Segunda Etapa estiver ativa." },
     { id: "acoes", titulo: "Técnicas", ajuda: "Traga as técnicas da Resurrección, mais fortes, e crie uma técnica final de 40 PR. Pense em uma técnica de assinatura de longo alcance e em uma de defesa ou controle." },
     { id: "fraqueza", titulo: "Ponto fraco", ajuda: "Toda Segunda Etapa tem um preço. O livro já cobra 2 PR por turno e o Esgotado até o descanso longo. Aqui vai o ponto fraco extra da forma." },
+    { id: "efeitos", titulo: "Efeitos e pontos", ajuda: "Aqui a forma ganha números de verdade: atributos, CR, dano, redução, clones e mais. Você tem pontos de poder para gastar, e os pontos fracos com nome devolvem pontos. Tudo entra sozinho na ficha enquanto a forma estiver ativa." },
     { id: "revisao", titulo: "Revisão", ajuda: "Confira tudo. O Mestre aprova o traço, o ponto fraco e as técnicas. Os bônus numéricos vêm da sua classe." },
   ],
   vollstandig: [
@@ -66,6 +71,7 @@ const PASSOS_BASE: Record<Exclude<TipoForma, "bankai2">, Passo[]> = {
     { id: "canal", titulo: "Canalizador e Schrift", ajuda: "Todo Quincy precisa de um objeto para ativar a Vollständig. Se perder, recria no próximo descanso longo. A Schrift é opcional e precisa do aval do Mestre." },
     { id: "unicas", titulo: "Habilidades únicas", ajuda: "Escolha as habilidades que diferenciam a sua Vollständig. Depois de definidas, não mudam. Você pode repetir uma habilidade para acumular, menos Força e Precisão Espiritual." },
     { id: "acoes", titulo: "Ações", ajuda: "Monte de duas a três ações no padrão da Bankai: uma básica, uma de apoio e uma final de 30 PR." },
+    { id: "efeitos", titulo: "Efeitos e pontos", ajuda: "Aqui a forma ganha números de verdade: atributos, CR, dano, redução, clones e mais. Você tem pontos de poder para gastar, e os pontos fracos com nome devolvem pontos. Tudo entra sozinho na ficha enquanto a forma estiver ativa." },
     { id: "revisao", titulo: "Revisão", ajuda: "Confira tudo. Ativar custa 60 PR e usa uma ação." },
   ],
 };
@@ -215,7 +221,7 @@ function modelos(tipo: TipoForma, atr: string): HabForma[] {
   ];
 }
 
-export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo }: Props) {
+export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGravar }: Props) {
   const classe = classePorId(f.classe);
   const passos = PASSOS[tipo];
   const ctxAtual = useMemo(() => {
@@ -352,13 +358,25 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo }: Pro
           <div className="temas">
             <p className="ajuda">Temas prontos: toque para preencher a aparência{tipo === "vollstandig" ? "" : " e o ponto fraco"} com uma ideia pronta. Dá para mudar tudo depois.</p>
             <div className="opcoes-grandes">
-              {TEMAS[tipo]!.map((t: Tema) => (
-                <button key={t.id} type="button" className="opcao" onClick={() => mud({ aparencia: t.aparencia, ...(t.pontoFraco && !r.pontoFraco ? { pontoFraco: t.pontoFraco } : {}), ...(t.traco && !r.traco ? { traco: t.traco } : {}) })}>
-                  <b>{t.nome}</b>
-                  <small>{t.ideia}</small>
-                </button>
-              ))}
+              {TEMAS[tipo]!.map((t: Tema) => {
+                const lista = TEMAS[tipo]!;
+                const soTema = (campo: "pontoFraco" | "traco", v: string) => !v || lista.some((x) => x[campo] === v);
+                const escolhido = r.aparencia === t.aparencia;
+                return (
+                  <button key={t.id} type="button" className={`opcao${escolhido ? " on" : ""}`} aria-pressed={escolhido} onClick={() => mud({
+                    aparencia: t.aparencia,
+                    ...(t.pontoFraco && soTema("pontoFraco", r.pontoFraco) ? { pontoFraco: t.pontoFraco } : {}),
+                    ...(t.traco && soTema("traco", r.traco) ? { traco: t.traco } : {}),
+                  })}>
+                    <b>{escolhido ? "✓ " : ""}{t.nome}</b>
+                    <small>{t.ideia}</small>
+                  </button>
+                );
+              })}
             </div>
+            {TEMAS[tipo]!.some((t: Tema) => t.aparencia === r.aparencia) && (
+              <p className="ajuda">Tema aplicado: a aparência{tipo === "vollstandig" ? "" : ", o ponto fraco"} e o traço sugerido já foram preenchidos. Veja e ajuste nos próximos passos.</p>
+            )}
           </div>
         )}
 
@@ -486,6 +504,8 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo }: Pro
           </>
         )}
 
+        {passo.id === "efeitos" && <EfeitosForma f={f} tipo={tipo} r={r} mud={mud} onGravar={onGravar} />}
+
         {passo.id === "revisao" && (
           <>
             <h3>{r.nome || "(sem nome)"}</h3>
@@ -499,6 +519,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo }: Pro
               <ul>{Object.entries(r.picks).map(([id, n]) => <li key={id}>{HAB_UNICAS.find((h) => h.id === id)?.nome} ({n}x)</li>)}</ul>
             )}
             {r.habilidades.map((h) => <p key={h.id}><b>{h.nome}</b> ({[h.acao, h.custo].filter(Boolean).join(", ")}): {h.texto}</p>)}
+            {(r.efeitos?.length ?? 0) > 0 && <p><b>Efeitos:</b> {r.efeitos!.map((e) => e.nome).join(", ")}</p>}
             {r.pontoFraco && <p><b>Ponto fraco:</b> {r.pontoFraco}</p>}
             {erros.length > 0 && <ul className="avisos">{erros.map((e) => <li key={e}>{e}</li>)}</ul>}
             <div className="assistente-fim">

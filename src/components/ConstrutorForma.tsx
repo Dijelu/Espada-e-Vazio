@@ -195,7 +195,6 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
       <div className="modos" role="tablist" aria-label="Como montar">
         {tipo !== "segunda" && !caminhoFinal && <button type="button" role="tab" aria-selected={aba === "modelos"} className={aba === "modelos" ? "on" : ""} onClick={() => setAba("modelos")}>Modelos prontos</button>}
         <button type="button" role="tab" aria-selected={aba === "passo"} className={aba === "passo" ? "on" : ""} onClick={() => setAba("passo")}>Passo a passo</button>
-        {<button type="button" role="tab" aria-selected={aba === "efeitos"} className={aba === "efeitos" ? "on" : ""} onClick={() => setAba("efeitos")}>Efeitos</button>}
         <button type="button" role="tab" aria-selected={aba === "meu"} className={aba === "meu" ? "on" : ""} onClick={() => setAba("meu")}>Editar tudo</button>
       </div>
 
@@ -297,11 +296,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
         )}
 
         {aba === "passo" && (
-          <AssistenteForma f={f} tipo={tipo} r={r} mud={mud} onSalvar={() => onSalvar(r)} onEditarTudo={() => setAba("meu")} />
-        )}
-
-        {aba === "efeitos" && (
-          <EfeitosForma f={f} tipo={tipo} r={r} mud={mud} onGravar={onGravar} />
+          <AssistenteForma f={f} tipo={tipo} r={r} mud={mud} onSalvar={() => onSalvar(r)} onEditarTudo={() => setAba("meu")} onGravar={onGravar} />
         )}
 
         {aba === "meu" && (
@@ -428,6 +423,8 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
             {tipo !== "vollstandig" && (
               <label className="campo">Ponto fraco<textarea rows={2} value={r.pontoFraco} onChange={(e) => mud({ pontoFraco: e.target.value })} placeholder="Um preço ou vulnerabilidade da forma" /></label>
             )}
+
+            <EfeitosForma f={f} tipo={tipo} r={r} mud={mud} onGravar={onGravar} />
           </div>
         )}
       </div>
