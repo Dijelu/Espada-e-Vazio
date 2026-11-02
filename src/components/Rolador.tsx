@@ -25,7 +25,17 @@ export function useRolagens() {
     [registrar]
   );
 
-  return { modo, setModo, historico, limpar: () => setHistorico([]), aberto, setAberto, d20, expr };
+  /** como `expr`, mas devolve a rolagem para quem precisa do total (cura, por exemplo) */
+  const rolar = useCallback(
+    (rotulo: string, e: string) => {
+      const r = rolarExpressao(rotulo, e, false);
+      if (r) registrar(r);
+      return r;
+    },
+    [registrar]
+  );
+
+  return { modo, setModo, historico, limpar: () => setHistorico([]), aberto, setAberto, d20, expr, rolar };
 }
 
 export type Rolagens = ReturnType<typeof useRolagens>;

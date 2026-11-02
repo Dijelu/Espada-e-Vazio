@@ -7,7 +7,7 @@ import { calcularLiberacao } from "../regras/liberacao-forma";
 import { EfeitosForma, EscolhaAtributos } from "./EfeitosForma";
 import { SeletorDano } from "./SeletorFormula";
 import { Icone } from "./Icone";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { calcular, classePorId, type Ficha, type FormaLib, type HabForma, type TipoForma } from "../regras/ficha";
 import {
   BANKAIS,
@@ -20,7 +20,8 @@ import {
   picksVoll,
   totalPicks,
 } from "../regras/liberacoes";
-import { QUANDO_NOME, type Faz } from "../regras/efeitos-forma";
+import { QUANDO_NOME, type Faz, type InstEfeito } from "../regras/efeitos-forma";
+import { Dica } from "./Dica";
 import { aplicarFaz } from "../regras/aplicar-faz";
 import { novoId } from "./FichaPecas";
 import { AssistenteForma, LIMITE_HAB } from "./AssistenteForma";
@@ -29,6 +30,11 @@ import { schriftDaFicha } from "../regras/schrifts";
 import { acoesDaForma, formaDaLiberacao, liberacaoDaForma, modeloResurreccionPadrao, comoHabilidades, habilidadesDaForma, maiorCustoPR, resolverDano, danoDaAcao, sugerirCusto } from "../regras/liberacoes";
 import type { Calculo } from "../regras/ficha";
 import type { Rolagens } from "./Rolador";
+import { classificarHab } from "../regras/classificar-hab";
+import { AbaInvocacoes } from "./Invocacoes";
+import { acertoClasse } from "../regras/danos-classe";
+import { ATR_NOME } from "../regras/efeitos-forma";
+const mod = (n: number) => (n >= 0 ? `+${n}` : `${n}`);
 
 const vazia = (tipo: TipoForma): FormaLib => ({
   tipo,
@@ -495,6 +501,18 @@ function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg }: { f: Ficha; c: 
   const chaveReq = `req:${h.id}`;
   const reqOk = !h.requisito || !!usos[chaveReq];
   const bloqueada = espUsada || limUsada || !reqOk;
+  const cl = classificarHab(h as never);
+  const cdTec = c.cd + (c.forma?.cd ?? 0);
+  const acerto = acertoClasse(f, c) + (cl.distancia ? c.acertoDist : c.acertoCorpo) + (c.forma?.acerto.tecnica ?? 0);
+  const ultimo = useRef(0);
+  const curar = () => {
+    let total = 0;
+    if (cl.cura) { const t = r.rolar(`Cura: ${h.nome}`, resolverDano(cl.cura, f, c)); total = t?.total ?? 0; }
+    else if (cl.curaPctDano) total = Math.floor((ultimo.current * cl.curaPctDano) / 100);
+    if (total <= 0) { onMsg(cl.curaPctDano ? "Role o dano primeiro: a cura é uma parte dele." : "Não consegui rolar a cura."); return; }
+    alterar({ pvAtual: Math.min(c.pv, f.pvAtual + total) });
+    onMsg(`${h.nome}: você recupera ${total} PV.`);
+  };
   const usar = () => {
     const gasto = { prAtual: Math.max(0, f.prAtual - gasta) };
     if (esp) {
@@ -522,21 +540,35 @@ function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg }: { f: Ficha; c: 
           Requisito cumprido: {h.requisito}
         </label>
       )}
-      {(gasta > 0 || /\d/.test(dano) || esp || lim) && (
+      {ativa && (cl.teste !== "nenhum" || cl.cura || cl.curaPctDano) && (
+        <p className="acao-numeros">
+          {!cl.usaInvocacao && (cl.teste === "ataque" || cl.teste === "ataque+salva") && <span className="chip">Acerto {mod(acerto)}</span>}
+          {(cl.teste === "salva" || cl.teste === "ataque+salva") && <span className="chip">CD {cdTec}{cl.salvaAtr ? ` · salvaguarda de ${ATR_NOME[cl.salvaAtr]}` : ""}{cl.metade ? " · metade no sucesso" : ""}</span>}
+        </p>
+      )}
+      {(gasta > 0 || /\d/.test(dano) || esp || lim || cl.cura || cl.curaPctDano) && (
         <div className="acao-botoes">
           {(gasta > 0 || esp || lim) && (
-            <button
-              type="button"
-              className="btn-mini"
-              disabled={!ativa || f.prAtual < gasta || bloqueada}
-              onClick={usar}
-            >
+            <button type="button" className="btn-mini" disabled={!ativa || f.prAtual < gasta || bloqueada} onClick={usar}>
               {!reqOk ? "Falta o requisito" : rotulo}
             </button>
           )}
-          {/\d/.test(dano) && (
-            <button type="button" className="btn-mini" disabled={!ativa || !reqOk} onClick={() => r.expr(h.nome, dano)}>
-              <Icone nome="dado" /> {dano}
+          {ativa && !cl.usaInvocacao && (cl.teste === "ataque" || cl.teste === "ataque+salva") && (
+            <button type="button" className="btn-mini" disabled={!reqOk} onClick={() => r.d20(`Acerto: ${h.nome}`, acerto)}>
+              <Icone nome="dado" /> Acerto {mod(acerto)}
+            </button>
+          )}
+          {/\d/.test(dano) && !(cl.cura && cl.cura === h.dano) && (
+            <button type="button" className="btn-mini" disabled={!ativa || !reqOk} onClick={() => ultimo.current = r.rolar(h.nome, dano)?.total ?? 0}>
+              <Icone nome="dado" /> Dano {dano}
+            </button>
+          )}
+          {/\d/.test(dano) && (cl.teste === "ataque" || cl.teste === "ataque+salva") && (
+            <button type="button" className="btn-mini" disabled={!ativa || !reqOk} onClick={() => r.expr(`Crítico: ${h.nome}`, dano, true)}>Crítico</button>
+          )}
+          {ativa && (cl.cura || cl.curaPctDano) && (
+            <button type="button" className="btn-mini" disabled={!reqOk} onClick={curar}>
+              {cl.cura ? `Curar ${resolverDano(cl.cura, f, c)}` : `Curar ${cl.curaPctDano}% do último dano`}
             </button>
           )}
         </div>
@@ -547,9 +579,11 @@ function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg }: { f: Ficha; c: 
 }
 
 /** Resumo dos efeitos da forma ativa e botões dos que dependem de um momento do jogo. */
-function EfeitosAtivos({ f, c, r, alterar, onMsg }: { f: Ficha; c: Calculo; r: Rolagens; alterar: (p: Partial<Ficha>) => void; onMsg: (m: string) => void }) {
+function EfeitosAtivos({ f, c, r, alterar, onMsg, pecas = [], passivas = [] }: { f: Ficha; c: Calculo; r: Rolagens; alterar: (p: Partial<Ficha>) => void; onMsg: (m: string) => void; pecas?: InstEfeito[]; passivas?: HabForma[] }) {
   const fx = c.forma;
-  if (!fx || (fx.linhas.length === 0 && fx.gatilhos.length === 0)) return null;
+  const [aberto, setAberto] = useState(() => { try { return localStorage.getItem("sempre-ativo-fechado") !== "1"; } catch { return true; } });
+  const alternar = () => setAberto((v) => { try { localStorage.setItem("sempre-ativo-fechado", v ? "1" : "0"); } catch { /* sem armazenamento */ } return !v; });
+  if (!fx || (fx.linhas.length === 0 && fx.gatilhos.length === 0 && fx.textos.length === 0 && passivas.length === 0)) return null;
   const ctx = { n: f.nivel, prof: c.prof, atr: c.atr };
   const usos = f.estado.usos ?? {};
   const aplicar = (g: { rotulo: string; faz: Faz; limite?: string; peca: string }) => {
@@ -567,10 +601,38 @@ function EfeitosAtivos({ f, c, r, alterar, onMsg }: { f: Ficha; c: Calculo; r: R
   };
   return (
     <div className="efeitos-ativos">
-      {fx.linhas.length > 0 && (
-        <ul className="chips-forma" aria-label="Efeitos ativos da forma">
-          {fx.linhas.map((l, i) => <li key={i} className="chip" title={l.fonte}>{l.rotulo} {l.valor}</li>)}
-        </ul>
+      {(fx.linhas.length > 0 || fx.textos.length > 0 || passivas.length > 0) && (
+        <div className={`sempre-ativo-caixa ${aberto ? "" : "fechada"}`}>
+          <h4 className="sempre-ativo">
+            <button type="button" className="sempre-ativo-botao" aria-expanded={aberto} onClick={alternar}>
+              <span aria-hidden="true">{aberto ? "▾" : "▸"}</span> Sempre ativo <small>{aberto ? "já somado na ficha · passe o mouse para ver o que faz" : `${fx.linhas.length + fx.textos.length + passivas.length} itens · toque para abrir`}</small>
+            </button>
+          </h4>
+          {aberto && fx.linhas.length > 0 && (
+            <ul className="chips-forma" aria-label="Efeitos ativos da forma">
+              {fx.linhas.filter((l) => l.valor.length <= 40).map((l, i) => {
+                const peca = pecas.find((p) => p.nome === l.fonte);
+                return (
+                  <li key={i}>
+                    <Dica balao={<><b>{l.fonte}</b>{peca?.texto ? <><br />{peca.texto}</> : null}</>}>
+                      <span className="chip chip-passivo" tabIndex={0}>{l.rotulo} {l.valor}</span>
+                    </Dica>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+          {aberto && (fx.textos.length > 0 || passivas.length > 0) && (
+            <ul className="passivas-forma">
+              {fx.textos.map((t, i) => (
+                <li key={"t" + i}><Dica balao={<><b>{t.nome}</b><br />{t.t}</>}><span className="passiva-item" tabIndex={0}><b>{t.nome}</b> <em>efeito</em></span></Dica></li>
+              ))}
+              {passivas.map((h) => (
+                <li key={h.id}><Dica balao={<><b>{h.nome}</b><br />{h.regra || h.texto}</>}><span className="passiva-item" tabIndex={0}><b>{h.nome}</b> <em>passiva</em></span></Dica></li>
+              ))}
+            </ul>
+          )}
+        </div>
       )}
       {fx.gatilhos.length > 0 && (
         <div className="acao-botoes">
@@ -597,6 +659,7 @@ export function PainelFormaAtiva({ f, c, r, alterar, onEditar }: { f: Ficha; c: 
   const forma = provisoria ?? definida;
   if (!forma || !tipoForma) return null;
   const lista = habilidadesDaForma(forma);
+  const passivas = lista.filter((h) => classificarHab(h).passiva);
   return (
     <section className={`painel-forma painel-${forma.tipo}`} aria-label={`Painel da ${TIPO_FORMA_NOME[forma.tipo]}`}>
       <div className="painel-forma-topo">
@@ -618,10 +681,13 @@ export function PainelFormaAtiva({ f, c, r, alterar, onEditar }: { f: Ficha; c: 
       {forma.traco && <p className="quebra"><b>{forma.traco.includes("\n") ? "Traços" : "Traço"}:</b>{forma.traco.includes("\n") ? "\n" : " "}{forma.traco}</p>}
       {forma.pontoFraco && <p><b>Ponto fraco:</b> {forma.pontoFraco}</p>}
       {provisoria && <p className="ajuda">Você ainda não montou a sua {TIPO_FORMA_NOME[tipoForma]}. {lista.length > 0 ? "Estas são as técnicas do modelo do livro para o seu Caminho." : "Monte as habilidades para vê-las aqui."} {onEditar && <button type="button" className="link" onClick={() => onEditar(tipoForma)}>Montar a minha agora</button>}</p>}
-      <EfeitosAtivos f={f} c={c} r={r} alterar={alterar} onMsg={setMsg} />
+      <EfeitosAtivos f={f} c={c} r={r} alterar={alterar} onMsg={setMsg} pecas={forma.efeitos ?? []} passivas={passivas} />
+      {((c.forma?.invocacoes.length ?? 0) > 0 || (f.estado.invocacoes ?? []).length > 0) && (
+        <div className="invocacoes-painel"><AbaInvocacoes f={f} c={c} r={r} alterar={alterar} compacto /></div>
+      )}
       {msg && <p className="ajuda" role="status">{msg}</p>}
       <div className="cartas-hab">
-        {lista.map((h) => (
+        {lista.filter((h) => !classificarHab(h).passiva).map((h) => (
           <CartaAcao key={h.id} f={f} c={c} r={r} alterar={alterar} forma={forma} h={h} ativa onMsg={setMsg} />
         ))}
         {lista.length === 0 && <p className="ajuda">Nenhuma habilidade cadastrada. Abra a aba Evolução para adicionar.</p>}

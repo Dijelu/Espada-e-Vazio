@@ -1307,3 +1307,23 @@ img, video, svg { max-width: 100%; }
 
 .especial-cartao { padding: 8px 10px; border: 1px dashed var(--line); border-radius: 6px; display: grid; gap: 8px; }
 .especial-cartao .check { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; }
+
+.acao-numeros { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0; }
+.sempre-ativo { margin: 8px 0 4px; font-size: 13px; text-transform: uppercase; letter-spacing: .06em; opacity: .8; }
+.passivas-forma { list-style: none; padding: 0; margin: 6px 0; display: grid; gap: 4px; font-size: 14px; }
+.invocacoes-painel .aba { padding: 0; }
+
+.sempre-ativo-caixa { margin: 10px 0; padding: 12px 14px; border: 2px solid var(--accent); border-left-width: 6px; background: color-mix(in srgb, var(--accent) 10%, transparent); box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 35%, transparent), 0 6px 18px color-mix(in srgb, var(--accent) 18%, transparent); }
+.sempre-ativo-caixa .sempre-ativo { margin: 0 0 8px; font-size: 15px; letter-spacing: .08em; color: var(--accent); opacity: 1; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.sempre-ativo-caixa .sempre-ativo small { font-size: 12px; letter-spacing: 0; text-transform: none; color: var(--text); opacity: .75; }
+.sempre-ativo-caixa .chips-forma { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 0 0 8px; }
+.chip-passivo { display: inline-block; background: color-mix(in srgb, var(--accent) 22%, transparent); font-weight: 600; cursor: help; }
+.chip-passivo:hover, .chip-passivo:focus-visible, .passiva-item:hover, .passiva-item:focus-visible { background: var(--accent); color: var(--on-accent); outline: none; }
+.sempre-ativo-caixa .passivas-forma { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; }
+.passiva-item { display: inline-block; padding: 4px 12px; border: 2px dashed var(--accent); border-radius: 999px; font-size: 14px; cursor: help; }
+.passiva-item em { font-size: 11px; opacity: .7; margin-left: 4px; }
+
+.sempre-ativo-botao { all: unset; cursor: pointer; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; width: 100%; color: inherit; text-transform: uppercase; }
+.sempre-ativo-botao:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.sempre-ativo-caixa.fechada { padding-top: 8px; padding-bottom: 8px; }
+.sempre-ativo-caixa.fechada .sempre-ativo { margin-bottom: 0; }

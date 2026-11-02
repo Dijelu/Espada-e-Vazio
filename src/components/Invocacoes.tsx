@@ -8,10 +8,12 @@ interface Props {
   c: Calculo;
   r: Rolagens;
   alterar: (p: Partial<Ficha>) => void;
+  /** dentro do painel da forma ativa: sem a mensagem de aba vazia */
+  compacto?: boolean;
 }
 
 /** Clones e invocações que as peças da forma permitem: invocar, acompanhar PV, atacar e dispensar. */
-export function AbaInvocacoes({ f, c, r, alterar }: Props) {
+export function AbaInvocacoes({ f, c, r, alterar, compacto }: Props) {
   const modelos = c.forma?.invocacoes ?? [];
   const lista = f.estado.invocacoes ?? [];
   const salvar = (invocacoes: Invocacao[], extra: Partial<Ficha> = {}) => alterar({ ...extra, estado: { ...f.estado, invocacoes } });
@@ -31,7 +33,7 @@ export function AbaInvocacoes({ f, c, r, alterar }: Props) {
 
   return (
     <section className="aba">
-      {modelos.length === 0 && lista.length === 0 && <p className="ajuda">Nenhuma invocação. Monte uma peça de invocação ou clone na aba Efeitos da sua forma e libere a forma.</p>}
+      {!compacto && modelos.length === 0 && lista.length === 0 && <p className="ajuda">Nenhuma invocação. Monte uma peça de invocação ou clone na aba Efeitos da sua forma e libere a forma.</p>}
       {modelos.length === 0 && lista.length > 0 && <p className="aviso-mini">A forma que criou estas invocações não está ativa. Dispense-as ou ative a forma de novo.</p>}
 
       {modelos.map((m) => {
