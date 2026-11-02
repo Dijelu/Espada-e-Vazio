@@ -279,7 +279,9 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
   const lista = useMemo(() => modelos(tipo, atr, ctxAtual), [tipo, atr, ctxAtual]);
   const assinatura = ASSINATURA[f.subclasse];
 
-  const estiloHerdado = tipo === "bankai2" ? (f.formas.bankai?.estilo ?? "") : "";
+  const estiloBase = tipo === "bankai2" ? (f.formas.bankai?.estilo ?? "") : "";
+  const [tipoNovo, setTipoNovo] = useState(() => !!estiloBase && !!r.estilo && r.estilo !== estiloBase);
+  const estiloHerdado = tipoNovo ? "" : estiloBase;
   useEffect(() => {
     if (estiloHerdado && r.estilo !== estiloHerdado) mud({ estilo: estiloHerdado });
   }, [estiloHerdado, r.estilo]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -372,10 +374,19 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
           <label className="campo">Espírito da Zanpakutou<textarea rows={4} value={r.espirito ?? ""} onChange={(e) => mud({ espirito: e.target.value })} placeholder="Aparência e personalidade. Ex.: um dragão de gelo calmo e orgulhoso." /></label>
         )}
 
-        {passo.id === "conceito" && tipo === "bankai2" && estiloHerdado && (
+        {passo.id === "conceito" && tipo === "bankai2" && estiloBase && (
           <>
-            <p>Sua Bankai é <b>{estiloHerdado}</b>, e a Bankai Verdadeira segue o mesmo tipo: ela leva essa Bankai ao limite.</p>
-            <p className="ajuda">Os cartões exclusivos da Verdadeira (marcados com ★) já aparecem de acordo com esse tipo. Para mudar, volte à sua primeira Bankai.</p>
+            <div className="opcoes-grandes">
+              <button type="button" className={`opcao ${!tipoNovo ? "on" : ""}`} onClick={() => setTipoNovo(false)}>
+                <b>Segue a sua Bankai</b>
+                <small>Mantém o tipo ({estiloBase}) e leva essa Bankai ao limite.</small>
+              </button>
+              <button type="button" className={`opcao ${tipoNovo ? "on" : ""}`} onClick={() => setTipoNovo(true)}>
+                <b>Algo completamente novo</b>
+                <small>Escolha qualquer tipo e monte todas as habilidades do zero, sem depender da primeira Bankai.</small>
+              </button>
+            </div>
+            {!tipoNovo && <p className="ajuda">Os cartões exclusivos da Verdadeira (marcados com ★) aparecem de acordo com o tipo da sua Bankai.</p>}
           </>
         )}
         {passo.id === "conceito" && (tipo === "bankai" || (tipo === "bankai2" && !estiloHerdado)) && (
