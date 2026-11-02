@@ -12,6 +12,7 @@ import { EscolhaSubclasse } from "../components/EscolhaSubclasse";
 import { CartasFormas, ConstrutorForma, PainelFormaAtiva } from "../components/ConstrutorForma";
 import { TIPO_FORMA_NOME, formaPendente, nivelLiberacao, segundaLiberada } from "../regras/liberacoes";
 import { AvisosFicha, Campo, irParaAncora, LinhaAtributos, Passo, SeletorVariacoes, novoId } from "../components/FichaPecas";
+import { AbaInvocacoes } from "../components/Invocacoes";
 import { BotaoRolar, PainelRolagens, useRolagens, type Rolagens } from "../components/Rolador";
 import { AbaTreinamento } from "../components/Treinamento";
 import { ataqueMelhorado } from "../regras/melhorias";
@@ -44,7 +45,7 @@ import {
   type TipoForma,
 } from "../regras/ficha";
 
-const ABAS = ["Resumo", "Combate", "Perícias", "Poderes", "Treinamento", "Evolução", "Notas"] as const;
+const ABAS = ["Resumo", "Combate", "Invocações", "Perícias", "Poderes", "Treinamento", "Evolução", "Notas"] as const;
 type Aba = (typeof ABAS)[number];
 
 export default function Ficha() {
@@ -130,6 +131,12 @@ export default function Ficha() {
 
   const c = useMemo(() => (f ? calcular(f) : null), [f]);
 
+  // a forma terminou: clones e invocações somem junto
+  const semForma = !!f && f.estado.liberado === "" && (f.estado.invocacoes?.length ?? 0) > 0;
+  useEffect(() => {
+    if (semForma) alterar((x) => ({ estado: { ...x.estado, invocacoes: [] } }));
+  }, [semForma, alterar]);
+
   // abre a próxima janela pendente: primeiro a subclasse, depois a forma de liberação (Shikai, Bankai...)
   const proxima = useCallback((x: TFicha) => {
     if (subclassePendente(x)) {
@@ -203,6 +210,7 @@ export default function Ficha() {
     setAba(alvo[0]);
     irParaAncora(alvo[1]);
   };
+  const temInvocacoes = (c.forma?.invocacoes.length ?? 0) > 0 || (f.estado.invocacoes?.length ?? 0) > 0;
   const abasComProblema = new Set(c.avisos.map((a) => DESTINOS[a.destino]?.[0]));
   const nivelXp = nivelPorXp(f.xp);
   const podeSubir = nivelXp > f.nivel && f.nivel < 20;
@@ -269,7 +277,7 @@ export default function Ficha() {
       <AvisosFicha avisos={c.avisos} onIr={irDestino} />
 
       <nav className="abas" role="tablist" aria-label="Seções da ficha">
-        {ABAS.map((a) => (
+        {ABAS.filter((a) => a !== "Invocações" || temInvocacoes).map((a) => (
           <button type="button" key={a} role="tab" aria-selected={aba === a} className={aba === a ? "on" : ""} onClick={() => setAba(a)}>{a}{abasComProblema.has(a) ? <i className="pontinho erro" aria-label="Há um problema nesta aba">!</i> : null}{a === "Evolução" && nPend > 0 ? <i className="pontinho" aria-label={`${nPend} pendente(s)`}>{nPend}</i> : null}</button>
         ))}
       </nav>
@@ -333,6 +341,8 @@ export default function Ficha() {
           )}
         </section>
       )}
+
+      {aba === "Invocações" && <AbaInvocacoes f={f} c={c} r={rol} alterar={alterar} />}
 
       {aba === "Combate" && (
         <section className="aba">

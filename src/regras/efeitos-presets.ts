@@ -2,8 +2,8 @@
 import { ARMADOS, type Alvo, type Efeito } from "./efeitos-forma";
 import type { Atr, TipoForma } from "./ficha";
 
-export type Categoria = "Atributos" | "Ofensivo" | "Kidō" | "Defesa" | "Mobilidade" | "Recursos" | "Gatilhos" | "Schrift" | "Pontos fracos";
-export const CATEGORIAS: Categoria[] = ["Atributos", "Ofensivo", "Kidō", "Defesa", "Mobilidade", "Recursos", "Gatilhos", "Schrift", "Pontos fracos"];
+export type Categoria = "Atributos" | "Ofensivo" | "Kidō" | "Defesa" | "Mobilidade" | "Recursos" | "Gatilhos" | "Invocações" | "Schrift" | "Pontos fracos";
+export const CATEGORIAS: Categoria[] = ["Atributos", "Ofensivo", "Kidō", "Defesa", "Mobilidade", "Recursos", "Gatilhos", "Invocações", "Schrift", "Pontos fracos"];
 
 export interface ParamPreset {
   atr?: Atr;
@@ -131,6 +131,13 @@ export const PRESETS: Preset[] = [
   { id: "vs-overkill", nome: "Sede de Abate", familias: VOL, categoria: "Schrift", schrift: "overkill", texto: "Ao derrubar um inimigo, +proficiência nos danos até o fim da cena (o Mestre controla o acúmulo).", monta: () => [{ k: "gatilho", quando: "abate", faz: { texto: "+proficiência em todos os danos e no acerto até o fim da cena (acumula)." }, rotulo: "Sede de Abate" }], pp: 3, aprovacao: true },
   { id: "vs-underbelly", nome: "Ponto Fraco", familias: VOL, categoria: "Schrift", schrift: "underbelly", texto: "Seus golpes e disparos ignoram 5 de redução de dano.", monta: () => [{ k: "ignoraRd", em: ["golpe", "disparo"], v: 5 }], pp: 2 },
   { id: "vs-miracle", nome: "Milagre Garantido", familias: VOL, categoria: "Schrift", schrift: "miracle", texto: "Uma vez por cena, refaça uma jogada e fique com a melhor (o Mestre aprova).", monta: () => [{ k: "texto", t: "1 vez por cena, refaça uma jogada e fique com a melhor." }], pp: 3, aprovacao: true },
+
+  { id: "sk-espirito", nome: "Espírito Auxiliar", familias: SHIK, categoria: "Invocações", texto: "Cria 1 espírito da Zanpakutou ao seu lado, que ataca e some quando cai a 0 PV.", monta: () => [{ k: "invoca", nome: "Espírito auxiliar", tipo: "invocacao", max: 1, pv: "[PROF]*3", cr: "10+[PROF]", acerto: "[PROF]", dano: "1d6+[PROF]", custoPr: 3 }] },
+  { id: "bk-clones", nome: "Clones de Reiatsu", familias: BANK, categoria: "Invocações", texto: "Cria clones de reiatsu (até metade da proficiência). Têm 1 PV, somem ao ser atingidos e o golpe real chega mesmo se o alvo esquivar do clone.", monta: () => [{ k: "invoca", nome: "Clone de reiatsu", tipo: "clone", max: "[PROF]/2", pv: 1, cr: "10+[PROF]+[DES]", acerto: "[PROF]+[DES]", dano: "1d8+[PROF]", custoPr: 2, texto: "Some ao ser atingido. O ataque do clone chega atrasado, mesmo que o alvo esquive." }] },
+  { id: "bk-cinzas", nome: "Legião de Cinzas", familias: BANK, categoria: "Invocações", texto: "Ergue 3 esqueletos de cinza que atacam um alvo ou formam uma muralha de proteção.", monta: () => [{ k: "invoca", nome: "Esqueleto de cinzas", tipo: "invocacao", max: 3, pv: "[PROF]*2", cr: "10+[PROF]", acerto: "[PROF]+[FOR]", dano: "[PROF]d6", custoPr: 4, texto: "Dano de Fogo. Pode formar uma pilha e proteger você." }] },
+  { id: "rs-cria", nome: "Cria do Hollow", familias: RES, categoria: "Invocações", texto: "Chama até 2 crias para lutar ao seu lado.", monta: () => [{ k: "invoca", nome: "Cria do Hollow", tipo: "invocacao", max: 2, pv: "[PROF]*3", cr: "10+[PROF]", acerto: "[PROF]+[FOR]", dano: "1d10+[PROF]", custoPr: 3 }] },
+  { id: "vs-zombie", nome: "Mortos-vivos", familias: VOL, categoria: "Invocações", schrift: "zombie", texto: "Invoca 2 mortos-vivos com 1 PV e CR 10 + proficiência, que atacam com proficiência d10 de dano.", monta: () => [{ k: "invoca", nome: "Morto-vivo", tipo: "invocacao", max: 2, pv: 1, cr: "10+[PROF]", acerto: "[PROF]+[DES]", dano: "[PROF]d10", custoPr: 0 }] },
+  { id: "vs-clones", nome: "Clones Imaginados", familias: VOL, categoria: "Invocações", schrift: "visionary", texto: "Cria até 2 clones imaginados, que somem quando você perde a concentração.", monta: () => [{ k: "invoca", nome: "Clone imaginado", tipo: "clone", max: 2, pv: "[PROF]*3", cr: "10+[PROF]", acerto: "[PROF]+[MEN]", dano: "[PROF]d8", custoPr: 3 }] },
 
   /* ---------------- Hollow: Segunda Etapa ---------------- */
   { id: "se-asas", nome: "Asas do Vasto Lorde", familias: SEG, categoria: "Mobilidade", texto: "Voo de 12 m.", monta: () => [{ k: "desloc", modo: "voo", v: 12 }] },

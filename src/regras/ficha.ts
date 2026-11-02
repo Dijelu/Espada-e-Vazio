@@ -565,6 +565,22 @@ export interface Estado {
   usos: Record<string, number>;
   /** passos de PR extra gastos em habilidades de situação ligadas, por id */
   extras?: Record<string, number>;
+  /** clones e invocações em campo (criados pelos efeitos da forma) */
+  invocacoes?: Invocacao[];
+}
+
+export interface Invocacao {
+  id: string;
+  /** de qual modelo veio (para contar o máximo) */
+  chave: string;
+  nome: string;
+  tipo: "clone" | "invocacao";
+  pv: number;
+  pvMax: number;
+  cr: number;
+  acerto: number;
+  dano: string;
+  texto?: string;
 }
 
 export interface Ficha {
