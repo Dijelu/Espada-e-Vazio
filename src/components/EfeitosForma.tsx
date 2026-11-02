@@ -73,6 +73,9 @@ export function EfeitosForma({ f, tipo, r, mud, onGravar }: Props) {
         <small>{orc.livre >= 0 ? `${orc.livre} livres` : `${-orc.livre} acima do limite`}{orc.devolvido > 0 ? ` · ${orc.devolvido} devolvidos por pontos fracos` : ""}</small>
       </div>
       {orc.avisos.map((a) => <p key={a} className="aviso-mini">{a}</p>)}
+      <label className="campo">Pontos extras dados pelo Mestre (forma lendária, 0 a 12)
+        <input type="number" min={0} max={12} value={r.ppExtra ?? 0} onChange={(e) => mud({ ppExtra: Math.max(0, Math.min(12, Math.floor(Number(e.target.value) || 0))) })} />
+      </label>
 
       {tipo === "bankai" && potencializadora && (f.formas.shikai?.efeitos?.length ?? 0) > 0 && (
         <label className="marcar"><input type="checkbox" checked={!!r.herdaShikai} onChange={(e) => mud({ herdaShikai: e.target.checked })} /> Herdar os efeitos da Shikai (custam metade dos pontos)</label>
@@ -200,7 +203,7 @@ function descreveFaz(z: import("../regras/efeitos-forma").Faz, ctx: CtxForma): s
 
 /** Editor de peça própria: escolhe o tipo de efeito e preenche só o que ele precisa. */
 function PecaPropria({ ctx, livre, onCriar, onFechar }: { ctx: CtxForma; livre: number; onCriar: (p: InstEfeito) => void; onFechar: () => void }) {
-  const [tipo, setTipo] = useState<"atr" | "cr" | "acerto" | "dano" | "dados" | "cd" | "rd" | "desloc" | "pvTemp" | "texto">("atr");
+  const [tipo, setTipo] = useState<"atr" | "cr" | "acerto" | "dano" | "dados" | "cd" | "rd" | "desloc" | "pvTemp" | "texto" | "fraco">("atr");
   const [nome, setNome] = useState("");
   const [atr, setAtr] = useState<Atr>("for");
   const [grupo, setGrupo] = useState<Grupo>("armados");
@@ -220,10 +223,11 @@ function PecaPropria({ ctx, livre, onCriar, onFechar }: { ctx: CtxForma; livre: 
     : tipo === "cd" ? { k: "cd", v: num }
     : tipo === "rd" ? { k: "rd", tipo: rd, v: num }
     : tipo === "desloc" ? { k: "desloc", modo, v: num }
+    : tipo === "fraco" ? { k: "texto", t: texto }
     : tipo === "pvTemp" ? { k: "gatilho", quando: "liberar", faz: { pvTemp: num }, rotulo: nome || "PV temporários" }
     : { k: "texto", t: texto };
   const custo = efeito ? custoEfeito(efeito, ctx) : 0;
-  const ok = !!efeito && (tipo !== "texto" || texto.trim().length > 0) && custo <= livre;
+  const ok = !!efeito && ((tipo !== "texto" && tipo !== "fraco") || texto.trim().length > 0) && (tipo === "fraco" || custo <= livre);
   return (
     <div className="npc-item peca-propria">
       <label className="campo">O que a peça faz
@@ -238,6 +242,7 @@ function PecaPropria({ ctx, livre, onCriar, onFechar }: { ctx: CtxForma; livre: 
           <option value="desloc">Deslocamento ou voo</option>
           <option value="pvTemp">PV temporários ao liberar</option>
           <option value="texto">Efeito em texto (o Mestre aprova)</option>
+          <option value="fraco">Ponto fraco (devolve pontos)</option>
         </select>
       </label>
       <label className="campo">Nome<input value={nome} maxLength={60} onChange={(e) => setNome(e.target.value)} placeholder="Nome da peça" /></label>
@@ -246,11 +251,11 @@ function PecaPropria({ ctx, livre, onCriar, onFechar }: { ctx: CtxForma; livre: 
       {tipo === "dados" && <label className="campo">Dado<select value={d} onChange={(e) => setD(Number(e.target.value))}>{[4, 6, 8, 10, 12].map((x) => <option key={x} value={x}>d{x}</option>)}</select></label>}
       {tipo === "rd" && <label className="campo">Contra<select value={rd} onChange={(e) => setRd(e.target.value as typeof rd)}><option value="ambos">Tudo</option><option value="fis">Físico</option><option value="eso">Esotérico</option></select></label>}
       {tipo === "desloc" && <label className="campo">Tipo<select value={modo} onChange={(e) => setModo(e.target.value as typeof modo)}><option value="chao">No chão</option><option value="voo">Voo</option></select></label>}
-      {tipo !== "texto" && <label className="campo">Valor (número ou conta com [PROF], [NIV], [FOR]…)<input value={v} maxLength={30} onChange={(e) => setV(e.target.value)} /></label>}
-      {tipo === "texto" && <label className="campo npc-larga">Descrição<textarea rows={2} maxLength={300} value={texto} onChange={(e) => setTexto(e.target.value)} /></label>}
+      {tipo !== "texto" && tipo !== "fraco" && <label className="campo">Valor (número ou conta com [PROF], [NIV], [FOR]…)<input value={v} maxLength={30} onChange={(e) => setV(e.target.value)} /></label>}
+      {(tipo === "texto" || tipo === "fraco") && <label className="campo npc-larga">{tipo === "fraco" ? "Qual é o preço ou fraqueza" : "Descrição"}<textarea rows={2} maxLength={300} value={texto} onChange={(e) => setTexto(e.target.value)} /></label>}
       <p className="ajuda npc-larga">Custo: <b>{custo} PP</b>{custo > livre ? ` (faltam ${custo - livre})` : ""}</p>
       <div className="acoes-linha npc-larga">
-        <button type="button" className="btn-mini" disabled={!ok} onClick={() => efeito && onCriar({ id: novoId(), nome: nome.trim() || "Peça própria", efeitos: [efeito], pp: tipo === "texto" ? 1 : undefined })}>Adicionar peça</button>
+        <button type="button" className="btn-mini" disabled={!ok} onClick={() => efeito && onCriar({ id: novoId(), nome: nome.trim() || "Peça própria", efeitos: [efeito], pp: tipo === "texto" ? 1 : tipo === "fraco" ? -1 : undefined })}>Adicionar peça</button>
         <button type="button" className="link-perigo" onClick={onFechar}>Cancelar</button>
       </div>
     </div>

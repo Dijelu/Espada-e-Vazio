@@ -243,14 +243,17 @@ export function bonusDoAlvo(forma: SomaForma | null | undefined, a: Alvo) {
 export function orcamentoBase(tipo: FormaLib["tipo"], n: number, extra: { plena?: boolean; origem?: string } = {}): number {
   const piso = (v: number) => Math.max(0, Math.floor(v));
   switch (tipo) {
-    case "shikai": return Math.min(5, 2 + piso((n - 3) / 4));
-    case "bankai": return 6 + piso((n - 10) / 2) + (extra.plena ? 2 : 0);
-    case "bankai2": return 6 + piso((n - 10) / 2) + 4;
-    case "resurreccion": return 5 + piso((n - 10) / 2) + (extra.origem === "adjuchas" ? 1 : extra.origem === "vasto-lorde" ? 2 : 0);
-    case "segunda": return 4;
-    case "vollstandig": return 4 + 2 * piso((n - 13) / 5);
+    case "shikai": return Math.min(8, 3 + piso((n - 3) / 3));
+    case "bankai": return 8 + piso(n - 10) + (extra.plena ? 3 : 0);
+    case "bankai2": return 14 + piso(n - 10);
+    case "resurreccion": return 8 + piso(n - 10) + (extra.origem === "adjuchas" ? 2 : extra.origem === "vasto-lorde" ? 3 : 0);
+    case "segunda": return 6 + piso(n - 15);
+    case "vollstandig": return 6 + 2 * piso((n - 13) / 5);
   }
 }
+
+/** Pontos extras que o Mestre concede a uma forma lendária (no máximo 12). */
+export const PP_EXTRA_MAX = 12;
 
 const teto = (v: number, max: number) => Math.min(v, max);
 
@@ -312,7 +315,8 @@ export interface Orcamento {
 
 /** Soma do que a forma gastou contra o orçamento. Peças herdadas da Shikai custam metade. */
 export function orcamentoDaForma(f: Ficha, tipo: FormaLib["tipo"], forma: FormaLib | undefined, ctx: CtxForma): Orcamento {
-  const total = orcamentoBase(tipo, ctx.n, { plena: tipo === "bankai" && f.treinos.caminhoBankai === "plena", origem: f.origem });
+  const extraMestre = Math.max(0, Math.min(PP_EXTRA_MAX, Math.floor(Number(forma?.ppExtra) || 0)));
+  const total = orcamentoBase(tipo, ctx.n, { plena: tipo === "bankai" && f.treinos.caminhoBankai === "plena", origem: f.origem }) + extraMestre;
   let gasto = 0;
   let devolucao = 0;
   const avisos: string[] = [];
@@ -393,6 +397,6 @@ export function normalizarEfeitos(raw: unknown): InstEfeito[] {
       }
       return [];
     });
-    return [{ id: String(o.id ?? Math.random().toString(36).slice(2, 9)).slice(0, 40), preset: typeof o.preset === "string" ? o.preset : undefined, nome: String(o.nome ?? "Efeito").slice(0, 80), texto: typeof o.texto === "string" ? o.texto.slice(0, 300) : undefined, efeitos, pp: typeof o.pp === "number" ? o.pp : undefined, confirmado: o.confirmado === true }];
+    return [{ id: String(o.id ?? Math.random().toString(36).slice(2, 9)).slice(0, 40), preset: typeof o.preset === "string" ? o.preset : undefined, nome: String(o.nome ?? "Efeito").slice(0, 80), texto: typeof o.texto === "string" ? o.texto.slice(0, 300) : undefined, efeitos, pp: typeof o.pp === "number" && Number.isFinite(o.pp) ? Math.max(-3, Math.min(20, Math.round(o.pp))) : undefined, confirmado: o.confirmado === true }];
   });
 }
