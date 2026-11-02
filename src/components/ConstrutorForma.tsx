@@ -2,6 +2,7 @@ import { analisarDano } from "../regras/teto-dano";
 import { CartaoHabilidade } from "./CartoesHabilidade";
 import { ModelosBankai } from "./ModelosBankai";
 import { ModelosHollow } from "./ModelosHollow";
+import { ModelosShikai } from "./ModelosShikai";
 import { calcularLiberacao } from "../regras/liberacao-forma";
 import { EfeitosForma, EscolhaAtributos } from "./EfeitosForma";
 import { SeletorDano } from "./SeletorFormula";
@@ -77,7 +78,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
   const classe = classePorId(f.classe);
   const ehBankai = tipo === "bankai" || tipo === "bankai2";
   const caminhoFinal = tipo === "bankai" ? f.treinos.caminhoBankai : tipo === "bankai2" ? "verdadeira" : "";
-  const [aba, setAba] = useState<"modelos" | "passo" | "efeitos" | "meu">(f.formas[tipo]?.nome ? "meu" : (tipo === "bankai" || tipo === "bankai2" || tipo === "resurreccion" || tipo === "segunda") ? "modelos" : "passo");
+  const [aba, setAba] = useState<"modelos" | "passo" | "efeitos" | "meu">(f.formas[tipo]?.nome ? "meu" : tipo !== "vollstandig" ? "modelos" : "passo");
   const [r, setR] = useState<FormaLib>(() => {
     if (f.formas[tipo]) return { ...vazia(tipo), ...f.formas[tipo]! };
     // a Verdadeira parte da Bankai que você já tem: muda o nome e a aparência e ganha uma técnica nova
@@ -226,6 +227,9 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
       <div className="construtor-corpo">
         {aba === "modelos" && tipo === "shikai" && (
           <>
+          <ModelosShikai ctx={ctxAtual} onUsar={(x) => { setR({ ...vazia("shikai"), ...x } as FormaLib); setAba("meu"); }} />
+          <h3 className="sub-passivas">Shikais do livro</h3>
+          <>
             <input className="seletor-busca" value={busca} onChange={(e) => setBusca(e.target.value)} placeholder="Buscar Zanpakutou" aria-label="Buscar Zanpakutou" />
             <ul className="seletor-lista">
               {SHIKAIS.filter((b) => !q || b.nome.toLowerCase().includes(q)).map((b) => (
@@ -245,6 +249,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
                 </li>
               ))}
             </ul>
+          </>
           </>
         )}
 
