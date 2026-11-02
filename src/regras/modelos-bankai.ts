@@ -1566,6 +1566,175 @@ export const MODELOS_BANKAI: ModeloMontado[] = [
   ]
  },
  "verdadeira": null
+},
+{
+ "id": "shatatsu-karagara",
+ "nome": "Shatatsu Karagara Shigarami no Tsuji",
+ "dono": "Senjumaru Shutara",
+ "resumo": "Um tear gigante que desenrola panos diferentes para cada inimigo, cada um feito para vencê-lo.",
+ "tema": "Tecelagem sob medida",
+ "bankai": {
+  "nome": "Shatatsu Karagara Shigarami no Tsuji",
+  "comando": "Bankai. Shatatsu Karagara Shigarami no Tsuji.",
+  "estilo": "transformadora",
+  "aparencia": "A agulha vira um tear imenso, cercado de pequenos portões de onde pendem fios sem conta, como uma floresta de linhas. Dos portões rolam panos que desenham um espaço oval, e cada pano tem uma cor e uma regra.",
+  "efeitos": [
+   {
+    "id": "bk-dominio"
+   },
+   {
+    "id": "bk-concentrado"
+   },
+   {
+    "id": "bk-sentidos"
+   },
+   {
+    "id": "bk-maos"
+   },
+   {
+    "id": "bk-corte-distante"
+   },
+   {
+    "id": "bk-barreira"
+   },
+   {
+    "id": "bk-reacao"
+   },
+   {
+    "id": "bk-forca",
+    "param": {
+     "atr": "men"
+    }
+   }
+  ],
+  "pontoFraco": "pg-raiz",
+  "ppGasto": 16,
+  "nota": "Na obra só aparecem o tear, os panos que se ajustam a cada inimigo e a técnica das Seis Cores. Os efeitos de cada pano são adaptação da mesa. Os Zero fizeram um juramento de usar a Bankai com muita cautela, então combine com o Mestre quando ela pode aparecer.",
+  "habilidades": [
+   {
+    "nome": "Rolo de Pano",
+    "acao": "Ação",
+    "dano": "[NIV/2+2]d8+[MEN]",
+    "regra": "Um pano feito para o alvo o envolve: salvaguarda de Destreza; na falha, dano total e Preso até o fim do próximo turno do alvo; no sucesso, metade.",
+    "desc": "O pano desce do portão, escolhe o inimigo e já sabe o tamanho dele.",
+    "modelo": "Ataque básico"
+   },
+   {
+    "nome": "Fio de Costura",
+    "acao": "Ação bônus",
+    "dano": "3d8+[MEN]",
+    "regra": "Alcance de 9 m: salvaguarda de Força; na falha, dano total e o alvo é puxado 6 m na sua direção; no sucesso, metade.",
+    "desc": "Uma linha fina passa por dentro da guarda e puxa.",
+    "modelo": "Reforço"
+   },
+   {
+    "nome": "Tecido sob Medida",
+    "acao": "Reação",
+    "dano": "",
+    "regra": "Quando um ataque ou técnica atinge você ou um aliado a 9 m, escolha um pano: o dano do golpe cai pela metade e o atacante fica com -2 de acerto até o fim do próximo turno dele.",
+    "desc": "Cada inimigo recebe um pano diferente, e o tear ajusta o desenho enquanto eles lutam.",
+    "modelo": "Barreira"
+   },
+   {
+    "nome": "Máquina de Padrão das Seis Cores",
+    "acao": "Ação",
+    "dano": "[NIV/2+4]d12+[MEN]",
+    "regra": "Seis panos descem ao mesmo tempo sobre até seis alvos a 18 m, cada um com sua cor e sua regra: salvaguarda de Constituição; na falha, dano total e Atordoado até o fim do próximo turno do alvo; no sucesso, metade. Divida a rolagem de dano igualmente entre os alvos se houver mais de um.",
+    "desc": "Seis cores caem de uma vez, e cada uma foi pensada para um único inimigo.",
+    "modelo": "Técnica final",
+    "especial": {
+     "condicao": "Esgotado",
+     "duracao": "até o fim da cena"
+    }
+   }
+  ]
+ },
+ "verdadeira": null
+},
+{
+ "id": "shirafude-ichimonji",
+ "nome": "Shirafude Ichimonji",
+ "dono": "Ichibei Hyōsube",
+ "resumo": "O pincel que rasga o nome do inimigo ao meio e depois lhe dá outro, menor.",
+ "tema": "Nomes e tinta",
+ "bankai": {
+  "nome": "Shirafude Ichimonji",
+  "comando": "Bankai. Shirafude Ichimonji.",
+  "estilo": "transformadora",
+  "aparencia": "Um pincel enorme de cerdas brancas surge nas mãos de Ichibei. A tinta preta escorre das cerdas, e cada pingo no chão forma uma letra sem sentido.",
+  "efeitos": [
+   {
+    "id": "bk-dominio"
+   },
+   {
+    "id": "bk-corte-distante"
+   },
+   {
+    "id": "bk-perfura"
+   },
+   {
+    "id": "bk-concentrado"
+   },
+   {
+    "id": "bk-sentidos"
+   },
+   {
+    "id": "bk-reacao"
+   },
+   {
+    "id": "bk-barreira"
+   },
+   {
+    "id": "bk-forca",
+    "param": {
+     "atr": "men"
+    }
+   }
+  ],
+  "pontoFraco": "pg-tiro",
+  "ppGasto": 16,
+  "preRequisito": "O alvo precisa ter sido atingido pela tinta da Shikai (o pincel de Ichimonji) antes de você usar as técnicas da Bankai contra ele.",
+  "nota": "Na obra, a Bankai só aparece uma vez, contra o Yhwach, e depende da tinta da Shikai ter acertado antes. As mecânicas de nome pela metade e renomeação são adaptação da mesa e dependem do Mestre.",
+  "habilidades": [
+   {
+    "nome": "Nome Pela Metade",
+    "acao": "Ação",
+    "dano": "[NIV/2+2]d8+[MEN]",
+    "regra": "Alvo já marcado pela tinta: salvaguarda de Constituição; na falha, dano total e o alvo causa só metade do dano com ataques até o fim do próximo turno dele; no sucesso, metade e sem o efeito.",
+    "desc": "A tinta corre pelo corpo e leva uma parte do nome embora, e o poder vai junto.",
+    "modelo": "Ataque básico"
+   },
+   {
+    "nome": "Traço Largo",
+    "acao": "Ação bônus",
+    "dano": "3d8+[MEN]",
+    "regra": "Cone de 9 m: salvaguarda de Destreza, metade no sucesso. Quem falhar fica marcado pela tinta até o fim da cena.",
+    "desc": "Uma pincelada larga cobre o chão e todos os pés.",
+    "modelo": "Reforço"
+   },
+   {
+    "nome": "Rasura",
+    "acao": "Reação",
+    "dano": "",
+    "regra": "Quando um inimigo marcado pela tinta acerta você ou um aliado a 9 m, risque o ataque: o dano cai pela metade e o atacante perde um ataque no próximo turno dele.",
+    "desc": "O pincel risca o golpe antes que ele termine.",
+    "modelo": "Barreira"
+   },
+   {
+    "nome": "Novo Nome",
+    "acao": "Ação",
+    "dano": "[NIV/2+4]d12+[MEN]",
+    "regra": "Alvo marcado: salvaguarda de Mente; na falha, dano total e você dá ao alvo um novo nome menor, como Formiga Negra. Ele fica Atordoado até o fim do próximo turno e, até o fim da cena, só causa metade do dano. No sucesso, metade e sem novo nome. Não funciona contra quem tem uma habilidade que reescreve o próprio nome ou o destino.",
+    "desc": "O nome antigo cai em pedaços e o novo cai por cima, pequeno e sem peso.",
+    "modelo": "Técnica final",
+    "especial": {
+     "condicao": "Esgotado",
+     "duracao": "até o fim da cena"
+    }
+   }
+  ]
+ },
+ "verdadeira": null
 }
 ];
 
