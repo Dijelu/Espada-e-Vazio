@@ -521,6 +521,31 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
           </>
         )}
 
+        {passo.id === "custo" && (
+          <div className="liberacao-calculada">
+            <div className="duas">
+              <div className="selo-grande"><small>Custo de liberação</small><b>{lib.custoPr ?? r.custo} PR</b></div>
+              <div className="selo-grande"><small>Duração</small><b>{lib.duracaoTexto}</b></div>
+            </div>
+            <ul className="conta-liberacao">{lib.conta.map((c) => <li key={c}>{c}</li>)}</ul>
+            <p className="ajuda">Um turno dura 6 segundos: 10 turnos são 1 minuto. No combate, o botão "Novo turno" conta a duração sozinho e avisa quando a forma termina.</p>
+            {(r.efeitos?.length ?? 0) === 0 && <p className="aviso-mini">Sem peças de efeito, o custo e a duração ficam como no modelo. Escolha peças no passo anterior para o cálculo valer.</p>}
+          </div>
+        )}
+
+        {passo.id === "fraqueza" && (
+          <>
+            <EfeitosForma f={f} tipo={tipo} r={r} mud={mud} onGravar={onGravar} modo="fracos" />
+            <label className="campo">Ponto fraco, com as suas palavras
+              <textarea rows={3} value={r.pontoFraco} onChange={(e) => mud({ pontoFraco: e.target.value })} placeholder="Como esse preço aparece na história e na mesa" />
+            </label>
+            <p className="ajuda">Ideias de texto:</p>
+            <div className="filtros-pecas">
+              {[...FRAQUEZAS[tipo], ...FRAQUEZAS_EXTRA[tipo]].map((t) => <button key={t} type="button" className="chip chip-btn" onClick={() => mud({ pontoFraco: t })}>{t}</button>)}
+            </div>
+          </>
+        )}
+
         {passo.id === "acoes" && <EfeitosForma f={f} tipo={tipo} r={r} mud={mud} onGravar={onGravar} modo="poder" />}
 
         {passo.id === "revisao" && (
