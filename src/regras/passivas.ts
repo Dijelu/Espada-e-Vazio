@@ -143,6 +143,8 @@ const POR_TALENTO: Record<string, (c: Ctx, r: EfeitoSoma) => string | void> = {
   "zanjutsu/velocidade-sutil": (_c, r) => { r.periciaAtr["velocidade"] = "des"; return "Velocidade pode usar Destreza"; },
   "tokubetsu/ajuste-agil": (_c, r) => { r.periciaAtr["velocidade"] = "des"; r.periciaAtr["preparo-fisico"] = "des"; return "Velocidade e Preparo Físico podem usar Destreza"; },
   "hakuda/fluxo-veloz": (_c, r) => { r.periciaAtr["velocidade"] = "des"; r.periciaAtr["preparo-fisico"] = "des"; return "Velocidade e Preparo Físico podem usar Destreza"; },
+  "zanjutsu/instinto-espiritual": (c, r) => { const v = Math.floor(c.atr.esp / 2); r.iniciativa += v; return `iniciativa ${sinal(v)}`; },
+  "vazio/casca-endurecida": (_c, r) => { r.cr += 1; return "CR +1"; },
 };
 
 /** Soma os efeitos passivos das essências e talentos escolhidos e devolve também a lista para mostrar na ficha. */

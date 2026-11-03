@@ -207,6 +207,34 @@ Assim como no Shunpo original, você não provoca ataques de oportunidade ao usa
 Pré-Requisito: característica de classe "Shunpo".
 
 - Velocidade Sutil: Você pode alterar o atributo usado na Perícia Velocidade, substituindo por Destreza.
+- Golpe Amplo: Você aprendeu a abrir o corte em arco para atingir mais de um inimigo. Uma vez por turno, quando usar a ação "Ataque", você pode trocar um dos seus ataques por um Golpe Amplo: faça uma única jogada de ataque com sua Zanpakutou e compare o resultado com a Classe de Resistência de até duas criaturas a até 1,5 metro de você. Cada criatura atingida sofre o dano da Zanpakutou, sem somar o seu atributo ao dano.
+- Guarda do Esquadrão: Você luta para que ninguém do seu esquadrão caia. Quando uma criatura que você possa ver atacar um aliado a até 1,5 metro de você, você pode usar sua reação para interpor a Zanpakutou: a jogada de ataque sofre uma penalidade igual ao seu bônus de proficiência. Se o ataque ainda assim acertar, o aliado reduz o dano sofrido em um valor igual ao seu atributo de Constituição.
+- Carga Avassaladora: Quando você realizar a manobra Encontrão, você tem vantagem no Teste de Preparo Físico e pode usá-la com qualquer Zanpakutou, mesmo que ela use Destreza. Se a criatura empurrada colidir com uma superfície sólida ou com outra criatura, ela sofre 1d8 de dano de Concussão e fica com a condição Caído.
+- Estudo de Kido: Mesmo focado na lâmina, você nunca abandonou os estudos da Academia. Você conhece dois Kidos adicionais, de uma classificação a que tenha acesso. Esses Kidos não contam no limite de "Conhecidos" da tabela de classe.
+- Veterano do Gotei: Anos de patrulhas e missões no Mundo Humano lhe ensinaram mais do que lutar. Você se torna proficiente em duas perícias à sua escolha entre Exploração, Investigação, Presença, Determinação e Durabilidade.
+- Passo Cortante: Quando você usar o Shunpo e terminar o deslocamento a até 1,5 metro de uma criatura, o primeiro ataque com sua Zanpakutou que acertar essa criatura neste turno causa dano adicional igual ao seu bônus de proficiência.
+
+Pré-Requisito: 5° nível de Zanjutsu e característica de classe "Shunpo".
+
+- Primeiro Corte: O primeiro golpe depois de chamar o nome da sua Zanpakutou carrega todo o peso da liberação. Uma vez por combate, no turno em que você liberar a Shikai, o primeiro ataque com a Zanpakutou que acertar causa 2d8 de dano adicional do tipo de dano da sua Zanpakutou.
+
+Pré-Requisito: 5° nível de Zanjutsu e Shikai.
+
+- Sentinela: Nenhum inimigo ataca seus companheiros de olhos fechados para você. Quando uma criatura hostil a até 1,5 metro de você realizar um ataque contra outra criatura que não seja você, você pode usar sua reação para realizar um único ataque com sua Zanpakutou contra ela.
+
+Pré-Requisito: 5° nível de Zanjutsu.
+
+- Furor do Combatente: Ferido, você fica ainda mais perigoso. Enquanto estiver com metade ou menos dos seus pontos de vida máximos, você recebe +2 nas jogadas de dano com a Zanpakutou e +2 nos Testes de Resistência de Constituição.
+
+Pré-Requisito: 9° nível de Zanjutsu.
+
+- Recusa a Cair: Uma vez por descanso longo, quando você cair a 0 pontos de vida sem morrer instantaneamente, você pode gastar 10 pontos de reiatsu para permanecer de pé, ficando com pontos de vida iguais ao seu nível de personagem.
+
+Pré-Requisito: 13° nível de Zanjutsu e Talento de Zanjutsu "Furor do Combatente".
+
+- Corte Devastador: Uma vez por descanso curto, quando usar o Impacto de Reiatsu, você pode liberá-lo como uma onda em linha de 9 metros a partir de você, em vez de somá-lo ao golpe. Cada criatura na linha faz um Teste de Resistência de Destreza (CD 8 + seu bônus de proficiência + seu atributo de Espírito) e sofre o dano do Impacto de Reiatsu, ou metade se passar.
+
+Pré-Requisito: 13° nível de Zanjutsu e característica de classe "Impacto de Reiatsu".
 
 ### Especializando (sub-classe)
 
@@ -218,16 +246,18 @@ No 4° nível e novamente no 8°, 12°, 16° e 19° nível, você pode aumentar 
 
 - Fulgor Espiritual: Durante o combate, seus instintos afloram e sua presença espiritual se intensifica drasticamente. Seu espírito entra em um estado elevado de poder, tornando-se mais difícil de ser ignorado ou subjugado. Sempre que você realiza um teste de Determinação, Intimidação ou Reiatsu durante o combate, você faz com vantagem.
 - Golpe Triplo: Quando você utiliza a ação "Atacar", agora você realiza três ataques.
-- Pré-Requisito: 11° nível de Zanjutsu e talento de Zanjutsu "Ataque Extra".
+
+Pré-Requisito: 11° nível de Zanjutsu e talento de Zanjutsu "Ataque Extra".
+
 - Golpe Superior: Quando você utiliza a ação "Atacar", agora você realiza quatro ataques.
 
 Pré-Requisito: 15° nível de Zanjutsu e talento de Zanjutsu "Golpe Triplo".
 
-- Julgamento Espiritual: Sempre que você entra em combate, todas as criaturas hostis que puderem vêlo e que possuam Espírito menor que o seu devem realizar um teste de Mente (CD 10 + seu bônus de proficiência + seu atributo de Espírito). Em caso de falha, essas criaturas sofrem desvantagem em todas as jogadas de ataque contra você. A partir do segundo turno de combate, cada criatura que tenha falhado no teste pode refazê-lo no final do próprio turno. Com um sucesso, ela se livra do efeito.
+- Julgamento Espiritual: Sempre que você entra em combate, todas as criaturas hostis que puderem vê-lo e que possuam Espírito menor que o seu devem realizar um teste de Mente (CD 10 + seu bônus de proficiência + seu atributo de Espírito). Em caso de falha, essas criaturas sofrem desvantagem em todas as jogadas de ataque contra você. A partir do segundo turno de combate, cada criatura que tenha falhado no teste pode refazê-lo no final do próprio turno. Com um sucesso, ela se livra do efeito.
 - Interferência Precisa: Quando você acerta um ataque contra uma criatura que está mantendo a concentração em um Kido ou habilidade, ela deve realizar o teste de resistência para manter a concentração com desvantagem.
 - Impacto Elemental: Você pode alterar o tipo de dano de energia do seu Impacto de Reiatsu para o tipo de dano causado pela sua Zanpakutou, desde que ela seja do tipo elemental. Por exemplo, se sua Zanpakutou for do tipo Fogo, o dano do seu Impacto de Reiatsu será alterado para dano de Fogo.
 
-Pré-Requisito: Shikai, Zanpakutou do tipo Elemental e e característica de Classe "Impacto de Reiatsu".
+Pré-Requisito: Shikai, Zanpakutou do tipo Elemental e característica de Classe "Impacto de Reiatsu".
 
 - Impacto Livre: Sua habilidade “Impacto de Reiatsu” perde o requisito de ação bônus, podendo ser usada em qualquer ataque.
 - Imparável: Parar você é extremamente difícil. Quando uma criatura tentar usar uma habilidade que cause uma condição debilitante em você, você recebe +5 para resistir.
@@ -511,6 +541,38 @@ Além disso, se o Talento exigir um certo nível de classe específica, esse ní
 
 - Versatilidade Marcial: Você pode utilizar técnicas de Hakuda, escolha duas da lista de Técnicas de Hakuda do capítulo 11. Você pode usá-las com Força ou Destreza, à sua escolha. Se a técnica exigir um Teste de Resistência da criatura, a dificuldade é igual a 8 + seu bônus de proficiência + seu modificador de Força ou Destreza. Pré-Requisito: Talento de Tokubetsu "Perito em Hakuda".
 - Visão Aguçada: Quando você estiver investigando um ambiente ou procurando por pistas, pode gastar 4 pontos de reiatsu para ter vantagem em um teste de Percepção ou Investigação.
+- Domínio de Kido: Você estudou o Kido além do que a Academia exige. Você conhece dois Kidos adicionais de uma classificação a que tenha acesso, e uma vez por combate pode aplicar um aprimoramento a um Kido sem gastar os pontos de reiatsu dele (o aprimoramento ainda conta no limite máximo).
+- Comando: Você sabe dar ordens no meio do caos. Com uma ação bônus, escolha um aliado a até 9 metros que possa ouvi-lo. Ele pode usar a reação dele para se deslocar até metade do deslocamento dele, ou recebe +2 no próximo Teste de Resistência que fizer antes do início do seu próximo turno.
+- Postura Versátil: No início de cada combate, escolha uma postura: Ofensiva (+2 nas jogadas de ataque), Defensiva (+2 na Classe de Resistência) ou Móvel (+3 metros de deslocamento). A postura dura até o fim do combate. Uma vez por combate, você pode trocar de postura com uma ação bônus.
+- Generalista: Você aprendeu um pouco de tudo no Gotei 13. Quando fizer um teste de uma perícia na qual não é proficiente, você soma metade do seu bônus de proficiência (arredondado para baixo) ao resultado.
+- Mestre do Disfarce: Você tem vantagem em testes de Influência para mentir sobre sua identidade ou suas intenções. Além disso, enquanto estiver usando um Gigai, uma criatura só percebe que você é um Shinigami se passar em um teste de Percepção Espiritual com CD 10 + seu bônus de proficiência + seu atributo de Espírito.
+- Barreira Improvisada: Quando você for acertado por um ataque, pode usar sua reação e 5 pontos de reiatsu para erguer uma barreira rápida de reiatsu, reduzindo o dano desse ataque em 1d10 + seu atributo de Mente.
+
+Pré-Requisito: 5° nível de Tokubetsu.
+
+- Golpe e Feitiço: Quando você acertar uma criatura com a Zanpakutou no seu turno, o próximo Kido que exija Teste de Resistência e que você conjurar contra essa criatura até o fim do turno tem a classe de dificuldade aumentada em +2.
+
+Pré-Requisito: 5° nível de Tokubetsu.
+
+- Adaptação em Combate: Você aprende com cada golpe que recebe. Uma vez por combate, depois que uma criatura acertar você com um ataque, você recebe +2 na Classe de Resistência contra os ataques dessa criatura até o fim do combate.
+
+Pré-Requisito: 9° nível de Tokubetsu.
+
+- Presença de Comando: Sua firmeza inspira quem luta ao seu lado. Aliados a até 9 metros que possam ver você recebem +1 nos Testes de Resistência de Mente e de Espírito.
+
+Pré-Requisito: 9° nível de Tokubetsu e Talento de Tokubetsu "Comando".
+
+- Recuperação Tática: Quando você usar a ação "Recuperar Reiatsu", você também pode encerrar uma das seguintes condições em você: Amedrontado, Envenenado ou Queimado.
+
+Pré-Requisito: 9° nível de Tokubetsu.
+
+- Shikai Versátil: Uma vez por descanso curto, quando usar uma técnica da sua Shikai que exija Teste de Resistência, você pode trocar o atributo do teste por Destreza, Constituição ou Mente, decidindo antes da rolagem.
+
+Pré-Requisito: 13° nível de Tokubetsu e Shikai.
+
+- Leitura Perfeita: Uma vez por descanso longo, quando você ou um aliado a até 9 metros falhar em um Teste de Resistência, você pode usar sua reação para que ele role o teste novamente, somando seu atributo de Mente ao novo resultado.
+
+Pré-Requisito: 17° nível de Tokubetsu.
 
 ### Shunpo
 
@@ -696,6 +758,37 @@ Pré-Requisito: 9° nível de Hakuda e habilidade de Hakuda “Contra-Ataque”.
 - Sede de Sangue: Quando você acerta um ataque crítico, ganha pontos de vida temporários iguais ao seu nível de personagem + metade do seu atributo de Mente.
 - Shunpo Defensivo: Quando você usa um tipo de Shunpo, recebe um bônus na sua CR igual ao seu bônus de proficiência contra o primeiro ataque feito contra você até o começo do seu próximo turno.
 - Shunpo Reativo: Quando você for alvo de um ataque, você pode usar sua reação para ativar seu Shunpo para ficar quase intangível, reduzindo o dano que você sofreria pela metade.
+- Domínio do Agarrão: Você tem vantagem nos testes para Agarrar e pode usar Destreza no lugar de Força nesses testes. Uma criatura agarrada por você tem desvantagem nas jogadas de ataque contra criaturas que não sejam você.
+- Assassino Onmitsu: Você treinou com a Onmitsukidō. Uma vez por turno, quando acertar um ataque desarmado em uma criatura que não pode ver você ou que ainda não percebeu sua presença, você causa 2d6 de dano adicional. O dano aumenta para 3d6 no 9° nível e para 4d6 no 15° nível.
+- Passo de Vento: Você tem vantagem em testes de Acrobacia e de Velocidade para escalar, saltar e se equilibrar, e a distância dos seus saltos é dobrada.
+- Fluxo de Combate: Golpes encadeados mantêm o seu reiatsu circulando. Quando você acertar dois ou mais ataques desarmados no mesmo turno, recupera pontos de reiatsu iguais ao seu bônus de proficiência. Isso só acontece uma vez por turno.
+- Chave de Articulação: No início do seu turno, se estiver agarrando uma criatura, você pode gastar 3 pontos de reiatsu para torcer uma articulação dela. A criatura deve fazer um Teste de Resistência de Constituição com a CD das suas Técnicas de Hakuda; se falhar, fica com a condição Preso (braços ou mãos) até o início do seu próximo turno.
+
+Pré-Requisito: 5° nível de Hakuda e Talento de Hakuda "Domínio do Agarrão".
+
+- Pontos de Pressão: Uma vez por turno, quando acertar um ataque desarmado, você pode gastar 2 pontos de reiatsu para atingir um ponto de pressão: o deslocamento da criatura é reduzido em 3 metros até o início do seu próximo turno. Esse efeito não se acumula.
+
+Pré-Requisito: 5° nível de Hakuda.
+
+- Guarda Compartilhada: Enquanto o seu Bloqueio estiver ativo, um aliado a até 1,5 metro de você que for atingido por um ataque corpo a corpo reduz o dano em metade do valor do seu Bloqueio.
+
+Pré-Requisito: 5° nível de Hakuda e característica de classe "Bloqueio".
+
+- Corpo Firme: Você tem vantagem nos testes para resistir a efeitos que o deixariam Agarrado, Caído ou Preso (pernas), e se levantar não consome seu deslocamento.
+
+Pré-Requisito: 5° nível de Hakuda.
+
+- Selar Reiatsu: Quando uma criatura falhar no teste do seu Desestabilizar, você pode gastar 5 pontos de reiatsu para golpear os pontos de fluxo espiritual dela. Ela deve fazer um Teste de Resistência de Espírito com a CD das suas Técnicas de Hakuda; se falhar, fica com a condição Distorcido até o fim do próximo turno dela.
+
+Pré-Requisito: 9° nível de Hakuda e característica de classe "Desestabilizar".
+
+- Golpe Atordoante: Quando uma criatura falhar no teste do seu Desestabilizar, você pode gastar 6 pontos de reiatsu para que ela também fique com a condição Atordoado até o fim do próximo turno dela. Uma mesma criatura só pode ser atordoada por este talento uma vez por combate.
+
+Pré-Requisito: 9° nível de Hakuda e característica de classe "Desestabilizar".
+
+- Bloqueio Inabalável: Seu Bloqueio passa a reduzir o dano de cada ataque em metade do seu atributo de Destreza ou Força mais o seu bônus de proficiência.
+
+Pré-Requisito: 17° nível de Hakuda e característica de classe "Bloqueio".
 
 ### Técnicas de Hakuda
 
@@ -1208,6 +1301,33 @@ Pré-Requisito: característica de classe “Shunpo”.
 
 - Toque Preciso: Você aprendeu a canalizar seu reiatsu pelas mãos com precisão absoluta, guiando o fluxo espiritual direto ao ponto de impacto. Sempre que você conjurar um Kido que exija ataque por toque, você recebe vantagem na jogada de ataque, tornando seus golpes de contato muito mais difíceis de evitar.
 - Ultrapasso: Quando um Kido seu reduzir uma criatura a 0 PV, você recupera metade dos pontos de reiatsu gastos para conjurar esse Kido.
+- Alcance Estendido: Você projeta seus feitiços muito além do comum. O alcance dos seus Hadous e Bakudous que tenham alcance à distância é dobrado.
+- Especialista Elemental: Escolha um tipo de dano esotérico: Elétrico, Fogo, Frio, Luz ou Energia. Seus Hadous desse tipo causam um dado de dano adicional do mesmo tipo do Hadou. Além disso, uma vez por turno, você pode gastar 2 pontos de reiatsu para mudar o tipo de dano de um Hadou para o tipo escolhido.
+- Detecção Arcana: Com 1 minuto de concentração e 3 pontos de reiatsu, você percebe vestígios de Kido usados nas últimas 24 horas em um raio de 18 metros, sabendo se foram Hadous ou Bakudous e o rank aproximado. Você também tem vantagem em testes de Conhecimento sobre Kido, selos e barreiras.
+- Passo do Conjurador: Quando uma criatura hostil terminar o deslocamento a até 1,5 metro de você, você pode usar sua reação e 3 pontos de reiatsu para usar o Shunpo, deslocando-se até metade do seu deslocamento.
+
+Pré-Requisito: característica de classe "Shunpo".
+
+- Foco Inabalável: Você soma metade do seu bônus de proficiência (arredondado para baixo, mínimo 1) aos Testes de Resistência de Espírito feitos para manter a Concentração.
+- Armadilha de Kido: Fora de combate, com 1 minuto de trabalho, você inscreve um Bakudou que conheça em um ponto do chão (um círculo de 1,5 metro), pagando o custo normal em pontos de reiatsu. O selo fica dormente até o seu próximo descanso longo e se ativa quando uma criatura hostil entrar no círculo, como se você conjurasse o Bakudou nela. Você só pode manter uma armadilha por vez.
+
+Pré-Requisito: 5° nível de Kidōshū.
+
+- Escudo Projetado: Quando o seu Talento "Escudo" for ativado, você pode conceder o bônus a um aliado a até 9 metros, em vez de a você.
+
+Pré-Requisito: 5° nível de Kidōshū e Talento de Kidōshū "Escudo".
+
+- Quebra-Selos: Você conhece os selos por dentro. Você tem vantagem nos testes para escapar, quebrar ou dissipar Bakudous e efeitos que o deixem Preso ou Agarrado. Com sua ação, você pode tocar um aliado e fazer esse teste por ele, usando o seu próprio bônus.
+
+Pré-Requisito: 5° nível de Kidōshū.
+
+- Kido Silencioso: Uma vez por turno, você pode conjurar um Kido de Encantamento Rápido sem falar e sem gestos visíveis. Ele pode ser conjurado mesmo com a boca presa, e se você estiver escondido sua posição não é revelada por essa conjuração (o ataque ainda a revela).
+
+Pré-Requisito: 9° nível de Kidōshū.
+
+- Assinatura Arcana: Escolha um Hadou ou Bakudou que você conheça como sua assinatura. Ele custa 3 pontos de reiatsu a menos (mínimo 1) e a classe de dificuldade para resistir a ele aumenta em +1. Você pode trocar a assinatura ao subir de nível.
+
+Pré-Requisito: 13° nível de Kidōshū.
 
 ### Tradição (sub-classe)
 
@@ -1561,6 +1681,45 @@ O mestre pode decidir que essa habilidade não remove a condição quando ela fo
 Pré-Requisito: Talento de Kyūgo "Kaido" ou Afinidade "Curandeiro".
 
 - Troca de Ação: Se você estiver em combate, no início do seu turno, pode gastar 3 pontos de reiatsu para transferir uma de suas ações para um aliado a até 6 metros de você. Escolha entre Ação, Ação Bônus ou Reação, você pode transferir apenas uma por turno. Ao fazer isso, você perde essa ação no turno atual. O aliado recebe a ação transferida como uma ação extra no próximo turno dele, exceto no caso da Reação, que ele pode usar fora do próprio turno. Após ser utilizada, a ação transferida é consumida normalmente, como se fosse dele.
+- Primeiros Socorros: Com uma ação bônus, você estabiliza uma criatura a 0 pontos de vida que possa tocar, sem precisar de teste de Medicina, e ela recupera 1 ponto de vida. Fora de combate, seus testes de Medicina para estancar Sangramento têm vantagem e encerram todos os acúmulos de uma vez.
+- Resgate Veloz: Quando você usar o Shunpo e terminar o deslocamento a até 1,5 metro de um aliado, ele recebe +2 na Classe de Resistência até o início do seu próximo turno.
+
+Pré-Requisito: característica de classe "Shunpo".
+
+- Diagnóstico: Com uma ação bônus, observe uma criatura a até 9 metros e faça um teste de Medicina com CD 10 + o Nível de Desafio dela. Se passar, você descobre se ela está com metade ou menos dos pontos de vida e quais resistências, imunidades e vulnerabilidades a dano ela possui.
+- Mente Tranquila: Sua calma contagia os aliados. Aliados a até 3 metros de você têm vantagem nos Testes de Resistência contra a condição Amedrontado.
+- Planejamento Tático: Durante um descanso curto, você pode traçar um plano com o grupo. Até o fim do próximo combate, cada aliado que participou do planejamento soma +2 à rolagem de iniciativa e ao primeiro Teste de Resistência que fizer.
+- Ponto Fraco: Depois de usar o Diagnóstico com sucesso, você pode apontar o ponto fraco da criatura aos aliados. Até o início do seu próximo turno, cada aliado que acertar um ataque contra ela ignora redução de dano igual ao seu bônus de proficiência nesse ataque.
+
+Pré-Requisito: 5° nível de Kyūgo e Talento de Kyūgo "Diagnóstico".
+
+- Bakudou Debilitante: Quando uma criatura falhar no Teste de Resistência de um Bakudou seu, ela também sofre -2 nas jogadas de ataque até o fim do próximo turno dela.
+
+Pré-Requisito: 5° nível de Kyūgo.
+
+- Escudo Vivo: Quando você usar a ação "Proteger" e receber o dano destinado a um aliado, você reduz esse dano em um valor igual ao seu atributo de Constituição + seu bônus de proficiência.
+
+Pré-Requisito: 5° nível de Kyūgo e Talento de Kyūgo "Proteção".
+
+- Kaido de Campo: Durante um descanso curto, você pode tratar seus aliados. Cada aliado que você tratar recupera pontos de vida adicionais iguais a 2 × seu nível de personagem, ao custo de 4 pontos de reiatsu por aliado.
+
+Pré-Requisito: 5° nível de Kyūgo e Talento de Kyūgo "Kaido".
+
+- Dividir o Fardo: Uma vez por rodada, quando um aliado a até 9 metros sofrer dano, você pode usar sua reação e 4 pontos de reiatsu para receber até metade desse dano no lugar dele. O dano que você recebe dessa forma não pode ser reduzido.
+
+Pré-Requisito: 9° nível de Kyūgo.
+
+- Imunização Espiritual: Quando você remover uma condição com o Toque de Harmonia, a criatura tem vantagem nos Testes de Resistência contra essa mesma condição até o fim do combate.
+
+Pré-Requisito: 9° nível de Kyūgo e Talento de Kyūgo "Toque de Harmonia".
+
+- Ninguém Fica Para Trás: Uma vez por descanso longo, quando um aliado a até 9 metros cair a 0 pontos de vida sem morrer instantaneamente, você pode usar sua reação e 10 pontos de reiatsu para que ele fique com pontos de vida iguais a 2 × seu nível de personagem.
+
+Pré-Requisito: 13° nível de Kyūgo.
+
+- Coordenação Perfeita: Quando você usar a Coordenação de Combate, pode escolher dois aliados a até 9 metros em vez de um.
+
+Pré-Requisito: 17° nível de Kyūgo e Talento de Kyūgo "Coordenação de Combate".
 
 ### Afinidade (sub-classe)
 
@@ -1909,6 +2068,33 @@ Ao selecionar esta habilidade, você pode escolher uma Shrift do capítulo "Arse
 Pré-Requisito: 6° nível de Schütze, aprovação do mestre.
 
 - Tiro Mortal: Quando você obtiver um acerto crítico com uma arma à distância, pode adicionar metade do seu atributo de Mente ao dano causado pelo ataque.
+- Fogo de Cobertura: Depois de realizar um ataque à distância no seu turno, você pode usar sua ação bônus para manter uma criatura sob a mira. Até o início do seu próximo turno, se essa criatura atacar alguém que não seja você, ela sofre -2 na jogada de ataque.
+- Rastreador: Você tem vantagem em testes de Exploração para rastrear e em testes de Percepção Espiritual para seguir rastros de reiatsu. Uma criatura que você acertou com um disparo nesta cena deixa um traço de reishi: você sabe a direção em que ela está até o fim da cena.
+- Gintou Rápido: Você pode absorver o reiatsu de um Gintou com uma ação livre, uma vez por turno, e cada Gintou que você prepara armazena reiatsu igual a seis vezes o seu nível, em vez de cinco.
+- Postura de Atirador: Quando você usar a Mira Impecável e não se mover no turno, recebe +2 na Classe de Resistência até o início do seu próximo turno.
+- Disparo Imobilizador: Uma vez por turno, ao acertar um ataque à distância, você pode gastar 3 pontos de reiatsu para cravar o disparo no chão junto ao alvo. A criatura deve fazer um Teste de Resistência de Força com a CD das suas Técnicas de Reishi; se falhar, fica com a condição Preso (pernas) até o início do próximo turno dela.
+
+Pré-Requisito: 5° nível de Schütze.
+
+- Flecha Catalisadora: Uma vez por turno, ao acertar um ataque à distância, você pode gastar 4 pontos de reiatsu para marcar o alvo com reishi. Até o fim do seu próximo turno, ele sofre -2 no próximo Teste de Resistência contra uma Técnica de Reishi sua.
+
+Pré-Requisito: 5° nível de Schütze.
+
+- Rajada Supressora: Com sua ação, em vez de atacar, você dispara uma rajada sobre um cubo de 6 metros dentro do alcance da sua arma. Cada criatura na área faz um Teste de Resistência de Destreza com a CD das suas Técnicas de Reishi. Na falha, ela sofre o dano de um disparo da arma (um dado de dano + Mente) e tem o deslocamento reduzido à metade até o fim do próximo turno dela. No sucesso, não sofre nada.
+
+Pré-Requisito: 9° nível de Schütze.
+
+- Fluxo de Reishi: Se você não gastar pontos de reiatsu no seu turno, a recuperação de reiatsu no início do seu próximo turno recebe +1 dado.
+
+Pré-Requisito: 9° nível de Schütze.
+
+- Mira Compartilhada: Quando você usar a Mira Impecável, o primeiro aliado que atacar o mesmo alvo antes do início do seu próximo turno soma metade do seu atributo de Mente (arredondado para baixo) à jogada de ataque.
+
+Pré-Requisito: 13° nível de Schütze.
+
+- Disparo Decisivo: Uma vez por descanso curto, quando acertar um ataque à distância contra a criatura que está sob a sua Mira Impecável, você pode transformar esse acerto em um acerto crítico.
+
+Pré-Requisito: 17° nível de Schütze.
 
 ### Hirenkyaku
 
@@ -2198,6 +2384,19 @@ A partir do 2º nível, você escolhe um Talento de Ritter em cada nível de cla
 - **Recuo Tático:** reação; você se afasta 3 metros sem provocar ataques de oportunidade.
 - **Saque Rápido:** no início do combate, você ataca antes da ordem de turnos.
 - **Sequência Fatal** (12º nível): cada acerto reduz a CR do alvo em 1 para você, até metade do seu Espírito (para baixo).
+- **Treino com Escudo:** você é proficiente com todos os escudos, e a penalidade de deslocamento do escudo médio e do pesado diminui em 3 metros.
+- **Lâmina Arremessada:** uma vez por turno, você pode arremessar sua arma Quincy corpo a corpo em uma criatura a até 9 metros como um dos seus ataques. A arma se desfaz em reishi e volta à sua mão no fim do turno. A Lâmina de Reishi funciona normalmente nesse ataque.
+- **Provocação do Duelista:** ao marcar uma criatura com o Duelo Impecável, ela faz uma salvaguarda de Mente (CD das suas Técnicas de Reishi). Na falha, tem -2 nas jogadas de ataque contra criaturas que não sejam você até o início do seu próximo turno.
+- **Treinamento do Vandenreich:** você é proficiente em duas perícias à sua escolha entre Conhecimento, Presença, Investigação e Percepção Espiritual.
+- **Bastião** (5º nível, Treino com Escudo): reação; quando um aliado a até 1,5 metro de você for alvo de um ataque e você estiver empunhando um escudo, some o bônus de CR do seu escudo à CR dele contra esse ataque.
+- **Veias de Aço** (5º nível, Técnica de Reishi Blut Vene): enquanto o Blut Vene estiver ativo, você tem vantagem nas salvaguardas de Espírito para manter a concentração nele.
+- **Desarmar** (5º nível): ao acertar um ataque corpo a corpo, você pode abrir mão do dano para tentar desarmar o alvo. Ele faz um teste de Preparo Físico ou Acrobacia contra o seu resultado de ataque; se falhar, larga um objeto ou arma que esteja segurando. Não funciona contra armas naturais nem contra uma Zanpakutou liberada.
+- **Reishi do Duelo** (5º nível): a primeira vez em cada turno que você acertar a criatura marcada pelo Duelo Impecável, você recupera pontos de reiatsu iguais à metade do seu bônus de proficiência (arredondado para cima).
+- **Corte de Passagem** (5º nível): quando você usar o Hirenkyaku e terminar a até 1,5 metro de uma criatura, ela não pode usar reações contra você até o início do seu próximo turno.
+- **Pulso do Blut** (9º nível, Técnica de Reishi Blut Vene): você pode trocar o Blut Arterie pelo Blut Vene, ou o contrário, com uma ação bônus, pagando metade do custo da técnica que ativar.
+- **Vontade Inquebrável** (9º nível): você tem vantagem nas salvaguardas contra as condições Amedrontado e Enfeitiçado, e enquanto estiver Esgotado a penalidade na sua CR é de -2 em vez de -5.
+- **Contra-golpe Preciso** (13º nível, Aparar): quando o Aparar anular completamente um ataque, você pode marcar o atacante com o Duelo Impecável na hora; o bônus vale até o fim do seu próximo turno.
+- **Duelo Final** (17º nível): uma vez por descanso longo, ao marcar uma criatura com o Duelo Impecável, você declara um Duelo Final: até o fim do combate, a margem de crítico das suas armas Quincy contra ela aumenta em 1 e a marca não precisa ser renovada a cada turno.
 
 ### Estilos de Ritter
 
@@ -2550,6 +2749,7 @@ Um Talento por vez, do 2º nível em diante, exceto nos níveis de Aprimoramento
 - **Mordida Esmagadora:** a mordida causa +metade da prof. de dano (arredonde para baixo) e prende o alvo (agarrado, CD igual à CD de salvaguarda).
 - **Alcance Alongado:** o alcance da arma natural aumenta em 3 m, e você faz ataques de oportunidade com ela.
 - **Frenesi** (11º nível): ao reduzir uma criatura a 0 PV, você faz um ataque extra imediato (uma vez por rodada).
+- **Presas Corrosivas** (5º nível; requer Mordida Esmagadora): quando a mordida acerta, o alvo faz uma salvaguarda de Constituição (CD igual à CD de salvaguarda) ou fica envenenado por 1 minuto, repetindo a salvaguarda no fim de cada turno dele.
 
 #### Defensivos
 
@@ -2558,6 +2758,9 @@ Um Talento por vez, do 2º nível em diante, exceto nos níveis de Aprimoramento
 - **Persistência Hollow:** ao cair a 0 PV, faça uma salvaguarda de Constituição (CD 10 + dano). No sucesso, você fica com 1 PV (uma vez por descanso longo).
 - **Regeneração Menor** (5º nível): no início do seu turno, enquanto estiver abaixo da metade dos PV, você recupera PV iguais à sua Constituição.
 - **Resistência ao Medo:** vantagem contra as condições amedrontado e enfeitiçado.
+- **Imagem Residual** (6º nível): uma vez por rodada, quando você usar o Sonido, o primeiro ataque contra você antes do início do seu próximo turno tem desvantagem.
+- **Liberação Instintiva** (12º nível, Resurrección): uma vez por descanso longo, quando um dano deixar você com metade dos PV ou menos, você pode liberar a Resurrección com sua reação, pagando o custo normal.
+- **Hierro Concentrado** (13º nível; requer Hierro Reativo): o Hierro Reativo passa a reduzir 2d10 + Constituição de dano e pode ser usado um número de vezes igual à prof. por descanso longo.
 
 #### Utilidade e presença
 
@@ -2568,6 +2771,9 @@ Um Talento por vez, do 2º nível em diante, exceto nos níveis de Aprimoramento
 - **Aura Opressora** (9º nível): criaturas hostis a 3 m têm -1 em testes de Espírito e em Determinação.
 - **Predador de Almas:** vantagem para rastrear almas e reiatsu e +prof. em Percepção Espiritual.
 - **Segunda Pele:** você veste ou dispensa a máscara como ação livre.
+- **Gosto de Alma** (3º nível): uma vez por descanso longo, ao devorar uma alma ou um Hollow que você reduziu a 0 PV, você vê um fragmento das últimas memórias dele: o Mestre descreve uma cena ou um fato importante.
+- **Grito Desorientador** (7º nível; requer Rugido): ao usar o Rugido, você pode gastar +3 PR. Quem falhar na salvaguarda também fica surdo e com o deslocamento reduzido em 3 m até o fim do próximo turno dele.
+- **Presença Liberada** (10º nível, Resurrección): ao liberar a Resurrección, criaturas hostis a 9 m fazem uma salvaguarda de Espírito (CD 8 + prof. + Espírito) ou ficam amedrontadas até o fim do próximo turno delas.
 
 #### Predador
 
@@ -2577,6 +2783,8 @@ Um Talento por vez, do 2º nível em diante, exceto nos níveis de Aprimoramento
 - **Sangue na Água** (7º nível; requer Golpe Rasgador): seus ataques causam +prof. de dano contra criaturas sangrando ou abaixo da metade dos PV, e você tem vantagem em rastreá-las.
 - **Devorador de Reiatsu** (10º nível; requer Fome Insaciável): quando a mordida acerta, você drena PR do alvo iguais à prof. e os recupera. Em um acerto crítico, drena o dobro.
 - **Contra-golpe Hollow** (6º nível): com sua reação, quando uma criatura a 3 m acertar você com um ataque corpo a corpo, você faz um ataque com a arma natural contra ela (uma vez por rodada).
+- **Predador Cooperativo:** uma vez por rodada, quando um aliado acertar uma criatura a até 6 m de você, você pode usar sua reação para se mover até 3 m na direção dela, e seu próximo ataque com a arma natural contra ela antes do fim do seu próximo turno causa +prof. de dano.
+- **Arremesso Bestial** (5º nível): ação bônus; se estiver agarrando uma criatura, você a arremessa a até 6 m. Ela cai no chão e sofre 1d6 de Concussão a cada 3 m arremessados, e o agarrão termina.
 
 #### Artilharia
 
@@ -2584,6 +2792,7 @@ Um Talento por vez, do 2º nível em diante, exceto nos níveis de Aprimoramento
 - **Cero Explosivo** (8º nível; requer Cero em Cone): o Cero explode no alvo em uma esfera de 3 m: criaturas na área fazem salvaguarda de Destreza e sofrem metade do dano do Cero (nada no sucesso). Custa +5 PR.
 - **Cero Sustentado** (12º nível; requer Cero Concentrado): depois de lançar o Cero Concentrado, você pode manter o feixe por mais uma rodada como ação bônus, causando metade do dano do Cero a todos em uma linha de 18 m.
 - **Cero Dissimulado** (5º nível): o Cero sai sem brilho nem som: quem não o vê não percebe de onde veio, e o primeiro Cero da cena tem vantagem no ataque se você estiver escondido.
+- **Cero Defensivo** (9º nível): reação, 8 PR; quando você for alvo de um ataque à distância de técnica (Kidō, Cero, Poder Inato ou Técnica de Reishi), dispare um Cero menor contra ele: role metade dos dados do seu Cero e reduza o dano do ataque nesse valor.
 
 #### Resistência
 
@@ -2591,6 +2800,7 @@ Um Talento por vez, do 2º nível em diante, exceto nos níveis de Aprimoramento
 - **Pele de Ferro** (9º nível; requer Couraça Óssea): sua RD contra dano físico sobe para 5 e você ganha +1 de CR. Não soma com outras RD físicas: vale a maior.
 - **Regeneração Maior** (12º nível; requer Regeneração Menor): no início do seu turno você recupera PV iguais à Constituição + prof., mesmo acima da metade dos PV. Não funciona contra dano de Energia no turno anterior.
 - **Sonido Selvagem** (5º nível): seu deslocamento aumenta em 3 m e você pode usar o Sonido uma vez por descanso curto para se mover 9 m como ação livre.
+- **Sangue Espesso:** você tem vantagem nas salvaguardas contra Envenenado. O Sangramento em você causa 1d4 de dano em vez de 1d6 e não reduz sua CR.
 
 ### Talentos de Vazio
 
@@ -2614,6 +2824,10 @@ Um Talento por vez, do 2º nível em diante, exceto nos níveis de Aprimoramento
 - **Espelho Fraturado** (Reflejo): o contra-ataque pode usar Poder Inato (8 PR) em vez de Golpe Vazio.
 - **Ponzoña Persistente** (Ponzoña): as cargas duram 1 rodada depois que o alvo sai do alcance, e o limite de cargas sobe em 1.
 - **Toxina Corrosiva** (Ponzoña): a Ponzoña reduz a RD do alvo em prof.
+- **Espelho Antecipado** (5º nível, Reflejo): uma vez por rodada, quando um ataque errar um aliado a até 3 m de você, você pode usar sua reação para fazer o contra-ataque do Reflejo contra o atacante.
+- **Ilusão Cruel** (5º nível, Ilusión): quando o alvo falha na salvaguarda do Ilusión, o deslocamento dele também cai pela metade até o fim do próximo turno dele.
+- **Véu Compartilhado** (7º nível; requer Véu): ao usar o Véu, você pode gastar +6 PR para deixar também invisível um aliado a 1,5 m, pela mesma duração.
+- **Superfície Polida** (9º nível, Reflejo): quando um ataque erra você por 5 ou mais, o contra-ataque do Reflejo causa +prof. de dano.
 
 #### Reserva e utilidade
 
@@ -2621,6 +2835,9 @@ Um Talento por vez, do 2º nível em diante, exceto nos níveis de Aprimoramento
 - **Vazio Silencioso:** vantagem em Suprimir Reiatsu e +prof. em Furtividade.
 - **Sentir Fraquezas:** ação bônus. Você vê as vulnerabilidades do alvo, e o próximo Poder contra ele ignora metade da RD.
 - **Cura Hollow** (5º nível): ação, 6 PR. Você ou um aliado a 6 m recupera 1d8 + Espírito por prof. em PV (3 vezes por descanso longo).
+- **Barreira do Vazio:** reação, 4 PR; ao ser acertado por um ataque, você recebe RD igual a Espírito + prof. contra esse ataque.
+- **Leitor de Almas:** ação, 3 PR; você toca uma criatura e ela faz uma salvaguarda de Mente (CD 8 + prof. + Espírito). Na falha, você sabe a emoção que domina a criatura e se ela mentiu na última coisa que disse, e tem vantagem em Influência contra ela por 1 hora.
+- **Resurrección Partilhada** (10º nível, Resurrección): ao liberar a Resurrección, escolha: um aliado a 9 m recebe metade dos PV temporários que você ganhou, ou você recupera PR iguais a 2 × prof.
 
 #### Poderes
 
@@ -2628,6 +2845,8 @@ Um Talento por vez, do 2º nível em diante, exceto nos níveis de Aprimoramento
 - **Poder Reservado** (5º nível): você pode gastar a ação para guardar um Poder Inato. Na rodada seguinte ele sai como ação bônus, com +prof. d10 de dano.
 - **Poder Sustentado** (7º nível; requer Poder em Área): o Poder em Área permanece 1 minuto como zona (concentração). Quem começar o turno dentro sofre metade do dano.
 - **Poder Penetrante** (11º nível; requer Poder Perfurante): o Poder Inato ignora também a Hierro e a CR extra de formas, e causa +prof. d10 contra criaturas com RD.
+- **Poder Moldado** (13º nível; requer Poder em Área): ao usar o Poder em Área, você escolhe até Mente criaturas na área, e elas não são afetadas.
+- **Vazio Absoluto** (17º nível): uma vez por descanso longo, ao lançar um Poder Inato, o alvo faz a salvaguarda (se houver) com desvantagem e o Poder ignora toda a RD.
 
 #### Controle
 
@@ -2642,5 +2861,7 @@ Um Talento por vez, do 2º nível em diante, exceto nos níveis de Aprimoramento
 - **Poços Profundos** (8º nível; requer Reserva Vazia): você ganha +1 PR por nível (retroativo).
 - **Sussurro do Vazio** (3º nível): você se comunica por telepatia com criaturas a 18 m e, uma vez por descanso curto, planta uma sugestão simples (salvaguarda de Espírito).
 - **Vigília do Vazio** (7º nível): você tem +prof. na iniciativa e na CR contra ataques de oportunidade, e não pode ser surpreendido.
+- **Casca Endurecida** (5º nível): +1 de CR.
+- **Golpe Vazio Drenante** (5º nível; requer Golpe Vazio Ampliado): uma vez por rodada, quando o Golpe Vazio acerta, você recupera PR iguais à prof.
 
 Atenção: os efeitos que reduzem RD ou dão resistência (Couraça Óssea, Hierro Reativo, o Caminho Glotonería, Toxina Corrosiva e outros) seguem a regra de uma Essência de redução por tipo de dano. O Mestre deve ficar atento a pacotes de talentos defensivos que acumulem demais.
