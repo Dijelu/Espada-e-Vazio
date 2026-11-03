@@ -189,8 +189,8 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
         if (h.id !== id) return h;
         const n = { ...h, ...p };
         // com dano em dados, o custo em PR é calculado pelo teto de dano
-        if ("dano" in p || "acao" in p) {
-          const a = analisarDano(n.dano, n.acao, ctxAtual, (r.ppExtra ?? 0) > 0);
+        if ("dano" in p || "acao" in p || "especial" in p) {
+          const a = analisarDano(n.dano, n.acao, ctxAtual, (r.ppExtra ?? 0) > 0, n.especial ?? false);
           if (a) { n.pr = a.custoPr; n.custo = `${a.custoPr} PR`; }
         }
         return n;
@@ -211,7 +211,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
   const q = busca.trim().toLowerCase();
   const bankais = BANKAIS.filter((b) => !q || b.nome.toLowerCase().includes(q));
 
-  const errosDano = r.habilidades.filter((h) => !h.fixa).flatMap((h) => (analisarDano(h.dano, h.acao, ctxAtual, (r.ppExtra ?? 0) > 0, !!h.especial)?.erros ?? []).map((e) => `${h.nome || "Habilidade"}: ${e}`));
+  const errosDano = r.habilidades.filter((h) => !h.fixa).flatMap((h) => (analisarDano(h.dano, h.acao, ctxAtual, (r.ppExtra ?? 0) > 0, h.especial ?? false)?.erros ?? []).map((e) => `${h.nome || "Habilidade"}: ${e}`));
   const podeSalvar = r.nome.trim().length > 0 && errosDano.length === 0;
 
   return (

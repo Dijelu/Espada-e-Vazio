@@ -966,7 +966,7 @@ export function formaDaShikai(m: ModeloShikaiMontado, ctx: CtxForma): Partial<Fo
   }
   const cx = { ...ctx, tipo: "shikai", extra: mediaExtraPecas(efeitos, ctx) };
   const habilidades: HabForma[] = m.habilidades.map((h) => {
-    const a = h.dano ? analisarDano(h.dano, h.acao, cx, false, !!(h as { especial?: unknown }).especial) : null;
+    const a = h.dano ? analisarDano(h.dano, h.acao, cx, false, (h as { especial?: { condicao: string; duracao: string } }).especial ?? false) : null;
     const pr = a ? a.custoPr : 0;
     return { id: novoId(), nome: h.nome, acao: h.acao, custo: pr ? `${pr} PR` : "", pr: pr || undefined, dano: h.dano || undefined, modelo: h.modelo || undefined, regra: h.regra, desc: h.desc, especial: (h as { especial?: { condicao: string; duracao: string } }).especial, limite: (h as { especial?: unknown }).especial ? undefined : (/uma vez por cena/i.test(h.regra) ? "cena" as const : undefined), texto: [h.desc, h.regra].filter(Boolean).join("\n") };
   });

@@ -1,3 +1,4 @@
+import { formaNpc, modelosParaNpc } from "../regras/forma-npc";
 import { useState } from "react";
 import {
   ATRS, CATEGORIAS, ESTILOS, GRAUS, calcularAmeaca, distribuir, efeitosDaLiberacao, liberacaoPadrao, normalizarAmeaca, pontosDeAtributo,
@@ -54,6 +55,7 @@ export function CartaNpc({ npc, onMudar, onSalvar, onApagar, onModelo, onDuplica
   const mudarDados = (parte: Partial<Npc["dados"]>, salvar = true) => onMudar({ ...npc, dados: { ...npc.dados, ...parte } }, salvar);
   const ajustar = (campo: "pvAtual" | "prAtual", atual: number, max: number, d: number) =>
     mudarDados({ [campo]: Math.max(0, Math.min(max, atual + d)) } as Partial<Npc["dados"]>);
+  const fm = formaNpc(am);
   const mudarLib = (parte: Partial<LiberacaoAmeaca>, salvar = false) => mudarAmeaca({ liberacao: { ...lib, ...parte } }, salvar);
   const alternarLiberacao = () => {
     if (!liberado) {
@@ -129,6 +131,14 @@ export function CartaNpc({ npc, onMudar, onSalvar, onApagar, onModelo, onDuplica
       {c.hierro && <p className="ajuda"><b>Hierro:</b> dano físico sofrido pela metade (não reduz energia nem dano esotérico).</p>}
       {c.ataques.map((a) => <p key={a.nome} className="npc-acao"><b>{a.nome}:</b> +{a.acerto} para acertar · {a.dano} {a.tipo} <small>(média {a.media.toFixed(1).replace(/\.0$/, "")})</small></p>)}
       {c.tecnicas.map((t) => <p key={t.nome} className="npc-acao"><b>{t.nome}</b> ({t.custo} PR): {t.dados} · CD {t.cd}{t.texto ? ` — ${t.texto}` : ""}</p>)}
+      {liberado && fm && (
+        <div className="npc-forma-lista">
+          <b>{fm.nome}</b>
+          {fm.acoes.map((a) => <p key={a.nome} className="npc-acao"><b>{a.nome}</b>{a.custo ? ` (${a.custo} PR)` : ""}: {a.tipo === "ataque" ? `+${a.acerto} para acertar` : `CD ${a.cd}`} · {a.dano}</p>)}
+          {fm.invocacoes.map((v) => <p key={v.chave} className="npc-acao"><b>Invocar {v.nome}</b>{v.custoPr ? ` (${v.custoPr} PR)` : ""}: até {v.max} · {v.pv} PV · CR {v.cr}</p>)}
+          {fm.notas.map((n) => <p key={n.nome} className="npc-acao"><b>{n.nome}:</b> {n.texto}</p>)}
+        </div>
+      )}
       {am.caracteristicas && <Paragrafos texto={am.caracteristicas} />}
       {am.habilidades.map((h, i) => (
         <details className="npc-hab" key={i}>
@@ -218,6 +228,33 @@ export function CartaNpc({ npc, onMudar, onSalvar, onApagar, onModelo, onDuplica
 
         <h4 className="sub-passivas">Forma liberada ({lib.nome})</h4>
         <label className="marcar"><input type="checkbox" checked={lib.existe} onChange={(e) => mudarLib(e.target.checked && lib.bonusCr === 0 && Object.values(lib.bonusAtr).every((v) => v === 0) ? { ...liberacaoPadrao(am), nome: lib.nome } : { existe: e.target.checked }, true)} /> Esta ameaça tem {lib.nome}</label>
+        {modelosParaNpc(am.categoria).length > 0 && (
+          <div className="npc-item modelo-forma-npc">
+            <label className="campo npc-larga">Modelo pronto de forma
+              <select
+                value={lib.modelo ? `${lib.modelo.tipo}:${lib.modelo.id}` : ""}
+                onChange={(e) => {
+                  const op = modelosParaNpc(am.categoria).find((x) => `${x.ref.tipo}:${x.ref.id}` === e.target.value);
+                  if (!op) { mudarLib({ modelo: undefined }, true); return; }
+                  mudarLib({ existe: true, modelo: op.ref, nome: op.rotulo.split(" · ").slice(1).join(" · ") || lib.nome }, true);
+                }}
+              >
+                <option value="">Sem modelo (preencher à mão)</option>
+                {modelosParaNpc(am.categoria).map((x) => <option key={`${x.ref.tipo}:${x.ref.id}`} value={`${x.ref.tipo}:${x.ref.id}`}>{x.rotulo}</option>)}
+              </select>
+            </label>
+            {fm && (
+              <div className="npc-larga">
+                <p className="ajuda">As peças do modelo já entram no CR e nos atributos da forma liberada e as habilidades viram botões no combate. Bônus de CR {fm.soma.cr >= 0 ? "+" : ""}{fm.soma.cr}; atributos {Object.entries(fm.soma.atr).filter(([, v]) => v).map(([k, v]) => `${k.toUpperCase()} ${v > 0 ? "+" : ""}${v}`).join(", ") || "sem mudança"}.</p>
+                <ul className="lista-hab-resumo">
+                  {fm.acoes.map((a) => <li key={a.nome}><b>{a.nome}</b> · {a.tipo === "ataque" ? `acerto +${a.acerto}` : `CD ${a.cd}`} · dano {a.dano}{a.custo ? ` · ${a.custo} PR` : ""}</li>)}
+                  {fm.invocacoes.map((v) => <li key={v.chave}><b>Invocar {v.nome}</b> · até {v.max} · {v.pv} PV · CR {v.cr}{v.custoPr ? ` · ${v.custoPr} PR` : ""}</li>)}
+                  {fm.notas.map((n) => <li key={n.nome}><b>{n.nome}</b> (texto): {n.texto}</li>)}
+                </ul>
+              </div>
+            )}
+          </div>
+        )}
         {lib.existe && (
           <div className="npc-item">
             <label className="campo">Nome da forma<input value={lib.nome} onChange={(e) => mudarLib({ nome: e.target.value })} onBlur={() => onSalvar(npc)} /></label>

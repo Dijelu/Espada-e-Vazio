@@ -1,12 +1,14 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { calcular } from "../regras/ficha";
-import { calcularAmeaca, comLiberacao, efeitosDaLiberacao, type Ameaca } from "../regras/ameacas";
+import { calcular, type Invocacao } from "../regras/ficha";
+import { ATRS, calcularAmeaca, comLiberacao, efeitosDaLiberacao, type Ameaca } from "../regras/ameacas";
 import { publicarCombate, type FichaDaMesa, type Npc } from "../lib/campanhas";
 import { rolarExpressao } from "../lib/dados";
+import { formaNpc } from "../regras/forma-npc";
+import { resolverDano } from "../regras/liberacoes";
 
 interface AcaoNpc {
   nome: string;
-  tipo: "ataque" | "tecnica";
+  tipo: "ataque" | "tecnica" | "invocar";
   acerto: number;
   /** expressão de dano, ex.: "2d8 + 6" */
   dano: string;
@@ -15,6 +17,8 @@ interface AcaoNpc {
   /** menor valor do d20 que é crítico */
   crit: number;
   mult: number;
+  /** criatura que a ação invoca (tipo "invocar") */
+  inv?: { chave: string; nome: string; pv: number; cr: number; acerto: number; dano: string; max: number };
 }
 
 interface Resultado {
@@ -23,6 +27,8 @@ interface Resultado {
   alvoId: string;
   tecnica: boolean;
   acertou: boolean;
+  /** ataque que acertou: o dano ainda não foi rolado (botão no resultado) */
+  pendente?: { nome: string; expr: string; crit: boolean; quem: string };
 }
 
 interface Participante {
@@ -45,13 +51,22 @@ interface Participante {
   /** os jogadores veem "Criatura desconhecida" no lugar do nome */
   oculto: boolean;
   acoes: AcaoNpc[];
+  /** atributos e proficiência do NPC (para os testes de resistência) */
+  atr?: Record<string, number>;
+  prof?: number;
   /** ficha de origem (jogadores) */
   fichaId?: string;
+  /** invocação ou clone: id do participante que a criou */
+  dono?: string;
+  /** invocação vinda da ficha de um jogador (id da invocação na ficha) */
+  invId?: string;
+  /** chave do modelo de invocação (para contar quantas estão em campo) */
+  chaveInv?: string;
   /** forma liberada (Bankai, Resurrección, Vollständig) */
   lib?: { nome: string; ativo: boolean; base: Forma; liberada: Forma; efeito: { dano: number; tipo: string; curaPv: number } };
 }
 
-interface Forma { acoes: AcaoNpc[]; cr: number; pvMax: number; prMax: number }
+interface Forma { acoes: AcaoNpc[]; cr: number; pvMax: number; prMax: number; atr: Record<string, number>; prof: number }
 
 interface Estado {
   ativo: boolean;
@@ -73,12 +88,32 @@ function formaDe(am: Ameaca, liberado: boolean): Forma {
       nome: t.nome, tipo: "tecnica" as const, acerto: 0, dano: `${t.dados} + ${atr[fonte.tecnicas[i]?.atr ?? "esp"]}`, custo: t.custo, cd: t.cd, crit: 21, mult: 1,
     })),
   ];
-  return { acoes, cr: c.cr, pvMax: c.pv, prMax: c.pr };
+  const modelo = liberado ? formaNpc(am) : null;
+  if (modelo) {
+    for (const a of modelo.acoes) acoes.push({ nome: a.nome, tipo: a.tipo, acerto: a.acerto, dano: a.dano, custo: a.custo, cd: a.cd, crit: 20, mult: 2 });
+    const rd = (e: string) => resolverDano(e, { nivel: c.nd } as never, { prof: c.prof, atr } as never);
+    for (const v of modelo.invocacoes) {
+      acoes.push({ nome: `Invocar ${v.nome}`, tipo: "invocar", acerto: 0, dano: "", custo: v.custoPr, cd: 0, crit: 21, mult: 1, inv: { chave: v.chave, nome: v.nome, pv: v.pv, cr: v.cr, acerto: v.acerto, dano: v.dano ? rd(v.dano) : "", max: v.max } });
+    }
+  }
+  return { acoes, cr: c.cr, pvMax: c.pv, prMax: c.pr, atr: { ...atr }, prof: c.prof };
 }
+
+/** Ataque de uma invocação ou clone, a partir dos números da ficha (ou da ação que a criou). */
+const acaoDeInvocacao = (acerto: number, dano: string): AcaoNpc[] =>
+  dano && /\d/.test(dano) ? [{ nome: "Ataque", tipo: "ataque", acerto, dano, custo: 0, cd: 0, crit: 20, mult: 2 }] : [];
 
 const vazio: Estado = { ativo: false, rodada: 1, vez: null, lista: [] };
 const chave = (id: string) => `esv:combate:${id}`;
 const d20 = () => 1 + Math.floor(Math.random() * 20);
+type ModoD20 = "normal" | "vantagem" | "desvantagem";
+/** d20 com vantagem ou desvantagem; devolve o dado usado e o texto dos dois */
+function d20m(modo: ModoD20): { nat: number; txt: string } {
+  if (modo === "normal") { const n = d20(); return { nat: n, txt: `${n}` }; }
+  const a = d20(), b = d20();
+  const nat = modo === "vantagem" ? Math.max(a, b) : Math.min(a, b);
+  return { nat, txt: `${nat} (${a} e ${b}, ${modo})` };
+}
 const novoId = () => Math.random().toString(36).slice(2, 10);
 
 function ler(id: string): Estado {
@@ -101,6 +136,8 @@ export function CombateMesa({ campanhaId, fichas, npcs, pastas }: { campanhaId: 
   const [res, setRes] = useState<Resultado | null>(null);
   const [alvos, setAlvos] = useState<Record<string, string>>({});
   const [aviso, setAviso] = useState("");
+  const [modoD20, setModoD20] = useState<ModoD20>("normal");
+  const [provas, setProvas] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     try { localStorage.setItem(chave(campanhaId), JSON.stringify(est)); } catch { /* sem armazenamento */ }
@@ -122,6 +159,49 @@ export function CombateMesa({ campanhaId, fichas, npcs, pastas }: { campanhaId: 
     if (Object.keys(mudancas).length === 0) return;
     setEst((e) => ({ ...e, lista: e.lista.map((p) => (p.fichaId && mudancas[p.fichaId] ? { ...p, ...mudancas[p.fichaId] } : p)) }));
   }, [fichas]);
+
+  // clones e invocações que o jogador cria na ficha aparecem no combate, logo abaixo do dono, e somem quando ele os dispensa
+  const vistasInv = useRef<Record<string, string>>({});
+  const donosNoCombate = est.lista.filter((p) => p.tipo === "jogador" && !p.dono).map((p) => p.id).join(",");
+  useEffect(() => {
+    setEst((e) => {
+      const donos = new Map<string, Participante>(e.lista.filter((p) => p.tipo === "jogador" && p.fichaId).map((p) => [p.fichaId as string, p] as [string, Participante]));
+      const vivas = new Map<string, { inv: Invocacao; ficha: FichaDaMesa; dono: Participante }>();
+      for (const f of fichas) {
+        const dono = donos.get(f.id);
+        if (!dono) continue;
+        for (const inv of f.ficha.estado.invocacoes ?? []) vivas.set(inv.id, { inv, ficha: f, dono });
+      }
+      let mudou = false;
+      let lista = e.lista.filter((p) => {
+        const fica = (p.dono ? e.lista.some((x) => x.id === p.dono) : true) && (p.invId ? vivas.has(p.invId) : true);
+        if (!fica) mudou = true;
+        return fica;
+      });
+      lista = lista.map((p) => {
+        if (!p.invId) return p;
+        const v = vivas.get(p.invId);
+        if (!v) return p;
+        const marca = `${v.inv.pv}|${v.inv.pvMax}|${v.inv.cr}`;
+        if (vistasInv.current[p.invId] === marca) return p;
+        vistasInv.current[p.invId] = marca;
+        mudou = true;
+        return { ...p, pv: v.inv.pv, pvMax: v.inv.pvMax, cr: v.inv.cr, fora: v.inv.pv <= 0 };
+      });
+      const existentes = new Set(lista.map((p) => p.invId).filter(Boolean));
+      for (const [id, v] of vivas) {
+        if (existentes.has(id)) continue;
+        const c = calcular(v.ficha.ficha);
+        vistasInv.current[id] = `${v.inv.pv}|${v.inv.pvMax}|${v.inv.cr}`;
+        mudou = true;
+        lista.push({
+          id: novoId(), nome: `${v.inv.nome} (${v.ficha.nome})`, tipo: "jogador", ini: v.dono.ini, bonus: 0, pv: v.inv.pv, pvMax: v.inv.pvMax, pr: 0, prMax: 0, cr: v.inv.cr,
+          fora: false, nota: "", grupo: v.dono.grupo, oculto: false, acoes: acaoDeInvocacao(v.inv.acerto, v.inv.dano ? resolverDano(v.inv.dano, v.ficha.ficha, c) : ""), dono: v.dono.id, invId: id,
+        });
+      }
+      return mudou ? { ...e, lista } : e;
+    });
+  }, [fichas, donosNoCombate]);
 
   // os jogadores só veem a ordem; PV dos NPCs ficam com o Mestre
   useEffect(() => {
@@ -165,7 +245,7 @@ export function CombateMesa({ campanhaId, fichas, npcs, pastas }: { campanhaId: 
     const grupo = novoId();
     return Array.from({ length: total }, (_, i) => ({
       id: novoId(), nome: total > 1 ? `${n.nome} ${i + 1}` : n.nome, tipo: "npc" as const, ini: null, bonus: Math.floor(am.atr.des / 2),
-      pv: Math.min(n.dados.pvAtual ?? c.pvMax, c.pvMax), pvMax: c.pvMax, pr: Math.min(n.dados.prAtual ?? c.prMax, c.prMax), prMax: c.prMax, cr: c.cr, fora: false, nota: "", grupo, oculto: false, acoes: c.acoes,
+      pv: Math.min(n.dados.pvAtual ?? c.pvMax, c.pvMax), pvMax: c.pvMax, pr: Math.min(n.dados.prAtual ?? c.prMax, c.prMax), prMax: c.prMax, cr: c.cr, fora: false, nota: "", grupo, oculto: false, acoes: c.acoes, atr: c.atr, prof: c.prof,
       lib: liberada ? { nome: am.liberacao.nome, ativo, base, liberada, efeito: efeitosDaLiberacao(am) } : undefined,
     }));
   };
@@ -213,6 +293,11 @@ export function CombateMesa({ campanhaId, fichas, npcs, pastas }: { campanhaId: 
         if (p.tipo === "npc") porGrupo.set(p.grupo, r);
         return { ...p, ini: r + p.bonus };
       });
+      // clones e invocações agem junto com quem os criou
+      for (let i = 0; i < lista.length; i++) {
+        const dono = lista[i].dono ? lista.find((x) => x.id === lista[i].dono) : undefined;
+        if (dono && dono.ini !== null && lista[i].ini !== dono.ini) lista[i] = { ...lista[i], ini: dono.ini };
+      }
       const ord = [...lista].sort((a, b) => (b.ini ?? -99) - (a.ini ?? -99)).filter((p) => !p.fora);
       return { ...e, ativo: true, lista, vez: e.vez ?? ord[0]?.id ?? null };
     });
@@ -232,20 +317,35 @@ export function CombateMesa({ campanhaId, fichas, npcs, pastas }: { campanhaId: 
   };
 
   const usar = (p: Participante, a: AcaoNpc) => {
+    if (a.tipo === "invocar" && a.inv) {
+      const inv = a.inv;
+      const emCampo = est.lista.filter((x) => x.dono === p.id && x.chaveInv === inv.chave && !x.fora).length;
+      if (emCampo >= inv.max) { setAviso(`${p.nome} já tem o máximo de ${inv.nome} em campo (${inv.max}).`); return; }
+      if (a.custo > p.pr) { setAviso(`${p.nome} não tem PR para invocar (${a.custo} PR).`); return; }
+      setAviso("");
+      setEst((e) => ({
+        ...e,
+        lista: [
+          ...e.lista.map((x) => (x.id === p.id ? { ...x, pr: x.pr - a.custo } : x)),
+          { id: novoId(), nome: `${inv.nome} ${emCampo + 1} (${p.nome})`, tipo: p.tipo, ini: p.ini, bonus: 0, pv: inv.pv, pvMax: inv.pv, pr: 0, prMax: 0, cr: inv.cr, fora: false, nota: "", grupo: p.grupo, oculto: p.oculto, acoes: acaoDeInvocacao(inv.acerto, inv.dano), dono: p.id, chaveInv: inv.chave },
+        ],
+      }));
+      setRes({ texto: `${p.nome} invoca ${inv.nome} (${emCampo + 1} de ${inv.max}).`, dano: 0, alvoId: "", tecnica: false, acertou: false });
+      return;
+    }
     const alvo = est.lista.find((x) => x.id === (alvos[p.id] ?? "")) ?? est.lista.find((x) => x.id !== p.id && !x.fora && x.tipo !== p.tipo) ?? est.lista.find((x) => x.id !== p.id && !x.fora);
     if (!alvo) { setAviso("Escolha um alvo."); return; }
     if (a.custo > p.pr) { setAviso(`${p.nome} não tem PR para ${a.nome} (${a.custo} PR).`); return; }
     setAviso("");
     if (a.custo > 0) mudar(p.id, { pr: p.pr - a.custo });
     if (a.tipo === "ataque") {
-      const nat = d20();
+      const { nat, txt } = d20m(modoD20);
       const total = nat + a.acerto;
       const crit = nat >= a.crit;
       const acertou = nat !== 1 && (crit || nat === 20 || total >= alvo.cr);
-      if (!acertou) { setRes({ texto: `${p.nome} usa ${a.nome} em ${alvo.nome}: d20 (${nat}) + ${a.acerto} = ${total} contra CR ${alvo.cr}. Errou.`, dano: 0, alvoId: alvo.id, tecnica: false, acertou: false }); return; }
-      const r = rolarExpressao(a.nome, a.dano, crit);
-      const dano = r?.total ?? 0;
-      setRes({ texto: `${p.nome} usa ${a.nome} em ${alvo.nome}: d20 (${nat}) + ${a.acerto} = ${total} contra CR ${alvo.cr}. ${crit ? "CRÍTICO! " : "Acertou. "}Dano ${r?.detalhe ?? ""} = ${dano}.`, dano, alvoId: alvo.id, tecnica: false, acertou: true });
+      const cab = `${p.nome} ataca ${alvo.nome} com ${a.nome}: d20 ${txt} + ${a.acerto} = ${total} contra CR ${alvo.cr}.`;
+      if (!acertou) { setRes({ texto: `${cab} Errou.`, dano: 0, alvoId: alvo.id, tecnica: false, acertou: false }); return; }
+      setRes({ texto: `${cab} ${crit ? "CRÍTICO!" : "Acertou."}`, dano: 0, alvoId: alvo.id, tecnica: false, acertou: false, pendente: { nome: a.nome, expr: a.dano, crit, quem: p.nome } });
     } else {
       const r = rolarExpressao(a.nome, a.dano, false);
       const dano = r?.total ?? 0;
@@ -253,16 +353,36 @@ export function CombateMesa({ campanhaId, fichas, npcs, pastas }: { campanhaId: 
     }
   };
 
+  /** rola só o dano (depois de um ataque que acertou, ou para refazer) */
+  const rolarDano = (nome: string, expr: string, crit: boolean, alvoId: string, quem: string) => {
+    const r = rolarExpressao(nome, expr, crit);
+    const dano = r?.total ?? 0;
+    const alvo = est.lista.find((x) => x.id === alvoId);
+    setRes({ texto: `${quem}: dano de ${nome}${crit ? " (crítico)" : ""} ${r?.detalhe ?? ""} = ${dano}.`, dano, alvoId: alvo?.id ?? "", tecnica: false, acertou: !!alvo });
+  };
+  const danoDireto = (p: Participante, a: AcaoNpc) => {
+    const alvo = est.lista.find((x) => x.id === (alvos[p.id] ?? "")) ?? est.lista.find((x) => x.id !== p.id && !x.fora && x.tipo !== p.tipo) ?? est.lista.find((x) => x.id !== p.id && !x.fora);
+    rolarDano(a.nome, a.dano, false, alvo?.id ?? "", p.nome);
+  };
+
+  /** teste de resistência de um NPC: d20 + atributo (+ proficiência, se marcada) */
+  const resistir = (p: Participante, atr: string, nomeAtr: string, comProf: boolean) => {
+    const val = p.atr?.[atr] ?? 0;
+    const prof = comProf ? p.prof ?? 0 : 0;
+    const { nat, txt } = d20m(modoD20);
+    setRes({ texto: `${p.nome}: resistência de ${nomeAtr}: d20 ${txt} + ${val}${comProf ? ` + ${prof} (prof.)` : ""} = ${nat + val + prof}.`, dano: 0, alvoId: "", tecnica: false, acertou: false });
+  };
+
   const alternarForma = (p: Participante) => {
     if (!p.lib) return;
     if (!p.lib.ativo) {
       const f = p.lib.liberada;
       const ef = p.lib.efeito;
-      mudar(p.id, { lib: { ...p.lib, ativo: true }, acoes: f.acoes, cr: f.cr, pvMax: f.pvMax, prMax: f.prMax, pv: Math.min(f.pvMax, p.pv + ef.curaPv) });
+      mudar(p.id, { lib: { ...p.lib, ativo: true }, atr: f.atr, prof: f.prof, acoes: f.acoes, cr: f.cr, pvMax: f.pvMax, prMax: f.prMax, pv: Math.min(f.pvMax, p.pv + ef.curaPv) });
       setRes({ texto: `${p.nome} libera ${p.lib.nome}! CR ${f.cr}.${ef.dano > 0 ? ` Todos os inimigos que o vejam sofrem ${ef.dano} de dano ${ef.tipo}.` : ""}${ef.curaPv > 0 ? ` Recupera ${ef.curaPv} PV.` : ""}`, dano: 0, alvoId: "", tecnica: false, acertou: false });
     } else {
       const f = p.lib.base;
-      mudar(p.id, { lib: { ...p.lib, ativo: false }, acoes: f.acoes, cr: f.cr, pvMax: f.pvMax, prMax: f.prMax, pv: Math.min(f.pvMax, p.pv), pr: Math.min(f.prMax, p.pr) });
+      mudar(p.id, { lib: { ...p.lib, ativo: false }, atr: f.atr, prof: f.prof, acoes: f.acoes, cr: f.cr, pvMax: f.pvMax, prMax: f.prMax, pv: Math.min(f.pvMax, p.pv), pr: Math.min(f.prMax, p.pr) });
       setRes({ texto: `${p.nome} encerra ${p.lib.nome}.`, dano: 0, alvoId: "", tecnica: false, acertou: false });
     }
   };
@@ -283,6 +403,10 @@ export function CombateMesa({ campanhaId, fichas, npcs, pastas }: { campanhaId: 
   return (
     <section className="caixa combate">
       <h3>Combate {est.ativo && <small>· rodada {est.rodada}</small>}</h3>
+      <div className="combate-modo" role="group" aria-label="Vantagem nos d20">
+        <small>Testes:</small>
+        {(["normal", "vantagem", "desvantagem"] as ModoD20[]).map((m) => <button type="button" key={m} className={`btn ${modoD20 === m ? "btn-red" : "btn-paper"}`} onClick={() => setModoD20(m)}>{m === "normal" ? "Normal" : m === "vantagem" ? "Vantagem" : "Desvantagem"}</button>)}
+      </div>
       {opcoes.length === 0 ? (
         <p>Ligue fichas de jogadores à mesa ou crie NPCs para montar o combate.</p>
       ) : (
@@ -314,6 +438,7 @@ export function CombateMesa({ campanhaId, fichas, npcs, pastas }: { campanhaId: 
         <div className="combate-resultado" role="status">
           <p>{res.texto}</p>
           <div className="linha-rolar">
+            {res.pendente && <button type="button" className="btn btn-red" onClick={() => rolarDano(res.pendente!.nome, res.pendente!.expr, res.pendente!.crit, res.alvoId, res.pendente!.quem)}>Rolar dano{res.pendente.crit ? " crítico" : ""}</button>}
             {res.acertou && <button type="button" className="btn btn-red" onClick={() => aplicar(res.dano)}>Aplicar {res.dano} de dano</button>}
             {res.tecnica && <button type="button" className="btn btn-paper" onClick={() => aplicar(res.dano / 2)}>Aplicar metade ({Math.floor(res.dano / 2)})</button>}
             <button type="button" className="link-perigo" onClick={() => setRes(null)}>Fechar</button>
@@ -330,7 +455,7 @@ export function CombateMesa({ campanhaId, fichas, npcs, pastas }: { campanhaId: 
               </label>
               <div className="combate-nome">
                 <b>{p.nome}</b>
-                <small>{p.tipo === "jogador" ? "Jogador" : "NPC"} · CR {p.cr}</small>
+                <small>{p.dono ? "Invocação" : p.tipo === "jogador" ? "Jogador" : "NPC"} · CR {p.cr}</small>
               </div>
               {p.id === est.vez && !p.fora && <span className="combate-selo">No turno</span>}
             </div>
@@ -351,11 +476,27 @@ export function CombateMesa({ campanhaId, fichas, npcs, pastas }: { campanhaId: 
                 </label>
                 <div className="combate-acoes-npc">
                   {p.acoes.map((a) => (
-                    <button type="button" key={a.nome} className="btn btn-paper" onClick={() => usar(p, a)}>
-                      {a.nome}{a.tipo === "ataque" ? ` · +${a.acerto}` : ` · CD ${a.cd}`}
-                    </button>
+                    <span key={a.nome} className="acao-par">
+                      <button type="button" className="btn btn-paper" onClick={() => usar(p, a)}>
+                        {a.nome}{a.tipo === "ataque" ? ` · +${a.acerto}` : a.tipo === "invocar" ? (a.custo > 0 ? ` · ${a.custo} PR` : "") : ` · CD ${a.cd}`}
+                      </button>
+                      {a.tipo === "ataque" && a.dano && <button type="button" className="btn btn-paper acao-dano" title="Rolar só o dano" onClick={() => danoDireto(p, a)}>Dano</button>}
+                    </span>
                   ))}
                 </div>
+              </div>
+            )}
+            {p.atr && (
+              <div className="combate-resist">
+                <small>Resistência</small>
+                {ATRS.map((x) => (
+                  <button type="button" key={x.id} className="btn btn-paper" title={`Teste de resistência de ${x.nome}`} onClick={() => resistir(p, x.id, x.nome, !!provas[`${p.id}:${x.id}`])}>
+                    {x.nome.slice(0, 3).toUpperCase()} {(p.atr?.[x.id] ?? 0) + (provas[`${p.id}:${x.id}`] ? p.prof ?? 0 : 0) >= 0 ? "+" : ""}{(p.atr?.[x.id] ?? 0) + (provas[`${p.id}:${x.id}`] ? p.prof ?? 0 : 0)}
+                  </button>
+                ))}
+                <label className="marcar" title="Soma a proficiência nos testes de resistência marcados abaixo">
+                  <input type="checkbox" checked={ATRS.every((x) => provas[`${p.id}:${x.id}`])} onChange={(e) => setProvas((m) => { const n = { ...m }; for (const x of ATRS) n[`${p.id}:${x.id}`] = e.target.checked; return n; })} /> com prof.
+                </label>
               </div>
             )}
             <label className="campo">Condições e notas
@@ -364,7 +505,7 @@ export function CombateMesa({ campanhaId, fichas, npcs, pastas }: { campanhaId: 
             <div className="combate-acoes">
               {p.tipo === "npc" && <label className="marcar"><input type="checkbox" checked={p.oculto} onChange={(e) => mudar(p.id, { oculto: e.target.checked })} /> Esconder nome</label>}
               <label className="marcar"><input type="checkbox" checked={p.fora} onChange={(e) => mudar(p.id, { fora: e.target.checked })} /> Fora de combate</label>
-              <button type="button" className="link-perigo" onClick={() => setEst((e) => ({ ...e, vez: e.vez === p.id ? null : e.vez, lista: e.lista.filter((x) => x.id !== p.id) }))}>Tirar da lista</button>
+              <button type="button" className="link-perigo" onClick={() => setEst((e) => ({ ...e, vez: e.vez === p.id ? null : e.vez, lista: e.lista.filter((x) => x.id !== p.id && x.dono !== p.id) }))}>Tirar da lista</button>
             </div>
           </li>
         ))}

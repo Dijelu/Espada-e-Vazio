@@ -1766,7 +1766,7 @@ export function formaDoModelo(m: ModeloMontado, qual: "bankai" | "bankai2", ctx:
   }
   const cx = { ...ctx, tipo: qual, extra: mediaExtraPecas(efeitos, ctx) };
   const habilidades: HabForma[] = base.habilidades.map((h) => {
-    const a = h.dano ? analisarDano(h.dano, h.acao, cx, false, !!h.especial) : null;
+    const a = h.dano ? analisarDano(h.dano, h.acao, cx, false, h.especial ?? false) : null;
     const pr = a ? a.custoPr : 0;
     return { id: novoId(), nome: h.nome, acao: h.acao, custo: pr ? `${pr} PR` : "", pr: pr || undefined, dano: h.dano || undefined, modelo: h.modelo || undefined, regra: h.regra, desc: h.desc, especial: h.especial, limite: h.especial ? undefined : (h.limite ?? (/uma vez por cena/i.test(h.regra) ? "cena" : undefined)), requisito: h.requisito, texto: [h.desc, h.regra, h.especial ? `Técnica especial: 1 uso por cena. Depois de usar, você fica ${h.especial.condicao} ${h.especial.duracao}.` : ""].filter(Boolean).join("\n") };
   });

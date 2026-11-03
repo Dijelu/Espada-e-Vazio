@@ -1,3 +1,4 @@
+import { formaNpc, TIPOS_MODELO_NPC, type RefModeloNpc } from "./forma-npc";
 /* Criação de ameaças e NPCs, seguindo o capítulo 14 do livro. */
 import { FATOR_K, escalarDados, fatorSuporte } from "./simulador";
 
@@ -77,6 +78,8 @@ export interface LiberacaoAmeaca {
   ataques: AtaqueAmeaca[];
   tecnicas: TecnicaAmeaca[];
   texto: string;
+  /** modelo pronto de forma (Bankai, Resurrección…) que dá as peças e as habilidades; sem ele, só valem os campos acima */
+  modelo?: RefModeloNpc;
 }
 
 export const NOME_LIBERACAO: Record<Categoria, string> = { shinigami: "Bankai", hollow: "Resurrección", quincy: "Vollständig" };
@@ -217,7 +220,8 @@ const mediaExpr = (e: string) => {
 export function comLiberacao(a: Ameaca): Ameaca {
   const l = a.liberacao;
   const atr = { ...a.atr };
-  ATRS.forEach((x) => { atr[x.id] = a.atr[x.id] + l.bonusAtr[x.id]; });
+  const mod = formaNpc(a);
+  ATRS.forEach((x) => { atr[x.id] = a.atr[x.id] + l.bonusAtr[x.id] + (mod?.soma.atr[x.id] ?? 0); });
   return { ...a, atr, ataques: l.trocar ? l.ataques : [...a.ataques, ...l.ataques], tecnicas: l.trocar ? l.tecnicas : [...a.tecnicas, ...l.tecnicas] };
 }
 
@@ -232,7 +236,7 @@ export function efeitosDaLiberacao(a: Ameaca): { dano: number; tipo: string; cur
 export function calcularAmeaca(original: Ameaca, liberado = false): AmeacaCalculada {
   const a = liberado && original.liberacao.existe ? comLiberacao(original) : original;
   const r = calcularBase(a);
-  return liberado && original.liberacao.existe ? { ...r, cr: r.cr + original.liberacao.bonusCr } : r;
+  return liberado && original.liberacao.existe ? { ...r, cr: r.cr + original.liberacao.bonusCr + (formaNpc(original)?.soma.cr ?? 0) } : r;
 }
 
 function calcularBase(a: Ameaca): AmeacaCalculada {
@@ -296,6 +300,7 @@ function normalizarLiberacao(raw: unknown, categoria: Categoria): LiberacaoAmeac
     ataques: Array.isArray(o.ataques) ? o.ataques.slice(0, 8).map((x) => ({ nome: txt(x?.nome, "Ataque"), atr: em(x?.atr, ["for", "des", "con", "men", "esp"] as const, "for"), dados: txt(x?.dados, "1d8"), tipo: txt(x?.tipo), custo: num(x?.custo, 0, 0, 999), crit: num(x?.crit, 20, 15, 20) })) : [],
     tecnicas: Array.isArray(o.tecnicas) ? o.tecnicas.slice(0, 10).map((x) => ({ nome: txt(x?.nome, "Técnica"), dados: txt(x?.dados, "2d6"), custo: num(x?.custo, 0, 0, 999), atr: em(x?.atr, ["for", "des", "con", "men", "esp"] as const, "esp"), texto: txt(x?.texto) })) : [],
     texto: txt(o.texto),
+    ...(o.modelo && TIPOS_MODELO_NPC.includes(o.modelo.tipo) && typeof o.modelo.id === "string" && o.modelo.id.length <= 60 ? { modelo: { tipo: o.modelo.tipo, id: o.modelo.id } } : {}),
   };
 }
 

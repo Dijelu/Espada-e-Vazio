@@ -1545,6 +1545,31 @@ O mais importante quando for criar uma Bankai é deixar a imaginação e a diver
 
 Assim como o Shinigami tem defeitos, sua Bankai também deve ter. Você deve criar um ponto fraco que pode ser um efeito colateral prejudicial ao usuário ao utilizá-la, ou até mesmo uma vulnerabilidade específica que adversários podem explorar. Por exemplo, uma Bankai só pode ser liberada longe de aliados porque pode causar danos até mesmo a eles. Se você estiver perdido ao criar um ponto fraco, pode olhar as Zanpakutous existentes ou pedir para um amigo analisar a Zanpakutou e tentar identificar a fraqueza dela. É importante lembrar que quase todas as Bankais possuem fraquezas, assim como seus usuários.
 
+### Dano das Habilidades da Forma
+
+O dano de cada habilidade da Shikai, da Bankai e das outras formas tem um teto. A referência é (metade do nível + 4) dados de 5,5 de média, mais o maior atributo, e o teto muda conforme o tipo de ação: a Ação vale 115% da referência, a Ação Bônus 60% e a Reação 85%. As formas mais altas pesam mais: a Shikai fica com 115%, a Bankai, a Resurrección e a Vollständig com 130%, e a Bankai Verdadeira e a Segunda Etapa com 145%.
+
+Na prática, todo ataque que você cria já deve ficar perto desse teto, então ele é calculado por você ou pelo site: escolha apenas o atributo que entra como bônus de dano e se a técnica é especial. O custo em PR segue o dano: quanto mais forte o golpe, mais PR. Se você quiser um golpe mais barato, reduza o dano à mão.
+
+### Técnica Especial
+
+Uma habilidade pode ser uma técnica especial: só pode ser usada uma vez por cena e, depois de usá-la, você recebe uma condição por um tempo. Em troca, o teto de dano dela sobe, e o máximo de dados sobe na mesma proporção. Quanto mais pesada a condição, e quanto mais ela dura, maior o aumento.
+
+| Condição | Aumento do teto |
+|---|---|
+| Surdo, Caído | 30% |
+| Agarrado | 35% |
+| Amedrontado, Distorcido | 40% |
+| Queimado | 50% |
+| Sangramento, Cego, Preso | 60% |
+| Congelado | 65% |
+| Esgotado | 70% |
+| Atordoado | 90% |
+
+Os valores da tabela valem para a condição que dura até o fim da cena. Se ela dura só até o fim do próximo turno, o aumento é metade; até um descanso curto, é 1,4 vez; até um descanso longo, 1,8 vez (no máximo 120%). Exemplo: Sangramento até o fim da cena aumenta o teto em 60%.
+
+Uma habilidade que não é técnica especial pode ter um limite de uso (uma vez por cena, por descanso curto ou por descanso longo) ou um requisito. Cada um conta como ponto fraco e devolve pontos para a forma, até um máximo de 4 no total.
+
 ### Sexto Passo: Mudança
 
 Uma Zanpakutou muda ao longo da vida do usuário junto com ele, então você pode alterá-la durante a jornada, criando novos poderes. No entanto, ela nunca fugirá da temática já estabelecida ou do tipo de Zanpakutou que ela é. Você pode começar com uma versão incompleta da sua Zanpakutou e ir evoluindo durante a jornada.

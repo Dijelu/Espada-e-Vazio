@@ -1,7 +1,9 @@
-import { analisarDano } from "../regras/teto-dano";
+import { useEffect } from "react";
+import { analisarDano, ATR_AUTO, danoNoTeto, MULT_DURACAO, PCT_CONDICAO, pctEspecial, resumoAnalise } from "../regras/teto-dano";
 import type { CtxForma } from "../regras/efeitos-forma";
 import type { FormaLib, HabForma } from "../regras/ficha";
 import { classeDe } from "./EfeitosForma";
+import { resolverDano } from "../regras/liberacoes";
 import { SeletorDano } from "./SeletorFormula";
 
 const ACOES = ["Ação", "Ação bônus", "Reação"];
@@ -67,7 +69,15 @@ interface CartaoProps {
 
 /** Cartão de habilidade já montado: nome, ação, dano, custo calculado e a descrição do jogador. */
 export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, onChange, onRemover }: CartaoProps) {
-  const a = h.fixa ? null : analisarDano(h.dano, h.acao, ctx, ppExtra, !!h.especial);
+  const a = h.fixa ? null : analisarDano(h.dano, h.acao, ctx, ppExtra, h.especial ?? false);
+  // ataque automático: o dano acompanha o teto (nível, tipo de ação, técnica especial e dados extras das peças)
+  const chaveAtr = JSON.stringify(ctx.atr);
+  useEffect(() => {
+    if (!h.auto || h.fixa) return;
+    const d = danoNoTeto(h.acao, ctx, h.auto, ppExtra, h.especial ?? false);
+    if (d && d !== h.dano) onChange({ dano: d });
+  }, [h.auto, h.fixa, h.acao, h.dano, h.especial?.condicao, h.especial?.duracao, ctx.n, ctx.prof, ctx.extra, ctx.tipo, chaveAtr, ppExtra]); // eslint-disable-line react-hooks/exhaustive-deps
+  const pct = pctEspecial(h.especial);
   const novo = h.regra !== undefined || h.desc !== undefined;
   const regra = h.regra ?? "";
   const desc = novo ? (h.desc ?? "") : h.texto;
@@ -88,7 +98,32 @@ export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, onChange, o
       <div className="filtros-pecas" role="group" aria-label="Tipo de ação">
         {ACOES.map((x) => <button key={x} type="button" className={`chip chip-btn ${h.acao === x ? "on" : ""}`} aria-pressed={h.acao === x} onClick={() => onChange({ acao: x })}>{x}</button>)}
       </div>
-      <SeletorDano rotulo="Dano" valor={h.dano ?? ""} ctx={ctx} analise={a} onChange={(x) => onChange({ dano: x })} />
+      {h.auto && !h.fixa ? (
+        <div className="auto-dano">
+          <span className="rotulo-sel">Dano</span>
+          <label className="campo">Atributo do bônus
+            <select value={h.auto} onChange={(e) => onChange({ auto: e.target.value })}>
+              {ATR_AUTO.map((x) => <option key={x.id} value={x.id}>{x.nome} ({ctx.atr[x.chave] >= 0 ? "+" : ""}{ctx.atr[x.chave]})</option>)}
+            </select>
+          </label>
+          <p className="ajuda">Rola: <b>{h.dano ? resolver(h.dano, ctx) : "—"}</b></p>
+          {a && <p className="ajuda teto-dano">{resumoAnalise(a)}</p>}
+          <p className="ajuda">O dano já vem no teto da ação. Mudou o nível, o tipo de ação ou a técnica especial? Ele se ajusta sozinho.</p>
+          <button type="button" className="link" onClick={() => onChange({ auto: undefined })}>Ajustar o dano à mão (para um golpe mais barato, por exemplo)</button>
+        </div>
+      ) : (
+        <>
+          {!temDano && !h.fixa ? (
+            <div className="seletor-formula">
+              <span className="rotulo-sel">Dano</span>
+              <button type="button" className="btn-mini" onClick={() => { const d = danoNoTeto(h.acao, ctx, "ESP", ppExtra, h.especial ?? false); onChange({ auto: "ESP", ...(d ? { dano: d } : {}) }); }}>Adicionar ataque (dano no teto)</button>
+            </div>
+          ) : (
+            <SeletorDano rotulo="Dano" valor={h.dano ?? ""} ctx={ctx} analise={a} onChange={(x) => onChange({ dano: x })} />
+          )}
+          {temDano && !h.fixa && <button type="button" className="link" onClick={() => onChange({ auto: "ESP" })}>Voltar ao dano automático (no teto)</button>}
+        </>
+      )}
       {temDano && <p className="ajuda">O custo em PR é calculado pelo dano: quanto mais forte o golpe, mais PR.</p>}
       {temDano && !h.fixa && (
         <div className="especial-cartao">
@@ -101,18 +136,18 @@ export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, onChange, o
                 onChange({ especial: esp, ...(novo ? { texto: comporTexto(h.desc ?? "", regra, esp) } : {}) });
               }}
             />
-            Técnica especial: só 1 vez por cena e, depois, você recebe uma condição. Em troca, o dano máximo sobe 40%.
+            Técnica especial: só 1 vez por cena e, depois, você recebe uma condição. Em troca, o dano máximo sobe{h.especial ? ` ${pct}%` : " (quanto mais pesada a condição, mais sobe)"}.
           </label>
           {h.especial && (
             <div className="duas">
               <label className="campo">Condição que você recebe
                 <select value={h.especial.condicao} onChange={(e) => { const esp = { ...h.especial!, condicao: e.target.value }; onChange({ especial: esp, ...(novo ? { texto: comporTexto(h.desc ?? "", regra, esp) } : {}) }); }}>
-                  {CONDICOES_ESPECIAL.map((c) => <option key={c} value={c}>{c}</option>)}
+                  {CONDICOES_ESPECIAL.map((c) => <option key={c} value={c}>{c} (+{PCT_CONDICAO[c] ?? 40}%)</option>)}
                 </select>
               </label>
               <label className="campo">Por quanto tempo
                 <select value={h.especial.duracao} onChange={(e) => { const esp = { ...h.especial!, duracao: e.target.value }; onChange({ especial: esp, ...(novo ? { texto: comporTexto(h.desc ?? "", regra, esp) } : {}) }); }}>
-                  {DURACOES_ESPECIAL.map((c) => <option key={c} value={c}>{c}</option>)}
+                  {DURACOES_ESPECIAL.map((c) => <option key={c} value={c}>{c} (×{String(MULT_DURACAO[c] ?? 1).replace(".", ",")})</option>)}
                 </select>
               </label>
             </div>
@@ -150,3 +185,6 @@ export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, onChange, o
     </article>
   );
 }
+
+/** Mostra a fórmula já com os números do personagem (10d12+5). */
+const resolver = (expr: string, ctx: CtxForma) => resolverDano(expr, { nivel: ctx.n } as never, { prof: ctx.prof, atr: ctx.atr } as never);

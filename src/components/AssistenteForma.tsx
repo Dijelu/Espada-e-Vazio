@@ -302,8 +302,8 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
         if (h.id !== id) return h;
         const n = { ...h, ...p };
         // com dano em dados, o custo em PR é calculado pelo teto de dano
-        if ("dano" in p || "acao" in p) {
-          const a = analisarDano(n.dano, n.acao, ctxAtual, (r.ppExtra ?? 0) > 0);
+        if ("dano" in p || "acao" in p || "especial" in p) {
+          const a = analisarDano(n.dano, n.acao, ctxAtual, (r.ppExtra ?? 0) > 0, n.especial ?? false);
           if (a) { n.pr = a.custoPr; n.custo = `${a.custoPr} PR`; }
         }
         return n;
@@ -333,7 +333,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
   if (tipo === "vollstandig" && usados < limite) erros.push(`Faltam ${limite - usados} habilidade(s) única(s).`);
   if (r.habilidades.length > maxHab) erros.push(`Há habilidades demais: o limite é ${maxHab}.`);
   if (r.habilidades.length === 0) erros.push("Adicione pelo menos uma habilidade ou técnica.");
-  const errosDano = r.habilidades.filter((h) => !h.fixa).flatMap((h) => (analisarDano(h.dano, h.acao, ctxAtual, (r.ppExtra ?? 0) > 0, !!h.especial)?.erros ?? []).map((e) => `${h.nome || "Habilidade"}: ${e}`));
+  const errosDano = r.habilidades.filter((h) => !h.fixa).flatMap((h) => (analisarDano(h.dano, h.acao, ctxAtual, (r.ppExtra ?? 0) > 0, h.especial ?? false)?.erros ?? []).map((e) => `${h.nome || "Habilidade"}: ${e}`));
   erros.push(...errosDano);
   if (tipo === "shikai" && !r.categoria) erros.push("Escolha a categoria.");
   if ((tipo === "bankai" || tipo === "bankai2" || tipo === "resurreccion" || tipo === "segunda") && !r.pontoFraco.trim()) erros.push("Falta o ponto fraco.");
@@ -542,7 +542,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
               </select>
             </label>
             <p className="ajuda">Escolha um cartão neutro e monte a sua habilidade a partir dele. Depois escreva, na descrição, a característica e o tema da sua forma neste ataque. Limite: {r.habilidades.length}/{maxHab} {cheio ? "(remova um para trocar)" : ""}</p>
-            <GaleriaCartoes modelos={lista} tipo={tipo} ctx={ctxAtual} cheio={cheio} jaTem={jaTem} onUsar={(h) => addHab({ ...h, modelo: h.nome, regra: h.texto, desc: "" })} />
+            <GaleriaCartoes modelos={lista} tipo={tipo} ctx={ctxAtual} cheio={cheio} jaTem={jaTem} onUsar={(h) => addHab({ ...h, modelo: h.nome, regra: h.texto, desc: "", ...(h.dano && !h.fixa ? { auto: atr } : {}) })} />
             {r.habilidades.length > 0 && <h4 className="sub-passivas">Seus cartões</h4>}
             <div className="cartas-hab cartoes-montados">
               {r.habilidades.map((h) => (

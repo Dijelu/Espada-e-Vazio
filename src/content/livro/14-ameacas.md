@@ -229,6 +229,12 @@ Assim como outras criaturas, as Ameaças possuem proficiência. Ela segue a mesm
 - CD das técnicas da ameaça = 8 + proficiência + atributo.
 - Acerto de técnica de Zanpakutou = d20 + proficiência + Espírito; CD = 8 + proficiência + Espírito.
 
+- Teste de Resistência da ameaça = d20 + atributo, mais a proficiência quando a ameaça é proficiente no teste.
+
+### Formas liberadas das ameaças
+
+Uma ameaça pode usar uma forma pronta: Shikai e Bankai (Shinigami), Resurrección e Segunda Etapa (Hollow). Ao escolher o modelo, as peças da forma entram no CR e nos atributos da ameaça enquanto ela estiver liberada, e as habilidades do modelo viram ações com os números dela: o acerto é proficiência mais Espírito, a CD é 8 + proficiência + Espírito, e o dano segue o ND. Clones e invocações do modelo entram no combate junto de quem os criou, com a mesma iniciativa. Liberar a forma é uma escolha do Mestre durante o combate.
+
 ## Combate Equilibrado
 
 Esta seção ensina a montar combates equilibrados. O formato padrão do jogo é o duelo: cada jogador enfrenta um NPC feito para ele, do mesmo nível, e um grupo luta em duelos paralelos (cinco jogadores contra cinco NPCs). As regras abaixo dizem como transformar uma ameaça deste capítulo em um adversário calibrado para essa luta, como criar um curandeiro adversário, um Hollow espelhado, um chefe de grupo e como ajustar o 5v5.

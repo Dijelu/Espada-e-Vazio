@@ -1327,3 +1327,14 @@ img, video, svg { max-width: 100%; }
 .sempre-ativo-botao:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .sempre-ativo-caixa.fechada { padding-top: 8px; padding-bottom: 8px; }
 .sempre-ativo-caixa.fechada .sempre-ativo { margin-bottom: 0; }
+
+.npc-forma-lista { border-left: 3px solid var(--red, #c8102e); padding: 4px 0 4px 10px; margin: 8px 0; display: grid; gap: 4px; }
+.npc-forma-lista > b { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; opacity: .8; }
+
+.combate-modo, .combate-resist { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin: 6px 0; }
+.combate-modo small, .combate-resist small { opacity: .7; margin-right: 2px; }
+.combate-modo .btn, .combate-resist .btn { padding: 4px 10px; font-size: 13px; min-height: 0; }
+.acao-par { display: inline-flex; gap: 4px; align-items: stretch; }
+.acao-par .acao-dano { padding: 4px 8px; font-size: 12px; opacity: .85; }
+
+.auto-dano { display: grid; gap: 6px; padding: 10px; border: 1px dashed var(--line, #3a3350); border-radius: 8px; }
