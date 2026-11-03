@@ -70,8 +70,9 @@ function montar(ref: RefModeloNpc, ctx: CtxForma): { forma: Partial<FormaLib>; f
 const cache = new Map<string, FormaNpc | null>();
 
 /** Soma as peças do modelo e converte as habilidades em ações de combate. `atr` são os atributos da ameaça sem a forma. */
-export function formaNpc(am: { nd: number; atr: Record<"for" | "des" | "con" | "men" | "esp", number>; liberacao: { modelo?: RefModeloNpc } }): FormaNpc | null {
-  const ref = am.liberacao.modelo;
+export function formaNpc(am: { nd: number; atr: Record<"for" | "des" | "con" | "men" | "esp", number>; liberacao: { modelo?: RefModeloNpc } }, modelo?: RefModeloNpc): FormaNpc | null {
+  /** sem `modelo`, usa o modelo da forma principal; com ele, monta outro (ex.: a Shikai da etapa anterior) */
+  const ref = modelo ?? am.liberacao.modelo;
   if (!ref) return null;
   const chave = `${ref.tipo}:${ref.id}:${am.nd}:${JSON.stringify(am.atr)}`;
   if (cache.has(chave)) return cache.get(chave) ?? null;

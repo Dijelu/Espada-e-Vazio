@@ -7,6 +7,7 @@ import prontas from "../regras/ameacas-prontas.json";
 
 const MODELOS = prontas as unknown as ModeloAmeaca[];
 import { CartaNpc } from "../components/CartaNpc";
+import { FichaLeitura } from "../components/FichaLeitura";
 import { CombateMesa } from "../components/CombateMesa";
 import { OrdemCombate } from "../components/OrdemCombate";
 import {
@@ -32,6 +33,7 @@ export default function CampanhaPagina() {
   const [categoriaNova, setCategoriaNova] = useState<Categoria>("shinigami");
   const [erro, setErro] = useState("");
   const [copiado, setCopiado] = useState(false);
+  const [lendo, setLendo] = useState<string[]>([]);
 
   const meuId = sessao?.user.id ?? "";
   const mestre = camp ? camp.dono === meuId : false;
@@ -112,7 +114,7 @@ export default function CampanhaPagina() {
             const c = calcular(m.ficha);
             const classe = classePorId(m.ficha.classe);
             return (
-              <article className="carta" key={m.id}>
+              <article className={`carta${mestre && lendo.includes(m.id) ? " ficha-leitura-aberta" : ""}`} key={m.id}>
                 <div className="carta-corpo">
                   <small>{classe?.nome ?? "Sem classe"} · nível {m.ficha.nivel}</small>
                   <b className="title-font">{m.nome}</b>
@@ -127,6 +129,19 @@ export default function CampanhaPagina() {
                     <Link className="link-perigo" to={`/fichas/${m.id}`}>Abrir</Link>
                     <button type="button" className="link-perigo" onClick={() => tentar(async () => { await ligarFicha(m.id, null); await carregar(); }, "Não foi possível desligar a ficha.")}>Tirar da mesa</button>
                   </div>
+                )}
+                {mestre && (
+                  <details
+                    className="npc-edicao ficha-leitura-painel"
+                    open={lendo.includes(m.id)}
+                    onToggle={(e) => {
+                      const aberto = (e.currentTarget as HTMLDetailsElement).open;
+                      setLendo((l) => (aberto ? (l.includes(m.id) ? l : [...l, m.id]) : l.filter((x) => x !== m.id)));
+                    }}
+                  >
+                    <summary>{lendo.includes(m.id) ? "Recolher ficha" : "Ver ficha completa"}</summary>
+                    {lendo.includes(m.id) && <FichaLeitura f={m.ficha} nome={m.nome} />}
+                  </details>
                 )}
               </article>
             );

@@ -1338,3 +1338,52 @@ img, video, svg { max-width: 100%; }
 .acao-par .acao-dano { padding: 4px 8px; font-size: 12px; opacity: .85; }
 
 .auto-dano { display: grid; gap: 6px; padding: 10px; border: 1px dashed var(--line, #3a3350); border-radius: 8px; }
+
+/* Ficha completa somente leitura (Mestre, na página da mesa) */
+.cartas > .carta.ficha-leitura-aberta { grid-column: 1 / -1; }
+.ficha-leitura-painel { margin: 0 8px 8px; min-width: 0; }
+.ficha-leitura { display: grid; gap: 14px; min-width: 0; overflow-wrap: anywhere; }
+.ficha-leitura-topo { display: grid; gap: 2px; }
+.ficha-leitura-topo small { color: var(--accent); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; font-size: 12px; }
+.ficha-leitura-topo h4 { margin: 0; font-size: 30px; line-height: 1; }
+.ficha-leitura-topo p { margin: 0; color: var(--muted); }
+.ficha-leitura-selos { grid-template-columns: repeat(auto-fill, minmax(124px, 1fr)); }
+.ficha-leitura-selos small { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ficha-leitura-selos b { font-size: 24px; white-space: nowrap; }
+.ficha-leitura-selos .txt b { font-size: 16px; white-space: normal; }
+.ficha-leitura-atrs { margin: 0; }
+.ficha-leitura-grade { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.ficha-leitura-bloco { min-width: 0; background: var(--panel2); border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; }
+.ficha-leitura-bloco > h4 { margin: 0 0 8px; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.ficha-leitura-bloco p { margin: 4px 0; }
+.ficha-leitura .ficha-leitura-lista, .ficha-leitura .ficha-leitura-habs { padding: 0; }
+.ficha-leitura-lista { list-style: none; padding: 0; margin: 0; display: grid; gap: 4px; }
+.ficha-leitura-lista > li { border-bottom: 1px solid var(--line); padding: 2px 0 4px; }
+.ficha-leitura-lista > li:last-child { border-bottom: 0; }
+.ficha-leitura .poder-livro p { font-size: 14px; line-height: 1.5; }
+.ficha-leitura-ataques { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0 16px; }
+.ficha-leitura-ataques .carta-mini:last-child { border-bottom: 1px solid var(--line); }
+.ficha-leitura-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0; }
+.ficha-leitura-tags span { font-size: 13px; color: var(--muted); border: 1px solid var(--line); border-radius: 6px; padding: 2px 8px; }
+.ficha-leitura-tags span b { color: var(--text); }
+.ficha-leitura-tags span.fraco { border-style: dashed; border-color: var(--accent); }
+.ficha-leitura-formas { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 12px; }
+.ficha-leitura-forma { min-width: 0; border: 2px solid var(--accent); border-radius: 10px; padding: 12px 14px; background: var(--panel); }
+.ficha-leitura-forma.ativa { box-shadow: 0 0 0 2px var(--accent), 0 0 18px color-mix(in srgb, var(--accent) 35%, transparent); }
+.ficha-leitura-forma > small { color: var(--muted); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
+.ficha-leitura-forma h5 { margin: 2px 0 6px; font-size: 24px; line-height: 1.05; }
+.ficha-leitura-forma p { font-size: 14px; line-height: 1.5; }
+.ficha-leitura-fraco { border-left: 3px solid var(--accent); padding-left: 8px; }
+.ficha-leitura-habs { list-style: none; padding: 0; margin: 10px 0 0; display: grid; gap: 8px; }
+.ficha-leitura-hab { border-top: 1px solid var(--line); padding-top: 8px; }
+.ficha-leitura-hab-topo { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 10px; align-items: baseline; }
+.ficha-leitura-hab-topo small { color: var(--accent); font-weight: 700; font-size: 12px; }
+@media (max-width: 560px) {
+  .ficha-leitura-painel { margin: 0 4px 6px; padding: 0 10px; }
+  .ficha-leitura-atrs { gap: 6px; }
+  .ficha-leitura-atrs .atr b { font-size: 30px; }
+  .ficha-leitura-atrs .atr span { font-size: 10px; }
+  .ficha-leitura-selos { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 6px; }
+  .ficha-leitura-selos b { font-size: 21px; }
+  .ficha-leitura-ataques { grid-template-columns: 1fr; }
+}

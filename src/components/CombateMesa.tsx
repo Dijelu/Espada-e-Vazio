@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { calcular, type Invocacao } from "../regras/ficha";
-import { ATRS, calcularAmeaca, comLiberacao, efeitosDaLiberacao, type Ameaca } from "../regras/ameacas";
+import { ATRS, calcularAmeaca, comEtapaAnterior, comLiberacao, efeitosDaLiberacao, etapaDoNpc, formaDaEtapaAnterior, resumoEtapaAnterior, type Ameaca, type EtapaNpc } from "../regras/ameacas";
 import { publicarCombate, type FichaDaMesa, type Npc } from "../lib/campanhas";
 import { rolarExpressao } from "../lib/dados";
 import { formaNpc } from "../regras/forma-npc";
@@ -63,7 +63,12 @@ interface Participante {
   /** chave do modelo de invocação (para contar quantas estão em campo) */
   chaveInv?: string;
   /** forma liberada (Bankai, Resurrección, Vollständig) */
-  lib?: { nome: string; ativo: boolean; base: Forma; liberada: Forma; efeito: { dano: number; tipo: string; curaPv: number } };
+  lib?: {
+    nome: string; ativo: boolean; base: Forma; liberada: Forma; efeito: { dano: number; tipo: string; curaPv: number };
+    /** etapa anterior (Shikai, Máscara Hollow); `antesAtivo` = ela está ativa (nunca junto com `ativo`) */
+    antes?: { nome: string; forma: Forma; nota: string };
+    antesAtivo?: boolean;
+  };
 }
 
 interface Forma { acoes: AcaoNpc[]; cr: number; pvMax: number; prMax: number; atr: Record<string, number>; prof: number }
@@ -75,10 +80,12 @@ interface Estado {
   lista: Participante[];
 }
 
-function formaDe(am: Ameaca, liberado: boolean): Forma {
-  const c = calcularAmeaca(am, liberado);
-  const atr = liberado ? comLiberacao(am).atr : am.atr;
-  const fonte = liberado ? comLiberacao(am) : am;
+function formaDe(am: Ameaca, etapa: boolean | EtapaNpc): Forma {
+  const liberado = etapa === true || etapa === "liberado";
+  const antes = etapa === "antes";
+  const c = calcularAmeaca(am, liberado ? "liberado" : antes ? "antes" : "base");
+  const fonte = liberado ? comLiberacao(am) : antes ? comEtapaAnterior(am) : am;
+  const atr = fonte.atr;
   const acoes: AcaoNpc[] = [
     ...c.ataques.map((a) => ({
       nome: a.nome, tipo: "ataque" as const, acerto: a.acerto, dano: a.dano, custo: a.custo || Number(/\((\d+) PR\)/.exec(a.nome)?.[1] ?? 0),
@@ -88,7 +95,7 @@ function formaDe(am: Ameaca, liberado: boolean): Forma {
       nome: t.nome, tipo: "tecnica" as const, acerto: 0, dano: `${t.dados} + ${atr[fonte.tecnicas[i]?.atr ?? "esp"]}`, custo: t.custo, cd: t.cd, crit: 21, mult: 1,
     })),
   ];
-  const modelo = liberado ? formaNpc(am) : null;
+  const modelo = liberado ? formaNpc(am) : antes ? formaDaEtapaAnterior(am) : null;
   if (modelo) {
     for (const a of modelo.acoes) acoes.push({ nome: a.nome, tipo: a.tipo, acerto: a.acerto, dano: a.dano, custo: a.custo, cd: a.cd, crit: 20, mult: 2 });
     const rd = (e: string) => resolverDano(e, { nivel: c.nd } as never, { prof: c.prof, atr } as never);
@@ -240,13 +247,16 @@ export function CombateMesa({ campanhaId, fichas, npcs, pastas }: { campanhaId: 
     const base = formaDe(am, false);
     const liberada = am.liberacao.existe ? formaDe(am, true) : null;
     const ativo = n.dados.liberado && liberada !== null;
-    const c = ativo && liberada ? liberada : base;
+    const et = liberada && am.liberacao.antes ? resumoEtapaAnterior(am) : null;
+    const antes = et ? { nome: et.nome, forma: formaDe(am, "antes"), nota: et.notas.filter((x) => x.nome !== "Duração" && !/^Máscara/.test(x.nome)).map((x) => `${x.nome}: ${x.texto}`).join(" ") } : undefined;
+    const antesAtivo = !!antes && !ativo && etapaDoNpc(am, n.dados.liberado, n.dados.antes) === "antes";
+    const c = ativo && liberada ? liberada : antesAtivo && antes ? antes.forma : base;
     const total = Math.max(1, Math.min(20, qtdN));
     const grupo = novoId();
     return Array.from({ length: total }, (_, i) => ({
       id: novoId(), nome: total > 1 ? `${n.nome} ${i + 1}` : n.nome, tipo: "npc" as const, ini: null, bonus: Math.floor(am.atr.des / 2),
       pv: Math.min(n.dados.pvAtual ?? c.pvMax, c.pvMax), pvMax: c.pvMax, pr: Math.min(n.dados.prAtual ?? c.prMax, c.prMax), prMax: c.prMax, cr: c.cr, fora: false, nota: "", grupo, oculto: false, acoes: c.acoes, atr: c.atr, prof: c.prof,
-      lib: liberada ? { nome: am.liberacao.nome, ativo, base, liberada, efeito: efeitosDaLiberacao(am) } : undefined,
+      lib: liberada ? { nome: am.liberacao.nome, ativo, base, liberada, efeito: efeitosDaLiberacao(am), ...(antes ? { antes, antesAtivo } : {}) } : undefined,
     }));
   };
 
@@ -387,6 +397,25 @@ export function CombateMesa({ campanhaId, fichas, npcs, pastas }: { campanhaId: 
     }
   };
 
+  /** NPC com etapa anterior: base → etapa anterior → forma principal (ou direto), e Encerrar volta à base.
+   *  O PV atual fica (limitado ao novo máximo); se o máximo sobe, a diferença soma ao atual. O mesmo vale para o PR. */
+  const irParaEtapa = (p: Participante, alvo: EtapaNpc) => {
+    const l = p.lib;
+    if (!l || !l.antes) return;
+    const f = alvo === "liberado" ? l.liberada : alvo === "antes" ? l.antes.forma : l.base;
+    const cura = alvo === "liberado" ? l.efeito.curaPv : 0;
+    const pv = Math.max(0, Math.min(f.pvMax, p.pv + Math.max(0, f.pvMax - p.pvMax) + cura));
+    const pr = Math.max(0, Math.min(f.prMax, p.pr + Math.max(0, f.prMax - p.prMax)));
+    const antigo = l.ativo ? l.nome : l.antesAtivo ? l.antes.nome : "";
+    mudar(p.id, { lib: { ...l, ativo: alvo === "liberado", antesAtivo: alvo === "antes" }, atr: f.atr, prof: f.prof, acoes: f.acoes, cr: f.cr, pvMax: f.pvMax, prMax: f.prMax, pv, pr });
+    if (alvo === "base") { setRes({ texto: `${p.nome} encerra ${antigo}.`, dano: 0, alvoId: "", tecnica: false, acertou: false }); return; }
+    const ganhoPv = f.pvMax - p.pvMax, ganhoPr = f.prMax - p.prMax;
+    const temp = alvo === "antes" && (ganhoPv > 0 || ganhoPr > 0) ? ` ${[ganhoPv > 0 ? `+${ganhoPv} PV` : "", ganhoPr > 0 ? `+${ganhoPr} PR` : ""].filter(Boolean).join(" e ")} temporários enquanto ativa.` : "";
+    const ef = l.efeito;
+    const extra = alvo === "liberado" ? `${ef.dano > 0 ? ` Todos os inimigos que o vejam sofrem ${ef.dano} de dano ${ef.tipo}.` : ""}${ef.curaPv > 0 ? ` Recupera ${ef.curaPv} PV.` : ""}` : `${temp}${l.antes.nota ? ` ${l.antes.nota}` : ""}`;
+    setRes({ texto: `${p.nome} libera ${alvo === "liberado" ? l.nome : l.antes.nome}! CR ${f.cr}.${extra}`, dano: 0, alvoId: "", tecnica: false, acertou: false });
+  };
+
   const aplicar = (valor: number) => {
     if (!res) return;
     const alvo = est.lista.find((x) => x.id === res.alvoId);
@@ -465,7 +494,14 @@ export function CombateMesa({ campanhaId, fichas, npcs, pastas }: { campanhaId: 
             <div className="npc-linha"><b>PR {p.pr}/{p.prMax}</b>
               <span className="npc-botoes">{[-5, -1, 1, 5].map((d) => <button type="button" key={d} className="btn btn-paper" onClick={() => ajustar(p, "pr", d)}>{d > 0 ? `+${d}` : d}</button>)}</span>
             </div>
-            {p.lib && <button type="button" className={`btn ${p.lib.ativo ? "btn-paper" : "btn-red"}`} onClick={() => alternarForma(p)}>{p.lib.ativo ? `Encerrar ${p.lib.nome}` : `Liberar ${p.lib.nome}`}</button>}
+            {p.lib && !p.lib.antes && <button type="button" className={`btn ${p.lib.ativo ? "btn-paper" : "btn-red"}`} onClick={() => alternarForma(p)}>{p.lib.ativo ? `Encerrar ${p.lib.nome}` : `Liberar ${p.lib.nome}`}</button>}
+            {p.lib?.antes && (
+              <div className="linha-rolar combate-etapas">
+                {!p.lib.ativo && !p.lib.antesAtivo && <button type="button" className="btn btn-red" onClick={() => irParaEtapa(p, "antes")}>Liberar {p.lib.antes.nome}</button>}
+                {!p.lib.ativo && <button type="button" className="btn btn-red" onClick={() => irParaEtapa(p, "liberado")}>Liberar {p.lib.nome}</button>}
+                {(p.lib.ativo || p.lib.antesAtivo) && <button type="button" className="btn btn-paper" onClick={() => irParaEtapa(p, "base")}>Encerrar {p.lib.ativo ? p.lib.nome : p.lib.antes.nome}</button>}
+              </div>
+            )}
             {p.acoes.length > 0 && (
               <div className="combate-acoes-box">
                 <label className="campo">Alvo

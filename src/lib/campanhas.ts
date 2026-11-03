@@ -21,6 +21,8 @@ export interface DadosNpc {
   pasta: string;
   /** forma liberada (Bankai, Resurrección, Vollständig) ativa */
   liberado: boolean;
+  /** etapa anterior (Shikai, Máscara Hollow) ativa; nunca junto com `liberado` */
+  antes?: boolean;
 }
 
 export interface Npc {
@@ -54,6 +56,7 @@ export function normalizarNpc(d: Partial<DadosNpc> | null): DadosNpc {
     revelado: o.revelado === true,
     pasta: typeof o.pasta === "string" ? o.pasta.slice(0, 60) : "",
     liberado: o.liberado === true,
+    ...(o.antes === true && o.liberado !== true ? { antes: true } : {}),
   };
 }
 
