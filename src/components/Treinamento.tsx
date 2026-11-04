@@ -83,10 +83,10 @@ export function AbaTreinamento({ f, c, alterar, onMontar }: { f: Ficha; c: Calcu
             {t.id === "shikai" && (
               <div className="grade2">
                 <Campo2 rotulo="Nome da Zanpakutou">
-                  <input value={f.zanpakutou.nome} onChange={(e) => alterar({ zanpakutou: { ...f.zanpakutou, nome: e.target.value } })} />
+                  <input aria-label="Nome da Zanpakutou" value={f.zanpakutou.nome} onChange={(e) => alterar({ zanpakutou: { ...f.zanpakutou, nome: e.target.value } })} />
                 </Campo2>
                 <Campo2 rotulo="Frase de liberação">
-                  <input value={f.zanpakutou.frase} onChange={(e) => alterar({ zanpakutou: { ...f.zanpakutou, frase: e.target.value } })} />
+                  <input aria-label="Frase de liberação" value={f.zanpakutou.frase} onChange={(e) => alterar({ zanpakutou: { ...f.zanpakutou, frase: e.target.value } })} />
                 </Campo2>
               </div>
             )}

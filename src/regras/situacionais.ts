@@ -69,10 +69,10 @@ const D = (classe: string, subclasse: string | undefined, nivel: number, id: str
 });
 const ZJ = "zanjutsu", HK = "hakuda", KD = "kidoshu", KY = "kyugo", SC = "schutze", RT = "ritter", HU = "hueco", VZ = "vazio";
 
-/** dados de Precisão da Lâmina de Reishi (Energia), pelo nível */
-const dadosPrecisao = (n: number, prof: number) => (n <= 14 ? `${prof}d6` : n <= 16 ? "3d6" : n <= 19 ? "4d6" : "5d6");
-/** dano de Energia do Shunko por golpe, pelo nível */
-const dadosShunko = (n: number) => (n <= 5 ? "1d10" : n <= 9 ? "2d10" : n <= 19 ? "6d10" : "4d10");
+/** dados de Precisão da Lâmina de Reishi (Energia), pelo nível: 1d6 por ponto de proficiência e +1d6 no 20º (antes caía de 5d6 para 3d6 no 15º) */
+const dadosPrecisao = (n: number, prof: number) => `${prof + (n >= 20 ? 1 : 0)}d6`;
+/** dano de Energia do Shunko por golpe, pelo nível (o 20º sobe para 8d10; antes caía de 6d10 para 4d10) */
+const dadosShunko = (n: number) => (n <= 5 ? "1d10" : n <= 9 ? "2d10" : n <= 19 ? "6d10" : "8d10");
 const dadoApoio = (n: number) => (n >= 19 ? "1d12" : n >= 16 ? "1d10" : n >= 12 ? "1d8" : n >= 8 ? "1d6" : "1d4");
 
 const DEFS: Def[] = [

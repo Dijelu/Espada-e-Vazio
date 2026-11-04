@@ -11,7 +11,7 @@ import { FichaLeitura } from "../components/FichaLeitura";
 import { CombateMesa } from "../components/CombateMesa";
 import { OrdemCombate } from "../components/OrdemCombate";
 import {
-  apagarCampanha, apagarNpc, criarNpc, fichasDaMesa, lerCampanha, ligarFicha, listarNpcs, minhasFichasSemMesa, salvarNpc, sairDaCampanha, listarModelosSalvos, salvarModelo, apagarModelo, type ModeloSalvo,
+  apagarCampanha, apagarNpc, criarNpc, fichasDaMesa, lerCampanha, ligarFicha, listarNpcs, listarNpcsRevelados, minhasFichasSemMesa, salvarNpc, sairDaCampanha, listarModelosSalvos, salvarModelo, apagarModelo, type ModeloSalvo,
   type Campanha, type FichaDaMesa, type Npc,
 } from "../lib/campanhas";
 
@@ -34,16 +34,27 @@ export default function CampanhaPagina() {
   const [erro, setErro] = useState("");
   const [copiado, setCopiado] = useState(false);
   const [lendo, setLendo] = useState<string[]>([]);
+  const [avisoNpcs, setAvisoNpcs] = useState("");
 
   const meuId = sessao?.user.id ?? "";
   const mestre = camp ? camp.dono === meuId : false;
 
+  // jogador lê só os NPCs revelados (função do banco); se ela falhar, lista vazia e aviso, nunca a tabela
+  const npcsDoJogador = useCallback(
+    () => listarNpcsRevelados(id).then(
+      (ns) => { setAvisoNpcs(""); return ns; },
+      () => { setAvisoNpcs("Não foi possível ver os NPCs revelados agora."); return [] as Npc[]; },
+    ),
+    [id],
+  );
+
   const carregar = useCallback(async () => {
+    setErro("");
     try {
       const c = await lerCampanha(id);
       setCamp(c);
       if (!c) return;
-      const [fs, ns, ls] = await Promise.all([fichasDaMesa(id), listarNpcs(id), minhasFichasSemMesa()]);
+      const [fs, ns, ls] = await Promise.all([fichasDaMesa(id), c.dono === meuId ? listarNpcs(id) : npcsDoJogador(), minhasFichasSemMesa()]);
       listarModelosSalvos().then(setSalvos).catch(() => undefined);
       setFichas(fs);
       setNpcs(ns);
@@ -53,7 +64,7 @@ export default function CampanhaPagina() {
       setErro("Não foi possível carregar a campanha.");
       setCamp(null);
     }
-  }, [id]);
+  }, [id, meuId, npcsDoJogador]);
 
   useEffect(() => { void carregar(); }, [carregar]);
 
@@ -63,10 +74,10 @@ export default function CampanhaPagina() {
     const t = window.setInterval(() => {
       if (document.hidden) return;
       void fichasDaMesa(id).then(setFichas).catch(() => undefined);
-      if (camp.dono !== meuId) void listarNpcs(id).then(setNpcs).catch(() => undefined);
+      if (camp.dono !== meuId) void npcsDoJogador().then(setNpcs);
     }, 5000);
     return () => window.clearInterval(t);
-  }, [camp, id, meuId]);
+  }, [camp, id, meuId, npcsDoJogador]);
 
   const tentar = async (acao: () => Promise<void>, msg: string) => {
     setErro("");
@@ -77,8 +88,9 @@ export default function CampanhaPagina() {
   if (!camp) {
     return (
       <main className="page">
-        <h1 className="title-font">Campanha não encontrada</h1>
+        <h1 className="title-font">{erro ? "Não deu para abrir a campanha" : "Campanha não encontrada"}</h1>
         {erro && <p className="aviso" role="alert">{erro}</p>}
+        {erro && <button type="button" className="btn btn-red" onClick={() => { setCamp(undefined); void carregar(); }}>Tentar de novo</button>}{" "}
         <Link className="btn btn-paper" to="/campanhas">Voltar</Link>
       </main>
     );
@@ -159,7 +171,8 @@ export default function CampanhaPagina() {
 
       <section className="caixa">
         <h3>{mestre ? "NPCs" : "NPCs revelados"}</h3>
-        {npcs.length === 0 && <p>{mestre ? "Nenhum NPC ainda." : "O Mestre ainda não revelou nenhum NPC."}</p>}
+        {!mestre && avisoNpcs && <p className="aviso" role="alert">{avisoNpcs}</p>}
+        {(mestre ? npcs : npcs.filter((n) => n.dados.revelado)).length === 0 && !(!mestre && avisoNpcs) && <p>{mestre ? "Nenhum NPC ainda." : "O Mestre ainda não revelou nenhum NPC."}</p>}
         {mestre ? (
           <>
             <datalist id="pastas-npc">{pastas.filter(Boolean).map((p) => <option key={p} value={p} />)}</datalist>
@@ -192,11 +205,11 @@ export default function CampanhaPagina() {
           </>
         ) : (
           <div className="npcs">
-            {npcs.map((n) => (
+            {/* visão do jogador: só nome, categoria e ND; nada de PV/PR nem das anotações do Mestre */}
+            {npcs.filter((n) => n.dados.revelado).map((n) => (
               <article className="npc" key={n.id}>
                 <b className="title-font">{n.nome}</b>
                 <small>{CATEGORIAS.find((x) => x.id === n.dados.ameaca.categoria)?.nome} · ND {n.dados.ameaca.nd}</small>
-                {n.dados.notas && <p className="quebra">{n.dados.notas}</p>}
               </article>
             ))}
           </div>

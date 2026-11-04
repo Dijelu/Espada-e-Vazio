@@ -25,7 +25,12 @@ export interface Liberacao {
   conta: string[];
 }
 
-interface Extra { plena?: boolean }
+interface Extra {
+  /** Bankai Plena: só muda o texto da conta. A ficha guarda o custo cheio e a metade é cobrada na hora de liberar (custoBankai, em liberacoes.ts). */
+  plena?: boolean;
+  /** conta antiga, que já gravava o custo da Plena pela metade: só para o reparo reconhecer fichas salvas assim */
+  metadeAntiga?: boolean;
+}
 
 /** Poder bruto da forma: soma dos preços positivos (sem contar o que os pontos fracos devolvem). */
 export function poderBruto(pecas: InstEfeito[], ctx: CtxForma): number {
@@ -42,9 +47,8 @@ export function calcularLiberacao(tipo: FormaLib["tipo"], pecas: InstEfeito[], c
     conta.push(`Custo: 3 PR de base + 0,85 por ponto de poder (${poder}) = ${custoPr} PR (de 3 a 10).`);
   } else if (tipo === "bankai") {
     const bruto = Math.max(20, Math.min(80, Math.round(20 + poder * 3)));
-    custoPr = extra.plena ? Math.ceil(bruto / 2) : bruto;
+    custoPr = extra.metadeAntiga ? Math.ceil(bruto / 2) : bruto;
     conta.push(`Custo: 20 PR de base + 3 por ponto de poder (${poder}) = ${bruto} PR (de 20 a 80).`);
-    if (extra.plena) conta.push(`Bankai Plena: o custo cai pela metade = ${custoPr} PR.`);
   } else if (tipo === "bankai2") {
     custoPr = Math.max(40, Math.min(80, Math.round(30 + poder * 3)));
     conta.push(`Custo: 30 PR de base + 3 por ponto de poder (${poder}) = ${custoPr} PR (de 40 a 80).`);
@@ -72,6 +76,7 @@ export function calcularLiberacao(tipo: FormaLib["tipo"], pecas: InstEfeito[], c
     custoPr = Math.min(80, custoPr + adicional);
     conta.push(`Duração maior pesa no custo: +${adicional} PR = ${custoPr} PR.`);
   }
+  if (tipo === "bankai" && extra.plena && custoPr !== null) conta.push(`Bankai Plena: ao liberar você paga a metade, ${Math.ceil(custoPr / 2)} PR (a ficha guarda o custo cheio, ${custoPr} PR).`);
   const duracaoTexto = turnos !== null ? duracaoEmPalavras(turnos) : tipo === "shikai" || tipo === "vollstandig" ? "até você encerrar" : "até o fim da cena";
   return { custoPr, turnos, duracaoTexto, conta };
 }

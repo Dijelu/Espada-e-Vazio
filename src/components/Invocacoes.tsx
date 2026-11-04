@@ -2,6 +2,7 @@ import type { Calculo, Ficha, Invocacao } from "../regras/ficha";
 import type { Rolagens } from "./Rolador";
 import { resolverDano } from "../regras/liberacoes";
 import { novoId } from "./FichaPecas";
+import { Info } from "./Dica";
 
 interface Props {
   f: Ficha;
@@ -33,7 +34,7 @@ export function AbaInvocacoes({ f, c, r, alterar, compacto }: Props) {
 
   return (
     <section className="aba">
-      {!compacto && modelos.length === 0 && lista.length === 0 && <p className="ajuda">Nenhuma invocação. Monte uma peça de invocação ou clone na aba Efeitos da sua forma e libere a forma.</p>}
+      {!compacto && modelos.length === 0 && lista.length === 0 && <p className="ajuda">Nenhuma invocação <Info>Monte uma peça de invocação ou clone na aba Efeitos da sua forma e libere a forma.</Info></p>}
       {modelos.length === 0 && lista.length > 0 && <p className="aviso-mini">A forma que criou estas invocações não está ativa. Dispense-as ou ative a forma de novo.</p>}
 
       {modelos.map((m) => {

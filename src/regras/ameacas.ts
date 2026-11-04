@@ -81,32 +81,76 @@ export interface LiberacaoAmeaca {
   texto: string;
   /** modelo pronto de forma (Bankai, Resurrección…) que dá as peças e as habilidades; sem ele, só valem os campos acima */
   modelo?: RefModeloNpc;
-  /** etapa anterior opcional (Shikai antes da Bankai, Máscara Hollow do Visored); ausente = libera direto a forma principal */
+  /** etapa anterior opcional (Shikai antes da Bankai); ausente = libera direto a forma principal. A forma principal SUBSTITUI a Shikai. */
   antes?: EtapaAnterior;
+  /** Máscara Hollow do Visored (opcional): SOMA por cima da forma ativa (base, Shikai ou Bankai) */
+  mascara?: MascaraNpc;
 }
 
-/** Etapa anterior à forma principal: um modelo pronto (Shikai) ou a Máscara Hollow do Visored. */
+/** Etapa anterior à forma principal: um modelo pronto (Shikai). (Máscara salva aqui por versões antigas migra para `mascara`.) */
 export interface EtapaAnterior {
-  tipo: "modelo" | "mascara";
+  tipo: "modelo";
   nome: string;
   modelo?: RefModeloNpc;
-  mascara?: TipoMascara;
   bonusCr: number;
 }
 
-/** base = sem forma; antes = etapa anterior ativa; liberado = forma principal ativa */
-export type EtapaNpc = "base" | "antes" | "liberado";
+/** Máscara Hollow do Visored de um NPC: liga e desliga à parte da forma. */
+export interface MascaraNpc {
+  mascara: TipoMascara;
+  nome: string;
+  bonusCr: number;
+}
 
-/** Etapa que vale de fato: a forma precisa existir (e a etapa anterior, estar montada). */
-export function etapaValida(a: Ameaca, e: boolean | EtapaNpc): EtapaNpc {
-  const x: EtapaNpc = e === true ? "liberado" : e === false ? "base" : e;
-  if (x === "base" || !a.liberacao.existe) return "base";
-  if (x === "antes" && !a.liberacao.antes) return "base";
-  return x;
+/** base = sem forma; antes = Shikai (ou, sem Shikai, a máscara salva por versões antigas); liberado = forma principal ativa */
+export type EtapaNpc = "base" | "antes" | "liberado";
+/** forma principal ativa (a Bankai substitui a Shikai) */
+export type FormaPrincipal = "base" | "shikai" | "bankai";
+/** forma principal + máscara (que soma por cima de qualquer uma) */
+export interface EstadoNpc { forma: FormaPrincipal; mascara: boolean }
+
+/** Estado que vale de fato: a forma precisa existir e a Shikai/máscara, estarem montadas. */
+export function estadoValido(a: Ameaca, e: boolean | EtapaNpc | EstadoNpc): EstadoNpc {
+  const l = a.liberacao;
+  let s: EstadoNpc;
+  if (typeof e === "object" && e) s = { forma: e.forma, mascara: e.mascara === true };
+  else if (e === true || e === "liberado") s = { forma: "bankai", mascara: false };
+  else if (e === "antes") s = l.antes ? { forma: "shikai", mascara: false } : { forma: "base", mascara: !!l.mascara };
+  else s = { forma: "base", mascara: false };
+  if (!l.existe) return { forma: "base", mascara: false };
+  if (s.forma === "shikai" && !l.antes) s = { ...s, forma: "base" };
+  if (s.forma !== "base" && s.forma !== "shikai" && s.forma !== "bankai") s = { ...s, forma: "base" };
+  return { forma: s.forma, mascara: s.mascara && !!l.mascara };
+}
+
+/** Etapa (formato antigo) que corresponde ao estado; a máscara sozinha conta como "antes" quando não há Shikai. */
+export function etapaValida(a: Ameaca, e: boolean | EtapaNpc | EstadoNpc): EtapaNpc {
+  const s = estadoValido(a, e);
+  return s.forma === "bankai" ? "liberado" : s.forma === "shikai" || (s.mascara && !a.liberacao.antes) ? "antes" : "base";
 }
 
 /** Etapa ativa de um NPC a partir das marcas salvas (liberado e antes são mutuamente exclusivos). */
 export const etapaDoNpc = (a: Ameaca, liberado: boolean, antes?: boolean): EtapaNpc => etapaValida(a, liberado ? "liberado" : antes ? "antes" : "base");
+
+/** Estado de um NPC a partir das marcas salvas: `antes` é a Shikai; sem Shikai montada, é a máscara (NPCs salvos antes da máscara somar). */
+export function estadoDoNpc(a: Ameaca, liberado: boolean, antes?: boolean, mascara?: boolean): EstadoNpc {
+  const base = estadoValido(a, liberado ? "liberado" : antes ? "antes" : "base");
+  return mascara === true ? estadoValido(a, { ...base, mascara: true }) : base;
+}
+
+/** Marcas a salvar no NPC para um estado. A máscara só fica salva (em `antes`) quando está sozinha e não há Shikai; nos outros casos ela vive na tela/no combate. */
+export function marcasDoEstado(a: Ameaca, e: EstadoNpc): { liberado: boolean; antes: boolean; mascara: boolean } {
+  const s = estadoValido(a, e);
+  return { liberado: s.forma === "bankai", antes: s.forma === "shikai" || (s.forma === "base" && s.mascara && !a.liberacao.antes), mascara: s.mascara };
+}
+
+/** Nome curto do estado para avisos e cabeçalhos ("Shikai Senbonzakura + Máscara do Predador"). */
+export function nomeDoEstado(a: Ameaca, e: EstadoNpc): string {
+  const s = estadoValido(a, e);
+  const l = a.liberacao;
+  const forma = s.forma === "bankai" ? l.nome : s.forma === "shikai" ? l.antes?.nome ?? "Shikai" : "";
+  return [forma, s.mascara ? l.mascara?.nome ?? "" : ""].filter(Boolean).join(" + ");
+}
 
 /** Soma `n` dados ao primeiro termo NdF da expressão ("2d8 + 4" com 3 → "5d8 + 4"); sem termo de dado, fica igual. */
 export function somarDados(expr: string, n: number): string {
@@ -131,22 +175,75 @@ export function formaDaEtapaAnterior(a: Ameaca): FormaNpc | null {
   return e?.tipo === "modelo" && e.modelo ? formaNpc(a, e.modelo) : null;
 }
 
-/** Resumo da etapa anterior para a carta e o combate: bônus de CR, PV/PR temporários e notas para o Mestre. */
+/** Forma pronta (com habilidades) da forma principal ativa: Bankai → modelo da Bankai; Shikai → modelo da Shikai; base → nenhuma. */
+export function formaDoEstado(a: Ameaca, e: boolean | EtapaNpc | EstadoNpc): FormaNpc | null {
+  const s = estadoValido(a, e);
+  return s.forma === "bankai" ? formaNpc(a) : s.forma === "shikai" ? formaDaEtapaAnterior(a) : null;
+}
+
+/** "+2d10" dos `n` dados que somarDados acrescenta ao primeiro termo de `expr` (vazio se não acrescenta nada). */
+function rotuloDados(expr: string, n: number): string {
+  const m = /(\d+)d(\d+)/i.exec(expr);
+  return n > 0 && m ? `+${n}d${m[2]}` : "";
+}
+
+/** Ações da forma pronta ativa, já com a máscara por cima (as habilidades de Zanpakutō contam como técnicas). `mascara` diz o que veio dela. */
+export function acoesDoEstado(a: Ameaca, e: boolean | EtapaNpc | EstadoNpc): (FormaNpc["acoes"][number] & { mascara?: string })[] {
+  const s = estadoValido(a, e);
+  const f = formaDoEstado(a, s);
+  if (!f) return [];
+  const m = s.mascara ? a.liberacao.mascara : undefined;
+  if (!m) return f.acoes;
+  const c = calcularAmeaca(a, { forma: s.forma, mascara: false });
+  const ef = efeitoMascaraNpc(m.mascara, c.prof, c.nd);
+  return f.acoes.map((x) => {
+    const extra = [rotuloDados(x.dano, ef.dadosTecnica), ef.cd && x.tipo === "tecnica" ? `CD +${ef.cd}` : ""].filter(Boolean).join(", ");
+    return { ...x, dano: somarDados(x.dano, ef.dadosTecnica), cd: x.cd + (x.tipo === "tecnica" ? ef.cd : 0), ...(extra ? { mascara: extra } : {}) };
+  });
+}
+
+/** Bônus da máscara na forma indicada, um por efeito, com o nome "Máscara do Predador: Corpo Hollow" etc. */
+export function bonusDaMascara(a: Ameaca, forma: FormaPrincipal = "base"): { nome: string; texto: string }[] {
+  const m = a.liberacao.mascara;
+  if (!m || !a.liberacao.existe) return [];
+  const c = calcularAmeaca(a, { forma, mascara: false });
+  const ef = efeitoMascaraNpc(m.mascara, c.prof, c.nd);
+  const pv = Math.floor(c.pv * ef.temp.pv), pr = Math.floor(c.pr * ef.temp.pr);
+  const nome = MASCARAS.find((x) => x.id === m.mascara)?.nome ?? m.nome;
+  const r: { nome: string; texto: string }[] = [];
+  const add = (efeito: string, texto: string) => r.push({ nome: `${nome}: ${efeito}`, texto });
+  if (m.mascara === "predador") {
+    add("Corpo Hollow", `RD ${ef.rd} contra tudo, menos psíquico e temporal (o Mestre aplica).`);
+    add("Golpes Amplificados", `+${ef.dadosGolpe} dados nos ataques (golpes de Zanpakutō e Hakuda).`);
+    add("Vitalidade Hollow", `+${pv} PV temporários (metade do total) enquanto ativa.`);
+  } else if (m.mascara === "conquistador") {
+    add("Imposição Hollow", `+${ef.cd} na CD das técnicas e Kidōs.`);
+    add("Poder Aumentado", `+${ef.dadosTecnica} dados nas técnicas (Zanpakutō, Hadō e Bakudō).`);
+    add("Reiatsu Amplificada", `+${pr} PR temporários (metade do total) enquanto ativa.`);
+  } else {
+    add("Poder Amplificado", `+${ef.dadosTecnica} dado${ef.dadosTecnica === 1 ? "" : "s"} nas técnicas e +${ef.dadosGolpe} dado nos golpes.`);
+    add("Reiatsu Amplificada e Vitalidade Hollow", `+${pv} PV e +${pr} PR temporários (um quarto do total) enquanto ativa.`);
+  }
+  if (m.bonusCr) add("CR extra", `${m.bonusCr > 0 ? "+" : ""}${m.bonusCr} de CR.`);
+  add("Duração", "Para NPC, dura até o Mestre tirar a máscara.");
+  return r;
+}
+
+/** Resumo da máscara na forma indicada: CR, PV/PR temporários e os bônus. */
+export function resumoMascara(a: Ameaca, forma: FormaPrincipal = "base"): { nome: string; cr: number; pvTemp: number; prTemp: number; notas: { nome: string; texto: string }[] } | null {
+  const m = a.liberacao.mascara;
+  if (!m || !a.liberacao.existe) return null;
+  const sem = calcularAmeaca(a, { forma, mascara: false }), com = calcularAmeaca(a, { forma, mascara: true });
+  return { nome: m.nome, cr: com.cr - sem.cr, pvTemp: com.pv - sem.pv, prTemp: com.pr - sem.pr, notas: bonusDaMascara(a, forma) };
+}
+
+/** Resumo da etapa anterior (Shikai) para a carta e o combate: bônus de CR e a forma pronta. A máscara tem o próprio resumo (resumoMascara). */
 export function resumoEtapaAnterior(a: Ameaca): { nome: string; cr: number; pvTemp: number; prTemp: number; forma: FormaNpc | null; notas: { nome: string; texto: string }[] } | null {
   const e = a.liberacao.antes;
-  if (!e) return null;
+  if (!e || !a.liberacao.existe) return null;
   const base = calcularBase(a);
-  const antes = calcularAmeaca(a, "antes");
-  const forma = formaDaEtapaAnterior(a);
-  const notas: { nome: string; texto: string }[] = [];
-  if (e.tipo === "mascara" && e.mascara) {
-    const m = MASCARAS.find((x) => x.id === e.mascara);
-    const ef = efeitoMascaraNpc(e.mascara, base.prof, base.nd);
-    if (m) notas.push({ nome: m.nome, texto: m.texto });
-    if (ef.rd) notas.push({ nome: "Corpo Hollow", texto: `RD ${ef.rd} contra tudo, menos psíquico e temporal (o Mestre aplica).` });
-    notas.push({ nome: "Duração", texto: "O Mestre decide quando a máscara se desfaz (Encerrar)." });
-  }
-  return { nome: e.nome, cr: antes.cr - base.cr, pvTemp: antes.pv - base.pv, prTemp: antes.pr - base.pr, forma, notas };
+  const antes = calcularAmeaca(a, { forma: "shikai", mascara: false });
+  return { nome: e.nome, cr: antes.cr - base.cr, pvTemp: antes.pv - base.pv, prTemp: antes.pr - base.pr, forma: formaDaEtapaAnterior(a), notas: [] };
 }
 
 export const NOME_LIBERACAO: Record<Categoria, string> = { shinigami: "Bankai", hollow: "Resurrección", quincy: "Vollständig" };
@@ -270,8 +367,9 @@ export interface AmeacaCalculada {
   k: number;
   hierro: boolean;
   grauNome: string;
-  ataques: { nome: string; acerto: number; dano: string; media: number; tipo: string; custo: number; crit: number }[];
-  tecnicas: { nome: string; dados: string; cd: number; custo: number; texto: string }[];
+  /** `mascara`: o que a máscara somou neste ataque/técnica ("+2d10", "+4d6, CD +4"); ausente = nada */
+  ataques: { nome: string; acerto: number; dano: string; media: number; tipo: string; custo: number; crit: number; mascara?: string }[];
+  tecnicas: { nome: string; dados: string; cd: number; custo: number; texto: string; mascara?: string }[];
   percepcao: number;
   percepcaoEsp: number;
 }
@@ -309,26 +407,36 @@ export function efeitosDaLiberacao(a: Ameaca): { dano: number; tipo: string; cur
   return { dano: l.explosao.mult * lib.atr[l.explosao.atr], tipo: l.explosao.tipo, curaPv: Math.floor((pvMax * l.cura) / 100) };
 }
 
-/** `liberado` aceita true/false (forma principal) ou a etapa ("base", "antes", "liberado"). */
-export function calcularAmeaca(original: Ameaca, etapa: boolean | EtapaNpc = false): AmeacaCalculada {
-  const e = etapaValida(original, etapa);
-  if (e === "antes") return calcularAntes(original);
-  const liberado = e === "liberado";
-  const a = liberado && original.liberacao.existe ? comLiberacao(original) : original;
-  const r = calcularBase(a);
-  return liberado && original.liberacao.existe ? { ...r, cr: r.cr + original.liberacao.bonusCr + (formaNpc(original)?.soma.cr ?? 0) } : r;
+/** `etapa` aceita true/false (forma principal), a etapa ("base", "antes", "liberado") ou o estado { forma, mascara }. */
+export function calcularAmeaca(original: Ameaca, etapa: boolean | EtapaNpc | EstadoNpc = false): AmeacaCalculada {
+  const s = estadoValido(original, etapa);
+  const l = original.liberacao;
+  let r: AmeacaCalculada;
+  if (s.forma === "bankai") {
+    // a Bankai substitui a Shikai: só as peças e o CR da forma principal
+    const b = calcularBase(comLiberacao(original));
+    r = { ...b, cr: b.cr + l.bonusCr + (formaNpc(original)?.soma.cr ?? 0) };
+  } else if (s.forma === "shikai") {
+    const b = calcularBase(comEtapaAnterior(original));
+    r = { ...b, cr: b.cr + (l.antes?.bonusCr ?? 0) + (formaDaEtapaAnterior(original)?.soma.cr ?? 0) };
+  } else r = calcularBase(original);
+  return s.mascara && l.mascara ? comMascara(r, l.mascara) : r;
 }
 
-function calcularAntes(original: Ameaca): AmeacaCalculada {
-  const et = original.liberacao.antes!;
-  const r = calcularBase(comEtapaAnterior(original));
-  const cr = r.cr + et.bonusCr + (formaDaEtapaAnterior(original)?.soma.cr ?? 0);
-  if (et.tipo !== "mascara" || !et.mascara) return { ...r, cr };
-  const ef = efeitoMascaraNpc(et.mascara, r.prof, r.nd);
-  const ataques = r.ataques.map((x) => { const dano = somarDados(x.dano, ef.dadosGolpe); return { ...x, dano, media: mediaExpr(dano) }; });
-  const tecnicas = r.tecnicas.map((x) => ({ ...x, dados: somarDados(x.dados, ef.dadosTecnica), cd: x.cd + ef.cd }));
+/** Máscara por cima de qualquer forma: dados nos golpes e nas técnicas, CD, CR extra e PV/PR temporários. */
+function comMascara(r: AmeacaCalculada, m: MascaraNpc): AmeacaCalculada {
+  const ef = efeitoMascaraNpc(m.mascara, r.prof, r.nd);
+  const ataques = r.ataques.map((x) => {
+    const dano = somarDados(x.dano, ef.dadosGolpe);
+    const extra = rotuloDados(x.dano, ef.dadosGolpe);
+    return { ...x, dano, media: mediaExpr(dano), ...(extra ? { mascara: extra } : {}) };
+  });
+  const tecnicas = r.tecnicas.map((x) => {
+    const extra = [rotuloDados(x.dados, ef.dadosTecnica), ef.cd ? `CD +${ef.cd}` : ""].filter(Boolean).join(", ");
+    return { ...x, dados: somarDados(x.dados, ef.dadosTecnica), cd: x.cd + ef.cd, ...(extra ? { mascara: extra } : {}) };
+  });
   // PV e PR temporários da máscara: entram como aumento do máximo enquanto ela está ativa
-  return { ...r, cr, ataques, tecnicas, pv: r.pv + Math.floor(r.pv * ef.temp.pv), pr: r.pr + Math.floor(r.pr * ef.temp.pr) };
+  return { ...r, cr: r.cr + m.bonusCr, ataques, tecnicas, pv: r.pv + Math.floor(r.pv * ef.temp.pv), pr: r.pr + Math.floor(r.pr * ef.temp.pr) };
 }
 
 function calcularBase(a: Ameaca): AmeacaCalculada {
@@ -393,7 +501,7 @@ function normalizarLiberacao(raw: unknown, categoria: Categoria): LiberacaoAmeac
     tecnicas: Array.isArray(o.tecnicas) ? o.tecnicas.slice(0, 10).map((x) => ({ nome: txt(x?.nome, "Técnica"), dados: txt(x?.dados, "2d6"), custo: num(x?.custo, 0, 0, 999), atr: em(x?.atr, ["for", "des", "con", "men", "esp"] as const, "esp"), texto: txt(x?.texto) })) : [],
     texto: txt(o.texto),
     ...(refValida(o.modelo) ? { modelo: { tipo: o.modelo!.tipo, id: o.modelo!.id } } : {}),
-    ...(categoria === "shinigami" ? normalizarAntes(o.antes) : {}),
+    ...(categoria === "shinigami" ? normalizarEtapas(o.antes, (o as { mascara?: unknown }).mascara) : {}),
   };
 }
 
@@ -402,18 +510,24 @@ const refValida = (r: unknown): r is RefModeloNpc => {
   return !!x && typeof x === "object" && TIPOS_MODELO_NPC.includes(x.tipo as RefModeloNpc["tipo"]) && typeof x.id === "string" && x.id.length > 0 && x.id.length <= 60;
 };
 
-/** Etapa anterior vinda do banco; inválida ou ausente = sem etapa anterior. */
-function normalizarAntes(raw: unknown): { antes?: EtapaAnterior } {
-  const o = (raw && typeof raw === "object" ? raw : null) as Partial<EtapaAnterior> | null;
-  if (!o) return {};
-  const bonusCr = num(o.bonusCr, 0, -5, 10);
-  if (o.tipo === "modelo" && refValida(o.modelo)) return { antes: { tipo: "modelo", nome: txt(o.nome, "Shikai").slice(0, 60) || "Shikai", modelo: { tipo: o.modelo.tipo, id: o.modelo.id }, bonusCr } };
-  if (o.tipo === "mascara" && MASCARAS.some((x) => x.id === o.mascara)) {
-    const m = o.mascara as TipoMascara;
-    const nome = MASCARAS.find((x) => x.id === m)?.nome ?? "Máscara Hollow";
-    return { antes: { tipo: "mascara", nome: txt(o.nome, nome).slice(0, 60) || nome, mascara: m, bonusCr } };
-  }
-  return {};
+/** Máscara vinda do banco ({ mascara, nome, bonusCr }); inválida = nenhuma. */
+function normalizarMascara(raw: unknown): MascaraNpc | undefined {
+  const o = (raw && typeof raw === "object" ? raw : null) as { mascara?: unknown; nome?: unknown; bonusCr?: unknown } | null;
+  if (!o || !MASCARAS.some((x) => x.id === o.mascara)) return undefined;
+  const m = o.mascara as TipoMascara;
+  const nome = MASCARAS.find((x) => x.id === m)?.nome ?? "Máscara Hollow";
+  return { mascara: m, nome: txt(o.nome, nome).slice(0, 60) || nome, bonusCr: num(o.bonusCr, 0, -5, 10) };
+}
+
+/** Shikai (etapa anterior) e máscara vindas do banco; inválidas ou ausentes = sem elas.
+ *  NPCs antigos guardavam a máscara em `antes` ({ tipo: "mascara" }): ela passa para `mascara` sem perder nome nem CR extra. */
+function normalizarEtapas(rawAntes: unknown, rawMascara: unknown): { antes?: EtapaAnterior; mascara?: MascaraNpc } {
+  const o = (rawAntes && typeof rawAntes === "object" ? rawAntes : null) as { tipo?: unknown; nome?: unknown; modelo?: unknown; mascara?: unknown; bonusCr?: unknown } | null;
+  const r: { antes?: EtapaAnterior; mascara?: MascaraNpc } = {};
+  if (o && o.tipo === "modelo" && refValida(o.modelo)) r.antes = { tipo: "modelo", nome: txt(o.nome, "Shikai").slice(0, 60) || "Shikai", modelo: { tipo: o.modelo.tipo, id: o.modelo.id }, bonusCr: num(o.bonusCr, 0, -5, 10) };
+  const mascara = normalizarMascara(rawMascara) ?? (o && o.tipo === "mascara" ? normalizarMascara(o) : undefined);
+  if (mascara) r.mascara = mascara;
+  return r;
 }
 
 export function normalizarAmeaca(raw: unknown): Ameaca {

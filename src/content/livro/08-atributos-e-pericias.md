@@ -54,17 +54,17 @@ Vantagem e Desvantagem não se acumulam. Se você receber vantagem ou desvantage
 
 ### Tabela de Dificuldades
 
-A tabela de CDs acima continua sendo a referência. Estas são as chances de sucesso com d20 + atributo principal + proficiência, sem Essências:
+A tabela de CDs acima continua sendo a referência. Estas são as chances de sucesso com d20 + atributo principal + proficiência, sem Essências. Elas já contam o **20 natural**, que passa em qualquer teste, e o **1 natural**, que sempre falha (Capítulo 0, "Crítico"): por isso nenhuma chance fica abaixo de 5% nem acima de 95%.
 
 | Nível (bônus) | CD 15 | CD 20 | CD 25 | CD 30 | CD 35 | CD 40 | CD 45 |
 |---|---|---|---|---|---|---|---|
-| 1 (+6) | 60% | 35% | 10% | 0% | 0% | 0% | 0% |
-| 5 (+9) | 75% | 50% | 25% | 0% | 0% | 0% | 0% |
-| 10 (+12) | 90% | 65% | 40% | 15% | 0% | 0% | 0% |
-| 15 (+16) | 100% | 85% | 60% | 35% | 10% | 0% | 0% |
-| 20 (+19) | 100% | 100% | 75% | 50% | 25% | 0% | 0% |
+| 1 (+6) | 60% | 35% | 10% | 5% | 5% | 5% | 5% |
+| 5 (+9) | 75% | 50% | 25% | 5% | 5% | 5% | 5% |
+| 10 (+12) | 90% | 65% | 40% | 15% | 5% | 5% | 5% |
+| 15 (+16) | 95% | 85% | 60% | 35% | 10% | 5% | 5% |
+| 20 (+19) | 95% | 95% | 75% | 50% | 25% | 5% | 5% |
 
-- Sem Essências, ninguém passa de CD 35.
+- Sem Essências, acima de CD 35 só o 20 natural passa (5%).
 - Grão Mestre dá expertise: dobro da proficiência em 3 perícias, e mais 2, 2, 3 e 3 perícias nas etapas seguintes.
 - Essências fazem parte do poder esperado do personagem. Avise a mesa disso: quem joga sem Essências fica atrás nos níveis altos.
 

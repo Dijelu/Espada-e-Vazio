@@ -20,12 +20,17 @@ export default function Capitulo() {
   const cap = capitulos[idx];
   const [md, setMd] = useState<string | null>(null);
   const [ativo, setAtivo] = useState<string>("");
+  const [falhou, setFalhou] = useState(false);
+  const [tentativa, setTentativa] = useState(0);
 
   useEffect(() => {
     setMd(null);
     setAtivo("");
-    if (cap) carregarCapitulo(cap).then(setMd);
-  }, [cap]);
+    setFalhou(false);
+    let vivo = true; // ignora a resposta de um capítulo anterior
+    if (cap) carregarCapitulo(cap).then((t) => { if (vivo) setMd(t); }, () => { if (vivo) setFalhou(true); });
+    return () => { vivo = false; };
+  }, [cap, tentativa]);
 
   useEffect(() => {
     if (md === null) return;
@@ -114,7 +119,13 @@ export default function Capitulo() {
         <div className="kicker">{kicker}</div>
         <h1>{cap.title}</h1>
         {md === null ? (
-          <p>Carregando…</p>
+          falhou ? (
+            <p className="aviso" role="alert">
+              Não foi possível abrir este capítulo. <button type="button" className="btn btn-red" onClick={() => setTentativa((n) => n + 1)}>Tentar de novo</button>
+            </p>
+          ) : (
+            <p>Carregando…</p>
+          )
         ) : (
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}

@@ -688,7 +688,7 @@ export const RESURRECCIONES_MONTADAS: ModeloResHollow[] = [
    {
     "nome": "Golpe Fantasma: Passo do Bailarino",
     "acao": "Ação",
-    "dano": "[NIV/2-3]d10+[2*DES]",
+    "dano": "[NIV/2+3]d10+[2*DES]",
     "regra": "Técnica de assinatura do Caminho Sonido (regra do livro): um ataque com vantagem e crítico com 19–20; substitui os ataques da ação. Custo 12 PR.",
     "desc": "Ele rodopia e reaparece por trás, com o pé já descendo.",
     "modelo": "",
@@ -905,6 +905,178 @@ export const RESURRECCIONES_MONTADAS: ModeloResHollow[] = [
    }
   ],
   "ppGasto": 18
+ },
+ {
+  "id": "murcielago",
+  "nome": "Murciélago",
+  "dono": "Ulquiorra Cifer",
+  "classe": "vazio",
+  "caminho": "Ilusión",
+  "canonica": true,
+  "resumo": "O morcego da noite sem fim: asas negras, lança de luz verde, regeneração quase instantânea e um olhar que apaga a esperança. Base do modelo do livro (cap. 03) e da Segunda Etapa de Ulquiorra.",
+  "tema": "Desespero, noite e lança de luz",
+  "comando": "Aprisione, Murciélago.",
+  "aparencia": "Uma chuva de reiatsu verde e negro cai do céu. Ele surge com grandes asas negras de morcego, o casaco alongado em um manto, o capacete ósseo partido em dois chifres e as lágrimas negras descendo até o queixo. Os olhos ficam verdes, com as pupilas amarelas.",
+  "traco": "Asas Negras: voo igual ao deslocamento (modelo do livro) e o céu escurece em volta dele.",
+  "efeitos": [
+   {
+    "id": "rs-asas"
+   },
+   {
+    "id": "rs-escuro"
+   },
+   {
+    "id": "rs-regen"
+   },
+   {
+    "id": "rs-hierro"
+   },
+   {
+    "id": "rs-forca",
+    "param": {
+     "atr": "esp"
+    }
+   },
+   {
+    "id": "rs-sonido-selvagem"
+   },
+   {
+    "id": "rs-instinto"
+   },
+   {
+    "id": "rs-presa"
+   },
+   {
+    "id": "rs-uivo"
+   }
+  ],
+  "pontoFraco": "pg-luz",
+  "habilidades": [
+   {
+    "nome": "Mundo Quebrado: Desespero",
+    "acao": "Ação",
+    "dano": "",
+    "regra": "Técnica de assinatura do Caminho Ilusión (regra do livro): alvo a 24 m, salvaguarda de Constituição; na falha, desvantagem nos ataques e sem reações até o fim do próximo turno dele. Custo 12 PR.",
+    "desc": "O céu escurece e o alvo não acha mais nenhuma referência: nem chão, nem horizonte, nem saída.",
+    "modelo": "",
+    "fixa": true,
+    "prFixo": 12
+   },
+   {
+    "nome": "Luz de la Luna",
+    "acao": "Ação bônus",
+    "dano": "[NIV/4+2]d10+[ESP]",
+    "regra": "Cria uma lança curta de luz verde e a usa como espada ou a arremessa a até 18 m.",
+    "desc": "A lança nasce na palma num gesto, já girando.",
+    "modelo": "Ataque básico",
+    "fixa": false
+   },
+   {
+    "nome": "Cero Verde",
+    "acao": "Ação",
+    "dano": "[NIV/2+3]d10+[ESP]",
+    "regra": "Linha de 24 m: salvaguarda de Destreza, metade no sucesso. Ignora o Hierro.",
+    "desc": "Um Cero verde sai da ponta do dedo e rasga o céu escuro.",
+    "modelo": "Golpe em área",
+    "fixa": false
+   },
+   {
+    "nome": "Asas que se Fecham",
+    "acao": "Reação",
+    "dano": "",
+    "regra": "Quando um ataque à distância o atinge: as asas se fecham e o dano cai em proficiência d8.",
+    "desc": "As asas o envolvem como um casulo negro e se abrem de novo, intactas.",
+    "modelo": "Defesa",
+    "fixa": false
+   }
+  ],
+  "ppGasto": 16
+ },
+ {
+  "id": "pantera",
+  "nome": "Pantera",
+  "dono": "Grimmjow Jaegerjaquez",
+  "classe": "hueco",
+  "caminho": "Sonido",
+  "canonica": true,
+  "resumo": "O rei predador: corpo de felino, garras que rasgam o ar em cinco lâminas e espinhos disparados dos braços. Base do modelo do livro (cap. 03) e da Segunda Etapa Rei Felino.",
+  "tema": "Caçada, garras e velocidade",
+  "comando": "Rasgue, Pantera.",
+  "aparencia": "Um rugido levanta poeira e vento. Ele surge esguio, com orelhas de felino, cabelo longo, a máscara reduzida a uma crista na testa, armadura branca leve, cauda e garras de osso longas nas mãos e nos pés. Lâminas curvas saem dos antebraços e das panturrilhas.",
+  "traco": "Salto de Pantera: deslocamento +6 m e Desengajar como ação livre uma vez por turno (modelo do livro).",
+  "efeitos": [
+   {
+    "id": "rs-pantera"
+   },
+   {
+    "id": "rs-garra"
+   },
+   {
+    "id": "rs-presa",
+    "param": {
+     "n": 2
+    }
+   },
+   {
+    "id": "rs-forca",
+    "param": {
+     "atr": "des"
+    }
+   },
+   {
+    "id": "rs-hierro"
+   },
+   {
+    "id": "rs-sonido-selvagem"
+   },
+   {
+    "id": "rs-primeiro"
+   },
+   {
+    "id": "rs-instinto"
+   }
+  ],
+  "pontoFraco": "pf-guarda",
+  "habilidades": [
+   {
+    "nome": "Golpe Fantasma: Caçada",
+    "acao": "Ação",
+    "dano": "[NIV/2+3]d10+[2*DES]",
+    "regra": "Técnica de assinatura do Caminho Sonido (regra do livro): um ataque com vantagem e crítico com 19–20; substitui os ataques da ação. Custo 12 PR.",
+    "desc": "Ele some e as garras chegam de várias direções ao mesmo tempo.",
+    "modelo": "",
+    "fixa": true,
+    "prFixo": 12
+   },
+   {
+    "nome": "Desgarrón",
+    "acao": "Ação",
+    "dano": "[NIV/2+3]d10+[DES]",
+    "regra": "Cinco lâminas de reiatsu azul saem das garras num cone de 9 m: salvaguarda de Destreza, metade no sucesso.",
+    "desc": "As unhas brilham e cinco rasgos azuis cortam o ar e o chão.",
+    "modelo": "Golpe em área",
+    "fixa": false
+   },
+   {
+    "nome": "Garra de la Pantera",
+    "acao": "Ação bônus",
+    "dano": "[NIV/4+2]d10+[DES]",
+    "regra": "Dispara os espinhos dos antebraços como projéteis contra um alvo a até 18 m.",
+    "desc": "As lâminas dos braços se soltam como dardos e voltam a crescer.",
+    "modelo": "Ataque básico",
+    "fixa": false
+   },
+   {
+    "nome": "Couro de Pantera",
+    "acao": "Reação",
+    "dano": "",
+    "regra": "Quando um golpe corpo a corpo o atinge: o dano cai em proficiência d8 e você pode se mover 3 m sem provocar ataques.",
+    "desc": "Ele torce o corpo no último instante e o golpe só raspa a armadura.",
+    "modelo": "Defesa",
+    "fixa": false
+   }
+  ],
+  "ppGasto": 17
  }
 ];
 

@@ -23,6 +23,8 @@ export interface DadosNpc {
   liberado: boolean;
   /** etapa anterior (Shikai, Máscara Hollow) ativa; nunca junto com `liberado` */
   antes?: boolean;
+  /** Máscara Hollow ativa (soma por cima de qualquer forma) */
+  mascara?: boolean;
 }
 
 export interface Npc {
@@ -57,6 +59,7 @@ export function normalizarNpc(d: Partial<DadosNpc> | null): DadosNpc {
     pasta: typeof o.pasta === "string" ? o.pasta.slice(0, 60) : "",
     liberado: o.liberado === true,
     ...(o.antes === true && o.liberado !== true ? { antes: true } : {}),
+    ...(o.mascara === true ? { mascara: true } : {}),
   };
 }
 
@@ -119,6 +122,22 @@ export async function listarNpcs(id: string): Promise<Npc[]> {
   const { data, error } = await banco().from("npcs").select("id,name,data").eq("campaign_id", id).order("created_at");
   if (error) throw error;
   return (data as { id: string; name: string; data: Partial<DadosNpc> }[]).map((l) => ({ id: l.id, nome: l.name, dados: normalizarNpc(l.data) }));
+}
+
+/**
+ * O que o JOGADOR vê dos NPCs: só os revelados, sem notas, PV/PR atuais e pasta.
+ * Lê pela função `npcs_revelados` do banco, nunca a tabela direto. Se a função falhar, lança erro
+ * (quem chama mostra lista vazia e um aviso; não há outro caminho para os dados).
+ */
+export async function listarNpcsRevelados(id: string): Promise<Npc[]> {
+  const { data, error } = await banco().rpc("npcs_revelados", { cid: id });
+  if (error) throw error;
+  if (!Array.isArray(data)) return [];
+  return (data as { id: string; name: string; data: Partial<DadosNpc> | null }[])
+    .map((l) => ({ id: l.id, nome: l.name, dados: normalizarNpc({ ...(l.data ?? {}), revelado: l.data?.revelado !== false }) }))
+    .filter((n) => n.dados.revelado)
+    // segurança extra: mesmo que algo escape do banco, não guarda o que é só do Mestre
+    .map((n) => ({ ...n, dados: { ...n.dados, notas: "", pvAtual: null, prAtual: null, pasta: "" } }));
 }
 
 export async function criarNpc(campanhaId: string, nome: string, ameaca?: Ameaca): Promise<Npc> {

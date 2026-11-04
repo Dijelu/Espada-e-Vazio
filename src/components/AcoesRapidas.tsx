@@ -24,6 +24,8 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
   const temMascara = f.origem === "visored" && f.treinos.feitos.includes("visored-2");
   useEffect(() => { if (temMascara) precarregarMascaras(); }, [temMascara]);
   const setE = (p: Partial<Ficha["estado"]>) => alterar({ estado: { ...f.estado, ...p } });
+  /** Máscara Hollow posta: independente da forma ativa (pode estar junto da Shikai/Bankai) */
+  const masc = !!mascaraAtiva(f);
 
   const aplicarDano = () => {
     const n = Math.floor(Number(dano));
@@ -56,7 +58,7 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
     alterar({
       pvAtual: c.pv,
       prAtual: c.pr,
-      estado: { ...f.estado, pvTemp: 0, curtosUsados: 0, ultimoFolegoUsado: false, liberado: "", usos: {}, condicoes: e.condicoes.filter((x) => x !== "Esgotado") },
+      estado: { ...f.estado, pvTemp: 0, curtosUsados: 0, ultimoFolegoUsado: false, liberado: "", mascaraAtiva: false, usos: {}, condicoes: e.condicoes.filter((x) => x !== "Esgotado") },
     });
     setMsg("Descanso longo: PV e PR cheios, descansos curtos e habilidades renovados.");
   };
@@ -65,7 +67,11 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
     // fim do combate: habilidades por combate voltam e a liberação termina
     const usos = { ...f.estado.usos };
     delete usos["ultimo-folego"];
-    alterar({ estado: { ...f.estado, ...encerrarForma(), usos: { ...encerrarForma().usos, ...usos } } });
+    const fim = encerrarForma();
+    const todos = { ...fim.usos, ...usos };
+    // a máscara também se desfaz no fim do combate (sem recarga nem Esgotado); os PR temporários dela saem
+    if (masc) delete todos["mascara-turnos"];
+    alterar({ ...(masc ? { prAtual: Math.min(c.pr, f.prAtual) } : {}), estado: { ...f.estado, ...fim, usos: todos, mascaraAtiva: false } });
     setMsg("Combate encerrado: habilidades de uso por combate renovadas.");
   };
 
@@ -177,12 +183,14 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
     delete usos["mascara-turnos"];
     const temp = tempMascara(mascaraAtiva(f));
     const prAtual = temp.pr ? Math.min(c.pr, f.prAtual) : f.prAtual;
+    // tirar a máscara não encerra a forma (só limpa o formato antigo, em que a máscara ocupava a liberação)
+    const semLegado: Partial<Ficha["estado"]> = e.liberado === "mascara" ? { liberado: "" } : {};
     if (porTempo) {
-      alterar({ prAtual, estado: { ...f.estado, liberado: "", usos, condicoes: e.condicoes.includes("Esgotado") ? e.condicoes : [...e.condicoes, "Esgotado"] } });
+      alterar({ prAtual, estado: { ...f.estado, ...semLegado, mascaraAtiva: false, usos, condicoes: e.condicoes.includes("Esgotado") ? e.condicoes : [...e.condicoes, "Esgotado"] } });
       setMsg("O tempo da máscara acabou: ela se desfez e você ficou Esgotado.");
     } else {
       usos["mascara-recarga"] = Math.max(1, 2 * mascaraGasta);
-      alterar({ prAtual, estado: { ...f.estado, liberado: "", usos } });
+      alterar({ prAtual, estado: { ...f.estado, ...semLegado, mascaraAtiva: false, usos } });
       setMsg(`Máscara retirada: em recarga por ${usos["mascara-recarga"]} turno(s). Você não ficou Esgotado.`);
     }
   };
@@ -197,14 +205,14 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
     alterar({
       prAtual: Math.max(0, f.prAtual - custo) + Math.floor(c.pr * t.pr),
       treinos: { ...f.treinos, mascaraMax: max },
-      estado: { ...f.estado, liberado: "mascara", usos, pvTemp: Math.max(e.pvTemp, Math.floor(c.pv * t.pv)) },
+      estado: { ...f.estado, mascaraAtiva: true, usos, pvTemp: Math.max(e.pvTemp, Math.floor(c.pv * t.pv)) },
     });
     som.corte();
     dispararLiberacao("mascara", MASCARAS.find((m) => m.id === tr.mascara)?.nome, tr.mascaraAparencia?.trim() || undefined, tr.mascaraFoto || undefined);
     setMsg(`Máscara ativada (${custo} PR). Ela dura ${max} turno(s), contando este.`);
   };
   const novoTurnoMascara = () => {
-    if (e.liberado === "mascara") {
+    if (masc) {
       const gasta = mascaraGasta + 1;
       if (gasta > (tr.mascaraMax ?? 1)) return tirarMascara(true);
       setE({ usos: { ...e.usos, "mascara-turnos": gasta } });
@@ -221,7 +229,7 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
   };
 
   const liberar = (id: Liberacao) => {
-    if (id === "mascara") return e.liberado === "mascara" ? tirarMascara(false) : ativarMascara();
+    if (id === "mascara") return masc ? tirarMascara(false) : ativarMascara();
     if (e.liberado === id) {
       const fim = encerrarForma();
       setE(fim);
@@ -268,12 +276,12 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
         <div className="acoes-linha">
           <b>Liberação:</b>
           {libs.map((l) => (
-            <button key={l.id} type="button" className={`chip chip-btn ${e.liberado === l.id ? "on" : ""}`} aria-pressed={e.liberado === l.id} onClick={() => liberar(l.id)}>
+            <button key={l.id} type="button" className={`chip chip-btn ${(l.id === "mascara" ? masc : e.liberado === l.id) ? "on" : ""}`} aria-pressed={l.id === "mascara" ? masc : e.liberado === l.id} title={l.id === "mascara" ? "Pode pôr ou tirar a qualquer momento; soma aos efeitos da forma ativa." : undefined} onClick={() => liberar(l.id)}>
               {l.nome}{custoLib(l.id) ? ` (${custoLib(l.id)} PR)` : ""}
             </button>
           ))}
           {temTurnoDeForma && <button type="button" className="chip chip-btn" onClick={proximoTurno}>Novo turno{e.liberado === "terror" ? " (−2 PR)" : ""}</button>}
-          {e.liberado && <span className="ajuda">CR atual {c.cr}.</span>}
+          {(e.liberado || masc) && <span className="ajuda">CR atual {c.cr}.</span>}
         </div>
       )}
 
@@ -281,9 +289,9 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
         <details className="painel-mascara" open>
           <summary>
             <b>Máscara Hollow</b>
-            {e.liberado === "mascara" && <span className="chip on">ativa · turno {mascaraGasta} de {tr.mascaraMax ?? 1}</span>}
+            {masc && <span className="chip on">ativa · turno {mascaraGasta} de {tr.mascaraMax ?? 1}</span>}
             {mascaraRecarga > 0 && <span className="chip">recarga {mascaraRecarga}</span>}
-            {tr.mascara && e.liberado !== "mascara" && mascaraRecarga === 0 && <small className="ajuda">{MASCARAS.find((m) => m.id === tr.mascara)?.nome}</small>}
+            {tr.mascara && !masc && mascaraRecarga === 0 && <small className="ajuda">{MASCARAS.find((m) => m.id === tr.mascara)?.nome}</small>}
           </summary>
           <div className="acoes-linha">
             <select value={tr.mascara ?? ""} disabled={!!tr.mascara} onChange={(ev) => setTreinos({ mascara: ev.target.value as TipoMascara })} aria-label="Máscara Hollow">
@@ -291,7 +299,7 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
               {MASCARAS.map((m) => <option key={m.id} value={m.id}>{m.nome}</option>)}
             </select>
             <span className="ajuda">{tr.mascaraMax ? `Dura ${tr.mascaraMax} turno(s)` : "Tempo ainda não definido (1d4 na primeira vez)"}</span>
-            {e.liberado === "mascara" && <span className="chip on">Turno {mascaraGasta} de {tr.mascaraMax ?? 1}</span>}
+            {masc && <span className="chip on">Turno {mascaraGasta} de {tr.mascaraMax ?? 1}</span>}
             {mascaraRecarga > 0 && <span className="chip">Recarga: {mascaraRecarga} turno(s)</span>}
           </div>
           {tr.mascara && <p className="ajuda">{MASCARAS.find((m) => m.id === tr.mascara)?.texto}</p>}
@@ -313,7 +321,7 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
             <textarea rows={2} maxLength={220} value={tr.mascaraAparencia ?? ""} onChange={(ev) => setTreinos({ mascaraAparencia: ev.target.value })} placeholder="Ex.: osso branco rachado ao meio, uma faixa vermelha cortando o olho esquerdo e dentes à mostra." />
           </label>
           <div className="acoes-linha">
-            {(e.liberado === "mascara" || mascaraRecarga > 0) && <button type="button" className="chip chip-btn" onClick={novoTurnoMascara}>Novo turno</button>}
+            {(masc || mascaraRecarga > 0) && <button type="button" className="chip chip-btn" onClick={novoTurnoMascara}>Novo turno</button>}
             {tr.mascaraMax ? <button type="button" className="chip chip-btn" onClick={treinarMascara}>Ampliar tempo (teste de Determinação passou)</button> : null}
           </div>
         </details>

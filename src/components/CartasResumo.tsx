@@ -2,6 +2,7 @@ import { useState } from "react";
 import { CONDICAO_TEXTO } from "../regras/catalogo";
 import { efeitosContinuos, habilidadesDaFicha, usosRestantes } from "../regras/habilidades";
 import { mod, type Calculo, type Ficha } from "../regras/ficha";
+import { mascaraAtiva } from "../regras/mascara";
 import { ESCALA, idSituacao, situacoesDaFicha } from "../regras/situacionais";
 import { CUSTO_SCHRIFT, estagioSchrift } from "../regras/schrifts";
 import { Passo } from "./FichaPecas";
@@ -60,7 +61,8 @@ export function EfeitosAtivos({ f, c }: { f: Ficha; c: Calculo }) {
   if (c.iniciativa !== c.atr.des) chips.push(`Iniciativa com Mente (${mod(c.iniciativa)})`);
   if (c.desloc !== 9) chips.push(`Deslocamento ${c.desloc} m`);
   if (c.cdKido !== c.cd) chips.push(`CD dos Kidōs ${c.cdKido}`);
-  if (f.estado.liberado) chips.push(`Liberação: ${{ shikai: "Shikai", bankai: "Bankai", bankai2: "Bankai Verdadeira", resurreccion: "Resurrección", terror: "Segunda Etapa", vollstandig: "Vollständig", mascara: "Máscara Hollow", "": "" }[f.estado.liberado]}`);
+  if (mascaraAtiva(f)) chips.push("Liberação: Máscara Hollow");
+  if (f.estado.liberado && f.estado.liberado !== "mascara") chips.push(`Liberação: ${{ shikai: "Shikai", bankai: "Bankai", bankai2: "Bankai Verdadeira", resurreccion: "Resurrección", terror: "Segunda Etapa", vollstandig: "Vollständig", mascara: "Máscara Hollow", "": "" }[f.estado.liberado]}`);
 
   return (
     <div className="caixa">

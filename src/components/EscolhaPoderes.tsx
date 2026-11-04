@@ -14,8 +14,8 @@ import {
   treinoConcluido,
   tecnicasConhecidas,
 } from "../regras/catalogo";
-import { classePorId, type Ficha } from "../regras/ficha";
-import { Dica } from "./Dica";
+import { ATR_KIDO_LIVRO, classePorId, type Ficha } from "../regras/ficha";
+import { Dica, Info } from "./Dica";
 import { formaPendente } from "../regras/liberacoes";
 import { SCHRIFTS, NIVEL_SCHRIFT, schriftPendente } from "../regras/schrifts";
 import { melhoriasDoNivel, melhoriasPendentes, podeMelhorar, TIPOS_MELHORIA, type TipoMelhoria } from "../regras/melhorias";
@@ -161,6 +161,14 @@ export function EscolhaPoderes({ f, mudar }: { f: Ficha; mudar: (p: Partial<Fich
             {f.kidos.length} de {maxKidos} conhecido(s) · até o rank {rank}
             {pend.kidos > 0 ? ` · faltam ${pend.kidos}` : ""}
           </p>
+          <label className="atr-kido">
+            Atributo do Kidō{" "}
+            <select value={f.atrKido === "men" ? "men" : "esp"} onChange={(e) => mudar({ atrKido: e.target.value === "men" ? "men" : "esp" })}>
+              <option value="esp">Espírito</option>
+              <option value="men">Mente</option>
+            </select>
+          </label>{" "}
+          <Info>{`Vale para o acerto, a CD e o dano dos seus Hadōs e Bakudōs. O livro indica Mente para Tokubetsu, Hakuda, Kidōshū e Kyūgo, e Espírito para o Zanjutsu${ATR_KIDO_LIVRO[f.classe] && f.atrKido !== ATR_KIDO_LIVRO[f.classe] ? ` (para ${classe.nome}, o livro indica ${ATR_KIDO_LIVRO[f.classe] === "men" ? "Mente" : "Espírito"})` : ""}.`}</Info>
           {f.kidos.length > 0 && (
             <div className="chips">
               {f.kidos.map((k) => (

@@ -95,7 +95,7 @@
   {
    "id": "pressao-espiritual",
    "nome": "Pressão Espíritual",
-   "texto": "Você pode com uma ação livre utilizar a ação \"Liberar Reaitsu\". Todas as criaturas dentro da área da técnica devem realizar um Teste de Resistência de Mente com a classe de dificuldade sendo 12 + sua proficiência + seu atributo de Espírito. Se falharem no teste, além da condição \"Amendrontas\" elas ficam paralisadas por 1 turno e as que passarem perdem metade do deslocamento delas. Você pode utilizar essa habilidade como uma ação livre duas vezes e recupera seus usos com um descanso longo.",
+   "texto": "Você pode com uma ação livre utilizar a ação \"Liberar Reaitsu\". Todas as criaturas dentro da área da técnica devem realizar um Teste de Resistência de Mente com a classe de dificuldade sendo 12 + sua proficiência + seu atributo de Espírito. Se falharem no teste, além da condição \"Amedrontado\" elas ficam paralisadas por 1 turno e as que passarem perdem metade do deslocamento delas. Você pode utilizar essa habilidade como uma ação livre duas vezes e recupera seus usos com um descanso longo.",
    "nivel": 1,
    "req": "",
    "grupo": "",
@@ -824,8 +824,8 @@
    "id": "marcial",
    "nome": "Marcial",
    "texto": "Você adquiri duas técnicas adicionais de Hakuda. Essa habilidade pode ser escolhida mais vezes.",
-   "nivel": 1,
-   "req": "",
+   "nivel": 3,
+   "req": "3° nível de Hakuda.",
    "grupo": "",
    "pre": []
   },
@@ -1798,15 +1798,6 @@
    ]
   },
   {
-   "id": "foco-estavel",
-   "nome": "Foco Estável",
-   "texto": "Você não sofre mais a penalidade de deslocamento imposta pela característica \"Mira Impecável\".",
-   "nivel": 1,
-   "req": "",
-   "grupo": "",
-   "pre": []
-  },
-  {
    "id": "guarda",
    "nome": "Guarda",
    "texto": "Quando uma criatura dentro de um raio de 9 metros de você se deslocar em sua direção, desde que não seja por um deslocamento instantâneo, você pode usar sua reação para realizar um único ataque com arma à distância contra ela.",
@@ -1852,6 +1843,15 @@
    "texto": "Você pode conjurar mais de uma Técnica de Reishi durante o seu turno. Quando usar um Kido com sua \"Ação\", pode conjurar um segundo Kido que também exija uma Ação. Você ainda deve respeitar outros requisitos e não pode conjurar Técnicas de Reishi iguais com essa habilidade.",
    "nivel": 5,
    "req": "5° nível de Schütze.",
+   "grupo": "",
+   "pre": []
+  },
+  {
+   "id": "foco-estavel",
+   "nome": "Foco Estável",
+   "texto": "Você não sofre mais a penalidade de deslocamento imposta pela característica \"Mira Impecável\", mas ainda não pode usar Deslocamento Instantâneo no mesmo turno.",
+   "nivel": 2,
+   "req": "2° nível de Schütze e habilidade de Schütze \"Mira Impecável\".",
    "grupo": "",
    "pre": []
   },
@@ -2976,15 +2976,6 @@
    "texto": "ação, 6 PR. Você ou um aliado a 6 m recupera 1d8 + Espírito por prof. em PV (3 vezes por descanso longo).",
    "nivel": 5,
    "req": "5º nível",
-   "grupo": "Reserva e utilidade",
-   "pre": []
-  },
-  {
-   "id": "atencao",
-   "nome": "Atenção",
-   "texto": "os efeitos que reduzem RD ou dão resistência (Couraça Óssea, Hierro Reativo, o Caminho Glotonería, Toxina Corrosiva e outros) seguem a regra de uma Essência de redução por tipo de dano. O Mestre deve ficar atento a pacotes de talentos defensivos que acumulem demais.",
-   "nivel": 1,
-   "req": "",
    "grupo": "Reserva e utilidade",
    "pre": []
   },

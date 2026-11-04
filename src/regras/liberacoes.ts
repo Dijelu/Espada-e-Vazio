@@ -171,7 +171,7 @@ export function picksVoll(classeId: string, nivel: number): number {
   return nivel >= (classeId === "ritter" ? 17 : 18) ? 6 : 4;
 }
 
-export const totalPicks = (p: Record<string, number>) => Object.values(p).reduce((a, b) => a + b, 0);
+export const totalPicks = (p: Record<string, number> | null | undefined) => Object.values(p ?? {}).reduce((a, b) => a + (Number(b) || 0), 0);
 
 export const TIPO_FORMA_NOME: Record<TipoForma, string> = {
   shikai: "Shikai",
@@ -200,8 +200,8 @@ export function formaPendente(f: { classe: string; nivel: number; formas?: Parti
     if (t === "segunda" && !segundaLiberada(f)) continue;
     const forma = f.formas?.[t];
     // sem o treinamento concluído, a montagem ainda não é oferecida
-    if ((!forma || !forma.nome.trim()) && !treinoOk(t)) continue;
-    if (!forma || !forma.nome.trim()) return t;
+    if ((!forma || !forma.nome?.trim()) && !treinoOk(t)) continue;
+    if (!forma || !forma.nome?.trim()) return t;
     if (t === "vollstandig" && totalPicks(forma.picks) < picksVoll(f.classe, f.nivel)) return t;
   }
   return null;
@@ -320,7 +320,7 @@ export const custoBankai = (f: Ficha) => {
 
 /** Habilidades da forma: as que estão salvas, ou as do modelo pronto se ainda não foram copiadas. */
 export function habilidadesDaForma(forma: FormaLib): HabForma[] {
-  if (forma.habilidades.length > 0) return forma.habilidades;
+  if (forma.habilidades?.length > 0) return forma.habilidades;
   return acoesDaForma(forma).map((a) => ({ id: "m-" + a.nome, nome: a.nome, texto: a.texto, custo: `${a.pr} PR`, acao: a.acao, pr: a.pr, prExpr: a.prExpr, dano: a.dano }));
 }
 

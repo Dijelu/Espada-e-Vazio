@@ -29,6 +29,10 @@ export interface DanoHado {
   ignoraRd: number;
   /** o dano soma o total de reiatsu do usuário (Ittoukasou) */
   somaReiatsu: boolean;
+  /** quantos aprimoramentos cabem no Kidō: metade da proficiência (cap. 11); a proficiência inteira no Kidōshū (Estudos Avançados) */
+  limite: number;
+  /** aprimoramentos que não gastam PR (Estudos Avançados do Kidōshū: 1), mas contam no limite */
+  gratis: number;
 }
 
 const RE_DANO = /(\d+)d(\d+)(?=\s+(?:pontos\s+)?de\s+dano)/i;
@@ -70,6 +74,8 @@ export function danoDoHado(f: Ficha, c: Calculo, k: { tipo?: string; n: number; 
     critico19: acerto && f.classe === "kidoshu" && f.talentos.includes("alinhamento"),
     ignoraRd: Math.max(bf?.ignoraRd[alvo] ?? 0, f.classe === "kidoshu" ? (f.talentos.includes("perfuracao-arcana") || (!bakudou && f.talentos.includes("perfuracao-elemental")) ? 5 : 0) : 0),
     somaReiatsu: k.n === 96,
+    limite: limiteAprimoramento(f.classe, c.prof),
+    gratis: f.classe === "kidoshu" ? 1 : 0,
   };
 }
 
@@ -90,8 +96,16 @@ export function mediaHado(d: DanoHado, passos: number, prMax: number): number {
   return forma + media(d.n + d.dadosMascara, d.lados) + (d.reforco ? media(d.reforco.n * passos, d.reforco.lados) : 0) + d.fixo + (d.somaReiatsu ? prMax : 0);
 }
 
-/** Quantos reforços cabem no PR da ficha (no máximo 8). */
+/** Limite de aprimoramentos de um Kidō (cap. 11, Aprimoramento): metade da proficiência, para baixo; o Kidōshū usa a proficiência inteira (Estudos Avançados, cap. 03). */
+export const limiteAprimoramento = (classe: string, prof: number) => (classe === "kidoshu" ? prof : Math.floor(prof / 2));
+
+/** PR gastos com `passos` aprimoramentos (os gratuitos não custam). */
+export const custoHado = (d: DanoHado, passos: number) => d.custo + Math.max(0, passos - (d.gratis ?? 0)) * (d.reforco?.cada ?? 0);
+
+/** Quantos reforços cabem: o limite de aprimoramentos do livro e o PR da ficha (no máximo 8). */
 export function passosMaximos(d: DanoHado, pr: number): number {
   if (!d.reforco) return 0;
-  return Math.max(0, Math.min(8, Math.floor((pr - d.custo) / d.reforco.cada)));
+  const gratis = d.gratis ?? 0;
+  const peloPr = gratis + Math.floor((pr - d.custo) / d.reforco.cada);
+  return Math.max(0, Math.min(8, d.limite ?? 8, pr < d.custo ? 0 : peloPr));
 }

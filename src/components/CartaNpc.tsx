@@ -2,11 +2,12 @@ import { formaNpc, modelosParaNpc } from "../regras/forma-npc";
 import { MASCARAS, type TipoMascara } from "../regras/mascara";
 import { useState } from "react";
 import {
-  ATRS, CATEGORIAS, ESTILOS, GRAUS, calcularAmeaca, distribuir, efeitosDaLiberacao, etapaDoNpc, liberacaoPadrao, normalizarAmeaca, pontosDeAtributo, resumoEtapaAnterior,
-  type EtapaAnterior, type EtapaNpc, type LiberacaoAmeaca,
+  ATRS, CATEGORIAS, ESTILOS, GRAUS, acoesDoEstado, bonusDaMascara, calcularAmeaca, distribuir, efeitosDaLiberacao, estadoDoNpc, estadoValido, liberacaoPadrao, marcasDoEstado, nomeDoEstado, normalizarAmeaca, pontosDeAtributo, resumoEtapaAnterior, resumoMascara,
+  type EstadoNpc, type EtapaAnterior, type LiberacaoAmeaca, type MascaraNpc,
   type Ameaca, type ChaveAtr, type Categoria, type Modo,
 } from "../regras/ameacas";
 import type { Npc } from "../lib/campanhas";
+import { Info } from "./Dica";
 
 const MODOS: { id: Modo; nome: string; ajuda: string }[] = [
   { id: "comum", nome: "Ameaça comum", ajuda: "Os valores da tabela do livro, sem ajuste." },
@@ -41,12 +42,20 @@ export function CartaNpc({ npc, onMudar, onSalvar, onApagar, onModelo, onDuplica
   const [aberto, setAberto] = useState(false);
   const [aberta, setAberta] = useState(false);
   const [avisoLib, setAvisoLib] = useState("");
+  /** texto da pasta enquanto o Mestre digita; só vale (e muda o NPC de grupo) ao sair do campo */
+  const [pastaEd, setPastaEd] = useState<string | null>(null);
+  /** máscara ligada nesta tela (null = a do NPC salvo); só fica salva quando está sozinha e o NPC não tem Shikai */
+  const [mascaraLocal, setMascaraLocal] = useState<boolean | null>(null);
   const am = npc.dados.ameaca;
   const lib = am.liberacao;
-  const etapa = etapaDoNpc(am, npc.dados.liberado, npc.dados.antes);
-  const liberado = etapa === "liberado";
-  const c = calcularAmeaca(am, etapa);
+  const salvo = estadoDoNpc(am, npc.dados.liberado, npc.dados.antes, npc.dados.mascara);
+  /** forma principal (base, Shikai ou Bankai) + máscara por cima */
+  const estado = estadoValido(am, { forma: salvo.forma, mascara: mascaraLocal ?? salvo.mascara });
+  const liberado = estado.forma === "bankai";
+  const temEtapas = !!(lib.antes || lib.mascara);
+  const c = calcularAmeaca(am, estado);
   const resAntes = lib.existe && lib.antes ? resumoEtapaAnterior(am) : null;
+  const resMasc = lib.existe && lib.mascara ? resumoMascara(am, estado.forma) : null;
   const pv = Math.min(npc.dados.pvAtual ?? c.pv, c.pv);
   const pr = Math.min(npc.dados.prAtual ?? c.pr, c.pr);
   const raid = am.formato === "raid";
@@ -60,7 +69,7 @@ export function CartaNpc({ npc, onMudar, onSalvar, onApagar, onModelo, onDuplica
     mudarDados({ [campo]: Math.max(0, Math.min(max, atual + d)) } as Partial<Npc["dados"]>);
   const fm = formaNpc(am);
   /** forma cujas habilidades aparecem no resumo: a da etapa ativa */
-  const fmAtiva = liberado ? fm : etapa === "antes" ? resAntes?.forma ?? null : null;
+  const fmAtiva = liberado ? fm : estado.forma === "shikai" ? resAntes?.forma ?? null : null;
   const mudarLib = (parte: Partial<LiberacaoAmeaca>, salvar = false) => mudarAmeaca({ liberacao: { ...lib, ...parte } }, salvar);
   const alternarLiberacao = () => {
     if (!liberado) {
@@ -73,23 +82,26 @@ export function CartaNpc({ npc, onMudar, onSalvar, onApagar, onModelo, onDuplica
       setAvisoLib("");
     }
   };
-  /** NPC com etapa anterior: troca de etapa mantendo o PV/PR atual (limitado ao novo máximo; aumento de máximo soma a diferença). */
-  const irParaEtapa = (alvo: EtapaNpc) => {
-    const antes = calcularAmeaca(am, etapa), depois = calcularAmeaca(am, alvo);
-    const ef = alvo === "liberado" ? efeitosDaLiberacao(am) : { dano: 0, tipo: "", curaPv: 0 };
-    const pvN = Math.max(0, Math.min(depois.pv, pv + Math.max(0, depois.pv - antes.pv) + ef.curaPv));
-    const prN = Math.max(0, Math.min(depois.pr, pr + Math.max(0, depois.pr - antes.pr)));
-    mudarDados({ liberado: alvo === "liberado", antes: alvo === "antes", pvAtual: pvN, prAtual: prN });
-    if (alvo === "base") { setAvisoLib(""); return; }
-    const nome = alvo === "liberado" ? lib.nome : lib.antes?.nome ?? "";
-    const extra = alvo === "liberado"
-      ? `${ef.dano > 0 ? ` Todos os inimigos que o vejam sofrem ${ef.dano} de dano ${ef.tipo}.` : ""}${ef.curaPv > 0 ? ` Recupera ${ef.curaPv} PV.` : ""}`
-      : (resAntes?.notas ?? []).filter((n) => n.nome === "Corpo Hollow").map((n) => ` ${n.nome}: ${n.texto}`).join("");
-    setAvisoLib(`${nome}!${extra}`);
+  /** NPC com Shikai e/ou máscara: troca a forma principal (a Bankai substitui a Shikai) e/ou a máscara (soma por cima),
+   *  mantendo o PV/PR atual (limitado ao novo máximo; aumento de máximo soma a diferença). */
+  const trocarEstado = (alvo: EstadoNpc) => {
+    const para = estadoValido(am, alvo);
+    const depois = calcularAmeaca(am, para);
+    const entraBankai = para.forma === "bankai" && estado.forma !== "bankai";
+    const ef = entraBankai ? efeitosDaLiberacao(am) : { dano: 0, tipo: "", curaPv: 0 };
+    const pvN = Math.max(0, Math.min(depois.pv, pv + Math.max(0, depois.pv - c.pv) + ef.curaPv));
+    const prN = Math.max(0, Math.min(depois.pr, pr + Math.max(0, depois.pr - c.pr)));
+    setMascaraLocal(para.mascara);
+    mudarDados({ ...marcasDoEstado(am, para), pvAtual: pvN, prAtual: prN });
+    if (para.forma === "base" && !para.mascara) { setAvisoLib(""); return; }
+    const corpo = para.mascara && !estado.mascara ? bonusDaMascara(am, para.forma).filter((n) => /Corpo Hollow$/.test(n.nome)).map((n) => ` ${n.nome}: ${n.texto}`).join("") : "";
+    const extra = entraBankai ? `${ef.dano > 0 ? ` Todos os inimigos que o vejam sofrem ${ef.dano} de dano ${ef.tipo}.` : ""}${ef.curaPv > 0 ? ` Recupera ${ef.curaPv} PV.` : ""}` : "";
+    setAvisoLib(`${nomeDoEstado(am, para)}!${extra}${corpo}`);
   };
   const mudarAntes = (antes: EtapaAnterior | undefined) => mudarAmeaca({ liberacao: { ...lib, antes } }, true);
+  const mudarMascara = (mascara: MascaraNpc | undefined) => mudarAmeaca({ liberacao: { ...lib, mascara } }, true);
   const shikais = am.categoria === "shinigami" ? modelosParaNpc("shinigami").filter((x) => x.ref.tipo === "shikai") : [];
-  const shikaiPadrao = () => shikais.find((x) => lib.modelo && lib.modelo.id.startsWith(x.ref.id)) ?? shikais[0];
+  const rotuloShikai = (r: string) => `Shikai ${r.split(" · ").slice(1).join(" · ")}`.trim();
   const num = (v: string) => (v === "" ? 0 : Number(v) || 0);
   const trocarCategoria = (categoria: Categoria) => {
     const pontos = pontosDeAtributo({ categoria, formato: am.formato, nd: am.nd, grau: 0 });
@@ -102,7 +114,7 @@ export function CartaNpc({ npc, onMudar, onSalvar, onApagar, onModelo, onDuplica
     <article className={`npc${aberta ? " aberta" : ""}`}>
       <button type="button" className="npc-toggle" aria-expanded={aberta} onClick={() => setAberta((v) => !v)}>
         <span className="npc-toggle-nome">{npc.nome}</span>
-        <span className="npc-toggle-info">{liberado ? `${lib.nome} liberado · ` : etapa === "antes" && lib.antes ? `${lib.antes.nome} ativa · ` : ""}{am.titulo ? `${am.titulo} · ` : ""}ND {c.nd} · {c.grauNome} · PV {pv}/{c.pv} · PR {pr}/{c.pr}</span>
+        <span className="npc-toggle-info">{!temEtapas ? (liberado ? `${lib.nome} liberado · ` : "") : nomeDoEstado(am, estado) ? `Ativo: ${nomeDoEstado(am, estado)} · ` : ""}{am.titulo ? `${am.titulo} · ` : ""}ND {c.nd} · {c.grauNome} · PV {pv}/{c.pv} · PR {pr}/{c.pr}</span>
         <span className="npc-toggle-seta" aria-hidden="true">{aberta ? "Recolher" : "Abrir"}</span>
       </button>
       {aberta && <div className="npc-corpo">
@@ -125,21 +137,23 @@ export function CartaNpc({ npc, onMudar, onSalvar, onApagar, onModelo, onDuplica
 
       {lib.existe && (
         <div className="npc-liberar">
-          {!lib.antes && <button type="button" className={`btn ${liberado ? "btn-paper" : "btn-red"}`} onClick={alternarLiberacao}>{liberado ? `Encerrar ${lib.nome}` : `Liberar ${lib.nome}`}</button>}
-          {lib.antes && etapa === "base" && <button type="button" className="btn btn-red" onClick={() => irParaEtapa("antes")}>Liberar {lib.antes.nome}</button>}
-          {lib.antes && etapa !== "liberado" && <button type="button" className="btn btn-red" onClick={() => irParaEtapa("liberado")}>Liberar {lib.nome}</button>}
-          {lib.antes && etapa !== "base" && <button type="button" className="btn btn-paper" onClick={() => irParaEtapa("base")}>Encerrar {liberado ? lib.nome : lib.antes.nome}</button>}
+          {!temEtapas && <button type="button" className={`btn ${liberado ? "btn-paper" : "btn-red"}`} onClick={alternarLiberacao}>{liberado ? `Encerrar ${lib.nome}` : `Liberar ${lib.nome}`}</button>}
+          {lib.antes && estado.forma === "base" && <button type="button" className="btn btn-red" onClick={() => trocarEstado({ forma: "shikai", mascara: estado.mascara })}>Liberar {lib.antes.nome}</button>}
+          {temEtapas && !liberado && <button type="button" className="btn btn-red" onClick={() => trocarEstado({ forma: "bankai", mascara: estado.mascara })}>Liberar {lib.nome}</button>}
+          {lib.mascara && <button type="button" className={`btn ${estado.mascara ? "btn-paper" : "btn-red"}`} onClick={() => trocarEstado({ forma: estado.forma, mascara: !estado.mascara })}>{estado.mascara ? `Tirar ${lib.mascara.nome}` : `Pôr ${lib.mascara.nome}`}</button>}
+          {temEtapas && (estado.forma !== "base" || estado.mascara) && <button type="button" className="btn btn-paper" onClick={() => trocarEstado({ forma: "base", mascara: false })}>Encerrar formas</button>}
           {liberado && <small>CR +{lib.bonusCr} e atributos mudados enquanto liberado.</small>}
-          {etapa === "antes" && resAntes && <small>CR {resAntes.cr >= 0 ? "+" : ""}{resAntes.cr}{resAntes.pvTemp > 0 ? `, +${resAntes.pvTemp} PV` : ""}{resAntes.prTemp > 0 ? `, +${resAntes.prTemp} PR` : ""} enquanto {lib.antes?.nome} está ativa.</small>}
+          {estado.forma === "shikai" && resAntes && <small>CR {resAntes.cr >= 0 ? "+" : ""}{resAntes.cr} enquanto {lib.antes?.nome} está ativa.</small>}
+          {estado.mascara && resMasc && <small>{resMasc.nome}: {[resMasc.cr ? `CR ${resMasc.cr > 0 ? "+" : ""}${resMasc.cr}` : "", resMasc.pvTemp > 0 ? `+${resMasc.pvTemp} PV` : "", resMasc.prTemp > 0 ? `+${resMasc.prTemp} PR` : ""].filter(Boolean).join(", ")}{resMasc.pvTemp > 0 || resMasc.prTemp > 0 ? " temporários" : ""}{estado.forma !== "base" ? `, por cima de ${estado.forma === "bankai" ? lib.nome : lib.antes?.nome}` : ""}.</small>}
           {avisoLib && <p className="aviso" role="status">{avisoLib}</p>}
         </div>
       )}
       <div className="npc-barra">
         <div className="npc-linha"><b>PV {pv}/{c.pv}</b>
-          <span className="npc-botoes">{[-10, -5, -1, 1, 5, 10].map((d) => <button type="button" key={d} className="btn btn-paper" onClick={() => ajustar("pvAtual", pv, c.pv, d)}>{d > 0 ? `+${d}` : d}</button>)}</span>
+          <span className="npc-botoes">{[-10, -5, -1, 1, 5, 10].map((d) => <button type="button" key={d} className="btn btn-paper" aria-label={`${d > 0 ? "Somar" : "Tirar"} ${Math.abs(d)} PV de ${npc.nome}`} onClick={() => ajustar("pvAtual", pv, c.pv, d)}>{d > 0 ? `+${d}` : d}</button>)}</span>
         </div>
         <div className="npc-linha"><b>PR {pr}/{c.pr}</b>
-          <span className="npc-botoes">{[-10, -5, -1, 1, 5, 10].map((d) => <button type="button" key={d} className="btn btn-paper" onClick={() => ajustar("prAtual", pr, c.pr, d)}>{d > 0 ? `+${d}` : d}</button>)}</span>
+          <span className="npc-botoes">{[-10, -5, -1, 1, 5, 10].map((d) => <button type="button" key={d} className="btn btn-paper" aria-label={`${d > 0 ? "Somar" : "Tirar"} ${Math.abs(d)} PR de ${npc.nome}`} onClick={() => ajustar("prAtual", pr, c.pr, d)}>{d > 0 ? `+${d}` : d}</button>)}</span>
         </div>
       </div>
 
@@ -155,22 +169,21 @@ export function CartaNpc({ npc, onMudar, onSalvar, onApagar, onModelo, onDuplica
         </details>
       )}
       {c.hierro && <p className="ajuda"><b>Hierro:</b> dano físico sofrido pela metade (não reduz energia nem dano esotérico).</p>}
-      {c.ataques.map((a) => <p key={a.nome} className="npc-acao"><b>{a.nome}:</b> +{a.acerto} para acertar · {a.dano} {a.tipo} <small>(média {a.media.toFixed(1).replace(/\.0$/, "")})</small></p>)}
-      {c.tecnicas.map((t) => <p key={t.nome} className="npc-acao"><b>{t.nome}</b> ({t.custo} PR): {t.dados} · CD {t.cd}{t.texto ? ` — ${t.texto}` : ""}</p>)}
+      {c.ataques.map((a, i) => <p key={`${i}-${a.nome}`} className="npc-acao"><b>{a.nome}:</b> +{a.acerto} para acertar · {a.dano} {a.tipo} <small>(média {a.media.toFixed(1).replace(/\.0$/, "")}{a.mascara ? ` · máscara ${a.mascara}` : ""})</small></p>)}
+      {c.tecnicas.map((t, i) => <p key={`${i}-${t.nome}`} className="npc-acao"><b>{t.nome}</b> ({t.custo} PR): {t.dados} · CD {t.cd}{t.mascara ? <small> (máscara {t.mascara})</small> : null}{t.texto ? ` — ${t.texto}` : ""}</p>)}
       {fmAtiva && (
-        <div className="npc-forma-lista">
-          <b>{etapa === "antes" && lib.antes ? `${lib.antes.nome} · ${fmAtiva.nome}` : fmAtiva.nome}</b>
-          {fmAtiva.acoes.map((a) => <p key={a.nome} className="npc-acao"><b>{a.nome}</b>{a.custo ? ` (${a.custo} PR)` : ""}: {a.tipo === "ataque" ? `+${a.acerto} para acertar` : `CD ${a.cd}`} · {a.dano}</p>)}
+        <details className="npc-forma-lista recolhe">
+          <summary><b>{estado.forma === "shikai" && lib.antes ? `${lib.antes.nome} · ${fmAtiva.nome}` : fmAtiva.nome}</b> <small>{acoesDoEstado(am, estado).length + fmAtiva.invocacoes.length + fmAtiva.notas.length} habilidades</small></summary>
+          {acoesDoEstado(am, estado).map((a, i) => <p key={`${i}-${a.nome}`} className="npc-acao"><b>{a.nome}</b>{a.custo ? ` (${a.custo} PR)` : ""}: {a.tipo === "ataque" ? `+${a.acerto} para acertar` : `CD ${a.cd}`} · {a.dano}{a.mascara ? <small> (máscara {a.mascara})</small> : null}</p>)}
           {fmAtiva.invocacoes.map((v) => <p key={v.chave} className="npc-acao"><b>Invocar {v.nome}</b>{v.custoPr ? ` (${v.custoPr} PR)` : ""}: até {v.max} · {v.pv} PV · CR {v.cr}</p>)}
-          {fmAtiva.notas.map((n) => <p key={n.nome} className="npc-acao"><b>{n.nome}:</b> {n.texto}</p>)}
-        </div>
+          {fmAtiva.notas.map((n, i) => <p key={`${i}-${n.nome}`} className="npc-acao"><b>{n.nome}:</b> {n.texto}</p>)}
+        </details>
       )}
-      {etapa === "antes" && lib.antes?.tipo === "mascara" && resAntes && (
-        <div className="npc-forma-lista">
-          <b>{lib.antes.nome}</b>
-          <p className="ajuda">Os dados e a CD acima já contam a máscara.</p>
-          {resAntes.notas.map((n) => <p key={n.nome} className="npc-acao"><b>{n.nome}:</b> {n.texto}</p>)}
-        </div>
+      {estado.mascara && lib.mascara && resMasc && (
+        <details className="npc-forma-lista recolhe">
+          <summary><b>{lib.mascara.nome}{estado.forma !== "base" ? ` (por cima de ${estado.forma === "bankai" ? lib.nome : lib.antes?.nome})` : ""}</b> <small>{resMasc.notas.length} efeitos</small> <Info>Os dados e a CD acima já contam a máscara (marcados "máscara").</Info></summary>
+          {resMasc.notas.map((n, i) => <p key={`${i}-${n.nome}`} className="npc-acao"><b>{n.nome}:</b> {n.texto}</p>)}
+        </details>
       )}
       {am.caracteristicas && <Paragrafos texto={am.caracteristicas} />}
       {am.habilidades.map((h, i) => (
@@ -263,7 +276,7 @@ export function CartaNpc({ npc, onMudar, onSalvar, onApagar, onModelo, onDuplica
         <label className="marcar"><input type="checkbox" checked={lib.existe} onChange={(e) => mudarLib(e.target.checked && lib.bonusCr === 0 && Object.values(lib.bonusAtr).every((v) => v === 0) ? { ...liberacaoPadrao(am), nome: lib.nome } : { existe: e.target.checked }, true)} /> Esta ameaça tem {lib.nome}</label>
         {modelosParaNpc(am.categoria).length > 0 && (
           <div className="npc-item modelo-forma-npc">
-            <label className="campo npc-larga">Modelo pronto de forma
+            <label className="campo npc-larga"><span>Modelo pronto de forma <Info>As peças do modelo já entram no CR e nos atributos da forma liberada e as habilidades viram botões no combate.</Info></span>
               <select
                 value={lib.modelo ? `${lib.modelo.tipo}:${lib.modelo.id}` : ""}
                 onChange={(e) => {
@@ -277,76 +290,82 @@ export function CartaNpc({ npc, onMudar, onSalvar, onApagar, onModelo, onDuplica
               </select>
             </label>
             {fm && (
-              <div className="npc-larga">
-                <p className="ajuda">As peças do modelo já entram no CR e nos atributos da forma liberada e as habilidades viram botões no combate. Bônus de CR {fm.soma.cr >= 0 ? "+" : ""}{fm.soma.cr}; atributos {Object.entries(fm.soma.atr).filter(([, v]) => v).map(([k, v]) => `${k.toUpperCase()} ${v > 0 ? "+" : ""}${v}`).join(", ") || "sem mudança"}.</p>
+              <details className="npc-larga recolhe">
+                <summary>Resumo <small>CR {fm.soma.cr >= 0 ? "+" : ""}{fm.soma.cr} · {Object.entries(fm.soma.atr).filter(([, v]) => v).map(([k, v]) => `${k.toUpperCase()} ${v > 0 ? "+" : ""}${v}`).join(", ") || "sem mudança"} · {fm.acoes.length + fm.invocacoes.length + fm.notas.length} habilidades</small></summary>
                 <ul className="lista-hab-resumo">
-                  {fm.acoes.map((a) => <li key={a.nome}><b>{a.nome}</b> · {a.tipo === "ataque" ? `acerto +${a.acerto}` : `CD ${a.cd}`} · dano {a.dano}{a.custo ? ` · ${a.custo} PR` : ""}</li>)}
+                  {fm.acoes.map((a, i) => <li key={`${i}-${a.nome}`}><b>{a.nome}</b> · {a.tipo === "ataque" ? `acerto +${a.acerto}` : `CD ${a.cd}`} · dano {a.dano}{a.custo ? ` · ${a.custo} PR` : ""}</li>)}
                   {fm.invocacoes.map((v) => <li key={v.chave}><b>Invocar {v.nome}</b> · até {v.max} · {v.pv} PV · CR {v.cr}{v.custoPr ? ` · ${v.custoPr} PR` : ""}</li>)}
-                  {fm.notas.map((n) => <li key={n.nome}><b>{n.nome}</b> (texto): {n.texto}</li>)}
+                  {fm.notas.map((n, i) => <li key={`${i}-${n.nome}`}><b>{n.nome}</b> (texto): {n.texto}</li>)}
                 </ul>
-              </div>
+              </details>
             )}
           </div>
         )}
         {lib.existe && am.categoria === "shinigami" && (
           <div className="npc-item modelo-forma-npc">
-            <h4 className="sub-passivas npc-larga">Etapa anterior (opcional)</h4>
-            <label className="campo">Antes de {lib.nome}
+            <h4 className="sub-passivas npc-larga">Etapa anterior e máscara (opcionais)</h4>
+            <label className="campo">Shikai antes de {lib.nome}
               <select
-                value={lib.antes ? lib.antes.tipo : ""}
+                value={lib.antes?.modelo ? `${lib.antes.modelo.tipo}:${lib.antes.modelo.id}` : ""}
                 onChange={(e) => {
-                  const v = e.target.value;
-                  if (v === "modelo") { const op = shikaiPadrao(); if (op) mudarAntes({ tipo: "modelo", nome: `Shikai ${op.rotulo.split(" · ").slice(1).join(" · ")}`.trim(), modelo: op.ref, bonusCr: 0 }); return; }
-                  if (v === "mascara") { mudarAntes({ tipo: "mascara", nome: MASCARAS[0].nome, mascara: MASCARAS[0].id, bonusCr: 0 }); return; }
-                  mudarAntes(undefined);
+                  const op = shikais.find((x) => `${x.ref.tipo}:${x.ref.id}` === e.target.value);
+                  if (!op) { mudarAntes(undefined); return; }
+                  mudarAntes({ tipo: "modelo", nome: rotuloShikai(op.rotulo), modelo: op.ref, bonusCr: lib.antes?.bonusCr ?? 0 });
                 }}
               >
                 <option value="">Nenhuma (libera direto)</option>
-                {shikais.length > 0 && <option value="modelo">Shikai pronta</option>}
-                <option value="mascara">Máscara de Visored</option>
+                {shikais.map((x) => <option key={x.ref.id} value={`${x.ref.tipo}:${x.ref.id}`}>{x.rotulo}</option>)}
               </select>
             </label>
-            {lib.antes?.tipo === "modelo" && (
-              <label className="campo">Shikai
-                <select
-                  value={lib.antes.modelo ? `${lib.antes.modelo.tipo}:${lib.antes.modelo.id}` : ""}
-                  onChange={(e) => { const op = shikais.find((x) => `${x.ref.tipo}:${x.ref.id}` === e.target.value); if (op && lib.antes) mudarAntes({ ...lib.antes, modelo: op.ref, nome: `Shikai ${op.rotulo.split(" · ").slice(1).join(" · ")}`.trim() }); }}
-                >
-                  {shikais.map((x) => <option key={x.ref.id} value={`${x.ref.tipo}:${x.ref.id}`}>{x.rotulo}</option>)}
-                </select>
-              </label>
-            )}
-            {lib.antes?.tipo === "mascara" && (
-              <label className="campo">Máscara
-                <select value={lib.antes.mascara ?? ""} onChange={(e) => { const m = MASCARAS.find((x) => x.id === e.target.value); if (m && lib.antes) mudarAntes({ ...lib.antes, mascara: m.id as TipoMascara, nome: m.nome }); }}>
-                  {MASCARAS.map((m) => <option key={m.id} value={m.id}>{m.nome}</option>)}
-                </select>
-              </label>
-            )}
+            <label className="campo">Máscara de Visored
+              <select
+                value={lib.mascara?.mascara ?? ""}
+                onChange={(e) => {
+                  const m = MASCARAS.find((x) => x.id === e.target.value);
+                  if (!m) setMascaraLocal(false);
+                  mudarMascara(m ? { mascara: m.id as TipoMascara, nome: m.nome, bonusCr: lib.mascara?.bonusCr ?? 0 } : undefined);
+                }}
+              >
+                <option value="">Nenhuma</option>
+                {MASCARAS.map((m) => <option key={m.id} value={m.id}>{m.nome}</option>)}
+              </select>
+            </label>
             {lib.antes && (
               <>
-                <label className="campo">Nome da etapa<input value={lib.antes.nome} maxLength={60} onChange={(e) => mudarLib({ antes: { ...lib.antes!, nome: e.target.value } })} onBlur={() => onSalvar(npc)} /></label>
-                <label className="campo">CR extra da etapa<input type="number" value={lib.antes.bonusCr} onChange={(e) => mudarLib({ antes: { ...lib.antes!, bonusCr: Number(e.target.value) || 0 } })} onBlur={() => onSalvar(npc)} /></label>
+                <label className="campo">Nome da Shikai<input value={lib.antes.nome} maxLength={60} onChange={(e) => mudarLib({ antes: { ...lib.antes!, nome: e.target.value } })} onBlur={() => onSalvar(npc)} /></label>
+                <label className="campo">CR extra da Shikai<input type="number" value={lib.antes.bonusCr} onChange={(e) => mudarLib({ antes: { ...lib.antes!, bonusCr: Number(e.target.value) || 0 } })} onBlur={() => onSalvar(npc)} /></label>
+              </>
+            )}
+            {lib.mascara && (
+              <>
+                <label className="campo">Nome da máscara<input value={lib.mascara.nome} maxLength={60} onChange={(e) => mudarLib({ mascara: { ...lib.mascara!, nome: e.target.value } })} onBlur={() => onSalvar(npc)} /></label>
+                <label className="campo">CR extra da máscara<input type="number" value={lib.mascara.bonusCr} onChange={(e) => mudarLib({ mascara: { ...lib.mascara!, bonusCr: Number(e.target.value) || 0 } })} onBlur={() => onSalvar(npc)} /></label>
               </>
             )}
             {resAntes && (
-              <div className="npc-larga">
-                <p className="ajuda">
-                  Enquanto {lib.antes?.nome} estiver ativa: CR {resAntes.cr >= 0 ? "+" : ""}{resAntes.cr}
-                  {resAntes.forma ? `; atributos ${Object.entries(resAntes.forma.soma.atr).filter(([, v]) => v).map(([k, v]) => `${k.toUpperCase()} ${v > 0 ? "+" : ""}${v}`).join(", ") || "sem mudança"}` : ""}
-                  {resAntes.pvTemp > 0 ? `; +${resAntes.pvTemp} PV temporários` : ""}{resAntes.prTemp > 0 ? `; +${resAntes.prTemp} PR temporários` : ""}.
-                  {lib.antes?.tipo === "mascara" ? " Para NPC, a máscara dura até o Mestre encerrar." : ""} Depois dela, {lib.nome} substitui a etapa (não soma).
-                </p>
+              <details className="npc-larga recolhe">
+                <summary>{lib.antes?.nome} <small>CR {resAntes.cr >= 0 ? "+" : ""}{resAntes.cr}{resAntes.forma ? ` · ${Object.entries(resAntes.forma.soma.atr).filter(([, v]) => v).map(([k, v]) => `${k.toUpperCase()} ${v > 0 ? "+" : ""}${v}`).join(", ") || "sem mudança"} · ${resAntes.forma.acoes.length + resAntes.forma.invocacoes.length + resAntes.forma.notas.length} habilidades` : ""}</small> <Info>{`Enquanto ${lib.antes?.nome} estiver ativa valem estes números. Depois dela, ${lib.nome} substitui a Shikai (não soma).`}</Info></summary>
                 <ul className="lista-hab-resumo">
-                  {resAntes.forma?.acoes.map((a) => <li key={a.nome}><b>{a.nome}</b> · {a.tipo === "ataque" ? `acerto +${a.acerto}` : `CD ${a.cd}`} · dano {a.dano}{a.custo ? ` · ${a.custo} PR` : ""}</li>)}
+                  {resAntes.forma?.acoes.map((a, i) => <li key={`${i}-${a.nome}`}><b>{a.nome}</b> · {a.tipo === "ataque" ? `acerto +${a.acerto}` : `CD ${a.cd}`} · dano {a.dano}{a.custo ? ` · ${a.custo} PR` : ""}</li>)}
                   {resAntes.forma?.invocacoes.map((v) => <li key={v.chave}><b>Invocar {v.nome}</b> · até {v.max} · {v.pv} PV · CR {v.cr}{v.custoPr ? ` · ${v.custoPr} PR` : ""}</li>)}
-                  {resAntes.forma?.notas.map((n) => <li key={n.nome}><b>{n.nome}</b> (texto): {n.texto}</li>)}
-                  {resAntes.notas.map((n) => <li key={n.nome}><b>{n.nome}</b>: {n.texto}</li>)}
-                  {lib.antes?.tipo === "mascara" && calcularAmeaca(am, "antes").ataques.map((a) => <li key={`a-${a.nome}`}><b>{a.nome}</b> com a máscara · dano {a.dano}</li>)}
-                  {lib.antes?.tipo === "mascara" && calcularAmeaca(am, "antes").tecnicas.map((t) => <li key={`t-${t.nome}`}><b>{t.nome}</b> com a máscara · {t.dados} · CD {t.cd}</li>)}
+                  {resAntes.forma?.notas.map((n, i) => <li key={`${i}-${n.nome}`}><b>{n.nome}</b> (texto): {n.texto}</li>)}
                 </ul>
-              </div>
+              </details>
             )}
+            {lib.mascara && (() => {
+              const sem = resumoMascara(am, "base");
+              const com = calcularAmeaca(am, { forma: "base", mascara: true });
+              return (
+                <details className="npc-larga recolhe">
+                  <summary>{lib.mascara.nome} na base <small>CR {sem && sem.cr >= 0 ? "+" : ""}{sem?.cr ?? 0}{sem && sem.pvTemp > 0 ? ` · +${sem.pvTemp} PV temp.` : ""}{sem && sem.prTemp > 0 ? ` · +${sem.prTemp} PR temp.` : ""}</small> <Info>{`${lib.mascara.nome} soma por cima da forma ativa (base${lib.antes ? `, ${lib.antes.nome}` : ""} ou ${lib.nome}) e liga/desliga à parte. Para NPC, dura até o Mestre tirar a máscara.`}</Info></summary>
+                  <ul className="lista-hab-resumo">
+                    {bonusDaMascara(am, "base").map((n, i) => <li key={`${i}-${n.nome}`}><b>{n.nome}</b>: {n.texto}</li>)}
+                    {com.ataques.filter((a) => a.mascara).map((a, i) => <li key={`a-${i}-${a.nome}`}><b>{a.nome}</b> com a máscara · dano {a.dano} (máscara {a.mascara})</li>)}
+                    {com.tecnicas.filter((t) => t.mascara).map((t, i) => <li key={`t-${i}-${t.nome}`}><b>{t.nome}</b> com a máscara · {t.dados} · CD {t.cd} (máscara {t.mascara})</li>)}
+                  </ul>
+                </details>
+              );
+            })()}
           </div>
         )}
         {lib.existe && (
@@ -438,7 +457,13 @@ export function CartaNpc({ npc, onMudar, onSalvar, onApagar, onModelo, onDuplica
         <textarea rows={3} value={npc.dados.notas} onChange={(e) => mudarDados({ notas: e.target.value }, false)} onBlur={() => onSalvar(npc)} />
       </label>
       <label className="campo">Pasta (encontro)
-        <input list="pastas-npc" value={npc.dados.pasta} maxLength={60} placeholder="Ex.: Emboscada na ponte" onChange={(e) => mudarDados({ pasta: e.target.value }, false)} onBlur={() => onSalvar(npc)} />
+        <input
+          list="pastas-npc" value={pastaEd ?? npc.dados.pasta} maxLength={60} placeholder="Ex.: Emboscada na ponte"
+          onFocus={() => setPastaEd(npc.dados.pasta)}
+          onChange={(e) => setPastaEd(e.target.value)}
+          onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); e.currentTarget.blur(); } }}
+          onBlur={(e) => { const v = e.currentTarget.value.trim(); setPastaEd(null); if (v !== npc.dados.pasta) mudarDados({ pasta: v }); }}
+        />
       </label>
       <label className="marcar"><input type="checkbox" checked={npc.dados.revelado} onChange={(e) => mudarDados({ revelado: e.target.checked })} /> Mostrar aos jogadores</label>
       <div className="npc-rodape">

@@ -12,7 +12,7 @@ Para que uma criatura se livre de uma condição causada durante uma batalha, ca
 - A criatura que está agarrando outra deve utilizar pelo menos um braço e uma perna para fazer isso, e não pode se mover normalmente, tendo seu deslocamento diminuído pela metade. Se ela se movimentar, levará junto a criatura que está sendo agarrada.
 - A criatura que está sendo agarrada pode se deslocar mesmo estando agarrada, utilizando sua ação para se movimentar 3 metros. No entanto, isso faz com que a criatura que está agarrando seja levada junto, sendo importante ressaltar que a criatura deve ser de uma categoria de tamanho igual ou menor que a sua categoria.
 
-## Amendrontado
+## Amedrontado
 
 - Uma criatura amedrontada sofre desvantagem em testes de habilidades, testes de resistência e jogadas de ataque contra a fonte de seu medo, desde que esta esteja sendo vista ou percebida de alguma maneira.
 - A criatura só pode se movimentar até a metade de seu deslocamento na direção da criatura que é fonte de seu medo.

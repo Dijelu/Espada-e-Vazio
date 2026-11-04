@@ -338,7 +338,7 @@ As classes ou habilidades exigem que você utilize certos atributos para realiza
 
 ### Rolando 1 Ou 20
 
-Às vezes, o destino abençoa ou amaldiçoa um personagem, fazendo com que um Shinigami jovem acerte um ataque e Capitão Shinigami erre. Se a jogada de ataque com o d20 resultar em 20, o ataque acerta, independentemente de qualquer habilidade ou da CR do alvo. Além disso, o ataque é considerado um acerto crítico, conforme explicado na sessão “Dano, Vitalidade e Cura” mais adiante neste capítulo.
+Às vezes, o destino abençoa ou amaldiçoa um personagem, fazendo com que um Shinigami jovem acerte um ataque e Capitão Shinigami erre. Se a jogada de ataque com o d20 resultar em 20, o ataque acerta, independentemente de qualquer habilidade ou da CR do alvo. O mesmo vale para testes de perícia e Testes de Resistência: um 20 natural passa em qualquer teste, e um 1 natural sempre falha (Capítulo 0, "Crítico"). Além disso, o ataque é considerado um acerto crítico, conforme explicado na sessão “Dano, Vitalidade e Cura” mais adiante neste capítulo.
 
 Se a jogada de ataque com o d20 resultar em 1, o ataque erra, independentemente de qualquer modificador ou da CR do alvo, e ocasiona uma falha crítica. Nessa situação, o mestre decide o que acontece a seguir, normalmente algo desfavorável para o personagem, como perder o equilíbrio e cair no chão ou perder os próximos ataques do turno.
 

@@ -1,4 +1,5 @@
 import { efeitoMascara } from "./mascara";
+import { nivelLiberacao, picksVoll, formaDaLiberacao } from "./liberacoes";
 import { somarForma, type InstEfeito, type SomaForma } from "./efeitos-forma";
 import { somaSituacoes } from "./situacionais";
 import { ataquesHueco, danoFixoHueco } from "./hueco";
@@ -398,6 +399,8 @@ export const CLASSES: Classe[] = [
     texto: "Suporte: cura, reforço dos aliados e combate com Kaidō.",
     chave: "Força e Mente", pvIni: 22, pvNivel: 6, prIni: 28, prNivel: 9, pericias: 8, periciasFixas: ["medicina"],
     saves: ["men"], saveEscolha: 1, cr: "plena", subclasseNome: "Afinidade", subclasses: ["Curandeiro", "Ajudante", "Médico de Combate"],
+    // Médico de Combate (cap. 03): PV do Zanjutsu, 30 + CON no 1º nível e 10 + CON por nível (o Kyūgo dá 22 e 6)
+    extraPv: (n, sub) => (sub === "Médico de Combate" ? 30 - 22 + (10 - 6) * (n - 1) : 0),
   },
   {
     id: "schutze", nome: "Schütze", tipo: "quincy", slug: "classes",
@@ -578,6 +581,8 @@ export interface FormaLib {
 export interface Estado {
   pvTemp: number;
   liberado: Liberacao;
+  /** Máscara Hollow do Visored posta (independente da forma: soma aos efeitos da Shikai/Bankai) */
+  mascaraAtiva: boolean;
   condicoes: string[];
   ultimoFolegoUsado: boolean;
   curtosUsados: number;
@@ -641,6 +646,8 @@ export interface Ficha {
   equipamento: string;
   talentos: string[];
   kidos: KidoEscolhido[];
+  /** atributo usado no acerto, na CD e no dano dos Kidōs (Hadō e Bakudō): escolha do jogador; fichas antigas ficam com Espírito */
+  atrKido: AtrKido;
   tecnicasReishi: string[];
   equip: Equip;
   treinos: Treinos;
@@ -650,6 +657,10 @@ export interface Ficha {
 }
 
 const zero = (): Record<Atr, number> => ({ for: 0, des: 0, con: 0, men: 0, esp: 0 });
+
+export type AtrKido = "men" | "esp";
+/** O que o livro (cap. 03) indica para cada classe: Espírito no Zanjutsu; Mente no Tokubetsu, Hakuda, Kidōshū e Kyūgo. */
+export const ATR_KIDO_LIVRO: Record<string, AtrKido> = { zanjutsu: "esp", tokubetsu: "men", hakuda: "men", kidoshu: "men", kyugo: "men" };
 
 export function fichaNova(): Ficha {
   return {
@@ -686,33 +697,96 @@ export function fichaNova(): Ficha {
     equipamento: "",
     talentos: [],
     kidos: [],
+    atrKido: "esp",
     tecnicasReishi: [],
     equip: { forca: "", divisao: 0, asauchi: "", armas: [], artefato: "", naturalForma: "", extras: "" },
     treinos: { feitos: [], pf: 0, geralDias: 0, caminhoBankai: "" },
-    estado: { pvTemp: 0, liberado: "", condicoes: [], ultimoFolegoUsado: false, curtosUsados: 0, ativas: [], usos: {} },
+    estado: { pvTemp: 0, liberado: "", mascaraAtiva: false, condicoes: [], ultimoFolegoUsado: false, curtosUsados: 0, ativas: [], usos: {} },
     zanpakutou: { nome: "", frase: "" },
     formas: {},
   };
 }
 
 /** Completa uma ficha lida do banco com os campos que faltarem. */
+const lista = <T,>(v: unknown, ok: (x: unknown) => boolean = () => true): T[] => (Array.isArray(v) ? (v.filter(ok) as T[]) : []);
+const obj = (x: unknown): x is Record<string, unknown> => !!x && typeof x === "object" && !Array.isArray(x);
+const texto = (x: unknown) => typeof x === "string";
+/** Campos de objeto: um null ou um valor que não é objeto (vindo do banco) não apaga o padrão. */
+const sub = <T extends object,>(padrao: T, v: unknown): T => ({ ...padrao, ...(obj(v) ? (v as Partial<T>) : {}) });
+/** Número salvo como texto ("7") vira número; o resto fica como veio (o reparo confere os limites). */
+const numero = (v: unknown, padrao: number) => (typeof v === "number" ? (Number.isFinite(v) ? v : padrao) : typeof v === "string" && v.trim() !== "" && Number.isFinite(Number(v)) ? Number(v) : padrao);
+
+/** Completa uma forma salva por versões antigas (sem habilidades, nome, picks ou efeitos). */
+export function normalizarFormaLib(v: unknown, tipo: TipoForma): FormaLib | undefined {
+  if (!obj(v)) return undefined;
+  const x = v as Partial<FormaLib>;
+  return {
+    ...x,
+    tipo: (x.tipo ?? tipo) as TipoForma,
+    modelo: texto(x.modelo) ? x.modelo! : "",
+    nome: texto(x.nome) ? x.nome! : "",
+    comando: texto(x.comando) ? x.comando! : "",
+    aparencia: texto(x.aparencia) ? x.aparencia! : "",
+    estilo: x.estilo === "potencializadora" || x.estilo === "transformadora" ? x.estilo : "",
+    custo: Number.isFinite(numero(x.custo, 0)) ? numero(x.custo, 0) : 0,
+    duracao: texto(x.duracao) ? x.duracao! : "",
+    habilidades: lista<HabForma>(x.habilidades, obj).map((h) => ({ ...h, nome: texto(h.nome) ? h.nome : "" })),
+    traco: texto(x.traco) ? x.traco! : "",
+    pontoFraco: texto(x.pontoFraco) ? x.pontoFraco! : "",
+    canalizador: texto(x.canalizador) ? x.canalizador! : "",
+    schrift: texto(x.schrift) ? x.schrift! : "",
+    picks: obj(x.picks) ? Object.fromEntries(Object.entries(x.picks).map(([k, q]) => [k, Math.max(0, Math.min(8, Math.round(numero(q, 0)) || 0))])) : {},
+    texto: texto(x.texto) ? x.texto! : "",
+    ...(x.efeitos !== undefined ? { efeitos: lista<InstEfeito>(x.efeitos, obj) } : {}),
+  } as FormaLib;
+}
+
 export function normalizar(bruto: Partial<Ficha> | null | undefined): Ficha {
   const n = fichaNova();
-  const f = { ...n, ...(bruto ?? {}) } as Ficha;
-  f.base = { ...n.base, ...f.base };
-  f.livre = { ...n.livre, ...f.livre };
-  f.nivelAtr = { ...n.nivelAtr, ...f.nivelAtr };
-  f.ajuste = { ...n.ajuste, ...f.ajuste };
-  f.equip = { ...n.equip, ...f.equip };
-  f.treinos = { ...n.treinos, ...f.treinos };
-  f.estado = { ...n.estado, ...f.estado };
-  f.zanpakutou = { ...n.zanpakutou, ...f.zanpakutou };
-  f.formas = f.formas ?? {};
-  f.melhorias = f.melhorias ?? [];
-  f.schrift = f.schrift ?? "";
-  f.talentos = f.talentos ?? [];
-  f.kidos = f.kidos ?? [];
-  f.tecnicasReishi = f.tecnicasReishi ?? [];
+  const f = { ...n, ...(obj(bruto) ? bruto : {}) } as Ficha;
+  // um campo salvo como null não apaga o padrão
+  for (const k of Object.keys(n) as (keyof Ficha)[]) if (f[k] === null || f[k] === undefined) (f as unknown as Record<string, unknown>)[k] = n[k];
+  f.nivel = numero(f.nivel, 1);
+  f.xp = numero(f.xp, 0);
+  f.base = sub(n.base, f.base);
+  f.livre = sub(n.livre, f.livre);
+  f.nivelAtr = sub(n.nivelAtr, f.nivelAtr);
+  for (const campo of [f.base, f.livre, f.nivelAtr]) for (const a of Object.keys(campo) as Atr[]) campo[a] = numero(campo[a], 0);
+  f.ajuste = sub(n.ajuste, f.ajuste);
+  f.equip = sub(n.equip, f.equip);
+  f.equip.armas = lista(f.equip.armas);
+  f.treinos = sub(n.treinos, f.treinos);
+  f.treinos.feitos = lista<string>(f.treinos.feitos, texto);
+  f.estado = sub(n.estado, f.estado);
+  // grafia antiga da condição ("Amendrontado") vira a do cap. 10
+  f.estado.condicoes = lista<string>(f.estado.condicoes, texto).map((c) => (c === "Amendrontado" ? "Amedrontado" : c));
+  f.estado.ativas = lista<string>(f.estado.ativas, texto);
+  f.estado.usos = obj(f.estado.usos) ? f.estado.usos : {};
+  if (f.estado.extras !== undefined && !obj(f.estado.extras)) f.estado.extras = {};
+  if (f.estado.invocacoes !== undefined) f.estado.invocacoes = lista(f.estado.invocacoes, obj);
+  if (!texto(f.estado.liberado)) f.estado.liberado = "";
+  // a Máscara Hollow deixou de ser uma liberação: fichas antigas com `liberado: "mascara"` passam a ter a máscara posta
+  // e nenhuma forma ativa (PV/PR temporários, usos e turnos da máscara ficam como estavam)
+  if (f.estado.liberado === "mascara") { f.estado.liberado = ""; f.estado.mascaraAtiva = true; }
+  f.estado.mascaraAtiva = f.estado.mascaraAtiva === true && f.origem === "visored";
+  f.zanpakutou = sub(n.zanpakutou, f.zanpakutou);
+  f.pericias = lista<string>(f.pericias, texto);
+  f.saveExtra = lista<Atr>(f.saveExtra, texto);
+  f.essencias = lista<Essencia>(f.essencias, obj).map((e) => ({ ...e, id: texto(e.id) ? e.id : String(e.id ?? ""), nome: texto(e.nome) ? e.nome : "", etapa: numero(e.etapa, 0) || 0 }));
+  f.ataques = lista<Ataque>(f.ataques, obj).map((a) => ({ ...a, nome: texto(a.nome) ? a.nome : "", dano: texto(a.dano) ? a.dano : "" }));
+  f.poderes = lista<Poder>(f.poderes, obj);
+  f.melhorias = lista<Melhoria>(f.melhorias, obj);
+  f.schrift = texto(f.schrift) ? f.schrift : "";
+  f.talentos = lista<string>(f.talentos, texto);
+  f.kidos = lista<KidoEscolhido>(f.kidos, obj);
+  f.atrKido = f.atrKido === "men" ? "men" : "esp";
+  f.tecnicasReishi = lista<string>(f.tecnicasReishi, texto);
+  const formas: Ficha["formas"] = {};
+  for (const [tipo, forma] of Object.entries(obj(f.formas) ? f.formas : {})) {
+    const nf = normalizarFormaLib(forma, tipo as TipoForma);
+    if (nf) formas[tipo as TipoForma] = nf;
+  }
+  f.formas = formas;
   return f;
 }
 
@@ -826,6 +900,10 @@ export interface Calculo {
   /** dados extras nas técnicas de Zanpakutou, Hadō e Bakudō pela Máscara Hollow ativa */
   dadosTecnicaMascara: number;
   cdKido: number;
+  /** acerto dos Kidōs (proficiência + atributo do Kidō + bônus) */
+  acertoKido: number;
+  /** atributo do Kidō escolhido na ficha */
+  atrKido: AtrKido;
   /** quanto cada essência reduz o custo de liberação */
   reducaoLib: EfeitoSoma["reducaoLib"];
   /** dano fixo extra só dos ataques à distância pela forma ativa */
@@ -838,7 +916,33 @@ export interface Calculo {
 
 const soma = (r: Record<Atr, number>) => ATRIBUTOS.reduce((s, a) => s + (r[a.id] ?? 0), 0);
 
-export function calcular(f: Ficha): Calculo {
+/** A liberação salva vale para esta ficha? (classe certa, nível mínimo; Máscara só para Visored) */
+export function liberacaoValida(f: Ficha): boolean {
+  const l = f.estado.liberado;
+  if (!l) return true;
+  if (l === "mascara") return f.origem === "visored";
+  const c = classePorId(f.classe);
+  const tipo = formaDaLiberacao(l);
+  if (!c || !tipo) return false;
+  const min = nivelLiberacao(c.id, c.tipo, tipo);
+  return min > 0 && f.nivel >= min;
+}
+
+/** Picks da Vollständig dentro do limite: cada um entre 0 e 8 e o total até o número de habilidades únicas do nível. */
+export function picksValidos(f: Ficha): Record<string, number> {
+  const max = picksVoll(f.classe, f.nivel);
+  let resto = max;
+  const out: Record<string, number> = {};
+  for (const [k, v] of Object.entries(f.formas?.vollstandig?.picks ?? {})) {
+    const q = Math.min(resto, Math.max(0, Math.min(8, Math.floor(Number(v) || 0))));
+    if (q > 0) { out[k] = q; resto -= q; }
+  }
+  return out;
+}
+
+export function calcular(fOriginal: Ficha): Calculo {
+  // liberação que não vale para a classe ou o nível (ficha antiga ou editada à mão) não conta
+  const f = liberacaoValida(fOriginal) ? fOriginal : { ...fOriginal, estado: { ...fOriginal.estado, liberado: "" as const } };
   const c = classePorId(f.classe);
   const ef = efeitoOrigem(f);
   const n = Math.max(1, f.nivel);
@@ -933,7 +1037,7 @@ export function calcular(f: Ficha): Calculo {
   const formaDano = (lib === "shikai" ? prof : 0) + (lib === "bankai" || lib === "bankai2" ? 2 * prof : 0) + (lib === "terror" ? 2 * prof : 0);
   const formaAtq = lib === "bankai" || lib === "bankai2" ? 1 : 0;
   if (f.estado.liberado === "vollstandig") {
-    const pk = f.formas?.vollstandig?.picks ?? {};
+    const pk = picksValidos(f);
     cr += 3 * (pk["defesa"] ?? 0);
     if (vollRitter) cr += 1;
     pv += 40 * (pk["reserva-vital"] ?? 0);
@@ -999,7 +1103,9 @@ export function calcular(f: Ficha): Calculo {
     proximoXp,
     avisos,
     passivas,
-    cdKido: 8 + prof + atr.esp + px.cdKido + mk.cd + (fx?.cd ?? 0) + (f.classe === "kidoshu" ? (n >= 16 ? 2 : n >= 9 ? 1 : 0) : 0),
+    cdKido: 8 + prof + atr[f.atrKido === "men" ? "men" : "esp"] + px.cdKido + mk.cd + (fx?.cd ?? 0) + (f.classe === "kidoshu" ? (n >= 16 ? 2 : n >= 9 ? 1 : 0) : 0),
+    acertoKido: prof + atr[f.atrKido === "men" ? "men" : "esp"],
+    atrKido: f.atrKido === "men" ? "men" : "esp",
     danoHado: f.classe === "kidoshu" ? prof * (n >= 18 ? 4 : n >= 13 ? 3 : n >= 8 ? 2 : n >= 3 ? 1 : 0) : 0,
     reducaoLib: px.reducaoLib,
     danoGeral: sit.danoGeral + formaDano + Math.min(fx?.dano.golpe ?? 0, fx?.dano.disparo ?? 0) + (f.classe === "schutze" ? vollDano + (n >= 3 ? prof + Math.floor((prof * n * n) / 200) : 0) : 0),

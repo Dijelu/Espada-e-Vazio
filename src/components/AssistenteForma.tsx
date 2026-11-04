@@ -7,6 +7,7 @@ import { EfeitosForma, EscolhaAtributos } from "./EfeitosForma";
 import { CartaoHabilidade, GaleriaCartoes } from "./CartoesHabilidade";
 import { calcularLiberacao } from "../regras/liberacao-forma";
 import { SeletorDano } from "./SeletorFormula";
+import { Info } from "./Dica";
 import { novoId } from "./FichaPecas";
 import { SeletorSchrift } from "./SeletorSchrift";
 import { schriftDaFicha } from "../regras/schrifts";
@@ -387,7 +388,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
                 <small>Escolha qualquer tipo e monte todas as habilidades do zero, sem depender da primeira Bankai.</small>
               </button>
             </div>
-            {!tipoNovo && <p className="ajuda">Os cartões exclusivos da Verdadeira (marcados com ★) aparecem de acordo com o tipo da sua Bankai.</p>}
+            {!tipoNovo && <p className="ajuda">★ exclusivos da Verdadeira <Info>Os cartões exclusivos da Verdadeira (marcados com ★) aparecem de acordo com o tipo da sua Bankai.</Info></p>}
           </>
         )}
         {passo.id === "conceito" && (tipo === "bankai" || (tipo === "bankai2" && !estiloHerdado)) && (

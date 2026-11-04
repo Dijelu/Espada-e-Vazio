@@ -1,10 +1,11 @@
 import { useEffect } from "react";
-import { analisarDano, ATR_AUTO, danoNoTeto, MULT_DURACAO, PCT_CONDICAO, pctEspecial, resumoAnalise } from "../regras/teto-dano";
+import { analisarDano, ATR_AUTO, danoNoTeto, MULT_DURACAO, PCT_CONDICAO, pctEspecial } from "../regras/teto-dano";
 import type { CtxForma } from "../regras/efeitos-forma";
 import type { FormaLib, HabForma } from "../regras/ficha";
 import { classeDe } from "./EfeitosForma";
 import { resolverDano } from "../regras/liberacoes";
 import { SeletorDano } from "./SeletorFormula";
+import { Info } from "./Dica";
 
 const ACOES = ["Ação", "Ação bônus", "Reação"];
 
@@ -87,7 +88,7 @@ export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, onChange, o
       <div className="carta-topo">
         <input className="carta-nome" value={h.nome} onChange={(e) => onChange({ nome: e.target.value })} placeholder="Nome do ataque ou técnica" aria-label="Nome" />
         {temDano ? (
-          <span className="selo-pp" title="Calculado pelo dano">{h.pr ?? 0}<i>PR</i></span>
+          <span className="selo-pp" title="Calculado pelo dano: quanto mais forte o golpe, mais PR">{h.pr ?? 0}<i>PR</i></span>
         ) : (
           <label className="selo-pp selo-edit">
             <input type="number" min={0} max={30} value={h.pr ?? 0} aria-label="Custo em PR" onChange={(e) => { const v = Math.max(0, Math.min(30, Number(e.target.value) || 0)); onChange({ pr: v || undefined, custo: v ? `${v} PR` : "" }); }} />
@@ -106,10 +107,9 @@ export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, onChange, o
               {ATR_AUTO.map((x) => <option key={x.id} value={x.id}>{x.nome} ({ctx.atr[x.chave] >= 0 ? "+" : ""}{ctx.atr[x.chave]})</option>)}
             </select>
           </label>
-          <p className="ajuda">Rola: <b>{h.dano ? resolver(h.dano, ctx) : "—"}</b></p>
-          {a && <p className="ajuda teto-dano">{resumoAnalise(a)}</p>}
-          <p className="ajuda">O dano já vem no teto da ação. Mudou o nível, o tipo de ação ou a técnica especial? Ele se ajusta sozinho.</p>
-          <button type="button" className="link" onClick={() => onChange({ auto: undefined })}>Ajustar o dano à mão (para um golpe mais barato, por exemplo)</button>
+          <p className="ajuda">Rola: <b>{h.dano ? resolver(h.dano, ctx) : "—"}</b> <Info>O dano já vem no teto da ação. Mudou o nível, o tipo de ação ou a técnica especial? Ele se ajusta sozinho. O custo em PR é calculado pelo dano: quanto mais forte o golpe, mais PR.</Info></p>
+          {a && <p className="ajuda teto-dano">média {Math.round(a.media)} · teto {Math.round(a.teto)} · {a.custoPr} PR</p>}
+          <button type="button" className="link link-discreto" title="Ajustar o dano à mão (para um golpe mais barato, por exemplo)" onClick={() => onChange({ auto: undefined })}>Ajustar à mão</button>
         </div>
       ) : (
         <>
@@ -124,10 +124,9 @@ export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, onChange, o
           {temDano && !h.fixa && <button type="button" className="link" onClick={() => onChange({ auto: "ESP" })}>Voltar ao dano automático (no teto)</button>}
         </>
       )}
-      {temDano && <p className="ajuda">O custo em PR é calculado pelo dano: quanto mais forte o golpe, mais PR.</p>}
       {temDano && !h.fixa && (
         <div className="especial-cartao">
-          <label className="check">
+          <div className="check"><label className="check">
             <input
               type="checkbox"
               checked={!!h.especial}
@@ -136,8 +135,8 @@ export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, onChange, o
                 onChange({ especial: esp, ...(novo ? { texto: comporTexto(h.desc ?? "", regra, esp) } : {}) });
               }}
             />
-            Técnica especial: só 1 vez por cena e, depois, você recebe uma condição. Em troca, o dano máximo sobe{h.especial ? ` ${pct}%` : " (quanto mais pesada a condição, mais sobe)"}.
-          </label>
+            Técnica especial{h.especial ? ` (+${pct}%)` : ""}
+          </label><Info>Só 1 vez por cena e, depois, você recebe uma condição. Em troca, o dano máximo sobe (quanto mais pesada a condição, mais sobe).</Info></div>
           {h.especial && (
             <div className="duas">
               <label className="campo">Condição que você recebe
@@ -156,9 +155,8 @@ export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, onChange, o
       )}
       {!h.fixa && !h.especial && (
         <div className="especial-cartao">
-          <p className="ajuda">Limite de uso e requisito são pontos fracos: cada um devolve pontos para a forma (até 4 no total).</p>
           <div className="duas">
-            <label className="campo">Limite de uso
+            <label className="campo"><span>Limite de uso <Info>Limite de uso e requisito são pontos fracos: cada um devolve pontos para a forma (até 4 no total).</Info></span>
               <select value={h.limite ?? ""} onChange={(e) => { const v = (e.target.value || undefined) as HabForma["limite"]; onChange({ limite: v }); }}>
                 <option value="">Sem limite</option>
                 <option value="cena">1 vez por cena (+1 PP)</option>

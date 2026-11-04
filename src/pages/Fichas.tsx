@@ -7,12 +7,14 @@ import { configurado } from "../lib/supabase";
 export default function Fichas() {
   const [lista, setLista] = useState<FichaSalva[] | null>(null);
   const [erro, setErro] = useState("");
+  const [tentativa, setTentativa] = useState(0);
 
   useEffect(() => {
+    setErro("");
     listarFichas()
       .then(setLista)
-      .catch(() => setErro("Não foi possível carregar suas fichas. Tente de novo em instantes."));
-  }, []);
+      .catch(() => setErro("Não foi possível carregar suas fichas."));
+  }, [tentativa]);
 
   const apagar = async (f: FichaSalva) => {
     if (!window.confirm(`Apagar a ficha de ${f.nome}? Isso não pode ser desfeito.`)) return;
@@ -32,6 +34,7 @@ export default function Fichas() {
       </div>
       {!configurado && <p className="aviso">O site está sem conexão com o banco de dados, então as fichas não podem ser salvas agora.</p>}
       {erro && <p className="aviso" role="alert">{erro}</p>}
+      {erro && lista === null && <button type="button" className="btn btn-red" onClick={() => setTentativa((n) => n + 1)}>Tentar de novo</button>}
       {lista === null && !erro && <p>Carregando…</p>}
       {lista && lista.length === 0 && (
         <div className="vazio">

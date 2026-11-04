@@ -1,7 +1,10 @@
 /* Conserta fichas antigas ou com dados fora do padrão. Só mexe no que é seguro e diz o que mudou. */
 import kidosJson from "./kidos.json";
 import tecnicasJson from "./tecnicas-reishi.json";
-import { ATRIBUTOS, PERICIAS, calcular, classePorId, normalizar, origemPorId, type Atr, type Ficha } from "./ficha";
+import { ATRIBUTOS, PERICIAS, calcular, classePorId, liberacaoValida, normalizar, origemPorId, type Atr, type Ficha } from "./ficha";
+import { mascaraAtiva, podeMascara, tempMascara } from "./mascara";
+import { calcularLiberacao } from "./liberacao-forma";
+import { mediaExtraPecas } from "./teto-dano";
 import { SCHRIFTS } from "./schrifts";
 import { normalizarEfeitos } from "./efeitos-forma";
 
@@ -47,6 +50,8 @@ export function repararFicha(bruta: Ficha): Reparo {
   const saves = unicos(f.saveExtra.filter((a) => ATR_IDS.includes(a)));
   if (saves.length !== f.saveExtra.length) { f.saveExtra = saves; nota("Salvaguarda extra inválida retirada."); }
 
+  // "Atenção" do Vazio virou regra de mesa (introdução dos Talentos de Vazio, cap. 03): deixa de ocupar escolha
+  if (f.talentos.includes("atencao") && f.classe === "vazio") { f.talentos = f.talentos.filter((t) => t !== "atencao"); nota("“Atenção” deixou de ser talento (agora é regra de mesa); a escolha ficou livre."); }
   const tal = unicos(f.talentos);
   if (tal.length !== f.talentos.length) { f.talentos = tal; nota("Talentos repetidos foram retirados."); }
 
@@ -72,6 +77,22 @@ export function repararFicha(bruta: Ficha): Reparo {
     if (JSON.stringify(forma.efeitos) !== antes) nota(`Alguns efeitos da forma ${forma.nome || forma.tipo} estavam inválidos e foram ajustados.`);
   }
   if (!["", "plena", "verdadeira"].includes(f.treinos.caminhoBankai)) { f.treinos.caminhoBankai = ""; nota("O caminho da Bankai estava inválido e foi limpo."); }
+  // Bankai Plena: versões antigas gravavam o custo já pela metade e a liberação cobrava a metade de novo (1/4).
+  // Agora a ficha guarda o custo cheio; se o custo salvo é exatamente a metade da conta das peças, volta ao cheio.
+  const bk = f.formas.bankai;
+  if (f.treinos.caminhoBankai === "plena" && bk && !bk.custoManual && (bk.efeitos?.length ?? 0) > 0) {
+    try {
+      const k = calcular({ ...f, estado: { ...f.estado, liberado: "" } });
+      const base = { n: f.nivel, prof: k.prof, atr: k.atr };
+      const ctx = { ...base, tipo: "bankai" as const, extra: mediaExtraPecas(bk.efeitos ?? [], base) };
+      const cheio = calcularLiberacao("bankai", bk.efeitos ?? [], ctx).custoPr;
+      const metade = calcularLiberacao("bankai", bk.efeitos ?? [], ctx, { metadeAntiga: true }).custoPr;
+      if (cheio !== null && metade !== null && cheio !== metade && bk.custo === metade) {
+        bk.custo = cheio;
+        nota(`Custo da Bankai Plena corrigido para ${cheio} PR (você paga a metade, ${Math.ceil(cheio / 2)} PR, ao liberar).`);
+      }
+    } catch { /* conta impossível: deixa como está */ }
+  }
   if (!Array.isArray(f.treinos.feitos)) f.treinos.feitos = [];
   if (f.treinos.mascara && !["conquistador", "predador", "equilibrio"].includes(f.treinos.mascara)) f.treinos.mascara = "";
   if (f.treinos.mascaraAparencia !== undefined && typeof f.treinos.mascaraAparencia !== "string") f.treinos.mascaraAparencia = "";
@@ -81,6 +102,9 @@ export function repararFicha(bruta: Ficha): Reparo {
   f.treinos.geralDias = inteiro(f.treinos.geralDias, 0, 9999, 0);
 
   if (!LIBERACOES.includes(f.estado.liberado)) { f.estado.liberado = ""; nota("A liberação ativa era inválida e foi desligada."); }
+  else if (!liberacaoValida(f)) { f.estado.liberado = ""; nota("A liberação ativa não vale para a classe ou o nível desta ficha e foi desligada."); }
+  // a Máscara Hollow é independente da forma (normalizar já migrou `liberado: "mascara"`), mas só vale para o Visored com o treino e a máscara escolhida
+  if (f.estado.mascaraAtiva && (!podeMascara(f) || !mascaraAtiva(f))) { f.estado.mascaraAtiva = false; nota("A Máscara Hollow estava posta sem o treino ou sem a máscara escolhida e foi retirada."); }
   const cond = unicos(f.estado.condicoes);
   if (cond.length !== f.estado.condicoes.length) f.estado.condicoes = cond;
   f.estado.ativas = unicos(f.estado.ativas);
@@ -89,10 +113,13 @@ export function repararFicha(bruta: Ficha): Reparo {
 
   // PV e PR atuais dentro dos limites
   const c = calcular(f);
-  const pv = inteiro(f.pvAtual, 0, c.pv, c.pv);
-  const pr = inteiro(f.prAtual, 0, c.pr, c.pr);
-  if (pv !== f.pvAtual) { nota(`PV atual ajustado para ${pv} (máximo ${c.pv}).`); f.pvAtual = pv; }
-  if (pr !== f.prAtual) { nota(`PR atual ajustado para ${pr} (máximo ${c.pr}).`); f.prAtual = pr; }
+  const pvMax = Math.max(0, c.pv);
+  // com a Máscara Hollow ativa, os PR temporários dela (guardados em prAtual) continuam valendo até ela sair
+  const prMax = Math.max(0, c.pr) + Math.floor(Math.max(0, c.pr) * tempMascara(mascaraAtiva(f)).pr);
+  const pv = inteiro(f.pvAtual, 0, pvMax, pvMax);
+  const pr = inteiro(f.prAtual, 0, prMax, Math.max(0, c.pr));
+  if (pv !== f.pvAtual) { nota(`PV atual ajustado para ${pv} (máximo ${pvMax}).`); f.pvAtual = pv; }
+  if (pr !== f.prAtual) { nota(`PR atual ajustado para ${pr} (máximo ${prMax}${prMax > c.pr ? ", com os PR temporários da Máscara" : ""}).`); f.prAtual = pr; }
 
   return { ficha: f, mudancas: m };
 }

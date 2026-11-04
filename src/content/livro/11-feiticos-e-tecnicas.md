@@ -59,7 +59,7 @@ A velocidade com que você conjura um feitiço ou técnica é de extrema import�
 
 ### Mantendo a Concentração
 
-Sempre que a criatura sofrer dano enquanto estiver mantendo a concentração, ela deve fazer um Teste de Resistência de Espírito para verificar se não perde a concentração. Se falhar no teste, a concentração será encerrada imediatamente. A dificuldade desse teste é metade do dano sofrido ou a dificuldade definida pelo mestre. Caso a criatura fique inconsciente ou morra, a concentração também será encerrada imediatamente. Não é possível manter a concentração em dois feitiços ou técnicas ao mesmo tempo. Se você usar um feitiço ou técnica que exige concentração, o outro será encerrado.
+Sempre que a criatura sofrer dano enquanto estiver mantendo a concentração, ela deve fazer um Teste de Resistência de Espírito para verificar se não perde a concentração. Se falhar no teste, a concentração será encerrada imediatamente. A dificuldade desse teste é metade do dano sofrido ou a dificuldade definida pelo mestre. Caso a criatura fique inconsciente ou morra, a concentração também será encerrada imediatamente. Kidōs são a exceção à concentração única: você **pode** manter a concentração em mais de um Kido ao mesmo tempo, seguindo a regra de “Concentração em Kido”, mais abaixo. Para os demais feitiços e técnicas, só vale uma concentração por vez: ao usar um novo que exige concentração, o anterior se encerra.
 
 ### Testes de Resistência
 
@@ -3068,7 +3068,7 @@ Kido e pode aumentar seu poder. Para cada 8 pontos de Reiatsu adicionais gastos,
 
 O Shinigami canaliza seu reiatsu em uma linha diante de si, e dele surgem garras sombrias feitas de energia espiritual condensada. Elas avançam em um estalo seco, rasgando o ar e deixando um rastro negro cintilante. O impacto é acompanhado de uma força espiritual sufocante que atinge o corpo e a mente dos inimigos.
 
-Realize uma jogada de ataque de Kido contra todas as criaturas na linha. Em um acerto, os alvos sofrem 3d10 de dano Psíquico e devem realizar um teste de resistência de Mente. Caso falhem, ficam Amendrontado até o fim do próximo turno do Shinigami.
+Realize uma jogada de ataque de Kido contra todas as criaturas na linha. Em um acerto, os alvos sofrem 3d10 de dano Psíquico e devem realizar um teste de resistência de Mente. Caso falhem, ficam Amedrontado até o fim do próximo turno do Shinigami.
 
 - **Reiatsu:** Você gasta 16 pontos de Reiatsu para utilizar este
 

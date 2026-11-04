@@ -64,9 +64,11 @@ export default function Ficha() {
   const [subAberta, setSubAberta] = useState(false);
   const rol = useRolagens();
   const [avisosRepar, setAvisosRepar] = useState<string[]>([]);
+  const [tentativa, setTentativa] = useState(0);
 
   useEffect(() => {
     if (!id) return;
+    setErro("");
     carregada.current = false;
     nivelVisto.current = null;
     const chave = `ficha-${id}`;
@@ -91,9 +93,15 @@ export default function Ficha() {
           abrir(normalizar(local.dados), ["O servidor não respondeu. Abrimos a cópia guardada neste aparelho e vamos salvar assim que a conexão voltar."], true);
         } else setErro("Não foi possível abrir a ficha.");
       });
-  }, [id]);
+  }, [id, tentativa]);
+
+  // versão da ficha na tela: sobe a cada mudança. Só marca "Salvo" se a versão enviada for a atual.
+  const versao = useRef(0);
+  const enviando = useRef(false);
+  const [repetir, setRepetir] = useState(0);
 
   const alterar = useCallback((p: Partial<TFicha> | ((x: TFicha) => Partial<TFicha>)) => {
+    versao.current++;
     setF((x) => (x ? { ...x, ...(typeof p === "function" ? p(x) : p) } : x));
     setEstado("salvando");
   }, []);
@@ -107,13 +115,21 @@ export default function Ficha() {
   // salva sozinho, um instante depois da última mudança
   useEffect(() => {
     if (!f || !id || !carregada.current || estado !== "salvando") return;
+    // já há um envio em andamento: quando ele voltar, salva de novo se houver mudança nova
+    if (enviando.current) return;
+    const v = versao.current;
     const t = window.setTimeout(() => {
+      enviando.current = true;
       salvarFicha(id, f)
-        .then(() => { marcarEnviado(`ficha-${id}`); setEstado("salvo"); })
-        .catch(() => setEstado("erro"));
+        .then(() => {
+          enviando.current = false;
+          if (versao.current === v) { marcarEnviado(`ficha-${id}`); setEstado("salvo"); }
+          else setRepetir((n) => n + 1); // mudou durante o envio: manda a versão nova
+        })
+        .catch(() => { enviando.current = false; setEstado("erro"); });
     }, 800);
     return () => window.clearTimeout(t);
-  }, [f, id, estado]);
+  }, [f, id, estado, repetir]);
 
   // se não conseguiu salvar, tenta de novo sozinho e quando a internet voltar
   useEffect(() => {
@@ -189,6 +205,7 @@ export default function Ficha() {
     return (
       <main className="page">
         <p className="aviso" role="alert">{erro}</p>
+        {erro !== "Ficha não encontrada." && <button className="btn btn-red" onClick={() => setTentativa((n) => n + 1)}>Tentar de novo</button>}{" "}
         <Link className="btn btn-paper" to="/fichas">Minhas fichas</Link>
       </main>
     );

@@ -6,7 +6,7 @@
      "nome": "Golpe Fantasma",
      "acao": "Ação",
      "pr": 12,
-     "dano": "[NIV/2-3]d10+[2*DES]",
+     "dano": "[NIV/2+3]d10+[2*DES]",
      "texto": "Técnica de assinatura do Caminho Sonido. Um ataque com vantagem e margem de crítico 19–20, em que você surge de várias direções ao mesmo tempo. Substitui os ataques da ação."
     },
     {
@@ -75,7 +75,7 @@
      "nome": "Lança Verde",
      "acao": "Ação",
      "pr": 10,
-     "dano": "[(NIV+4)*1.6]d10+[ESP]",
+     "dano": "[(NIV/2+4)*1.6]d10+[ESP]",
      "texto": "O Poder Inato de Resurrección sai da lança de reiatsu esverdeado. Ataque de técnica (d20 + proficiência + Espírito), alcance de 24 metros. Ignora o Hierro. Custo: 8 PR + nível/5.",
      "prExpr": "8+[NIV/5]"
     },
@@ -99,7 +99,7 @@
      "nome": "Espinho Roxo",
      "acao": "Ação",
      "pr": 10,
-     "dano": "[(NIV+4)*1.6]d10+[ESP]",
+     "dano": "[(NIV/2+4)*1.6]d10+[ESP]",
      "texto": "O Poder Inato de Resurrección sai como um espinho de veneno. Ataque de técnica (d20 + proficiência + Espírito). Ignora o Hierro. Se acertar, aplica 1 carga de Ponzoña.",
      "prExpr": "8+[NIV/5]"
     },
@@ -123,7 +123,7 @@
      "nome": "Reflexo Negro",
      "acao": "Ação",
      "pr": 10,
-     "dano": "[(NIV+4)*1.6]d10+[ESP]",
+     "dano": "[(NIV/2+4)*1.6]d10+[ESP]",
      "texto": "O Poder Inato de Resurrección sai em estilhaços de vidro negro. Ataque de técnica (d20 + proficiência + Espírito). Ignora o Hierro. Custo: 8 PR + nível/5.",
      "prExpr": "8+[NIV/5]"
     },

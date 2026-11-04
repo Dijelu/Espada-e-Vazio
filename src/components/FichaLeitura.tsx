@@ -4,6 +4,7 @@ import { acertoClasse, danosDaClasse } from "../regras/danos-classe";
 import { CONDICAO_TEXTO, KIDOS, TALENTOS, talentosDe, type Talento } from "../regras/catalogo";
 import { HAB_UNICAS, TIPO_FORMA_NOME, danoDaAcao, habilidadesDaForma, liberacaoDaForma, resolverDano } from "../regras/liberacoes";
 import { ataqueMelhorado } from "../regras/melhorias";
+import { mascaraAtiva } from "../regras/mascara";
 import {
   ATRIBUTOS, PERICIAS, ataqueBonus, ataquesPorAcao, calcular, classePorId, danoAtributo, mod, partesOrigem,
   type Ataque, type Calculo, type Ficha, type FormaLib, type HabForma, type TipoForma,
@@ -30,7 +31,16 @@ function acharTalento(classe: string, id: string): Talento | undefined {
   return daClasse?.find((t) => t.id === curto) ?? Object.values(TALENTOS).flat().find((t) => t.id === curto);
 }
 
-function Bloco({ titulo, children }: { titulo: string; children: ReactNode }) {
+/** Bloco da ficha. Com `n`, fica recolhido e o cabeçalho mostra só a contagem. */
+function Bloco({ titulo, n, children }: { titulo: string; n?: number; children: ReactNode }) {
+  if (n) {
+    return (
+      <details className="ficha-leitura-bloco recolhe">
+        <summary><h4>{titulo} <small>{n}</small></h4></summary>
+        {children}
+      </details>
+    );
+  }
   return (
     <section className="ficha-leitura-bloco">
       <h4>{titulo}</h4>
@@ -127,7 +137,8 @@ export function FichaLeitura({ f, nome }: { f: Ficha; nome?: string }) {
   const talentos = f.talentos.map((id) => ({ id, t: acharTalento(f.classe, id) }));
   const formas = ORDEM_FORMAS.map((t) => f.formas[t]).filter((x): x is FormaLib => !!x && !!x.nome);
   const liberado = f.estado.liberado;
-  const nomeLiberado = liberado ? (NOME_LIBERACAO[liberado] ?? TIPO_FORMA_NOME[liberado as TipoForma] ?? liberado) : "";
+  const formaNome = liberado && liberado !== "mascara" ? (NOME_LIBERACAO[liberado] ?? TIPO_FORMA_NOME[liberado as TipoForma] ?? liberado) : "";
+  const nomeLiberado = [formaNome, mascaraAtiva(f) ? NOME_LIBERACAO.mascara : ""].filter(Boolean).join(" + ");
   const formaAtiva = formas.find((x) => liberacaoDaForma(x.tipo) === liberado);
   const invocacoes = f.estado.invocacoes ?? [];
   const notas: [string, string][] = ([
@@ -174,7 +185,7 @@ export function FichaLeitura({ f, nome }: { f: Ficha; nome?: string }) {
 
       <div className="ficha-leitura-grade">
         <Bloco titulo="Estado atual">
-          <p><b>Forma liberada:</b> {nomeLiberado ? `${nomeLiberado}${formaAtiva ? ` (${formaAtiva.nome})` : ""}` : "nenhuma"}</p>
+          <p title="Forma liberada"><b>{nomeLiberado ? `${nomeLiberado}${formaAtiva ? ` · ${formaAtiva.nome}` : ""}` : "Sem forma liberada"}</b></p>
           {f.estado.condicoes.length > 0 ? (
             <ul className="ficha-leitura-lista">
               {f.estado.condicoes.map((nome) => (
@@ -186,17 +197,17 @@ export function FichaLeitura({ f, nome }: { f: Ficha; nome?: string }) {
                 </li>
               ))}
             </ul>
-          ) : <p className="ajuda">Sem condições ativas.</p>}
+          ) : <p className="ajuda">Sem condições</p>}
         </Bloco>
 
-        <Bloco titulo="Salvaguardas proficientes">
+        <Bloco titulo="Salvaguardas">
           {saves.length ? (
-            <div className="chips">{saves.map((a) => <span className="chip" key={a.id}>{a.nome} {mod(c.saves[a.id].total)}</span>)}</div>
+            <div className="chips">{saves.map((a) => <span className="chip" key={a.id} title={a.nome}>{a.sigla} {mod(c.saves[a.id].total)}</span>)}</div>
           ) : <p className="ajuda">Nenhuma.</p>}
-          <p className="ajuda">Demais: {ATRIBUTOS.filter((a) => !c.saves[a.id].prof).map((a) => `${a.sigla} ${mod(c.saves[a.id].total)}`).join(" · ") || "—"}</p>
+          <p className="ajuda" title="Demais salvaguardas">{ATRIBUTOS.filter((a) => !c.saves[a.id].prof).map((a) => `${a.sigla} ${mod(c.saves[a.id].total)}`).join(" · ") || "—"}</p>
         </Bloco>
 
-        <Bloco titulo={`Perícias treinadas (${periciasTreinadas.length})`}>
+        <Bloco titulo={`Perícias (${periciasTreinadas.length})`}>
           {periciasTreinadas.length ? (
             <div className="chips">{periciasTreinadas.map((p) => <span className="chip" key={p.id}>{p.nome} {mod(c.pericias[p.id].total)}</span>)}</div>
           ) : <p className="ajuda">Nenhuma.</p>}
@@ -236,7 +247,7 @@ export function FichaLeitura({ f, nome }: { f: Ficha; nome?: string }) {
       </Bloco>
 
       <div className="ficha-leitura-grade">
-        <Bloco titulo={`Talentos (${talentos.length})`}>
+        <Bloco titulo="Talentos" n={talentos.length}>
           {talentos.length ? (
             <ul className="ficha-leitura-lista">
               {talentos.map(({ id, t }) => (
@@ -253,13 +264,13 @@ export function FichaLeitura({ f, nome }: { f: Ficha; nome?: string }) {
           ) : <p className="ajuda">Nenhum talento escolhido.</p>}
         </Bloco>
 
-        <Bloco titulo="Essências Espirituais">
+        <Bloco titulo="Essências">
           {f.essencias.length ? (
             <div className="chips">{f.essencias.map((e) => <span key={e.id} className="chip">{e.nome} · etapa {e.etapa}{e.gratis ? " (grátis)" : ""}</span>)}</div>
           ) : <p className="ajuda">Nenhuma.</p>}
         </Bloco>
 
-        <Bloco titulo={`Kidōs conhecidos (${f.kidos.length})`}>
+        <Bloco titulo="Kidōs" n={f.kidos.length + f.tecnicasReishi.length}>
           {f.kidos.length ? (
             <ul className="ficha-leitura-lista">
               {f.kidos.map((k) => (
@@ -280,7 +291,7 @@ export function FichaLeitura({ f, nome }: { f: Ficha; nome?: string }) {
       </div>
 
       {f.poderes.length > 0 && (
-        <Bloco titulo="Poderes anotados">
+        <Bloco titulo="Poderes anotados" n={f.poderes.length}>
           <ul className="ficha-leitura-lista">
             {f.poderes.map((p) => (
               <li key={p.id}>
@@ -294,7 +305,7 @@ export function FichaLeitura({ f, nome }: { f: Ficha; nome?: string }) {
         </Bloco>
       )}
 
-      <Bloco titulo="Formas de liberação">
+      <Bloco titulo="Formas de liberação" n={formas.length}>
         {formas.length ? (
           <div className="ficha-leitura-formas">{formas.map((x) => <Forma key={x.tipo} f={f} c={c} forma={x} />)}</div>
         ) : <p className="ajuda">Nenhuma forma montada.</p>}
@@ -320,7 +331,7 @@ export function FichaLeitura({ f, nome }: { f: Ficha; nome?: string }) {
       )}
 
       {notas.length > 0 && (
-        <Bloco titulo="Anotações do jogador">
+        <Bloco titulo="Anotações do jogador" n={notas.length}>
           {notas.map(([rotulo, texto]) => (
             <details className="poder-livro" key={rotulo} open={rotulo === "Anotações da campanha"}>
               <summary><b>{rotulo}</b></summary>

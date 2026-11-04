@@ -9,6 +9,15 @@ interface Props {
   className?: string;
 }
 
+/** Ícone ⓘ com a explicação num balão (passar o mouse, focar ou tocar). Para tirar texto de apoio da tela. */
+export function Info({ children, rotulo = "Mais informações" }: { children: ReactNode; rotulo?: string }) {
+  return (
+    <Dica className="dica-inline" balao={children}>
+      {(alternar) => <button type="button" className="dica-i" aria-label={typeof children === "string" ? children : rotulo} onClick={(e) => { e.preventDefault(); e.stopPropagation(); alternar(); }}>ⓘ</button>}
+    </Dica>
+  );
+}
+
 /** Balão de dica flutuante: aparece ao passar o mouse, ao focar com o teclado ou ao tocar no botão de leitura, sem empurrar os outros elementos. */
 export function Dica({ balao, children, className }: Props) {
   const alvo = useRef<HTMLSpanElement>(null);

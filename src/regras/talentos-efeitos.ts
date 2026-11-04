@@ -98,7 +98,6 @@ export const FIXAS: Record<string, TextoFixo> = {
   "vazio/mente-fechada": "protegido contra Kidō de controle; vantagem em salvaguardas de Mente",
   "vazio/poder-perfurante": (c) => `Poder Inato ignora ${c.atr.esp} de RD (Espírito)`,
   "vazio/ponzona-persistente": "cargas duram 1 rodada a mais e o limite de cargas sobe 1",
-  "vazio/atencao": "regra de mesa: efeitos de RD seguem uma Essência de redução por tipo de dano",
   "vazio/toxina-corrosiva": (c) => `Ponzoña reduz a RD do alvo em ${c.prof}`,
   "vazio/ilusao-cruel": "quem falha no Ilusión tem o deslocamento pela metade até o fim do próximo turno",
   "vazio/poder-moldado": (c) => `Poder em Área poupa até ${c.atr.men} criaturas (Mente)`,

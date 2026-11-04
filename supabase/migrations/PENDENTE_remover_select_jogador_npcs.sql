@@ -1,0 +1,21 @@
+-- PENDENTE — NÃO APLICAR AINDA.
+-- Aplicar SOMENTE depois que o front que usa rpc("npcs_revelados") para jogadores
+-- (listarNpcsRevelados em src/lib/campanhas.ts) estiver PUBLICADO em produção na Vercel
+-- e testado com uma conta de jogador (a lista de NPCs revelados aparece na página da campanha).
+-- Se aplicar antes, jogadores com o front antigo deixam de ver os NPCs revelados.
+--
+-- Efeito: jogadores deixam de ler public.npcs direto (que entregava notas, pvAtual, prAtual e pasta
+-- do Mestre). Passam a ver só o que public.npcs_revelados(cid) devolve. O Mestre continua com npcs_gm.
+--
+-- Como aplicar: Supabase MCP apply_migration com nome remover_select_jogador_npcs
+-- (ou SQL editor), e depois renomear este arquivo para <versão>_remover_select_jogador_npcs.sql.
+--
+-- Teste depois (em transação com rollback): como authenticated membro da mesa,
+--   select count(*) from public.npcs;                         -- deve dar 0
+--   select * from public.npcs_revelados('<campaign_id>');     -- deve listar os revelados
+--
+-- Reverter:
+--   create policy npcs_member_select on public.npcs for select to authenticated
+--     using (private.in_campaign(campaign_id) and coalesce((data->>'revelado')::boolean, false));
+
+drop policy if exists npcs_member_select on public.npcs;

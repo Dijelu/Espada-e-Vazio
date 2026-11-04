@@ -18,7 +18,7 @@ export const glossario: Record<string, string> = {
   "Hakuda": "Combate desarmado.",
   "Zanjutsu": "Arte da espada.",
   "Agarrado": "Deslocamento 0 e sem bônus de deslocamento.",
-  "Amendrontado": "Desvantagem em testes e ataques contra a fonte do medo; só se aproxima até metade do deslocamento.",
+  "Amedrontado": "Desvantagem em testes e ataques contra a fonte do medo; só se aproxima até metade do deslocamento.",
   "Atordoado": "Sem ações nem reações, move só 3 m por turno, falha em resistência de Força/Destreza; ataques contra ele têm vantagem.",
   "Caído": "Só rasteja ou se levanta; ataques contra ele têm vantagem.",
   "Congelado": "Coberto de gelo, não se move, fica Incapacitado e sofre 1d8 de dano de Frio por turno.",

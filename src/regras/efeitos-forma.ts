@@ -312,10 +312,13 @@ export function orcamentoBase(tipo: FormaLib["tipo"], n: number, extra: { plena?
   switch (tipo) {
     // o Shikai começa no nível 5 com 4 PP e chega ao máximo de 8 PP no nível 13
     case "shikai": return n < 5 ? 3 : Math.min(8, 4 + piso((n - 5) / 2));
-    case "bankai": return 10 + piso(n - 10) + (extra.plena ? 3 : 0);
+    // Bankai e Resurrección: 18 PP no 10º nível (os modelos prontos custam de 11 a 18) e +1 a cada 2 níveis (23 no 20º).
+    // Antes: 10 + (n − 10), que deixava os modelos fora do orçamento até o 11º–18º nível.
+    case "bankai": return 18 + piso((n - 10) / 2) + (extra.plena ? 3 : 0);
     case "bankai2": return 17 + piso(n - 10);
-    case "resurreccion": return 10 + piso(n - 10) + (extra.origem === "adjuchas" ? 2 : extra.origem === "vasto-lorde" ? 3 : 0);
-    case "segunda": return 8 + piso(n - 15);
+    case "resurreccion": return 18 + piso((n - 10) / 2) + (extra.origem === "adjuchas" ? 2 : extra.origem === "vasto-lorde" ? 3 : 0);
+    // Segunda Etapa: 13 PP no 15º nível (os modelos custam de 11 a 13) e +1 a cada 2 níveis (15 no 20º). Antes: 8 + (n − 15).
+    case "segunda": return 13 + piso((n - 15) / 2);
     case "vollstandig": return 6 + 2 * piso((n - 13) / 5);
   }
 }

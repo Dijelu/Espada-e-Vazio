@@ -1570,6 +1570,21 @@ Os valores da tabela valem para a condição que dura até o fim da cena. Se ela
 
 Uma habilidade que não é técnica especial pode ter um limite de uso (uma vez por cena, por descanso curto ou por descanso longo) ou um requisito. Cada um conta como ponto fraco e devolve pontos para a forma, até um máximo de 4 no total.
 
+### Orçamento da Forma
+
+Os efeitos automáticos de uma forma (bônus de CR, de acerto, de dano, dados extras, resistências e outras peças) são comprados com **Pontos de Poder (PP)**. Os pontos fracos e os limites de uso devolvem PP. O total de PP depende da forma e do nível:
+
+| Forma | PP no nível em que chega | Crescimento | PP no 20º nível |
+|---|---|---|---|
+| Shikai | 3 (3º e 4º nível) | 4 no 5º, +1 a cada 2 níveis | 8 (a partir do 13º) |
+| Bankai | 18 (10º nível) | +1 a cada 2 níveis | 23 (26 na Bankai Plena) |
+| Bankai Verdadeira | 27 (20º nível) | — | 27 |
+| Resurrección | 18 (10º nível) | +1 a cada 2 níveis | 23 (+2 no Adjuchas, +3 no Vasto Lorde) |
+| Segunda Etapa | 13 (15º nível) | +1 a cada 2 níveis | 15 |
+| Vollständig | 6 (13º nível) | +2 a cada 5 níveis | 8 |
+
+As Bankai, Resurrecciones e Segundas Etapas prontas do site cabem nesse orçamento já no nível em que a forma é liberada (custam de 11 a 18 PP). O Mestre pode conceder até 12 PP extras a uma forma lendária.
+
 ### Sexto Passo: Mudança
 
 Uma Zanpakutou muda ao longo da vida do usuário junto com ele, então você pode alterá-la durante a jornada, criando novos poderes. No entanto, ela nunca fugirá da temática já estabelecida ou do tipo de Zanpakutou que ela é. Você pode começar com uma versão incompleta da sua Zanpakutou e ir evoluindo durante a jornada.

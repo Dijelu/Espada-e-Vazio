@@ -9,7 +9,16 @@ export const MASCARAS: { id: TipoMascara; nome: string; texto: string }[] = [
   { id: "equilibrio", nome: "Máscara do Equilíbrio", texto: "Poder Amplificado (+metade da proficiência em dados nas técnicas e +1 dado nos golpes), Reiatsu Amplificada e Vitalidade Hollow (um quarto do total em PR e PV temporários)." },
 ];
 
-export const mascaraAtiva = (f: Ficha): TipoMascara | "" => (f.estado.liberado === "mascara" ? ((f.treinos.mascara as TipoMascara) || "") : "");
+/** O Visored pode pôr a máscara? (origem Visored com o treino da Máscara Hollow) */
+export const podeMascara = (f: Ficha) => f.origem === "visored" && (f.treinos?.feitos ?? []).includes("visored-2");
+
+/** A máscara usada agora, ou "" sem máscara. Ela é independente da forma: vale com ou sem Shikai/Bankai.
+ *  Fichas antigas guardavam a máscara como `liberado: "mascara"`; isso ainda conta até a ficha ser normalizada. */
+export const mascaraAtiva = (f: Ficha): TipoMascara | "" => {
+  const ligada = f.estado?.mascaraAtiva === true || f.estado?.liberado === "mascara";
+  const m = f.treinos?.mascara;
+  return ligada && f.origem === "visored" && (m === "conquistador" || m === "predador" || m === "equilibrio") ? m : "";
+};
 
 export function efeitoMascara(f: Ficha, prof: number, n: number) {
   const m = mascaraAtiva(f);

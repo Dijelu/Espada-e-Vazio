@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { KIDOS } from "../regras/catalogo";
 import type { Calculo, Ficha } from "../regras/ficha";
-import { danoDoHado, expressaoHado, mediaHado, passosMaximos, type DanoHado } from "../regras/hado";
+import { custoHado, danoDoHado, expressaoHado, mediaHado, passosMaximos, type DanoHado } from "../regras/hado";
 import type { Rolagens } from "./Rolador";
+import { Info } from "./Dica";
 
 const CHAVE = "esv:painel-kido";
 const lerAberto = () => {
@@ -27,11 +28,11 @@ function DanoDoHado({ d, nome, c, r }: { d: DanoHado; nome: string; c: Calculo; 
       )}
       <div className="linha-rolar">
         {d.reforco && max > 0 && (
-          <label>
-            Reforço{" "}
+          <label title={`Limite do livro: ${d.limite} aprimoramento(s)${d.gratis ? `, ${d.gratis} sem custo (Estudos Avançados)` : ""}.`}>
+            Reforço <small>(até {d.limite})</small>{" "}
             <select value={p} onChange={(e) => setPassos(Number(e.target.value))}>
               {Array.from({ length: max + 1 }, (_, i) => (
-                <option key={i} value={i}>{i === 0 ? `nenhum (${d.custo} PR)` : `+${i} (${d.custo + i * d.reforco!.cada} PR)`}</option>
+                <option key={i} value={i}>{i === 0 ? `nenhum (${d.custo} PR)` : `+${i} (${custoHado(d, i)} PR)`}</option>
               ))}
             </select>
           </label>
@@ -77,7 +78,10 @@ export function PainelKidos({ f, c, r }: { f: Ficha; c: Calculo; r: Rolagens }) 
   };
   return (
     <details className="caixa painel-kidos" open={aberto} onToggle={(e) => alternar((e.currentTarget as HTMLDetailsElement).open)}>
-      <summary><h3>Kidōs <small>{f.kidos.length} escolhido{f.kidos.length === 1 ? "" : "s"} · CD {c.cdKido}</small></h3></summary>
+      <summary><h3>Kidōs <small>{f.kidos.length} escolhido{f.kidos.length === 1 ? "" : "s"} · acerto +{c.acertoKido} · CD {c.cdKido}</small></h3></summary>
+      <p className="ajuda">
+        Atributo: <b>{c.atrKido === "men" ? "Mente" : "Espírito"}</b> <Info>Troque em Poderes, na caixa Kidō. O livro indica Mente para Tokubetsu, Hakuda, Kidōshū e Kyūgo, e Espírito para o Zanjutsu.</Info>
+      </p>
       {c.dadosTecnicaMascara > 0 && <p className="ajuda">Máscara Hollow: suas técnicas de Zanpakutou, Hadō e Bakudō que causam dano ganham <b>+{c.dadosTecnicaMascara}</b> dado(s) de dano.</p>}
       {c.danoHado > 0 && <p className="ajuda">Maestria de Hadō: cada Hadō que você lançar causa <b>+{c.danoHado}</b> de dano.</p>}
       {(f.estado.liberado === "shikai" || f.estado.liberado === "bankai" || f.estado.liberado === "bankai2") && (

@@ -50,6 +50,8 @@ export function montar() {
       ms.addAll(docs);
       return { ms, docs: new Map(docs.map((d) => [d.id, d])) };
     })();
+    // se falhar, não guarda a promessa rejeitada: a próxima tentativa monta de novo
+    indice.catch(() => { indice = null; });
   }
   return indice;
 }

@@ -27,10 +27,9 @@ SECOES = [
 ID_FIXO = {("hueco", "bala"): "bala-hollow"}
 AJUSTES = {
     ("schutze", "sequencia-fatal"): {"req": "12° nível de Schütze."},
-    ("vazio", "atencao"): {"grupo": "Reserva e utilidade"},
 }
 # (classe, id) -> id depois do qual o talento fica na lista
-MOVER = {("vazio", "atencao"): "cura-hollow"}
+MOVER: dict = {}
 
 def fim_secao(i, nivel):
     for j in range(i + 1, len(linhas)):

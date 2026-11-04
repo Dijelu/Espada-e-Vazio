@@ -12,11 +12,13 @@ export default function Campanhas() {
   const [nome, setNome] = useState("");
   const [codigo, setCodigo] = useState("");
   const [ocupado, setOcupado] = useState(false);
+  const [tentativa, setTentativa] = useState(0);
 
   useEffect(() => {
     if (!sessao) return;
+    setErro("");
     listarCampanhas().then(setLista).catch(() => setErro("Não foi possível carregar suas campanhas."));
-  }, [sessao]);
+  }, [sessao, tentativa]);
 
   if (!sessao) {
     return (
@@ -73,6 +75,7 @@ export default function Campanhas() {
       </div>
       <h2 className="title-font">Suas mesas</h2>
       {lista === null && !erro && <p>Carregando…</p>}
+      {lista === null && erro && <button type="button" className="btn btn-red" onClick={() => setTentativa((n) => n + 1)}>Tentar de novo</button>}
       {lista && lista.length === 0 && <p>Você ainda não está em nenhuma campanha.</p>}
       <div className="cartas">
         {lista?.map((c) => (

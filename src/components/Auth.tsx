@@ -21,10 +21,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (!supabase) return;
-    supabase.auth.getSession().then(({ data }) => {
-      setSessao(data.session);
-      setCarregando(false);
-    });
+    supabase.auth
+      .getSession()
+      .then(({ data }) => setSessao(data.session))
+      .catch(() => setSessao(null)) // sem resposta: segue como visitante em vez de "Carregando…" para sempre
+      .finally(() => setCarregando(false));
     const { data } = supabase.auth.onAuthStateChange((evento, s) => {
       setSessao(s);
       if (evento === "PASSWORD_RECOVERY") setRecuperando(true);

@@ -188,7 +188,7 @@ Pré-Requisito: 18° nível de Zanjutsu.
 Duelista: Escolha uma criatura com uma Ação Livre no começo ou durante o combate, você concentra todo o seu poder contra esse alvo. Durante o combate, você recebe +2 nas rolagens de ataque e dano contra a criatura escolhida e +2 na sua Classe de Resistência contra ataques da criatura escolhida. Esses benefícios permanecem até o fim do combate ou até que você ataque outra criatura. Caso ataque um alvo diferente, os bônus são imediatamente perdidos. Você só pode escolher uma criatura como alvo de duelo por combate.
 
 - Foco Letal: Você aprimorou Talento "Duelista" agora você mantém o vínculo com a criatura escolhida mesmo após atacar outras criaturas, podendo selecionar um novo alvo durante o combate. No entanto, não é possível escolher a mesma criatura duas vezes em um único confronto. Contra a criatura escolhida, sua margem de crítico com a Zanpakutou agora é ampliada em +1. Pré-Requisito: Talento de Zanjutsu "Duelista".
-- Pressão Espíritual: Você pode com uma ação livre utilizar a ação "Liberar Reaitsu". Todas as criaturas dentro da área da técnica devem realizar um Teste de Resistência de Mente com a classe de dificuldade sendo 12 + sua proficiência + seu atributo de Espírito. Se falharem no teste, além da condição "Amendrontas" elas ficam paralisadas por 1 turno e as que passarem perdem metade do deslocamento delas. Você pode utilizar essa habilidade como uma ação livre duas vezes e recupera seus usos com um descanso longo.
+- Pressão Espíritual: Você pode com uma ação livre utilizar a ação "Liberar Reaitsu". Todas as criaturas dentro da área da técnica devem realizar um Teste de Resistência de Mente com a classe de dificuldade sendo 12 + sua proficiência + seu atributo de Espírito. Se falharem no teste, além da condição "Amedrontado" elas ficam paralisadas por 1 turno e as que passarem perdem metade do deslocamento delas. Você pode utilizar essa habilidade como uma ação livre duas vezes e recupera seus usos com um descanso longo.
 - Recuperação de Reiatsu: Durante uma batalha, você pode canalizar reiatsu para se recuperar. Duas vezes por combate, pode utilizar a ação "Recuperação de Reiatsu" como uma ação bônus.
 - Retaliação: Quando uma criatura o atingir com um ataque corpo a corpo, você pode usar sua reação para realizar um único ataque com sua Zanpakutou contra ela.
 - Resistir: Quando estiver sob as condições Congelado, Eletrificado ou Queimado, você pode usar sua reação no seu turno e 2 pontos de reiatsu para encerrar a condição.
@@ -745,7 +745,9 @@ Pré-Requisito: 5° nível de Hakuda.
 Pré-Requisito: 13° nível de Hakuda e habilidade de Hakuda “Instinto Assassino”.
 
 - Marcial: Você adquiri duas técnicas adicionais de Hakuda. Essa habilidade pode ser escolhida mais vezes.
-- Pré-Requisito: 3° nível de Hakuda.
+
+Pré-Requisito: 3° nível de Hakuda.
+
 - Pressão Constante: Toda vez que você realizar um ataque desarmado corpo a corpo, role 1d10. Se o resultado for 1, você pode realizar um novo golpe (um único ataque desarmado). Você pode escolher essa habilidade novamente em um próximo nível, reduzindo o dado para 1d8 e, novamente para 1d6.
 - Primeiro Movimento: Você pode gastar 2 pontos de reiatsu para agir primeiro na rodada, independentemente da iniciativa, você deve informar que vai utilizar essa habilidade assim que o Mestre falar que uma nova rodada começou. Você pode usar essa habilidade um número de vezes igual ao seu bônus de proficiência por combate.
 - Recalibração: Quando você errar um ataque, pode gastar 2 pontos de reiatsu para adicionar 1d4 à rolagem de ataque (Acerto).Você pode utilizar essa habilidade uma vez no turno.
@@ -816,7 +818,9 @@ O dano de Energia do Shunko por golpe segue esta tabela.
 
 | Nível | 3–5 | 6–9 | 10–19 | 20 |
 |---|---|---|---|---|
-| Dano de Energia do Shunko por golpe | 1d10 | 2d10 | 6d10 (os 2d10 anteriores +4d10) | 4d10 |
+| Dano de Energia do Shunko por golpe | 1d10 | 2d10 | 6d10 (os 2d10 anteriores +4d10) | 8d10 (os 6d10 anteriores +2d10) |
+
+O dano do Shunko nunca diminui ao subir de nível.
 
 O crítico 18–20 da habilidade de 20° nível continua.
 
@@ -1997,7 +2001,7 @@ Acerto para suas Técnicas de Reishi = d20 + bônus de proficiência + seu atrib
 
 **Crescimento das técnicas.** As Técnicas de Reishi que causam dano ganham **+1 dado do mesmo tipo no 6º nível e +1 no 11º**. Além disso, elas somam o dano fixo da classe: o Schütze soma a mesma quantia que soma nos disparos (proficiência + proficiência × nível² ÷ 200, a partir do 3º nível), e o Ritter soma a proficiência (a partir do 3º nível).
 
-Você tem uma Técnica de Reishi desde o 1° nível, com dano base de 2d10 + Espírito, e um dado de dano a mais a cada 5 níveis, mais nível² ÷ 150 dados (arredondado para baixo; 8d10 no 20º nível). Além disso, o dano de todos os seus disparos cresce de forma acelerada: a partir do 3º nível você soma +proficiência, mais proficiência × nível² ÷ 200 (arredondado para baixo), ao dano de cada ataque à distância. No 1° e no 2° nível seus disparos não têm vantagem. O bônus de acerto das suas técnicas é 1,5 × a proficiência em todos os níveis.
+Você tem uma Técnica de Reishi desde o 1° nível, com dano base de 2d10 + Espírito, e um dado de dano a mais a cada 5 níveis, mais nível² ÷ 150 dados (arredondado para baixo; 8d10 no 20º nível). Além disso, o dano de todos os seus disparos cresce de forma acelerada: a partir do 3º nível você soma +proficiência, mais proficiência × nível² ÷ 200 (arredondado para baixo), ao dano de cada ataque à distância. No 1° e no 2° nível seus disparos não têm vantagem. O acerto das suas técnicas segue a regra acima: d20 + bônus de proficiência + Mente.
 
 ### Talento de Schütze
 
@@ -2025,7 +2029,6 @@ Pré-Requisito: 5° nível de Schütze.
 
 Pré-Requisito: 9° nível de Schütze e habilidade de Schütze "Executar".
 
-- Foco Estável: Você não sofre mais a penalidade de deslocamento imposta pela característica "Mira Impecável".
 - Guarda: Quando uma criatura dentro de um raio de 9 metros de você se deslocar em sua direção, desde que não seja por um deslocamento instantâneo, você pode usar sua reação para realizar um único ataque com arma à distância contra ela.
 - Heilig Pfeil Físico: Você consegue imbuir suas mãos e pés com Reishi, adicionando 1d6 de dano de energia a seus ataques corpo a corpo desarmado.
 
@@ -2307,17 +2310,16 @@ Quando atacar com uma arma Quincy corpo a corpo, você pode gastar **1 ponto de 
 
 O ataque ainda usa a jogada de ataque da arma. O dano de Energia ignora a resistência a dano físico (como o Hierro) e só sofre a RD esotérica do alvo.
 
-Além disso, cada ataque convertido causa dados de Precisão: **+1d6 de dano de Energia por ponto do seu bônus de proficiência**, até o 14º nível. Do 15º ao 16º nível, os dados são 3d6; do 17º ao 19º, 4d6; no 20º nível, 5d6.
+Além disso, cada ataque convertido causa dados de Precisão: **+1d6 de dano de Energia por ponto do seu bônus de proficiência**, e mais 1d6 no 20º nível. Os dados de Precisão nunca diminuem ao subir de nível.
 
 | Nível | Proficiência | Dados de Precisão (Energia) |
 |---|---|---|
 | 1º ao 4º | +2 | 2d6 |
 | 5º ao 8º | +3 | 3d6 |
 | 9º ao 12º | +4 | 4d6 |
-| 13º e 14º | +5 | 5d6 |
-| 15º e 16º | +5 | 3d6 |
-| 17º ao 19º | +6 | 4d6 |
-| 20º | +6 | 5d6 |
+| 13º ao 16º | +5 | 5d6 |
+| 17º ao 19º | +6 | 6d6 |
+| 20º | +6 | 7d6 |
 
 Exemplo: no 9º nível, Kaito gasta 1 ponto de reiatsu e acerta um Hollow com Hierro usando a espada. O dano da espada vira Energia e ele soma +4d6 de Energia. Como o dano é de Energia, o Hierro não o reduz à metade.
 
@@ -2516,7 +2518,7 @@ Ação, **12 PR**, só durante a Resurrección. Substitui os ataques da sua aç�
 
 - **Glotonería, Devorar:** um ataque que causa (nível + 10)d10 + 2 x Força de Energia. Você recupera 60% do dano causado em PV.
 - **Estallido, Gran Rey Cero:** seu Cero em Resurrección causa +proficiência d8 de dano e você lança dois Ceros por turno (a partir do 8º nível); o segundo causa 75% do dano.
-- **Sonido, Golpe Fantasma:** um ataque com vantagem, crítico em 19 ou 20 e dano de (nível/2 - 3)d10 + 2 x Destreza.
+- **Sonido, Golpe Fantasma:** um ataque com vantagem, crítico em 19 ou 20 e dano de (nível/2 + 3)d10 + 2 x Destreza (nível/2 arredondado para baixo; 8d10 no 10º nível, 13d10 no 20º).
 
 ### Caminhos do Hueco
 
@@ -2585,7 +2587,7 @@ Como o Hueco, a partir do 2º nível você escolhe um Talento de Vazio por vez, 
 
 ### Poder Inato
 
-Ação, custo de **8 PR + nível/5** (arredondado para baixo): ataque de técnica (d20 + proficiência + Espírito) que causa **(nível + 4)d10 + Espírito** de dano de Energia. O Poder Inato ignora o Hierro.
+Ação, custo de **8 PR + nível/5** (arredondado para baixo): ataque de técnica (d20 + proficiência + Espírito) que causa **(nível/2 + 4)d10 + Espírito** de dano de Energia (nível/2 arredondado para baixo: 4d10 no 1º nível, 9d10 no 10º, 14d10 no 20º). O Poder Inato ignora o Hierro.
 
 **Golpe Vazio.** Quando está sem PR, você usa o Golpe Vazio: um ataque grátis de 1d10 + Espírito. Ele sobe para 2d10 no 5º nível, 3d10 no 11º e 4d10 no 17º.
 
@@ -2654,7 +2656,7 @@ A Resurrección já tem custo, duração, bônus de CR e técnica de assinatura 
 - **Traço, Salto de Pantera:** seu deslocamento aumenta em 6 metros e, uma vez por turno, você usa Desengajar como ação livre.
 - **Ponto fraco, Pelagem Rasgada:** você sofre -2 de CR contra ataques à distância.
 - **Ações da forma:**
-  - **Golpe Fantasma** (Ação, 12 PR): Técnica de assinatura do Caminho Sonido. Um ataque com vantagem e margem de crítico 19–20, em que você surge de várias direções ao mesmo tempo. Substitui os ataques da ação. Dano: (nível/2-3)d10 + (2×Destreza).
+  - **Golpe Fantasma** (Ação, 12 PR): Técnica de assinatura do Caminho Sonido. Um ataque com vantagem e margem de crítico 19–20, em que você surge de várias direções ao mesmo tempo. Substitui os ataques da ação. Dano: (nível/2 + 3)d10 + (2×Destreza).
   - **Garra Relâmpago** (Ação bônus, 8 PR): Você se move até 9 metros sem provocar ataques de oportunidade e ataca com a arma natural, causando o dano de Energia indicado a mais. Dano: 2d10 + (Destreza).
   - **Tempestade de Garras** (Ação, 30 PR): Você investe contra até 3 criaturas a 4,5 metros. Cada uma faz salvaguarda de Destreza (CD 8 + proficiência + Destreza): dano de Energia na falha, metade no sucesso. Dano: (nível/2 + 5)d10 + (Destreza).
 
@@ -2692,7 +2694,7 @@ A Resurrección já tem custo, duração, bônus de CR e técnica de assinatura 
 - **Traço, Asas Negras:** você ganha voo igual ao seu deslocamento.
 - **Ponto fraco, Olhos Sensíveis:** você tem desvantagem em testes de Percepção feitos com luz intensa.
 - **Ações da forma:**
-  - **Lança Verde** (Ação, 10 PR): O Poder Inato de Resurrección sai da lança de reiatsu esverdeado. Ataque de técnica (d20 + proficiência + Espírito), alcance de 24 metros. Ignora o Hierro. Custo: 8 PR + nível/5. Dano: ((nível + 4)×1.6)d10 + (Espírito).
+  - **Lança Verde** (Ação, 10 PR): O Poder Inato de Resurrección sai da lança de reiatsu esverdeado. Ataque de técnica (d20 + proficiência + Espírito), alcance de 24 metros. Ignora o Hierro. Custo: 8 PR + nível/5. Dano: ((nível/2 + 4)×1,6)d10 + (Espírito).
   - **Mundo Quebrado** (Ação, 12 PR): Técnica de assinatura do Caminho Ilusión. Substitui os ataques da ação. Um alvo a até 24 metros faz salvaguarda de Constituição (CD 8 + proficiência + Espírito). Na falha, tem desvantagem nos ataques e fica sem reações até o fim do próximo turno dele.
   - **Noite Sem Estrelas** (Ação, 30 PR): Esfera de 9 metros de raio num ponto a até 24 metros. Salvaguarda de Mente (CD 8 + proficiência + Espírito): na falha o alvo sofre o dano e fica cego até o fim do próximo turno dele; no sucesso, metade do dano. Dano: (nível/2 + 5)d10 + (Espírito).
 
@@ -2704,7 +2706,7 @@ A Resurrección já tem custo, duração, bônus de CR e técnica de assinatura 
 - **Traço, Casulo Venenoso:** uma vez por rodada, quando uma criatura acerta você em combate corpo a corpo, ela recebe 1 carga de Ponzoña (respeitando o máximo de cargas).
 - **Ponto fraco, Corpo Pesado:** seu deslocamento diminui em 3 metros.
 - **Ações da forma:**
-  - **Espinho Roxo** (Ação, 10 PR): O Poder Inato de Resurrección sai como um espinho de veneno. Ataque de técnica (d20 + proficiência + Espírito). Ignora o Hierro. Se acertar, aplica 1 carga de Ponzoña. Dano: ((nível + 4)×1.6)d10 + (Espírito).
+  - **Espinho Roxo** (Ação, 10 PR): O Poder Inato de Resurrección sai como um espinho de veneno. Ataque de técnica (d20 + proficiência + Espírito). Ignora o Hierro. Se acertar, aplica 1 carga de Ponzoña. Dano: ((nível/2 + 4)×1,6)d10 + (Espírito).
   - **Veneno Total** (Ação, 12 PR): Técnica de assinatura do Caminho Ponzoña. Substitui os ataques da ação. Até o fim do seu próximo turno, as cargas de Ponzoña causam +50% de dano.
   - **Colheita Venenosa** (Ação, 30 PR): Detona todas as cargas de Ponzoña num alvo que você veja. Ele sofre os dados indicados de Energia por carga (ignora RD) e as cargas somem. Dano: (proficiência)d10.
 
@@ -2716,7 +2718,7 @@ A Resurrección já tem custo, duração, bônus de CR e técnica de assinatura 
 - **Traço, Véu de Reflexo:** uma vez por rodada, quando um ataque erra você, você ganha PV temporários iguais ao seu bônus de proficiência.
 - **Ponto fraco, Vidro Frágil:** se você sofrer um acerto crítico, o Véu de Reflexo deixa de funcionar até o fim da Resurrección.
 - **Ações da forma:**
-  - **Reflexo Negro** (Ação, 10 PR): O Poder Inato de Resurrección sai em estilhaços de vidro negro. Ataque de técnica (d20 + proficiência + Espírito). Ignora o Hierro. Custo: 8 PR + nível/5. Dano: ((nível + 4)×1.6)d10 + (Espírito).
+  - **Reflexo Negro** (Ação, 10 PR): O Poder Inato de Resurrección sai em estilhaços de vidro negro. Ataque de técnica (d20 + proficiência + Espírito). Ignora o Hierro. Custo: 8 PR + nível/5. Dano: ((nível/2 + 4)×1,6)d10 + (Espírito).
   - **Espejo Roto** (Ação, 12 PR): Técnica de assinatura do Caminho Reflejo. Substitui os ataques da ação. Até o início do seu próximo turno, quando você sofre dano, devolve 50% desse dano ao atacante como dano de Energia.
   - **Espelho Quebrado** (Ação, 30 PR): Uma criatura a até 18 metros faz salvaguarda de Espírito (CD 8 + proficiência + Espírito). Na falha sofre o dano de Energia e tem desvantagem nos ataques até o início do seu próximo turno; no sucesso, metade do dano. Dano: (nível/2 + 5)d10 + (Espírito).
 
@@ -2804,6 +2806,8 @@ Um Talento por vez, do 2º nível em diante, exceto nos níveis de Aprimoramento
 
 ### Talentos de Vazio
 
+**Regra de mesa.** Os efeitos que reduzem RD ou dão resistência (Couraça Óssea, Hierro Reativo, o Caminho Glotonería, Toxina Corrosiva e outros) seguem a regra de uma Essência de redução por tipo de dano. O Mestre deve ficar atento a pacotes de talentos defensivos que acumulem demais. Esta regra não é um talento e não ocupa escolha.
+
 #### Poderes
 
 - **Poder Duplo** (9º nível): você lança dois Poderes Inatos na mesma ação. O segundo custa 75% do PR normal e usa 75% dos dados.
@@ -2863,5 +2867,3 @@ Um Talento por vez, do 2º nível em diante, exceto nos níveis de Aprimoramento
 - **Vigília do Vazio** (7º nível): você tem +prof. na iniciativa e na CR contra ataques de oportunidade, e não pode ser surpreendido.
 - **Casca Endurecida** (5º nível): +1 de CR.
 - **Golpe Vazio Drenante** (5º nível; requer Golpe Vazio Ampliado): uma vez por rodada, quando o Golpe Vazio acerta, você recupera PR iguais à prof.
-
-Atenção: os efeitos que reduzem RD ou dão resistência (Couraça Óssea, Hierro Reativo, o Caminho Glotonería, Toxina Corrosiva e outros) seguem a regra de uma Essência de redução por tipo de dano. O Mestre deve ficar atento a pacotes de talentos defensivos que acumulem demais.

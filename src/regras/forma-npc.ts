@@ -30,6 +30,9 @@ export interface FormaNpc {
 
 const profDoND = (nd: number) => (nd <= 4 ? 2 : nd <= 8 ? 3 : nd <= 12 ? 4 : nd <= 16 ? 5 : 6);
 
+/** NPC de ND baixo: fórmulas como "[NIV/2-3]d10" viram "0d10"; a ação fica com pelo menos 1 dado. */
+export const minimoUmDado = (expr: string) => expr.replace(/(^|[^\d])0+d(\d+)/gi, (_, a: string, f: string) => `${a}1d${f}`);
+
 /** Modelos que uma ameaça de cada categoria pode usar. */
 export function modelosParaNpc(categoria: string): { ref: RefModeloNpc; rotulo: string }[] {
   if (categoria === "hollow") {
@@ -93,7 +96,7 @@ export function formaNpc(am: { nd: number; atr: Record<"for" | "des" | "con" | "
         const texto = h.regra || h.texto;
         const tem = !!h.dano && /\d/.test(h.dano);
         if (!tem || cl.passiva || cl.cura) { notas.push({ nome: h.nome, texto }); continue; }
-        let dano = resolverDano(h.dano!, ficha, calc);
+        let dano = minimoUmDado(resolverDano(h.dano!, ficha, calc));
         const dados = soma.dados.tecnica ?? [];
         if (dados.length) dano += ` + ${dados.join(" + ")}`;
         if (soma.dano.tecnica) dano += ` + ${soma.dano.tecnica}`;
