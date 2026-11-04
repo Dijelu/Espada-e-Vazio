@@ -3,13 +3,12 @@ import { useEffect, useState } from "react";
 import { Passo } from "./FichaPecas";
 import type { Rolagens } from "./Rolador";
 import { CONDICAO_TEXTO, CONDICOES, treinoConcluido } from "../regras/catalogo";
-import { Dica } from "./Dica";
+import { Dica, Info } from "./Dica";
 import { custoBankai, nivelLiberacao } from "../regras/liberacoes";
 import { aplicarFaz } from "../regras/aplicar-faz";
 import { classePorId, type Calculo, type Ficha, type Liberacao } from "../regras/ficha";
 import { efeito as som } from "../lib/som";
-import { prepararFotoMascara } from "../lib/mascara-foto";
-import { MASCARAS, mascaraAtiva, tempMascara, type TipoMascara } from "../regras/mascara";
+import { MASCARAS, efeitoMascara, mascaraAtiva, tempMascara, type TipoMascara } from "../regras/mascara";
 
 const LIB_NUM: Record<string, number> = { shikai: 1, bankai: 2, bankai2: 3, resurreccion: 4, terror: 5, vollstandig: 6 };
 
@@ -208,7 +207,7 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
       estado: { ...f.estado, mascaraAtiva: true, usos, pvTemp: Math.max(e.pvTemp, Math.floor(c.pv * t.pv)) },
     });
     som.corte();
-    dispararLiberacao("mascara", MASCARAS.find((m) => m.id === tr.mascara)?.nome, tr.mascaraAparencia?.trim() || undefined, tr.mascaraFoto || undefined);
+    dispararLiberacao("mascara", MASCARAS.find((m) => m.id === tr.mascara)?.nome);
     setMsg(`Máscara ativada (${custo} PR). Ela dura ${max} turno(s), contando este.`);
   };
   const novoTurnoMascara = () => {
@@ -286,45 +285,37 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
       )}
 
       {f.origem === "visored" && f.treinos.feitos.includes("visored-2") && (
-        <details className="painel-mascara" open>
-          <summary>
-            <b>Máscara Hollow</b>
-            {masc && <span className="chip on">ativa · turno {mascaraGasta} de {tr.mascaraMax ?? 1}</span>}
-            {mascaraRecarga > 0 && <span className="chip">recarga {mascaraRecarga}</span>}
-            {tr.mascara && !masc && mascaraRecarga === 0 && <small className="ajuda">{MASCARAS.find((m) => m.id === tr.mascara)?.nome}</small>}
-          </summary>
-          <div className="acoes-linha">
-            <select value={tr.mascara ?? ""} disabled={!!tr.mascara} onChange={(ev) => setTreinos({ mascara: ev.target.value as TipoMascara })} aria-label="Máscara Hollow">
+        <div className="painel-mascara">
+          <b>Máscara Hollow</b>
+          {tr.mascara ? (
+            <>
+              <span className="chip">{MASCARAS.find((m) => m.id === tr.mascara)?.nome.replace("Máscara do ", "")}</span>
+              <Info rotulo="Efeitos da máscara">{MASCARAS.find((m) => m.id === tr.mascara)?.texto}</Info>
+            </>
+          ) : (
+            <select value="" onChange={(ev) => setTreinos({ mascara: ev.target.value as TipoMascara })} aria-label="Escolher a Máscara Hollow (permanente)">
               <option value="">Escolher máscara (permanente)</option>
               {MASCARAS.map((m) => <option key={m.id} value={m.id}>{m.nome}</option>)}
             </select>
-            <span className="ajuda">{tr.mascaraMax ? `Dura ${tr.mascaraMax} turno(s)` : "Tempo ainda não definido (1d4 na primeira vez)"}</span>
-            {masc && <span className="chip on">Turno {mascaraGasta} de {tr.mascaraMax ?? 1}</span>}
-            {mascaraRecarga > 0 && <span className="chip">Recarga: {mascaraRecarga} turno(s)</span>}
-          </div>
-          {tr.mascara && <p className="ajuda">{MASCARAS.find((m) => m.id === tr.mascara)?.texto}</p>}
-          <div className="acoes-linha foto-mascara">
-            {tr.mascaraFoto && <img src={tr.mascaraFoto} alt="Foto da sua máscara" />}
-            <label className="btn btn-paper">
-              {tr.mascaraFoto ? "Trocar foto da máscara" : "Anexar foto da máscara"}
-              <input type="file" accept="image/*" hidden onChange={async (ev) => {
-                const arq = ev.target.files?.[0];
-                ev.target.value = "";
-                if (!arq) return;
-                try { setTreinos({ mascaraFoto: await prepararFotoMascara(arq) }); setMsg("Foto anexada: ela aparece na animação quando você ativar a máscara."); }
-                catch (er) { setMsg(er instanceof Error ? er.message : "Não foi possível usar essa imagem."); }
-              }} />
-            </label>
-            {tr.mascaraFoto && <button type="button" className="chip chip-btn" onClick={() => setTreinos({ mascaraFoto: "" })}>Remover foto</button>}
-          </div>
-          <label className="campo">Aparência da máscara (você descreve; aparece na animação)
-            <textarea rows={2} maxLength={220} value={tr.mascaraAparencia ?? ""} onChange={(ev) => setTreinos({ mascaraAparencia: ev.target.value })} placeholder="Ex.: osso branco rachado ao meio, uma faixa vermelha cortando o olho esquerdo e dentes à mostra." />
-          </label>
-          <div className="acoes-linha">
-            {(masc || mascaraRecarga > 0) && <button type="button" className="chip chip-btn" onClick={novoTurnoMascara}>Novo turno</button>}
-            {tr.mascaraMax ? <button type="button" className="chip chip-btn" onClick={treinarMascara}>Ampliar tempo (teste de Determinação passou)</button> : null}
-          </div>
-        </details>
+          )}
+          {masc && <span className="chip on">turno {mascaraGasta} de {tr.mascaraMax ?? 1}</span>}
+          {masc && (() => {
+            const ef = efeitoMascara(f, c.prof, f.nivel), t = tempMascara(tr.mascara as TipoMascara);
+            const b = [
+              ef.rd ? `RD ${ef.rd} (menos psíquico e temporal)` : "",
+              ef.dadosGolpe ? `+${ef.dadosGolpe} dado${ef.dadosGolpe > 1 ? "s" : ""} nos golpes` : "",
+              ef.dadosTecnica ? `+${ef.dadosTecnica} dado${ef.dadosTecnica > 1 ? "s" : ""} nas técnicas` : "",
+              ef.cd ? `CD das técnicas +${ef.cd}` : "",
+              t.pv ? `PV temp. ${Math.floor(c.pv * t.pv)}` : "",
+              t.pr ? `PR temp. ${Math.floor(c.pr * t.pr)}` : "",
+            ].filter(Boolean);
+            return b.map((x) => <span className="chip" key={x}>{x}</span>);
+          })()}
+          {!masc && mascaraRecarga > 0 && <span className="chip">recarga {mascaraRecarga}</span>}
+          {!masc && !mascaraRecarga && tr.mascaraMax ? <small className="ajuda">dura {tr.mascaraMax} turno(s)</small> : null}
+          {(masc || mascaraRecarga > 0) && <button type="button" className="chip chip-btn" onClick={novoTurnoMascara}>Novo turno</button>}
+          {tr.mascaraMax ? <button type="button" className="chip chip-btn" onClick={treinarMascara} title="Use quando o Mestre pedir o teste de Determinação e você passar">Passei na Determinação (+tempo)</button> : null}
+        </div>
       )}
 
       <details className="condicoes">

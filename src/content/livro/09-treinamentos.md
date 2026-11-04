@@ -194,8 +194,8 @@ A Máscara do Predador é conhecida por intensificar o poder físico do usuário
 
 Para ativá-la, você deve gastar cinco vezes o seu bônus de proficiência em reiatsu e, ao fazê-lo, adquire as seguintes características:
 
-- Corpo Hollow: Seu corpo se torna muito mais resistente, concedendo redução de dano igual à metade do seu nível de personagem (arredonde para baixo) contra todos os tipos de dano, exceto psíquico e temporal.
-- Golpes Amplificados: Seu poder físico se intensifica. Seus ataques com Zanpakutou ou Hakuda causam dano adicional, recebendo um número extra de dados igual à seu bônus de proficiência.
+- Corpo Hollow: Seu corpo se torna muito mais resistente, concedendo redução de dano igual à metade do seu nível de personagem (arredonde para baixo) contra todos os tipos de dano, exceto psíquico e temporal. Essa redução soma com a que você já possui.
+- Golpes Amplificados: Seu poder físico se intensifica. Seus ataques com Zanpakutou ou Hakuda causam dano adicional, recebendo um número extra de dados igual ao seu bônus de proficiência. Os dados extras somam ao dado da arma: se ela causa 1d8 e você recebe 1 dado extra, o dano passa a ser 2d8.
 - Vitalidade Hollow: Você recebe pontos de vida temporários iguais à metade dos seus pontos de vida totais.
 
 ### Máscara do Equilíbrio

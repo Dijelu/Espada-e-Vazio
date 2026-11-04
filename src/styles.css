@@ -1066,7 +1066,7 @@ img, video, svg { max-width: 100%; }
 .carta-ataque small.ajuda { margin: 0; }
 .carta-ataque .rolar-grupo { display: grid; grid-template-columns: repeat(auto-fit, minmax(84px, 1fr)); gap: 6px; grid-row: auto; grid-column: auto; }
 .carta-ataque .rolar-grupo .rolar { min-height: 44px; font-size: 15px; padding: 0 6px; width: 100%; }
-.painel-mascara{border:1px solid var(--line,#444);border-left:6px solid var(--accent);padding:8px 12px;margin:10px 0}.painel-mascara select{max-width:100%}
+.painel-mascara{border:1px solid var(--line,#444);border-left:6px solid var(--accent);padding:6px 12px;margin:10px 0;display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px}.painel-mascara select{max-width:100%}
 
 .fx-mascara .fx-escuro { position: absolute; inset: 0; background: radial-gradient(ellipse at center, #1a0006e6 0%, #000 85%); opacity: 0; }
 .fx-mascara .fx-aura { position: absolute; left: 50%; top: 50%; width: 200vmax; height: 200vmax; margin: -100vmax 0 0 -100vmax; background: repeating-conic-gradient(from 0deg, #e5173fcc 0deg 7deg, #000a 7deg 15deg, #0000 15deg 30deg); -webkit-mask-image: radial-gradient(circle, #000 0%, #0000 38%); mask-image: radial-gradient(circle, #000 0%, #0000 38%); opacity: 0; mix-blend-mode: screen; }
@@ -1077,7 +1077,6 @@ img, video, svg { max-width: 100%; }
 .fx-mascara .fx-texto b { color: #f4eee0; text-shadow: 0 0 24px #e5173f, 5px 5px 0 #000, -3px -3px 0 #e5173f; }
 
 .fx-narrativa { display: block; max-width: min(640px, 86vw); margin: 10px auto 0; font-family: var(--font-corpo, serif); font-size: clamp(14px, 2.2vw, 20px); line-height: 1.35; color: #f4eee0; text-shadow: 0 2px 6px #000, 0 0 14px #e5173f; }
-.foto-mascara img{height:96px;width:auto;background:#111;border:1px solid var(--line,#444);padding:4px;border-radius:6px}
 
 .lista-ess li .ess-origem { display: grid; gap: 8px; flex: 1 1 280px; min-width: 0; }
 .lista-ess li .ess-origem select, .lista-ess li .ess-origem-nome { width: 100%; min-height: 44px; padding: 0 12px; font-size: 16px; color: var(--text); background: var(--bg, #05080f); border: 2px solid var(--line); border-radius: 6px; }

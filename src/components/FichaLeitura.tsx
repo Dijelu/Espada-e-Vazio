@@ -1,5 +1,6 @@
 /* Ficha completa em modo somente leitura: o Mestre vê tudo o que o jogador montou, sem poder alterar nada. */
 import { useMemo, type ReactNode } from "react";
+import { somarDadosGolpe } from "../regras/mascara";
 import { acertoClasse, danosDaClasse } from "../regras/danos-classe";
 import { CONDICAO_TEXTO, KIDOS, TALENTOS, talentosDe, type Talento } from "../regras/catalogo";
 import { HAB_UNICAS, TIPO_FORMA_NOME, danoDaAcao, habilidadesDaForma, liberacaoDaForma, resolverDano } from "../regras/liberacoes";
@@ -16,7 +17,7 @@ const LIMITE_NOME = { cena: "1 por cena", curto: "1 por descanso curto", longo: 
 
 /** Dano final de um ataque cadastrado (mesma conta da página da ficha). */
 function danoFinal(f: Ficha, a: Ataque, c: Calculo) {
-  const dano = ataqueMelhorado(f, a).dano;
+  const dano = a.distancia ? ataqueMelhorado(f, a).dano : somarDadosGolpe(ataqueMelhorado(f, a).dano, c.dadosGolpeMascara);
   if (!dano.trim()) return dano;
   const atr = danoAtributo(c, a);
   const geral = c.danoGeral > 0 ? `+${c.danoGeral}` : "";

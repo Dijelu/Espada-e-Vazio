@@ -899,6 +899,8 @@ export interface Calculo {
   danoHado: number;
   /** dados extras nas técnicas de Zanpakutou, Hadō e Bakudō pela Máscara Hollow ativa */
   dadosTecnicaMascara: number;
+  /** dados extras da máscara nos golpes: somam ao dado da própria arma (1d8 + 1 dado = 2d8) */
+  dadosGolpeMascara: number;
   cdKido: number;
   /** acerto dos Kidōs (proficiência + atributo do Kidō + bônus) */
   acertoKido: number;
@@ -1085,8 +1087,8 @@ export function calcular(fOriginal: Ficha): Calculo {
     pr,
     cr,
     desloc: Math.max(ef.desloc + deslocExtra + px.desloc + sit.desloc + (fx?.desloc ?? 0), f.estado.liberado === "terror" ? 12 : 0),
-    rdFis: Math.max(ef.rdFis + rdFisExtra + px.rdFis, mk.rd) + (fx?.rdFis ?? 0),
-    rdEso: Math.max(ef.rdEso + rdEsoExtra + px.rdEso, mk.rd) + (fx?.rdEso ?? 0),
+    rdFis: ef.rdFis + rdFisExtra + px.rdFis + mk.rd + (fx?.rdFis ?? 0),
+    rdEso: ef.rdEso + rdEsoExtra + px.rdEso + mk.rd + (fx?.rdEso ?? 0),
     iniciativa: (ef.iniMente ? Math.max(atr.des, atr.men) : atr.des) + px.iniciativa,
     // Ritter: armas Quincy corpo a corpo causam +3 de dano do 3º ao 9º nível
     danoCorpo: Math.max(0, (fx?.dano.golpe ?? 0) - (fx?.dano.disparo ?? 0)) + ef.danoCorpo + px.danoCorpo + sit.danoCorpo + (f.classe === "ritter" && n >= 3 && n <= 9 ? 3 : 0) + danoFixoHueco(f, prof) + (f.classe === "ritter" ? vollDano : 0) + (f.classe === "ritter" && n >= 10 ? prof : 0),
@@ -1109,7 +1111,8 @@ export function calcular(fOriginal: Ficha): Calculo {
     danoHado: f.classe === "kidoshu" ? prof * (n >= 18 ? 4 : n >= 13 ? 3 : n >= 8 ? 2 : n >= 3 ? 1 : 0) : 0,
     reducaoLib: px.reducaoLib,
     danoGeral: sit.danoGeral + formaDano + Math.min(fx?.dano.golpe ?? 0, fx?.dano.disparo ?? 0) + (f.classe === "schutze" ? vollDano + (n >= 3 ? prof + Math.floor((prof * n * n) / 200) : 0) : 0),
-    danoDados: [...(mk.dadosGolpe ? [...sit.dados, `${mk.dadosGolpe}d8`] : sit.dados), ...(fx?.dados.golpe ?? [])],
+    danoDados: [...sit.dados, ...(fx?.dados.golpe ?? [])],
+    dadosGolpeMascara: mk.dadosGolpe,
     danoDisparo: Math.max(0, (fx?.dano.disparo ?? 0) - (fx?.dano.golpe ?? 0)),
     danoDadosDisparo: fx?.dados.disparo ?? [],
     forma: fx,

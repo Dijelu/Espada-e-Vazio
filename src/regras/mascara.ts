@@ -32,3 +32,7 @@ export function efeitoMascara(f: Ficha, prof: number, n: number) {
 
 /** Fração do total de PV e de PR que vira temporária ao colocar a máscara. */
 export const tempMascara = (m: TipoMascara | "") => ({ pv: m === "predador" ? 0.5 : m === "equilibrio" ? 0.25 : 0, pr: m === "conquistador" ? 0.5 : m === "equilibrio" ? 0.25 : 0 });
+
+/** Soma `n` dados ao primeiro dado do golpe, mantendo o tipo do dado da arma (1d8 com +1 dado vira 2d8). */
+export const somarDadosGolpe = (dano: string, n: number) =>
+  n > 0 ? dano.replace(/(\d+)d(\d+)/i, (_, q: string, l: string) => `${Number(q) + n}d${l}`) : dano;

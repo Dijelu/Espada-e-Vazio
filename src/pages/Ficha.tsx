@@ -1,4 +1,5 @@
 import { Icone } from "../components/Icone";
+import { somarDadosGolpe } from "../regras/mascara";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { SeletorEssencia } from "../components/SeletorEssencia";
 import { NomeEssencia, TrocarEssencia } from "../components/EssenciaPecas";
@@ -791,7 +792,7 @@ function PoderesEscolhidos({ f }: { f: TFicha }) {
 
 /** Soma o dano extra de corpo a corpo da Origem (Predador, Infectado, Caçador…) nos ataques que não são à distância. */
 function danoFinal(f: TFicha, a: Ataque, c: ReturnType<typeof calcular>) {
-  const dano = ataqueMelhorado(f, a).dano;
+  const dano = a.distancia ? ataqueMelhorado(f, a).dano : somarDadosGolpe(ataqueMelhorado(f, a).dano, c.dadosGolpeMascara);
   if (!dano.trim()) return dano;
   const atr = danoAtributo(c, a);
   const geral = c.danoGeral > 0 ? `+${c.danoGeral}` : "";
