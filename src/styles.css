@@ -1852,3 +1852,29 @@ details.ficha-leitura-bloco[open] > summary { margin-bottom: 8px; }
   .faixa-estado .pv-temp-txt { display: none; }
   .faixa-estado .barra-topo { gap: 4px; }
 }
+
+/* ===== Ficha: grupo de sessão e Receber dano ===== */
+/* descansos, encerrar combate e imprimir num grupo só, compacto */
+.sessao-grupo { display: grid; grid-auto-flow: column; gap: 2px; justify-self: start; max-width: 100%; background: var(--line2); border: 2px solid var(--line2); border-radius: 8px; overflow: hidden; }
+.sessao-grupo button { min-height: 40px; padding: 0 16px; font-size: 14px; font-weight: 700; color: var(--text); background: var(--panel); border: 0; white-space: nowrap; }
+.sessao-grupo button small { margin-left: 4px; font-size: 12px; font-weight: 600; color: var(--muted); }
+.sessao-grupo button:hover:not(:disabled) { background: var(--accent); color: var(--on-accent); }
+.sessao-grupo button:hover:not(:disabled) small { color: inherit; }
+.sessao-grupo button:disabled { opacity: .5; cursor: default; }
+:root[data-skin="quincy"] .sessao-grupo { border-radius: 0; }
+
+/* Receber dano: campos com a mesma altura e o mesmo traço do seletor */
+.acoes .bloco-dano { gap: 8px; padding: 10px 14px; }
+.bloco-dano > b { font-size: 15px; }
+.bloco-dano input[type="number"], .bloco-dano select { height: 44px; min-height: 44px; font: 600 16px var(--font-body); color: var(--text); }
+.bloco-dano input[type="number"] { width: 110px; padding: 0 12px; background: var(--bg); border: 2px solid var(--line); border-left: 6px solid var(--accent); border-radius: 0; }
+.bloco-dano select { width: auto; flex: 1 1 200px; max-width: 360px; }
+.acoes .btn-aplicar { min-height: 44px; padding: 0 24px; font-size: 16px; box-shadow: 3px 3px 0 var(--accent-deep); }
+
+@media (max-width: 760px) {
+  .sessao-grupo { grid-auto-flow: row; grid-template-columns: 1fr 1fr; justify-self: stretch; }
+  .sessao-grupo button { padding: 0 8px; white-space: normal; }
+  .bloco-dano .btn-aplicar { flex: 1 1 100%; justify-content: center; }
+  .bloco-dano input[type="number"] { flex: 0 0 96px; }
+  .bloco-dano select { flex: 1 1 140px; }
+}

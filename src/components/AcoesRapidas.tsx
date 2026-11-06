@@ -301,11 +301,11 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
 
   return (
     <section className="caixa acoes" aria-label="Ações rápidas">
-      <div className="acoes-linha">
-        <button type="button" className="btn btn-paper" onClick={curto} disabled={e.curtosUsados >= 2}>Descanso curto ({2 - e.curtosUsados} restante{e.curtosUsados === 1 ? "" : "s"})</button>
-        <button type="button" className="btn btn-paper" onClick={longo}>Descanso longo</button>
-        <button type="button" className="btn btn-paper" onClick={encerrar}>Encerrar combate</button>
-        <button type="button" className="btn btn-paper" onClick={() => window.print()}>Imprimir</button>
+      <div className="sessao-grupo" role="group" aria-label="Sessão de jogo">
+        <button type="button" onClick={curto} disabled={e.curtosUsados >= 2}>Descanso curto <small>({2 - e.curtosUsados} restante{e.curtosUsados === 1 ? "" : "s"})</small></button>
+        <button type="button" onClick={longo}>Descanso longo</button>
+        <button type="button" onClick={encerrar}>Encerrar combate</button>
+        <button type="button" onClick={() => window.print()}>Imprimir</button>
       </div>
 
       <div className="bloco-dano">
@@ -320,7 +320,7 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
           {f.origem === "lobisomem" && (
             <label className="mini"><input type="checkbox" checked={metade} onChange={(ev) => setMetade(ev.target.checked)} /> metade (Corpo Animalesco)</label>
           )}
-          <button type="button" className="btn btn-red" onClick={aplicarDano}>Aplicar</button>
+          <button type="button" className="btn btn-red btn-aplicar" onClick={aplicarDano}>Aplicar</button>
         </div>
       </div>
       {msg && <p className="ajuda" role="status">{msg}</p>}

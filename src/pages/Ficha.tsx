@@ -325,6 +325,7 @@ export default function Ficha() {
         <div className="menu-tema-cel" role="group" aria-label="Tema">
           <SeletorTema tema={tema} alternar={alternarTema} />
           <button type="button" onClick={() => { setLivro((v) => !v); setMenuTema(false); }}>{livro ? "Voltar à ficha" : "Ver como livro"}</button>
+          {livro && <button type="button" onClick={() => { setMenuTema(false); window.print(); }}>Imprimir</button>}
         </div>
       )}
 
