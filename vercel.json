@@ -1,7 +1,7 @@
 {
   "rewrites": [
     {
-      "source": "/((?!art/|assets/|audio/|tema.js).*)",
+      "source": "/((?!art/|arte/|assets/|audio/|tema.js).*)",
       "destination": "/index.html"
     }
   ],

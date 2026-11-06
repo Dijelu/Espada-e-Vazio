@@ -1,5 +1,5 @@
 import { Suspense, lazy, useCallback, useEffect, useRef, useState } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Link, Route, Routes, useLocation } from "react-router-dom";
 import Topbar from "./components/Topbar";
 import Busca from "./components/Busca";
 import Capa from "./pages/Capa";
@@ -22,6 +22,7 @@ const Campanhas = lazy(() => import("./pages/Campanhas"));
 const CampanhaPagina = lazy(() => import("./pages/Campanha"));
 const Conta = lazy(() => import("./pages/Conta"));
 const ImportarLivro = lazy(() => import("./pages/ImportarLivro"));
+const Creditos = lazy(() => import("./pages/Creditos"));
 
 export default function App() {
   const [busca, setBusca] = useState(false);
@@ -76,13 +77,14 @@ export default function App() {
         <Route path="/ferramentas" element={<Ferramentas />} />
         <Route path="/ferramentas/simulador" element={<Simulador />} />
         <Route path="/conta" element={<Conta />} />
+        <Route path="/creditos" element={<Creditos />} />
         <Route path="/admin/livro" element={<RequerLogin><ImportarLivro /></RequerLogin>} />
         <Route path="*" element={<EmBreve titulo="Página não encontrada" texto="Esse caminho não existe." />} />
       </Routes>
       </Suspense>
       </ErroTela>
       <footer className="footer">
-        Obra de fã, sem fins lucrativos. Bleach © Tite Kubo / Shueisha. Créditos e fontes no último capítulo do livro.
+        Obra de fã, sem fins lucrativos. Bleach © Tite Kubo / Shueisha. Créditos e fontes no último capítulo do livro e na página <Link to="/creditos">Créditos de arte e fontes</Link>.
       </footer>
     </>
   );
