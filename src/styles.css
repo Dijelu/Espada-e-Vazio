@@ -1410,3 +1410,180 @@ details.ficha-leitura-bloco[open] > summary { margin-bottom: 8px; }
   .ficha-leitura-selos b { font-size: 21px; }
   .ficha-leitura-ataques { grid-template-columns: 1fr; }
 }
+
+/* ===== Ficha: tokens de cor por tema e por origem do poder ===== */
+:root {
+  --font-title: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --p-asa-b: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='52' viewBox='0 0 30 52'%3E%3Cpath d='M0 0L30 0L15 26ZM15.0 8.7L0 0M15.0 8.7L30 0M15.0 8.7L15 26M0 0L15 26L-15 26ZM0.0 17.3L0 0M0.0 17.3L15 26M0.0 17.3L-15 26M30 0L45 26L15 26ZM30.0 17.3L30 0M30.0 17.3L45 26M30.0 17.3L15 26M15 26L0 52L30 52ZM15.0 43.3L15 26M15.0 43.3L0 52M15.0 43.3L30 52M-15 26L15 26L0 52ZM0.0 34.7L-15 26M0.0 34.7L15 26M0.0 34.7L0 52M15 26L45 26L30 52ZM30.0 34.7L15 26M30.0 34.7L45 26M30.0 34.7L30 52' fill='none' stroke='%23ffffff' stroke-opacity='.55' stroke-width='.9'/%3E%3C/svg%3E");
+  --p-onda: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='12' viewBox='0 0 40 20'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.6' stroke-width='1.6'%3E%3Cpath d='M0 20a20 20 0 0 1 40 0M7 20a13 13 0 0 1 26 0M14 20a6 6 0 0 1 12 0M-20 10a20 20 0 0 1 40 0M-13 10a13 13 0 0 1 26 0M20 10a20 20 0 0 1 40 0M27 10a13 13 0 0 1 26 0'/%3E%3C/g%3E%3C/svg%3E");
+  --p-kikko: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='48' viewBox='0 0 28 48'%3E%3Cpath d='M14 0L28 8V24L14 32L0 24V8ZM14 32V48M0 24L-14 32M28 24L42 32' fill='none' stroke='%23ffffff' stroke-opacity='.55' stroke-width='1.4'/%3E%3C/svg%3E");
+  --p-risca: repeating-linear-gradient(135deg, transparent 0 9px, rgba(255,255,255,.28) 9px 10.5px);
+}
+
+/* ---------- HOLLOW (escuro): vazio, máscara de osso e cero ---------- */
+:root[data-theme="dark"] {
+  --bg: #08060a; --panel: #15101b; --panel2: #0e0a13; --line: #3a2b45;
+  --text: #efe9dc; --muted: #bdb3c4;
+  --accent: #e5173f; --accent-deep: #6f0a24; --on-accent: #ffffff;
+  --halftone: #c9a4ff10;
+  --glow: radial-gradient(ellipse 60% 40% at 85% -5%, #5b1a4a55, transparent 70%), radial-gradient(ellipse 50% 40% at 0% 100%, #2a124a55, transparent 70%);
+  color-scheme: dark;
+  /* derivadas: vermelho + violeta + osso (as cores que o tema já usa) */
+  --line2: #7a6389;
+  --c-pv: #efe9dc;          /* PV = OSSO (decisão do dono). Vermelho fica só para perigo/condição */
+  --c-pr: #d3b8ff;          /* PR = violeta claro (o violeta do brilho do fundo), barra listrada */
+  --c-perigo: #ff5a1f; --c-perigo-tx: #ff8c6b; --on-perigo: #1b0602;   /* PV baixo (v4): vermelho-brasa QUENTE, longe do acento #e5173f, do âmbar e do carmim */
+  --c-cond-bg: #ffb4c230; --c-cond-bd: #ffb4c2; --c-cond-tx: #ffc9d3;
+  --c-evol: #d8bf94;        /* osso envelhecido (antes era osso, que agora é o PV) */
+  --o-bankai: #ff9a1f; --o-shikai: #f26aa8; --o-kido: #9d78ea; --o-hollow: #efe9dc; --o-comum: #8d8296; --o-quincy: #4aa3ff;
+  --on-shikai: #2a0710; --on-hollow: #15101b; --on-evol: #15101b; --on-bankai: #15101b;
+  --q-ice: var(--text); --q-ice2: var(--line);
+  --p-asa: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='52' viewBox='0 0 30 52'%3E%3Cpath d='M0 0L30 0L15 26ZM15.0 8.7L0 0M15.0 8.7L30 0M15.0 8.7L15 26M0 0L15 26L-15 26ZM0.0 17.3L0 0M0.0 17.3L15 26M0.0 17.3L-15 26M30 0L45 26L15 26ZM30.0 17.3L30 0M30.0 17.3L45 26M30.0 17.3L15 26M15 26L0 52L30 52ZM15.0 43.3L15 26M15.0 43.3L0 52M15.0 43.3L30 52M-15 26L15 26L0 52ZM0.0 34.7L-15 26M0.0 34.7L15 26M0.0 34.7L0 52M15 26L45 26L30 52ZM30.0 34.7L15 26M30.0 34.7L45 26M30.0 34.7L30 52' fill='none' stroke='%23efe9dc' stroke-width='.8'/%3E%3C/svg%3E");
+  --p-racha: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 44' preserveAspectRatio='none'%3E%3Cpath d='M0 26L40 20L58 30L90 10L120 24L150 14L200 28M90 10L96 0M120 24L118 44M58 30L50 44' stroke='%2315101b' stroke-width='1.5' fill='none'/%3E%3Cpath d='M90 10L120 24' stroke='%23e5173f' stroke-width='3'/%3E%3C/svg%3E");
+  /* cartas: máscara de osso */
+  --cd-bg: #efe9dc; --cd-tx: #15101b; --cd-mu: #54465b; --cd-line: #15101b; --cd-soft: #a79bb0;
+  --cd-pr-bg: #f7d5dc; --cd-pr-bd: #b3142f; --cd-pr-tx: #6f0a24;
+  --cd-btn-bg: #15101b; --cd-btn-tx: #efe9dc;
+  --cd-hollow-fx: #d9cfbb;
+  --sombra: 0 10px 30px rgba(0,0,0,.5);
+  --cw-ct: #000000; --cw-sh: rgba(0,0,0,.55);   /* contorno das cartas sobre o tema escuro */
+}
+
+/* ---------- SHINIGAMI (claro): haori branco, shihakushō preto, reiatsu azul ---------- */
+:root[data-theme="light"] {
+  --bg: #f4f2ec; --panel: #ffffff; --panel2: #e6ebef; --line: #c5ced5;
+  --text: #0f1215; --muted: #47525b;
+  --accent: #1d6a99; --accent-deep: #0f3d5a; --on-accent: #ffffff;
+  --halftone: #0f121511; --glow: none;
+  color-scheme: light;
+  /* derivadas: azul reiatsu em vários tons + tinta preta + branco */
+  --line2: #7f8e99;
+  --c-pv: #414f5b;          /* PV = ardósia fria escura (legível; 8:1 no branco) */
+  --c-pr: #5f6fc9;          /* PR = azul-lavanda de aço, barra listrada */
+  --c-perigo: #c73c00; --c-perigo-tx: #a93200; --on-perigo: #ffffff;   /* PV baixo (v4, claro): vermelho-ferrugem quente */
+  --c-cond-bg: #0f1215; --c-cond-bd: #0f1215; --c-cond-tx: #ffffff;   /* pílula de tinta */
+  --c-evol: #0c7d80;        /* azul-petróleo */
+  --o-bankai: #1d6a99; --o-shikai: #2b91d9; --o-kido: #3330b0; --o-hollow: #0f1215; --o-comum: #7d8e9b; --o-quincy: #001a40;
+  --on-shikai: #0f1215; --on-hollow: #ffffff; --on-evol: #ffffff; --on-bankai: #ffffff;
+  --q-ice: var(--text); --q-ice2: var(--line);
+  --p-asa: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='52' viewBox='0 0 30 52'%3E%3Cpath d='M0 0L30 0L15 26ZM15.0 8.7L0 0M15.0 8.7L30 0M15.0 8.7L15 26M0 0L15 26L-15 26ZM0.0 17.3L0 0M0.0 17.3L15 26M0.0 17.3L-15 26M30 0L45 26L15 26ZM30.0 17.3L30 0M30.0 17.3L45 26M30.0 17.3L15 26M15 26L0 52L30 52ZM15.0 43.3L15 26M15.0 43.3L0 52M15.0 43.3L30 52M-15 26L15 26L0 52ZM0.0 34.7L-15 26M0.0 34.7L15 26M0.0 34.7L0 52M15 26L45 26L30 52ZM30.0 34.7L15 26M30.0 34.7L45 26M30.0 34.7L30 52' fill='none' stroke='%230f3d5a' stroke-width='.8'/%3E%3C/svg%3E");
+  --p-racha: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 44' preserveAspectRatio='none'%3E%3Cpath d='M0 26L40 20L58 30L90 10L120 24L150 14L200 28M90 10L96 0M120 24L118 44M58 30L50 44' stroke='%23ffffff' stroke-width='1.5' fill='none'/%3E%3Cpath d='M90 10L120 24' stroke='%235aa9d6' stroke-width='3'/%3E%3C/svg%3E");
+  /* cartas: papel branco com contorno de tinta */
+  --cd-bg: #ffffff; --cd-tx: #0f1215; --cd-mu: #47525b; --cd-line: #0f1215; --cd-soft: #9aa7b1;
+  --cd-pr-bg: #dcebf5; --cd-pr-bd: #1d6a99; --cd-pr-tx: #0f3d5a;
+  --cd-btn-bg: #0f1215; --cd-btn-tx: #ffffff;
+  --cd-hollow-fx: #0f1215;
+  --sombra: 0 10px 30px rgba(15,18,21,.25);
+  --cw-ct: #0f1215; --cw-sh: rgba(15,18,21,.30);   /* tema claro: toda carta ganha contorno de tinta (osso e carmim não somem no branco) */
+}
+
+/* ---------- QUINCY (skin extra): azul-ciano, branco, preto-azulado ---------- */
+:root[data-skin="quincy"] {
+  --font-title: "Cinzel", "Barlow Condensed", serif;
+  --bg: #05090f; --panel: #0a1422; --panel2: #060d18; --line: #2b5380;
+  --text: #eef6ff; --muted: #a3bdd9;
+  --accent: #5cc8ff; --accent-deep: #123f66; --on-accent: #03111f;
+  --halftone: #7fd0ff10;
+  --glow: radial-gradient(ellipse 70% 45% at 50% -8%, #8fd8ff40, transparent 70%), radial-gradient(ellipse 50% 40% at 100% 100%, #13427a55, transparent 70%);
+  color-scheme: dark;
+  /* derivadas: ciano, gelo, branco, azul real (o que o site usa: #5cc8ff #8fd8ff #bfe6ff #eef6ff #2b5380) */
+  --line2: #4f84bb; --ice: #8fd8ff;
+  --c-pv: #eef6ff;          /* PV = branco-gelo (decisão do dono) */
+  --c-pr: #4f9bff;          /* PR = azul vivo, barra listrada (distinto do branco e do ciano) */
+  --c-perigo: #ff5a1f; --c-perigo-tx: #ff8c6b; --on-perigo: #1b0602;   /* PV baixo (v4): vermelho-brasa QUENTE, longe do acento #e5173f, do âmbar e do carmim */
+  --c-cond-bg: #eef6ff22; --c-cond-bd: #eef6ff; --c-cond-tx: #ffffff;
+  --c-evol: #b9bde8;        /* gelo-lavanda */
+  --o-bankai: #5cc8ff; --o-shikai: #2a62e6; --o-kido: #9a86ff; --o-hollow: #eef6ff; --o-comum: #6f7f94; --o-quincy: #7df9ff;
+  --on-shikai: #ffffff; --on-hollow: #03111f; --on-evol: #03111f; --on-bankai: #03111f;
+  --q-ice: #8fd8ff; --q-ice2: #2b5380;
+  --p-asa: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='52' viewBox='0 0 30 52'%3E%3Cpath d='M0 0L30 0L15 26ZM15.0 8.7L0 0M15.0 8.7L30 0M15.0 8.7L15 26M0 0L15 26L-15 26ZM0.0 17.3L0 0M0.0 17.3L15 26M0.0 17.3L-15 26M30 0L45 26L15 26ZM30.0 17.3L30 0M30.0 17.3L45 26M30.0 17.3L15 26M15 26L0 52L30 52ZM15.0 43.3L15 26M15.0 43.3L0 52M15.0 43.3L30 52M-15 26L15 26L0 52ZM0.0 34.7L-15 26M0.0 34.7L15 26M0.0 34.7L0 52M15 26L45 26L30 52ZM30.0 34.7L15 26M30.0 34.7L45 26M30.0 34.7L30 52' fill='none' stroke='%238fd8ff' stroke-width='.8'/%3E%3C/svg%3E");
+  --p-racha: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 44' preserveAspectRatio='none'%3E%3Cpath d='M0 26L40 20L58 30L90 10L120 24L150 14L200 28M90 10L96 0M120 24L118 44M58 30L50 44' stroke='%2303111f' stroke-width='1.5' fill='none'/%3E%3Cpath d='M90 10L120 24' stroke='%235cc8ff' stroke-width='3'/%3E%3C/svg%3E");
+  /* cartas: preto-azulado, borda dupla de gelo */
+  --cd-bg: #0a1422; --cd-tx: #eef6ff; --cd-mu: #a3bdd9; --cd-line: #8fd8ff; --cd-soft: #4f84bb;
+  --cd-pr-bg: #123f66; --cd-pr-bd: #5cc8ff; --cd-pr-tx: #bfe6ff;
+  --cd-btn-bg: #5cc8ff; --cd-btn-tx: #03111f;
+  --cd-hollow-fx: #eef6ff;
+  --sombra: 0 10px 30px rgba(0,0,0,.6), 0 0 24px #5cc8ff33;
+  --cw-ct: #000000; --cw-sh: rgba(0,0,0,.6);
+}
+
+
+/* ---------- MODO LIVRO: o papel SEGUE o tema ativo ----------
+   Só muda a "folha" (fundo, painel, linhas, tinta). Acento, cores de tipo e cartas
+   continuam as do tema, então a diferença entre os temas aparece também no livro. */
+/* Hollow: papel escuro de osso, tinta clara (sem brilho nem pontilhado) */
+:root[data-modo="livro"][data-theme="dark"]:not([data-skin]) {
+  --bg: #100b15; --panel: #18121f; --panel2: #0e0a13; --line: #3a2b45; --line2: #7a6389;
+  --text: #efe9dc; --muted: #bdb3c4; --halftone: transparent; --glow: none;
+  --sombra: 0 6px 18px rgba(0,0,0,.5);
+}
+/* Shinigami: papel claro (a própria paleta clara, sem bege inventado) */
+:root[data-modo="livro"][data-theme="light"] {
+  --halftone: transparent; --glow: none;
+  --sombra: 0 6px 18px rgba(15,18,21,.18);
+}
+/* Quincy: papel azul-noite, tinta de gelo */
+:root[data-modo="livro"][data-skin="quincy"] {
+  --bg: #070d18; --panel: #0c182a; --panel2: #060d18; --line: #2b5380; --line2: #4f84bb;
+  --text: #eef6ff; --muted: #a3bdd9; --halftone: transparent; --glow: none;
+}
+
+/* ---------- IMPRESSÃO: sempre papel claro (paleta Shinigami), em qualquer tema/modo ---------- */
+@media print {
+  :root:root:root:root {
+  --bg: #f4f2ec; --panel: #ffffff; --panel2: #e6ebef; --line: #c5ced5;
+  --text: #0f1215; --muted: #47525b;
+  --accent: #1d6a99; --accent-deep: #0f3d5a; --on-accent: #ffffff;
+  --halftone: #0f121511; --glow: none;
+  color-scheme: light;
+  /* derivadas: azul reiatsu em vários tons + tinta preta + branco */
+  --line2: #7f8e99;
+  --c-pv: #414f5b;          /* PV = ardósia fria escura (legível; 8:1 no branco) */
+  --c-pr: #5f6fc9;          /* PR = azul-lavanda de aço, barra listrada */
+  --c-perigo: #c73c00; --c-perigo-tx: #a93200; --on-perigo: #ffffff;   /* PV baixo (v4, claro): vermelho-ferrugem quente */
+  --c-cond-bg: #0f1215; --c-cond-bd: #0f1215; --c-cond-tx: #ffffff;   /* pílula de tinta */
+  --c-evol: #0c7d80;        /* azul-petróleo */
+  --o-bankai: #1d6a99; --o-shikai: #2b91d9; --o-kido: #3330b0; --o-hollow: #0f1215; --o-comum: #7d8e9b; --o-quincy: #001a40;
+  --on-shikai: #0f1215; --on-hollow: #ffffff; --on-evol: #ffffff; --on-bankai: #ffffff;
+  --q-ice: var(--text); --q-ice2: var(--line);
+  --p-asa: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='52' viewBox='0 0 30 52'%3E%3Cpath d='M0 0L30 0L15 26ZM15.0 8.7L0 0M15.0 8.7L30 0M15.0 8.7L15 26M0 0L15 26L-15 26ZM0.0 17.3L0 0M0.0 17.3L15 26M0.0 17.3L-15 26M30 0L45 26L15 26ZM30.0 17.3L30 0M30.0 17.3L45 26M30.0 17.3L15 26M15 26L0 52L30 52ZM15.0 43.3L15 26M15.0 43.3L0 52M15.0 43.3L30 52M-15 26L15 26L0 52ZM0.0 34.7L-15 26M0.0 34.7L15 26M0.0 34.7L0 52M15 26L45 26L30 52ZM30.0 34.7L15 26M30.0 34.7L45 26M30.0 34.7L30 52' fill='none' stroke='%230f3d5a' stroke-width='.8'/%3E%3C/svg%3E");
+  --p-racha: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 44' preserveAspectRatio='none'%3E%3Cpath d='M0 26L40 20L58 30L90 10L120 24L150 14L200 28M90 10L96 0M120 24L118 44M58 30L50 44' stroke='%23ffffff' stroke-width='1.5' fill='none'/%3E%3Cpath d='M90 10L120 24' stroke='%235aa9d6' stroke-width='3'/%3E%3C/svg%3E");
+  /* cartas: papel branco com contorno de tinta */
+  --cd-bg: #ffffff; --cd-tx: #0f1215; --cd-mu: #47525b; --cd-line: #0f1215; --cd-soft: #9aa7b1;
+  --cd-pr-bg: #dcebf5; --cd-pr-bd: #1d6a99; --cd-pr-tx: #0f3d5a;
+  --cd-btn-bg: #0f1215; --cd-btn-tx: #ffffff;
+  --cd-hollow-fx: #0f1215;
+  --sombra: 0 10px 30px rgba(15,18,21,.25);
+  --cw-ct: #0f1215; --cw-sh: transparent;
+    --bg: #ffffff; --halftone: transparent; --glow: none;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+}
+
+/* fontes locais da ficha (licença OFL, ver /creditos) */
+@font-face { font-family: "Marcellus"; src: url("/arte/fontes/marcellus-400.woff") format("woff"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Grenze Gotisch"; src: url("/arte/fontes/grenze-gotisch.woff") format("woff"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: "Shippori Mincho"; src: url("/arte/fontes/shippori-mincho-800.woff") format("woff"); font-weight: 600 800; font-display: swap; }
+@font-face { font-family: "Shippori Selo"; src: url("/arte/fontes/shippori-kanji.woff") format("woff"); font-weight: 800; font-display: swap; }
+@font-face { font-family: "Cinzel Decorative"; src: url("/arte/fontes/cinzel-decorative-700.woff") format("woff"); font-weight: 700; font-display: swap; }
+
+/* Pele de cada origem do poder. É fixa: não muda com o tema da página (o contraste é o mesmo nos três). */
+:root {
+  /* Shinigami: hanafuda, preto de nanquim e carmim */
+  --sh-fundo: #140a0e; --sh-fundo2: #0b0609; --sh-carmim: #b3122e; --sh-carmim-vivo: #ff4d6a; --sh-washi: #f6ece4; --sh-nevoa: #e6d9cf; --sh-papel: #efe3d1; --sh-tinta: #1a0d10;
+  /* Hollow: osso */
+  --ho-vazio: #15101b; --ho-vazio2: #0c0710; --ho-osso: #ece4d0; --ho-osso2: #d3c8ae; --ho-osso-nevoa: #e2d9c4; --ho-ambar: #ff9a1f; --ho-vermelho: #e5173f;
+  /* Quincy: reishi com veias azuis */
+  --qu-fundo: #07131f; --qu-fundo2: #04090f; --qu-gelo: #eef6ff; --qu-azul: #5cc8ff; --qu-azul2: #2b5380; --qu-veia: #8fd8ff;
+  --pv-alerta: #ff5a1f;
+}
+:root[data-theme="light"]:not([data-skin]) { --pv-alerta: #c73c00; }
+
+/* Alerta de PV baixo: vinheta nas bordas da tela, pulsando (parada com movimento reduzido) */
+.ficha[data-pvbaixo="1"]::after {
+  content: ""; position: fixed; inset: 0; z-index: 40; pointer-events: none;
+  box-shadow: inset 0 0 90px 12px color-mix(in srgb, var(--pv-alerta) 55%, transparent);
+  animation: pv-pulso 1.6s ease-in-out infinite;
+}
+@keyframes pv-pulso { 0%, 100% { opacity: .35; } 50% { opacity: .95; } }
+@media (prefers-reduced-motion: reduce) { .ficha[data-pvbaixo="1"]::after { animation: none; opacity: .7; } }
