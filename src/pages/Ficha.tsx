@@ -69,6 +69,13 @@ export default function Ficha() {
   const [livro, setLivro] = useState(false);
   const [menuTema, setMenuTema] = useState(false);
   const { tema, alternar: alternarTema } = useTema();
+  // o modo livro segue o tema ativo (a folha muda, as cores de tipo ficam); a impressão é sempre em papel claro
+  useEffect(() => {
+    const r = document.documentElement;
+    if (livro) r.setAttribute("data-modo", "livro");
+    else r.removeAttribute("data-modo");
+    return () => r.removeAttribute("data-modo");
+  }, [livro]);
   const carregada = useRef(false);
   const [construir, setConstruir] = useState<TipoForma | null>(null);
   const nivelVisto = useRef<number | null>(null);
@@ -306,6 +313,7 @@ export default function Ficha() {
           </button>
         ))}
         <span className="secoes-fim">
+          {livro && <button type="button" className="btn-livro" onClick={() => window.print()}>Imprimir</button>}
           <button type="button" className={`btn-livro${livro ? " on" : ""}`} onClick={() => setLivro((v) => !v)} aria-pressed={livro}>{livro ? "Voltar à ficha" : "Ver como livro"}</button>
           <span className="tema-grupo desk" role="group" aria-label="Tema">
             <SeletorTema tema={tema} alternar={alternarTema} />

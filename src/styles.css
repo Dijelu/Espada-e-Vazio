@@ -1807,3 +1807,27 @@ details.ficha-leitura-bloco[open] > summary { margin-bottom: 8px; }
 .schrift-compara thead th { color: var(--qu-veia); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
 .schrift-compara td b { color: var(--qu-veia); }
 @media (max-width: 820px) { .painel-schrift.dentro { max-width: none; } }
+
+/* ===== Ver como livro: segue o tema ativo; impressão sempre em papel claro ===== */
+.modo-livro .secoes > button:not(.btn-livro):not(.btn-tema-cel) { display: none; }
+.modo-livro .faixa-estado .barra-mexer, .modo-livro .faixa-estado .barra-acoes { display: none; }
+.modo-livro .cond-chip { pointer-events: none; }
+.modo-livro .ficha-leitura-bloco { font-family: "Shippori Mincho", var(--font-body), serif; }
+@media (max-width: 760px) {
+  .modo-livro .secoes > .secoes-fim { display: contents; }
+  .modo-livro .secoes .btn-livro { display: flex; flex: 1; align-items: center; justify-content: center; border-radius: 0; border: 0; min-height: 58px; }
+}
+@media print {
+  .faixa-estado { position: static !important; background: none !important; backdrop-filter: none; }
+  .faixa-estado .barra-mexer, .faixa-estado .barra-acoes, .secoes, .menu-tema-cel, .painel-forma-botoes, .btn-mini, .ficha .btn, .fp-onda { display: none !important; }
+  .ficha { padding-bottom: 0 !important; }
+  .ficha[data-pvbaixo="1"]::after { display: none; }
+  .carta-hab[data-origem], .painel-forma[data-origem], .painel-schrift {
+    background: #fff !important; color: #0f1215 !important; border: 1.5px solid #0f1215 !important; box-shadow: none !important; outline: 0 !important; clip-path: none !important; break-inside: avoid;
+    --text: #0f1215; --muted: #47525b; --accent: #1d6a99; --line: #c5ced5;
+  }
+  .carta-hab[data-origem]::before { background: #0f1215 !important; color: #fff !important; }
+  .carta-hab[data-origem]::after, .painel-forma[data-origem]::before { display: none !important; }
+  .painel-schrift small, .selo-forte, .schrift-compara td b, .schrift-compara thead th { color: #0f1215 !important; background: none !important; }
+  .painel-forma[data-origem] .painel-forma-topo h2 { color: #0f1215; }
+}
