@@ -1067,6 +1067,13 @@ img, video, svg { max-width: 100%; }
 .carta-ataque .rolar-grupo { display: grid; grid-template-columns: repeat(auto-fit, minmax(84px, 1fr)); gap: 6px; grid-row: auto; grid-column: auto; }
 .carta-ataque .rolar-grupo .rolar { min-height: 44px; font-size: 15px; padding: 0 6px; width: 100%; }
 .painel-mascara{border:1px solid var(--line,#444);border-left:6px solid var(--accent);padding:6px 12px;margin:10px 0;display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px}.painel-mascara select{max-width:100%}
+.painel-hogyoku{border:1px solid var(--line,#444);border-left:6px solid var(--accent);padding:6px 12px;margin:10px 0;display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px}.painel-hogyoku select{width:auto;min-width:0;max-width:100%}
+.painel-hogyoku .hogyoku-botoes{flex:1 1 100%}
+details.painel-hogyoku.discreto{display:block;border-left-width:2px;padding:2px 12px;opacity:.8}
+details.painel-hogyoku.discreto[open]{opacity:1}
+details.painel-hogyoku.discreto select{width:auto}
+details.painel-hogyoku.discreto>summary{cursor:pointer;min-height:32px;display:flex;align-items:center;font-size:.9em}
+.chip-btn:disabled{opacity:.5;cursor:not-allowed}
 
 .fx-mascara .fx-escuro { position: absolute; inset: 0; background: radial-gradient(ellipse at center, #1a0006e6 0%, #000 85%); opacity: 0; }
 .fx-mascara .fx-aura { position: absolute; left: 50%; top: 50%; width: 200vmax; height: 200vmax; margin: -100vmax 0 0 -100vmax; background: repeating-conic-gradient(from 0deg, #e5173fcc 0deg 7deg, #000a 7deg 15deg, #0000 15deg 30deg); -webkit-mask-image: radial-gradient(circle, #000 0%, #0000 38%); mask-image: radial-gradient(circle, #000 0%, #0000 38%); opacity: 0; mix-blend-mode: screen; }

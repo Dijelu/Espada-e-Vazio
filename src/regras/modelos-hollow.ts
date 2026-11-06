@@ -338,8 +338,8 @@ export const RESURRECCIONES_MONTADAS: ModeloResHollow[] = [
    {
     "nome": "Devorar: Banquete",
     "acao": "Ação",
-    "dano": "[NIV+10]d10+[2*FOR]",
-    "regra": "Técnica de assinatura do Caminho Glotonería (regra do livro): ataque de Energia; você recupera 60% do dano causado em PV. Custo 12 PR.",
+    "dano": "[NIV/2+7]d10+[2*FOR]",
+    "regra": "Técnica de assinatura do Caminho Glotonería (regra do livro): ataque de Energia; você recupera 40% do dano causado em PV. Custo 12 PR.",
     "desc": "As bocas dos tentáculos se fecham sobre o alvo ao mesmo tempo.",
     "modelo": "",
     "fixa": true,
@@ -513,8 +513,8 @@ export const RESURRECCIONES_MONTADAS: ModeloResHollow[] = [
    {
     "nome": "Devorar: Mordida da Fera",
     "acao": "Ação",
-    "dano": "[NIV+10]d10+[2*FOR]",
-    "regra": "Técnica de assinatura do Caminho Glotonería (regra do livro): ataque de Energia; você recupera 60% do dano causado em PV. Custo 12 PR.",
+    "dano": "[NIV/2+7]d10+[2*FOR]",
+    "regra": "Técnica de assinatura do Caminho Glotonería (regra do livro): ataque de Energia; você recupera 40% do dano causado em PV. Custo 12 PR.",
     "desc": "Ele agarra o inimigo com a mão inteira e o leva à boca.",
     "modelo": "",
     "fixa": true,

@@ -1,5 +1,6 @@
 /* Efeitos das transformações: o jogador monta a forma com peças que viram bônus automáticos enquanto ela está ativa. */
 import { contaSimples } from "./liberacoes";
+import { ppExtraDaForma } from "./hogyoku";
 import type { Atr, Ficha, FormaLib } from "./ficha";
 
 export type Alvo = "golpe" | "disparo" | "hado" | "bakudo" | "tecnica" | "reishi" | "cero" | "inato" | "schrift";
@@ -421,10 +422,13 @@ export function devolucaoLimites(habs: { limite?: string; requisito?: string; es
 
 export function orcamentoDaForma(f: Ficha, tipo: FormaLib["tipo"], forma: FormaLib | undefined, ctx: CtxForma): Orcamento {
   const extraMestre = Math.max(0, Math.min(PP_EXTRA_MAX, Math.floor(Number(forma?.ppExtra) || 0)));
-  const total = orcamentoBase(tipo, ctx.n, { plena: tipo === "bankai" && f.treinos.caminhoBankai === "plena", origem: f.origem }) + extraMestre;
+  // Poder da Forma do Hōgyoku (estágio 3): só a forma mais forte; junto com os pontos do Mestre, o limite é o mesmo (12)
+  const extraHogyoku = ppExtraDaForma(f, tipo);
+  const total = orcamentoBase(tipo, ctx.n, { plena: tipo === "bankai" && f.treinos.caminhoBankai === "plena", origem: f.origem }) + Math.min(PP_EXTRA_MAX, extraMestre + extraHogyoku);
   let gasto = 0;
   let devolucao = 0;
   const avisos: string[] = [];
+  if (extraHogyoku > 0) avisos.push(`Poder da Forma do Hōgyoku: +${extraHogyoku} PP (limite de ${PP_EXTRA_MAX} extras junto com os do Mestre).`);
   let frenesiDev = 0;
   const somar = (p: InstEfeito, fator: number) => {
     const c = custoPeca(p, ctx) * fator;

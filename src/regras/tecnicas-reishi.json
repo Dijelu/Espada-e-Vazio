@@ -2,126 +2,243 @@
  {
   "nome": "Blue Flames",
   "nivel": 1,
+  "acao": "Ação",
+  "custo": 5,
+  "reforco": "+2 PR por +1d10",
+  "alcance": "9 m",
+  "jogada": "Acerto",
   "texto": "Você concentra uma grande quantidade de Reiatsu nas mãos, fazendo chamas azuladas de Reishi surgirem ao redor de seus braços. As chamas se intensificam rapidamente, irradiando calor enquanto partículas espirituais se acumulam em seu interior. Com um movimento brusco, você lança essa energia contra um alvo, envolvendo o ponto de impacto em uma explosão de fogo azul. O ataque causa 2d10 de dano de Fogo. Se uma criatura for reduzida a 0 pontos de vida por essa técnica, ela morre instantaneamente."
  },
  {
   "nome": "Disparo Explosivo",
   "nivel": 1,
+  "acao": "Ação Bônus",
+  "custo": 2,
+  "reforco": "+2 PR por +1d6",
+  "alcance": "Alcance da arma",
+  "jogada": "Automático",
   "texto": "Quando você realizar um disparo com uma arma de ataque à distância, poderá criar um projétil explosivo que, ao atingir o alvo, provoca uma explosão em um raio de 3 metros. Todas as criaturas na área, incluindo o alvo atingido, devem realizar um teste de resistência de Destreza, se você atingiu a criatura com o disparo ela fará o teste com desvantagem. Em caso de falha, sofrem 2d6 de dano de Energia ou o dano causado pela arma, o que for maior. Esta técnica também pode ser utilizada em outras Técnicas de Reishi ou habilidades Quincy, desde que potencialize um projétil disparado."
  },
  {
   "nome": "Flechas de Reishi",
   "nivel": 1,
+  "acao": "Ação (criar) + Ação Bônus (arremessar)",
+  "custo": 3,
+  "custoNota": "por flecha",
+  "alcance": "18 m",
+  "jogada": "Acerto",
   "texto": "Você cria projéteis em forma de flechas que flutuam no ar e acompanham seus movimentos por até 1 minuto. Posteriormente, você pode utilizar uma ação bônus para arremessar uma flecha. Ao acertar, ela causa 1d6 + seu atributo-chave de Técnica de Reishi de dano de Energia ou Perfurante, à sua escolha. Cada flecha possui individualmente o custo em pontos de Reiatsu da técnica (3 PR cada). Você pode manter um número de flechas conjuradas igual à metade do seu nível de personagem, com o mínimo de 1 flecha.\n\nAlternativamente, você pode utilizar uma ação para arremessar todas as flechas restantes de uma só vez, causando o dano de todas elas somado e adicionando o atributo-chave apenas uma vez. O alvo realiza um Teste de Resistência de Destreza: em caso de falha recebe o dano total, em caso de sucesso recebe metade. Essa opção transforma a jogada de ataque em automática.\n\nAo arremessar uma flecha com uma ação bônus, você pode pagar novamente o custo em Reiatsu da técnica para arremessar outra flecha na mesma ação bônus, respeitando o limite de flechas que ainda possui."
  },
  {
   "nome": "Gritz",
   "nivel": 1,
-  "texto": "criatura, formando uma cruz Quincy que, ao atingi-la, envolve seu corpo e a aprisiona em uma jaula de metal, prendendo todos os seus membros. A jaula possui Pontos de Vida iguais à quantidade de Reiatsu armazenada no Gintou. O Gintou é destruido quando usado nessa técnica. A criatura aprisionada pode realizar um Teste de Resistência de Força no começo do turno para tentar se libertar. Em caso de falha, permanece presa."
+  "acao": "Ação",
+  "custo": 10,
+  "custoNota": "+ 1 Gintou",
+  "alcance": "9 m",
+  "jogada": "Acerto",
+  "texto": "O usuário arremessa um Gintou na direção de uma criatura, formando uma cruz Quincy que, ao atingi-la, envolve seu corpo e a aprisiona em uma jaula de metal, prendendo todos os seus membros. A jaula possui Pontos de Vida iguais à quantidade de Reiatsu armazenada no Gintou. O Gintou é destruído quando usado nessa técnica. A criatura aprisionada pode realizar um Teste de Resistência de Força no começo do turno para tentar se libertar. Em caso de falha, permanece presa."
  },
  {
   "nome": "Heizen",
   "nivel": 1,
-  "texto": "O usuário arremessa um ou mais Gintous na direção de uma criatura e, em seguida, posiciona as mãos em forma de cruz. Um feixe de energia retangular, vertical e transparente é gerado entre os Gintous, cortando, esmagando ou purificando instantaneamente tudo o que estiver dentro da área delimitada.\n\nPara cada Gintou arremessado que acertar, a criatura sofre dano de Energia igual à metade da quantidade de pontos de Reiatsu armazenados nele. Você pode arremessar, no máximo, quatro Gintous com esta técnica. Os Gintous são destruídos quando usados nessa técnica. Custo: 10 PR para cada Gintou."
+  "acao": "Ação",
+  "custo": 10,
+  "custoNota": "por Gintou (até 4)",
+  "alcance": "9 m",
+  "jogada": "Acerto",
+  "texto": "O usuário arremessa um ou mais Gintous na direção de uma criatura e, em seguida, posiciona as mãos em forma de cruz. Um feixe de energia retangular, vertical e transparente é gerado entre os Gintous, cortando, esmagando ou purificando instantaneamente tudo o que estiver dentro da área delimitada.\n\nPara cada Gintou arremessado que acertar, a criatura sofre dano de Energia igual à metade da quantidade de pontos de Reiatsu armazenados nele. Você pode arremessar, no máximo, quatro Gintous com esta técnica. Os Gintous são destruídos quando usados nessa técnica."
  },
  {
   "nome": "Lança de Reishi",
   "nivel": 1,
-  "texto": "Você concentra uma grande quantidade de Reishi e cria uma enorme lança espiritual, arremessando-a com um gesto da mão. A lança avança até o ponto escolhido e explode no impacto, atingindo todas as criaturas em uma esfera de 3 metros de raio. Cada criatura na área deve realizar um teste de resistência de Destreza. Em caso de falha, sofre 4d8 de dano de Energia; em caso de sucesso, sofre metade do dano."
+  "acao": "Ação",
+  "custo": 10,
+  "reforco": "+3 PR por +1d8",
+  "alcance": "9 m",
+  "jogada": "Automático",
+  "texto": "Você concentra uma grande quantidade de Reishi e cria uma enorme lança espiritual, arremessando-a com um gesto da mão. A lança avança até o ponto escolhido e explode no impacto, atingindo todas as criaturas em uma esfera de 3 metros de raio. Cada criatura na área deve realizar um teste de resistência de Destreza. Em caso de falha, sofre 4d8 de dano de Energia ou Perfurante, à escolha do usuário; em caso de sucesso, sofre metade do dano."
  },
  {
   "nome": "Wolke",
   "nivel": 1,
-  "texto": "Quando você for atingido por um ataque corpo a corpo ou à distância, poderá utilizar sua reação e um Gintou para reduzir o dano recebido em um valor igual à quantidade de Reiatsu armazenada nele. O Gintou é destruido quando usado nessa técnica."
+  "acao": "Reação",
+  "custo": 5,
+  "custoNota": "+ 1 Gintou",
+  "alcance": "Pessoal",
+  "jogada": "Automático",
+  "texto": "Quando você for atingido por um ataque corpo a corpo ou à distância, poderá utilizar sua reação e um Gintou para reduzir o dano recebido em um valor igual à quantidade de Reiatsu armazenada nele. O Gintou é destruído quando usado nessa técnica. Alternativamente, enquanto estiver caindo, você pode utilizar o Wolke (também com a reação) para reduzir o dano de queda."
  },
  {
   "nome": "Blut Arterie",
   "nivel": 2,
-  "texto": "Ao fazer o Reishi fluir diretamente por seus vasos sanguíneos, você aumenta drasticamente seu poder defensivo. Enquanto o Blut Vene estiver ativo, você recebe um bônus de CR igual à metade do seu atributo-chave de Técnicas de Reishi e redução de dano contra todos os tipos de dano, exceto psíquico, igual a metade do seu atributochave de Técnicas de Reishi."
+  "acao": "Ação Bônus",
+  "custo": 10,
+  "alcance": "Pessoal",
+  "jogada": "Automático",
+  "texto": "Ao fazer o Reishi fluir diretamente por seus vasos sanguíneos, você aumenta drasticamente seu poder ofensivo. Enquanto o Blut Arterie estiver ativo, seus ataques com armas Quincy causam dano adicional igual ao seu atributo-chave de Técnicas de Reishi. Além disso, suas Técnicas de Reishi que causam dano recebem dados de dano adicionais em quantidade igual à metade do seu atributo-chave de Técnicas de Reishi. Você deve manter a concentração para sustentar o Blut Arterie. Caso utilize o Blut Vene, o Blut Arterie é encerrado automaticamente."
  },
  {
   "nome": "Blut Vene",
   "nivel": 2,
+  "acao": "Ação Bônus",
+  "custo": 10,
+  "custoNota": "(20 PR se já estiver ativo e usar como reação)",
+  "alcance": "Pessoal",
+  "jogada": "Automático",
   "texto": "Ao fazer o Reishi fluir diretamente por seus vasos sanguíneos, você aumenta drasticamente seu poder defensivo. Enquanto o Blut Vene estiver ativo, você recebe um bônus de CR igual à metade do seu atributo-chave de Técnicas de Reishi e redução de dano contra todos os tipos de dano, exceto psíquico, igual a metade do seu atributochave de Técnicas de Reishi."
  },
  {
   "nome": "Licht Klinge",
   "nivel": 2,
-  "texto": "Ao realizar um ataque corpo a corpo, você pode imbuir sua arma com Reishi, fazendo-a brilhar em azul e aumentando o dano do ataque em 2d6 de Energia. A arma permanece imbuída até o fim do seu turno."
+  "acao": "Ação Bônus",
+  "custo": 5,
+  "reforco": "+3 PR por +1d6",
+  "alcance": "Pessoal",
+  "jogada": "Automático",
+  "complemento": true,
+  "texto": "Você imbui sua arma corpo a corpo com Reishi, fazendo-a brilhar em azul e aumentando seu poder. Até o fim do seu turno, todos os seus ataques corpo a corpo causam 2d6 de dano de Energia adicional. Esta técnica é um complemento: ela não é um ataque à parte, soma-se aos ataques com a arma."
  },
  {
   "nome": "Klavier",
   "nivel": 2,
-  "texto": "Ao fazer o Reishi fluir diretamente por seus vasos sanguíneos, você aumenta drasticamente seu poder defensivo. Enquanto o Blut Vene estiver ativo, você recebe um bônus de CR igual à metade do seu atributo-chave de Técnicas de Reishi e redução de dano contra todos os tipos de dano, exceto psíquico, igual a metade do seu atributochave de Técnicas de Reishi."
+  "acao": "Ação",
+  "custo": 15,
+  "reforco": "+3 PR por +1d10",
+  "alcance": "9 m",
+  "jogada": "Automático",
+  "texto": "Você dispara uma infinidade de flechas de Reishi em rápida sucessão, utilizando apenas uma das mãos para manejar sua Arma Quincy. Todas as criaturas na área de um cone de 9 metros, devem realizar um teste de resistência de Destreza. Em caso de falha, sofrem o dano com sua arma Quincy à distância mais 3d10 de dano de Energia. Em caso de sucesso, sofrem metade do dano."
  },
  {
   "nome": "Materialização",
   "nivel": 2,
-  "texto": "Você reúne partículas de Reishi e materializa uma arma à sua escolha do Arsenal Quincy em suas mãos. A arma permanece materializada por 1 minuto, após o qual se desfaz em partículas de Reishi. Você pode desfazê-la antes do término da duração, sem gastar uma ação."
+  "acao": "Ação Bônus",
+  "custo": 5,
+  "alcance": "Pessoal",
+  "jogada": "Automático",
+  "texto": "Você reúne partículas de Reishi e materializa uma arma à sua escolha do Arsenal Quincy em suas mãos. A arma permanece materializada por 1 minuto, após o qual se desfaz em partículas de Reishi. Você pode desfazê-la antes do término da duração, sem gastar uma ação. Esta técnica não acumula com a Quincy Cross."
  },
  {
   "nome": "Ransotengai",
   "nivel": 2,
+  "acao": "Ação Bônus",
+  "custo": 15,
+  "alcance": "Pessoal",
+  "jogada": "Automático",
   "texto": "Você cria fios de Reishi controlados pela mente, conectando-os ao próprio corpo para movimentá-lo como uma marionete. Enquanto a técnica estiver ativa, você pode continuar se movimentando e realizando ações mesmo que esteja sob efeito de condições que impeçam seus movimentos, como Paralisado ou Incapacitado. Essa técnica não remove as condições nem impede seus demais efeitos."
  },
  {
   "nome": "Blue Burst",
   "nivel": 3,
+  "acao": "Ação",
+  "custo": 25,
+  "reforco": "+3 PR por +1d8",
+  "alcance": "18 m",
+  "jogada": "Automático",
   "texto": "Você concentra uma enorme quantidade de Reishi nas mãos, criando uma esfera de chamas azuladas que arremessa contra um ponto dentro do alcance. Ao atingir o local escolhido, a esfera se expande violentamente, espalhando chamas que queimam tudo ao redor em um raio de 6 metros. Cada criatura na área deve realizar um teste de resistência de Destreza. Em caso de falha, sofre 8d8 de dano de Fogo e deve realizar um teste de resistência de Constituição. Se falhar nesse segundo teste, fica Queimada. Em caso de sucesso no teste de Destreza, sofre metade do dano e não fica Queimada."
  },
  {
   "nome": "Blut Vene Anhaben",
   "nivel": 3,
+  "acao": "Reação",
+  "custo": 20,
+  "alcance": "Pessoal",
+  "jogada": "Automático",
   "texto": "Ao ser atingido por um ataque, você faz o Reishi fluir intensamente por seus vasos sanguíneos e o libera ao redor, criando um domo defensivo de Reishi com 3 metros de raio. Todas as criaturas dentro do domo ficam protegidas contra o ataque que ativou a técnica, reduzindo o dano recebido em um valor igual a cinco vezes o seu nível de personagem + seu atributo-chave de Técnicas de Reishi. Essa redução se aplica a todas as criaturas protegidas, incluindo você."
  },
  {
   "nome": "Grande Lança de Reishi",
   "nivel": 3,
-  "texto": "Você concentra uma grande quantidade de Reishi e cria uma enorme lança espiritual, arremessando-a com um gesto da mão. A lança avança até o ponto escolhido e explode no impacto, atingindo todas as criaturas em uma esfera de 6 metros de raio. Cada criatura na área deve realizar um teste de resistência de Destreza. Em caso de falha, sofre 8d10 de dano de Energia; em caso de sucesso, sofre metade do dano."
+  "acao": "Ação",
+  "custo": 22,
+  "reforco": "+3 PR por +1d10",
+  "alcance": "18 m",
+  "jogada": "Automático",
+  "texto": "Você concentra uma grande quantidade de Reishi e cria uma enorme lança espiritual, arremessando-a com um gesto da mão. A lança avança até o ponto escolhido e explode no impacto, atingindo todas as criaturas em uma esfera de 6 metros de raio. Cada criatura na área deve realizar um teste de resistência de Destreza. Em caso de falha, sofre 8d10 de dano de Energia ou Perfurante, à sua escolha; em caso de sucesso, sofre metade do dano."
  },
  {
   "nome": "Prisão de Reishi",
   "nivel": 3,
+  "acao": "Ação",
+  "custo": 15,
+  "alcance": "18 m",
+  "jogada": "Automático",
   "texto": "Você reúne partículas de Reishi ao redor dos pés de uma criatura que possa ver, formando uma prisão espiritual que a impede de se movimentar. O alvo deve realizar um teste de resistência de Força. Em caso de falha, fica Preso pelas pernas por até 1 minuto."
  },
  {
   "nome": "Shadow",
   "nivel": 3,
+  "acao": "10 minutos",
+  "custo": 25,
+  "custoNota": "por criatura transportada",
+  "alcance": "Pessoal",
+  "jogada": "Automático",
   "texto": "Você expande sua sombra e a transforma em uma passagem dimensional, permitindo atravessar as sombras para alcançar outros locais e dimensões. Para utilizar essa técnica, você deve conhecer o destino desejado e dedicar 10 minutos de concentração total à abertura da passagem, sem realizar outras atividades durante esse período. A travessia reduz pela metade o tempo que normalmente seria necessário para chegar ao destino. Ao alcançar o local desejado, você pode sair da dimensão sombria instantaneamente. No entanto, uma vez iniciada a travessia, você não pode mudar o destino nem retornar pelo caminho percorrido."
  },
  {
   "nome": "Sprenger",
   "nivel": 3,
+  "acao": "Ação Completa",
+  "custo": 10,
+  "custoNota": "+ 1 Gintou e 5 Seele Schneider",
+  "alcance": "Pessoal",
+  "jogada": "Automático",
   "texto": "Você posiciona cinco Seele Schneider no chão, formando os vértices de um pentágono. Cada Seele Schneider deve estar a até 18 metros de você, e a distância entre duas Seele Schneider consecutivas não pode ultrapassar 6 metros. Após posicionar as cinco armas, você utiliza um Gintō para ativar o selo, provocando uma violenta explosão de energia espiritual que atinge toda a área interna do pentágono. Todas as criaturas dentro da área devem realizar um teste de resistência de Constituição. Em caso de falha, sofrem 10d10 de dano + a quantidade de pontos de Reiatsu armazenados no Gintou em dano de Energia. Em caso de sucesso, sofrem metade do dano. A explosão consome o Gintou utilizado, mas as cinco Seele Schneider podem ser recuperadas após a ativação."
  },
  {
   "nome": "Blitz Geschoss",
   "nivel": 4,
-  "texto": "Você cria enormes projéteis em forma de flechas de Reishi, concentrando uma grande quantidade de energia espiritual em cada uma delas. As flechas flutuam ao seu redor, prontas para serem lançadas contra seus inimigos com grande velocidade e força destrutiva, acompanhando seus movimentos enquanto aguardam seu comando."
+  "acao": "Ação (criar) + Ação Bônus (arremessar)",
+  "custo": 10,
+  "custoNota": "por flecha",
+  "alcance": "36 m",
+  "jogada": "Acerto",
+  "texto": "Você cria enormes projéteis em forma de flechas de Reishi, concentrando uma grande quantidade de energia espiritual em cada uma delas. As flechas flutuam ao seu redor, prontas para serem lançadas contra seus inimigos com grande velocidade e força destrutiva, acompanhando seus movimentos enquanto aguardam seu comando. Posteriormente, você pode utilizar uma ação bônus para arremessar uma flecha contra um alvo. Ao acertar, ela causa 3d10 + seu atributo-chave de Técnica de Reishi de dano de Energia ou Perfurante, à sua escolha.\n\nCada flecha possui individualmente o custo em pontos de Reiatsu da técnica. Você pode manter um número de flechas conjuradas igual à metade do seu nível de personagem, com o mínimo de 1 flecha.\n\nAlternativamente, você pode utilizar uma ação para arremessar todas as flechas restantes de uma só vez contra um alvo. O alvo deve realizar um teste de resistência de Destreza. Em caso de falha, sofre o dano de todas as flechas somado, adicionando seu atributo-chave de Técnica de Reishi apenas uma vez. Em caso de sucesso, sofre metade do dano. Essa opção transforma a jogada de ataque em automática.\n\nAo arremessar uma flecha com uma ação bônus, você pode pagar novamente o custo em Reiatsu da técnica para arremessar outra flecha na mesma ação bônus, respeitando o limite de flechas que ainda possui."
  },
  {
   "nome": "Blue Pillar",
   "nivel": 4,
-  "texto": "Você reúne uma imensa quantidade de Reishi nas mãos, fazendo chamas azuladas envolverem seus braços e iluminarem o ambiente com um brilho intenso. Em seguida, direciona toda essa energia para um ponto dentro do alcance, provocando uma explosão de chamas que irrompe violentamente do chão. Um gigantesco pilar de fogo azul se ergue em direção aos céus, alcançando 12 metros de altura e se espalhando em um raio de 3 metros, consumindo tudo o que estiver em seu caminho."
+  "acao": "Ação",
+  "custo": 30,
+  "alcance": "36 m",
+  "jogada": "Automático",
+  "texto": "Você reúne uma imensa quantidade de Reishi nas mãos, fazendo chamas azuladas envolverem seus braços e iluminarem o ambiente com um brilho intenso. Em seguida, direciona toda essa energia para um ponto dentro do alcance, provocando uma explosão de chamas que irrompe violentamente do chão. Um gigantesco pilar de fogo azul se ergue em direção aos céus, alcançando 12 metros de altura e se espalhando em um raio de 3 metros, consumindo tudo o que estiver em seu caminho.\n\nTodas as criaturas na área devem realizar um teste de resistência de Destreza. Em caso de falha, sofrem dano de Fogo igual a cinco vezes seu nível de personagem. Em caso de sucesso, sofrem metade do dano. Se uma criatura for reduzida a 0 pontos de vida por esta técnica, ela é desintegrada pelas chamas azuis e morre imediatamente."
  },
  {
   "nome": "Chuva de Heilig Pfeil",
   "nivel": 4,
-  "texto": "Você ergue a mão e concentra uma enorme quantidade de Reishi no céu, criando dezenas de Heilig Pfeil que surgem e ficam suspensos no ar, formando uma imensa formação de flechas espirituais sobre o campo de batalha. Por um instante, os projéteis permanecem imóveis, apontados para o chão, até que, com um simples gesto seu, todas as flechas despencam simultaneamente em direção aos inimigos.\n\nVocê realiza uma única jogada de ataque de Técnica de Reishi contra todas as criaturas em uma área de 6 metros de raio. O resultado da jogada é comparado à CR de cada criatura separadamente. Cada criatura atingida sofre 10d10 de dano Perfurante + seu atributo-chave de Técnica de Reishi. Custo: 30 PR · Ação · 24 metros."
+  "acao": "Ação",
+  "custo": 30,
+  "alcance": "24 m",
+  "jogada": "Acerto",
+  "texto": "Você ergue a mão e concentra uma enorme quantidade de Reishi no céu, criando dezenas de Heilig Pfeil que surgem e ficam suspensos no ar, formando uma imensa formação de flechas espirituais sobre o campo de batalha. Por um instante, os projéteis permanecem imóveis, apontados para o chão, até que, com um simples gesto seu, todas as flechas despencam simultaneamente em direção aos inimigos.\n\nVocê realiza uma única jogada de ataque de Técnica de Reishi contra todas as criaturas em uma área de 6 metros de raio. O resultado da jogada é comparado à CR de cada criatura separadamente. Cada criatura atingida sofre 10d10 de dano Perfurante + seu atributo-chave de Técnica de Reishi."
  },
  {
   "nome": "Heilig Pfeil Erobern",
   "nivel": 4,
-  "texto": "Você ergue a mão e aponta o dedo indicador para uma criatura dentro do alcance, concentrando uma quantidade colossal de Reishi na ponta do dedo. Em um instante, você dispara uma saraivada devastadora de Heilig Pfeil, lançando uma sequência frenética de flechas espirituais que convergem sobre o alvo. Os projéteis o atingem sucessivamente, liberando uma força destrutiva capaz de devastar o terreno ao redor e abrir uma enorme cratera no ponto do impacto.\n\nRealize uma jogada de ataque de Técnica de Reishi contra uma criatura dentro do alcance. Se acertar, o alvo sofre dano de Energia igual a oito vezes o seu nível de personagem. Custo: 40 PR · Ação Completa · 24 metros."
+  "acao": "Ação Completa",
+  "custo": 40,
+  "alcance": "24 m",
+  "jogada": "Acerto",
+  "texto": "Você ergue a mão e aponta o dedo indicador para uma criatura dentro do alcance, concentrando uma quantidade colossal de Reishi na ponta do dedo. Em um instante, você dispara uma saraivada devastadora de Heilig Pfeil, lançando uma sequência frenética de flechas espirituais que convergem sobre o alvo. Os projéteis o atingem sucessivamente, liberando uma força destrutiva capaz de devastar o terreno ao redor e abrir uma enorme cratera no ponto do impacto.\n\nRealize uma jogada de ataque de Técnica de Reishi contra uma criatura dentro do alcance. Se acertar, o alvo sofre dano de Energia igual a oito vezes o seu nível de personagem."
  },
  {
   "nome": "Kirchenlied: Sankt Zwinger",
   "nivel": 4,
-  "texto": "Você ergue uma das mãos e concentra uma grande quantidade de Reishi, fazendo partículas espirituais se reunirem ao seu redor. Um enorme símbolo Quincy se manifesta no chão e, com um gesto, enormes colunas de energia espiritual emergem ao seu redor e se conectam, formando uma barreira circular com 6 metros de raio. A estrutura envolve a área em uma poderosa zona de contenção, permanecendo ativa por até 1 minuto.\n\nAo ativar a técnica, todas as criaturas hostis dentro da barreira devem realizar um teste de resistência de Constituição. Em caso de falha, sofrem 10d10 de dano de Energia. Em caso de sucesso, sofrem metade do dano. Além disso, no início do turno de cada criatura hostil que você escolher e que esteja dentro da barreira, ela deve repetir o teste de resistência de Constituição, sofrendo 5d10 de dano de Energia em caso de falha, ou metade em caso de sucesso.\n\nVocê e as criaturas escolhidas no momento da ativação podem atravessar a barreira sem sofrer seus efeitos. A técnica termina antecipadamente se você ficar Incapacitado ou decidir encerrá-la. Custo: 30 PR (+5 PR para aumentar a área em 1,5 metro) · Ação."
+  "acao": "Ação",
+  "custo": 30,
+  "reforco": "+5 PR por +1,5 m de raio",
+  "alcance": "6 m a partir de você",
+  "jogada": "Automático",
+  "texto": "Você ergue uma das mãos e concentra uma grande quantidade de Reishi, fazendo partículas espirituais se reunirem ao seu redor. Um enorme símbolo Quincy se manifesta no chão e, com um gesto, enormes colunas de energia espiritual emergem ao seu redor e se conectam, formando uma barreira circular com 6 metros de raio. A estrutura envolve a área em uma poderosa zona de contenção, permanecendo ativa por até 1 minuto.\n\nAo ativar a técnica, todas as criaturas hostis dentro da barreira devem realizar um teste de resistência de Constituição. Em caso de falha, sofrem 10d10 de dano de Energia. Em caso de sucesso, sofrem metade do dano. Além disso, no início do turno de cada criatura hostil que você escolher e que esteja dentro da barreira, ela deve repetir o teste de resistência de Constituição, sofrendo 5d10 de dano de Energia em caso de falha, ou metade em caso de sucesso.\n\nVocê e as criaturas escolhidas no momento da ativação podem atravessar a barreira sem sofrer seus efeitos. A técnica termina antecipadamente se você ficar Incapacitado ou decidir encerrá-la."
  },
  {
   "nome": "Qual Kreis",
   "nivel": 4,
-  "texto": "Você cria quatro enormes Heilig Bogen (arcos) feitos de Reishi, posicionando-os em pontos à sua escolha dentro do alcance. Cada arco ocupa 1 quadrado no tabuleiro e possui alcance de disparo igual ao de um arco longo. Além disso, cada arco deve ter linha de visão desimpedida até o alvo para realizar seus disparos. As estruturas se erguem do chão e passam a girar lentamente ao redor da criatura escolhida, acompanhando seus movimentos, disparando sucessivas rajadas de Heilig Pfeil de diferentes direções.\n\nEnquanto mantiver a concentração, os quatro arcos continuam disparando durante 3 turnos. Ao final de cada turno da criatura alvo, ela deve realizar quatro testes de resistência de Destreza, um para cada disparo. Para cada falha, sofre dano de Energia igual a duas vezes o seu nível de personagem. Em caso de sucesso, não sofre dano daquele disparo.\n\nQualquer criatura pode atacar os arcos para tentar interromper o bombardeio. Cada arco possui 30 pontos de vida e uma CR igual à sua. Sempre que um arco for reduzido a 0 pontos de vida, ele é destruído e deixa de realizar seu disparo. Se os quatro arcos forem destruídos, a técnica é encerrada imediatamente. A técnica também termina se você perder a concentração. Custo: 30 PR · Ação · 12 metros a partir do usuário."
+  "acao": "Ação",
+  "custo": 30,
+  "alcance": "12 m a partir de você",
+  "jogada": "Automático",
+  "texto": "Você cria quatro enormes Heilig Bogen (arcos) feitos de Reishi, posicionando-os em pontos à sua escolha dentro do alcance. Cada arco ocupa 1 quadrado no tabuleiro e possui alcance de disparo igual ao de um arco longo. Além disso, cada arco deve ter linha de visão desimpedida até o alvo para realizar seus disparos. As estruturas se erguem do chão e passam a girar lentamente ao redor da criatura escolhida, acompanhando seus movimentos, disparando sucessivas rajadas de Heilig Pfeil de diferentes direções.\n\nEnquanto mantiver a concentração, os quatro arcos continuam disparando durante 3 turnos. Ao final de cada turno da criatura alvo, ela deve realizar quatro testes de resistência de Destreza, um para cada disparo. Para cada falha, sofre dano de Energia igual a duas vezes o seu nível de personagem. Em caso de sucesso, não sofre dano daquele disparo.\n\nQualquer criatura pode atacar os arcos para tentar interromper o bombardeio. Cada arco possui 30 pontos de vida e uma CR igual à sua. Sempre que um arco for reduzido a 0 pontos de vida, ele é destruído e deixa de realizar seu disparo. Se os quatro arcos forem destruídos, a técnica é encerrada imediatamente. A técnica também termina se você perder a concentração."
  }
 ]

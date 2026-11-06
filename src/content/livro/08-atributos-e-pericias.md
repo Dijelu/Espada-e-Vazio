@@ -134,6 +134,8 @@ Teste de Espírito: representa o quanto você consegue reunir energia espiritual
 
 Você pode carregar uma quantidade de itens igual a 5 + seu atributo de Força, e cada item possui um "Peso" diferente, variando de 1 a 4 unidades. Você não pode carregar mais peso do que o seu máximo, a menos que o Mestre permita. Se o seu atributo de Força mudar, você deve ajustar retroativamente o peso que o personagem pode carregar.
 
+O Peso de cada item, a raridade, o vínculo e o uso dos itens estão no Capítulo 15 (Itens).
+
 ### Peso em Bleach
 
 O peso dentro do universo de Bleach é algo muito abstrato, com personagens levantando toneladas. Por isso, no Soul Society RPG foi adotado o sistema de carga. Quando um personagem for realizar um feito de grande peso, o Mestre pode pedir um Teste de Força.

@@ -49,6 +49,9 @@ interface Participante {
   pr: number;
   prMax: number;
   cr: number;
+  /** RD do NPC (peças da forma + Máscara do Predador); ausente em combates salvos antes */
+  rdFis?: number;
+  rdEso?: number;
   fora: boolean;
   nota: string;
   /** NPCs adicionados juntos rolam uma iniciativa só */
@@ -79,7 +82,7 @@ interface Participante {
   };
 }
 
-interface Forma { acoes: AcaoNpc[]; cr: number; pvMax: number; prMax: number; atr: Record<string, number>; prof: number }
+interface Forma { acoes: AcaoNpc[]; cr: number; rdFis?: number; rdEso?: number; pvMax: number; prMax: number; atr: Record<string, number>; prof: number }
 
 interface Estado {
   ativo: boolean;
@@ -112,7 +115,7 @@ function formaDe(am: Ameaca, etapa: boolean | EtapaNpc | EstadoNpc): Forma {
       acoes.push({ nome: `Invocar ${v.nome}`, tipo: "invocar", acerto: 0, dano: "", custo: v.custoPr, cd: 0, crit: 21, mult: 1, inv: { chave: v.chave, nome: v.nome, pv: v.pv, cr: v.cr, acerto: v.acerto, dano: v.dano ? rd(v.dano) : "", max: v.max } });
     }
   }
-  return { acoes, cr: c.cr, pvMax: c.pv, prMax: c.pr, atr: { ...atr }, prof: c.prof };
+  return { acoes, cr: c.cr, rdFis: c.rdFis, rdEso: c.rdEso, pvMax: c.pv, prMax: c.pr, atr: { ...atr }, prof: c.prof };
 }
 
 type LibNpc = NonNullable<Participante["lib"]>;
@@ -299,7 +302,7 @@ export function CombateMesa({ campanhaId, fichas, npcs, pastas }: { campanhaId: 
     const grupo = novoId();
     return Array.from({ length: total }, (_, i) => ({
       id: novoId(), nome: total > 1 ? `${n.nome} ${i + 1}` : n.nome, tipo: "npc" as const, ini: null, bonus: Math.floor(am.atr.des / 2),
-      pv: Math.min(n.dados.pvAtual ?? c.pvMax, c.pvMax), pvMax: c.pvMax, pr: Math.min(n.dados.prAtual ?? c.prMax, c.prMax), prMax: c.prMax, cr: c.cr, fora: false, nota: "", grupo, oculto: false, acoes: c.acoes, atr: c.atr, prof: c.prof,
+      pv: Math.min(n.dados.pvAtual ?? c.pvMax, c.pvMax), pvMax: c.pvMax, pr: Math.min(n.dados.prAtual ?? c.prMax, c.prMax), prMax: c.prMax, cr: c.cr, rdFis: c.rdFis, rdEso: c.rdEso, fora: false, nota: "", grupo, oculto: false, acoes: c.acoes, atr: c.atr, prof: c.prof,
       lib,
     }));
   };
@@ -433,11 +436,11 @@ export function CombateMesa({ campanhaId, fichas, npcs, pastas }: { campanhaId: 
     if (!p.lib.ativo) {
       const f = p.lib.liberada;
       const ef = p.lib.efeito;
-      mudar(p.id, { lib: { ...p.lib, ativo: true }, atr: f.atr, prof: f.prof, acoes: f.acoes, cr: f.cr, pvMax: f.pvMax, prMax: f.prMax, pv: Math.min(f.pvMax, p.pv + ef.curaPv) });
+      mudar(p.id, { lib: { ...p.lib, ativo: true }, atr: f.atr, prof: f.prof, acoes: f.acoes, cr: f.cr, rdFis: f.rdFis, rdEso: f.rdEso, pvMax: f.pvMax, prMax: f.prMax, pv: Math.min(f.pvMax, p.pv + ef.curaPv) });
       setRes({ texto: `${p.nome} libera ${p.lib.nome}! CR ${f.cr}.${ef.dano > 0 ? ` Todos os inimigos que o vejam sofrem ${ef.dano} de dano ${ef.tipo}.` : ""}${ef.curaPv > 0 ? ` Recupera ${ef.curaPv} PV.` : ""}`, dano: 0, alvoId: "", tecnica: false, acertou: false });
     } else {
       const f = p.lib.base;
-      mudar(p.id, { lib: { ...p.lib, ativo: false }, atr: f.atr, prof: f.prof, acoes: f.acoes, cr: f.cr, pvMax: f.pvMax, prMax: f.prMax, pv: Math.min(f.pvMax, p.pv), pr: Math.min(f.prMax, p.pr) });
+      mudar(p.id, { lib: { ...p.lib, ativo: false }, atr: f.atr, prof: f.prof, acoes: f.acoes, cr: f.cr, rdFis: f.rdFis, rdEso: f.rdEso, pvMax: f.pvMax, prMax: f.prMax, pv: Math.min(f.pvMax, p.pv), pr: Math.min(f.prMax, p.pr) });
       setRes({ texto: `${p.nome} encerra ${p.lib.nome}.`, dano: 0, alvoId: "", tecnica: false, acertou: false });
     }
   };
@@ -454,7 +457,7 @@ export function CombateMesa({ campanhaId, fichas, npcs, pastas }: { campanhaId: 
     const cura = entraBankai ? l.efeito.curaPv : 0;
     const pv = Math.max(0, Math.min(f.pvMax, p.pv + Math.max(0, f.pvMax - p.pvMax) + cura));
     const pr = Math.max(0, Math.min(f.prMax, p.pr + Math.max(0, f.prMax - p.prMax)));
-    mudar(p.id, { lib: { ...l, ativo: para.forma === "bankai", antesAtivo: para.forma === "shikai", mascaraAtiva: para.mascara }, atr: f.atr, prof: f.prof, acoes: f.acoes, cr: f.cr, pvMax: f.pvMax, prMax: f.prMax, pv, pr });
+    mudar(p.id, { lib: { ...l, ativo: para.forma === "bankai", antesAtivo: para.forma === "shikai", mascaraAtiva: para.mascara }, atr: f.atr, prof: f.prof, acoes: f.acoes, cr: f.cr, rdFis: f.rdFis, rdEso: f.rdEso, pvMax: f.pvMax, prMax: f.prMax, pv, pr });
     const nomeForma = (x: FormaPrincipal) => (x === "bankai" ? l.nome : x === "shikai" ? l.antes?.nome ?? "" : "");
     const nomeMasc = l.mascara?.nome ?? "a máscara";
     const ganhoPv = f.pvMax - p.pvMax, ganhoPr = f.prMax - p.prMax;
@@ -474,10 +477,11 @@ export function CombateMesa({ campanhaId, fichas, npcs, pastas }: { campanhaId: 
     setRes({ texto, dano: 0, alvoId: "", tecnica: false, acertou: false });
   };
 
-  const aplicar = (valor: number) => {
+  /** `rd`: tipo de RD do alvo descontada de cada golpe (física ou esotérica); sem ela, o dano entra inteiro */
+  const aplicar = (valor: number, rd?: "rdFis" | "rdEso") => {
     if (!res) return;
     const alvo = est.lista.find((x) => x.id === res.alvoId);
-    if (alvo) ajustar(alvo, "pv", -Math.max(0, Math.floor(valor)));
+    if (alvo) ajustar(alvo, "pv", -Math.max(0, Math.floor(valor) - (rd ? alvo[rd] ?? 0 : 0)));
     setRes(null);
   };
 
@@ -527,6 +531,10 @@ export function CombateMesa({ campanhaId, fichas, npcs, pastas }: { campanhaId: 
           <div className="linha-rolar">
             {res.pendente && <button type="button" className="btn btn-red" onClick={() => rolarDano(res.pendente!.nome, res.pendente!.expr, res.pendente!.crit, res.alvoId, res.pendente!.quem)}>Rolar dano{res.pendente.crit ? " crítico" : ""}</button>}
             {res.acertou && <button type="button" className="btn btn-red" onClick={() => aplicar(res.dano)}>Aplicar {res.dano} de dano</button>}
+            {res.acertou && (() => { const al = est.lista.find((x) => x.id === res.alvoId); return al && ((al.rdFis ?? 0) > 0 || (al.rdEso ?? 0) > 0) ? <>
+              {(al.rdFis ?? 0) > 0 && <button type="button" className="btn btn-paper" onClick={() => aplicar(res.dano, "rdFis")}>Aplicar com RD física (−{al.rdFis})</button>}
+              {(al.rdEso ?? 0) > 0 && <button type="button" className="btn btn-paper" onClick={() => aplicar(res.dano, "rdEso")}>Aplicar com RD esotérica (−{al.rdEso})</button>}
+            </> : null; })()}
             {res.tecnica && <button type="button" className="btn btn-paper" onClick={() => aplicar(res.dano / 2)}>Aplicar metade ({Math.floor(res.dano / 2)})</button>}
             <button type="button" className="link-perigo" onClick={() => setRes(null)}>Fechar</button>
           </div>
@@ -542,7 +550,7 @@ export function CombateMesa({ campanhaId, fichas, npcs, pastas }: { campanhaId: 
               </label>
               <div className="combate-nome">
                 <b>{p.nome}</b>
-                <small>{p.dono ? "Invocação" : p.tipo === "jogador" ? "Jogador" : "NPC"} · CR {p.cr}</small>
+                <small>{p.dono ? "Invocação" : p.tipo === "jogador" ? "Jogador" : "NPC"} · CR {p.cr}{p.rdFis || p.rdEso ? ` · RD ${p.rdFis ?? 0} fís. / ${p.rdEso ?? 0} eso.` : ""}</small>
               </div>
               {p.id === est.vez && !p.fora && <span className="combate-selo">No turno</span>}
             </div>

@@ -1999,7 +1999,7 @@ Você possui um número de escolhas de Técnicas de Reishi igual ao descrito na 
 
 Acerto para suas Técnicas de Reishi = d20 + bônus de proficiência + seu atributo de Mente Classe de Dificuldade para suas Técnicas de Reishi = 8 + bônus de proficiência + seu atributo de Mente
 
-**Crescimento das técnicas.** As Técnicas de Reishi que causam dano ganham **+1 dado do mesmo tipo no 6º nível e +1 no 11º**. Além disso, elas somam o dano fixo da classe: o Schütze soma a mesma quantia que soma nos disparos (proficiência + proficiência × nível² ÷ 200, a partir do 3º nível), e o Ritter soma a proficiência (a partir do 3º nível).
+**Crescimento das técnicas.** As Técnicas de Reishi que causam dano ganham **+1 dado do mesmo tipo no 6º nível e +1 no 11º**. Além disso, elas somam o dano fixo da classe: o Schütze soma a mesma quantia que soma nos disparos (proficiência + proficiência × nível² ÷ 200, a partir do 3º nível), e o Ritter soma a proficiência (a partir do 3º nível). Técnicas que só somam dano a um ataque (Licht Klinge) ganham os dados extras, mas não o dano fixo da classe, porque o ataque da arma já soma esse dano.
 
 Você tem uma Técnica de Reishi desde o 1° nível, com dano base de 2d10 + Espírito, e um dado de dano a mais a cada 5 níveis, mais nível² ÷ 150 dados (arredondado para baixo; 8d10 no 20º nível). Além disso, o dano de todos os seus disparos cresce de forma acelerada: a partir do 3º nível você soma +proficiência, mais proficiência × nível² ÷ 200 (arredondado para baixo), ao dano de cada ataque à distância. No 1° e no 2° nível seus disparos não têm vantagem. O acerto das suas técnicas segue a regra acima: d20 + bônus de proficiência + Mente.
 
@@ -2502,7 +2502,6 @@ Você liberta a forma verdadeira do corpo, sem espada: descreva a máscara, o co
 
 - CR + proficiência + 1.
 - Arma natural +1 passo e + proficiência de dano.
-- O Cero causa **x 1,4 dados**.
 - Sem PV temporários.
 - Não dá ataque extra.
 
@@ -2516,7 +2515,7 @@ Você liberta a forma verdadeira do corpo, sem espada: descreva a máscara, o co
 
 Ação, **12 PR**, só durante a Resurrección. Substitui os ataques da sua ação. A técnica depende do Caminho:
 
-- **Glotonería, Devorar:** um ataque que causa (nível + 10)d10 + 2 x Força de Energia. Você recupera 60% do dano causado em PV.
+- **Glotonería, Devorar:** um ataque que causa (nível + 10)d10 + 2 x Força de Energia. Você recupera 40% do dano causado em PV.
 - **Estallido, Gran Rey Cero:** seu Cero em Resurrección causa +proficiência d8 de dano e você lança dois Ceros por turno (a partir do 8º nível); o segundo causa 75% do dano.
 - **Sonido, Golpe Fantasma:** um ataque com vantagem, crítico em 19 ou 20 e dano de (nível/2 + 3)d10 + 2 x Destreza (nível/2 arredondado para baixo; 8d10 no 10º nível, 13d10 no 20º).
 
@@ -2597,7 +2596,7 @@ Como a do Hueco, é liberada depois do treinamento do capítulo "Treinamento da 
 
 - **Ativação:** ação bônus.
 - **Custo:** 40 PR (a do Hueco custa 45).
-- **Forma liberada:** bônus de CR, PV temporários e o Poder Inato com **dados x 1,6**.
+- **Forma liberada:** bônus de CR, PV temporários e o Poder Inato com os mesmos dados (sem multiplicador).
 - **Escala da Origem:** o Adjuchas ganha +1 estágio e o Vasto Lorde +2, como na Resurrección do Hueco.
 - **Mestre Resurrección (20º nível):** o custo cai pela metade.
 
@@ -2680,7 +2679,7 @@ A Resurrección já tem custo, duração, bônus de CR e técnica de assinatura 
 - **Traço, Braços Múltiplos:** seu alcance corpo a corpo aumenta em 3 metros. Se você acertar a mesma criatura duas vezes na mesma ação, ela fica agarrada (salvaguarda de Força, CD 8 + proficiência + Força).
 - **Ponto fraco, Guarda Aberta:** enquanto estiver agarrando uma criatura, a margem de crítico dos ataques contra você aumenta em 1.
 - **Ações da forma:**
-  - **Devorar** (Ação, 12 PR): Técnica de assinatura do Caminho Glotonería. Um ataque de Energia em que os quatro braços rasgam o alvo. Você recupera 60% do dano causado em PV. Dano: (nível + 10)d10 + (2×Força).
+  - **Devorar** (Ação, 12 PR): Técnica de assinatura do Caminho Glotonería. Um ataque de Energia em que os quatro braços rasgam o alvo. Você recupera 40% do dano causado em PV. Dano: (nível/2 + 7)d10 + (2×Força).
   - **Abraço de Osso** (Ação, 10 PR): Contra uma criatura que você agarra: ela sofre o dano de Concussão e fica contida até o fim do próximo turno dela, a menos que passe numa salvaguarda de Força (CD 8 + proficiência + Força). Dano: 3d10 + (Força).
   - **Festim de Ossos** (Ação, 30 PR): Ataque contra todas as criaturas que você está agarrando. Cada uma sofre o dano de Energia e fica com desvantagem nos ataques até o início do seu próximo turno. Dano: (nível/2 + 5)d10 + (Força).
 
@@ -2694,7 +2693,7 @@ A Resurrección já tem custo, duração, bônus de CR e técnica de assinatura 
 - **Traço, Asas Negras:** você ganha voo igual ao seu deslocamento.
 - **Ponto fraco, Olhos Sensíveis:** você tem desvantagem em testes de Percepção feitos com luz intensa.
 - **Ações da forma:**
-  - **Lança Verde** (Ação, 10 PR): O Poder Inato de Resurrección sai da lança de reiatsu esverdeado. Ataque de técnica (d20 + proficiência + Espírito), alcance de 24 metros. Ignora o Hierro. Custo: 8 PR + nível/5. Dano: ((nível/2 + 4)×1,6)d10 + (Espírito).
+  - **Lança Verde** (Ação, 10 PR): O Poder Inato de Resurrección sai da lança de reiatsu esverdeado. Ataque de técnica (d20 + proficiência + Espírito), alcance de 24 metros. Ignora o Hierro. Custo: 8 PR + nível/5. Dano: (nível/2 + 4)d10 + (Espírito).
   - **Mundo Quebrado** (Ação, 12 PR): Técnica de assinatura do Caminho Ilusión. Substitui os ataques da ação. Um alvo a até 24 metros faz salvaguarda de Constituição (CD 8 + proficiência + Espírito). Na falha, tem desvantagem nos ataques e fica sem reações até o fim do próximo turno dele.
   - **Noite Sem Estrelas** (Ação, 30 PR): Esfera de 9 metros de raio num ponto a até 24 metros. Salvaguarda de Mente (CD 8 + proficiência + Espírito): na falha o alvo sofre o dano e fica cego até o fim do próximo turno dele; no sucesso, metade do dano. Dano: (nível/2 + 5)d10 + (Espírito).
 
@@ -2706,7 +2705,7 @@ A Resurrección já tem custo, duração, bônus de CR e técnica de assinatura 
 - **Traço, Casulo Venenoso:** uma vez por rodada, quando uma criatura acerta você em combate corpo a corpo, ela recebe 1 carga de Ponzoña (respeitando o máximo de cargas).
 - **Ponto fraco, Corpo Pesado:** seu deslocamento diminui em 3 metros.
 - **Ações da forma:**
-  - **Espinho Roxo** (Ação, 10 PR): O Poder Inato de Resurrección sai como um espinho de veneno. Ataque de técnica (d20 + proficiência + Espírito). Ignora o Hierro. Se acertar, aplica 1 carga de Ponzoña. Dano: ((nível/2 + 4)×1,6)d10 + (Espírito).
+  - **Espinho Roxo** (Ação, 10 PR): O Poder Inato de Resurrección sai como um espinho de veneno. Ataque de técnica (d20 + proficiência + Espírito). Ignora o Hierro. Se acertar, aplica 1 carga de Ponzoña. Dano: (nível/2 + 4)d10 + (Espírito).
   - **Veneno Total** (Ação, 12 PR): Técnica de assinatura do Caminho Ponzoña. Substitui os ataques da ação. Até o fim do seu próximo turno, as cargas de Ponzoña causam +50% de dano.
   - **Colheita Venenosa** (Ação, 30 PR): Detona todas as cargas de Ponzoña num alvo que você veja. Ele sofre os dados indicados de Energia por carga (ignora RD) e as cargas somem. Dano: (proficiência)d10.
 
@@ -2718,7 +2717,7 @@ A Resurrección já tem custo, duração, bônus de CR e técnica de assinatura 
 - **Traço, Véu de Reflexo:** uma vez por rodada, quando um ataque erra você, você ganha PV temporários iguais ao seu bônus de proficiência.
 - **Ponto fraco, Vidro Frágil:** se você sofrer um acerto crítico, o Véu de Reflexo deixa de funcionar até o fim da Resurrección.
 - **Ações da forma:**
-  - **Reflexo Negro** (Ação, 10 PR): O Poder Inato de Resurrección sai em estilhaços de vidro negro. Ataque de técnica (d20 + proficiência + Espírito). Ignora o Hierro. Custo: 8 PR + nível/5. Dano: ((nível/2 + 4)×1,6)d10 + (Espírito).
+  - **Reflexo Negro** (Ação, 10 PR): O Poder Inato de Resurrección sai em estilhaços de vidro negro. Ataque de técnica (d20 + proficiência + Espírito). Ignora o Hierro. Custo: 8 PR + nível/5. Dano: (nível/2 + 4)d10 + (Espírito).
   - **Espejo Roto** (Ação, 12 PR): Técnica de assinatura do Caminho Reflejo. Substitui os ataques da ação. Até o início do seu próximo turno, quando você sofre dano, devolve 50% desse dano ao atacante como dano de Energia.
   - **Espelho Quebrado** (Ação, 30 PR): Uma criatura a até 18 metros faz salvaguarda de Espírito (CD 8 + proficiência + Espírito). Na falha sofre o dano de Energia e tem desvantagem nos ataques até o início do seu próximo turno; no sucesso, metade do dano. Dano: (nível/2 + 5)d10 + (Espírito).
 

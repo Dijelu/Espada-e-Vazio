@@ -120,11 +120,19 @@
     "file": "14-ameacas.md"
   },
   {
-    "slug": "homenagens-e-fontes",
+    "slug": "itens",
     "no": 15,
+    "title": "Itens",
+    "desc": "Consumíveis, equipamentos e o Hōgyoku",
+    "art": "c13",
+    "file": "15-itens.md"
+  },
+  {
+    "slug": "homenagens-e-fontes",
+    "no": 16,
     "title": "Homenagens e Fontes",
     "desc": "Créditos, inspirações e referências",
     "art": "c06",
-    "file": "15-homenagens-e-fontes.md"
+    "file": "16-homenagens-e-fontes.md"
   }
 ]

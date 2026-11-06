@@ -59,12 +59,24 @@ export interface EstagioSchrift {
   usos: number;
   /** quanto do efeito vale (para os poderes sem dano): reduzido pela metade no começo */
   texto: string;
+  /** fração da medida principal da área (linha, raio ou cone) que vale neste estágio */
+  fatorArea: number;
+}
+
+/**
+ * Medida principal de uma área da Schrift (comprimento da linha, raio ou comprimento do cone) num estágio.
+ * Só ela muda: a largura de uma linha nunca reduz. Arredonda para o múltiplo de 1,5 m mais próximo
+ * (empate para cima), com mínimo de 1,5 m.
+ */
+export function medidaSchrift(medida: number, fatorArea: number) {
+  const passos = Math.floor((medida * fatorArea) / 1.5 + 0.5 + 1e-9);
+  return Math.max(1.5, passos * 1.5);
 }
 export function estagioSchrift(nivel: number, voll: boolean): EstagioSchrift {
-  if (voll) return { nome: "Completa", alcance: 27, usos: 3, texto: "Alcance e área 50% maiores, 3 usos por cena e o efeito da Vollständig vale." };
-  if (nivel <= 12) return { nome: "Despertando", alcance: 9, usos: 1, texto: "Efeito reduzido: alcance, área e duração pela metade (arredonde para cima)." };
-  if (nivel <= 16) return { nome: "Dominada", alcance: 13.5, usos: 2, texto: "Efeito quase completo: alcance e área em 75%, e a duração normal." };
-  return { nome: "Plena", alcance: 18, usos: 2, texto: "Efeito completo fora da Vollständig." };
+  if (voll) return { nome: "Completa", alcance: 27, usos: 3, fatorArea: 1.5, texto: "Alcance e área 50% maiores, 3 usos por cena e o efeito da Vollständig vale." };
+  if (nivel <= 12) return { nome: "Despertando", alcance: 9, usos: 1, fatorArea: 0.5, texto: "Efeito reduzido: alcance e duração pela metade. Na área, só a medida principal cai pela metade (comprimento da linha, raio ou comprimento do cone); a largura de uma linha não reduz. Arredonde para o múltiplo de 1,5 m mais próximo, com mínimo de 1,5 m." };
+  if (nivel <= 16) return { nome: "Dominada", alcance: 13.5, usos: 2, fatorArea: 0.75, texto: "Efeito quase completo: alcance em 75% e a duração normal. Na área, só a medida principal (comprimento da linha, raio ou comprimento do cone) vai a 75%; a largura de uma linha não reduz. Arredonde para o múltiplo de 1,5 m mais próximo, com mínimo de 1,5 m." };
+  return { nome: "Plena", alcance: 18, usos: 2, fatorArea: 1, texto: "Efeito completo fora da Vollständig." };
 }
 
 /** Dano do poder de tema, já com a proficiência: fraco no 10º nível, cresce e fica completo com a Vollständig. */

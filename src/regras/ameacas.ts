@@ -213,7 +213,7 @@ export function bonusDaMascara(a: Ameaca, forma: FormaPrincipal = "base"): { nom
   const r: { nome: string; texto: string }[] = [];
   const add = (efeito: string, texto: string) => r.push({ nome: `${nome}: ${efeito}`, texto });
   if (m.mascara === "predador") {
-    add("Corpo Hollow", `RD ${ef.rd} contra tudo, menos psíquico e temporal (o Mestre aplica).`);
+    add("Corpo Hollow", `RD ${ef.rd} contra tudo, menos psíquico e temporal. Soma com a RD que o NPC já tem (física e esotérica).`);
     add("Golpes Amplificados", `+${ef.dadosGolpe} dados nos ataques (golpes de Zanpakutō e Hakuda).`);
     add("Vitalidade Hollow", `+${pv} PV temporários (metade do total) enquanto ativa.`);
   } else if (m.mascara === "conquistador") {
@@ -366,6 +366,11 @@ export interface AmeacaCalculada {
   cr: number;
   k: number;
   hierro: boolean;
+  /** RD física e esotérica do NPC: a das peças da forma ativa mais a do Corpo Hollow da Máscara do Predador (as duas somam) */
+  rdFis: number;
+  rdEso: number;
+  /** quanto da RD acima vem da Máscara do Predador (0 = nada) */
+  rdMascara: number;
   grauNome: string;
   /** `mascara`: o que a máscara somou neste ataque/técnica ("+2d10", "+4d6, CD +4"); ausente = nada */
   ataques: { nome: string; acerto: number; dano: string; media: number; tipo: string; custo: number; crit: number; mascara?: string }[];
@@ -415,10 +420,12 @@ export function calcularAmeaca(original: Ameaca, etapa: boolean | EtapaNpc | Est
   if (s.forma === "bankai") {
     // a Bankai substitui a Shikai: só as peças e o CR da forma principal
     const b = calcularBase(comLiberacao(original));
-    r = { ...b, cr: b.cr + l.bonusCr + (formaNpc(original)?.soma.cr ?? 0) };
+    const sm = formaNpc(original)?.soma;
+    r = { ...b, cr: b.cr + l.bonusCr + (sm?.cr ?? 0), rdFis: sm?.rdFis ?? 0, rdEso: sm?.rdEso ?? 0 };
   } else if (s.forma === "shikai") {
     const b = calcularBase(comEtapaAnterior(original));
-    r = { ...b, cr: b.cr + (l.antes?.bonusCr ?? 0) + (formaDaEtapaAnterior(original)?.soma.cr ?? 0) };
+    const sm = formaDaEtapaAnterior(original)?.soma;
+    r = { ...b, cr: b.cr + (l.antes?.bonusCr ?? 0) + (sm?.cr ?? 0), rdFis: sm?.rdFis ?? 0, rdEso: sm?.rdEso ?? 0 };
   } else r = calcularBase(original);
   return s.mascara && l.mascara ? comMascara(r, l.mascara) : r;
 }
@@ -436,7 +443,7 @@ function comMascara(r: AmeacaCalculada, m: MascaraNpc): AmeacaCalculada {
     return { ...x, dados: somarDados(x.dados, ef.dadosTecnica), cd: x.cd + ef.cd, ...(extra ? { mascara: extra } : {}) };
   });
   // PV e PR temporários da máscara: entram como aumento do máximo enquanto ela está ativa
-  return { ...r, cr: r.cr + m.bonusCr, ataques, tecnicas, pv: r.pv + Math.floor(r.pv * ef.temp.pv), pr: r.pr + Math.floor(r.pr * ef.temp.pr) };
+  return { ...r, cr: r.cr + m.bonusCr, ataques, tecnicas, rdFis: r.rdFis + ef.rd, rdEso: r.rdEso + ef.rd, rdMascara: ef.rd, pv: r.pv + Math.floor(r.pv * ef.temp.pv), pr: r.pr + Math.floor(r.pr * ef.temp.pr) };
 }
 
 function calcularBase(a: Ameaca): AmeacaCalculada {
@@ -474,6 +481,7 @@ function calcularBase(a: Ameaca): AmeacaCalculada {
   return {
     nd, prof, pontos: pontosDeAtributo({ ...a, nd }), usados: ATRS.reduce((s, x) => s + a.atr[x.id], 0), pv, pr, cr, k,
     hierro: a.categoria === "hollow" && modo !== "comum",
+    rdFis: 0, rdEso: 0, rdMascara: 0,
     grauNome: grau.nome, ataques, tecnicas,
     percepcao: 10 + a.atr.men + prof, percepcaoEsp: 10 + a.atr.esp + prof,
   };

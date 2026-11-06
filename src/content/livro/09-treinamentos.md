@@ -319,8 +319,8 @@ Concluído o treinamento, a Resurrección é liberada com uma ação bônus. Ela
 |---|---|---|
 | Custo | 45 PR | 40 PR |
 | CR | + proficiência + 1 | + proficiência − 1 até o 15º nível; + proficiência a partir do 16º |
-| Dano | + proficiência; arma natural +1 passo | Poder Inato com dados × 1,6 |
-| Técnica base | Cero com dados × 1,4 | |
+| Dano | + proficiência; arma natural +1 passo | Poder Inato sem multiplicador; arma natural +1 passo |
+| Técnica base | Sem multiplicador: o Cero mantém os dados normais | |
 | PV temporários | Nenhum | 3 × nível até o 15º; 5 × nível a partir do 16º |
 | Ataque extra | Nenhum | |
 | Mestre Resurrección (20º) | Custo pela metade | Custo pela metade |

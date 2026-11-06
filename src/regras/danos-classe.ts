@@ -1,5 +1,5 @@
 /* Ataques próprios de cada classe, com dano calculado pela ficha: Técnicas de Reishi dos Quincys e o Cero do Hueco. */
-import { TECNICAS_REISHI } from "./catalogo";
+import { TECNICAS_REISHI, custoTecnicaTexto, type TecnicaReishi } from "./catalogo";
 import { danoSchrift, schriftDaFicha, estagioSchrift, CUSTO_SCHRIFT } from "./schrifts";
 import type { Calculo, Ficha } from "./ficha";
 
@@ -16,7 +16,11 @@ export interface DanoClasse {
   dano: string;
   tipo: string;
   custo?: string;
+  /** ação para usar, quando a regra define (Técnicas de Reishi) */
+  acao?: string;
   nota?: string;
+  /** soma-se a um ataque corpo a corpo, não é um ataque à parte (Licht Klinge) */
+  complemento?: boolean;
   /** o ataque usa jogada de acerto (senão, o alvo faz salvaguarda) */
   acerto?: boolean;
 }
@@ -38,14 +42,17 @@ export function dadosCaminhoCero(f: Ficha, prof: number): number {
 
 const TIPOS = /dano\s+(?:de\s+)?(Energia|Fogo|Frio|Elétrico|Perfurante|Cortante|Concussão|Psíquico)/i;
 
-function lerTecnica(nome: string, texto: string, bonus: number, rotuloChave: string): DanoClasse | null {
+function lerTecnica(t: TecnicaReishi, texto: string, bonus: number, rotuloChave: string): DanoClasse | null {
   const m = texto.match(/(\d+d\d+)(\s*\+\s*seu atributo-chave[^.;,]*)?/i);
   if (!m) return null;
-  const custo = texto.match(/Custo:\s*([^·.]*?PR(?:\s+para cada Gintou)?)/i)?.[1]?.trim();
   const tipo = texto.match(TIPOS)?.[1] ?? "Energia";
   const soma = m[2] ? `+${bonus}` : "";
   const salva = /teste de resist/i.test(texto);
-  return { nome, fonte: "Técnica de Reishi", dano: `${m[1]}${soma}`, tipo, custo, acerto: !salva, nota: m[2] ? `inclui ${rotuloChave}` : salva ? "o alvo faz salvaguarda; metade em caso de sucesso, quando o texto disser" : undefined };
+  const complemento = !!t.complemento;
+  const nota = complemento
+    ? "bônus no ataque: soma-se a cada ataque corpo a corpo até o fim do turno; não é um ataque à parte"
+    : m[2] ? `inclui ${rotuloChave}` : salva ? "o alvo faz salvaguarda; metade em caso de sucesso, quando o texto disser" : undefined;
+  return { nome: t.nome, fonte: "Técnica de Reishi", dano: `${m[1]}${soma}`, tipo, custo: custoTecnicaTexto(t), acao: t.acao, acerto: complemento ? false : t.jogada ? t.jogada === "Acerto" : !salva, complemento: complemento || undefined, nota };
 }
 
 /** Lista os ataques da classe que a ficha pode rolar. */
@@ -59,13 +66,16 @@ export function danosDaClasse(f: Ficha, c: Calculo): DanoClasse[] {
     if (f.classe === "schutze") out.push({ nome: "Técnica de Reishi base", fonte: "Classe", dano: `${2 + Math.floor(f.nivel / 5) + Math.floor((f.nivel * f.nivel) / 150)}d10+${c.atr.esp}`, tipo: "Energia", nota: `${2 + Math.floor(f.nivel / 5) + Math.floor((f.nivel * f.nivel) / 150)}d10 + Espírito (um dado a mais a cada 5 níveis). Acerto: +${c.prof + c.atr.men} (proficiência + Mente).`, acerto: true });
     for (const nome of f.tecnicasReishi) {
       const t = TECNICAS_REISHI.find((x) => x.nome === nome);
-      const l = t?.texto ? lerTecnica(t.nome, t.texto, bonus, rotulo) : null;
+      const l = t?.texto ? lerTecnica(t, t.texto, bonus, rotulo) : null;
       if (l) {
         // As técnicas crescem com o nível: +1 dado no 6º e +1 no 11º; o Schütze e o Ritter somam também o dano fixo da classe
         const extra = (f.nivel >= 6 ? 1 : 0) + (f.nivel >= 11 ? 1 : 0);
-        const fixo = f.classe === "schutze" ? (f.nivel >= 3 ? c.prof + Math.floor((c.prof * f.nivel * f.nivel) / 200) : 0) : f.nivel >= 3 ? c.prof : 0;
+        // Técnica que só soma dano a um ataque (Licht Klinge) ganha os dados extras, mas não o dano fixo da classe: o ataque da arma já soma esse dano
+        const fixo = l.complemento ? 0 : f.classe === "schutze" ? (f.nivel >= 3 ? c.prof + Math.floor((c.prof * f.nivel * f.nivel) / 200) : 0) : f.nivel >= 3 ? c.prof : 0;
         l.dano = l.dano.replace(/^(\d+)d(\d+)/, (_m, n, d) => `${Number(n) + extra}d${d}`) + (fixo ? `+${fixo}` : "");
         if (extra || fixo) l.nota = [l.nota, `+${extra} dado(s) pelo nível${fixo ? ` e +${fixo} de dano fixo da classe` : ""}`].filter(Boolean).join("; ");
+        if (t?.nome === "Klavier") l.nota = [l.nota, "soma também o dano da sua arma Quincy à distância"].filter(Boolean).join("; ");
+        if (t?.nome === "Kirchenlied: Sankt Zwinger") l.nota = [l.nota, "esse dano é só ao ativar; no início de cada turno de quem estiver na barreira, o dano é 5d10 (mais os dados do nível)"].filter(Boolean).join("; ");
         out.push(l);
       }
     }

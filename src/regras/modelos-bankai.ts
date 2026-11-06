@@ -384,7 +384,7 @@ export const MODELOS_BANKAI: ModeloMontado[] = [
      "modelo": "Defesa"
     }
    ],
-   "ppGasto": 17
+   "ppGasto": 14
   },
   "verdadeira": {
    "nome": "Daiguren Hyōrinmaru: Forma Adulta",
@@ -462,7 +462,7 @@ export const MODELOS_BANKAI: ModeloMontado[] = [
     }
    ],
    "nota": "Perde as asas e a cura das pétalas; ganha congelamento por toque, Forma Final e golpes que ignoram 10 de redução de dano.",
-   "ppGasto": 24
+   "ppGasto": 22
   }
  },
  {
@@ -672,7 +672,7 @@ export const MODELOS_BANKAI: ModeloMontado[] = [
      "modelo": "Defesa"
     }
    ],
-   "ppGasto": 17
+   "ppGasto": 15
   },
   "verdadeira": null
  },
@@ -1401,7 +1401,7 @@ export const MODELOS_BANKAI: ModeloMontado[] = [
     "modelo": "Barreira"
    }
   ],
-  "ppGasto": 16
+  "ppGasto": 15
  },
  "verdadeira": null
 },
@@ -1524,7 +1524,7 @@ export const MODELOS_BANKAI: ModeloMontado[] = [
    }
   ],
   "pontoFraco": "pg-tiro",
-  "ppGasto": 16,
+  "ppGasto": 11,
   "nota": "Os detalhes dessa Bankai vêm de fontes de fãs e a obra mostra pouco dela. Trate como adaptação da mesa e confirme com o Mestre.",
   "habilidades": [
    {
@@ -1608,7 +1608,7 @@ export const MODELOS_BANKAI: ModeloMontado[] = [
    }
   ],
   "pontoFraco": "pg-raiz",
-  "ppGasto": 16,
+  "ppGasto": 13,
   "nota": "Na obra só aparecem o tear, os panos que se ajustam a cada inimigo e a técnica das Seis Cores. Os efeitos de cada pano são adaptação da mesa. Os Zero fizeram um juramento de usar a Bankai com muita cautela, então combine com o Mestre quando ela pode aparecer.",
   "habilidades": [
    {
@@ -1692,7 +1692,7 @@ export const MODELOS_BANKAI: ModeloMontado[] = [
    }
   ],
   "pontoFraco": "pg-tiro",
-  "ppGasto": 16,
+  "ppGasto": 11,
   "preRequisito": "O alvo precisa ter sido atingido pela tinta da Shikai (o pincel de Ichimonji) antes de você usar as técnicas da Bankai contra ele.",
   "nota": "Na obra, a Bankai só aparece uma vez, contra o Yhwach, e depende da tinta da Shikai ter acertado antes. As mecânicas de nome pela metade e renomeação são adaptação da mesa e dependem do Mestre.",
   "habilidades": [

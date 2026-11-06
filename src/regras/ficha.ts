@@ -4,6 +4,7 @@ import { somarForma, type InstEfeito, type SomaForma } from "./efeitos-forma";
 import { somaSituacoes } from "./situacionais";
 import { ataquesHueco, danoFixoHueco } from "./hueco";
 import { bonusEscudo, type Melhoria } from "./melhorias";
+import { HOGYOKU_PADRAO, calcularHogyoku, normalizarHogyoku, type CalculoHogyoku, type Hogyoku } from "./hogyoku";
 import { atributosPassivos, passivasDaFicha, type PassivaAtiva, type EfeitoSoma } from "./passivas";
 /* Regras de criação e cálculo da ficha (Espada & vazio). Tudo o que está aqui vem dos capítulos 1, 2, 3, 4 e 8 do livro. */
 
@@ -652,6 +653,8 @@ export interface Ficha {
   equip: Equip;
   treinos: Treinos;
   estado: Estado;
+  /** Hōgyoku: artefato opcional do Mestre (estágio 0 = sem Hōgyoku) */
+  hogyoku: Hogyoku;
   zanpakutou: { nome: string; frase: string };
   formas: Partial<Record<TipoForma, FormaLib>>;
 }
@@ -702,6 +705,7 @@ export function fichaNova(): Ficha {
     equip: { forca: "", divisao: 0, asauchi: "", armas: [], artefato: "", naturalForma: "", extras: "" },
     treinos: { feitos: [], pf: 0, geralDias: 0, caminhoBankai: "" },
     estado: { pvTemp: 0, liberado: "", mascaraAtiva: false, condicoes: [], ultimoFolegoUsado: false, curtosUsados: 0, ativas: [], usos: {} },
+    hogyoku: { ...HOGYOKU_PADRAO },
     zanpakutou: { nome: "", frase: "" },
     formas: {},
   };
@@ -758,6 +762,7 @@ export function normalizar(bruto: Partial<Ficha> | null | undefined): Ficha {
   f.treinos = sub(n.treinos, f.treinos);
   f.treinos.feitos = lista<string>(f.treinos.feitos, texto);
   f.estado = sub(n.estado, f.estado);
+  f.hogyoku = normalizarHogyoku(f.hogyoku);
   // grafia antiga da condição ("Amendrontado") vira a do cap. 10
   f.estado.condicoes = lista<string>(f.estado.condicoes, texto).map((c) => (c === "Amendrontado" ? "Amedrontado" : c));
   f.estado.ativas = lista<string>(f.estado.ativas, texto);
@@ -914,6 +919,8 @@ export interface Calculo {
   danoDadosDisparo: string[];
   /** efeitos da forma ativa, já somados (null quando nenhuma forma com efeitos está ativa) */
   forma: SomaForma | null;
+  /** Hōgyoku (artefato do Mestre): CD, Regeneração, PP extras e Estabilizar o Hollow */
+  hogyoku: CalculoHogyoku;
 }
 
 const soma = (r: Record<Atr, number>) => ATRIBUTOS.reduce((s, a) => s + (r[a.id] ?? 0), 0);
@@ -1001,7 +1008,8 @@ export function calcular(fOriginal: Ficha): Calculo {
   }
   pv += f.ajuste.pv;
   pr += f.ajuste.pr;
-  cr += ef.cr + f.ajuste.cr;
+  // O modificador de CR da Origem (ex.: Alvo Enorme, CR −1 do Gillian Fusão) é um ajuste sobre a CR da classe. Sem classe não há CR base (10 + prof…), então o −1 não se aplica e a CR não fica negativa.
+  cr += (c ? ef.cr : 0) + f.ajuste.cr;
   // liberações que mexem na CR (Shikai soma a proficiência; Resurrección conforme a classe)
   if (f.estado.liberado === "shikai") cr += prof;
   if (f.estado.liberado === "resurreccion") {
@@ -1102,6 +1110,7 @@ export function calcular(fOriginal: Ficha): Calculo {
     pontosEssencia: pe,
     pontosNivel,
     cd: 8 + prof + atr.esp,
+    hogyoku: calcularHogyoku(f, prof, atr.esp),
     proximoXp,
     avisos,
     passivas,

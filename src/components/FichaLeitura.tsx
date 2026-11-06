@@ -187,6 +187,7 @@ export function FichaLeitura({ f, nome }: { f: Ficha; nome?: string }) {
       <div className="ficha-leitura-grade">
         <Bloco titulo="Estado atual">
           <p title="Forma liberada"><b>{nomeLiberado ? `${nomeLiberado}${formaAtiva ? ` · ${formaAtiva.nome}` : ""}` : "Sem forma liberada"}</b></p>
+          {(f.hogyoku?.estagio ?? 0) > 0 && <p title="Artefato do Mestre"><b>Hōgyoku</b> · {c.hogyoku.ativo ? `estágio ${c.hogyoku.estagio} · CD ${c.hogyoku.cd}` : "pedra muda (nível 10+)"} · Desequilíbrio {f.hogyoku.desequilibrio}/10</p>}
           {f.estado.condicoes.length > 0 ? (
             <ul className="ficha-leitura-lista">
               {f.estado.condicoes.map((nome) => (
@@ -239,6 +240,7 @@ export function FichaLeitura({ f, nome }: { f: Ficha; nome?: string }) {
               <div className="ca-stats">
                 {d.acerto && <span>Acerto <b>{mod(acertoCl)}</b></span>}
                 <span>Dano <b>{d.dano}</b> de {d.tipo}</span>
+                {d.acao && <span>Ação <b>{d.acao}</b></span>}
                 {d.custo && <span>Custo <b>{d.custo}</b></span>}
               </div>
               {d.nota && <small className="ajuda">{d.nota}</small>}

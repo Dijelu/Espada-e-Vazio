@@ -738,6 +738,7 @@ function DanosDaClasse({ f, c, r }: { f: TFicha; c: ReturnType<typeof calcular>;
           <div className="ca-stats">
             {d.acerto && <span>Acerto <b>{mod(acerto)}</b></span>}
             <span>Dano <b>{d.dano}</b> de {d.tipo}</span>
+            {d.acao && <span>Ação <b>{d.acao}</b></span>}
             {d.custo && <span>Custo <b>{d.custo}</b></span>}
           </div>
           {d.nota && <small className="ajuda">{d.nota}</small>}

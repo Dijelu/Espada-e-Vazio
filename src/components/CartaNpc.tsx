@@ -168,6 +168,7 @@ export function CartaNpc({ npc, onMudar, onSalvar, onApagar, onModelo, onDuplica
           {am.zanpakutou.bankai && <><b>Bankai</b><Paragrafos texto={am.zanpakutou.bankai} /></>}
         </details>
       )}
+      {(c.rdFis > 0 || c.rdEso > 0) && <p className="ajuda"><b>RD:</b> física {c.rdFis} · esotérica {c.rdEso}{c.rdMascara > 0 ? ` (inclui ${c.rdMascara} da Máscara do Predador)` : ""}. Reduz cada golpe sofrido.</p>}
       {c.hierro && <p className="ajuda"><b>Hierro:</b> dano físico sofrido pela metade (não reduz energia nem dano esotérico).</p>}
       {c.ataques.map((a, i) => <p key={`${i}-${a.nome}`} className="npc-acao"><b>{a.nome}:</b> +{a.acerto} para acertar · {a.dano} {a.tipo} <small>(média {a.media.toFixed(1).replace(/\.0$/, "")}{a.mascara ? ` · máscara ${a.mascara}` : ""})</small></p>)}
       {c.tecnicas.map((t, i) => <p key={`${i}-${t.nome}`} className="npc-acao"><b>{t.nome}</b> ({t.custo} PR): {t.dados} · CD {t.cd}{t.mascara ? <small> (máscara {t.mascara})</small> : null}{t.texto ? ` — ${t.texto}` : ""}</p>)}

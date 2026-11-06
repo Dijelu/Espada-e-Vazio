@@ -86,7 +86,24 @@ export interface TecnicaReishi {
   nome: string;
   nivel: number;
   texto?: string;
+  /** ação para usar: "Ação", "Ação Bônus", "Reação", "Ação Completa"… */
+  acao?: string;
+  /** custo em PR (só o número) */
+  custo?: number;
+  /** o que mais o custo pede ou como ele se aplica: "por flecha", "+ 1 Gintou"… */
+  custoNota?: string;
+  /** como reforçar, por exemplo "+3 PR por +1d8" */
+  reforco?: string;
+  alcance?: string;
+  /** "Acerto" (jogada de ataque) ou "Automático" (salvaguarda ou sem jogada) */
+  jogada?: string;
+  /** soma-se a um ataque em vez de ser um ataque à parte (Licht Klinge) */
+  complemento?: boolean;
 }
+
+/** Custo da técnica em texto: "10 PR", "3 PR por flecha", "5 PR + 1 Gintou". */
+export const custoTecnicaTexto = (t: Pick<TecnicaReishi, "custo" | "custoNota">) =>
+  t.custo == null ? undefined : `${t.custo} PR${t.custoNota ? ` ${t.custoNota}` : ""}`;
 export const TECNICAS_REISHI = tecnicasJson as unknown as TecnicaReishi[];
 export const tecnicasConhecidas = (classeId: string, nivel: number) => linhaProg(classeId, nivel)?.tecnicas ?? 0;
 export const nivelTecnicaMax = (classeId: string, nivel: number) => linhaProg(classeId, nivel)?.nivelTec ?? 0;

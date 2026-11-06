@@ -290,6 +290,8 @@ A Floresta dos Menos é uma área abaixo da superfície do deserto de Hueco Mund
 
 Embora inicialmente se acreditasse que o Hogyoku possuía apenas o poder de controlar a fronteira entre Shinigamis e Hollows, isso foi provado incorreto. Na verdade, o verdadeiro poder do Hogyoku é a capacidade de absorver os desejos daqueles ao seu redor e manifestálos na realidade, embora com algumas limitações. Ele só pode realizar desejos se a pessoa que o porta tiver poder suficiente para isso. Todo esse processo cria um desequilíbrio no universo e é frequentemente utilizado para quebrar esse equilíbrio. O Rei das Almas é um ser que reúne praticamente todas as etapas da existência, e realizar esses processos pode criar seres que têm o potencial de substituir o Rei das Almas.
 
+As regras do Hōgyoku como artefato de campanha, que só o Mestre coloca em jogo, estão no Capítulo 15 (Itens).
+
 ### Considerações Finais
 
 Conseguiu relembrar os pontos mais importantes de cada parte do universo de Bleach? Se não, não tem problema. Durante o livro, você encontrará inúmeras descrições de cada elemento e adaptações para o Soul Society RPG. Lembre-se de voltar aqui para esclarecer qualquer dúvida ou, se preferir, ler o mangá e assistir ao anime novamente para manter tudo fresco na sua mente é com você. E agora sim, vamos a aventura!

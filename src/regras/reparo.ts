@@ -111,6 +111,10 @@ export function repararFicha(bruta: Ficha): Reparo {
   f.estado.pvTemp = inteiro(f.estado.pvTemp, 0, 9999, 0);
   f.estado.curtosUsados = inteiro(f.estado.curtosUsados, 0, 2, 0);
 
+  // Hōgyoku: estágio 0 a 3, Desequilíbrio 0 a 10, Crisálidas 0 a 3 (normalizar já limitou; aqui só avisa do que mudou)
+  const hb = (bruta.hogyoku ?? {}) as unknown as Record<string, unknown>;
+  if (bruta.hogyoku !== undefined && (Object.keys(f.hogyoku) as (keyof typeof f.hogyoku)[]).some((k) => hb[k] !== f.hogyoku[k])) nota("Os dados do Hōgyoku estavam fora do padrão e foram ajustados (estágio 0 a 3, Desequilíbrio 0 a 10, Crisálidas 0 a 3).");
+
   // PV e PR atuais dentro dos limites
   const c = calcular(f);
   const pvMax = Math.max(0, c.pv);

@@ -4,6 +4,7 @@ import {
   KIDOS,
   RANKS,
   TECNICAS_REISHI,
+  custoTecnicaTexto,
   kidoLiberado,
   kidosConhecidos,
   nivelTecnicaMax,
@@ -218,7 +219,7 @@ export function EscolhaPoderes({ f, mudar }: { f: Ficha; mudar: (p: Partial<Fich
             {tecnicas.map((t) => {
               const on = f.tecnicasReishi.includes(t.nome);
               return (
-                <Dica key={t.nome} balao={<><b>{t.nome}</b><small>Técnica de Reishi · nível {t.nivel}</small><p>{t.texto || "Veja o texto completo no capítulo de Feitiços e Técnicas do livro."}</p></>}>
+                <Dica key={t.nome} balao={<><b>{t.nome}</b><small>Técnica de Reishi · nível {t.nivel}{t.acao ? ` · ${t.acao}` : ""}{custoTecnicaTexto(t) ? ` · ${custoTecnicaTexto(t)}` : ""}{t.alcance ? ` · ${t.alcance}` : ""}</small>{t.reforco && <small>Reforço: {t.reforco}</small>}<p>{t.texto || "Veja o texto completo no capítulo de Feitiços e Técnicas do livro."}</p></>}>
                   <button type="button" className={`kido ${on ? "on" : ""}`} onClick={() => alternarTecnica(t.nome)} aria-pressed={on} disabled={!on && f.tecnicasReishi.length >= maxTec}>
                     <i>{t.nivel}</i>
                     <span>{t.nome}</span>
