@@ -1,4 +1,6 @@
 import { analisarDano, mediaExtraPecas } from "../regras/teto-dano";
+import { TextoCarta } from "./TextoCarta";
+import { ROTULO_ORIGEM, origemDaForma } from "../lib/origem";
 import { CartaoHabilidade } from "./CartoesHabilidade";
 import { ModelosBankai } from "./ModelosBankai";
 import { ModelosHollow } from "./ModelosHollow";
@@ -529,11 +531,11 @@ function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg }: { f: Ficha; c: 
   };
   const rotulo = espUsada ? "Já usada nesta cena" : limUsada ? "Já usada" : esp ? `Usar técnica especial (${gasta} PR)` : lim ? `Usar (${gasta ? `${gasta} PR, ` : ""}${lim === "cena" ? "1 por cena" : lim === "curto" ? "1 por descanso curto" : "1 por descanso longo"})` : `Usar (${gasta} PR)`;
   return (
-    <article className={`carta-hab acao-carta ${ativa ? "" : "travada"}`}>
+    <article className={`carta-hab acao-carta ${ativa ? "" : "travada"}`} data-origem={origemDaForma(forma.tipo)} data-rotulo={ROTULO_ORIGEM[origemDaForma(forma.tipo)]}>
       <small className="ajuda">{TIPO_FORMA_NOME[forma.tipo]} · {forma.nome}</small>
       <h3>{h.nome || "Habilidade"}</h3>
       <p className="ajuda">{[h.acao, h.custo].filter(Boolean).join(" · ")}</p>
-      <p>{h.texto}</p>
+      <TextoCarta texto={h.texto} />
       {h.requisito && (
         <label className="check">
           <input type="checkbox" checked={!!usos[chaveReq]} onChange={(e) => { const u = { ...usos }; if (e.target.checked) u[chaveReq] = 1; else delete u[chaveReq]; alterar({ estado: { ...f.estado, usos: u } }); }} />
@@ -707,11 +709,11 @@ export function CartasFormas({ f, c, r, alterar, onEditar }: { f: Ficha; c: Calc
         <h3>Formas de liberação</h3>
         <div className="cartas-hab">
           {lista.map((x) => (
-            <article className="carta-hab forma-card" key={x.tipo}>
+            <article className="carta-hab forma-card" data-origem={origemDaForma(x.tipo)} data-rotulo={ROTULO_ORIGEM[origemDaForma(x.tipo)]} key={x.tipo}>
               <small className="ajuda">{TIPO_FORMA_NOME[x.tipo]}{x.estilo ? ` · ${x.estilo}` : x.categoria ? ` · ${x.categoria}` : ""}{f.estado.liberado === liberacaoDaForma(x.tipo) ? " · ATIVA" : ""}</small>
               <h3>{x.nome}</h3>
               {x.comando && <p><i>“{x.comando}”</i></p>}
-              {x.aparencia && <p>{x.aparencia}</p>}
+              {x.aparencia && <TextoCarta texto={x.aparencia} />}
               {(x.tipo === "bankai" || x.tipo === "bankai2" || x.tipo === "shikai") && <p><b>Custo:</b> {x.custo} PR{x.tipo !== "shikai" ? <> · <b>Duração:</b> {x.duracao}</> : null}</p>}
               {x.traco && <p className="quebra"><b>{x.traco.includes("\n") ? "Traços" : "Traço"}:</b>{x.traco.includes("\n") ? "\n" : " "}{x.traco}</p>}
               {x.tipo === "vollstandig" && Object.keys(x.picks).length > 0 && (

@@ -6,6 +6,8 @@ import { mascaraAtiva } from "../regras/mascara";
 import { ESCALA, idSituacao, situacoesDaFicha } from "../regras/situacionais";
 import { CUSTO_SCHRIFT, estagioSchrift } from "../regras/schrifts";
 import { Passo } from "./FichaPecas";
+import { TextoCarta } from "./TextoCarta";
+import { ROTULO_ORIGEM, origemDaFonte } from "../lib/origem";
 import { efeito as som } from "../lib/som";
 
 /** Habilidades da Origem que se usam em jogo, em forma de carta. */
@@ -31,13 +33,13 @@ export function CartasHabilidades({ f, c, alterar }: { f: Ficha; c: Calculo; alt
           const restam = usosRestantes(f, h);
           const motivo = restam === 0 ? "Já usada." : h.bloqueio?.(f, c) ?? "";
           return (
-            <article className="carta-hab" key={h.id}>
+            <article className="carta-hab" data-origem={origemDaFonte(h.fonte, f)} data-rotulo={ROTULO_ORIGEM[origemDaFonte(h.fonte, f)]} key={h.id}>
               <header>
                 <b>{h.nome}</b>
                 <small>{h.fonte}</small>
               </header>
               <p className="acao-hab">{h.acao}{h.limite ? ` · ${restam === Infinity ? "" : `${restam}/${h.limite.max} por ${h.limite.por === "dia" ? "descanso longo" : "combate"}`}` : ""}</p>
-              <p>{h.texto}</p>
+              <TextoCarta texto={h.texto} />
               <button type="button" className="btn btn-paper" disabled={!!motivo} onClick={() => usar(h.id)}>Usar</button>
               {motivo && <small className="aviso-mini">{motivo}</small>}
             </article>
@@ -134,10 +136,10 @@ export function CartasSituacoes({ f, alterar }: { f: Ficha; alterar: (p: Partial
             {lista.filter((s) => s.fonte === fonte).map((s) => {
               const on = f.estado.ativas.includes(idSituacao(s.id));
               return (
-                <article className={`carta-hab ${on ? "ligada" : ""}`} key={s.id}>
+                <article className={`carta-hab ${on ? "ligada" : ""}`} data-origem={origemDaFonte(s.fonte, f)} data-rotulo={ROTULO_ORIGEM[origemDaFonte(s.fonte, f)]} key={s.id}>
                   <header><b>{s.nome}</b></header>
                   <p className="acao-hab">Vale quando: {s.quando}</p>
-                  <p>{s.texto}</p>
+                  <TextoCarta texto={s.texto} />
                   {ESCALA[s.id] && (() => {
                     const esc = ESCALA[s.id];
                     const k = idSituacao(s.id);

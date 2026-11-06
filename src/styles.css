@@ -1654,3 +1654,59 @@ details.ficha-leitura-bloco[open] > summary { margin-bottom: 8px; }
   .menu-tema-cel { display: grid; position: fixed; left: 8px; right: 8px; bottom: 70px; z-index: 46; background: var(--panel); border: 2px solid var(--accent); border-radius: 10px; padding: 6px; gap: 4px; box-shadow: var(--sombra); }
   .menu-tema-cel button { min-height: 46px; text-align: left; border-radius: 6px; }
 }
+
+/* ===== Cartas por origem do poder: hanafuda (Shinigami), osso (Hollow), reishi (Quincy) ===== */
+.carta-hab[data-origem] { position: relative; padding-top: 34px; overflow: hidden; border-radius: 12px; isolation: isolate; }
+.carta-hab[data-origem]::before { content: attr(data-rotulo); position: absolute; left: 0; right: 0; top: 0; height: 22px; padding: 2px 14px 0; font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; z-index: 0; }
+.carta-hab[data-origem] > * { position: relative; z-index: 1; }
+.carta-hab[data-origem] small, .carta-hab[data-origem] .ajuda { color: inherit; opacity: .78; }
+.carta-hab[data-origem] .acao-hab { color: inherit; opacity: .9; }
+.carta-hab[data-origem] h3, .carta-hab[data-origem] header b { margin: 0; font-size: 20px; line-height: 1.1; }
+.carta-hab[data-origem] a { color: inherit; }
+.carta-resumo { margin: 0; }
+.ler-completo { margin-top: 2px; }
+.ler-completo summary { cursor: pointer; font-size: 13px; font-weight: 800; text-decoration: underline; min-height: 28px; display: flex; align-items: center; }
+.ler-completo p { margin: 6px 0 0; font-size: 13.5px; line-height: 1.55; }
+.carta-hab.travada[data-origem] { opacity: .6; }
+
+/* Shinigami: preto de nanquim, fio carmim, faixa asanoha */
+.carta-hab[data-origem="shinigami"] { background: linear-gradient(170deg, var(--sh-fundo), var(--sh-fundo2)); color: var(--sh-washi); border: 2px solid var(--sh-washi); box-shadow: inset 0 0 0 3px var(--sh-fundo2), inset 0 0 0 4px var(--sh-carmim), var(--sombra); }
+.carta-hab[data-origem="shinigami"]::before { background: var(--sh-carmim) var(--p-asa-b) center / 30px 52px; color: var(--sh-washi); border-bottom: 2px solid var(--sh-washi); }
+.carta-hab[data-origem="shinigami"] .btn, .carta-hab[data-origem="shinigami"] .btn-mini { background: var(--sh-carmim); color: var(--sh-washi); border-color: var(--sh-washi); }
+.carta-hab[data-origem="shinigami"] .chip { border-color: var(--sh-carmim-vivo); color: var(--sh-washi); }
+.carta-hab[data-origem="shinigami"] .aviso-mini { color: var(--sh-carmim-vivo); }
+
+/* Hollow: osso com sutura rachada */
+.carta-hab[data-origem="hollow"] { background: var(--ho-osso); color: var(--ho-vazio); border: 2px solid var(--ho-vazio); box-shadow: inset 0 0 0 3px var(--ho-osso), inset 0 0 0 4px var(--ho-osso2), var(--sombra); font-family: "Grenze Gotisch", var(--font-body); }
+.carta-hab[data-origem="hollow"] p, .carta-hab[data-origem="hollow"] small { font-family: var(--font-body); }
+.carta-hab[data-origem="hollow"]::before { background: var(--ho-vazio) var(--p-racha) center / 100% 100% no-repeat; color: var(--ho-osso); }
+.carta-hab[data-origem="hollow"] h3, .carta-hab[data-origem="hollow"] header b { font-family: "Grenze Gotisch", var(--font-title); font-size: 24px; font-weight: 700; }
+.carta-hab[data-origem="hollow"] .btn, .carta-hab[data-origem="hollow"] .btn-mini { background: var(--ho-vazio); color: var(--ho-osso); border-color: var(--ho-vazio); }
+.carta-hab[data-origem="hollow"] .chip { border-color: var(--ho-vazio); color: var(--ho-vazio); }
+.carta-hab[data-origem="hollow"] .aviso-mini { color: #8a0f26; }
+.carta-hab[data-origem="hollow"] .acao-hab { color: #6f0a24; opacity: 1; }
+
+/* Quincy: reishi azul-noite com veias e cantos cortados */
+.carta-hab[data-origem="quincy"] {
+  background: radial-gradient(ellipse 80% 60% at 100% 100%, #123f66aa, transparent 70%), var(--qu-fundo); color: var(--qu-gelo); border: 1px solid var(--qu-veia); outline: 1px solid var(--qu-azul2); outline-offset: 2px; border-radius: 0;
+  clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px); box-shadow: none;
+}
+.carta-hab[data-origem="quincy"]::after { content: ""; position: absolute; inset: 22px 0 0 0; z-index: 0; pointer-events: none; opacity: .5; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 160' fill='none' stroke='%238fd8ff' stroke-width='1.1' stroke-linecap='round' preserveAspectRatio='xMaxYMax slice'%3E%3Cpath d='M200 160C170 140 160 110 120 100S60 80 40 40M120 100C130 80 150 70 160 40M120 100C110 120 90 130 70 160M40 40C30 30 20 28 8 30M160 40C165 30 175 22 190 20M100 105C85 95 75 88 70 70'/%3E%3C/svg%3E") right bottom / 85% auto no-repeat; }
+.carta-hab[data-origem="quincy"]::before { background: var(--qu-azul); color: #03111f; font-family: "Marcellus", "Cinzel", serif; }
+.carta-hab[data-origem="quincy"] h3, .carta-hab[data-origem="quincy"] header b { font-family: "Marcellus", "Cinzel", serif; font-weight: 400; letter-spacing: .03em; }
+.carta-hab[data-origem="quincy"] .btn, .carta-hab[data-origem="quincy"] .btn-mini { background: var(--qu-azul); color: #03111f; border-color: var(--qu-veia); border-radius: 0; }
+.carta-hab[data-origem="quincy"] .chip { border-color: var(--qu-veia); color: var(--qu-gelo); }
+.carta-hab[data-origem="quincy"] .aviso-mini { color: #ffb08f; }
+.carta-hab[data-origem="quincy"] .escala-pr span { color: var(--qu-gelo); }
+.carta-hab[data-origem="shinigami"] .escala-pr span, .carta-hab[data-origem="hollow"] .escala-pr span { color: inherit; }
+.carta-hab.ligada[data-origem] { outline: 3px solid var(--accent); outline-offset: 1px; }
+.carta-mini[data-origem="shinigami"] { border-left: 5px solid var(--sh-carmim); padding-left: 10px; }
+.carta-mini[data-origem="quincy"] { border-left: 5px solid var(--qu-azul); padding-left: 10px; }
+.carta-mini[data-origem="hollow"] { border-left: 5px solid var(--ho-osso2); padding-left: 10px; }
+.carta-hab[data-origem] select, .carta-hab[data-origem] input[type="checkbox"] { accent-color: var(--accent); }
+.carta-hab[data-origem="shinigami"] select, .carta-hab[data-origem="quincy"] select { color: var(--text); }
+.carta-hab[data-origem]::before { text-shadow: 0 1px 2px #0009; }
+.carta-hab[data-origem="hollow"]::before { text-shadow: none; }
+.carta-hab[data-origem="shinigami"] .escala-pr b, .carta-hab[data-origem="shinigami"] .acao-hab { color: var(--sh-carmim-vivo); }
+.carta-hab[data-origem="quincy"] .escala-pr b { color: var(--qu-veia); }
+.carta-hab[data-origem="hollow"] .escala-pr b { color: #6f0a24; }

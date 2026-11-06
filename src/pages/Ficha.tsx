@@ -1,4 +1,6 @@
 import { Icone } from "../components/Icone";
+import { TextoCarta } from "../components/TextoCarta";
+import { origemDaFonte, ROTULO_ORIGEM } from "../lib/origem";
 import { useTema } from "../components/Theme";
 import { alternarQuincy, quincyAtivo } from "../lib/quincy";
 import { somarDadosGolpe, mascaraAtiva } from "../regras/mascara";
@@ -20,7 +22,7 @@ import { AbaInvocacoes } from "../components/Invocacoes";
 import { BotaoRolar, PainelRolagens, useRolagens, type Rolagens } from "../components/Rolador";
 import { AbaTreinamento } from "../components/Treinamento";
 import { ataqueMelhorado } from "../regras/melhorias";
-import { ARMAS, KIDOS, talentosDe, treinoConcluido } from "../regras/catalogo";
+import { ARMAS, KIDOS, TECNICAS_REISHI, talentosDe, treinoConcluido } from "../regras/catalogo";
 import { lerFicha, salvarFicha } from "../lib/fichas";
 import { guardar, ler as lerLocal, marcarEnviado } from "../lib/rascunho";
 import { repararFicha } from "../regras/reparo";
@@ -761,7 +763,7 @@ function DanosDaClasse({ f, c, r }: { f: TFicha; c: ReturnType<typeof calcular>;
   return (
     <>
       {lista.map((d) => (
-        <div className="carta-mini carta-ataque arma-classe" key={d.nome}>
+        <div className="carta-mini carta-ataque arma-classe" data-origem={d.fonte === "Classe" ? origemDaFonte("", f) : "quincy"} key={d.nome}>
           <b>{d.nome} <em className="ca-tag">{d.fonte === "Classe" ? "da classe" : "técnica"}</em></b>
           <div className="ca-stats">
             {d.acerto && <span>Acerto <b>{mod(acerto)}</b></span>}
@@ -811,9 +813,18 @@ function PoderesEscolhidos({ f }: { f: TFicha }) {
           <b>{k.tipo === "hadou" ? "Hadō" : "Bakudō"} {k.n}: {k.nome}</b> <small>Kidō · rank {KIDOS.find((x) => x.tipo === k.tipo && x.n === k.n)?.rank}</small>
         </p>
       ))}
-      {f.tecnicasReishi.map((t) => (
-        <p className="poder-livro" key={t}><b>{t}</b> <small>Técnica de Reishi</small></p>
-      ))}
+      <div className="cartas-hab">
+        {f.tecnicasReishi.map((t) => {
+          const d = TECNICAS_REISHI.find((x) => x.nome === t);
+          return (
+            <article className="carta-hab" data-origem="quincy" data-rotulo="Quincy" key={t}>
+              <header><b>{t}</b><small>Técnica de Reishi</small></header>
+              {d && (d.acao || d.custo) && <p className="acao-hab">{[d.acao, d.custo ? `${d.custo} PR` : ""].filter(Boolean).join(" · ")}</p>}
+              {d?.texto && <TextoCarta texto={d.texto} />}
+            </article>
+          );
+        })}
+      </div>
       <p className="ajuda">Descrições completas de Kidō e das técnicas no <Link to="/livro/feiticos-e-tecnicas" target="_blank">capítulo de Feitiços e Técnicas</Link>.</p>
     </div>
   );
