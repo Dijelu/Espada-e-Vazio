@@ -1790,3 +1790,20 @@ details.ficha-leitura-bloco[open] > summary { margin-bottom: 8px; }
 @media print { .fp-arte { display: none; } .painel-forma[data-origem] { min-height: 0; padding-top: 14px; } .painel-forma[data-origem] .painel-forma-topo { max-width: none; } }
 .painel-forma[data-origem] > p, .painel-forma[data-origem] > details { max-width: min(58%, 620px); }
 @media (max-width: 820px) { .painel-forma[data-origem] > p, .painel-forma[data-origem] > details { max-width: none; } }
+
+/* ===== Schrift: painel próprio (fora da Vollständig) e bloco dentro do painel dela ===== */
+.painel-schrift { --text: #eef6ff; --muted: #bfd6ee; --accent: #5cc8ff; --on-accent: #03111f; --line: #2b5380; position: relative; display: grid; gap: 8px; padding: 14px 18px; background: radial-gradient(ellipse 70% 90% at 100% 0, #123f66aa, transparent 70%), var(--qu-fundo); color: var(--qu-gelo); border: 1px solid var(--qu-veia); outline: 1px solid var(--qu-azul2); outline-offset: 3px; margin: 6px 3px; clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px); }
+.painel-schrift header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.painel-schrift small { color: var(--qu-veia); font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.painel-schrift h3 { margin: 0; font-family: "Marcellus", "Cinzel", serif; font-weight: 400; font-size: 24px; }
+.painel-schrift.dentro { margin: 12px 0; max-width: min(58%, 620px); background: #060d18cc; }
+.selo-forte { align-self: flex-start; padding: 2px 10px; font-weight: 800; font-size: 13px; background: var(--qu-azul); color: #03111f; border-radius: 2px; }
+.schrift-nums { display: flex; flex-wrap: wrap; gap: 4px 18px; margin: 0; }
+.schrift-nums b { font-size: 18px; }
+.schrift-botoes { display: flex; gap: 8px; flex-wrap: wrap; }
+.schrift-botoes .btn-mini[aria-pressed="true"] { outline: 2px solid var(--qu-gelo); }
+.schrift-compara { border-collapse: collapse; width: 100%; font-size: 14px; }
+.schrift-compara th, .schrift-compara td { text-align: left; padding: 4px 8px; border-bottom: 1px solid var(--qu-azul2); }
+.schrift-compara thead th { color: var(--qu-veia); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
+.schrift-compara td b { color: var(--qu-veia); }
+@media (max-width: 820px) { .painel-schrift.dentro { max-width: none; } }

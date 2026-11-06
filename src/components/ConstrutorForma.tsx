@@ -1,6 +1,7 @@
 import { analisarDano, mediaExtraPecas } from "../regras/teto-dano";
 import { TextoCarta } from "./TextoCarta";
 import { ArtePainel } from "./ArtePainel";
+import { PainelSchrift } from "./PainelSchrift";
 import { ROTULO_ORIGEM, origemDaForma } from "../lib/origem";
 import { CartaoHabilidade } from "./CartoesHabilidade";
 import { ModelosBankai } from "./ModelosBankai";
@@ -703,6 +704,7 @@ export function PainelFormaAtiva({ f, c, r, alterar, onEditar }: { f: Ficha; c: 
       {((c.forma?.invocacoes.length ?? 0) > 0 || (f.estado.invocacoes ?? []).length > 0) && (
         <div className="invocacoes-painel"><AbaInvocacoes f={f} c={c} r={r} alterar={alterar} compacto /></div>
       )}
+      <PainelSchrift f={f} c={c} alterar={alterar} dentro />
       {msg && <p className="ajuda" role="status">{msg}</p>}
       <div className="cartas-hab">
         {lista.filter((h) => !classificarHab(h).passiva).map((h) => (

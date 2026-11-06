@@ -1,4 +1,5 @@
 import { Icone } from "../components/Icone";
+import { PainelSchrift } from "../components/PainelSchrift";
 import { TextoCarta } from "../components/TextoCarta";
 import { origemDaFonte, ROTULO_ORIGEM } from "../lib/origem";
 import { useTema } from "../components/Theme";
@@ -324,6 +325,7 @@ export default function Ficha() {
       <AcoesRapidas f={f} c={c} alterar={alterar} r={rol} />
 
       <PainelFormaAtiva f={f} c={c} r={rol} alterar={alterar} onEditar={setConstruir} />
+      <PainelSchrift f={f} c={c} alterar={alterar} />
       {(podeSubir || nPend > 0) && (
         <div className="banner-evolucao" role="status">
           {podeSubir ? <span>Você tem XP para o <b>nível {f.nivel + 1}</b>.</span> : <span>Você tem <b>{nPend}</b> escolha(s) de poderes pendente(s).</span>}

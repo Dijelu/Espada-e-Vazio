@@ -117,7 +117,7 @@ export function CondicoesAtivas({ f, alterar }: { f: Ficha; alterar: (p: Partial
 
 /** Habilidades de situação: o jogador liga quando a situação está valendo. */
 export function CartasSituacoes({ f, alterar }: { f: Ficha; alterar: (p: Partial<Ficha>) => void }) {
-  const lista = situacoesDaFicha(f);
+  const lista = situacoesDaFicha(f).filter((x) => x.id !== "schrift");
   if (lista.length === 0) return null;
   const ligar = (id: string) => {
     const k = idSituacao(id);
