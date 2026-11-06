@@ -1,5 +1,8 @@
 import { Icone } from "../components/Icone";
-import { somarDadosGolpe } from "../regras/mascara";
+import { useTema } from "../components/Theme";
+import { alternarQuincy, quincyAtivo } from "../lib/quincy";
+import { somarDadosGolpe, mascaraAtiva } from "../regras/mascara";
+import { FichaLeitura } from "../components/FichaLeitura";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { SeletorEssencia } from "../components/SeletorEssencia";
 import { NomeEssencia, TrocarEssencia } from "../components/EssenciaPecas";
@@ -11,7 +14,7 @@ import { AcoesRapidas } from "../components/AcoesRapidas";
 import { EscolhaPoderes, pendencias, subclassePendente, totalPendencias } from "../components/EscolhaPoderes";
 import { EscolhaSubclasse } from "../components/EscolhaSubclasse";
 import { CartasFormas, ConstrutorForma, PainelFormaAtiva } from "../components/ConstrutorForma";
-import { TIPO_FORMA_NOME, formaPendente, nivelLiberacao, segundaLiberada } from "../regras/liberacoes";
+import { TIPO_FORMA_NOME, formaDaLiberacao, formaPendente, nivelLiberacao, segundaLiberada } from "../regras/liberacoes";
 import { AvisosFicha, Campo, irParaAncora, LinhaAtributos, Passo, SeletorVariacoes, novoId } from "../components/FichaPecas";
 import { AbaInvocacoes } from "../components/Invocacoes";
 import { BotaoRolar, PainelRolagens, useRolagens, type Rolagens } from "../components/Rolador";
@@ -49,8 +52,9 @@ import {
 /** Formas que só podem ser montadas depois do treinamento de liberação. */
 const TREINA_ANTES: TipoForma[] = ["shikai", "bankai", "resurreccion"];
 
-const ABAS = ["Resumo", "Combate", "Invocações", "Perícias", "Poderes", "Treinamento", "Evolução", "Notas"] as const;
-type Aba = (typeof ABAS)[number];
+const SECOES = ["Agir", "Poderes", "Personagem", "Mochila", "Evoluir"] as const;
+type Secao = (typeof SECOES)[number];
+const ICONE_SECAO: Record<Secao, string> = { Agir: "⚔", Poderes: "❖", Personagem: "☺", Mochila: "▣", Evoluir: "↗" };
 
 export default function Ficha() {
   const { id } = useParams();
@@ -58,7 +62,10 @@ export default function Ficha() {
   const [f, setF] = useState<TFicha | null>(null);
   const [erro, setErro] = useState("");
   const [estado, setEstado] = useState<"salvo" | "salvando" | "erro">("salvo");
-  const [aba, setAba] = useState<Aba>("Resumo");
+  const [secao, setSecao] = useState<Secao>("Agir");
+  const [livro, setLivro] = useState(false);
+  const [menuTema, setMenuTema] = useState(false);
+  const { tema, alternar: alternarTema } = useTema();
   const carregada = useRef(false);
   const [construir, setConstruir] = useState<TipoForma | null>(null);
   const nivelVisto = useRef<number | null>(null);
@@ -197,7 +204,7 @@ export default function Ficha() {
 
   const subirNivel = useCallback(() => {
     alterar((x) => ({ nivel: Math.min(20, x.nivel + 1) }));
-    setAba("Evolução");
+    setSecao("Evoluir");
     window.scrollTo({ top: 0, behavior: "smooth" });
     som.energia();
   }, [alterar]);
@@ -219,16 +226,16 @@ export default function Ficha() {
 
   const pend = pendencias(f);
   const nPend = totalPendencias(pend);
-  const DESTINOS: Record<string, [Aba, string]> = {
-    atributos: ["Evolução", "ancora-atributos"],
-    pericias: ["Perícias", "ancora-pericias"],
-    salvaguarda: ["Perícias", "ancora-salvaguardas"],
+  const DESTINOS: Record<string, [Secao, string]> = {
+    atributos: ["Evoluir", "ancora-atributos"],
+    pericias: ["Personagem", "ancora-pericias"],
+    salvaguarda: ["Personagem", "ancora-salvaguardas"],
     essencias: ["Poderes", "ancora-essencias"],
   };
   const irDestino = (d: string) => {
     const alvo = DESTINOS[d];
     if (!alvo) return;
-    setAba(alvo[0]);
+    setSecao(alvo[0]);
     irParaAncora(alvo[1]);
   };
   const temInvocacoes = (c.forma?.invocacoes.length ?? 0) > 0 || (f.estado.invocacoes?.length ?? 0) > 0;
@@ -237,10 +244,14 @@ export default function Ficha() {
   const podeSubir = nivelXp > f.nivel && f.nivel < 20;
 
   const pvPct = c.pv > 0 ? Math.max(0, Math.min(100, (f.pvAtual / c.pv) * 100)) : 0;
+  const pvBaixo = c.pv > 0 && f.pvAtual <= c.pv * 0.25;
+  const tipoLib = formaDaLiberacao(f.estado.liberado as string);
+  const formaAtiva = tipoLib ? (f.formas[tipoLib]?.nome || TIPO_FORMA_NOME[tipoLib]) : "";
+  const origemForma = tipoLib === "vollstandig" ? "quincy" : tipoLib === "resurreccion" || tipoLib === "segunda" ? "hollow" : "shinigami";
   const prPct = c.pr > 0 ? Math.max(0, Math.min(100, (f.prAtual / c.pr) * 100)) : 0;
 
   return (
-    <main className="page ficha">
+    <main className={`page ficha${livro ? " modo-livro" : ""}`} data-pvbaixo={pvBaixo ? "1" : "0"}>
       <header className="ficha-topo">
         <div className="ficha-id">
           <Link className="voltar-fixo" to="/fichas">← Minhas fichas</Link>
@@ -262,53 +273,71 @@ export default function Ficha() {
         </div>
       )}
 
-      <section className="barras" aria-label="Vida e reiatsu">
-        <Barra tipo="pv" rotulo="PV" atual={f.pvAtual} max={c.pv} pct={pvPct} onChange={(v) => alterar({ pvAtual: v })} />
-        <Barra tipo="pr" rotulo="PR" atual={f.prAtual} max={c.pr} pct={prPct} onChange={(v) => alterar({ prAtual: v })} />
-        <div className="selos">
+      <section className="faixa-estado" aria-label="Estado do personagem">
+        <div className="faixa-barras">
+          <Barra tipo="pv" rotulo="PV" atual={f.pvAtual} max={c.pv} pct={pvPct} baixo={pvBaixo} temp={f.estado.pvTemp} onChange={(v) => alterar({ pvAtual: v })} />
+          <Barra tipo="pr" rotulo="PR" atual={f.prAtual} max={c.pr} pct={prPct} onChange={(v) => alterar({ prAtual: v })} />
+        </div>
+        <div className="faixa-nums" aria-label="Números de combate">
           <div><small>CR</small><b>{c.cr}</b></div>
-          <div><small>Proficiência</small><b>{mod(c.prof)}</b></div>
-          <div><small>Iniciativa</small><b>{mod(c.iniciativa)}</b><BotaoRolar r={rol} rotulo="Iniciativa" bonus={c.iniciativa} /></div>
+          <div><small>Inic.</small><b>{mod(c.iniciativa)}</b></div>
           <div><small>Desloc.</small><b>{c.desloc} m</b></div>
-          <div><small>Perc. passiva</small><b>{c.percPassiva}</b></div>
-          <div><small>CD</small><b>{c.cd}</b></div>
-          <div className="txt"><small>Ataques</small><b>{ataquesPorAcao(f, c.forma?.ataques ?? 0)} por ação</b></div>
-          <div className="txt"><small>RD</small><b>{c.rdFis} fís. · {c.rdEso} eso.</b></div>
-          <div><small>Dano corpo</small><b>{c.danoCorpo}</b></div>
+          <div><small>RD</small><b>{c.rdFis}/{c.rdEso}</b></div>
+        </div>
+        <div className="faixa-chips">
+          {formaAtiva && <span className="forma-chip" data-origem={origemForma}>{formaAtiva}</span>}
+          {mascaraAtiva(f) && <span className="forma-chip" data-origem="hollow">Máscara</span>}
+          {f.estado.condicoes.map((n) => (
+            <button key={n} type="button" className="cond-chip" title="Remover condição" onClick={() => alterar({ estado: { ...f.estado, condicoes: f.estado.condicoes.filter((x) => x !== n) } })}>▲ {n} ×</button>
+          ))}
         </div>
       </section>
 
-      <LinhaAtributos atr={c.atr} />
+      <nav className="secoes" role="tablist" aria-label="Seções da ficha">
+        {SECOES.map((a) => (
+          <button type="button" key={a} role="tab" aria-selected={secao === a} className={secao === a ? "on" : ""} onClick={() => { setSecao(a); setMenuTema(false); window.scrollTo({ top: 0 }); }}>
+            <span className="sec-ico" aria-hidden="true">{ICONE_SECAO[a]}</span>
+            <span>{a}</span>
+            {abasComProblema.has(a) ? <i className="pontinho erro" aria-label="Há um problema nesta seção">!</i> : null}
+            {a === "Evoluir" && nPend > 0 ? <i className="pontinho" aria-label={`${nPend} pendente(s)`}>{nPend}</i> : null}
+          </button>
+        ))}
+        <span className="secoes-fim">
+          <button type="button" className={`btn-livro${livro ? " on" : ""}`} onClick={() => setLivro((v) => !v)} aria-pressed={livro}>{livro ? "Voltar à ficha" : "Ver como livro"}</button>
+          <span className="tema-grupo desk" role="group" aria-label="Tema">
+            <SeletorTema tema={tema} alternar={alternarTema} />
+          </span>
+          <button type="button" className="btn-tema-cel" aria-expanded={menuTema} onClick={() => setMenuTema((v) => !v)}><span aria-hidden="true">☾</span><span>Tema</span></button>
+        </span>
+      </nav>
+      {menuTema && (
+        <div className="menu-tema-cel" role="group" aria-label="Tema">
+          <SeletorTema tema={tema} alternar={alternarTema} />
+          <button type="button" onClick={() => { setLivro((v) => !v); setMenuTema(false); }}>{livro ? "Voltar à ficha" : "Ver como livro"}</button>
+        </div>
+      )}
 
+      {livro ? <FichaLeitura f={f} nome={f.nome} /> : <>
+      {secao === "Agir" && <>
       <AcoesRapidas f={f} c={c} alterar={alterar} r={rol} />
 
       <PainelFormaAtiva f={f} c={c} r={rol} alterar={alterar} onEditar={setConstruir} />
-
       {(podeSubir || nPend > 0) && (
         <div className="banner-evolucao" role="status">
           {podeSubir ? <span>Você tem XP para o <b>nível {f.nivel + 1}</b>.</span> : <span>Você tem <b>{nPend}</b> escolha(s) de poderes pendente(s).</span>}
           {podeSubir ? (
             <button type="button" className="btn btn-red" onClick={subirNivel}>Subir de nível</button>
           ) : (
-            <button type="button" className="btn btn-red" onClick={() => setAba("Evolução")}>Escolher agora</button>
+            <button type="button" className="btn btn-red" onClick={() => setSecao("Evoluir")}>Escolher agora</button>
           )}
         </div>
       )}
-
       <AvisosFicha avisos={c.avisos} onIr={irDestino} />
-
-      <nav className="abas" role="tablist" aria-label="Seções da ficha">
-        {ABAS.filter((a) => a !== "Invocações" || temInvocacoes).map((a) => (
-          <button type="button" key={a} role="tab" aria-selected={aba === a} className={aba === a ? "on" : ""} onClick={() => setAba(a)}>{a}{abasComProblema.has(a) ? <i className="pontinho erro" aria-label="Há um problema nesta aba">!</i> : null}{a === "Evolução" && nPend > 0 ? <i className="pontinho" aria-label={`${nPend} pendente(s)`}>{nPend}</i> : null}</button>
-        ))}
-      </nav>
-
-      {aba === "Resumo" && (
-        <section className="aba">
-          <div className="grade3">
+      <section className="aba">
+          <div className="grade2">
             <div className="caixa">
               <h3>Ataques</h3>
-              {f.ataques.length === 0 && danosDaClasse(f, c).length === 0 && <p className="ajuda">Nenhum ataque ainda. Cadastre na aba Combate.</p>}
+              {f.ataques.length === 0 && danosDaClasse(f, c).length === 0 && <p className="ajuda">Nenhum ataque ainda. Cadastre na seção Personagem.</p>}
               <DanosDaClasse f={f} c={c} r={rol} />
               {f.ataques.map((a) => (
                 <div className="carta-mini carta-ataque" key={a.id}>
@@ -319,16 +348,6 @@ export default function Ficha() {
                     {(() => { const m = ataqueMelhorado(f, a); return m.crit ? <span>Crítico <b>{m.crit}–20 ×{m.mult ?? 2}</b></span> : null; })()}
                   </div>
                   <LinhaAtaque r={rol} nome={a.nome} bonus={ataqueBonus(f, c, a)} dano={danoFinal(f, a, c)} />
-                </div>
-              ))}
-            </div>
-            <div className="caixa">
-              <h3>Poderes</h3>
-              {f.poderes.length === 0 && <p className="ajuda">Nenhum poder ainda. Cadastre na aba Poderes.</p>}
-              {f.poderes.map((p) => (
-                <div className="carta-mini" key={p.id}>
-                  <b>{p.nome}</b>
-                  <span>{p.tipo}{p.custo ? ` · ${p.custo}` : ""}</span>
                 </div>
               ))}
             </div>
@@ -346,13 +365,55 @@ export default function Ficha() {
               )}
             </div>
           </div>
+          <div className="grade2">
+            <EfeitosAtivos f={f} c={c} />
+            <CondicoesAtivas f={f} alterar={alterar} />
+          </div>
+      </section>
+      {temInvocacoes && <AbaInvocacoes f={f} c={c} r={rol} alterar={alterar} />}
+      </>}
+      {secao === "Poderes" && <>
+        <section className="aba">
           <CartasHabilidades f={f} c={c} alterar={alterar} />
           <CartasSituacoes f={f} alterar={alterar} />
           <PainelKidos f={f} c={c} r={rol} />
           <CartasFormas f={f} c={c} r={rol} alterar={alterar} onEditar={setConstruir} />
-          <div className="grade2">
-            <EfeitosAtivos f={f} c={c} />
-            <CondicoesAtivas f={f} alterar={alterar} />
+        </section>
+        <section className="aba">
+          <div className="caixa" id="ancora-essencias">
+            <h3>Essências Espirituais</h3>
+            <p className="ajuda">Pontos: {c.pontosEssencia.usados} de {c.pontosEssencia.total} usados. Os nomes e efeitos estão no <Link to="/livro/essencias-espirituais" target="_blank">Capítulo 4</Link>.</p>
+            {f.essencias.map((e) => (
+              <div className="linha-edit linha-ess" key={e.id}>
+                <NomeEssencia nome={e.nome} etapa={e.etapa} />
+                <TrocarEssencia tipo={classe?.tipo} existentes={f.essencias.map((x) => x.nome)} onTrocar={(nome) => alterar({ essencias: f.essencias.map((x) => (x.id === e.id ? { ...x, nome, etapa: 1 } : x)) })} />
+                <Passo valor={e.etapa} min={1} max={5} rotulo={`etapa de ${e.nome}`} onChange={(v) => alterar({ essencias: f.essencias.map((x) => (x.id === e.id ? { ...x, etapa: v } : x)) })} />
+                <label className="mini"><input type="checkbox" checked={!!e.gratis} onChange={(ev) => alterar({ essencias: f.essencias.map((x) => (x.id === e.id ? { ...x, gratis: ev.target.checked } : x)) })} /> grátis</label>
+                <button type="button" className="link-perigo" onClick={() => alterar({ essencias: f.essencias.filter((x) => x.id !== e.id) })}>Remover</button>
+              </div>
+            ))}
+            <SeletorEssencia
+              tipo={classe?.tipo}
+              existentes={f.essencias.map((e) => e.nome)}
+              onEscolher={(nome) => alterar({ essencias: [...f.essencias, { id: novoId(), nome, etapa: 1 }] })}
+            />
+          </div>
+          <PoderesEscolhidos f={f} />
+          <div className="caixa">
+            <h3>Poderes, técnicas e talentos</h3>
+            <p className="ajuda">Anote aqui Shikai, Bankai, Kidō, técnicas, talentos e o que mais usar na mesa.</p>
+            {f.poderes.map((p) => (
+              <div className="poder" key={p.id}>
+                <div className="linha-edit">
+                  <input value={p.nome} onChange={(e) => alterar({ poderes: f.poderes.map((x) => (x.id === p.id ? { ...x, nome: e.target.value } : x)) })} aria-label="Nome do poder" placeholder="Nome" />
+                  <input value={p.tipo} onChange={(e) => alterar({ poderes: f.poderes.map((x) => (x.id === p.id ? { ...x, tipo: e.target.value } : x)) })} aria-label="Tipo" placeholder="Tipo (Kidō, Talento…)" />
+                  <input value={p.custo} onChange={(e) => alterar({ poderes: f.poderes.map((x) => (x.id === p.id ? { ...x, custo: e.target.value } : x)) })} aria-label="Custo" placeholder="Custo (5 PR)" />
+                  <button type="button" className="link-perigo" onClick={() => alterar({ poderes: f.poderes.filter((x) => x.id !== p.id) })}>Remover</button>
+                </div>
+                <textarea rows={3} value={p.texto} onChange={(e) => alterar({ poderes: f.poderes.map((x) => (x.id === p.id ? { ...x, texto: e.target.value } : x)) })} aria-label="Descrição" placeholder="Descrição e regras" />
+              </div>
+            ))}
+            <button type="button" className="btn btn-paper" onClick={() => alterar({ poderes: [...f.poderes, { id: novoId(), nome: "", tipo: "", custo: "", texto: "" }] })}>Adicionar poder</button>
           </div>
           {f.essencias.length > 0 && (
             <div className="caixa">
@@ -361,11 +422,16 @@ export default function Ficha() {
             </div>
           )}
         </section>
-      )}
-
-      {aba === "Invocações" && <AbaInvocacoes f={f} c={c} r={rol} alterar={alterar} />}
-
-      {aba === "Combate" && (
+      </>}
+      {secao === "Personagem" && <>
+        <LinhaAtributos atr={c.atr} />
+        <div className="selos">
+          <div><small>Proficiência</small><b>{mod(c.prof)}</b></div>
+          <div><small>Perc. passiva</small><b>{c.percPassiva}</b></div>
+          <div><small>CD</small><b>{c.cd}</b></div>
+          <div className="txt"><small>Ataques</small><b>{ataquesPorAcao(f, c.forma?.ataques ?? 0)} por ação</b></div>
+          <div><small>Dano corpo</small><b>{c.danoCorpo}</b></div>
+        </div>
         <section className="aba">
           <div className="grade2">
             <div className="caixa">
@@ -412,9 +478,6 @@ export default function Ficha() {
             <button type="button" className="btn btn-paper" onClick={() => alterar({ ataques: [...f.ataques, { id: novoId(), nome: "Zanpakutou", atr: classe?.chave.startsWith("Destreza") ? "des" : "for", dano: "" }] })}>Adicionar ataque</button>
           </div>
         </section>
-      )}
-
-      {aba === "Perícias" && (
         <section className="aba">
           <p className="ajuda">Proficiente em {PERICIAS.filter((p) => c.pericias[p.id].prof).length} perícia(s). Você pode escolher {c.quantasPericias} além das fixas.</p>
           <div className="caixa" id="ancora-salvaguardas">
@@ -461,51 +524,28 @@ export default function Ficha() {
             ))}
           </div>
         </section>
-      )}
-
-      {aba === "Poderes" && (
+      </>}
+      {secao === "Mochila" && (
         <section className="aba">
-          <div className="caixa" id="ancora-essencias">
-            <h3>Essências Espirituais</h3>
-            <p className="ajuda">Pontos: {c.pontosEssencia.usados} de {c.pontosEssencia.total} usados. Os nomes e efeitos estão no <Link to="/livro/essencias-espirituais" target="_blank">Capítulo 4</Link>.</p>
-            {f.essencias.map((e) => (
-              <div className="linha-edit linha-ess" key={e.id}>
-                <NomeEssencia nome={e.nome} etapa={e.etapa} />
-                <TrocarEssencia tipo={classe?.tipo} existentes={f.essencias.map((x) => x.nome)} onTrocar={(nome) => alterar({ essencias: f.essencias.map((x) => (x.id === e.id ? { ...x, nome, etapa: 1 } : x)) })} />
-                <Passo valor={e.etapa} min={1} max={5} rotulo={`etapa de ${e.nome}`} onChange={(v) => alterar({ essencias: f.essencias.map((x) => (x.id === e.id ? { ...x, etapa: v } : x)) })} />
-                <label className="mini"><input type="checkbox" checked={!!e.gratis} onChange={(ev) => alterar({ essencias: f.essencias.map((x) => (x.id === e.id ? { ...x, gratis: ev.target.checked } : x)) })} /> grátis</label>
-                <button type="button" className="link-perigo" onClick={() => alterar({ essencias: f.essencias.filter((x) => x.id !== e.id) })}>Remover</button>
-              </div>
-            ))}
-            <SeletorEssencia
-              tipo={classe?.tipo}
-              existentes={f.essencias.map((e) => e.nome)}
-              onEscolher={(nome) => alterar({ essencias: [...f.essencias, { id: novoId(), nome, etapa: 1 }] })}
-            />
+          <div className="grade2">
+            <Campo rotulo="Tendência Espiritual">
+              <select value={f.tendencia} onChange={(e) => alterar({ tendencia: e.target.value })}>
+                <option value="">—</option><option>Bom</option><option>Neutro</option><option>Mal</option>
+              </select>
+            </Campo>
           </div>
-          <PoderesEscolhidos f={f} />
-          <div className="caixa">
-            <h3>Poderes, técnicas e talentos</h3>
-            <p className="ajuda">Anote aqui Shikai, Bankai, Kidō, técnicas, talentos e o que mais usar na mesa.</p>
-            {f.poderes.map((p) => (
-              <div className="poder" key={p.id}>
-                <div className="linha-edit">
-                  <input value={p.nome} onChange={(e) => alterar({ poderes: f.poderes.map((x) => (x.id === p.id ? { ...x, nome: e.target.value } : x)) })} aria-label="Nome do poder" placeholder="Nome" />
-                  <input value={p.tipo} onChange={(e) => alterar({ poderes: f.poderes.map((x) => (x.id === p.id ? { ...x, tipo: e.target.value } : x)) })} aria-label="Tipo" placeholder="Tipo (Kidō, Talento…)" />
-                  <input value={p.custo} onChange={(e) => alterar({ poderes: f.poderes.map((x) => (x.id === p.id ? { ...x, custo: e.target.value } : x)) })} aria-label="Custo" placeholder="Custo (5 PR)" />
-                  <button type="button" className="link-perigo" onClick={() => alterar({ poderes: f.poderes.filter((x) => x.id !== p.id) })}>Remover</button>
-                </div>
-                <textarea rows={3} value={p.texto} onChange={(e) => alterar({ poderes: f.poderes.map((x) => (x.id === p.id ? { ...x, texto: e.target.value } : x)) })} aria-label="Descrição" placeholder="Descrição e regras" />
-              </div>
-            ))}
-            <button type="button" className="btn btn-paper" onClick={() => alterar({ poderes: [...f.poderes, { id: novoId(), nome: "", tipo: "", custo: "", texto: "" }] })}>Adicionar poder</button>
-          </div>
+          <Campo rotulo="Equipamento"><textarea rows={4} value={f.equipamento} onChange={(e) => alterar({ equipamento: e.target.value })} /></Campo>
+          <Campo rotulo="Aparência"><textarea rows={4} value={f.aparencia} onChange={(e) => alterar({ aparencia: e.target.value })} /></Campo>
+          <Campo rotulo="História"><textarea rows={8} value={f.historia} onChange={(e) => alterar({ historia: e.target.value })} /></Campo>
+          <Campo rotulo="Anotações da campanha"><textarea rows={8} value={f.notas} onChange={(e) => alterar({ notas: e.target.value })} /></Campo>
+          <button type="button" className="btn btn-paper" onClick={() => nav("/fichas")}>Voltar para a lista</button>
         </section>
       )}
-
-      {aba === "Treinamento" && <AbaTreinamento f={f} c={c} alterar={alterar} onMontar={setConstruir} />}
-
-      {aba === "Evolução" && <Evolucao f={f} c={c} alterar={alterar} subir={subirNivel} onForma={setConstruir} onSub={() => setSubAberta(true)} />}
+      {secao === "Evoluir" && <>
+        <Evolucao f={f} c={c} alterar={alterar} subir={subirNivel} onForma={setConstruir} onSub={() => setSubAberta(true)} />
+      <AbaTreinamento f={f} c={c} alterar={alterar} onMontar={setConstruir} />
+      </>}
+      </>}
 
       <PainelRolagens r={rol} />
       {subAberta && (
@@ -533,28 +573,13 @@ export default function Ficha() {
         />
       )}
 
-      {aba === "Notas" && (
-        <section className="aba">
-          <div className="grade2">
-            <Campo rotulo="Tendência Espiritual">
-              <select value={f.tendencia} onChange={(e) => alterar({ tendencia: e.target.value })}>
-                <option value="">—</option><option>Bom</option><option>Neutro</option><option>Mal</option>
-              </select>
-            </Campo>
-          </div>
-          <Campo rotulo="Equipamento"><textarea rows={4} value={f.equipamento} onChange={(e) => alterar({ equipamento: e.target.value })} /></Campo>
-          <Campo rotulo="Aparência"><textarea rows={4} value={f.aparencia} onChange={(e) => alterar({ aparencia: e.target.value })} /></Campo>
-          <Campo rotulo="História"><textarea rows={8} value={f.historia} onChange={(e) => alterar({ historia: e.target.value })} /></Campo>
-          <Campo rotulo="Anotações da campanha"><textarea rows={8} value={f.notas} onChange={(e) => alterar({ notas: e.target.value })} /></Campo>
-          <button type="button" className="btn btn-paper" onClick={() => nav("/fichas")}>Voltar para a lista</button>
-        </section>
-      )}
-    </main>
+          </main>
   );
 }
 
-function Barra({ tipo, rotulo, atual, max, pct, onChange }: { tipo: "pv" | "pr"; rotulo: string; atual: number; max: number; pct: number; onChange: (v: number) => void }) {
+function Barra({ tipo, rotulo, atual, max, pct, baixo, temp, onChange }: { tipo: "pv" | "pr"; rotulo: string; atual: number; max: number; pct: number; baixo?: boolean; temp?: number; onChange: (v: number) => void }) {
   const [delta, setDelta] = useState("");
+  const [mexer, setMexer] = useState(false);
   const aplicar = (sinal: 1 | -1) => {
     const n = Number(delta);
     if (!Number.isFinite(n) || n === 0) return;
@@ -563,18 +588,21 @@ function Barra({ tipo, rotulo, atual, max, pct, onChange }: { tipo: "pv" | "pr";
     if (sinal < 0) som.corte();
   };
   return (
-    <div className={`barra ${tipo}`}>
+    <div className={`barra ${tipo}${baixo ? " baixo" : ""}`}>
       <div className="barra-topo">
         <b>{rotulo}</b>
         <span><input type="number" className="atual" value={atual} min={0} max={max} onChange={(e) => onChange(Math.max(0, Math.min(max, Number(e.target.value) || 0)))} aria-label={`${rotulo} atual`} /> / {max}</span>
       </div>
+      {baixo && <p className="pv-aviso" role="status">▲ PV baixo</p>}
+      {!!temp && temp > 0 && <span className="pv-temp">+{temp} temp.</span>}
       <div className="trilho" aria-hidden="true"><i style={{ width: `${pct}%` }} /></div>
-      <div className="barra-acoes">
+      <button type="button" className="barra-mexer" aria-expanded={mexer} onClick={() => setMexer((v) => !v)}>{mexer ? "Fechar" : "Mexer"}</button>
+      {mexer && <div className="barra-acoes">
         <input type="number" inputMode="numeric" placeholder="valor" value={delta} onChange={(e) => setDelta(e.target.value)} aria-label={`Valor para ${rotulo}`} />
         <button type="button" onClick={() => aplicar(-1)}>Perder</button>
         <button type="button" onClick={() => aplicar(1)}>Recuperar</button>
         <button type="button" onClick={() => onChange(max)} aria-label={`Restaurar ${rotulo} ao máximo`}>Máx.</button>
-      </div>
+      </div>}
     </div>
   );
 }
@@ -631,7 +659,7 @@ function Evolucao({ f, c, alterar, subir, onForma, onSub }: { f: TFicha; c: Retu
           ) : (
             <p>Nível máximo.</p>
           )}
-          <p className="ajuda">As características da classe estão no <Link to="/livro/classes" target="_blank">Capítulo 3</Link>; anote-as na aba Poderes.</p>
+          <p className="ajuda">As características da classe estão no <Link to="/livro/classes" target="_blank">Capítulo 3</Link>; anote-as na seção Poderes.</p>
         </div>
       </div>
 
@@ -649,9 +677,9 @@ function Evolucao({ f, c, alterar, subir, onForma, onSub }: { f: TFicha; c: Retu
               {f.nivel < nv ? (
                 <p className="ajuda">Disponível a partir do nível {nv}.</p>
               ) : TREINA_ANTES.includes(t) && !forma?.nome && !treinoConcluido(f, t) ? (
-                <p className="ajuda">Conclua o treinamento de {TIPO_FORMA_NOME[t]}, na aba Treinamento, para montar a sua forma.</p>
+                <p className="ajuda">Conclua o treinamento de {TIPO_FORMA_NOME[t]}, em Treinamento (seção Evoluir), para montar a sua forma.</p>
               ) : t === "segunda" && !segundaLiberada(f) ? (
-                <p className="ajuda">Conclua o treinamento da Segunda Etapa, na aba Treinamento, para montar a sua forma.</p>
+                <p className="ajuda">Conclua o treinamento da Segunda Etapa, em Treinamento (seção Evoluir), para montar a sua forma.</p>
               ) : forma?.nome ? (
                 <p>Definida: <b>{forma.nome}</b></p>
               ) : (
@@ -719,7 +747,7 @@ function Evolucao({ f, c, alterar, subir, onForma, onSub }: { f: TFicha; c: Retu
 
       <div className="caixa">
         <h3>Pontos de essência</h3>
-        <p>{c.pontosEssencia.total - c.pontosEssencia.usados} disponível(is) de {c.pontosEssencia.total}. Gaste na aba Poderes.</p>
+        <p>{c.pontosEssencia.total - c.pontosEssencia.usados} disponível(is) de {c.pontosEssencia.total}. Gaste na seção Poderes.</p>
       </div>
     </section>
   );
@@ -799,4 +827,26 @@ function danoFinal(f: TFicha, a: Ataque, c: ReturnType<typeof calcular>) {
   const geral = c.danoGeral > 0 ? `+${c.danoGeral}` : "";
   if (a.distancia) return dano + atr + geral + (c.danoDisparo > 0 ? `+${c.danoDisparo}` : "") + c.danoDadosDisparo.map((d) => `+${d}`).join("");
   return dano + atr + geral + (c.danoCorpo > 0 ? `+${c.danoCorpo}` : "") + c.danoDados.map((d) => `+${d}`).join("");
+}
+
+/** Escolha de tema: Hollow (escuro), Shinigami (claro) e Quincy (extra). */
+function SeletorTema({ tema, alternar }: { tema: "dark" | "light"; alternar: () => void }) {
+  const [quincy, setQuincy] = useState(() => document.documentElement.getAttribute("data-skin") === "quincy");
+  const escolher = (alvo: "dark" | "light" | "quincy") => {
+    const q = document.documentElement.getAttribute("data-skin") === "quincy";
+    if (alvo === "quincy") {
+      if (!q) alternarQuincy();
+      setQuincy(true);
+      return;
+    }
+    if (q) { alternarQuincy(); setQuincy(false); }
+    if (tema !== alvo) alternar();
+  };
+  return (
+    <>
+      <button type="button" className={!quincy && tema === "dark" ? "on" : ""} aria-pressed={!quincy && tema === "dark"} onClick={() => escolher("dark")}>Hollow</button>
+      <button type="button" className={!quincy && tema === "light" ? "on" : ""} aria-pressed={!quincy && tema === "light"} onClick={() => escolher("light")}>Shinigami</button>
+      {(quincy || quincyAtivo()) && <button type="button" className={quincy ? "on" : ""} aria-pressed={quincy} onClick={() => escolher("quincy")}>Quincy <small>extra</small></button>}
+    </>
+  );
 }
