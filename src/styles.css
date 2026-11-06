@@ -1838,3 +1838,17 @@ details.ficha-leitura-bloco[open] > summary { margin-bottom: 8px; }
 .creditos a, .footer a { color: var(--accent); text-decoration: underline; }
 .tab-creditos { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 8px; }
 .tab-creditos th, .tab-creditos td { text-align: left; padding: 5px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+
+/* ===== Ficha: PV temporário só na faixa ===== */
+.faixa-estado .barra-topo { display: flex; align-items: center; gap: 8px; }
+.faixa-estado .barra-valor { margin-left: auto; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+.faixa-estado .pv-temp { position: static; margin-left: 2px; border: 0; padding: 1px 9px; line-height: 1.5; font-size: 12px; font-weight: 800; white-space: nowrap; background: var(--accent); color: var(--on-accent); }
+.faixa-estado .barra-acoes { align-items: center; }
+.faixa-estado .barra-temp { display: inline-flex; align-items: center; gap: 8px; margin-left: auto; font-size: 13px; color: var(--muted); }
+.faixa-estado .passo button { width: 34px; height: 34px; }
+.faixa-estado .passo output { min-width: 40px; font-size: 15px; }
+@media (max-width: 760px) {
+  .faixa-estado .pv-temp { padding: 0 6px; font-size: 11px; }
+  .faixa-estado .pv-temp-txt { display: none; }
+  .faixa-estado .barra-topo { gap: 4px; }
+}

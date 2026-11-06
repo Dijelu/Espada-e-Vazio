@@ -322,7 +322,6 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
           )}
           <button type="button" className="btn btn-red" onClick={aplicarDano}>Aplicar</button>
         </div>
-        <div className="mini">PV temporários <Passo valor={e.pvTemp} min={0} max={999} rotulo="PV temporários" onChange={(v) => setE({ pvTemp: v })} /></div>
       </div>
       {msg && <p className="ajuda" role="status">{msg}</p>}
 
@@ -362,8 +361,8 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
               ef.dadosGolpe ? `+${ef.dadosGolpe} dado${ef.dadosGolpe > 1 ? "s" : ""} nos golpes` : "",
               ef.dadosTecnica ? `+${ef.dadosTecnica} dado${ef.dadosTecnica > 1 ? "s" : ""} nas técnicas` : "",
               ef.cd ? `CD das técnicas +${ef.cd}` : "",
-              t.pv ? `PV temp. ${Math.floor(c.pv * t.pv)}` : "",
-              t.pr ? `PR temp. ${Math.floor(c.pr * t.pr)}` : "",
+              t.pv ? `dá ${Math.floor(c.pv * t.pv)} PV temp.` : "",
+              t.pr ? `dá ${Math.floor(c.pr * t.pr)} PR temp.` : "",
             ].filter(Boolean);
             return b.map((x) => <span className="chip" key={x}>{x}</span>);
           })()}

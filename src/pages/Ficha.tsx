@@ -285,7 +285,7 @@ export default function Ficha() {
 
       <section className="faixa-estado" aria-label="Estado do personagem">
         <div className="faixa-barras">
-          <Barra tipo="pv" rotulo="PV" atual={f.pvAtual} max={c.pv} pct={pvPct} baixo={pvBaixo} temp={f.estado.pvTemp} onChange={(v) => alterar({ pvAtual: v })} />
+          <Barra tipo="pv" rotulo="PV" atual={f.pvAtual} max={c.pv} pct={pvPct} baixo={pvBaixo} temp={f.estado.pvTemp} onChange={(v) => alterar({ pvAtual: v })} onTemp={(v) => alterar({ estado: { ...f.estado, pvTemp: v } })} />
           <Barra tipo="pr" rotulo="PR" atual={f.prAtual} max={c.pr} pct={prPct} onChange={(v) => alterar({ prAtual: v })} />
         </div>
         <div className="faixa-nums" aria-label="Números de combate">
@@ -589,7 +589,7 @@ export default function Ficha() {
   );
 }
 
-function Barra({ tipo, rotulo, atual, max, pct, baixo, temp, onChange }: { tipo: "pv" | "pr"; rotulo: string; atual: number; max: number; pct: number; baixo?: boolean; temp?: number; onChange: (v: number) => void }) {
+function Barra({ tipo, rotulo, atual, max, pct, baixo, temp, onChange, onTemp }: { tipo: "pv" | "pr"; rotulo: string; atual: number; max: number; pct: number; baixo?: boolean; temp?: number; onChange: (v: number) => void; onTemp?: (v: number) => void }) {
   const [delta, setDelta] = useState("");
   const [mexer, setMexer] = useState(false);
   const aplicar = (sinal: 1 | -1) => {
@@ -603,10 +603,10 @@ function Barra({ tipo, rotulo, atual, max, pct, baixo, temp, onChange }: { tipo:
     <div className={`barra ${tipo}${baixo ? " baixo" : ""}`}>
       <div className="barra-topo">
         <b>{rotulo}</b>
-        <span><input type="number" className="atual" value={atual} min={0} max={max} onChange={(e) => onChange(Math.max(0, Math.min(max, Number(e.target.value) || 0)))} aria-label={`${rotulo} atual`} /> / {max}</span>
+        {!!temp && temp > 0 && <span className="pv-temp" title={`${temp} PV temporários: gastos antes dos PV`} aria-label={`${temp} PV temporários`}>+{temp}<span className="pv-temp-txt"> temp.</span></span>}
+        <span className="barra-valor"><input type="number" className="atual" value={atual} min={0} max={max} onChange={(e) => onChange(Math.max(0, Math.min(max, Number(e.target.value) || 0)))} aria-label={`${rotulo} atual`} /> / {max}</span>
       </div>
       {baixo && <p className="pv-aviso" role="status">▲ PV baixo</p>}
-      {!!temp && temp > 0 && <span className="pv-temp">+{temp} temp.</span>}
       <div className="trilho" aria-hidden="true"><i style={{ width: `${pct}%` }} /></div>
       <button type="button" className="barra-mexer" aria-expanded={mexer} onClick={() => setMexer((v) => !v)}>{mexer ? "Fechar" : "Mexer"}</button>
       {mexer && <div className="barra-acoes">
@@ -614,6 +614,7 @@ function Barra({ tipo, rotulo, atual, max, pct, baixo, temp, onChange }: { tipo:
         <button type="button" onClick={() => aplicar(-1)}>Perder</button>
         <button type="button" onClick={() => aplicar(1)}>Recuperar</button>
         <button type="button" onClick={() => onChange(max)} aria-label={`Restaurar ${rotulo} ao máximo`}>Máx.</button>
+        {onTemp && <span className="barra-temp">PV temporários <Passo valor={temp ?? 0} min={0} max={999} rotulo="PV temporários" onChange={onTemp} /></span>}
       </div>}
     </div>
   );
