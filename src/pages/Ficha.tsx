@@ -166,6 +166,21 @@ export default function Ficha() {
     return () => window.removeEventListener("beforeunload", aviso);
   }, [estado]);
 
+  // a faixa de estado gruda logo abaixo da barra do site, qualquer que seja a altura dela (ela quebra em duas linhas em telas médias)
+  useEffect(() => {
+    const barra = document.querySelector<HTMLElement>(".topbar");
+    const raiz = document.documentElement;
+    const ajustar = () => {
+      const fixa = !!barra && getComputedStyle(barra).position === "sticky";
+      raiz.style.setProperty("--topo-h", fixa && barra ? `${barra.offsetHeight}px` : "0px");
+    };
+    ajustar();
+    window.addEventListener("resize", ajustar);
+    const obs = barra && typeof ResizeObserver !== "undefined" ? new ResizeObserver(ajustar) : null;
+    if (barra && obs) obs.observe(barra);
+    return () => { window.removeEventListener("resize", ajustar); obs?.disconnect(); raiz.style.removeProperty("--topo-h"); };
+  }, []);
+
   const c = useMemo(() => (f ? calcular(f) : null), [f]);
 
   // a forma terminou: clones e invocações somem junto

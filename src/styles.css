@@ -1902,3 +1902,15 @@ details.ficha-leitura-bloco[open] > summary { margin-bottom: 8px; }
 .forma-chip, .cond-chip { display: inline-flex; align-items: center; min-height: 28px; padding: 0 12px; font-size: 13px; font-weight: 800; line-height: 1; border-radius: 999px; border: 2px solid; }
 .forma-chip::before { margin-right: 6px; font-size: 10px; }
 .cond-chip { border-color: var(--c-cond-bd); }
+
+/* ===== Ficha: faixa fixa logo abaixo da barra do site, barra de seções e botão Dados ===== */
+.faixa-estado { top: var(--topo-h, 71px); }
+@media (max-width: 900px) { .faixa-estado { top: var(--topo-h, 0px); } }
+/* em telas médias a barra do site quebra em duas linhas: na ficha ela rola com a página e só a faixa de estado fica fixa */
+@media (max-width: 1240px) { body:has(.ficha) .topbar { position: static; } }
+/* botões da barra de seções com a mesma altura e fonte do seletor de tema */
+.btn-livro { min-height: 42px; font-family: inherit; }
+.tema-grupo button { min-height: 38px; }
+.secoes-fim { padding-bottom: 5px; }
+/* o botão Dados sobe para não ficar atrás da barra de seções no celular */
+@media (max-width: 760px) { .ficha .rolador { bottom: calc(70px + env(safe-area-inset-bottom)); } }
