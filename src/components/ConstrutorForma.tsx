@@ -1,5 +1,6 @@
 import { analisarDano, mediaExtraPecas } from "../regras/teto-dano";
 import { TextoCarta } from "./TextoCarta";
+import { ArtePainel } from "./ArtePainel";
 import { ROTULO_ORIGEM, origemDaForma } from "../lib/origem";
 import { CartaoHabilidade } from "./CartoesHabilidade";
 import { ModelosBankai } from "./ModelosBankai";
@@ -659,11 +660,26 @@ export function PainelFormaAtiva({ f, c, r, alterar, onEditar }: { f: Ficha; c: 
     ? { ...vazia(tipoForma), custo: 0, nome: TIPO_FORMA_NOME[tipoForma], modelo: tipoForma === "resurreccion" ? modeloResurreccionPadrao(f.subclasse) : "", habilidades: tipoForma === "segunda" && f.formas.resurreccion ? habilidadesDaForma(f.formas.resurreccion) : [] }
     : undefined;
   const forma = provisoria ?? definida;
+  // animação de ativação: toca quando a forma liga (não toca ao só abrir a ficha)
+  const [acende, setAcende] = useState(false);
+  const tipoAnterior = useRef<string | undefined>(forma?.tipo);
+  useEffect(() => {
+    const t = forma?.tipo;
+    if (t && tipoAnterior.current !== t) {
+      setAcende(true);
+      const id = window.setTimeout(() => setAcende(false), 2800);
+      tipoAnterior.current = t;
+      return () => window.clearTimeout(id);
+    }
+    tipoAnterior.current = t;
+  }, [forma?.tipo]);
   if (!forma || !tipoForma) return null;
   const lista = habilidadesDaForma(forma);
+  const origemPainel = origemDaForma(forma.tipo);
   const passivas = lista.filter((h) => classificarHab(h).passiva);
   return (
-    <section className={`painel-forma painel-${forma.tipo}`} aria-label={`Painel da ${TIPO_FORMA_NOME[forma.tipo]}`}>
+    <section className={`painel-forma painel-${forma.tipo}${acende ? " acende" : ""}`} data-origem={origemPainel} data-forma={forma.tipo} data-ligada="1" aria-label={`Painel da ${TIPO_FORMA_NOME[forma.tipo]}`}>
+      <ArtePainel tipo={forma.tipo} />
       <div className="painel-forma-topo">
         <div>
           <small>{TIPO_FORMA_NOME[forma.tipo]} {forma.tipo === "segunda" ? "ativa" : "ativa"}</small>
@@ -679,7 +695,7 @@ export function PainelFormaAtiva({ f, c, r, alterar, onEditar }: { f: Ficha; c: 
           <button type="button" className="btn-mini" onClick={() => alterar({ estado: { ...f.estado, liberado: "" } })}>Encerrar</button>
         </div>
       </div>
-      {forma.aparencia && <p>{forma.aparencia}</p>}
+      {forma.aparencia && <TextoCarta texto={forma.aparencia} />}
       {forma.traco && <p className="quebra"><b>{forma.traco.includes("\n") ? "Traços" : "Traço"}:</b>{forma.traco.includes("\n") ? "\n" : " "}{forma.traco}</p>}
       {forma.pontoFraco && <p><b>Ponto fraco:</b> {forma.pontoFraco}</p>}
       {provisoria && <p className="ajuda">Você ainda não montou a sua {TIPO_FORMA_NOME[tipoForma]}. {lista.length > 0 ? "Estas são as técnicas do modelo do livro para o seu Caminho." : "Monte as habilidades para vê-las aqui."} {onEditar && <button type="button" className="link" onClick={() => onEditar(tipoForma)}>Montar a minha agora</button>}</p>}
@@ -692,7 +708,7 @@ export function PainelFormaAtiva({ f, c, r, alterar, onEditar }: { f: Ficha; c: 
         {lista.filter((h) => !classificarHab(h).passiva).map((h) => (
           <CartaAcao key={h.id} f={f} c={c} r={r} alterar={alterar} forma={forma} h={h} ativa onMsg={setMsg} />
         ))}
-        {lista.length === 0 && <p className="ajuda">Nenhuma habilidade cadastrada. Abra a aba Evolução para adicionar.</p>}
+        {lista.length === 0 && <p className="ajuda">Nenhuma habilidade cadastrada. Abra a seção Evoluir para adicionar.</p>}
       </div>
     </section>
   );
