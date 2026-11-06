@@ -1878,3 +1878,27 @@ details.ficha-leitura-bloco[open] > summary { margin-bottom: 8px; }
   .bloco-dano input[type="number"] { flex: 0 0 96px; }
   .bloco-dano select { flex: 1 1 140px; }
 }
+
+/* ===== Ficha: caixas e pílulas das ações com o mesmo formato ===== */
+/* Liberação, Máscara e Hōgyoku: mesma caixa, mesmo recuo e mesmas pílulas */
+.acoes .painel-lib, .acoes .painel-mascara, .acoes .painel-hogyoku { margin: 0; padding: 8px 14px; min-height: 52px; border: 1px solid var(--line); border-left: 5px solid var(--accent); border-radius: 6px; gap: 8px 10px; }
+.acoes .painel-lib > b, .acoes .painel-mascara > b, .acoes .painel-hogyoku > b { margin-right: 4px; font-size: 15px; }
+.acoes .painel-lib .ajuda, .acoes .painel-mascara .ajuda { margin: 0; font-size: 14px; }
+.acoes details.painel-hogyoku.discreto { display: block; padding: 0 14px; min-height: 44px; opacity: 1; border-left-width: 5px; }
+.acoes details.painel-hogyoku.discreto > summary { min-height: 44px; font-size: 14px; color: var(--muted); }
+.acoes details.painel-hogyoku.discreto > summary small { margin-left: 6px; font-size: 13px; }
+.acoes .chip, .acoes .chip-btn { display: inline-flex; align-items: center; min-height: 34px; padding: 0 14px; font-size: 14px; line-height: 1.2; border-radius: 999px; clip-path: none; transform: none; font-style: normal; }
+.acoes .chip { border: 1px solid var(--line2); background: transparent; color: var(--text); }
+.acoes .chip-btn { border: 2px solid var(--accent); cursor: pointer; }
+.acoes .chip-btn:hover:not(:disabled) { transform: none; background: color-mix(in srgb, var(--accent) 20%, transparent); }
+.acoes .chip-btn.on { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.acoes .chip:not(.chip-btn).on { background: color-mix(in srgb, var(--accent) 24%, transparent); border-color: var(--accent); font-weight: 700; }
+.acoes details.condicoes { padding: 0 2px; }
+.banner-evolucao { margin: 12px 0 16px; }
+.banner-evolucao .btn { min-height: 44px; font-size: 16px; box-shadow: 3px 3px 0 var(--accent-deep); }
+
+.faixa-estado { top: var(--topo-h, 71px); }
+/* pílulas da faixa (forma ativa e condições) com o mesmo formato */
+.forma-chip, .cond-chip { display: inline-flex; align-items: center; min-height: 28px; padding: 0 12px; font-size: 13px; font-weight: 800; line-height: 1; border-radius: 999px; border: 2px solid; }
+.forma-chip::before { margin-right: 6px; font-size: 10px; }
+.cond-chip { border-color: var(--c-cond-bd); }

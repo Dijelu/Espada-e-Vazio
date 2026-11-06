@@ -326,8 +326,8 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
       {msg && <p className="ajuda" role="status">{msg}</p>}
 
       {libs.length > 0 && (
-        <div className="acoes-linha">
-          <b>Liberação:</b>
+        <div className="acoes-linha painel-lib">
+          <b>Liberação</b>
           {libs.map((l) => (
             <button key={l.id} type="button" className={`chip chip-btn ${(l.id === "mascara" ? masc : e.liberado === l.id) ? "on" : ""}`} aria-pressed={l.id === "mascara" ? masc : e.liberado === l.id} title={l.id === "mascara" ? "Pode pôr ou tirar a qualquer momento; soma aos efeitos da forma ativa." : undefined} onClick={() => liberar(l.id)}>
               {l.nome}{custoLib(l.id) ? ` (${custoLib(l.id)} PR)` : ""}
@@ -375,7 +375,7 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
 
       {estagioSalvo === 0 && h.desequilibrio === 0 ? (
         <details className="painel-hogyoku discreto">
-          <summary>Artefato do Mestre: Hōgyoku</summary>
+          <summary>Hōgyoku{" "}<small>(artefato do Mestre)</small></summary>
           <div className="acoes-linha">
             <select value={0} onChange={(ev) => setH({ estagio: Number(ev.target.value) as EstagioHogyoku })} aria-label="Ligar o Hōgyoku (estágio)">
               <option value={0}>Sem Hōgyoku</option>

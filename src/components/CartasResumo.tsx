@@ -96,17 +96,16 @@ export function EfeitosAtivos({ f, c }: { f: Ficha; c: Calculo }) {
 }
 
 /** Condições que estão afetando o personagem agora, com o texto do livro. */
-export function CondicoesAtivas({ f, alterar }: { f: Ficha; alterar: (p: Partial<Ficha>) => void }) {
+export function CondicoesAtivas({ f }: { f: Ficha }) {
   const lista = f.estado.condicoes;
   return (
     <div className="caixa">
       <h3>Condições</h3>
-      {lista.length === 0 && <p className="ajuda">Nenhuma condição. Marque em Ações rápidas quando algo te afetar.</p>}
+      {lista.length === 0 && <p className="ajuda">Nenhuma condição. Marque em Condições, acima, quando algo te afetar; para tirar, toque no × da faixa de estado.</p>}
       {lista.map((n) => (
         <details className="poder-livro" key={n} open>
           <summary>
-            <b>{n}</b>{" "}
-            <button type="button" className="link-perigo" onClick={(ev) => { ev.preventDefault(); alterar({ estado: { ...f.estado, condicoes: lista.filter((x) => x !== n) } }); }}>Remover</button>
+            <b>{n}</b>
           </summary>
           <ul>{(CONDICAO_TEXTO[n] ?? []).map((t, i) => <li key={i}>{t}</li>)}</ul>
         </details>

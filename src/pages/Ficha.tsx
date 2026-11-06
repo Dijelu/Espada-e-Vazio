@@ -380,7 +380,7 @@ export default function Ficha() {
           </div>
           <div className="grade2">
             <EfeitosAtivos f={f} c={c} />
-            <CondicoesAtivas f={f} alterar={alterar} />
+            <CondicoesAtivas f={f} />
           </div>
       </section>
       {temInvocacoes && <AbaInvocacoes f={f} c={c} r={rol} alterar={alterar} />}
