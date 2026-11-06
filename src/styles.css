@@ -1914,3 +1914,5 @@ details.ficha-leitura-bloco[open] > summary { margin-bottom: 8px; }
 .secoes-fim { padding-bottom: 5px; }
 /* o botão Dados sobe para não ficar atrás da barra de seções no celular */
 @media (max-width: 760px) { .ficha .rolador { bottom: calc(70px + env(safe-area-inset-bottom)); } }
+/* ao abrir o Mexer do PV, a barra do PR não estica junto */
+.faixa-barras { align-items: start; }
