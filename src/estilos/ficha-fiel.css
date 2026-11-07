@@ -1,0 +1,25 @@
+@font-face { font-family: "Dela Gothic One"; src: url("/arte/fontes/dela-gothic-one.woff") format("woff"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "M PLUS 1"; src: url("/arte/fontes/mplus1.woff") format("woff"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: "Cinzel"; src: url("/arte/fontes/cinzel.woff") format("woff"); font-weight: 400 900; font-display: swap; }
+@font-face { font-family: "Shippori Mincho"; src: url("/arte/fontes/shippori-mincho-600.woff") format("woff"); font-weight: 400 700; font-display: swap; }
+/* Ajustes de encaixe do acabamento do protótipo nos componentes reais da ficha. */
+.ficha { --f-tit: "Dela Gothic One", "Noto Sans CJK JP Black", "Arial Black", sans-serif; --f-txt: "M PLUS 1", "Noto Sans CJK JP", system-ui, sans-serif; --carta-f: var(--f-txt); }
+.cartas-hab:has(> .cwx) { grid-template-columns: repeat(auto-fill, minmax(214px, 1fr)); gap: 18px 16px; align-items: stretch; }
+.ficha .pf-carta h3 { text-transform: none; letter-spacing: normal; font-style: normal; }
+.ficha .pf-carta .corpo { position: relative; z-index: 1; display: grid; gap: 6px; align-content: start; margin: 6px 0 10px; font-size: 13px; line-height: 1.45; }
+.ficha .pf-carta .corpo p { margin: 0; font-size: 13px; display: block; -webkit-line-clamp: unset; }
+.ficha .pf-carta .corpo .carta-resumo { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+.ficha .pf-carta .corpo .vale-quando { font-weight: 800; font-size: 12px; }
+.ficha .pf-carta .corpo details { font-size: 12.5px; }
+.ficha .pf-carta .corpo details summary { cursor: pointer; font-weight: 800; text-decoration: underline; }
+.ficha .pf-carta .corpo .escala-pr { display: grid; gap: 6px; padding: 8px; border: 1px dashed currentColor; border-radius: 6px; font-size: 12px; }
+.ficha .pf-carta .corpo .aviso-mini { font-weight: 700; }
+.ficha .pf-carta .acao-c { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; position: relative; z-index: 1; }
+.ficha .pf-carta .acao-c .b { flex: 1 1 auto; padding: 0 12px; cursor: pointer; }
+.ficha .pf-carta .acao-c .btn-mini { flex: 1 1 auto; min-height: 34px; border-radius: 5px; font-weight: 800; }
+.cw[data-orig="shi"] .pf-carta .acao-c .btn-mini { background: var(--shi-carmim); color: #fff; border-color: var(--shi-carmim-cl); }
+.cw[data-orig="hol"] .pf-carta .acao-c .btn-mini { background: var(--hol-tinta); color: var(--hol-osso); border-color: var(--hol-tinta); }
+.cw[data-orig="qui"] .pf-carta .acao-c .btn-mini { background: var(--qui-ciano); color: #03111f; border-color: var(--qui-gelo); }
+.cw[data-orig="shi"] .pf-carta .corpo .chip, .cw[data-orig="qui"] .pf-carta .corpo .chip { color: inherit; border-color: currentColor; background: transparent; }
+.cw[data-orig="hol"] .pf-carta .corpo .chip { color: var(--hol-tinta); border-color: var(--hol-tinta); background: transparent; }
+.cw[data-orig="hol"] .pf-carta .corpo .escala-pr b, .cw[data-orig="hol"] .pf-carta .corpo .aviso-mini { color: #6f0a24; }

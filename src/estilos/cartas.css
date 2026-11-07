@@ -1,0 +1,349 @@
+/* ============================================================
+   CARTAS POR ORIGEM DO PODER (v5)
+   A carta segue a ORIGEM do poder, não o tema da página:
+     data-orig="shi"  Shinigami: hanafuda preto + carmim (Zanpakutō, Shikai, Bankai, Kidō)
+     data-orig="hol"  Hollow:    osso/marfim + roxo-negro  (máscara, Cero, Resurrección)
+     data-orig="qui"  Quincy:    reishi, azul vivo + gelo   (flechas, Sternritter)
+   As cores da carta são FIXAS (não mudam com o tema). Só o CONTORNO e a sombra
+   mudam por tema (variáveis --cw-ct e --cw-sh, em temas.css).
+   ============================================================ */
+:root {
+  /* paleta das cartas (também lida por mapa-cores.html) */
+  --shi-preto: #050203; --shi-face: #130a0d; --shi-carmim: #b3122e; --shi-carmim-cl: #e0314f; --shi-tx: #f6ece4; --shi-mu: #d2c3bb;
+  --hol-osso: #ece4d0; --hol-osso2: #d3c8ae; --hol-tinta: #15101b; --hol-roxo: #3a2b45; --hol-mu: #4d3f58;
+  --qui-noite: #050b16; --qui-face: #0a1626; --qui-azul: #2f7bff; --qui-ciano: #5cc8ff; --qui-gelo: #eef6ff; --qui-mu: #a9c3e0; --qui-linha: #2b5380;
+  --carta-f: "M PLUS 1", "Noto Sans CJK JP", system-ui, sans-serif;
+}
+
+/* ---------- grade e invólucro (.cw leva o contorno por tema; fica fora do clip-path) ---------- */
+.pf-cartas { display: grid; grid-template-columns: repeat(auto-fill, minmax(214px, 1fr)); gap: 18px 16px; }
+.cw {
+  --t: 1.5px; position: relative; min-width: 0;
+  filter: drop-shadow(var(--t) 0 0 var(--cw-ct, #000)) drop-shadow(calc(var(--t) * -1) 0 0 var(--cw-ct, #000)) drop-shadow(0 var(--t) 0 var(--cw-ct, #000)) drop-shadow(0 calc(var(--t) * -1) 0 var(--cw-ct, #000)) drop-shadow(0 8px 12px var(--cw-sh, transparent));
+}
+/* tema escuro: um fio discreto na cor da origem, para a carta preta/azul não sumir no fundo */
+:root[data-theme="dark"] .cw[data-orig="shi"] { --cw-ct: #8a1a30; }
+:root[data-theme="dark"] .cw[data-orig="hol"] { --cw-ct: #000; }
+:root[data-theme="dark"] .cw[data-orig="qui"] { --cw-ct: #2b5380; }
+/* carta ativa: contorno grosso na cor do tipo (Bankai, Visored...) */
+:root[data-theme] .cw.pf-ativa[data-orig] { --cw-ct: var(--o); --t: 3px; }
+.cw.inativa .pf-carta { filter: grayscale(.7) brightness(.92); opacity: .78; }
+
+/* ---------- carta: estrutura igual nas 3 origens ---------- */
+.pf-carta { position: relative; height: 100%; min-height: 246px; display: grid; grid-template-rows: 60px auto auto 1fr auto; padding: 0 10px 10px; overflow: hidden; font-family: var(--carta-f); }
+.pf-carta > h3, .pf-carta > .tags, .pf-carta > p, .pf-carta > .acao-c { position: relative; z-index: 1; }
+.pf-carta .pf-fx { position: relative; margin: 0 -10px; overflow: hidden; display: flex; align-items: flex-end; padding: 0 8px 6px; }
+.pf-carta .arte { position: absolute; inset: 0; width: 100%; height: 100%; }
+.pf-carta .pf-fx::before { content: ""; position: absolute; inset: 0; z-index: 1; background: var(--pt-cor, transparent); opacity: var(--pt-op, .5); -webkit-mask: var(--pt, none) 0 0 / var(--pt-tam, auto); mask: var(--pt, none) 0 0 / var(--pt-tam, auto); pointer-events: none; }
+.pf-carta .fx-n { position: relative; z-index: 2; font-size: 11px; font-weight: 800; padding: 1px 8px 1px 6px; display: inline-flex; gap: 5px; align-items: center; }
+.pf-carta .deco { position: absolute; left: 0; right: 0; top: 60px; bottom: 0; width: 100%; height: calc(100% - 60px); z-index: 0; pointer-events: none; }
+.pf-carta h3 { margin: 10px 0 4px; font: 400 17px/1.12 var(--f-tit); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.pf-carta .tags { display: flex; gap: 5px; flex-wrap: wrap; }
+.pf-carta .tag { font-size: 11.5px; font-weight: 800; padding: 1px 8px; border-radius: 9px; border: 1px solid; }
+.pf-carta p { margin: 8px 0 10px; font-size: 13px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.pf-carta.pf-aberta p { display: block; -webkit-line-clamp: unset; }
+.pf-carta .acao-c { display: flex; gap: 6px; align-items: center; }
+.pf-carta .acao-c .b { flex: 1; }
+.pf-carta .b { min-height: 38px; border-radius: 5px; border: 0; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 6px; }
+.pf-carta .b:disabled { background: transparent !important; border: 1.5px dashed currentColor; opacity: .7; cursor: not-allowed; }
+.pf-carta .info { width: 30px; height: 30px; flex: none; border-radius: 50%; background: none; font-size: 13px; font-weight: 800; padding: 0; font-family: Georgia, serif; font-style: italic; border: 1px solid; }
+.pf-carta .estado-c { position: absolute; top: 8px; left: 10px; z-index: 3; background: #f6ece4; color: #0b0609; font-size: 11.5px; font-weight: 800; padding: 2px 9px; border-radius: 9px; border: 1px solid #0b0609; }
+/* cor e desenho do TIPO (valem na carta e no chip) */
+.o-bankai { --o: var(--o-bankai); --shape: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
+.o-shikai { --o: var(--o-shikai); --shape: polygon(50% 4%, 100% 92%, 0 92%); }
+.o-kido { --o: var(--o-kido); --shape: polygon(25% 3%, 75% 3%, 100% 50%, 75% 97%, 25% 97%, 0 50%); }
+.o-hollow { --o: var(--o-hollow); --shape: circle(50%); }
+.o-comum { --o: var(--o-comum); --shape: inset(8%); }
+.o-quincy { --o: var(--o-quincy); --shape: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%); }
+.pf-carta .fx-n .sh { display: inline-block; flex: none; background: var(--o); clip-path: var(--shape); }
+.o-hollow .pf-carta .fx-n .sh { background: radial-gradient(circle, transparent 2.6px, var(--o) 3px); }
+/* motivos por tipo (máscara de padrão, pintada na cor da origem) */
+.o-bankai { --pt: var(--p-asa-b); --pt-tam: 30px 52px; }
+.o-shikai { --pt: var(--p-onda); --pt-tam: 24px 12px; }
+.o-kido { --pt: var(--p-kikko); --pt-tam: 28px 48px; }
+.o-comum { --pt: var(--p-risca); --pt-tam: auto; }
+
+/* ================= SHINIGAMI: hanafuda (preto + carmim) ================= */
+.cw[data-orig="shi"] { --pt-cor: var(--shi-carmim); --pt-op: .4; }
+.cw[data-orig="shi"] .pf-carta { color: var(--shi-tx); border: 3px solid var(--shi-preto); border-radius: 7px; background: linear-gradient(170deg, #1f1014, var(--shi-face) 55%, #0b0609); box-shadow: inset 0 0 0 1px var(--shi-carmim); }
+.cw[data-orig="shi"] .pf-fx { border-bottom: 2px solid var(--shi-carmim); }
+.cw[data-orig="shi"] .fx-n { background: var(--shi-preto); color: var(--shi-tx); border: 1px solid var(--shi-carmim); border-radius: 3px; }
+/* faixa carmesim (tanzaku) com ponta cortada, onde fica o nome */
+.cw[data-orig="shi"] .pf-carta h3 { margin: 9px 16px 6px -10px; padding: 6px 12px 6px 14px; background: var(--shi-carmim); color: #fff; clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 50%, 100% 100%, 0 100%); }
+.cw[data-orig="shi"] .tag { border-color: #7a5560; color: var(--shi-mu); }
+.cw[data-orig="shi"] .tag.pf-pr { background: #3a0f19; border-color: var(--shi-carmim-cl); color: #ffd6dc; }
+.cw[data-orig="shi"] p { color: var(--shi-mu); }
+.cw[data-orig="shi"] .b { background: var(--shi-carmim); color: #fff; }
+.cw[data-orig="shi"] .b.pf-fraco { background: transparent; border: 1.5px solid var(--shi-tx); color: var(--shi-tx); }
+.cw[data-orig="shi"] .info { border-color: #7a5560; color: var(--shi-mu); }
+
+/* ================= HOLLOW: osso (marfim, placas, fraturas) ================= */
+.cw[data-orig="hol"] .pf-carta {
+  color: var(--hol-tinta); border: 2px solid var(--hol-tinta); border-radius: 3px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .25 0 0 0 0 .2 0 0 0 .2 0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(120% 90% at 18% 0, #f4eddd, #e8dfc8 62%, #d9cdb0);
+  /* canto inferior direito quebrado */
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 16px), calc(100% - 7px) calc(100% - 11px), calc(100% - 12px) calc(100% - 5px), calc(100% - 18px) 100%, 0 100%);
+}
+.cw[data-orig="hol"] .pf-fx { border-bottom: 2px solid var(--hol-tinta); }
+.cw[data-orig="hol"] .fx-n { background: var(--hol-osso); color: var(--hol-tinta); border: 1.5px solid var(--hol-tinta); border-radius: 2px; }
+.cw[data-orig="hol"] .pf-carta h3 { padding-bottom: 5px; border-bottom: 1.5px solid var(--hol-tinta); margin-bottom: 6px; }
+.cw[data-orig="hol"] .tag { border-color: #7a6389; color: var(--hol-mu); }
+.cw[data-orig="hol"] .tag.pf-pr { background: #d9cde6; border-color: var(--hol-roxo); color: #2a1838; }
+.cw[data-orig="hol"] p { color: var(--hol-mu); }
+.cw[data-orig="hol"] .b { background: var(--hol-tinta); color: var(--hol-osso); }
+.cw[data-orig="hol"] .b.pf-fraco { background: transparent; border: 1.5px solid var(--hol-tinta); color: var(--hol-tinta); }
+.cw[data-orig="hol"] .info { border-color: #7a6389; color: var(--hol-mu); }
+
+/* ================= QUINCY: reishi (azul vivo, veias, cruz e estrela) ================= */
+.cw[data-orig="qui"] .pf-carta {
+  color: var(--qui-gelo); border: 1px solid #8fd8ff; border-radius: 0;
+  background: radial-gradient(90% 60% at 100% 0, #0d2a52 0, transparent 70%), linear-gradient(180deg, var(--qui-face), var(--qui-noite));
+  box-shadow: inset 0 0 0 3px var(--qui-face), inset 0 0 0 4px var(--qui-linha), inset 0 0 26px #2f7bff30;
+  clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+}
+.cw[data-orig="qui"] .pf-fx { border-bottom: 1px solid var(--qui-ciano); margin-top: 4px; }
+.cw[data-orig="qui"] .fx-n { background: var(--qui-noite); color: var(--qui-gelo); border: 1px solid var(--qui-ciano); border-radius: 0; }
+.cw[data-orig="qui"] .pf-carta h3 { font-family: "Cinzel", "Shippori Mincho", serif; font-weight: 700; letter-spacing: .03em; text-shadow: 0 0 14px #5cc8ff55; }
+.cw[data-orig="qui"] .tag { border-color: var(--qui-linha); color: var(--qui-mu); border-radius: 0; }
+.cw[data-orig="qui"] .tag.pf-pr { background: #0e2a55; border-color: var(--qui-ciano); color: #cfeaff; }
+.cw[data-orig="qui"] p { color: var(--qui-mu); }
+.cw[data-orig="qui"] .b { background: var(--qui-ciano); color: #03111f; border-radius: 0; }
+.cw[data-orig="qui"] .b.pf-fraco { background: transparent; border: 1.5px solid #8fd8ff; color: var(--qui-gelo); }
+.cw[data-orig="qui"] .info { border-color: var(--qui-linha); color: var(--qui-mu); }
+.cw[data-orig="qui"] .estado-c { top: 12px; border-radius: 0; }
+
+/* chip da forma: o desenho (losango, triângulo...) usa a cor do TIPO */
+.pf-carta .fx-n .sh { width: 11px; height: 11px; }
+
+/* ---------- Agir: mini-carta no lugar da barrinha + detalhe com a pele da origem ---------- */
+.lin::before { width: 26px; height: 38px; align-self: start; border-radius: 4px; background: var(--o); }
+.lin[data-orig="shi"]::before { background: radial-gradient(circle at 68% 34%, var(--shi-carmim) 0 5px, transparent 5.6px), linear-gradient(to top, var(--shi-carmim) 0 7px, var(--shi-preto) 7px); border: 2px solid var(--shi-preto); border-radius: 4px; box-shadow: 0 0 0 1px #7a5560; }
+.lin[data-orig="hol"]::before { background: linear-gradient(135deg, transparent 44%, var(--hol-tinta) 44% 52%, transparent 52%), linear-gradient(to bottom, var(--hol-osso) 0 100%); border: 2px solid var(--hol-tinta); border-radius: 2px; clip-path: polygon(0 0, 100% 0, 100% 78%, 70% 100%, 0 100%); box-shadow: none; outline: none; }
+.lin[data-orig="qui"]::before { background: linear-gradient(160deg, transparent 42%, var(--qui-azul) 42% 52%, transparent 52%), var(--qui-noite); border: 1.5px solid #8fd8ff; border-radius: 0; box-shadow: 0 0 0 1px var(--qui-linha); }
+:root[data-theme="light"] .lin[data-orig="hol"]::before { filter: drop-shadow(0 0 0 #0f1215); outline: 0; }
+:root[data-theme="light"] .lin[data-orig="hol"]::before, :root[data-theme="light"] .lin[data-orig="qui"]::before { box-shadow: 0 0 0 1.5px #0f1215; }
+:root .lin[data-orig="shi"] .det { background: var(--shi-face); color: var(--shi-mu); border: 1.5px solid var(--shi-preto); border-left: 5px solid var(--shi-carmim); border-radius: 0 6px 6px 0; }
+:root .lin[data-orig="hol"] .det { background: var(--hol-osso); color: var(--hol-mu); border: 1.5px solid var(--hol-tinta); border-left: 5px solid var(--hol-tinta); border-radius: 0 3px 3px 0; }
+:root .lin[data-orig="qui"] .det { background: var(--qui-face); color: var(--qui-mu); border: 1px solid var(--qui-linha); border-left: 5px solid var(--qui-ciano); border-radius: 0; }
+
+@media (max-width: 820px) {
+  .pf-cartas { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 10px; }
+  .pf-carta { min-height: 226px; padding: 0 8px 8px; }
+  .pf-carta .pf-fx { margin: 0 -8px; }
+  .cw[data-orig="shi"] .pf-carta h3 { margin-left: -8px; }
+  .pf-carta h3 { font-size: 15px; }
+  .pf-carta p { -webkit-line-clamp: 2; font-size: 12.5px; }
+  .pf-carta .acao-c .info { display: none; }
+  #c-formas { grid-template-columns: 1fr; }
+  #c-formas .pf-carta { min-height: 0; }
+}
+
+/* chip escuro (Shinigami, Quincy): o desenho do tipo ganha fundo claro, para a cor do tipo aparecer em qualquer tom */
+.cw[data-orig="shi"] .fx-n .sh, .cw[data-orig="qui"] .fx-n .sh { width: 14px; height: 14px; background: linear-gradient(var(--o), var(--o)) center / 58% 58% no-repeat, #f6ece4; }
+.cw[data-orig="shi"].o-hollow .fx-n .sh { background: #f6ece4; }
+
+
+/* ============================================================
+   v4: QUINCY. Três sub-tipos na mesma pele (reishi): Reishi (estrela de 4 pontas),
+   Vollständig (estrela de 8 pontas, habilidades da forma) e Schrift (cruz). A COR é a mesma
+   (--o-quincy); o que separa é a FORMA do selo e o RÓTULO.
+   ============================================================ */
+.o-voll { --o: var(--o-quincy); --shape: polygon(50.0% 0.0%, 59.2% 27.8%, 85.4% 14.6%, 72.2% 40.8%, 100.0% 50.0%, 72.2% 59.2%, 85.4% 85.4%, 59.2% 72.2%, 50.0% 100.0%, 40.8% 72.2%, 14.6% 85.4%, 27.8% 59.2%, 0.0% 50.0%, 27.8% 40.8%, 14.6% 14.6%, 40.8% 27.8%); }
+.o-schrift { --o: var(--o-quincy); --shape: polygon(35% 0, 65% 0, 65% 35%, 100% 35%, 100% 65%, 65% 65%, 65% 100%, 35% 100%, 35% 65%, 0 65%, 0 35%, 35% 35%); }
+.tag.sobe { background: #5cc8ff22 !important; border-color: var(--qui-ciano) !important; color: #cfeaff !important; }
+
+/* ---------- carta da Schrift ---------- */
+.cwx-schrift { grid-column: span 2; }
+.cwx-schrift.compacta { grid-column: auto; }
+.pf-carta.schrift { grid-template-rows: 60px auto auto auto 1fr auto auto; min-height: 0; }
+.pf-carta.schrift .tags { margin-bottom: 8px; }
+.comp { position: relative; z-index: 1; width: 100%; border-collapse: separate; border-spacing: 0; font-size: 12.5px; table-layout: fixed; }
+.comp th, .comp td { padding: 4px 8px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--qui-linha); font-weight: 500; }
+.comp thead th, .comp thead td { border-bottom: 1px solid var(--qui-ciano); font-weight: 800; font-size: 12px; padding-top: 5px; }
+.comp thead th small { display: block; font-weight: 500; font-size: 11px; opacity: .9; }
+.comp tbody th { font-weight: 700; color: var(--qui-mu); width: 25%; }
+.comp td, .comp thead th { color: #93abc8; }                        /* coluna que NÃO vale agora: mais apagada, ainda legível (>= 4.5:1) */
+.comp td.pf-on, .comp thead th.pf-on { color: var(--qui-gelo); background: #0f3266; font-weight: 800; box-shadow: inset 0 0 0 1px var(--qui-ciano); }
+.comp td.pf-on { font-weight: 700; }
+.comp .seta { color: var(--qui-ciano); font-size: 10px; margin-right: 4px; font-weight: 800; }
+.comp .agora { display: inline-block; margin-left: 5px; font-style: normal; font-size: 10px; font-weight: 800; background: var(--qui-ciano); color: #03111f; padding: 0 6px; }
+.pf-carta p.s-aviso { display: block; -webkit-line-clamp: unset; margin: 0 0 8px; padding: 5px 8px; font-size: 12px; border-left: 3px solid var(--qui-linha); background: #0e2a5533; color: #cfeaff; }
+.pf-carta p.s-aviso b { color: var(--qui-ciano); margin-right: 3px; }
+.pf-carta p.s-sobe { border-left: 4px solid var(--qui-ciano); background: #5cc8ff22; }
+.pf-carta .estado-c.es-voll { background: var(--qui-ciano); color: #03111f; border-color: #eef6ff; box-shadow: 0 0 12px #5cc8ffcc; }
+.pf-carta .estado-c.es-base { background: var(--qui-noite); color: #eef6ff; border: 1px dashed #8fd8ff; }
+.cw-schrift[data-estado="voll"] .pf-carta { box-shadow: inset 0 0 0 3px var(--qui-face), inset 0 0 0 4px var(--qui-ciano), inset 0 0 46px #5cc8ff4d; }
+.cw-schrift[data-estado="voll"] .pf-carta::before { content: ""; position: absolute; left: 0; top: 60px; bottom: 0; width: 7px; z-index: 0; background: repeating-linear-gradient(180deg, var(--qui-ciano) 0 6px, transparent 6px 14px); opacity: .7; -webkit-mask: linear-gradient(90deg, #000, transparent); mask: linear-gradient(90deg, #000, transparent); }
+.pf-carta .usos { display: inline-flex; gap: 4px; align-items: center; flex: none; font-size: 11.5px; font-weight: 800; color: var(--qui-mu); }
+.pf-carta .usos i { width: 9px; height: 9px; transform: rotate(45deg); background: var(--qui-ciano); }
+.pf-carta .usos i.gasto { background: transparent; border: 1.5px solid var(--qui-ciano); }
+.pf-carta .usos small { margin-left: 3px; }
+@keyframes sobe { 0% { box-shadow: inset 0 0 0 1px var(--qui-ciano), 0 0 0 #5cc8ff; background: #5cc8ff66; } 100% { box-shadow: inset 0 0 0 1px var(--qui-ciano); } }
+.cw-schrift.subiu .comp td.pf-on { animation: sobe .9s ease-out 1; }
+@media (prefers-reduced-motion: reduce) { .cw-schrift.subiu .comp td.pf-on { animation: none; } }
+
+/* ---------- mini-carta (habilidade única ou passiva da forma) ---------- */
+.pf-cartas.minis { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+.pf-carta.pf-mini { display: block; min-height: 0; padding: 8px 10px 10px; }
+.pf-carta.pf-mini h4 { margin: 7px 0 2px; font: 700 14.5px/1.15 "Cinzel", serif; letter-spacing: .03em; position: relative; z-index: 1; }
+.pf-carta.pf-mini p { margin: 0; font-size: 12.5px; -webkit-line-clamp: 3; }
+.pf-carta.pf-mini .m-sel { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 800; padding: 0 7px 0 4px; border: 1px solid var(--qui-ciano); background: var(--qui-noite); color: var(--qui-gelo); }
+.m-sel .sh { width: 13px; height: 13px; display: inline-block; clip-path: var(--shape); background: linear-gradient(var(--o), var(--o)) center / 58% 58% no-repeat, #f6ece4; }
+.cw-mini[data-orig="qui"] .pf-carta { clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px); }
+
+/* ---------- PAINEL DA FORMA (Vollständig): gaveta com a pele da origem ---------- */
+.cw.pfw { display: block; --t: 1.5px; }
+.pf { position: relative; padding: 0 18px 20px; color: var(--qui-gelo); font-family: var(--carta-f); overflow: hidden;
+  background: radial-gradient(70% 40% at 85% 0, #0d2a52, transparent 72%), linear-gradient(180deg, var(--qui-face), var(--qui-noite));
+  border: 1px solid #8fd8ff; box-shadow: inset 0 0 0 3px var(--qui-face), inset 0 0 0 4px var(--qui-linha), inset 0 0 44px #2f7bff25;
+  clip-path: polygon(22px 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%, 0 22px); }
+.pf-cab { position: relative; margin: 0 -18px; padding: 20px 24px 16px; display: flex; gap: 14px 20px; align-items: center; flex-wrap: wrap; min-height: 118px; border-bottom: 1px solid var(--qui-ciano); }
+.pf-cab > svg.arte { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+.pf-cab > :not(svg) { position: relative; z-index: 1; }
+.pf-tit { flex: 1 1 260px; min-width: 0; }
+.pf-tit small { display: inline-flex; gap: 6px; align-items: center; text-transform: uppercase; letter-spacing: .14em; font-size: 11px; font-weight: 800; color: var(--qui-ciano); }
+.pf-tit small .sh { width: 13px; height: 13px; clip-path: var(--shape); background: var(--qui-ciano); display: inline-block; }
+.pf-tit h2 { margin: 3px 0 2px; font: 700 30px/1.05 "Cinzel", serif; letter-spacing: .04em; text-shadow: 0 0 18px #5cc8ff66; }
+.pf-tit p { margin: 0; color: var(--qui-mu); font-size: 13px; max-width: 60ch; }
+.pf-est { display: inline-flex; align-items: center; gap: 6px; padding: 3px 12px; font-size: 12.5px; font-weight: 800; border: 1px solid var(--qui-ciano); background: var(--qui-noite); color: var(--qui-gelo); }
+.pf[data-ligada="1"] .pf-est { background: var(--qui-ciano); color: #03111f; border-color: #eef6ff; box-shadow: 0 0 14px #5cc8ffaa; }
+.pf[data-ligada="0"] .pf-est { border-style: dashed; }
+.pf .pf-btn { min-height: 42px; padding: 0 18px; border: 0; font: 800 14px var(--carta-f); background: var(--qui-ciano); color: #03111f; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; }
+.pf[data-ligada="1"] .pf-btn { background: transparent; border: 1.5px solid #8fd8ff; color: var(--qui-gelo); }
+.pf-btn:focus-visible, .pf-carta .b:focus-visible, .pf-carta .info:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+.pf-diff { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 2px; align-items: center; }
+.pf-diff > span { font-size: 12px; font-weight: 700; padding: 2px 9px; border: 1px solid var(--qui-linha); color: var(--qui-gelo); background: #0a1f3d; }
+.pf-diff > span b { color: var(--qui-ciano); }
+.pf-diff > em { font-style: normal; font-size: 12px; color: var(--qui-mu); margin-right: 4px; }
+.pf-sec { margin-top: 20px; }
+.pf-sec > h3 { margin: 0 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--qui-linha); font: 700 14px/1.2 "Cinzel", serif; letter-spacing: .1em; text-transform: uppercase; display: flex; gap: 9px; align-items: center; color: var(--qui-gelo); }
+.pf-sec > h3 .sh { width: 12px; height: 12px; clip-path: var(--shape); background: var(--qui-ciano); display: inline-block; flex: none; }
+.pf-sec > h3 small { font: 500 12px var(--carta-f); letter-spacing: 0; text-transform: none; color: var(--qui-mu); margin-left: auto; text-align: right; }
+.pf .pf-cartas { grid-template-columns: repeat(auto-fill, minmax(214px, 1fr)); }
+.pf-fechada { margin-top: 14px; font-size: 13px; color: var(--qui-mu); }
+.pf-fechada b { color: var(--qui-gelo); }
+.pf-trava { margin: 0 0 10px; font-size: 13px; color: var(--qui-mu); }
+
+@media (max-width: 820px) {
+  .cwx-schrift { grid-column: 1 / -1; }
+  .comp { font-size: 12px; } .comp th, .comp td { padding: 4px 6px; }
+  .pf { padding: 0 12px 16px; } .pf-cab { margin: 0 -12px; padding: 16px 16px 14px; }
+  .pf-tit h2 { font-size: 24px; }
+  .pf .pf-cartas { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 10px; }
+  .pf-cartas.minis, .pf .pf-cartas.minis { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .pf-sec > h3 small { display: none; }
+  .pf-carta.schrift .acao-c .info { display: none; }
+}
+
+/* faixa de forma do cabeçalho: Vollständig (cor do tipo Quincy) */
+.formas button.f-voll[aria-pressed="true"] { background: var(--o-quincy); color: #03111f; }
+:root[data-theme="light"] .formas button.f-voll[aria-pressed="true"] { color: #ffffff; }
+.formas button.f-voll[aria-pressed="true"] small::before { content: "▲ "; }
+.selo svg { width: 24px; height: 24px; }
+
+/* ajustes de layout (v4) */
+.pf-cab > :not(svg) { max-width: 100%; }
+@media (min-width: 821px) { .pf-cab .pf-tit { flex: 0 1 52%; } .pf-cab { padding-right: 34%; } }
+.pf-cab .pf-acoes { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; flex-basis: 100%; }
+#pf-schrift .cw-mini { align-self: start; }
+.comp thead td { width: 22%; } .comp thead th:nth-of-type(1) { width: 34%; }
+@media (max-width: 820px) { .pf-cab > svg.arte { opacity: .18; } }
+
+
+/* ============================================================
+   v5
+   ============================================================ */
+/* ---------- invólucro: carta + "Ler completo" embaixo ---------- */
+.pf-cartas { align-items: start; }
+.cwx { min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+.cwx > .cw { flex: none; }
+.cwx-mini { display: block; }
+.cwx-mini > .pf-completo { margin-top: 6px; }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* "Ler completo": cores FIXAS por origem (não dependem do tema da página), igual às cartas */
+.pf-completo { --c-bg: #0a1626; --c-tx: #eef6ff; --c-mu: #cfe0f2; --c-bd: #2b5380; --c-ac: #5cc8ff; --c-sub: #0e2a55; font-family: var(--carta-f); }
+.cwx[data-orig="shi"] .pf-completo, .pf-completo[data-orig="shi"] { --c-bg: #130a0d; --c-tx: #f6ece4; --c-mu: #e2d5cd; --c-bd: #7a5560; --c-ac: #e0314f; --c-sub: #3a0f19; }
+.cwx[data-orig="hol"] .pf-completo { --c-bg: #ece4d0; --c-tx: #15101b; --c-mu: #3a2b45; --c-bd: #15101b; --c-ac: #3a2b45; --c-sub: #d9cde6; }
+.pf-completo summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 12px; font: 800 13px var(--carta-f); background: var(--c-bg); color: var(--c-tx); border: 1px solid var(--c-bd); border-left: 4px solid var(--c-ac); }
+.pf-completo summary::-webkit-details-marker { display: none; }
+.pf-completo summary::before { content: "▸"; font-size: 12px; width: 12px; }
+.pf-completo[open] summary::before { content: "▾"; }
+.pf-completo .fe, .pf-completo[open] .ab { display: none; }
+.pf-completo[open] .fe { display: inline; }
+.pf-completo summary:hover { background: var(--c-sub); }
+.pf-completo summary:focus-visible { outline: 3px solid #fff; outline-offset: 2px; box-shadow: 0 0 0 5px #000; }
+.pf-completo .cp { background: var(--c-bg); color: var(--c-mu); border: 1px solid var(--c-bd); border-top: 0; border-left: 4px solid var(--c-ac); padding: 12px 14px 14px; font-size: 14px; line-height: 1.6; }
+.pf-completo .cp p { margin: 0 0 10px; }
+.pf-completo .cp p:last-child { margin-bottom: 0; }
+.pf-completo .cp h5 { margin: 12px 0 5px; font: 800 12px/1.2 var(--carta-f); letter-spacing: .08em; text-transform: uppercase; color: var(--c-tx); }
+.pf-completo .cp h5:first-child { margin-top: 0; }
+.pf-completo .cp ul { margin: 0 0 10px; padding-left: 18px; }
+.pf-completo .cp li { margin-bottom: 4px; }
+.pf-completo .cp-meta { margin: 0 0 12px; padding: 0 0 10px; border-bottom: 1px solid var(--c-bd); display: flex; flex-wrap: wrap; gap: 6px; }
+.pf-completo .cp-meta > div { background: var(--c-sub); color: var(--c-tx); padding: 3px 9px; font-size: 12.5px; line-height: 1.3; border: 1px solid var(--c-bd); }
+.pf-completo .cp-meta dt { display: inline; font-weight: 700; opacity: .85; }
+.pf-completo .cp-meta dt::after { content: ": "; }
+.pf-completo .cp-meta dd { display: inline; margin: 0; font-weight: 800; }
+.pf-completo .cp-tab { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 4px 0 8px; }
+.pf-completo .cp-tab th, .pf-completo .cp-tab td { text-align: left; padding: 5px 7px; border-bottom: 1px solid var(--c-bd); font-weight: 500; vertical-align: top; }
+.pf-completo .cp-tab thead th { font-weight: 800; color: var(--c-tx); }
+.pf-completo .cp-tab tbody th { font-weight: 700; color: var(--c-tx); }
+.pf-completo .cp-tab tr.pf-on { background: var(--c-sub); }
+.pf-completo .cp-tab tr.pf-on td, .pf-completo .cp-tab tr.pf-on th { color: var(--c-tx); font-weight: 800; }
+.pf-completo .cp-tab em { font-style: normal; font-size: 10.5px; font-weight: 800; background: var(--c-ac); color: #03111f; padding: 0 5px; }
+
+/* ---------- cartas Quincy da tela Poderes: texto mais folgado ---------- */
+#q-poderes .pf-cartas:not(.minis) { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+#q-poderes .pf-carta:not(.pf-mini):not(.schrift) { min-height: 268px; }
+#q-poderes .pf-carta p { -webkit-line-clamp: 5; font-size: 13.5px; line-height: 1.45; }
+#q-poderes .pf-carta .tag { font-size: 12px; }
+
+/* ---------- Schrift: dano com a parte da Vollständig destacada ---------- */
+.comp b.mais { color: var(--qui-ciano); font-weight: 800; }
+.comp td.pf-on b.mais { text-shadow: 0 0 8px #5cc8ff66; }
+.comp b.mais::before { content: ""; }
+
+/* ---------- painel pequeno da Schrift ---------- */
+.sp-linha { display: grid; grid-template-columns: minmax(0, 520px) minmax(0, 1fr); gap: 22px; align-items: start; }
+.sp-grupo .sp-cartas, .sp-grupo .pf-cartas { grid-template-columns: minmax(0, 1fr); }
+.sp-grupo .cwx-schrift.compacta .pf-carta.schrift { min-height: 0; }
+.sp-grupo .cwx-schrift.compacta .comp { font-size: 12.5px; }
+.sp-grupo .cwx-schrift.compacta .comp thead td { width: 26%; }
+.sp-grupo .cwx-schrift.compacta .comp thead th:nth-of-type(1) { width: 32%; }
+.sp-grupo .pf-carta p { -webkit-line-clamp: 3; }
+.sp-nota { border-left: 3px solid var(--accent); padding: 4px 0 4px 16px; color: var(--muted, #bdb3c4); font-size: 14px; line-height: 1.55; max-width: 52ch; }
+.sp-nota h3 { margin: 0 0 8px; font: 800 13px/1.2 var(--f-txt, system-ui); letter-spacing: .08em; text-transform: uppercase; color: var(--text); }
+.sp-nota ol { margin: 0; padding-left: 20px; }
+.sp-nota li { margin-bottom: 7px; }
+.sp-nota b { color: var(--text); }
+.schrift-movida { border: 1.5px dashed var(--qui-linha); background: var(--qui-face); color: var(--qui-gelo); padding: 14px 16px; display: grid; gap: 6px; font-family: var(--carta-f); font-size: 14px; line-height: 1.45; }
+.schrift-movida b { font-weight: 800; }
+.schrift-movida .sm-d { color: var(--qui-mu); }
+.schrift-movida .b2 { justify-self: start; margin-top: 4px; min-height: 40px; padding: 0 16px; border: 1.5px solid #8fd8ff; background: transparent; color: var(--qui-gelo); font: 800 13px var(--carta-f); cursor: pointer; }
+.schrift-movida .b2:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+.schrift-movida .seta { color: var(--qui-ciano); font-weight: 800; margin-right: 4px; }
+
+/* ---------- painel da forma: descrição curta + Ler completo no cabeçalho ---------- */
+.pf-tit .pf-completo { margin-top: 10px; max-width: 64ch; }
+.pf-tit .pf-completo summary { display: inline-flex; min-height: 38px; }
+.pf-tit .pf-completo[open] { display: block; }
+.pf-tit .pf-completo .cp { font-size: 13.5px; }
+
+@media (max-width: 820px) {
+  .sp-linha { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .sp-nota { padding-left: 12px; font-size: 13.5px; }
+  #q-poderes .pf-cartas:not(.minis), #q-poderes .pf .pf-cartas:not(.minis) { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  #q-poderes .pf-carta:not(.pf-mini):not(.schrift) { min-height: 0; }
+  #q-poderes .pf-carta p { -webkit-line-clamp: 6; font-size: 13.5px; }
+  .pf-completo summary { min-height: 44px; }
+  .pf-completo .cp { font-size: 14px; }
+  .pf-carta .acao-c .info { display: none; }
+  .cwx.tem-full > .cw .acao-c .info { display: none; }
+}
+
+/* v5: carta com "Ler completo" aberto ocupa 2 colunas no desktop, para o texto caber em linhas mais longas */
+@media (min-width: 821px) { #q-poderes .pf-cartas:not(.minis):not(.sp-cartas) > .cwx:has(> details[open]):not(.cwx-schrift) { grid-column: span 2; } }
+.comp b.mais::before { content: none; }
+.pf-carta.schrift p { -webkit-line-clamp: unset; display: block; }

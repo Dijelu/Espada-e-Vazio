@@ -16,6 +16,7 @@ import { CartasHabilidades, CartasSituacoes, CondicoesAtivas, EfeitosAtivos } fr
 import { AcoesRapidas } from "../components/AcoesRapidas";
 import { EscolhaPoderes, pendencias, subclassePendente, totalPendencias } from "../components/EscolhaPoderes";
 import { EscolhaSubclasse } from "../components/EscolhaSubclasse";
+import { SpriteArte } from "../components/CartaPoder";
 import { CartasFormas, ConstrutorForma, PainelFormaAtiva } from "../components/ConstrutorForma";
 import { TIPO_FORMA_NOME, formaDaLiberacao, formaPendente, nivelLiberacao, segundaLiberada } from "../regras/liberacoes";
 import { AvisosFicha, Campo, irParaAncora, LinhaAtributos, Passo, SeletorVariacoes, novoId } from "../components/FichaPecas";
@@ -277,6 +278,7 @@ export default function Ficha() {
 
   return (
     <main className={`page ficha${livro ? " modo-livro" : ""}`} data-pvbaixo={pvBaixo ? "1" : "0"}>
+      <SpriteArte />
       <header className="ficha-topo">
         <div className="ficha-id">
           <Link className="voltar-fixo" to="/fichas">← Minhas fichas</Link>
