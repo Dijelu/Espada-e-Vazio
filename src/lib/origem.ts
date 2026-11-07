@@ -16,5 +16,6 @@ export function origemDaForma(tipo: TipoForma | string): OrigemPoder {
 export function origemDaFonte(fonte: string, f: Ficha): OrigemPoder {
   if (/hollow|gillian|adjuchas|vasto|arrancar|visored|máscara|mascara|resurrec|cero/i.test(fonte)) return "hollow";
   if (/quincy|schrift|reishi|vollst|gemischt/i.test(fonte)) return "quincy";
-  return classePorId(f.classe)?.tipo === "quincy" ? "quincy" : "shinigami";
+  const tipo = classePorId(f.classe)?.tipo;
+  return tipo === "quincy" ? "quincy" : tipo === "hollow" ? "hollow" : "shinigami";
 }

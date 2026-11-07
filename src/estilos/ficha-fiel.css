@@ -23,3 +23,17 @@
 .cw[data-orig="shi"] .pf-carta .corpo .chip, .cw[data-orig="qui"] .pf-carta .corpo .chip { color: inherit; border-color: currentColor; background: transparent; }
 .cw[data-orig="hol"] .pf-carta .corpo .chip { color: var(--hol-tinta); border-color: var(--hol-tinta); background: transparent; }
 .cw[data-orig="hol"] .pf-carta .corpo .escala-pr b, .cw[data-orig="hol"] .pf-carta .corpo .aviso-mini { color: #6f0a24; }
+
+/* painel da forma: botões extras, aviso e botões de carta que quebram linha */
+.fpw .fp-btn-sec { min-height: 42px; padding: 0 14px; font-size: 14px; background: rgba(5, 2, 3, .72); }
+.fpw .fp-msg { margin: 14px 0 0; padding: 8px 12px; border-left: 4px solid currentColor; background: rgba(255, 255, 255, .06); font-size: 14px; }
+.fpw .fp-msg .link { background: none; border: 0; color: inherit; text-decoration: underline; cursor: pointer; padding: 0; }
+.fpw .fc-act { flex-wrap: wrap; gap: 8px; }
+.fpw .fc-b { flex: 1 1 120px; min-width: 0; }
+.fpw .fc-req { display: flex; gap: 8px; align-items: center; font-size: 13px; margin: 0 0 10px; }
+.fpw .fc-un-c .fc-b { margin-top: 8px; justify-self: start; min-height: 38px; padding: 0 16px; }
+.fpw .fc-acao p { display: block; }
+.fpw .fc-acao .ic, .fpw .fc-b svg { width: 17px; height: 17px; }
+.caixa-formas { padding: 0; background: transparent; border: 0; box-shadow: none; }
+.caixa-formas > h3 { margin: 0 0 12px; }
+.fpw a { color: inherit; }

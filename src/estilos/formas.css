@@ -1,0 +1,516 @@
+/* ============================================================
+   v7: PAINÉIS DAS FORMAS DE SHINIGAMI (hanafuda) E HOLLOW (osso). Pele FIXA por origem; não muda com o tema da página.
+   Paleta SHI : sumi #0b0609 / #140a0e / #050203   carmesim #b3122e   carmim-vivo #ff4d6a (texto e brilho)   carmim-escuro #6d0a1d
+                washi (creme) #f6ece4   papel #efe3d1   névoa #d8c9bf / #e6d9cf   tinta (sobre papel) #1a0d10
+   Paleta HOL : tinta-vazio #15101b / #1d1226 / #0c0710   osso #ece4d0   osso-sombra #d3c8ae   osso-fundo #b9ac8c   vermelho #e5173f (fundos: #b0102f)
+                âmbar #ff9a1f   âmbar-claro #ffc470   osso-névoa #cfc4ab
+   Tipografia: Shippori Mincho (nome e títulos Shinigami), Shippori Selo (só o kanji do selo), Grenze Gotisch (nome e títulos Hollow), M PLUS 1 (texto, números, botões).
+   Ícones: game-icons.net (CC BY 3.0) e Phosphor (MIT). Créditos: CREDITOS.md.
+   ============================================================ */
+.fpw { --sumi: #0b0609; --sumi2: #140a0e; --carm: #b3122e; --carmv: #ff4d6a; --carme: #6d0a1d; --washi: #f6ece4; --papel: #efe3d1; --nev: #d8c9bf; --nev2: #e6d9cf; --tinta: #1a0d10;
+  --tv: #15101b; --tv2: #1d1226; --tv3: #0c0710; --osso: #ece4d0; --osso2: #d3c8ae; --osso3: #b9ac8c; --verm: #e5173f; --vermf: #b0102f; --amb: #ff9a1f; --amb2: #ffc470; --ossn: #cfc4ab;
+  position: relative; font-family: "M PLUS 1", "Noto Sans CJK JP", system-ui, sans-serif; color: var(--washi); }
+.fpw .ic { width: 1em; height: 1em; fill: currentColor; flex: none; display: inline-block; vertical-align: -.14em; }
+.fpw .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.fpw button { font-family: inherit; }
+.fpw :focus-visible { outline: 3px solid #fff; outline-offset: 3px; box-shadow: 0 0 0 6px #000; }
+#fp-host { display: block; }
+
+/* ---------- abas de forma (pele fixa: legível em qualquer tema) ---------- */
+.fp-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 18px; }
+.fp-tab { display: inline-flex; align-items: center; gap: 9px; min-height: 48px; padding: 6px 14px 6px 11px; border-radius: 8px; border: 1.5px solid #5a4a50; background: #140c12; color: #f6ece4; text-align: left; line-height: 1.1; cursor: pointer; }
+.fp-tab.o-hol { background: #150e1c; border-color: #62566b; }
+.fp-tab .fp-tab-n { display: grid; }
+.fp-tab b { font-size: 14.5px; font-weight: 800; }
+.fp-tab small { font-size: 12px; color: #d8c9bf; margin-top: 2px; }
+.fp-dot { width: 12px; height: 12px; border-radius: 50%; border: 1.6px dashed #b9a89d; flex: none; }
+.fp-dot.pf-on { border: 0; background: radial-gradient(circle at 35% 30%, #ff6b85, #b3122e 60%, #6d0a1d); box-shadow: 0 0 8px #ff4d6a; }
+.fp-tab.o-hol .fp-dot.pf-on { background: radial-gradient(circle at 35% 30%, #ffc470, #ff9a1f 65%, #b35f00); box-shadow: 0 0 8px #ff9a1f; }
+.fp-tab[aria-selected="true"] { background: #b3122e; border-color: #f6ece4; color: #fff; box-shadow: inset 0 0 0 1px #6d0a1d; }
+.fp-tab[aria-selected="true"] small { color: #fff; }
+.fp-tab.o-hol[aria-selected="true"] { background: #ece4d0; border-color: #15101b; color: #15101b; box-shadow: inset 0 0 0 1px #b9ac8c; }
+.fp-tab.o-hol[aria-selected="true"] small { color: #3a2b45; }
+.fp-tab.o-hol[aria-selected="true"] .fp-dot { border-color: #15101b; }
+.fp-tab[aria-selected="true"] .fp-dot:not(.pf-on) { border-color: currentColor; }
+
+/* ---------- moldura do painel ---------- */
+.fpw .fp { position: relative; padding: 0 26px 30px; overflow: hidden; isolation: isolate; }
+.fpw .fp > * { position: relative; z-index: 1; }
+.fp-shi .fp { border-radius: 16px; background: radial-gradient(50% 36% at 88% 0, rgba(179, 18, 46, .30), transparent 72%), radial-gradient(40% 30% at 4% 100%, rgba(109, 10, 29, .35), transparent 70%), linear-gradient(180deg, #120a0d, #080405 70%);
+  box-shadow: inset 0 0 0 2px #050203, inset 0 0 0 3px rgba(246, 236, 228, .85), inset 0 0 0 8px #050203, inset 0 0 0 9px rgba(179, 18, 46, .95), 0 18px 40px -20px rgba(0, 0, 0, .8); }
+.fp-shi .fp::before { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: .55;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='83' viewBox='0 0 48 83'%3E%3Cg fill='none' stroke='%23b3122e' stroke-opacity='.22' stroke-width='1'%3E%3Cpath d='M24 0V83M0 20.7L48 62.3M48 20.7L0 62.3M0 41.5H48M24 0L0 20.7V62.3L24 83L48 62.3V20.7ZM24 41.5L0 20.7M24 41.5L48 20.7M24 41.5L0 62.3M24 41.5L48 62.3'/%3E%3C/g%3E%3C/svg%3E");
+  -webkit-mask-image: radial-gradient(110% 80% at 90% 0, #000, rgba(0, 0, 0, .35) 50%, transparent 85%); mask-image: radial-gradient(110% 80% at 90% 0, #000, rgba(0, 0, 0, .35) 50%, transparent 85%); }
+.fp-hol .fp { background: radial-gradient(50% 36% at 88% 0, rgba(255, 154, 31, .10), transparent 72%), radial-gradient(40% 30% at 4% 100%, rgba(229, 23, 63, .12), transparent 70%), linear-gradient(180deg, #1b1124, #0c0710 72%);
+  border: 6px solid #ece4d0; box-shadow: inset 0 0 0 2px #15101b, inset 0 0 0 3px rgba(229, 23, 63, .8), inset 0 0 60px rgba(0, 0, 0, .55);
+  clip-path: polygon(0 20px, 20px 0, calc(100% - 34px) 0, 100% 30px, 100% calc(100% - 16px), calc(100% - 26px) 100%, 18px 100%, 0 calc(100% - 28px)); }
+.fp-hol.amber .fp { box-shadow: inset 0 0 0 2px #15101b, inset 0 0 0 3px rgba(255, 154, 31, .85), inset 0 0 60px rgba(0, 0, 0, .55); }
+.fpw > .cn { position: absolute; z-index: 4; width: 62px; height: 62px; pointer-events: none; }
+.fpw .cn svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.cn-tl { top: 6px; left: 6px; } .cn-tr { top: 6px; right: 6px; transform: scaleX(-1); } .cn-bl { bottom: 6px; left: 6px; transform: scaleY(-1); } .cn-br { bottom: 6px; right: 6px; transform: scale(-1, -1); }
+
+/* ---------- cabeçalho ---------- */
+.fp-cab { margin: 0 -26px; padding: 40px 42px 30px; display: grid; grid-template-columns: minmax(0, 56%); align-content: end; gap: 18px 0; min-height: 340px; }
+.fp-cab::after { content: ""; position: absolute; left: 16px; right: 16px; bottom: 0; height: 6px; z-index: 2; background: linear-gradient(90deg, #f6ece4 0, #f6ece4 90px, rgba(246, 236, 228, 0) 70%) 0 0 / 100% 2px no-repeat, linear-gradient(90deg, rgba(255, 77, 106, .75), rgba(255, 77, 106, 0) 92%) 0 5px / 100% 1px no-repeat; }
+.fp-hol .fp-cab::after { background: linear-gradient(90deg, #ece4d0 0, #ece4d0 90px, rgba(236, 228, 208, 0) 70%) 0 0 / 100% 2px no-repeat, linear-gradient(90deg, rgba(229, 23, 63, .85), rgba(229, 23, 63, 0) 92%) 0 5px / 100% 1px no-repeat; }
+.fp-arte { position: absolute !important; inset: 0; z-index: 0 !important; overflow: hidden; pointer-events: none; }
+.fp-arte svg { width: 100%; height: 100%; display: block; }
+.fp-arte .arte-p { position: absolute; inset: 0; }
+.fp-arte-m { display: none; }
+.fp-arte::before { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; background: linear-gradient(90deg, rgba(8, 4, 5, .88) 0, rgba(8, 4, 5, .55) 38%, transparent 62%); }
+.fp-hol .fp-arte::before { background: linear-gradient(90deg, rgba(12, 7, 16, .92) 0, rgba(12, 7, 16, .6) 38%, transparent 62%); }
+.fp-tit { position: relative; z-index: 3; }
+.fp-eb { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 0 0 6px; font-size: 14.5px; font-weight: 700; letter-spacing: .04em; color: #ffc9d2; }
+.fp-hol .fp-eb { color: #ffd9a3; }
+.fp-eb .ic { width: 18px; height: 18px; color: #ff4d6a; filter: drop-shadow(0 0 5px #ff4d6a99); }
+.fp-hol .fp-eb .ic { color: #ff9a1f; filter: drop-shadow(0 0 5px #ff9a1f99); }
+.fp-ex { font-style: normal; font-size: 12px; font-weight: 800; letter-spacing: .02em; padding: 2px 9px; border: 1px dashed currentColor; border-radius: 3px; color: #f6ece4; background: rgba(0, 0, 0, .35); }
+.fp-tit h2 { margin: 0 0 8px; font: 800 clamp(36px, 4.6vw, 58px)/1.04 "Shippori Mincho", "Noto Serif CJK JP", serif; letter-spacing: .01em; color: #f6ece4; text-shadow: 0 2px 0 #6d0a1d, 0 0 26px rgba(255, 77, 106, .45); }
+.fp-hol .fp-tit h2 { font: 700 clamp(40px, 5vw, 64px)/1 "Grenze Gotisch", "Cinzel", serif; letter-spacing: .01em; color: #ece4d0; text-shadow: 0 2px 0 #15101b, 0 0 24px rgba(255, 154, 31, .35); }
+.fp-sub { margin: 0; color: #e6d9cf; font-size: 15px; line-height: 1.5; max-width: 46ch; }
+.fp-hol .fp-sub { color: #e2d9c4; }
+.fp-tit .pf-completo { margin-top: 12px; max-width: 520px; }
+.fp-tit .pf-completo summary { background: rgba(5, 2, 3, .85); }
+.fp-hol .fp-tit .pf-completo { --c-bg: #0c0710; --c-tx: #ece4d0; --c-mu: #e2d9c4; --c-bd: #ece4d0; --c-ac: #ff9a1f; --c-sub: #2a1b36; }
+.fp-shi .fp-tit .pf-completo { --c-bg: #0b0609; --c-tx: #f6ece4; --c-mu: #e6d9cf; --c-bd: #7a5560; --c-ac: #ff4d6a; --c-sub: #3a0f19; }
+.fp-hol .fp-tit .pf-completo summary { background: rgba(12, 7, 16, .9); }
+
+/* selo hanko (kanji, só um) */
+.fp-hanko { position: absolute; z-index: 3; right: 44px; top: 34px; width: 68px; height: 68px; display: grid; place-items: center; font: 800 40px/1 "Shippori Selo", "Shippori Mincho", "Noto Serif CJK JP", serif; color: #f6ece4; background: #b3122e;
+  border-radius: 6px; transform: rotate(-4deg); box-shadow: inset 0 0 0 2px #f6ece4, inset 0 0 0 4px #b3122e, 0 4px 10px rgba(0, 0, 0, .6); text-shadow: 0 1px 0 #6d0a1d; }
+.fp[data-ligada="0"] .fp-hanko { background: transparent; color: #cdbdb2; box-shadow: inset 0 0 0 2px #cdbdb2; border: 0; opacity: .8; }
+
+/* custos, turnos, estado */
+.fp-ctl { position: relative; z-index: 3; display: grid; gap: 14px; }
+.fp-custos { margin: 0; display: flex; flex-wrap: wrap; gap: 8px 10px; }
+.fp-custos > div { display: grid; grid-template-columns: auto; padding: 7px 14px 8px 12px; background: rgba(5, 2, 3, .78); border: 1px solid #7a5560; border-left: 3px solid #ff4d6a; border-radius: 3px; }
+.fp-hol .fp-custos > div { background: rgba(12, 7, 16, .82); border: 1px solid #8a7e96; border-left: 3px solid #e5173f; }
+.fp-hol.amber .fp-custos > div { border-left-color: #ff9a1f; }
+.fp-custos dt { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; letter-spacing: .03em; color: #e6d9cf; }
+.fp-custos dt .ic { width: 14px; height: 14px; color: #ff4d6a; }
+.fp-hol .fp-custos dt .ic { color: #ff9a1f; }
+.fp-custos dd { margin: 2px 0 0; font-size: 15.5px; font-weight: 800; color: #fff; }
+.fp-custos .man dd { color: #ffd9a3; }
+.fp-shi .fp-custos .man dd { color: #ffc9d2; }
+.fp-turno { display: inline-flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+.fp-turno i { width: 14px; height: 22px; border: 1.5px solid #d8c9bf; border-radius: 2px; background: transparent; }
+.fp-shi .fp-turno i { border-radius: 0; clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 82%, 0 100%); width: 12px; height: 24px; background: rgba(246, 236, 228, .16); border: 0; }
+.fp-shi .fp-turno i.pf-on { background: #ff4d6a; }
+.fp-hol .fp-turno i { border-radius: 5px 5px 8px 8px; background: rgba(236, 228, 208, .12); border-color: #cfc4ab; }
+.fp-hol .fp-turno i.pf-on { background: #ff9a1f; border-color: #ffe3b8; }
+.fp-turno small { margin-left: 8px; font-size: 13px; font-weight: 700; color: #f6ece4; }
+.fp-estado { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px; }
+.fp-est { display: inline-flex; align-items: center; gap: 12px; }
+.fp-est .gema { width: 44px; height: 44px; flex: none; overflow: visible; }
+.fp-hol .fp-est .gema { width: 50px; height: 38px; }
+.fp[data-ligada="1"] .gema { filter: drop-shadow(0 0 8px #ff4d6a); }
+.fp-hol .fp[data-ligada="1"] .gema { filter: drop-shadow(0 0 9px #ff9a1f); }
+.fp-est-t { display: grid; line-height: 1.15; }
+.fp-est-t b { font: 800 20px/1.1 "Shippori Mincho", serif; letter-spacing: .04em; color: #fff; }
+.fp-hol .fp-est-t b { font: 700 24px/1.05 "Grenze Gotisch", serif; letter-spacing: .03em; color: #ece4d0; }
+.fp-est-t small { font-size: 13px; color: #e6d9cf; margin-top: 2px; }
+.fp-btn { position: relative; isolation: isolate; min-height: 48px; padding: 0 24px; display: inline-flex; align-items: center; gap: 10px; border: 0; background: none; color: #fff; font-size: 14.5px; font-weight: 800; cursor: pointer; }
+.fp-btn::before { content: ""; position: absolute; inset: 0; z-index: -2; clip-path: polygon(10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px), 0 10px); background: #f6ece4; }
+.fp-btn::after { content: ""; position: absolute; inset: 2px; z-index: -1; clip-path: polygon(9px 0, calc(100% - 9px) 0, 100% 9px, 100% calc(100% - 9px), calc(100% - 9px) 100%, 9px 100%, 0 calc(100% - 9px), 0 9px); background: linear-gradient(180deg, #d41a3f, #a30f27 55%, #8a0c22); }
+.fp-btn .ic { width: 19px; height: 19px; }
+.fp-btn:hover::after { filter: brightness(1.15); }
+.fp[data-ligada="1"] .fp-btn::after { background: #0b0609; }
+.fp-hol .fp-btn { color: #15101b; }
+.fp-hol .fp-btn::before { background: #15101b; }
+.fp-hol .fp-btn::after { background: linear-gradient(180deg, #f6efdd, #ece4d0 55%, #d3c8ae); }
+.fp-hol.amber .fp-btn::after { background: linear-gradient(180deg, #ffc470, #ff9a1f 55%, #e07f00); }
+.fp-hol .fp[data-ligada="1"] .fp-btn { color: #ece4d0; }
+.fp-hol .fp[data-ligada="1"] .fp-btn::before { background: #ece4d0; }
+.fp-hol .fp[data-ligada="1"] .fp-btn::after { background: #15101b; }
+
+/* ---------- "o que mudou" ---------- */
+.fp-diff { margin: 24px 0 4px; display: flex; flex-wrap: wrap; gap: 8px; align-items: stretch; }
+.fp-diff > em { align-self: center; margin-right: 8px; font-style: normal; font: 800 18px/1 "Shippori Mincho", serif; color: #ffc9d2; }
+.fp-hol .fp-diff > em { font: 700 22px/1 "Grenze Gotisch", serif; color: #ffd9a3; }
+.fp-diff > span { display: inline-flex; gap: 7px; align-items: baseline; padding: 6px 13px; background: rgba(255, 255, 255, .05); border: 1px solid #7a5560; border-top: 2px solid #ff4d6a; font-size: 13.5px; font-weight: 700; color: #f6ece4; border-radius: 3px; }
+.fp-diff > span b { color: #ff4d6a; font-size: 10.5px; }
+.fp-hol .fp-diff > span { border: 1px solid #8a7e96; border-top: 2px solid #e5173f; background: rgba(236, 228, 208, .06); color: #ece4d0; }
+.fp-hol.amber .fp-diff > span { border-top-color: #ff9a1f; } .fp-hol .fp-diff > span b { color: #ff9a1f; }
+
+/* ---------- seções ---------- */
+.fp-sec { margin-top: 38px; }
+.fp-sec > h3 { position: relative; display: flex; align-items: center; gap: 11px; margin: 0 0 20px; padding: 0 0 14px; font: 800 25px/1.1 "Shippori Mincho", serif; color: #f6ece4; text-transform: none; letter-spacing: .02em; border: 0;
+  background: linear-gradient(90deg, #f6ece4 0, #ff4d6a 90px, transparent 90px) 0 100% / 100% 2px no-repeat, linear-gradient(90deg, rgba(255, 77, 106, .55), transparent 88%) 0 calc(100% - 6px) / 100% 1px no-repeat; }
+.fp-hol .fp-sec > h3 { font: 700 30px/1 "Grenze Gotisch", serif; color: #ece4d0; background: linear-gradient(90deg, #ece4d0 0, #e5173f 90px, transparent 90px) 0 100% / 100% 2px no-repeat, linear-gradient(90deg, rgba(229, 23, 63, .6), transparent 88%) 0 calc(100% - 6px) / 100% 1px no-repeat; }
+.fp-sec > h3 .h-ic { width: 27px; height: 27px; color: #ff4d6a; filter: drop-shadow(0 0 6px #ff4d6a88); }
+.fp-hol .fp-sec > h3 .h-ic { color: #ff9a1f; filter: drop-shadow(0 0 6px #ff9a1f77); }
+.fp-sec > h3 small { margin-left: auto; font: 500 13.5px "M PLUS 1", sans-serif; color: #d8c9bf; letter-spacing: 0; }
+.fp-hol .fp-sec > h3 small { color: #cfc4ab; }
+.fp-trava { margin: -6px 0 16px; color: #e6d9cf; font-size: 14.5px; max-width: 70ch; line-height: 1.55; }
+.fp-grade { display: grid; grid-template-columns: repeat(auto-fill, minmax(268px, 1fr)); gap: 24px 20px; align-items: start; }
+.fp-grade.fp-un { grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); }
+.fp-grade.fp-pa { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px 26px; }
+.fpw .cwx { min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+
+/* ---------- carta de ação (SHI = carta de baralho japonês: preto, fios de washi e carmesim) ---------- */
+.fc { position: relative; }
+.fc .cn { position: absolute; z-index: 3; width: 30px; height: 30px; pointer-events: none; }
+.fc .cn-tl { top: 3px; left: 3px; } .fc .cn-tr { top: 3px; right: 3px; } .fc .cn-bl { bottom: 3px; left: 3px; } .fc .cn-br { bottom: 3px; right: 3px; }
+.fc-acao { display: flex; flex-direction: column; padding: 0 16px 16px; overflow: hidden; }
+.fp-shi .fc-acao { border-radius: 10px; background: linear-gradient(112deg, rgba(246, 236, 228, .07), transparent 32%), linear-gradient(180deg, #170c10, #0a0508);
+  box-shadow: inset 0 0 0 2px #050203, inset 0 0 0 3px rgba(246, 236, 228, .8), inset 0 0 0 6px #050203, inset 0 0 0 7px rgba(179, 18, 46, .95), 0 8px 18px -8px #000; }
+.fc-top { position: relative; margin: 0 -16px; height: 84px; }
+.fc-art { position: absolute; inset: 7px 7px 0; width: calc(100% - 14px); height: 77px; border-radius: 4px 4px 0 0; }
+.fp-hol .fc-art { border-radius: 2px 2px 0 0; }
+.fc-tipo { position: absolute; z-index: 3; left: 14px; top: 17px; height: 26px; padding: 0 20px 0 10px; display: inline-flex; align-items: center; font-size: 13px; font-weight: 800; letter-spacing: .02em; color: #fff; background: #b3122e;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 9px) 50%, 100% 100%, 0 100%); box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .25); }
+.fc-med { position: absolute; z-index: 4; right: 12px; top: 12px; width: 70px; height: 70px; display: grid; place-items: center; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, .6)); }
+.fc-med svg:first-child { position: absolute; inset: 0; width: 100%; height: 100%; }
+.fc-med .m-ic { position: relative; width: 36px; height: 36px; color: #f6ece4; filter: drop-shadow(0 1px 0 rgba(0, 0, 0, .55)); }
+.fc-trava { position: absolute; z-index: 5; left: 14px; top: 48px; width: 28px; height: 28px; display: grid; place-items: center; color: #e6d9cf; background: rgba(5, 2, 3, .9); border: 1px dashed #b9a89d; border-radius: 4px; }
+.fc-trava .ic { width: 15px; height: 15px; }
+.fc h4 { margin: 14px 0 8px; font: 700 21px/1.15 "Shippori Mincho", serif; color: #f6ece4; padding-right: 0; }
+.fc-tags { display: flex; flex-wrap: wrap; align-items: center; gap: 7px 0; min-height: 26px; }
+.fc-pr { display: inline-flex; align-items: baseline; gap: 4px; height: 25px; padding: 0 11px; margin-right: 10px; align-items: center; border-radius: 4px; background: #b3122e; color: #fff; font-size: 12.5px; font-weight: 700; box-shadow: inset 0 0 0 1px rgba(246, 236, 228, .6); }
+.fc-pr b { font-size: 14.5px; font-weight: 800; }
+.fc-t { padding: 0 9px; border-left: 1px solid #7a5560; font-size: 12.5px; font-weight: 600; color: #d8c9bf; line-height: 18px; }
+.fc-pr + .fc-t { border-left: 0; padding-left: 0; }
+.fc-acao p { margin: 10px 0 14px; color: #e6d9cf; font-size: 14px; line-height: 1.52; flex: 1; }
+.fc-act { display: flex; gap: 10px; align-items: center; }
+.fc-b { flex: 1; min-height: 44px; padding: 0 12px; border-radius: 5px; border: 1px solid #f6ece4; background: linear-gradient(180deg, #d41a3f, #9a0f28); color: #fff; font-size: 14.5px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 7px; cursor: pointer; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3), inset 0 0 0 2px #050203; }
+.fc-b:hover { filter: brightness(1.12); }
+.fc-b.pf-fraco, .fc-b:disabled { background: transparent; border-color: #b9a89d; color: #e6d9cf; box-shadow: none; cursor: default; }
+.fc-b .ic { width: 17px; height: 17px; }
+.fc-i { width: 34px; height: 34px; flex: none; border-radius: 50%; border: 1.5px solid #f6ece4; background: #0b0609; color: #f6ece4; font: 700 14px "Shippori Mincho", serif; cursor: pointer; }
+.fp-shi .fc-acao.off { filter: saturate(.5) brightness(.88); }
+
+/* ---------- carta ÚNICA / PREÇO (SHI = papel washi claro com tinta e selo carmesim) ---------- */
+.fc-unica { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 0 14px; padding: 16px 16px 16px 14px; }
+.fp-shi .fc-unica { border-radius: 6px; background: linear-gradient(135deg, #f6ede0, #e9dcc7); color: #1a0d10; box-shadow: inset 0 0 0 2px #0b0609, inset 0 0 0 3px #b3122e, 0 8px 16px -8px #000; }
+.fp-shi .fc-unica .cn { width: 24px; height: 24px; filter: invert(1) hue-rotate(180deg) brightness(.35); }
+.fc-unica .fc-med { position: relative; right: auto; top: auto; width: 72px; height: 72px; }
+.fc-un-c { display: grid; gap: 4px; align-content: start; min-width: 0; position: relative; padding-right: 38px; }
+.fc-rot { justify-self: start; height: 22px; padding: 0 16px 0 9px; display: inline-flex; align-items: center; font-size: 12px; font-weight: 800; background: #b3122e; color: #fff; clip-path: polygon(0 0, 100% 0, calc(100% - 8px) 50%, 100% 100%, 0 100%); }
+.fc-unica h4 { margin: 4px 0 2px; font: 700 20px/1.15 "Shippori Mincho", serif; color: #1a0d10; }
+.fp-shi .fc-unica p { margin: 0; color: #3a2328; font-size: 13.8px; line-height: 1.5; }
+.fc-cada { display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; font-size: 12.5px; font-weight: 800; color: #7a0d20; }
+.fc-cada .ic { width: 14px; height: 14px; }
+.fc-un-c .fc-i { position: absolute; right: 0; top: 0; background: #efe3d1; color: #1a0d10; border-color: #1a0d10; }
+.fp-shi .fc-unica.off { filter: saturate(.55) brightness(.9); }
+
+/* ---------- passivas: sem moldura (peso menor) ---------- */
+.fc-pas { position: relative; display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 2px 12px; padding: 4px 4px 4px 18px; }
+.fc-pas::before { content: ""; position: absolute; left: 0; top: 2px; bottom: 2px; width: 3px; background: linear-gradient(180deg, transparent, #ff4d6a 20%, #b3122e 75%, transparent); clip-path: polygon(0 0, 100% 8%, 100% 92%, 0 100%); }
+.fc-pi { grid-row: 1 / 3; width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; border: 1.3px solid rgba(246, 236, 228, .55); color: #f6ece4; }
+.fc-pi .ic { width: 24px; height: 24px; }
+.fc-pas h4 { margin: 0; font: 700 17px/1.2 "Shippori Mincho", serif; color: #f6ece4; align-self: end; }
+.fc-pas p { margin: 0; font-size: 13.6px; line-height: 1.5; color: #e6d9cf; }
+.fp-grade.off .fc-pas { opacity: .62; }
+
+/* ---------- carta HOL: osso, placas, suturas ---------- */
+.fp-hol .fc-acao { background: linear-gradient(112deg, rgba(255, 255, 255, .55), transparent 36%), linear-gradient(180deg, #f3ecda, #e2d8bf); color: #15101b; border: 2px solid #15101b; border-radius: 3px; box-shadow: inset 1px 1px 0 #fff8e8, inset -1px -1px 0 #b9ac8c, inset 0 0 0 5px #ece4d0, inset 0 0 0 6px rgba(21, 16, 27, .55), 0 8px 18px -8px #000;
+  clip-path: polygon(0 12px, 12px 0, calc(100% - 18px) 0, 100% 18px, 100% calc(100% - 10px), calc(100% - 14px) 100%, 10px 100%, 0 calc(100% - 16px)); }
+.fp-hol .fc-tipo { background: #15101b; color: #ece4d0; box-shadow: none; border-left: 3px solid #e5173f; }
+.fp-hol.amber .fc-tipo { border-left-color: #ff9a1f; }
+.fp-hol .fc h4, .fp-hol .fc-acao h4 { font: 700 25px/1.05 "Grenze Gotisch", serif; color: #15101b; margin: 14px 0 8px; }
+.fp-hol .fc-pr { background: #b0102f; color: #fff; box-shadow: inset 0 0 0 1px #15101b; border-radius: 2px; }
+.fp-hol .fc-t { border-left-color: #8a7a6a; color: #3a2b45; font-weight: 700; }
+.fp-hol .fc-acao p { color: #2a1d33; }
+.fp-hol .fc-b { background: #15101b; color: #ece4d0; border: 1px solid #15101b; border-radius: 3px; box-shadow: inset 0 -3px 0 #e5173f; }
+.fp-hol.amber .fc-b { box-shadow: inset 0 -3px 0 #ff9a1f; }
+.fp-hol .fc-b.pf-fraco, .fp-hol .fc-b:disabled { background: transparent; color: #3a2b45; border: 1.5px solid #3a2b45; box-shadow: none; }
+.fp-hol .fc-i { background: #ece4d0; border-color: #15101b; color: #15101b; font-family: "Grenze Gotisch", serif; font-size: 16px; }
+.fp-hol .fc-trava { background: rgba(21, 16, 27, .9); border-color: #ece4d0; color: #ece4d0; }
+.fp-hol .fc-acao.off { filter: saturate(.5) brightness(.9); }
+.fp-hol .fc-acao .cn { width: 26px; height: 26px; }
+.fp-hol .fc-med { filter: drop-shadow(0 3px 6px rgba(0, 0, 0, .6)) drop-shadow(0 0 7px rgba(229, 23, 63, .35)); }
+.fp-hol.amber .fc-med { filter: drop-shadow(0 3px 6px rgba(0, 0, 0, .6)) drop-shadow(0 0 7px rgba(255, 154, 31, .45)); }
+.fp-hol .fc-med .m-ic { color: #ece4d0; filter: drop-shadow(0 0 4px rgba(255, 154, 31, .55)); }
+/* única HOL: escura, com contorno de osso */
+.fp-hol .fc-unica { background: linear-gradient(135deg, #261735, #170f20); border: 2px solid #ece4d0; border-radius: 3px; box-shadow: inset 0 0 0 3px #15101b, inset 0 0 0 4px rgba(229, 23, 63, .8), 0 8px 16px -8px #000; }
+.fp-hol.amber .fc-unica { box-shadow: inset 0 0 0 3px #15101b, inset 0 0 0 4px rgba(255, 154, 31, .85), 0 8px 16px -8px #000; }
+.fp-hol .fc-rot { background: #b0102f; color: #fff; clip-path: polygon(0 0, 100% 0, calc(100% - 8px) 50%, 100% 100%, 0 100%); }
+.fp-hol .fc-unica h4 { font: 700 23px/1.05 "Grenze Gotisch", serif; color: #ece4d0; }
+.fp-hol .fc-unica p { color: #e2d9c4; margin: 0; font-size: 13.8px; line-height: 1.5; }
+.fp-hol .fc-cada { color: #ffc470; }
+.fp-hol .fc-un-c .fc-i { background: #15101b; color: #ece4d0; border-color: #ece4d0; }
+.fp-hol .fc-unica.off { filter: saturate(.55) brightness(.9); }
+/* passiva HOL: coluna de vértebras */
+.fp-hol .fc-pas::before { width: 8px; clip-path: none; border-radius: 3px; background: repeating-linear-gradient(180deg, #ece4d0 0 9px, transparent 9px 12px); opacity: .75; left: 0; }
+.fp-hol .fc-pas { padding-left: 22px; }
+.fp-hol .fc-pi { border-radius: 8px; border: 1.4px solid #ece4d0; color: #ece4d0; background: rgba(236, 228, 208, .07); }
+.fp-hol .fc-pas h4 { font: 700 20px/1.1 "Grenze Gotisch", serif; color: #ece4d0; }
+.fp-hol .fc-pas p { color: #e2d9c4; }
+
+/* "Ler completo" nas cartas */
+.fp-shi .cwx .pf-completo { --c-bg: #130a0d; --c-tx: #f6ece4; --c-mu: #e6d9cf; --c-bd: #7a5560; --c-ac: #ff4d6a; --c-sub: #3a0f19; }
+.fp-hol .cwx .pf-completo { --c-bg: #1b1124; --c-tx: #ece4d0; --c-mu: #e2d9c4; --c-bd: #ece4d0; --c-ac: #e5173f; --c-sub: #2a1b36; }
+.fp-hol.amber .cwx .pf-completo { --c-ac: #ff9a1f; }
+
+/* ============================================================
+   ESTADOS E ANIMAÇÃO DE ATIVAÇÃO (distinta por origem)
+   SHI  (nanquim): o sol sobe, nuvens deslizam, a pincelada se desenha, o anel carmesim se espalha, o selo é carimbado, as cartas são "postas na mesa" uma a uma.
+   HOL  (osso)   : as placas tremem e se abrem, as fissuras se rasgam com luz âmbar, os olhos acendem, a onda vermelha estoura, as cartas rangem e acendem.
+   Desligada: tudo em repouso (sol baixo e apagado, pincelada curta, máscara inteira e sem brilho). Respeita prefers-reduced-motion.
+   ============================================================ */
+.arte-s { --ox: 0px; --oy: 0px; }
+.arte-s .s-sol, .arte-s .kokuen, .arte-s .coroa, .arte-s .s-anel, .arte-s .s-onda, .arte-s .h-mascara, .arte-s .h-brasa { transform-origin: var(--ox) var(--oy); transform-box: view-box; }
+.arte-s .s-anel, .arte-s .s-onda { opacity: 0; }
+.arte-s .s-corre { opacity: 0; }
+.arte-p { clip-path: inset(0 0 0 0); }
+/* desligadas */
+.fp-shi .fp[data-ligada="0"] .arte-s .s-sol { transform: translateY(54px) scale(.8); opacity: .42; filter: saturate(.3) brightness(.8); }
+.fp-shi .fp[data-ligada="0"] .arte-s .kokuen { transform: translateY(40px); opacity: .0; }
+.fp-shi .fp[data-ligada="0"] .arte-s .coroa, .fp-shi .fp[data-ligada="0"] .arte-s .lua, .fp-shi .fp[data-ligada="0"] .arte-s .corr { opacity: .18; }
+.fp-shi .fp[data-ligada="0"] .arte-s .s-nuvens { opacity: .5; }
+.fp-shi .fp[data-ligada="0"] .arte-p { clip-path: inset(0 70% 0 0); opacity: .55; }
+.fp-hol .fp[data-ligada="0"] .h-brasa, .fp-hol .fp[data-ligada="0"] .h-olho { opacity: 0; }
+.fp-hol .fp[data-ligada="0"] .h-fissura { opacity: .2; }
+.fp-hol .fp[data-ligada="0"] .h-mascara { filter: saturate(.55) brightness(.72); }
+.fp-hol .fp[data-ligada="0"] .h-placas { opacity: .5; }
+.fp-hol .fp[data-ligada="0"] .h-fundo { opacity: .5; }
+
+@keyframes sh-sobe { 0% { transform: translateY(54px) scale(.8); opacity: .42; filter: saturate(.3) brightness(.8); } 70% { transform: translateY(-8px) scale(1.05); opacity: 1; filter: none; } 100% { transform: none; opacity: 1; filter: none; } }
+@keyframes sh-nv-e { from { transform: translateX(-70px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes sh-nv-d { from { transform: translateX(70px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes sh-pincel { from { clip-path: inset(0 100% 0 0); opacity: 1; } to { clip-path: inset(0 0 0 0); opacity: 1; } }
+@keyframes sh-anel { 0% { transform: scale(.7); opacity: .95; } 100% { transform: scale(6.5); opacity: 0; } }
+@keyframes sh-hanko { 0% { transform: scale(2) rotate(-12deg); opacity: 0; } 55% { transform: scale(.92) rotate(-3deg); opacity: 1; } 100% { transform: scale(1) rotate(-4deg); opacity: 1; } }
+@keyframes sh-carta { 0% { transform: translateY(22px) rotate(-1.8deg); opacity: 0; filter: brightness(1.6); } 70% { transform: translateY(-3px) rotate(.4deg); opacity: 1; } 100% { transform: none; opacity: 1; filter: none; } }
+@keyframes sh-chama { from { transform: translateY(46px) scaleY(.4); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes sh-flash { 0% { opacity: .65; } 100% { opacity: 0; } }
+.fp-shi .fp.acende .arte-s .s-sol { animation: sh-sobe 1.15s cubic-bezier(.2, .8, .25, 1) both; }
+.fp-shi .fp.acende .arte-s .nv-e { animation: sh-nv-e 1s ease-out calc(var(--i) * 90ms) both; }
+.fp-shi .fp.acende .arte-s .nv-d { animation: sh-nv-d 1s ease-out calc(var(--i) * 90ms) both; }
+.fp-shi .fp.acende .arte-p { animation: sh-pincel .95s cubic-bezier(.3, .6, .3, 1) .3s both; }
+.fp-shi .fp.acende .arte-s .s-anel { animation: sh-anel 1.3s cubic-bezier(.15, .7, .3, 1) .12s both; }
+.fp-shi .fp.acende .arte-s .kokuen { animation: sh-chama .9s ease-out .35s both; transform-origin: 50% 100%; transform-box: fill-box; }
+.fp-shi .fp.acende .arte-s .coroa, .fp-shi .fp.acende .arte-s .lua { animation: sh-nv-d .9s ease-out .5s both; }
+.fp-shi .fp.acende .fp-hanko { animation: sh-hanko .7s cubic-bezier(.3, 1.4, .5, 1) .75s both; }
+.fp-shi .fp.acende .fp-arte::after { content: ""; position: absolute; inset: 0; z-index: 4; background: radial-gradient(60% 90% at 78% 50%, rgba(255, 77, 106, .55), transparent 70%); animation: sh-flash .8s ease-out both; }
+.fp-shi .fp.acende .fc-acao, .fp-shi .fp.acende .fc-unica { animation: sh-carta .6s cubic-bezier(.2, .9, .3, 1) calc(.45s + var(--i, 0) * 85ms) both; }
+.fp-shi .fp.acende .fp-sec:nth-of-type(2) .fc-unica { animation-delay: .9s; } .fp-shi .fp.acende .fp-diff > span { animation: sh-carta .5s ease-out .4s both; }
+
+@keyframes ho-treme { 0%, 100% { transform: none; } 15% { transform: translate(-3px, 2px); } 30% { transform: translate(3px, -2px); } 45% { transform: translate(-2px, -2px); } 60% { transform: translate(2px, 2px); } 80% { transform: translate(-1px, 1px); } }
+@keyframes ho-abre { 0% { transform: scale(.985); } 40% { transform: scale(1.03); } 100% { transform: scale(1); } }
+@keyframes ho-brasa { 0% { opacity: 0; } 20% { opacity: 1; } 32% { opacity: .35; } 48% { opacity: 1; } 100% { opacity: 1; } }
+@keyframes ho-olho { 0% { opacity: 0; } 55% { opacity: 0; } 62% { opacity: 1; } 70% { opacity: .2; } 80%, 100% { opacity: 1; } }
+@keyframes ho-corre { 0% { stroke-dashoffset: 14; } 100% { stroke-dashoffset: -100; } }
+@keyframes ho-onda { 0% { transform: scale(.7); opacity: .95; } 100% { transform: scale(9); opacity: 0; } }
+@keyframes ho-fissura { from { opacity: 0; } to { opacity: 1; } }
+@keyframes ho-carta { 0% { filter: brightness(1.9) sepia(1) saturate(3) hue-rotate(-12deg); transform: translateX(-4px); } 25% { transform: translateX(4px); } 50% { transform: translateX(-2px); } 100% { filter: none; transform: none; } }
+.fp-hol .fp.acende .arte-s .h-placas { animation: ho-treme .5s linear .05s both; }
+.fp-hol .fp.acende .arte-s .h-mascara { animation: ho-abre .9s ease-out .3s both; }
+.fp-hol .fp.acende .arte-s .h-fissura { animation: ho-fissura .35s ease-out .25s both; }
+.fp-hol .fp.acende .arte-s .s-corre { opacity: 1; }
+.fp-hol .fp.acende .arte-s .corre { stroke-dasharray: 14 100; stroke-dashoffset: 14; animation: ho-corre 1.3s cubic-bezier(.3, .6, .3, 1) calc(var(--i) * 80ms + 250ms) both; }
+.fp-hol .fp.acende .arte-s .h-brasa { animation: ho-brasa 1s linear .3s both; }
+.fp-hol .fp.acende .arte-s .h-olho { animation: ho-olho 1.1s linear .3s both; }
+.fp-hol .fp.acende .arte-s .s-onda { animation: ho-onda 1.2s cubic-bezier(.15, .7, .3, 1) .35s both; }
+.fp-hol .fp.acende .gema { animation: ho-olho 1s linear .5s both; }
+.fp-hol .fp.acende .fc-acao, .fp-hol .fp.acende .fc-unica { animation: ho-carta .55s steps(7, end) calc(.55s + var(--i, 0) * 80ms) both; }
+.fp.apaga .arte-s .s-sol, .fp.apaga .arte-s .h-mascara { transition: transform .5s ease-in; }
+@media (prefers-reduced-motion: reduce) {
+  .fp.acende *, .fp.acende, .fp.apaga *, .fpw .fc-acao, .fpw .fc-unica, .fp-hanko { animation: none !important; transition: none !important; }
+  .fp.acende .fp-arte::after { display: none; }
+  .fp.acende .arte-s .s-corre { opacity: 0; }
+}
+
+/* ============================================================
+   CELULAR: arte em faixa acima do título, uma coluna, botão de largura inteira, alvos de 44 a 50 px
+   ============================================================ */
+@media (max-width: 820px) {
+  .fpw .fp { padding: 0 14px 22px; }
+  .fp-shi .fp { border-radius: 12px; }
+  .fpw > .cn { width: 44px; height: 44px; }
+  .fp-cab { margin: 0 -14px; padding: 0 18px 24px; grid-template-columns: minmax(0, 1fr); min-height: 0; row-gap: 14px; }
+  .fp-cab > .fp-arte-d { display: none; }
+  .fp-cab > .fp-arte-m { display: block; position: relative !important; inset: auto; height: 190px; margin: 0 -18px; }
+  .fp-arte::before { background: linear-gradient(180deg, transparent 55%, rgba(8, 4, 5, .85) 100%); }
+  .fp-hol .fp-arte::before { background: linear-gradient(180deg, transparent 55%, rgba(12, 7, 16, .9) 100%); }
+  .fp-hanko { right: 20px; top: 16px; width: 54px; height: 54px; font-size: 32px; }
+  .fp-tit h2 { font-size: 40px; }
+  .fp-hol .fp-tit h2 { font-size: 46px; }
+  .fp-custos > div { flex: 1 1 calc(50% - 6px); }
+  .fp-estado { gap: 12px; }
+  .fp-estado .fp-est { flex: 1 1 100%; }
+  .fp-btn { width: 100%; justify-content: center; min-height: 52px; }
+  .fp-diff { margin-top: 18px; } .fp-diff > em { flex-basis: 100%; }
+  .fp-sec { margin-top: 30px; }
+  .fp-sec > h3 { font-size: 22px; flex-wrap: wrap; } .fp-hol .fp-sec > h3 { font-size: 27px; }
+  .fp-sec > h3 small { flex-basis: 100%; margin-left: 38px; }
+  .fp-grade, .fp-grade.fp-un, .fp-grade.fp-pa { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .fc-i { width: 44px; height: 44px; }
+  .fc-un-c { padding-right: 0; } .fc-un-c .fc-i { position: static; justify-self: end; margin-top: 4px; }
+  .fc-unica { grid-template-columns: 60px minmax(0, 1fr); }
+  .fc-unica .fc-med { width: 60px; height: 60px; }
+  .fp-tabs { display: grid; grid-template-columns: 1fr 1fr; }
+  .fp-tab { min-height: 52px; }
+}
+
+/* Máscara e Resurrección: cabeçalho com cor própria */
+.fpw[data-forma="resurreccion"].fp-hol .fp-arte::before { background: linear-gradient(90deg, rgba(10, 14, 19, .94) 0, rgba(10, 14, 19, .66) 38%, transparent 62%); }
+.fpw[data-forma="mascara"].fp-hol .fp-arte::before { background: linear-gradient(90deg, rgba(14, 6, 12, .94) 0, rgba(14, 6, 12, .64) 38%, transparent 62%); }
+@media (max-width: 820px) {
+  .fpw[data-forma="resurreccion"].fp-hol .fp-arte::before { background: linear-gradient(180deg, transparent 55%, rgba(10, 14, 19, .92) 100%); }
+  .fpw[data-forma="mascara"].fp-hol .fp-arte::before { background: linear-gradient(180deg, transparent 55%, rgba(14, 6, 12, .92) 100%); }
+}
+.fpw.fp-hol:not(.amber) .fp-turno i.pf-on { background: #e5173f; border-color: #ffd0d6; }
+.fpw.fp-hol:not(.amber)[data-forma="mascara"] .fp-diff > span b { color: #ff5a74; }
+/* Máscara = osso e vermelho: os acentos que eram âmbar no esqueleto Hollow viram vermelho neste painel (a Resurrección fica no âmbar) */
+.fpw[data-forma="mascara"].fp-hol .fp-eb .ic, .fpw[data-forma="mascara"].fp-hol .fp-custos dt .ic, .fpw[data-forma="mascara"].fp-hol .fp-sec > h3 .h-ic { color: #ff5a74; filter: drop-shadow(0 0 5px #ff3b5c88); }
+.fpw[data-forma="mascara"].fp-hol .fp[data-ligada="1"] .gema { filter: drop-shadow(0 0 9px #ff3b5c); }
+.fpw[data-forma="mascara"].fp-hol .fp-tit .pf-completo { --c-ac: #ff5a74; }
+.fp-tab[data-forma="mascara"] .fp-dot.pf-on { background: radial-gradient(circle at 35% 30%, #ff8fa2, #e5173f 65%, #8a0c22); box-shadow: 0 0 8px #e5173f; }
+
+/* ============================================================
+   v9: ARTE DE TINTA (sumi-e). Arte em tinta-arte.js. Tudo vem de variáveis; nenhuma cor é #000 ou #fff.
+   MÁSCARA (tk-m): osso #ece4d0 + roxo-preto #15101b / #0c0710 + vermelho #e5173f.
+   RESURRECCIÓN e SEGUNDA ETAPA (tk-r): osso frio #dde4e7 / #eef2f4 + cinza azulado #10161d / #0b0f14 + âmbar #ff9a1f.
+   Tema de página CLARO (Shinigami): o cabeçalho é papel de osso com tinta (como nas referências) e o texto fica numa placa de tinta.
+   Temas ESCUROS (Hollow e Quincy): o vazio vira o fundo e o osso vira o traço (giz).
+   A pele do painel (moldura, cartas osso, cores) continua por origem, em qualquer tema.
+   ============================================================ */
+.fpw[data-arte="tk-m"] { --tk-papel: #e6dcc0; --tk-papel2: #f1ead6; --tk-tinta: #15101b; --tk-nucleo: #0c0710; --tk-placa: #15101b; --tk-cx: 77%; --tk-cy: 50%; --tk-h: 114%; }
+.fpw[data-arte="tk-r"] { --tk-papel: #d3dce0; --tk-papel2: #e7edf0; --tk-tinta: #10161d; --tk-corpo: #0b0f14; --tk-rim: transparent; --tk-furo: #eef2f4; --tk-furo2: #c4cfd6; --tk-ambar: #ff9a1f; --tk-placa: #10161d; --tk-cx: 79%; --tk-cy: 60%; --tk-h: 152%; }
+:root[data-theme="dark"] .fpw[data-arte="tk-m"], :root[data-skin="quincy"] .fpw[data-arte="tk-m"] { --tk-papel: #0c0710; --tk-papel2: #1b1124; --tk-tinta: #ece4d0; --tk-nucleo: #07040a; --tk-placa: transparent; }
+:root[data-theme="dark"] .fpw[data-arte="tk-r"], :root[data-skin="quincy"] .fpw[data-arte="tk-r"] { --tk-papel: #0b0f14; --tk-papel2: #1a232d; --tk-tinta: #b9c5cd; --tk-corpo: #18212b; --tk-rim: #b4c1ca; --tk-placa: transparent; }
+.fpw[data-arte] .fp-arte { background: var(--tk-papel); }
+.fpw[data-arte] .fp-arte::before { display: none; }
+:root[data-theme="dark"] .fpw[data-arte="tk-m"] .fp-arte::before, :root[data-skin="quincy"] .fpw[data-arte="tk-m"] .fp-arte::before { display: block; background: linear-gradient(90deg, rgba(12, 7, 16, .94) 0, rgba(12, 7, 16, .62) 40%, transparent 64%); }
+:root[data-theme="dark"] .fpw[data-arte="tk-r"] .fp-arte::before, :root[data-skin="quincy"] .fpw[data-arte="tk-r"] .fp-arte::before { display: block; background: linear-gradient(90deg, rgba(11, 15, 20, .95) 0, rgba(11, 15, 20, .64) 40%, transparent 64%); }
+.fp-arte .tk { position: absolute; inset: 0; overflow: hidden; }
+.fp-arte .tk > svg { position: absolute; display: block; }
+.fp-arte .tk > .tk-bg, .fp-arte .tk > .tk-placa, .fp-arte .tk > .tk-placa-m { inset: 0; width: 100%; height: 100%; }
+.fp-arte .tk > .tk-placa-m { display: none; }
+.fp-arte .tk > .tk-sq { top: var(--tk-cy); left: var(--tk-cx); height: var(--tk-h); width: auto; aspect-ratio: 1; translate: -50% -50%; transform-origin: 50% 50%; }
+:root[data-theme="dark"] .fpw[data-arte] .tk-placa, :root[data-theme="dark"] .fpw[data-arte] .tk-placa-m, :root[data-skin="quincy"] .fpw[data-arte] .tk-placa, :root[data-skin="quincy"] .fpw[data-arte] .tk-placa-m { display: none !important; }
+.tk-aura { opacity: 0; }
+.fp[data-ligada="1"] .tk-aura { opacity: 1; }
+.tk-giz { opacity: 1; }
+:root[data-theme="dark"] .tk-giz, :root[data-skin="quincy"] .tk-giz { opacity: .82; }
+.tk-onda { transform-box: fill-box; transform-origin: center; opacity: 0; }
+.tk path, .tk circle { vector-effect: none; }
+
+/* ---------- MÁSCARA: estados ---------- */
+.tk-m .tk-vazio { opacity: 1; }
+.tk-m .tk-mg { transform-origin: 0 0; }
+.tk-m .tk-pA, .tk-m .tk-pB1, .tk-m .tk-pB2 { transform-origin: 0 0; }
+.tk-m .tk-fio, .tk-m .tk-fio-b, .tk-m .tk-seam, .tk-m .tk-olho, .tk-m .tk-halo { opacity: 0; }
+.tk-m .tk-fio { stroke-dasharray: 100 100; }
+.tk-m .tk-listras .km { fill: var(--tk-lis, #15101b); fill-opacity: .55; transform-box: fill-box; transform-origin: var(--to, 50% 0%); }
+.fp[data-ligada="0"] .tk-m .tk-vazio { scale: .68; opacity: .92; }
+.fp[data-ligada="0"] .tk-m .tk-resp { scale: .6; opacity: .3; }
+.fp[data-ligada="0"] .tk-m .tk-pA { transform: translate(-6px, 3px) rotate(-1.6deg); }
+.fp[data-ligada="0"] .tk-m .tk-pB1 { transform: translate(24px, -10px) rotate(9deg); opacity: .5; }
+.fp[data-ligada="0"] .tk-m .tk-pB2 { transform: translate(18px, 24px) rotate(-12deg); opacity: .42; }
+.fp[data-ligada="1"] .tk-m .tk-listras .km { fill: #e5173f; fill-opacity: 1; }
+.fp[data-ligada="1"] .tk-m .tk-olho, .fp[data-ligada="1"] .tk-m .tk-halo, .fp[data-ligada="1"] .tk-m .tk-fio { opacity: 1; }
+.fp[data-ligada="1"] .tk-m .tk-fio-b { opacity: .8; }
+.fp[data-ligada="1"] .tk-m .tk-vazio { will-change: transform; animation: tk-respira 7.5s ease-in-out infinite; }
+.fp[data-ligada="1"] .tk-m .tk-resp { animation: tk-respira2 9s ease-in-out infinite; }
+@keyframes tk-respira { 0%, 100% { scale: 1; } 50% { scale: 1.04; } }
+@keyframes tk-respira2 { 0%, 100% { scale: 1; } 50% { scale: 1.05; } }
+/* ativação da Máscara (~2 s): o vazio se expande, as peças voltam, o fio vermelho é traçado, os olhos acendem, as listras são pintadas, uma onda sai */
+@keyframes tk-v-in { 0% { scale: .68; opacity: .92; } 38% { scale: 1.14; opacity: 1; } 100% { scale: 1; opacity: 1; } }
+@keyframes tk-s-in { 0% { scale: .6; opacity: .3; } 55% { scale: 1.1; opacity: 1; } 100% { scale: 1; opacity: 1; } }
+@keyframes tk-p0 { 0% { transform: translate(-6px, 3px) rotate(-1.6deg); } 100% { transform: none; } }
+@keyframes tk-p1 { 0% { transform: translate(24px, -10px) rotate(9deg); opacity: .5; } 62% { transform: translate(-2px, 1px) rotate(-.6deg); opacity: 1; } 100% { transform: none; opacity: 1; } }
+@keyframes tk-p2 { 0% { transform: translate(18px, 24px) rotate(-12deg); opacity: .42; } 62% { transform: translate(-2px, -1px) rotate(.5deg); opacity: 1; } 100% { transform: none; opacity: 1; } }
+@keyframes tk-fio { 0% { stroke-dashoffset: 100; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 1; } }
+@keyframes tk-tinta { 0% { transform: scale(1, 0); opacity: 0; } 20% { opacity: 1; } 100% { transform: none; opacity: 1; } }
+@keyframes tk-seam { 0%, 30% { opacity: 0; } 50% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes tk-anda { 0% { transform: scale(1); opacity: .9; } 100% { transform: scale(9); opacity: 0; } }
+@keyframes tk-pisca { 0% { opacity: 0; } 20% { opacity: 1; } 32% { opacity: .35; } 48% { opacity: 1; } 100% { opacity: 1; } }
+.fp.acende .tk-m .tk-vazio { animation: tk-v-in 1.5s cubic-bezier(.2, .8, .2, 1) .05s both; will-change: transform, opacity; }
+.fp.acende .tk-m .tk-resp { animation: tk-s-in 1.5s ease-out .25s both; }
+.fp.acende .tk-m .tk-pA { animation: tk-p0 .5s ease-out .05s both; }
+.fp.acende .tk-m .tk-pB1 { animation: tk-p1 .85s cubic-bezier(.2, .9, .3, 1) .2s both; }
+.fp.acende .tk-m .tk-pB2 { animation: tk-p2 .85s cubic-bezier(.2, .9, .3, 1) .35s both; }
+.fp.acende .tk-m .tk-fio { animation: tk-fio 1.1s ease-out .75s both; }
+.fp.acende .tk-m .tk-fio-b, .fp.acende .tk-m .tk-halo { animation: tk-pisca 1.2s linear .9s both; }
+.fp.acende .tk-m .tk-seam { animation: tk-seam 1.1s ease-out .8s both; }
+.fp.acende .tk-m .tk-olho { animation: tk-pisca 1.1s linear 1.05s both; }
+.fp.acende .tk-m .km { animation: tk-tinta .55s cubic-bezier(.3, .7, .3, 1) calc(1s + var(--i) * 75ms) both; }
+.fp.acende .tk-m .tk-onda { animation: tk-anda 1.3s cubic-bezier(.15, .7, .3, 1) 1s both; }
+
+/* ---------- RESURRECCIÓN e SEGUNDA ETAPA: estados ---------- */
+.tk-r .tk-forma .tk-rim { fill: var(--tk-rim); stroke: var(--tk-rim); stroke-width: 8; stroke-linejoin: round; }
+.tk-r .tk-forma .tk-fill { fill: var(--tk-corpo); }
+.tk-r .tk-anel { stroke: var(--tk-corpo); stroke-width: 15; }
+.tk-r .tk-fagulhas, .tk-r .tk-ambar { opacity: 1; }
+.tk-r .tk-apend { transform-origin: 50% 38%; }
+.fp[data-ligada="0"] .tk-r .tk-apend { scale: .58; opacity: .5; }
+.fp[data-ligada="0"] .tk-r .tk-resp { scale: .5; opacity: .3; }
+.fp[data-ligada="0"] .tk-r .tk-furo { scale: .82; }
+.fp[data-ligada="0"] .tk-r .tk-ambar, .fp[data-ligada="0"] .tk-r .tk-fagulhas { opacity: 0; }
+.fp[data-ligada="1"] .tk-r .tk-ambar { will-change: opacity; animation: tk-ambar 4.2s ease-in-out infinite; }
+@keyframes tk-ambar { 0%, 100% { opacity: .78; } 50% { opacity: 1; } }
+/* ativação da Resurrección (~2,1 s): o buraco abre, as pinceladas se soltam, os respingos explodem, o anel âmbar acende e uma onda sai */
+@keyframes tk-f-in { 0% { scale: .82; } 40% { scale: 1.2; } 100% { scale: 1; } }
+@keyframes tk-a-in { 0% { scale: .58; opacity: .5; } 62% { scale: 1.07; opacity: 1; } 100% { scale: 1; opacity: 1; } }
+@keyframes tk-r-in { 0% { scale: .5; opacity: .3; } 60% { scale: 1.1; opacity: 1; } 100% { scale: 1; opacity: 1; } }
+@keyframes tk-am-in { 0% { opacity: 0; } 35% { opacity: 1; } 55% { opacity: .35; } 100% { opacity: .9; } }
+.fp.acende .tk-r .tk-furo { animation: tk-f-in .8s cubic-bezier(.2, .9, .3, 1) .05s both; will-change: transform; }
+.fp.acende .tk-r .tk-apend { animation: tk-a-in 1.3s cubic-bezier(.2, .9, .25, 1) .3s both; will-change: transform, opacity; }
+.fp.acende .tk-r .tk-resp { animation: tk-r-in 1.5s cubic-bezier(.15, .8, .25, 1) .55s both; will-change: transform, opacity; }
+.fp.acende .tk-r .tk-ambar, .fp.acende .tk-r .tk-fagulhas { animation: tk-am-in 1.2s linear .2s both; }
+.fp.acende .tk-r .tk-onda { animation: tk-anda 1.4s cubic-bezier(.15, .7, .3, 1) .15s both; }
+.fp.apaga .tk-m .tk-vazio, .fp.apaga .tk-m .tk-resp, .fp.apaga .tk-r .tk-apend, .fp.apaga .tk-r .tk-resp, .fp.apaga .tk-r .tk-furo { transition: scale .5s ease-in, opacity .5s; }
+
+/* ---------- cabeçalho: cores por forma ---------- */
+.fpw[data-arte="tk-m"].fp-hol .fp-eb .ic, .fpw[data-arte="tk-m"].fp-hol .fp-custos dt .ic, .fpw[data-arte="tk-m"].fp-hol .fp-sec > h3 .h-ic { color: #ff5a74; filter: drop-shadow(0 0 5px #ff3b5c88); }
+.fpw[data-arte="tk-m"].fp-hol .fp-tit .pf-completo { --c-ac: #ff5a74; }
+.fpw.fp-hol:not(.amber)[data-arte="tk-m"] .fp-diff > span b { color: #ff5a74; }
+
+@media (max-width: 820px) {
+  .fpw[data-arte] .fp-cab > .fp-arte-d { display: block; position: relative !important; inset: auto; height: 190px; margin: 0 -18px; }
+  .fpw[data-arte] .fp-cab > .fp-arte-m { display: none; }
+  .fpw[data-arte="tk-m"] { --tk-cx: 50%; --tk-cy: 50%; --tk-h: 126%; }
+  .fpw[data-arte="tk-r"] { --tk-cx: 50%; --tk-cy: 66%; --tk-h: 232%; }
+  .fp-arte .tk > .tk-placa { display: none; }
+  .fp-arte .tk > .tk-placa-m { display: block; }
+  .fpw[data-arte] .fp-arte::before { display: none; }
+  :root[data-theme="dark"] .fpw[data-arte="tk-m"] .fp-arte::before, :root[data-skin="quincy"] .fpw[data-arte="tk-m"] .fp-arte::before { display: block; background: linear-gradient(180deg, transparent 52%, rgba(12, 7, 16, .94) 100%); }
+  :root[data-theme="dark"] .fpw[data-arte="tk-r"] .fp-arte::before, :root[data-skin="quincy"] .fpw[data-arte="tk-r"] .fp-arte::before { display: block; background: linear-gradient(180deg, transparent 52%, rgba(11, 15, 20, .95) 100%); }
+}
+
+
+/* ============================================================
+   v9 (2a rodada): BASE EM FOTO. As imagens do dono viram máscara de luminância e são pintadas com as cores do projeto.
+   3 recolorizações por forma (?cm=a|b|c para a Máscara, ?cr=a|b|c para a Resurrección):
+   Máscara  a = osso e roxo-preto (duotone) · b = brasa (borda granulada em vermelho #e5173f) · c = vinho (osso escuro, borda #b0102f)
+   Resurr.  a = osso frio e cinza azulado · b = âmbar frio (lavagem âmbar #ff9a1f, corpo cinza azulado #2b3743) · c = brasa âmbar (corpo até #6a3208)
+   ============================================================ */
+.tk-m.tk-foto { --tk-cx: 76%; --tk-cy: 50%; --tk-h: 104%; --tk-g0: #15101b; --tk-g1: #15101b; --tk-g2: #15101b; }
+.tk-m.tk-foto[data-cor="b"] { --tk-g1: #3d0b1a; --tk-g2: #e5173f; }
+.tk-m.tk-foto[data-cor="c"] { --tk-g0: #1d1226; --tk-g1: #5a0f27; --tk-g2: #b0102f; }
+:root[data-theme="light"] .tk-m.tk-foto[data-cor="c"] { --tk-papel: #d3c8ae; --tk-papel2: #e2d9c4; }
+:root[data-theme="dark"] .tk-m.tk-foto, :root[data-skin="quincy"] .tk-m.tk-foto { --tk-g0: #07040a; --tk-g1: #cfc4ab; --tk-g2: #ece4d0; }
+:root[data-theme="dark"] .tk-m.tk-foto[data-cor="b"], :root[data-skin="quincy"] .tk-m.tk-foto[data-cor="b"] { --tk-g1: #b0102f; --tk-g2: #e5173f; }
+:root[data-theme="dark"] .tk-m.tk-foto[data-cor="c"], :root[data-skin="quincy"] .tk-m.tk-foto[data-cor="c"] { --tk-g1: #b9ac8c; --tk-g2: #8a0c22; }
+.tk-m .tk-lis-v { opacity: 0; }
+.fp[data-ligada="1"] .tk-m .tk-lis-v { opacity: .32; }
+.fp.acende .tk-m .tk-lis-v { animation: tk-lis 1s linear 1s both; }
+@keyframes tk-lis { from { opacity: 0; } to { opacity: .32; } }
+.tk-r.tk-foto { --tk-cx: 79%; --tk-cy: 56%; --tk-h: 270%; --tk-c0: #0b0f14; --tk-c1: #0b0f14; }
+.tk-r.tk-foto[data-cor="b"] { --tk-c1: #2b3743; --tk-papel2: #f1e2c4; }
+.tk-r.tk-foto[data-cor="c"] { --tk-c0: #10161d; --tk-c1: #6a3208; }
+:root[data-theme="dark"] .tk-r.tk-foto, :root[data-skin="quincy"] .tk-r.tk-foto { --tk-c0: #18212b; --tk-c1: #18212b; --tk-rim: #b4c1ca; }
+:root[data-theme="dark"] .tk-r.tk-foto[data-cor="b"], :root[data-skin="quincy"] .tk-r.tk-foto[data-cor="b"] { --tk-c1: #2b3743; --tk-rim: #d6c19a; }
+:root[data-theme="dark"] .tk-r.tk-foto[data-cor="c"], :root[data-skin="quincy"] .tk-r.tk-foto[data-cor="c"] { --tk-c0: #18212b; --tk-c1: #3a1c0c; --tk-rim: #ffb25a; }
+.fp-arte .tk > .tk-pt { top: var(--tk-cy); left: var(--tk-cx); height: var(--tk-h); width: auto; aspect-ratio: 1 / 2; translate: -55.6% -49.6%; transform-origin: 55.6% 49.6%; }
+:root[data-theme="light"] .tk-rim-img { display: none; }
+.fp[data-ligada="0"] .tk-r .tk-foto-l { opacity: .28; scale: .94; }
+@keyframes tk-tinta-in { 0% { opacity: .28; scale: .94; } 55% { opacity: 1; scale: 1.05; } 100% { opacity: 1; scale: 1; } }
+.fp.acende .tk-r .tk-foto-l { animation: tk-tinta-in 1.5s cubic-bezier(.2, .8, .25, 1) .2s both; will-change: transform, opacity; }
+.fp.apaga .tk-r .tk-foto-l { transition: scale .5s ease-in, opacity .5s; }
+.tk-r.tk-foto .tk-resp { opacity: 1; }
+.tk-r.tk-foto > .tk-sq { height: 110%; }
+.fp[data-ligada="0"] .tk-r .tk-aura { opacity: 0; }
+.tk-r.tk-foto[data-cor="b"] .tk-aura { filter: saturate(1.6) brightness(1.1); }
+@media (max-width: 820px) {
+  .tk-m.tk-foto { --tk-cx: 50%; --tk-cy: 50%; --tk-h: 112%; }
+  .tk-r.tk-foto { --tk-cx: 50%; --tk-cy: 56%; --tk-h: 380%; }
+  .tk-r.tk-foto > .tk-sq { height: 110%; }
+  .fp-arte .tk > .tk-pt { height: var(--tk-h); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tk, .tk * { animation: none !important; transition: none !important; will-change: auto !important; }
+}

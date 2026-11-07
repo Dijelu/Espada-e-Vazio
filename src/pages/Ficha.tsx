@@ -16,8 +16,9 @@ import { CartasHabilidades, CartasSituacoes, CondicoesAtivas, EfeitosAtivos } fr
 import { AcoesRapidas } from "../components/AcoesRapidas";
 import { EscolhaPoderes, pendencias, subclassePendente, totalPendencias } from "../components/EscolhaPoderes";
 import { EscolhaSubclasse } from "../components/EscolhaSubclasse";
-import { SpriteArte } from "../components/CartaPoder";
-import { CartasFormas, ConstrutorForma, PainelFormaAtiva } from "../components/ConstrutorForma";
+import { CartaPoder, SpriteArte } from "../components/CartaPoder";
+import { ConstrutorForma } from "../components/ConstrutorForma";
+import { FormasPoderes, PainelFormaAtiva } from "../components/PainelForma";
 import { TIPO_FORMA_NOME, formaDaLiberacao, formaPendente, nivelLiberacao, segundaLiberada } from "../regras/liberacoes";
 import { AvisosFicha, Campo, irParaAncora, LinhaAtributos, Passo, SeletorVariacoes, novoId } from "../components/FichaPecas";
 import { AbaInvocacoes } from "../components/Invocacoes";
@@ -407,7 +408,7 @@ export default function Ficha() {
           <CartasHabilidades f={f} c={c} alterar={alterar} />
           <CartasSituacoes f={f} alterar={alterar} />
           <PainelKidos f={f} c={c} r={rol} />
-          <CartasFormas f={f} c={c} r={rol} alterar={alterar} onEditar={setConstruir} />
+          <FormasPoderes f={f} c={c} r={rol} alterar={alterar} onEditar={setConstruir} onIrEvoluir={() => { setSecao("Evoluir"); window.scrollTo({ top: 0 }); }} />
         </section>
         <section className="aba">
           <div className="caixa" id="ancora-essencias">
@@ -846,11 +847,9 @@ function PoderesEscolhidos({ f }: { f: TFicha }) {
         {f.tecnicasReishi.map((t) => {
           const d = TECNICAS_REISHI.find((x) => x.nome === t);
           return (
-            <article className="carta-hab" data-origem="quincy" data-rotulo="Quincy" key={t}>
-              <header><b>{t}</b><small>Técnica de Reishi</small></header>
-              {d && (d.acao || d.custo) && <p className="acao-hab">{[d.acao, d.custo ? `${d.custo} PR` : ""].filter(Boolean).join(" · ")}</p>}
+            <CartaPoder key={t} tipo="quincy" selo="Técnica de Reishi" nome={t} tags={d ? ([d.acao, d.custo ? `${d.custo} PR` : ""].filter(Boolean) as string[]).map((x) => ({ t: x, pr: /PR/.test(x) })) : []}>
               {d?.texto && <TextoCarta texto={d.texto} />}
-            </article>
+            </CartaPoder>
           );
         })}
       </div>
