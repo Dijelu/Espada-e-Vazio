@@ -1862,3 +1862,14 @@ details.ficha-leitura-bloco[open] > summary { margin-bottom: 8px; }
   .construtor > .construtor-rodape { gap: 8px; }
   .construtor > .construtor-rodape .btn { flex: 1 1 0; padding-left: 10px; padding-right: 10px; }
 }
+
+/* Cartões de ação: tabela de PR por ritmo e rótulo do tipo */
+.tabela-pr { border-collapse: collapse; margin: 0 0 16px; font-size: 14px; }
+.tabela-pr caption { text-align: left; font-weight: 700; padding-bottom: 4px; }
+.tabela-pr th, .tabela-pr td { text-align: left; padding: 4px 18px 4px 0; border-bottom: 1px solid var(--line); font-weight: 400; }
+.tabela-pr td { font-weight: 700; }
+.carta-acao .filtros-pecas { margin: 8px 0; }
+.carta-acao .btn-mini { margin-top: auto; }
+.tipo-cartao { margin: 0 0 6px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; font-size: 12px; }
+.carta-peca .carta-topo .selo-pp { flex: none; white-space: nowrap; }
+.carta-peca .carta-nome { min-width: 0; }

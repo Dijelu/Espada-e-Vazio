@@ -1,11 +1,11 @@
 import { analisarDano } from "../regras/teto-dano";
-import { danoDoCartao } from "../regras/cartoes";
+import { aplicarMudanca, danoDoCartao, LIMITE_FINAL, temFinal, vagasUsadas } from "../regras/cartoes";
 import type { CtxForma } from "../regras/efeitos-forma";
 import { useEffect, useMemo, useState } from "react";
 import { calcular, classePorId, type Ficha, type FormaLib, type HabForma, type TipoForma } from "../regras/ficha";
 import { ACOES_DADOS, HAB_UNICAS, habilidadesDaForma, TIPO_FORMA_NOME, VOLL_PASSIVAS, picksVoll, totalPicks } from "../regras/liberacoes";
 import { EfeitosForma, EscolhaAtributos } from "./EfeitosForma";
-import { CartaoHabilidade, GaleriaCartoes } from "./CartoesHabilidade";
+import { CartaoHabilidade, GaleriaAcoes } from "./CartoesHabilidade";
 import { calcularLiberacao } from "../regras/liberacao-forma";
 import { SeletorDano } from "./SeletorFormula";
 import { Info } from "./Dica";
@@ -36,7 +36,7 @@ const PASSOS_BASE: Record<Exclude<TipoForma, "bankai2">, Passo[]> = {
     { id: "espirito", titulo: "Espírito", ajuda: "A alma do Shinigami se reflete na Zanpakutou. Crie a aparência e a personalidade do espírito com base no seu personagem (ou no contrário dele). O espírito pode ter vontades diferentes das suas." },
     { id: "nome", titulo: "Nome e comando", ajuda: "O nome tem relação com a natureza da Zanpakutou. Na Shikai ele é um nome incompleto. O comando é a frase de liberação, como “Reduza tudo a Cinzas” seguido do nome." },
     { id: "aparencia", titulo: "Forma", ajuda: "Ao liberar, a Zanpakutou pode ter outra forma: outra arma ou algo exótico. Pode ser dupla (duas armas). Ela usa o mesmo atributo da Asauchi nos ataques." },
-    { id: "acoes", titulo: "Habilidades e técnicas", ajuda: "Habilidades são poderes passivos da Shikai. Técnicas são ativadas de propósito. Quanto mais forte, maior o custo. Use os modelos e edite." },
+    { id: "acoes", titulo: "Habilidades e técnicas", ajuda: "Habilidades são poderes passivos da Shikai. Técnicas são ativadas de propósito. Use os cartões de ação e escreva como cada um aparece." },
     { id: "custo", titulo: "Custo de liberação", ajuda: "De 3 a 10 PR. Custos altos são para Shikais completas e poderosas; custos baixos, para as mais simples ou incompletas." },
     { id: "efeitos", titulo: "Efeitos e pontos", ajuda: "Aqui a forma ganha números de verdade: atributos, CR, dano, redução, clones e mais. Você tem pontos de poder para gastar, e os pontos fracos com nome devolvem pontos. Tudo entra sozinho na ficha enquanto a forma estiver ativa." },
     { id: "revisao", titulo: "Revisão", ajuda: "Confira tudo. Ao salvar, o nome e a frase vão para a sua ficha e as habilidades viram cartas no Resumo." },
@@ -45,7 +45,7 @@ const PASSOS_BASE: Record<Exclude<TipoForma, "bankai2">, Passo[]> = {
     { id: "conceito", titulo: "Conceito", ajuda: "A Bankai reflete a alma do Shinigami. Pense no que ele esconde dentro de si e escolha como ela vai se comportar em relação à sua Shikai." },
     { id: "nome", titulo: "Nome e comando", ajuda: "O nome verdadeiro do espírito aparece na Bankai. O comando é a frase dita ao liberar, seguida do nome." },
     { id: "aparencia", titulo: "Aparência", ajuda: "Na Bankai o espírito aparece no mundo real. A forma pode ficar igual ou mudar por completo. Pode ser algo grande ou pequeno." },
-    { id: "acoes", titulo: "Habilidades e técnicas", ajuda: "Escolha de 3 a 4 habilidades. Quanto mais forte a habilidade, maior o custo de reiatsu. Use os modelos abaixo e edite o que quiser." },
+    { id: "acoes", titulo: "Habilidades e técnicas", ajuda: "Escolha de 3 a 4 habilidades. O custo de reiatsu depende do ritmo da ação. Use os cartões de ação abaixo e escreva como cada um aparece." },
     { id: "custo", titulo: "Custo e duração", ajuda: "O custo de liberação vai de 40 a 80 PR: mais poder, mais custo. A Bankai dura 1 minuto e precisa de novo custo para continuar." },
     { id: "fraqueza", titulo: "Ponto fraco", ajuda: "Quase toda Bankai tem uma fraqueza: um efeito colateral para quem usa ou uma vulnerabilidade que os inimigos podem explorar." },
     { id: "efeitos", titulo: "Efeitos e pontos", ajuda: "Aqui a forma ganha números de verdade: atributos, CR, dano, redução, clones e mais. Você tem pontos de poder para gastar, e os pontos fracos com nome devolvem pontos. Tudo entra sozinho na ficha enquanto a forma estiver ativa." },
@@ -56,7 +56,7 @@ const PASSOS_BASE: Record<Exclude<TipoForma, "bankai2">, Passo[]> = {
     { id: "nome", titulo: "Nome e comando", ajuda: "O nome costuma ser um animal ou conceito em espanhol. O comando é a frase dita ao liberar." },
     { id: "aparencia", titulo: "Aparência", ajuda: "Descreva o corpo, a máscara e a arma natural na forma liberada." },
     { id: "traco", titulo: "Traço da forma", ajuda: "Um efeito pequeno e claro, na escala dos modelos do livro. O dano já vem da forma, então nada de bônus grandes." },
-    { id: "acoes", titulo: "Técnicas", ajuda: "Inclua a técnica de assinatura do seu Caminho (12 PR) e mais uma ou duas técnicas: uma básica e uma final de 30 PR." },
+    { id: "acoes", titulo: "Técnicas", ajuda: "Inclua a técnica de assinatura do seu Caminho (12 PR) e mais uma ou duas técnicas: uma básica e a técnica final." },
     { id: "fraqueza", titulo: "Ponto fraco", ajuda: "Toda Resurrección tem um preço, como menos CR contra um tipo de ataque, menos deslocamento ou um custo extra." },
     { id: "efeitos", titulo: "Efeitos e pontos", ajuda: "Aqui a forma ganha números de verdade: atributos, CR, dano, redução, clones e mais. Você tem pontos de poder para gastar, e os pontos fracos com nome devolvem pontos. Tudo entra sozinho na ficha enquanto a forma estiver ativa." },
     { id: "revisao", titulo: "Revisão", ajuda: "Confira tudo. O Mestre aprova o traço, o ponto fraco e as técnicas." },
@@ -66,7 +66,7 @@ const PASSOS_BASE: Record<Exclude<TipoForma, "bankai2">, Passo[]> = {
     { id: "nome", titulo: "Nome e comando", ajuda: "O nome costuma ser a forma verdadeira do Hollow, mais sombria que a da Resurrección. O comando é a frase dita ao liberar, que costuma ser curta e pesada." },
     { id: "aparencia", titulo: "Transformação", ajuda: "Descreva o que muda em relação à Resurrección: o corpo, a máscara, as asas, as armas e o ambiente. A Segunda Etapa precisa parecer outra criatura." },
     { id: "traco", titulo: "Novo traço", ajuda: "Um efeito novo e claro, no mesmo nível dos traços do livro. Ele substitui o traço da Resurrección enquanto a Segunda Etapa estiver ativa." },
-    { id: "acoes", titulo: "Técnicas", ajuda: "Traga as técnicas da Resurrección, mais fortes, e crie uma técnica final de 40 PR. Pense em uma técnica de assinatura de longo alcance e em uma de defesa ou controle." },
+    { id: "acoes", titulo: "Técnicas", ajuda: "Traga as técnicas da Resurrección, mais fortes, e escolha a técnica final. Pense em uma técnica de assinatura de longo alcance e em uma de defesa ou controle." },
     { id: "fraqueza", titulo: "Ponto fraco", ajuda: "Toda Segunda Etapa tem um preço. O livro já cobra 2 PR por turno e o Esgotado até o descanso longo. Aqui vai o ponto fraco extra da forma." },
     { id: "efeitos", titulo: "Efeitos e pontos", ajuda: "Aqui a forma ganha números de verdade: atributos, CR, dano, redução, clones e mais. Você tem pontos de poder para gastar, e os pontos fracos com nome devolvem pontos. Tudo entra sozinho na ficha enquanto a forma estiver ativa." },
     { id: "revisao", titulo: "Revisão", ajuda: "Confira tudo. O Mestre aprova o traço, o ponto fraco e as técnicas. Os bônus numéricos vêm da sua classe." },
@@ -76,7 +76,7 @@ const PASSOS_BASE: Record<Exclude<TipoForma, "bankai2">, Passo[]> = {
     { id: "aparencia", titulo: "Aparência", ajuda: "A Vollständig envolve o Quincy em reishi, em forma de asas e auréola. A cor costuma seguir a do reishi do Quincy." },
     { id: "canal", titulo: "Canalizador e Schrift", ajuda: "Todo Quincy precisa de um objeto para ativar a Vollständig. Se perder, recria no próximo descanso longo. A Schrift é opcional e precisa do aval do Mestre." },
     { id: "unicas", titulo: "Habilidades únicas", ajuda: "Escolha as habilidades que diferenciam a sua Vollständig. Depois de definidas, não mudam. Você pode repetir uma habilidade para acumular, menos Força e Precisão Espiritual." },
-    { id: "acoes", titulo: "Ações", ajuda: "Monte de duas a três ações no padrão da Bankai: uma básica, uma de apoio e uma final de 30 PR." },
+    { id: "acoes", titulo: "Ações", ajuda: "Monte de duas a três ações no padrão da Bankai: uma básica, uma de apoio e a técnica final." },
     { id: "efeitos", titulo: "Efeitos e pontos", ajuda: "Aqui a forma ganha números de verdade: atributos, CR, dano, redução, clones e mais. Você tem pontos de poder para gastar, e os pontos fracos com nome devolvem pontos. Tudo entra sozinho na ficha enquanto a forma estiver ativa." },
     { id: "revisao", titulo: "Revisão", ajuda: "Confira tudo. Ativar custa 60 PR e usa uma ação." },
   ],
@@ -216,52 +216,6 @@ const ASSINATURA: Record<string, [string, string]> = {
   Reflejo: ["espejo-negro", "Espejo Roto"],
 };
 
-/** Modelos de habilidade para quem nunca montou uma forma. Os valores crescem com o nível. */
-function modelos(tipo: TipoForma, atr: string, ctx: CtxForma): HabForma[] {
-  const forte = tipo === "bankai" || tipo === "bankai2" || tipo === "segunda";
-  const d = forte ? "d12" : tipo === "shikai" ? "d8" : "d10";
-  const peq = tipo === "shikai";
-  /** Deixa o dano do cartão dentro do teto do nível: tira dados e baixa o dado até caber. */
-  const caber = (dano: string, acao: string): string => {
-    const m = dano.match(/^(.+?)d(\d+)(.*)$/);
-    if (!m || !(() => { const a = analisarDano(dano, acao, ctx); return a && (a.erros.length || a.avisos.length); })()) return dano;
-    const contagens = ["[NIV/2+4]", "[NIV/2+3]", "[NIV/2+2]", "[NIV/2+1]", "[NIV/2]", ...Array.from({ length: Math.floor(ctx.n / 2) + 4 }, (_, k) => String(Math.floor(ctx.n / 2) + 4 - k))];
-    for (const f of [Number(m[2]), 10, 8, 6].filter((x, i, a) => x <= Number(m[2]) && a.indexOf(x) === i)) {
-      for (const c of contagens) {
-        const e = `${c}d${f}${m[3]}`;
-        { const a = analisarDano(e, acao, ctx); if (!a?.erros.length && !a?.avisos.length) return e; }
-      }
-    }
-    return dano;
-  };
-  const mk = (nome: string, acao: string, pr: number, dano: string, texto: string): HabForma => {
-    const dn = dano ? caber(dano, acao) : "";
-    return { id: novoId(), nome, acao, custo: pr ? `${pr} PR` : "", pr: pr || undefined, dano: dn || undefined, texto };
-  };
-  return [
-    mk("Ataque básico", "Ação", forte ? 15 : peq ? 4 : 10, peq ? `[NIV/2+1]${d}+[${atr}]` : `[NIV/2+${forte ? 4 : 3}]${d}+[${atr}]`, "Um ataque do tema da sua forma. Descreva como ele se manifesta."),
-    mk("Golpe em área", "Ação", peq ? 8 : 20, peq ? `[NIV/2+2]${d}+[${atr}]` : `[NIV/2+4]${d}+[${atr}]`, "Atinge criaturas numa área de 6 metros de raio. Salvaguarda de Destreza (CD 8 + proficiência + atributo): dano na falha, metade no sucesso."),
-    mk("Técnica final", "Ação", peq ? 10 : 30, forte ? `[NIV+4]${d}+[${atr}]` : peq ? `[NIV/2+4]${d}+[${atr}]` : `[NIV/2+5]${d}+[${atr}]`, "O golpe mais forte da sua forma. Só vale a pena em momentos decisivos."),
-    mk("Reforço", "Ação bônus", peq ? 3 : 8, "2d10", "O seu próximo ataque no turno causa o dano indicado a mais."),
-    mk("Defesa", "Reação", peq ? 4 : 10, "2d10+[PROF]", "Reduz o dano sofrido por você ou por um aliado a 3 metros na quantidade indicada."),
-    mk("Proteção", "Ação", peq ? 6 : 15, "[NIV]", "Você e os aliados a até 3 metros ganham PV temporários na quantidade indicada."),
-    mk("Controle", "Ação", peq ? 6 : 15, peq ? `[NIV/2]${d}+[${atr}]` : `[NIV/2+2]${d}+[${atr}]`, "Ataque que também prende, derruba ou atordoa o alvo. Salvaguarda de Força ou Constituição (CD 8 + proficiência + atributo): se falhar, fica Preso até o fim do próximo turno dele."),
-    mk("Passo veloz", "Ação bônus", peq ? 2 : 6, "", "Você se desloca até o dobro do seu deslocamento sem provocar ataques de oportunidade e depois pode atacar."),
-    mk("Contra-ataque", "Reação", peq ? 4 : 10, `[NIV/2]${d}+[${atr}]`, "Quando uma criatura o acerta em corpo a corpo, você revida e causa o dano indicado nela."),
-    mk("Marca", "Ação bônus", peq ? 3 : 8, "", "Marca uma criatura a até 18 metros. O primeiro ataque de cada aliado contra ela no turno causa 1d6 de dano a mais."),
-    mk("Regeneração", "Ação", peq ? 5 : 12, "[NIV]", "Você ou um aliado a até 3 metros recupera os PV indicados."),
-    mk("Rajada", "Ação", peq ? 7 : 18, `[NIV/2+2]${d}+[${atr}]`, "Dois golpes seguidos contra o mesmo alvo ou contra dois alvos a 3 metros um do outro, o dano indicado é dividido entre os alvos."),
-    mk("Golpe atravessante", "Ação", peq ? 6 : 14, peq ? `[NIV/2+1]${d}+[${atr}]` : `[NIV/2+3]${d}+[${atr}]`, "Um golpe contra um único alvo que ignora parte da armadura: o alvo sofre desvantagem na salvaguarda, se houver."),
-    mk("Onda de choque", "Ação bônus", peq ? 3 : 7, peq ? `2d6+[${atr}]` : `3d8+[${atr}]`, "Empurra o alvo 6 metros. Se ele bater em algo sólido, sofre o dano indicado."),
-    mk("Investida", "Ação", peq ? 5 : 12, peq ? `[NIV/2]${d}+[${atr}]` : `[NIV/2+2]${d}+[${atr}]`, "Você se move em linha reta até 12 metros e ataca no fim do deslocamento. Quem estiver no caminho faz salvaguarda de Destreza ou cai no chão."),
-    mk("Barreira", "Reação", peq ? 4 : 9, "", "Cria uma barreira que reduz a zero o dano de um único ataque contra você ou contra um aliado a 3 metros. A barreira some depois."),
-    mk("Provocação", "Ação bônus", peq ? 2 : 5, "", "Uma criatura a até 18 metros faz salvaguarda de Mente (CD 8 + proficiência + atributo): se falhar, só pode atacar você até o fim do próximo turno dela."),
-    mk("Cura em área", "Ação", peq ? 6 : 14, "[NIV]", "Você e os aliados a até 6 metros recuperam os PV indicados."),
-    mk("Corte distante", "Ação", peq ? 5 : 12, peq ? `[NIV/2]${d}+[${atr}]` : `[NIV/2+2]${d}+[${atr}]`, "Um corte de reiatsu atinge um alvo a até 36 metros. Salvaguarda de Destreza: metade do dano no sucesso."),
-    mk("Explosão final", "Ação", peq ? 12 : 25, forte ? `[NIV/2+4]${d}+[${atr}]` : `[NIV/2+3]${d}+[${atr}]`, "Libera o reiatsu em volta de você num raio de 9 metros. Você fica sem reação até o início do seu próximo turno."),
-  ];
-}
-
 export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGravar }: Props) {
   const classe = classePorId(f.classe);
   const passos = PASSOS[tipo];
@@ -279,7 +233,6 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
   const passo = passos[i];
   const limite = picksVoll(f.classe, f.nivel);
   const usados = totalPicks(r.picks);
-  const lista = useMemo(() => modelos(tipo, atr, ctxAtual), [tipo, atr, ctxAtual]);
   const assinatura = ASSINATURA[f.subclasse];
 
   const estiloBase = tipo === "bankai2" ? (f.formas.bankai?.estilo ?? "") : "";
@@ -290,26 +243,19 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
   }, [estiloHerdado, r.estilo]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const maxHab = LIMITE_HAB[tipo];
-  const cheio = r.habilidades.length >= maxHab;
+  const cheio = vagasUsadas(r.habilidades) >= maxHab;
   const jaTem = (nome: string) => !!nome && r.habilidades.some((x) => x.nome === nome);
   const addHab = (h: HabForma) => {
-    if (cheio || (h.nome && jaTem(h.nome))) return;
+    // a técnica final fica numa vaga extra (só 1 por forma); as outras ocupam as vagas normais
+    if (h.cartao?.final ? temFinal(r.habilidades) : cheio) return;
+    if (h.nome && jaTem(h.nome)) return;
     mud({ habilidades: [...r.habilidades, { ...h, id: novoId() }] });
   };
   const tracos = r.traco ? r.traco.split("\n").filter((x) => x.trim()) : [];
   const gravaTracos = (l: string[]) => mud({ traco: l.join("\n") });
   const habil = (id: string, p: Partial<HabForma>) =>
     mud({
-      habilidades: r.habilidades.map((h) => {
-        if (h.id !== id) return h;
-        const n = { ...h, ...p };
-        // com dano em dados, o custo em PR é calculado pelo teto de dano
-        if ("dano" in p || "acao" in p || "especial" in p) {
-          const a = analisarDano(n.dano, n.acao, ctxAtual, (r.ppExtra ?? 0) > 0, n.especial ?? false);
-          if (a) { n.pr = a.custoPr; n.custo = `${a.custoPr} PR`; }
-        }
-        return n;
-      }),
+      habilidades: r.habilidades.map((h) => (h.id === id ? aplicarMudanca(h, p, ctxAtual, (r.ppExtra ?? 0) > 0) : h)),
     });
   const anexa = (campo: "aparencia" | "traco" | "pontoFraco", t: string) => mud({ [campo]: r[campo] ? `${r[campo]} ${t}` : t } as Partial<FormaLib>);
 
@@ -333,7 +279,8 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
   const erros: string[] = [];
   if (!r.nome.trim()) erros.push("Falta o nome.");
   if (tipo === "vollstandig" && usados < limite) erros.push(`Faltam ${limite - usados} habilidade(s) única(s).`);
-  if (r.habilidades.length > maxHab) erros.push(`Há habilidades demais: o limite é ${maxHab}.`);
+  if (vagasUsadas(r.habilidades) > maxHab) erros.push(`Há habilidades demais: o limite é ${maxHab}.`);
+  if (r.habilidades.filter((h) => h.cartao?.final).length > LIMITE_FINAL) erros.push("Só pode haver uma técnica final por forma.");
   if (r.habilidades.length === 0) erros.push("Adicione pelo menos uma habilidade ou técnica.");
   const errosDano = r.habilidades.filter((h) => !h.fixa).flatMap((h) => (analisarDano(danoDoCartao(h, ctxAtual, (r.ppExtra ?? 0) > 0), h.acao, ctxAtual, (r.ppExtra ?? 0) > 0, h.especial ?? false)?.erros ?? []).map((e) => `${h.nome || "Habilidade"}: ${e}`));
   erros.push(...errosDano);
@@ -535,16 +482,16 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
             {tipo === "segunda" && f.formas.resurreccion && (
               <button type="button" className="btn btn-paper" onClick={() => {
                 const antigas = habilidadesDaForma(f.formas.resurreccion!).filter((h) => !r.habilidades.some((x) => x.nome === `${h.nome} (Segunda Etapa)`));
-                mud({ habilidades: [...r.habilidades, ...antigas.slice(0, Math.max(0, maxHab - r.habilidades.length)).map((h) => ({ ...h, id: novoId(), nome: `${h.nome} (Segunda Etapa)`, pr: h.pr ? Math.round(h.pr * 1.25) : h.pr, custo: h.pr ? `${Math.round(h.pr * 1.25)} PR` : h.custo }))] });
+                mud({ habilidades: [...r.habilidades, ...antigas.slice(0, Math.max(0, maxHab - vagasUsadas(r.habilidades))).map((h) => ({ ...h, id: novoId(), nome: `${h.nome} (Segunda Etapa)`, pr: h.pr ? Math.round(h.pr * 1.25) : h.pr, custo: h.pr ? `${Math.round(h.pr * 1.25)} PR` : h.custo }))] });
               }}>Trazer as técnicas da minha Resurrección (custo +25%)</button>
             )}
-            <label className="campo">Atributo usado no dano dos modelos
+            <label className="campo">Atributo do bônus no dano
               <select value={atr} onChange={(e) => setAtr(e.target.value)}>
                 {ATRIBUTOS_DANO.map((a) => <option key={a.v} value={a.v}>{a.n}</option>)}
               </select>
             </label>
-            <p className="ajuda">Escolha um cartão neutro e monte a sua habilidade a partir dele. Depois escreva, na descrição, a característica e o tema da sua forma neste ataque. Limite: {r.habilidades.length}/{maxHab} {cheio ? "(remova um para trocar)" : ""}</p>
-            <GaleriaCartoes modelos={lista} tipo={tipo} ctx={ctxAtual} cheio={cheio} jaTem={jaTem} onUsar={(h) => addHab({ ...h, modelo: h.nome, regra: h.texto, desc: "", ...(h.dano && !h.fixa ? { auto: atr } : {}) })} />
+            <p className="ajuda">Escolha um dos quatro cartões de ação, o ritmo (ação, ação bônus ou reação) e monte. O dano e o custo em PR já vêm prontos. Depois é só escrever, na descrição, como a característica e o tema da sua forma aparecem neste ataque. Vagas: {vagasUsadas(r.habilidades)}/{maxHab}{cheio ? " (remova uma para trocar)" : ""}. A técnica final tem uma vaga extra{temFinal(r.habilidades) ? " (já usada)" : ""}.</p>
+            <GaleriaAcoes tipo={tipo} ctx={ctxAtual} ppExtra={(r.ppExtra ?? 0) > 0} habs={r.habilidades} limite={maxHab} atr={atr} onUsar={addHab} />
             {r.habilidades.length > 0 && <h4 className="sub-passivas">Seus cartões</h4>}
             <div className="cartas-hab cartoes-montados">
               {r.habilidades.map((h) => (

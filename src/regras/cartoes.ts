@@ -3,7 +3,7 @@
 import { calcular, type Atr, type Ficha, type FormaLib, type HabForma } from "./ficha";
 import type { CtxForma } from "./efeitos-forma";
 import { analisarDano, danoNoTeto, tipoDeAcao } from "./teto-dano";
-import { habilidadesDaForma } from "./liberacoes";
+import { habilidadesDaForma, resolverDano } from "./liberacoes";
 
 /* ---------------- Tipos ---------------- */
 
@@ -28,7 +28,14 @@ export interface CartaoAcao {
   migrado?: boolean;
   /** id da característica que criou esta ação (para as que geram botão) */
   geradoPor?: string;
+  /** cartão de cura ou proteção: o que ele faz */
+  cura?: CuraTipo;
+  /** cartão de cura ou proteção: atinge também os aliados em volta */
+  emArea?: boolean;
 }
+
+/** O que o cartão de cura ou proteção faz. */
+export type CuraTipo = "pv" | "temp" | "reduz" | "barreira";
 
 /** O que um cartão de característica sabe (o custo continua sendo os PP da forma, como nas peças de hoje). */
 export interface DadosCarac {
@@ -145,25 +152,109 @@ export function ctxDaForma(f: Ficha, tipo: string): CtxForma {
   return { n: f.nivel, prof: k.prof, atr: k.atr, tipo };
 }
 
+/** Cartão feito pelos cartões de ação (não o antigo só marcado): dano por tipo de ação e custo fixo por ritmo. */
+export const ehCartaoNovo = (h: Pick<HabForma, "cartao">) => !!h.cartao && !h.cartao.migrado;
+
 /** Dano do cartão: se for automático, vem sempre pronto para a ação; senão, é o que está guardado. */
 export function danoDoCartao(h: HabForma, ctx: CtxForma, ppExtra = false): string | undefined {
   if (!h.auto || h.fixa) return h.dano;
-  return danoNoTeto(h.acao, ctx, h.auto, ppExtra, h.especial ?? false) ?? h.dano;
+  const fator = ehCartaoNovo(h) ? infoSub(h.cartao!.sub).fator : 1;
+  return danoNoTeto(h.acao, ctx, h.auto, ppExtra, h.especial ?? false, fator) ?? h.dano;
 }
 
-/** O cartão como deve ser lido: com o dano calculado agora e o custo em PR que sai desse dano. */
+/** O cartão como deve ser lido: com o dano calculado agora e o custo em PR (fixo pelo ritmo nos cartões novos; pelo dano nos antigos). */
 export function cartaoLido(h: HabForma, ctx: CtxForma, ppExtra = false): HabForma {
-  if (!h.auto || h.fixa) return h;
+  if (h.fixa) return h;
   const dano = danoDoCartao(h, ctx, ppExtra);
-  if (!dano) return h;
+  if (ehCartaoNovo(h)) {
+    const pr = infoRitmo(ritmoDeAcao(h.acao)).pr;
+    return { ...h, ...(dano ? { dano } : {}), pr, custo: `${pr} PR` };
+  }
+  if (!h.auto || !dano) return h;
   const a = analisarDano(dano, h.acao, ctx, ppExtra, h.especial ?? false);
   return { ...h, dano, ...(a ? { pr: a.custoPr, custo: `${a.custoPr} PR` } : {}) };
+}
+
+/** Aplica uma mudança feita na tela a uma habilidade e refaz o custo em PR do jeito certo para o tipo de cartão. */
+export function aplicarMudanca(h: HabForma, p: Partial<HabForma>, ctx: CtxForma, ppExtra = false): HabForma {
+  const n = { ...h, ...p };
+  if (ehCartaoNovo(n)) {
+    const ritmo = ritmoDeAcao(n.acao);
+    const pr = infoRitmo(ritmo).pr;
+    return { ...n, cartao: { ...n.cartao!, ritmo }, pr, custo: `${pr} PR` };
+  }
+  // com dano em dados, o custo em PR sai do dano
+  if ("dano" in p || "acao" in p || "especial" in p) {
+    const a = analisarDano(n.dano, n.acao, ctx, ppExtra, n.especial ?? false);
+    if (a) { n.pr = a.custoPr; n.custo = `${a.custoPr} PR`; }
+  }
+  return n;
+}
+
+/** Quantas vagas normais as habilidades ocupam (a técnica final fica numa vaga extra). */
+export const vagasUsadas = (habs: HabForma[]) => habs.filter((h) => !h.cartao?.final).length;
+/** A forma já tem a sua técnica final? */
+export const temFinal = (habs: HabForma[]) => habs.some((h) => h.cartao?.final);
+
+/** Dano já com os números do personagem (10d12+5). */
+export const danoResolvido = (expr: string, ctx: CtxForma) => resolverDano(expr, { nivel: ctx.n } as never, { prof: ctx.prof, atr: ctx.atr } as never);
+
+/* ---------------- Montar a habilidade a partir de um cartão de ação ---------------- */
+
+export interface OpcoesAcao {
+  ritmo: Ritmo;
+  final?: boolean;
+  /** atributo do bônus do dano (ESP, FOR, DES ou MEN) */
+  atr: string;
+  cura?: CuraTipo;
+  emArea?: boolean;
+}
+
+export const CURAS: { id: CuraTipo; nome: string }[] = [
+  { id: "pv", nome: "Cura (recupera PV)" },
+  { id: "temp", nome: "PV temporários" },
+  { id: "reduz", nome: "Reduz o dano sofrido" },
+  { id: "barreira", nome: "Barreira (anula 1 ataque)" },
+];
+
+/** O que o cartão faz no jogo (a "regra do cartão"). */
+export function regraDaAcao(sub: SubAcao, o: Pick<OpcoesAcao, "cura" | "emArea">): string {
+  if (sub === "ataque") return "Um ataque contra um único alvo. Causa o dano indicado.";
+  if (sub === "area") return "Atinge criaturas numa área de 6 metros de raio. Salvaguarda de Destreza (CD 8 + proficiência + atributo): dano na falha, metade no sucesso.";
+  if (sub === "movimento") return "Você se move em linha reta até 12 metros e ataca no fim do deslocamento. Quem estiver no caminho faz salvaguarda de Destreza ou cai no chão.";
+  const raio = o.emArea ? "6 metros" : "3 metros";
+  switch (o.cura ?? "pv") {
+    case "temp": return o.emArea ? "Você e os aliados a até 6 metros ganham PV temporários na quantidade indicada." : "Você ou um aliado a até 3 metros ganha PV temporários na quantidade indicada.";
+    case "reduz": return "Reduz o dano sofrido por você ou por um aliado a 3 metros na quantidade indicada.";
+    case "barreira": return "Cria uma barreira que reduz a zero o dano de um único ataque contra você ou contra um aliado a 3 metros. A barreira some depois.";
+    default: return o.emArea ? `Você e os aliados a até ${raio} recuperam os PV indicados.` : `Você ou um aliado a até ${raio} recupera os PV indicados.`;
+  }
+}
+
+const NOME_PADRAO: Record<SubAcao, string> = { ataque: "Ataque", area: "Golpe em área", cura: "Cura", movimento: "Investida" };
+/** Nome interno do cartão (o que as regras de dano e de cura reconhecem). */
+const MODELO_DA_ACAO = (sub: SubAcao, o: Pick<OpcoesAcao, "cura">) => (sub === "cura" ? (o.cura === "reduz" ? "Defesa" : o.cura === "barreira" ? "Barreira" : o.cura === "temp" ? "Proteção" : "Regeneração") : NOME_PADRAO[sub]);
+
+/** Monta a habilidade nova a partir de um cartão de ação: o dano já vem pronto e o jogador só escreve a descrição. */
+export function novaHabilidade(sub: SubAcao, o: OpcoesAcao, ctx: CtxForma, ppExtra = false): HabForma {
+  const ritmo = o.final ? "acao" : o.ritmo;
+  const r = infoRitmo(ritmo);
+  const regra = regraDaAcao(sub, o);
+  const cartao: CartaoAcao = { sub, ritmo, atr: o.atr, ...(o.final ? { final: true } : {}), ...(sub === "cura" ? { cura: o.cura ?? "pv", ...(o.emArea ? { emArea: true } : {}) } : {}) };
+  const base: HabForma = { id: "", nome: o.final ? "Técnica final" : NOME_PADRAO[sub], texto: regra, custo: `${r.pr} PR`, acao: r.acao, pr: r.pr, modelo: MODELO_DA_ACAO(sub, o), regra, desc: "", cartao };
+  if (infoSub(sub).dano) {
+    const h = { ...base, auto: o.atr };
+    const dano = danoDoCartao(h, ctx, ppExtra);
+    return { ...h, ...(dano ? { dano } : {}) };
+  }
+  const cura = o.cura ?? "pv";
+  return { ...base, ...(cura === "barreira" ? {} : { dano: cura === "reduz" ? "2d10+[PROF]" : "[NIV]" }) };
 }
 
 /** Habilidades da forma como devem ser lidas na ficha, na mesa e no painel (cartões automáticos com o dano em dia). */
 export function habilidadesLidas(forma: FormaLib, f: Ficha): HabForma[] {
   const lista = habilidadesDaForma(forma);
-  if (!lista.some((h) => h.auto && !h.fixa)) return lista;
+  if (!lista.some((h) => (h.auto || ehCartaoNovo(h)) && !h.fixa)) return lista;
   const ctx = ctxDaForma(f, forma.tipo);
   const aval = (forma.ppExtra ?? 0) > 0;
   return lista.map((h) => cartaoLido(h, ctx, aval));

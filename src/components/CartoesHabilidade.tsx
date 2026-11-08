@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { analisarDano, ATR_AUTO, danoNoTeto } from "../regras/teto-dano";
-import { danoDoCartao } from "../regras/cartoes";
+import { danoDoCartao, danoResolvido, ehCartaoNovo, infoRitmo, infoSub, novaHabilidade, RITMOS, SUBS, temFinal, vagasUsadas, type CuraTipo, type Ritmo, type SubAcao, CURAS } from "../regras/cartoes";
 import type { CtxForma } from "../regras/efeitos-forma";
 import type { FormaLib, HabForma } from "../regras/ficha";
 import { classeDe } from "./EfeitosForma";
@@ -19,42 +19,88 @@ export const CONDICOES_ESPECIAL = ["Esgotado", "Amedrontado", "Atordoado", "Caí
 export const DURACOES_ESPECIAL = ["até o fim do próximo turno", "até o fim da cena", "até um descanso curto", "até um descanso longo"];
 
 interface GaleriaProps {
-  modelos: HabForma[];
   tipo: FormaLib["tipo"];
   ctx: CtxForma;
-  cheio: boolean;
-  jaTem: (nome: string) => boolean;
+  ppExtra: boolean;
+  /** habilidades que a forma já tem */
+  habs: HabForma[];
+  /** limite de vagas normais da forma */
+  limite: number;
+  /** atributo do bônus do dano */
+  atr: string;
   onUsar: (h: HabForma) => void;
 }
 
-/** Cartões neutros: o jogador escolhe um e monta a habilidade a partir dele. */
-export function GaleriaCartoes({ modelos, tipo, ctx, cheio, jaTem, onUsar }: GaleriaProps) {
+const TEXTO_ACAO: Record<SubAcao, { titulo: string; sobre: string }> = {
+  ataque: { titulo: "Ataque em alvo único", sobre: "Um golpe, um tiro, um corte. Atinge um alvo só e causa o dano cheio." },
+  area: { titulo: "Área", sobre: "Atinge todos numa área de 6 metros. Cada alvo sofre um pouco menos que num ataque único." },
+  cura: { titulo: "Cura ou proteção", sobre: "Cura você ou um aliado, dá PV temporários, reduz um dano ou cria uma barreira." },
+  movimento: { titulo: "Movimento e ataque (investida)", sobre: "Você avança em linha reta e ataca no fim. O dano é um pouco menor que o do ataque único." },
+};
+
+/** Os quatro cartões de ação. O dano e o custo já vêm prontos: o jogador escolhe o ritmo e escreve a descrição visual. */
+export function GaleriaAcoes({ tipo, ctx, ppExtra, habs, limite, atr, onUsar }: GaleriaProps) {
   const classe = classeDe(tipo);
+  const cheio = vagasUsadas(habs) >= limite;
   return (
-    <div className="cartas-hab galeria-cartoes">
-      {modelos.map((h) => {
-        const a = analisarDano(h.dano, h.acao, ctx);
-        const usado = jaTem(h.nome);
-        return (
-          <article key={h.nome} className={`carta-hab carta-peca carta-neutra ${usado ? "travada" : ""}`} data-classe={classe}>
-            <div className="carta-topo">
-              <small className="ajuda">{h.acao}</small>
-              <span className="selo-pp">{a ? a.custoPr : (h.pr ?? 0)}<i>PR</i></span>
-            </div>
-            <h3>{h.nome}</h3>
-            <p>{h.texto}</p>
-            {a ? <p className="ajuda">Dano médio ~{Math.round(a.media)}</p> : <p className="ajuda">Sem dano em dados</p>}
-            <button type="button" className="btn-mini" disabled={cheio || usado} onClick={() => onUsar(h)}>{usado ? "Já está nos seus cartões" : cheio ? "Limite atingido" : "Montar a partir deste cartão"}</button>
-          </article>
-        );
-      })}
-      <article className="carta-hab carta-peca carta-neutra carta-branca" data-classe={classe}>
-        <div className="carta-topo"><small className="ajuda">Ação</small><span className="selo-pp">?<i>PR</i></span></div>
-        <h3>Cartão em branco</h3>
-        <p>Comece do zero: escolha a ação, defina o dano se houver e escreva a descrição.</p>
-        <button type="button" className="btn-mini" disabled={cheio} onClick={() => onUsar({ id: "", nome: "", texto: "", custo: "", acao: "Ação" })}>{cheio ? "Limite atingido" : "Montar em branco"}</button>
-      </article>
-    </div>
+    <>
+      <div className="cartas-hab galeria-cartoes">
+        {SUBS.map((s) => <CartaoDeAcao key={s.id} sub={s.id} classe={classe} ctx={ctx} ppExtra={ppExtra} habs={habs} cheio={cheio} atr={atr} onUsar={onUsar} />)}
+      </div>
+      <table className="tabela-pr">
+        <caption>Quanto cada ação custa em PR</caption>
+        <tbody>{RITMOS.map((r) => <tr key={r.id}><th scope="row">{r.nome}</th><td>{r.pr} PR</td></tr>)}</tbody>
+      </table>
+    </>
+  );
+}
+
+function CartaoDeAcao({ sub, classe, ctx, ppExtra, habs, cheio, atr, onUsar }: { sub: SubAcao; classe: string; ctx: CtxForma; ppExtra: boolean; habs: HabForma[]; cheio: boolean; atr: string; onUsar: (h: HabForma) => void }) {
+  const info = infoSub(sub);
+  const [ritmo, setRitmo] = useState<Ritmo>("acao");
+  const [final, setFinal] = useState(false);
+  const [cura, setCura] = useState<CuraTipo>("pv");
+  const [emArea, setEmArea] = useState(false);
+  const podeFinal = info.dano && sub !== "cura";
+  const jaFinal = temFinal(habs);
+  const comFinal = final && podeFinal && !jaFinal;
+  const ritmoReal: Ritmo = comFinal ? "acao" : ritmo;
+  const h = novaHabilidade(sub, { ritmo: ritmoReal, final: comFinal, atr, cura, emArea }, ctx, ppExtra);
+  const bloqueado = comFinal ? false : cheio;
+  const nomeLivre = (base: string) => { let n = base, k = 2; while (habs.some((x) => x.nome === n)) n = `${base} ${k++}`; return n; };
+  const nomeId = `${sub}-ritmo`;
+  return (
+    <article className="carta-hab carta-peca carta-neutra carta-acao" data-classe={classe}>
+      <div className="carta-topo">
+        <small className="ajuda">{infoRitmo(ritmoReal).nome}</small>
+        <span className="selo-pp">{h.pr}<i>PR</i></span>
+      </div>
+      <h3>{TEXTO_ACAO[sub].titulo}</h3>
+      <p>{TEXTO_ACAO[sub].sobre}</p>
+      <div className="filtros-pecas" role="group" aria-label={`Ritmo de ${TEXTO_ACAO[sub].titulo}`} id={nomeId}>
+        {RITMOS.map((r) => <button key={r.id} type="button" disabled={comFinal} className={`chip chip-btn ${ritmoReal === r.id ? "on" : ""}`} aria-pressed={ritmoReal === r.id} onClick={() => setRitmo(r.id)}>{r.nome}</button>)}
+      </div>
+      {sub === "cura" && (
+        <>
+          <label className="campo">O que faz
+            <select value={cura} onChange={(e) => setCura(e.target.value as CuraTipo)}>
+              {CURAS.map((c) => <option key={c.id} value={c.id}>{c.nome}</option>)}
+            </select>
+          </label>
+          {(cura === "pv" || cura === "temp") && <label className="check"><input type="checkbox" checked={emArea} onChange={(e) => setEmArea(e.target.checked)} /> Também os aliados em volta (área)</label>}
+        </>
+      )}
+      {podeFinal && (
+        <div className="check"><label className="check">
+          <input type="checkbox" checked={comFinal} disabled={jaFinal} onChange={(e) => setFinal(e.target.checked)} />
+          Técnica final da forma{jaFinal ? " (já tem)" : ""}
+        </label><Info>A técnica final fica numa vaga extra: não gasta uma das vagas normais da forma. Só pode haver uma por forma e ela é sempre uma ação.</Info></div>
+      )}
+      {h.dano ? <p className="ajuda">Dano: <b>{danoResolvido(h.dano, ctx)}</b></p> : <p className="ajuda">Sem dano em dados</p>}
+      <button type="button" className="btn-mini" disabled={bloqueado} onClick={() => onUsar({ ...h, nome: nomeLivre(h.nome) })}>
+        {bloqueado ? "Sem vagas" : comFinal ? "Montar a técnica final" : "Montar este cartão"}
+      </button>
+    </article>
   );
 }
 
@@ -78,18 +124,23 @@ export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, onChange, o
   const chaveAtr = JSON.stringify(ctx.atr);
   useEffect(() => {
     if (!h.auto || h.fixa) return;
-    const d = danoNoTeto(h.acao, ctx, h.auto, ppExtra, h.especial ?? false);
+    const d = danoDoCartao(h, ctx, ppExtra);
     if (d && d !== h.dano) onChange({ dano: d });
-  }, [h.auto, h.fixa, h.acao, h.dano, h.especial?.condicao, h.especial?.duracao, ctx.n, ctx.prof, ctx.tipo, chaveAtr, ppExtra]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [h.auto, h.fixa, h.acao, h.dano, h.cartao?.sub, h.especial?.condicao, h.especial?.duracao, ctx.n, ctx.prof, ctx.tipo, chaveAtr, ppExtra]); // eslint-disable-line react-hooks/exhaustive-deps
   const novo = h.regra !== undefined || h.desc !== undefined;
   const regra = h.regra ?? "";
   const desc = novo ? (h.desc ?? "") : h.texto;
   const temDano = !!h.dano;
+  /** cartão feito pelos cartões de ação: dano e custo já vêm prontos */
+  const doCartao = ehCartaoNovo(h);
+  const nomeSub = h.cartao ? infoSub(h.cartao.sub).nome : "";
   return (
     <article className={`carta-hab carta-peca carta-montagem ${a?.erros.length ? "carta-estourou" : ""}`} data-classe={classeDe(tipo)}>
       <div className="carta-topo">
         <input className="carta-nome" value={h.nome} onChange={(e) => onChange({ nome: e.target.value })} placeholder="Nome do ataque ou técnica" aria-label="Nome" />
-        {temDano ? (
+        {doCartao ? (
+          <span className="selo-pp" title="O custo vem do ritmo da ação">{h.pr ?? 0}<i>PR</i></span>
+        ) : temDano ? (
           <span className="selo-pp" title="Calculado pelo dano: quanto mais forte o golpe, mais PR">{h.pr ?? 0}<i>PR</i></span>
         ) : (
           <label className="selo-pp selo-edit">
@@ -98,18 +149,24 @@ export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, onChange, o
           </label>
         )}
       </div>
+      {doCartao && <p className="ajuda tipo-cartao">{nomeSub}{h.cartao?.final ? " · técnica final (vaga extra)" : ""}</p>}
       <div className="filtros-pecas" role="group" aria-label="Tipo de ação">
-        {ACOES.map((x) => <button key={x} type="button" className={`chip chip-btn ${h.acao === x ? "on" : ""}`} aria-pressed={h.acao === x} onClick={() => onChange({ acao: x })}>{x}</button>)}
+        {ACOES.map((x) => <button key={x} type="button" disabled={!!h.cartao?.final} className={`chip chip-btn ${h.acao === x ? "on" : ""}`} aria-pressed={h.acao === x} onClick={() => onChange({ acao: x })}>{x}</button>)}
       </div>
-      {h.auto && !h.fixa ? (
+      {doCartao && !h.auto ? (
+        <div className="auto-dano">
+          <span className="rotulo-sel">{h.dano ? "Valor" : "Efeito"}</span>
+          <p className="ajuda">{h.dano ? <>Rola: <b>{resolver(h.dano, ctx)}</b></> : "Sem número: o efeito está na regra do cartão."}</p>
+        </div>
+      ) : h.auto && !h.fixa ? (
         <div className="auto-dano">
           <span className="rotulo-sel">Dano</span>
           <label className="campo">Atributo do bônus
-            <select value={h.auto} onChange={(e) => onChange({ auto: e.target.value })}>
+            <select value={h.auto} onChange={(e) => onChange({ auto: e.target.value, ...(h.cartao ? { cartao: { ...h.cartao, atr: e.target.value } } : {}) })}>
               {ATR_AUTO.map((x) => <option key={x.id} value={x.id}>{x.nome} ({ctx.atr[x.chave] >= 0 ? "+" : ""}{ctx.atr[x.chave]})</option>)}
             </select>
           </label>
-          <p className="ajuda">Rola: <b>{danoLido ? resolver(danoLido, ctx) : "—"}</b> <Info>O dano já vem pronto para a ação. Mudou o nível, o tipo de ação ou a técnica especial? Ele se ajusta sozinho. Você só escreve a descrição do ataque. O custo em PR acompanha o dano.</Info></p>
+          <p className="ajuda">Rola: <b>{danoLido ? resolver(danoLido, ctx) : "—"}</b> <Info>O dano já vem pronto para a ação. Mudou o nível, o tipo de ação ou a técnica especial? Ele se ajusta sozinho. Você só escreve a descrição do ataque. {doCartao ? "O custo em PR vem do ritmo da ação." : "O custo em PR acompanha o dano."}</Info></p>
         </div>
       ) : (
         <>
@@ -124,7 +181,7 @@ export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, onChange, o
           {temDano && !h.fixa && <button type="button" className="link" onClick={() => onChange({ auto: "ESP" })}>Voltar ao dano automático</button>}
         </>
       )}
-      {temDano && !h.fixa && (
+      {temDano && !h.fixa && (!doCartao || !!h.auto) && (
         <div className="especial-cartao">
           <div className="check"><label className="check">
             <input

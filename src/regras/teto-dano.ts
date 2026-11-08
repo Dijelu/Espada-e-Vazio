@@ -130,20 +130,24 @@ export const ATR_AUTO: { id: string; chave: "for" | "des" | "con" | "men" | "esp
 
 /**
  * Dano mais forte que a ação aguenta: dados por nível, o maior dado permitido e o atributo escolhido como bônus.
+ * `fator` baixa o dano para ações que atingem vários alvos ou que também movem (Área 85%, Investida 80%).
  * Devolve a fórmula como a ficha guarda ("[NIV/2+3]d12+[ESP]"), ou null se nem 1 dado cabe.
  */
-export function danoNoTeto(acao: string, ctx: CtxForma, atr: string, comAval = false, especial: Especial | boolean | undefined | null = false): string | null {
+export function danoNoTeto(acao: string, ctx: CtxForma, atr: string, comAval = false, especial: Especial | boolean | undefined | null = false, fator = 1): string | null {
   const a0 = ATR_AUTO.find((x) => x.id === atr) ?? ATR_AUTO[4];
   const forma = FORMA[ctx.tipo ?? ""] ?? FORMA_PADRAO;
   const pct = pctEspecial(especial);
   const faces = pct > 0 || forma.dados > 0 ? 12 : 10;
   const bonus = Math.min(ctx.atr[a0.chave], maiorAtr(ctx) + ctx.prof);
   const metade = Math.floor(ctx.n / 2);
+  // ações que valem menos que um ataque único: a parte do dano que o ataque único teria, não só do teto
+  const cheio = fator < 1 ? danoNoTeto(acao, ctx, atr, comAval, especial, 1) : null;
+  const mediaCheio = cheio ? (analisarDano(cheio, acao, ctx, comAval, especial)?.media ?? Infinity) : Infinity;
   for (let n = qtdMaxDe(ctx, forma.dados, pct); n >= 1; n--) {
     const k = n - metade;
     const expr = `[NIV/2${k > 0 ? `+${k}` : k < 0 ? String(k) : ""}]d${faces}+[${a0.id}]`;
     const an = analisarDano(expr, acao, ctx, comAval, especial);
-    if (an && an.erros.length === 0 && an.media <= an.teto + 0.01 && bonus >= 0) return expr;
+    if (an && an.erros.length === 0 && an.media <= Math.min(an.teto, mediaCheio) * fator + 0.01 && bonus >= 0) return expr;
   }
   return null;
 }

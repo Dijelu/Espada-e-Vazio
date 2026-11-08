@@ -1,5 +1,5 @@
 import { analisarDano } from "../regras/teto-dano";
-import { danoDoCartao } from "../regras/cartoes";
+import { aplicarMudanca, danoDoCartao, vagasUsadas } from "../regras/cartoes";
 import { TextoCarta } from "./TextoCarta";
 import { ArtePainel } from "./ArtePainel";
 import { PainelSchrift } from "./PainelSchrift";
@@ -176,16 +176,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
 
   const habil = (id: string, p: Partial<HabForma>) =>
     mud({
-      habilidades: r.habilidades.map((h) => {
-        if (h.id !== id) return h;
-        const n = { ...h, ...p };
-        // com dano em dados, o custo em PR é calculado pelo teto de dano
-        if ("dano" in p || "acao" in p || "especial" in p) {
-          const a = analisarDano(n.dano, n.acao, ctxAtual, (r.ppExtra ?? 0) > 0, n.especial ?? false);
-          if (a) { n.pr = a.custoPr; n.custo = `${a.custoPr} PR`; }
-        }
-        return n;
-      }),
+      habilidades: r.habilidades.map((h) => (h.id === id ? aplicarMudanca(h, p, ctxAtual, (r.ppExtra ?? 0) > 0) : h)),
     });
 
   const mudarPick = (id: string, delta: number, unica?: boolean) => {
@@ -355,7 +346,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
                       <li>Dano das técnicas +25%, arredondado para baixo (já aplicado nos botões de dano).</li>
                       <li>Uma ação nova, aprovada pelo Mestre.</li>
                     </ul>
-                    <button type="button" className="btn btn-paper" disabled={r.habilidades.length >= LIMITE_HAB.bankai} onClick={() => mud({ habilidades: [...r.habilidades, { id: novoId(), nome: "Ação da Bankai Plena", texto: "", custo: "", acao: "Ação" }] })}>+ Adicionar a ação nova da Plena</button>
+                    <button type="button" className="btn btn-paper" disabled={vagasUsadas(r.habilidades) >= LIMITE_HAB.bankai} onClick={() => mud({ habilidades: [...r.habilidades, { id: novoId(), nome: "Ação da Bankai Plena", texto: "", custo: "", acao: "Ação" }] })}>+ Adicionar a ação nova da Plena</button>
                   </div>
                 )}
                 {caminhoFinal === "verdadeira" && (
@@ -367,7 +358,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
                       <li>Ao terminar, você fica com 1 nível de <b>Esgotado</b> até um descanso curto.</li>
                       <li>Os demais números da Bankai não mudam. Crie com o Mestre uma técnica de assinatura nova.</li>
                     </ul>
-                    <button type="button" className="btn btn-paper" disabled={r.habilidades.length >= LIMITE_HAB.bankai} onClick={() => mud({ habilidades: [...r.habilidades, { id: novoId(), nome: "Técnica de assinatura (Bankai Verdadeira)", texto: "", custo: "", acao: "Ação" }] })}>+ Adicionar a técnica de assinatura</button>
+                    <button type="button" className="btn btn-paper" disabled={vagasUsadas(r.habilidades) >= LIMITE_HAB.bankai} onClick={() => mud({ habilidades: [...r.habilidades, { id: novoId(), nome: "Técnica de assinatura (Bankai Verdadeira)", texto: "", custo: "", acao: "Ação" }] })}>+ Adicionar a técnica de assinatura</button>
                   </div>
                 )}
                 <label className="campo">Tipo
@@ -400,7 +391,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
                     <CartaoHabilidade key={h.id} h={h} tipo={tipo} ctx={ctxAtual} ppExtra={(r.ppExtra ?? 0) > 0} nomeForma={r.nome} onChange={(p) => habil(h.id, p)} onRemover={() => mud({ habilidades: r.habilidades.filter((x) => x.id !== h.id) })} />
                   ))}
                 </div>
-                <button type="button" className="btn btn-paper" disabled={r.habilidades.length >= LIMITE_HAB[tipo]} onClick={() => mud({ habilidades: [...r.habilidades, { id: novoId(), nome: "", texto: "", custo: "", acao: "Ação" }] })}>Adicionar habilidade</button>
+                <button type="button" className="btn btn-paper" disabled={vagasUsadas(r.habilidades) >= LIMITE_HAB[tipo]} onClick={() => mud({ habilidades: [...r.habilidades, { id: novoId(), nome: "", texto: "", custo: "", acao: "Ação" }] })}>Adicionar habilidade</button>
               </div>
             )}
 

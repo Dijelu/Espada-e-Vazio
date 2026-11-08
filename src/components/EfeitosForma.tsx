@@ -85,8 +85,8 @@ export function EfeitosForma({ f, tipo, r, mud, onGravar, modo = "tudo" }: Props
 
   return (
     <div className="caixa efeitos-forma">
-      <h3>{modo === "fracos" ? "Pontos fracos da forma" : "Efeitos da forma"}</h3>
-      {modo === "fracos" ? <p className="ajuda">Cada ponto fraco vale de verdade na ficha enquanto a forma estiver ativa. Os leves devolvem poucos pontos; os pesados, bastante, mas ficam fora do teto de um terço (até 9 pontos no total, junto com o frenesi).</p> : <p className="ajuda">Monte o que a forma dá enquanto estiver ativa. Cada peça custa Pontos de Poder (PP); os efeitos entram sozinhos na ficha ao liberar. Depois de <b>confirmar</b>, a peça fica travada; os pontos que sobrarem podem ser gastos depois.</p>}
+      <h3>{modo === "fracos" ? "Pontos fracos da forma" : "Cartões de característica da forma"}</h3>
+      {modo === "fracos" ? <p className="ajuda">Cada ponto fraco vale de verdade na ficha enquanto a forma estiver ativa. Os leves devolvem poucos pontos; os pesados, bastante, mas ficam fora do teto de um terço (até 9 pontos no total, junto com o frenesi).</p> : <p className="ajuda">Monte o que a forma dá enquanto estiver ativa. Cada cartão de característica custa Pontos de Poder (PP); os efeitos entram sozinhos na ficha ao liberar. Depois de <b>confirmar</b>, a peça fica travada; os pontos que sobrarem podem ser gastos depois.</p>}
 
       <div className={`medidor-pp ${orc.livre < 0 ? "estourou" : ""}`} role="status" aria-live="polite">
         <b>Pontos de Poder: {orc.gasto} de {orc.total}</b>
