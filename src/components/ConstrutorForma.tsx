@@ -1,4 +1,4 @@
-import { analisarDano, mediaExtraPecas } from "../regras/teto-dano";
+import { analisarDano, mediaExtraAcao, mediaExtraPecas } from "../regras/teto-dano";
 import { TextoCarta } from "./TextoCarta";
 import { ArtePainel } from "./ArtePainel";
 import { PainelSchrift } from "./PainelSchrift";
@@ -100,6 +100,8 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
     const base = { n: f.nivel, prof: k.prof, atr: k.atr };
     return { ...base, tipo, extra: mediaExtraPecas(r.efeitos ?? [], base) };
   }, [f, tipo, r.efeitos]);
+  /** o teto de cada habilidade conta só os cartões de dano que valem para ela */
+  const ctxHab = (h: HabForma) => ({ ...ctxAtual, extra: mediaExtraAcao(r.efeitos ?? [], ctxAtual, h) });
   const [aberto, setAberto] = useState("");
   const [busca, setBusca] = useState("");
   const mud = (p: Partial<FormaLib>) =>
@@ -201,7 +203,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
   const q = busca.trim().toLowerCase();
   const bankais = BANKAIS.filter((b) => !q || b.nome.toLowerCase().includes(q));
 
-  const errosDano = r.habilidades.filter((h) => !h.fixa).flatMap((h) => (analisarDano(h.dano, h.acao, ctxAtual, (r.ppExtra ?? 0) > 0, h.especial ?? false)?.erros ?? []).map((e) => `${h.nome || "Habilidade"}: ${e}`));
+  const errosDano = r.habilidades.filter((h) => !h.fixa).flatMap((h) => (analisarDano(h.dano, h.acao, ctxHab(h), (r.ppExtra ?? 0) > 0, h.especial ?? false)?.erros ?? []).map((e) => `${h.nome || "Habilidade"}: ${e}`));
   const podeSalvar = r.nome.trim().length > 0 && errosDano.length === 0;
 
   return (
@@ -396,7 +398,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
                 <p className="ajuda">Cada habilidade com PR ou dano vira uma carta nova no Resumo, com botões de usar e rolar.</p>
                 <div className="cartas-hab cartoes-montados">
                   {r.habilidades.map((h) => (
-                    <CartaoHabilidade key={h.id} h={h} tipo={tipo} ctx={ctxAtual} ppExtra={(r.ppExtra ?? 0) > 0} nomeForma={r.nome} onChange={(p) => habil(h.id, p)} onRemover={() => mud({ habilidades: r.habilidades.filter((x) => x.id !== h.id) })} />
+                    <CartaoHabilidade key={h.id} h={h} tipo={tipo} ctx={ctxHab(h)} ppExtra={(r.ppExtra ?? 0) > 0} nomeForma={r.nome} onChange={(p) => habil(h.id, p)} onRemover={() => mud({ habilidades: r.habilidades.filter((x) => x.id !== h.id) })} />
                   ))}
                 </div>
                 <button type="button" className="btn btn-paper" disabled={r.habilidades.length >= LIMITE_HAB[tipo]} onClick={() => mud({ habilidades: [...r.habilidades, { id: novoId(), nome: "", texto: "", custo: "", acao: "Ação" }] })}>Adicionar habilidade</button>

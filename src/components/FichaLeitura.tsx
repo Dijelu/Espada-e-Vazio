@@ -52,7 +52,7 @@ function Bloco({ titulo, n, children }: { titulo: string; n?: number; children: 
 
 function Habilidade({ f, c, forma, h }: { f: Ficha; c: Calculo; forma: FormaLib; h: HabForma }) {
   const ativa = f.estado.liberado === liberacaoDaForma(forma.tipo);
-  const dano = h.dano ? (ativa ? danoDaAcao(h.dano, f, c, forma) : resolverDano(h.dano, f, c)) : "";
+  const dano = h.dano ? (ativa ? danoDaAcao(h.dano, f, c, forma, h) : resolverDano(h.dano, f, c)) : "";
   const pr = h.prExpr ? Number(resolverDano(h.prExpr, f, c)) || (h.pr ?? 0) : h.pr ?? 0;
   const custo = pr ? `${pr} PR` : h.custo;
   const texto = h.texto || [h.desc, h.regra].filter(Boolean).join("\n");

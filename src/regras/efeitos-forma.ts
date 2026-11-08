@@ -194,6 +194,8 @@ export interface SomaForma {
   acerto: Record<Alvo, number>;
   dano: Record<Alvo, number>;
   dados: Record<Alvo, string[]>;
+  /** cada cartão de dano (dados ou dano fixo) com os alvos a que vale, para somar uma vez só por habilidade */
+  cartoesDano: { em: Alvo[]; dado?: string; fixo: number }[];
   ignoraRd: Record<Alvo, number>;
   alcance: Record<Alvo, number>;
   vant: string[];
@@ -226,7 +228,7 @@ export function somarForma(f: Ficha, ctx: CtxForma): SomaForma | null {
   if (pecas.length === 0) return null;
   const s: SomaForma = {
     atr: { for: 0, des: 0, con: 0, men: 0, esp: 0 }, cr: 0, rdFis: 0, rdEso: 0, desloc: 0, voo: 0, ataques: 0, reacoes: 0, bonus: 0, cd: 0,
-    acerto: porAlvo(0), dano: porAlvo(0), dados: porAlvo<string[]>([]), ignoraRd: porAlvo(0), alcance: porAlvo(0),
+    acerto: porAlvo(0), dano: porAlvo(0), dados: porAlvo<string[]>([]), cartoesDano: [], ignoraRd: porAlvo(0), alcance: porAlvo(0),
     vant: [], resist: [], gatilhos: [], invocacoes: [], manutencao: 0, duracaoMais: 0, textos: [], linhas: [],
   };
   const linha = (rotulo: string, v: string, fonte: string) => s.linhas.push({ rotulo, valor: v, fonte });
@@ -237,10 +239,10 @@ export function somarForma(f: Ficha, ctx: CtxForma): SomaForma | null {
         case "atr": { const v = valor(e.v, ctx); s.atr[e.atr] += v; linha(ATR_NOME[e.atr], sinal(v), nome); break; }
         case "cr": { const v = valor(e.v, ctx); s.cr += v; linha("CR", sinal(v), nome); break; }
         case "acerto": { const v = valor(e.v, ctx); e.em.forEach((a) => (s.acerto[a] += v)); linha(`Acerto: ${nomeAlvos(e.em)}`, sinal(v), nome); break; }
-        case "dano": { const v = valor(e.v, ctx); e.em.forEach((a) => (s.dano[a] += v)); linha(`Dano: ${nomeAlvos(e.em)}`, sinal(v), nome); break; }
+        case "dano": { const v = valor(e.v, ctx); e.em.forEach((a) => (s.dano[a] += v)); if (v !== 0) s.cartoesDano.push({ em: e.em, fixo: v }); linha(`Dano: ${nomeAlvos(e.em)}`, sinal(v), nome); break; }
         case "dados": {
           const n = valor(e.n, ctx);
-          if (n > 0) { e.em.forEach((a) => s.dados[a].push(`${n}d${e.d}`)); linha(`Dano: ${nomeAlvos(e.em)}`, `+${n}d${e.d}${e.tipo ? ` ${e.tipo}` : ""}`, nome); }
+          if (n > 0) { e.em.forEach((a) => s.dados[a].push(`${n}d${e.d}`)); s.cartoesDano.push({ em: e.em, dado: `${n}d${e.d}`, fixo: 0 }); linha(`Dano: ${nomeAlvos(e.em)}`, `+${n}d${e.d}${e.tipo ? ` ${e.tipo}` : ""}`, nome); }
           break;
         }
         case "cd": { const v = valor(e.v, ctx); s.cd += v; linha("CD dos Kidōs e técnicas", sinal(v), nome); break; }
@@ -293,6 +295,17 @@ export function somarForma(f: Ficha, ctx: CtxForma): SomaForma | null {
     s.duracao += s.duracaoMais;
   }
   return s;
+}
+
+/** Dano que os cartões da forma somam a uma habilidade: cada cartão entra uma vez, se vale para algum dos alvos dela. */
+export function danoExtraDaAcao(forma: SomaForma | null | undefined, alvos: Alvo[]): { dados: string[]; fixo: number } {
+  const out = { dados: [] as string[], fixo: 0 };
+  for (const c of forma?.cartoesDano ?? []) {
+    if (!c.em.some((a) => alvos.includes(a))) continue;
+    if (c.dado) out.dados.push(c.dado);
+    out.fixo += c.fixo;
+  }
+  return out;
 }
 
 /** Bônus de uma modalidade de ataque somados com o que a forma dá (para botões de dano). */

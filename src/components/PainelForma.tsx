@@ -70,7 +70,7 @@ function Completo({ meta, textos, aberto }: { meta?: [string, string][]; textos:
 function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg, pele, i }: { f: Ficha; c: Calculo; r: Rolagens; alterar: (p: Partial<Ficha>) => void; forma: FormaLib; h: ItemAcao; ativa: boolean; onMsg: (m: string) => void; pele: Pele | "qui"; i: number }) {
   const B = pele === "qui" ? "b" : "fc-b";
   const FR = pele === "qui" ? "pf-fraco" : "fraco";
-  const dano = h.dano ? danoDaAcao(h.dano, f, c, forma) : "";
+  const dano = h.dano ? danoDaAcao(h.dano, f, c, forma, h) : "";
   const gasta = h.prExpr ? Number(resolverDano(h.prExpr, f, c)) || (h.pr ?? 0) : h.pr ?? 0;
   const esp = (h as { especial?: { condicao: string; duracao: string } }).especial;
   const chaveEsp = `esp:${h.id}`;

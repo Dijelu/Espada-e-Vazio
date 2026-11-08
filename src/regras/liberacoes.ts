@@ -3,6 +3,9 @@ import shikaisJson from "./shikais.json";
 import acoesJson from "./acoes-forma.json";
 import modelosVoll from "./vollstandig-modelos.json";
 import type { Calculo, Ficha, FormaLib, HabForma, TipoForma } from "./ficha";
+import { alvosDaAcao } from "./dano-acoes-forma";
+import { danoExtraDaAcao, type Alvo } from "./efeitos-forma";
+import { somarDadosGolpe } from "./mascara";
 
 /* ---------- Bankai: modelos prontos do capítulo de Zanpakutōs ---------- */
 
@@ -299,16 +302,26 @@ export function resolverDano(expr: string, f: Ficha, c: Calculo): string {
   });
 }
 
-/** Bankai Plena (20º nível): o dano das técnicas da Bankai sobe em 25% (dados, arredondado para baixo). */
-export function danoDaAcao(expr: string, f: Ficha, c: Calculo, forma: FormaLib): string {
+/**
+ * Dano de uma habilidade da forma como aparece e como é rolado: a fórmula do modelo, a Bankai Plena e os cartões
+ * de dano da forma ativa (cada um entra nas habilidades a que vale), mais os dados da Máscara Hollow nas técnicas.
+ * Sem `h`, só entram os cartões das técnicas da forma.
+ */
+export function danoDaAcao(expr: string, f: Ficha, c: Calculo, forma: FormaLib, h?: Pick<HabForma, "nome" | "acao" | "dano" | "regra" | "texto" | "pr" | "custo">): string {
   let base = resolverDano(expr, f, c);
   if (forma.tipo === "bankai" && f.treinos.caminhoBankai === "plena") base = base.replace(/(\d+)d(\d+)/g, (_, n: string, d: string) => `${Math.floor(Number(n) * 1.25)}d${d}`);
-  // efeitos montados na forma ativa para as técnicas da forma
+  if (!/\d/.test(base)) return base;
+  // efeitos montados na forma ativa
   const t = c.forma;
-  if (t && /\d/.test(base)) {
-    for (const d of t.dados.tecnica) base += `+${d}`;
-    if (t.dano.tecnica > 0) base += `+${t.dano.tecnica}`;
+  const alvos: Alvo[] = h ? alvosDaAcao(h, forma.tipo) : ["tecnica"];
+  if (t && alvos.length) {
+    const x = danoExtraDaAcao(t, alvos);
+    for (const d of x.dados) base += `+${d}`;
+    if (x.fixo > 0) base += `+${x.fixo}`;
+    else if (x.fixo < 0) base += String(x.fixo);
   }
+  // Máscara Hollow: dados a mais nas técnicas de Zanpakutou enquanto a forma está ativa
+  if (alvos.length && c.dadosTecnicaMascara > 0 && f.estado.liberado === liberacaoDaForma(forma.tipo) && /\d+d\d+/.test(base)) base = somarDadosGolpe(base, c.dadosTecnicaMascara);
   return base;
 }
 

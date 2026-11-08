@@ -1,13 +1,31 @@
 /* Teto de dano das habilidades criadas pelo jogador e custo em PR calculado a partir do dano.
    Referência: o golpe mais forte dos modelos do livro (Golpe em área, 20 PR): (nível/2 + 4) dados de d10 + o maior atributo. */
 import { resolverDano } from "./liberacoes";
-import { valor, type CtxForma, type InstEfeito } from "./efeitos-forma";
+import { valor, type Alvo, type CtxForma, type InstEfeito } from "./efeitos-forma";
+import { alvosDaAcao } from "./dano-acoes-forma";
+import type { HabForma } from "./ficha";
 
 /** Dano médio que as peças da forma somam em cada técnica (dados extras das peças), para entrar na conta do teto. */
 export function mediaExtraPecas(efeitos: InstEfeito[], ctx: CtxForma): number {
   let t = 0;
   for (const p of efeitos) for (const e of p.efeitos) {
     if (e.k !== "dados" || !e.em.includes("tecnica")) continue;
+    const n = valor(e.n, ctx);
+    if (n > 0) t += (n * (e.d + 1)) / 2;
+  }
+  return t;
+}
+
+/**
+ * Dano médio que os cartões da forma somam a UMA habilidade (os que valem para o tipo dela: técnica da forma, golpe, Hadō, Cero…).
+ * Cada cartão conta uma vez. Vai no lugar de `extra` ao conferir o teto dessa habilidade.
+ */
+export function mediaExtraAcao(efeitos: InstEfeito[], ctx: CtxForma, h: Pick<HabForma, "nome" | "acao" | "dano" | "regra" | "texto" | "pr" | "custo"> & { modelo?: string }): number {
+  const alvos: Alvo[] = alvosDaAcao(h, ctx.tipo);
+  if (!alvos.length) return 0;
+  let t = 0;
+  for (const p of efeitos) for (const e of p.efeitos) {
+    if (e.k !== "dados" || !e.em.some((a) => alvos.includes(a))) continue;
     const n = valor(e.n, ctx);
     if (n > 0) t += (n * (e.d + 1)) / 2;
   }
