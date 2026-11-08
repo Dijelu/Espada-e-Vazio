@@ -435,7 +435,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
           </>
         )}
 
-        {((passo.id === "aparencia" && tipo === "vollstandig") || (passo.id === "conceito" && tipo !== "shikai")) && TEMAS[tipo] && (
+        {((passo.id === "aparencia" && tipo === "vollstandig") || (passo.id === "conceito" && tipo !== "shikai" && (tipo !== "bankai" || r.estilo === "transformadora"))) && TEMAS[tipo] && (
           <div className="temas">
             <p className="ajuda">Temas prontos: toque para preencher a aparência{tipo === "vollstandig" ? "" : " e o ponto fraco"} com uma ideia pronta. Dá para mudar tudo depois.</p>
             <div className="opcoes-grandes">
