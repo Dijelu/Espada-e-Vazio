@@ -12,7 +12,7 @@
   --shi-preto: #050203; --shi-face: #130a0d; --shi-carmim: #b3122e; --shi-carmim-cl: #e0314f; --shi-tx: #f6ece4; --shi-mu: #d2c3bb;
   --hol-osso: #ece4d0; --hol-osso2: #d3c8ae; --hol-tinta: #15101b; --hol-roxo: #3a2b45; --hol-mu: #4d3f58;
   --qui-noite: #050b16; --qui-face: #0a1626; --qui-azul: #2f7bff; --qui-ciano: #5cc8ff; --qui-gelo: #eef6ff; --qui-mu: #a9c3e0; --qui-linha: #2b5380;
-  --carta-f: "M PLUS 1", "Noto Sans CJK JP", system-ui, sans-serif;
+  --carta-f: "Source Sans 3", "Noto Sans CJK JP", system-ui, sans-serif;
 }
 
 /* ---------- grade e invólucro (.cw leva o contorno por tema; fica fora do clip-path) ---------- */
