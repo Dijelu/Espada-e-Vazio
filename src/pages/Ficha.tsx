@@ -6,6 +6,7 @@ import { useTema } from "../components/Theme";
 import { alternarQuincy, quincyAtivo } from "../lib/quincy";
 import { somarDadosGolpe, mascaraAtiva } from "../regras/mascara";
 import { FichaLeitura } from "../components/FichaLeitura";
+import { AvisoVersao } from "../components/AvisoVersao";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { SeletorEssencia } from "../components/SeletorEssencia";
 import { NomeEssencia, TrocarEssencia } from "../components/EssenciaPecas";
@@ -123,6 +124,13 @@ export default function Ficha() {
   const alterar = useCallback((p: Partial<TFicha> | ((x: TFicha) => Partial<TFicha>)) => {
     versao.current++;
     setF((x) => (x ? { ...x, ...(typeof p === "function" ? p(x) : p) } : x));
+    setEstado("salvando");
+  }, []);
+
+  // troca a ficha inteira (atualização de versão e desfazer): sobe a versão da tela e manda salvar
+  const substituir = useCallback((nova: TFicha) => {
+    versao.current++;
+    setF(nova);
     setEstado("salvando");
   }, []);
 
@@ -293,6 +301,7 @@ export default function Ficha() {
           {estado === "salvo" ? "Salvo" : estado === "salvando" ? "Salvando…" : "Sem conexão: guardado neste aparelho, tentando de novo"}
         </span>
       </header>
+      <AvisoVersao f={f} modo="dono" onSubstituir={substituir} onAbrirForma={setConstruir} />
       {avisosRepar.length > 0 && (
         <div className="aviso" role="status">
           <b>Verificamos a sua ficha</b>

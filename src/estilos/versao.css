@@ -1,0 +1,64 @@
+/* Aviso de versão da ficha e selo do Mestre. Usa as cores do tema: Hollow (escuro, osso) e Shinigami (claro, hanafuda). */
+.aviso-versao {
+  --av-selo-bg: var(--accent); --av-selo-tx: var(--on-accent);
+  display: flex; flex-direction: column; gap: 8px; margin: 12px 0; padding: 14px 16px 14px 18px;
+  background: var(--panel); color: var(--text); border: 2px solid var(--accent); border-left-width: 8px; border-radius: 4px 12px 12px 4px;
+}
+.aviso-versao.ok { border-color: var(--line); border-left-color: var(--accent); }
+.av-topo { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
+.av-titulo { font-family: var(--font-title); font-weight: 700; font-size: 22px; line-height: 1.1; color: var(--accent); }
+.av-selo { display: inline-flex; align-items: center; gap: 4px; padding: 2px 10px; border-radius: 999px; font-size: 13px; font-weight: 800; letter-spacing: .04em; background: var(--av-selo-bg); color: var(--av-selo-tx); }
+.av-selo i { font-style: normal; }
+.av-texto { margin: 0; font-size: 16px; }
+.av-lista { margin: 0; padding-left: 20px; display: grid; gap: 3px; font-size: 15px; }
+.av-mais > summary { cursor: pointer; font-weight: 700; min-height: 36px; display: flex; align-items: center; color: var(--accent); }
+.av-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-top: 4px; }
+.av-nota { margin: 0; font-size: 14px; color: var(--muted); }
+
+/* Hollow (tema escuro): osso e vazio */
+:root[data-theme="dark"] .aviso-versao { background: linear-gradient(170deg, var(--panel), var(--ho-vazio2)); border-color: var(--ho-osso2); border-left-color: var(--ho-vermelho); box-shadow: inset 0 0 0 1px var(--ho-vazio), 0 4px 18px #0008; }
+:root[data-theme="dark"] .aviso-versao { --av-selo-bg: var(--ho-osso); --av-selo-tx: var(--ho-vazio); }
+:root[data-theme="dark"] .av-titulo { color: var(--ho-osso); }
+/* Shinigami (tema claro): hanafuda, nanquim e carmim */
+:root[data-theme="light"] .aviso-versao { background: var(--sh-papel); border: 2px solid var(--sh-fundo); border-left: 8px solid var(--sh-carmim); box-shadow: inset 0 0 0 3px var(--sh-papel), inset 0 0 0 4px var(--sh-carmim); color: var(--sh-tinta); }
+:root[data-theme="light"] .aviso-versao { --av-selo-bg: var(--sh-carmim); --av-selo-tx: var(--sh-washi); }
+:root[data-theme="light"] .av-titulo { color: var(--sh-carmim); }
+:root[data-theme="light"] .av-nota { color: #5a4a46; }
+:root[data-theme="light"] .av-mais > summary { color: var(--sh-carmim); }
+/* Quincy: reishi */
+:root[data-skin="quincy"] .aviso-versao { background: var(--qu-fundo); color: var(--qu-gelo); border-color: var(--qu-azul2); border-left-color: var(--qu-azul); box-shadow: 0 0 18px #5cc8ff22; --av-selo-bg: var(--qu-azul); --av-selo-tx: var(--qu-fundo2); }
+:root[data-skin="quincy"] .av-titulo { color: var(--qu-azul); }
+
+/* Painel "Antes e depois" */
+.painel-ad { width: min(820px, 100%); }
+.ad-corpo { display: flex; flex-direction: column; gap: 10px; overflow-y: auto; min-height: 0; padding-right: 2px; }
+.ad-numeros { margin: 0; padding: 8px 12px; border-radius: 6px; font-weight: 700; border: 2px solid var(--line); }
+.ad-numeros.ok { border-color: #3f9b64; }
+.ad-numeros.erro { border-color: #c0392b; }
+.ad-itens { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.ad-item { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; background: var(--panel2, var(--panel)); }
+.ad-item h4, .ad-revisar h4 { margin: 0 0 2px; font-family: var(--font-title); font-size: 20px; }
+.ad-formas { margin: 0 0 6px; font-size: 13px; color: var(--muted); overflow-wrap: anywhere; }
+.ad-par { display: grid; grid-template-columns: 1fr; gap: 8px; }
+.ad-par p { margin: 2px 0 0; font-size: 15px; overflow-wrap: anywhere; }
+.ad-par small { font-weight: 800; letter-spacing: .08em; text-transform: uppercase; font-size: 11px; }
+.ad-antes, .ad-depois { padding: 6px 10px; border-radius: 6px; border-left: 4px solid var(--line); }
+.ad-depois { border-left-color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, transparent); }
+@media (min-width: 720px) { .ad-par { grid-template-columns: 1fr 1fr; } }
+.ad-revisar { border: 2px dashed var(--line); border-radius: 8px; padding: 8px 12px; }
+.ad-revisar ul { margin: 4px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.ad-revisar li { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 12px; font-size: 15px; }
+.ad-revisar li span { flex: 1 1 260px; min-width: 0; overflow-wrap: anywhere; }
+.ad-revisar h4 small { font-family: inherit; font-size: 13px; padding: 1px 8px; border-radius: 999px; background: var(--accent); color: var(--on-accent); }
+
+/* Selo do Mestre */
+.selo-desatualizada { display: inline-flex; align-items: center; white-space: nowrap; padding: 1px 10px; border-radius: 999px; font-size: 12px; font-weight: 800; letter-spacing: .03em; border: 2px solid var(--accent); color: var(--accent); background: transparent; }
+:root[data-theme="dark"] .selo-desatualizada { background: var(--ho-osso); color: var(--ho-vazio); border-color: var(--ho-vermelho); }
+:root[data-theme="light"] .selo-desatualizada { background: var(--sh-carmim); color: var(--sh-washi); border-color: var(--sh-fundo); }
+:root[data-skin="quincy"] .selo-desatualizada { background: var(--qu-fundo); color: var(--qu-azul); border-color: var(--qu-azul); }
+.painel-versoes { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 0 0 10px; }
+.painel-versoes .chip-btn { margin: 0; }
+
+/* o aviso não vai para o papel nem para o modo livro */
+.modo-livro .aviso-versao { display: none; }
+@media print { .aviso-versao { display: none; } }
