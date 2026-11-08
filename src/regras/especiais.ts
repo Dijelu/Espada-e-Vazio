@@ -19,8 +19,6 @@ export interface DefTecnica {
   nome: string;
   grupo: GrupoTecnica;
   texto: string;
-  /** preço em PP da forma */
-  pp: number;
   /** características da arma de que a técnica precisa (basta uma). Sem o campo, qualquer arma serve. */
   armaReq?: CaracArmaId[];
   compilar: () => Efeito[];
@@ -30,7 +28,6 @@ export interface DefInteracao {
   id: string;
   nome: string;
   texto: string;
-  pp: number;
   /** ids das técnicas a que serve; vazio: serve a qualquer técnica */
   com: string[];
   /** tipos de ação a que também pode ser ligada (vazio: não se liga a ação) */
@@ -46,7 +43,7 @@ export interface DefInteracao {
 
 export const TECNICAS: DefTecnica[] = [
   {
-    id: "clones", grupo: "Criaturas", nome: "Clones", pp: 3,
+    id: "clones", grupo: "Criaturas", nome: "Clones",
     texto: "Cria clones de reiatsu (até metade da proficiência). Têm 1 PV, somem ao ser atingidos e o golpe real chega mesmo se o alvo esquivar do clone. Cria o botão “Criar clones”, que os coloca na aba de invocações.",
     compilar: () => [
       { k: "invoca", nome: "Clone de reiatsu", tipo: "clone", max: "[PROF]/2", pv: 1, cr: "10+[PROF]+[DES]", acerto: "[PROF]+[DES]", dano: "1d8+[PROF]", custoPr: 2, texto: "Some ao ser atingido. O ataque do clone chega atrasado, mesmo que o alvo esquive." },
@@ -54,7 +51,7 @@ export const TECNICAS: DefTecnica[] = [
     ],
   },
   {
-    id: "invocacao", armaReq: ["invocada", "elemental"], grupo: "Criaturas", nome: "Invocação", pp: 4,
+    id: "invocacao", armaReq: ["invocada", "elemental"], grupo: "Criaturas", nome: "Invocação",
     texto: "Chama até 2 criaturas do tema da forma, que atacam por você e somem ao chegar a 0 PV. Cria o botão “Invocar”.",
     compilar: () => [
       { k: "invoca", nome: "Invocação", tipo: "invocacao", max: 2, pv: "[PROF]*2", cr: "10+[PROF]", acerto: "[PROF]+[FOR]", dano: "[PROF]d6", custoPr: 4, texto: "Criatura do tema da forma." },
@@ -62,7 +59,7 @@ export const TECNICAS: DefTecnica[] = [
     ],
   },
   {
-    id: "invocacao-grande", armaReq: ["invocada", "elemental"], grupo: "Criaturas", nome: "Invocação grande", pp: 6,
+    id: "invocacao-grande", armaReq: ["invocada", "elemental"], grupo: "Criaturas", nome: "Invocação grande",
     texto: "Chama uma criatura grande e resistente (só uma por vez). Cria o botão “Invocar criatura grande”.",
     compilar: () => [
       { k: "invoca", nome: "Criatura grande", tipo: "invocacao", max: 1, pv: "[PROF]*6", cr: "12+[PROF]", acerto: "[PROF]+[FOR]", dano: "[PROF]d8+[PROF]", custoPr: 8, texto: "Criatura grande do tema da forma." },
@@ -70,7 +67,7 @@ export const TECNICAS: DefTecnica[] = [
     ],
   },
   {
-    id: "invocacao-enxame", armaReq: ["enxame", "multiplas-laminas"], grupo: "Criaturas", nome: "Invocação em enxame", pp: 4,
+    id: "invocacao-enxame", armaReq: ["enxame", "multiplas-laminas"], grupo: "Criaturas", nome: "Invocação em enxame",
     texto: "Chama um enxame de criaturas minúsculas, até a proficiência de uma vez. Cada uma tem 1 PV e some ao ser atingida, mas ataca por você. Cria o botão “Chamar o enxame”. Precisa de uma interação do enxame.",
     compilar: () => [
       { k: "invoca", nome: "Enxame", tipo: "invocacao", max: "[PROF]", pv: 1, cr: "10+[DES]", acerto: "[PROF]+[DES]", dano: "1d4+[PROF]", custoPr: 1, texto: "Criatura minúscula do tema da forma. Some ao ser atingida." },
@@ -78,7 +75,7 @@ export const TECNICAS: DefTecnica[] = [
     ],
   },
   {
-    id: "invocacao-regenerativa", armaReq: ["invocada", "enxame"], grupo: "Criaturas", nome: "Invocação que se regenera", pp: 5,
+    id: "invocacao-regenerativa", armaReq: ["invocada", "enxame"], grupo: "Criaturas", nome: "Invocação que se regenera",
     texto: "Chama até 2 criaturas que recuperam PV iguais à proficiência no início do seu turno. Cria o botão “Invocar criatura regenerativa”. Precisa de uma interação da regeneração.",
     compilar: () => [
       { k: "invoca", nome: "Criatura regenerativa", tipo: "invocacao", max: 2, pv: "[PROF]*2", cr: "10+[PROF]", acerto: "[PROF]+[FOR]", dano: "[PROF]d6", custoPr: 4, texto: "No início do seu turno, a criatura recupera PV iguais à proficiência." },
@@ -86,7 +83,7 @@ export const TECNICAS: DefTecnica[] = [
     ],
   },
   {
-    id: "invocacao-mutavel", armaReq: ["invocada"], grupo: "Criaturas", nome: "Invocação que se transforma", pp: 5,
+    id: "invocacao-mutavel", armaReq: ["invocada"], grupo: "Criaturas", nome: "Invocação que se transforma",
     texto: "Chama uma criatura que muda de forma e vira arma ou escudo para você. Só uma por vez. Cria o botão “Invocar criatura mutável”. Precisa de uma interação da transformação.",
     compilar: () => [
       { k: "invoca", nome: "Criatura mutável", tipo: "invocacao", max: 1, pv: "[PROF]*3", cr: "11+[PROF]", acerto: "[PROF]+[FOR]", dano: "[PROF]d6", custoPr: 5, texto: "Pode virar arma ou escudo de reiatsu para você (veja as interações)." },
@@ -94,32 +91,32 @@ export const TECNICAS: DefTecnica[] = [
     ],
   },
   {
-    id: "dominio", armaReq: ["elemental", "invocada", "foco"], grupo: "Campo e vínculo", nome: "Domínio (campo)", pp: 5,
+    id: "dominio", armaReq: ["elemental", "invocada", "foco"], grupo: "Campo e vínculo", nome: "Domínio (campo)",
     texto: "Abre um campo de 9 metros de raio em volta de você, que dura até o fim da cena ou até você sair dele. As regras do campo vêm das interações. Cria o botão “Abrir o domínio” (uma ação). Precisa de uma interação do domínio.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Abrir o domínio", ritmo: "acao", faz: "texto" } }],
   },
   {
-    id: "vinculo", armaReq: ["corrente", "segmentavel", "invocada", "contato"], grupo: "Campo e vínculo", nome: "Vínculo", pp: 4,
+    id: "vinculo", armaReq: ["corrente", "segmentavel", "invocada", "contato"], grupo: "Campo e vínculo", nome: "Vínculo",
     texto: "Liga você a uma criatura a até 18 metros (ela faz salvaguarda de Mente para resistir). O vínculo dura até o fim da cena e só existe com uma criatura por vez. Cria o botão “Criar vínculo”. Precisa de uma interação do vínculo.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Criar vínculo", ritmo: "bonus", faz: "texto" } }],
   },
   {
-    id: "copiar", grupo: "Marcas e poderes", nome: "Copiar poderes", pp: 5,
+    id: "copiar", grupo: "Marcas e poderes", nome: "Copiar poderes",
     texto: "Reação: ao ver uma criatura usar uma técnica, você copia o poder dela por turnos iguais à proficiência. Cria o botão “Copiar poder”. Precisa de uma interação da cópia.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Copiar poder", ritmo: "reacao", faz: "texto" } }],
   },
   {
-    id: "marcar-detonar", armaReq: ["projetil", "arremesso", "enxame", "foco", "elemental"], grupo: "Marcas e poderes", nome: "Marcar e detonar", pp: 4,
+    id: "marcar-detonar", armaReq: ["projetil", "arremesso", "enxame", "foco", "elemental"], grupo: "Marcas e poderes", nome: "Marcar e detonar",
     texto: "Ação bônus: coloca uma marca de reiatsu numa criatura a até 18 metros (até a proficiência de marcas ao mesmo tempo). As marcas só fazem algo quando você as detona. Cria o botão “Marcar para detonar”. Precisa de uma interação das marcas.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Marcar para detonar", ritmo: "bonus", faz: "texto" } }],
   },
   {
-    id: "marcar-alvo", grupo: "Marcas e poderes", nome: "Marcar alvo", pp: 2,
+    id: "marcar-alvo", grupo: "Marcas e poderes", nome: "Marcar alvo",
     texto: "Ação bônus: marca uma criatura a até 18 metros. O primeiro ataque de cada aliado contra ela no turno causa 1d6 de dano a mais. Cria o botão “Marcar alvo”.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Marcar alvo", ritmo: "bonus", faz: "texto", ref: "1d6" } }],
   },
   {
-    id: "energia", armaReq: ["projetil", "foco", "longo-alcance", "elemental"], grupo: "Marcas e poderes", nome: "Ataque com energia", pp: 3,
+    id: "energia", armaReq: ["projetil", "foco", "longo-alcance", "elemental"], grupo: "Marcas e poderes", nome: "Ataque com energia",
     texto: "Ação bônus: você junta energia (Cero, flecha de reishi, onda de reiatsu) e a sua próxima ação de ataque à distância sai carregada, com +6 metros de alcance. Cria o botão “Juntar energia”.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Juntar energia", ritmo: "bonus", faz: "texto" } }],
   },
@@ -127,22 +124,22 @@ export const TECNICAS: DefTecnica[] = [
 
 export const INTERACOES: DefInteracao[] = [
   {
-    id: "comandar-invocacao", nome: "Comandar invocação", pp: 0, com: ["invocacao", "invocacao-grande"], vale: [], legado: true,
+    id: "comandar-invocacao", nome: "Comandar invocação", com: ["invocacao", "invocacao-grande"], vale: [], legado: true,
     texto: "Interação automática das fichas antigas. Ação bônus: você manda a criatura chamada atacar ou andar. Mantém a técnica de invocação funcionando como antes. Cria o botão “Comandar invocação”.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Comandar invocação", ritmo: "bonus", faz: "texto" } }],
   },
   {
-    id: "usar-marca", nome: "Usar a marca", pp: 0, com: ["marcar-alvo"], vale: [], legado: true,
+    id: "usar-marca", nome: "Usar a marca", com: ["marcar-alvo"], vale: [], legado: true,
     texto: "Interação automática das fichas antigas. Mantém a técnica Marcar alvo funcionando como antes; não cria botão novo.",
     compilar: () => [],
   },
   {
-    id: "passo-clones", nome: "Passo entre clones", pp: 3, com: ["clones"], vale: [],
+    id: "passo-clones", nome: "Passo entre clones", com: ["clones"], vale: [],
     texto: "Ação bônus: você troca de lugar com um dos seus clones a até 18 metros, como um teleporte. O clone some e o seu próximo ataque no turno ganha vantagem. Serve à técnica Clones.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Passo entre clones", ritmo: "bonus", faz: "trocar", ref: "clone" } }],
   },
   {
-    id: "absorver-clones", armaReq: ["multiplas-laminas"], nome: "Juntar clones à lâmina", pp: 3, com: ["clones"], vale: ["ataque", "area"],
+    id: "absorver-clones", armaReq: ["multiplas-laminas"], nome: "Juntar clones à lâmina", com: ["clones"], vale: ["ataque", "area"],
     texto: "Ação bônus: até 2 clones se juntam à sua arma. O próximo golpe da ação ligada (a técnica final, por exemplo) causa +1d10 por clone juntado. Serve à técnica Clones.",
     compilar: () => [
       { k: "gera", botao: { rotulo: "Juntar clones à lâmina", ritmo: "bonus", faz: "absorver", ref: "clone" } },
@@ -150,87 +147,87 @@ export const INTERACOES: DefInteracao[] = [
     ],
   },
   {
-    id: "lancar-enxame", armaReq: ["enxame", "multiplas-laminas"], nome: "Enxame sobre o alvo", pp: 2, com: ["invocacao-enxame"], vale: [],
+    id: "lancar-enxame", armaReq: ["enxame", "multiplas-laminas"], nome: "Enxame sobre o alvo", com: ["invocacao-enxame"], vale: [],
     texto: "Ação bônus: o enxame cobre uma criatura a até 18 metros. Ela sofre a proficiência em d4 de dano e faz salvaguarda de Destreza (CD 8 + proficiência + atributo); se falhar, fica com desvantagem nos ataques até o fim do próximo turno dela. Serve à técnica Invocação em enxame. Cria o botão “Lançar o enxame”.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Lançar o enxame", ritmo: "bonus", faz: "texto", ref: "[PROF]d4" } }],
   },
   {
-    id: "dispersar-enxame", armaReq: ["enxame", "multiplas-laminas"], nome: "Dispersar o enxame", pp: 2, com: ["invocacao-enxame"], vale: [],
+    id: "dispersar-enxame", armaReq: ["enxame", "multiplas-laminas"], nome: "Dispersar o enxame", com: ["invocacao-enxame"], vale: [],
     texto: "Reação: quando um ataque em área atinge você, o enxame se espalha à sua volta e você sofre só metade do dano. Metade das criaturas do enxame some. Serve à técnica Invocação em enxame. Cria o botão “Dispersar o enxame”.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Dispersar o enxame", ritmo: "reacao", faz: "texto" } }],
   },
   {
-    id: "regenerar-invocacao", armaReq: ["invocada", "enxame"], nome: "Regenerar a criatura", pp: 2, com: ["invocacao-regenerativa"], vale: [],
+    id: "regenerar-invocacao", armaReq: ["invocada", "enxame"], nome: "Regenerar a criatura", com: ["invocacao-regenerativa"], vale: [],
     texto: "Ação bônus: uma criatura chamada a até 18 metros fecha as feridas e recupera a proficiência em d8 de PV. Serve à técnica Invocação que se regenera. Cria o botão “Regenerar a criatura”.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Regenerar a criatura", ritmo: "bonus", faz: "texto", ref: "[PROF]d8" } }],
   },
   {
-    id: "renascer-invocacao", armaReq: ["invocada", "enxame"], nome: "Renascer das cinzas", pp: 3, com: ["invocacao-regenerativa"], vale: [],
+    id: "renascer-invocacao", armaReq: ["invocada", "enxame"], nome: "Renascer das cinzas", com: ["invocacao-regenerativa"], vale: [],
     texto: "Reação: quando uma criatura chamada chega a 0 PV, ela volta com metade dos PV dela. Só uma vez por cena. Serve à técnica Invocação que se regenera. Cria o botão “Fazer renascer”.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Fazer renascer", ritmo: "reacao", faz: "texto" } }],
   },
   {
-    id: "mutavel-arma", armaReq: ["invocada"], nome: "Criatura vira arma", pp: 2, com: ["invocacao-mutavel"], vale: [],
+    id: "mutavel-arma", armaReq: ["invocada"], nome: "Criatura vira arma", com: ["invocacao-mutavel"], vale: [],
     texto: "Ação bônus: a criatura chamada vira uma arma de reiatsu na sua mão e o seu próximo ataque no turno causa 1d10 de dano a mais. Serve à técnica Invocação que se transforma. Cria o botão “Criatura vira arma”.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Criatura vira arma", ritmo: "bonus", faz: "texto", ref: "1d10" } }],
   },
   {
-    id: "mutavel-escudo", armaReq: ["invocada", "escudo"], nome: "Criatura vira escudo", pp: 2, com: ["invocacao-mutavel"], vale: [],
+    id: "mutavel-escudo", armaReq: ["invocada", "escudo"], nome: "Criatura vira escudo", com: ["invocacao-mutavel"], vale: [],
     texto: "Ação bônus: a criatura chamada vira um escudo de reiatsu e você ganha +2 de CR até o início do seu próximo turno. Serve à técnica Invocação que se transforma. Cria o botão “Criatura vira escudo”.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Criatura vira escudo", ritmo: "bonus", faz: "texto" } }],
   },
   {
-    id: "regra-dominio", nome: "Regra do domínio", pp: 3, com: ["dominio"], vale: [],
+    id: "regra-dominio", nome: "Regra do domínio", com: ["dominio"], vale: [],
     texto: "Ação bônus: você impõe uma regra ao campo enquanto ele durar. Escolha uma: terreno difícil para os inimigos, inimigos com -2 de CR, ou você com vantagem nas salvaguardas dentro dele. Serve à técnica Domínio. Cria o botão “Impor a regra do domínio”.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Impor a regra do domínio", ritmo: "bonus", faz: "texto" } }],
   },
   {
-    id: "dominio-fere", armaReq: ["elemental", "foco", "invocada"], nome: "Domínio que fere", pp: 3, com: ["dominio"], vale: [],
+    id: "dominio-fere", armaReq: ["elemental", "foco", "invocada"], nome: "Domínio que fere", com: ["dominio"], vale: [],
     texto: "No início do seu turno, cada criatura inimiga dentro do campo sofre a proficiência em d4 de dano de Energia. Serve à técnica Domínio.",
     compilar: () => [{ k: "gatilho", quando: "inicioTurno", faz: { dano: { expr: "[PROF]d4", tipo: "Energia", area: "criaturas inimigas no domínio" } }, rotulo: "Domínio que fere" }],
   },
   {
-    id: "vinculo-dano", nome: "Dano compartilhado", pp: 3, com: ["vinculo"], vale: [],
+    id: "vinculo-dano", nome: "Dano compartilhado", com: ["vinculo"], vale: [],
     texto: "Reação: quando você sofre dano, metade dele passa para a criatura ligada a você, sem resistência. Serve à técnica Vínculo. Cria o botão “Passar o dano”.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Passar o dano", ritmo: "reacao", faz: "texto" } }],
   },
   {
-    id: "vinculo-sentidos", nome: "Elo de sentidos", pp: 2, com: ["vinculo"], vale: [],
+    id: "vinculo-sentidos", nome: "Elo de sentidos", com: ["vinculo"], vale: [],
     texto: "Ação bônus: você enxerga e ouve pela criatura ligada até o início do seu próximo turno, e ela não consegue se esconder de você. Serve à técnica Vínculo. Cria o botão “Usar o elo”.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Usar o elo", ritmo: "bonus", faz: "texto" } }],
   },
   {
-    id: "usar-copia", nome: "Usar o poder copiado", pp: 3, com: ["copiar"], vale: [],
+    id: "usar-copia", nome: "Usar o poder copiado", com: ["copiar"], vale: [],
     texto: "Ação: você usa o poder copiado com o seu atributo de ataque. O custo em PR é o do poder original. Serve à técnica Copiar poderes. Cria o botão “Usar o poder copiado”.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Usar o poder copiado", ritmo: "acao", faz: "texto" } }],
   },
   {
-    id: "guardar-copia", nome: "Guardar a cópia", pp: 2, com: ["copiar"], vale: [],
+    id: "guardar-copia", nome: "Guardar a cópia", com: ["copiar"], vale: [],
     texto: "Ação bônus: a cópia passa a durar até o fim da cena, em vez de poucos turnos. Só uma cópia guardada por vez. Serve à técnica Copiar poderes. Cria o botão “Guardar a cópia”.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Guardar a cópia", ritmo: "bonus", faz: "texto" } }],
   },
   {
-    id: "detonar-marcas", nome: "Detonar as marcas", pp: 3, com: ["marcar-detonar"], vale: [],
+    id: "detonar-marcas", nome: "Detonar as marcas", com: ["marcar-detonar"], vale: [],
     texto: "Ação: todas as marcas explodem. Cada criatura marcada faz salvaguarda de Destreza (CD 8 + proficiência + atributo) e sofre a proficiência em d6 de dano de Energia por marca (metade no sucesso). Serve à técnica Marcar e detonar. Cria o botão “Detonar as marcas”.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Detonar as marcas", ritmo: "acao", faz: "texto", ref: "[PROF]d6" } }],
   },
   {
-    id: "marcas-acumulam", nome: "Marcas que acumulam", pp: 2, com: ["marcar-detonar"], vale: [],
+    id: "marcas-acumulam", nome: "Marcas que acumulam", com: ["marcar-detonar"], vale: [],
     texto: "Ação bônus: soma outra marca na mesma criatura (até 3). Cada marca extra acrescenta 1d6 à detonação. Serve à técnica Marcar e detonar. Cria o botão “Empilhar marca”.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Empilhar marca", ritmo: "bonus", faz: "texto", ref: "1d6" } }],
   },
   {
-    id: "reforco", nome: "Reforço", pp: 2, com: [], vale: [],
+    id: "reforco", nome: "Reforço", com: [], vale: [],
     texto: "Ação bônus: a coisa criada pela técnica se fortalece e o seu próximo ataque no turno causa 2d10 de dano a mais. Serve a qualquer técnica. Cria o botão “Reforço”.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Reforço", ritmo: "bonus", faz: "texto", ref: "2d10" } }],
   },
   {
-    id: "provocar", nome: "Provocar", pp: 2, com: [], vale: [],
+    id: "provocar", nome: "Provocar", com: [], vale: [],
     texto: "Ação bônus: uma criatura a até 18 metros faz salvaguarda de Mente (CD 8 + proficiência + atributo); se falhar, só pode atacar você até o fim do próximo turno dela. Serve a qualquer técnica. Cria o botão “Provocar”.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Provocar", ritmo: "bonus", faz: "texto" } }],
   },
   {
-    id: "gran-rey-cero", armaReq: ["foco", "projetil", "longo-alcance"], nome: "Gran Rey Cero junto da energia", pp: 5, com: ["energia"], vale: [], soHollow: true,
+    id: "gran-rey-cero", armaReq: ["foco", "projetil", "longo-alcance"], nome: "Gran Rey Cero junto da energia", com: ["energia"], vale: [], soHollow: true,
     texto: "Para Visored e Hollow. Ação bônus: ao lançar a energia, você solta junto um Gran Rey Cero, com proficiência d8 de dano de Energia a mais, no mesmo alvo ou em linha. Serve à técnica Ataque com energia. Cria o botão “Gran Rey Cero”.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Gran Rey Cero", ritmo: "bonus", faz: "texto", ref: "[PROF]d8" } }],
   },
@@ -252,14 +249,15 @@ export const podeUsarInteracao = (def: DefInteracao, f: Pick<Ficha, "origem" | "
 export const ehTecnica = (e: InstEfeito) => e.familia === "tecnica" && !!e.espec;
 export const ehInteracao = (e: InstEfeito) => e.familia === "interacao" && !!e.espec;
 
+/** Técnica e interação especial não custam PP da forma: só ocupam vaga. Por isso a peça nova nasce com 0 PP. */
 export function instanciarTecnica(def: DefTecnica, id: string): InstEfeito {
-  return { id, nome: def.nome, texto: def.texto, efeitos: def.compilar(), pp: def.pp, familia: "tecnica", espec: { id: def.id } };
+  return { id, nome: def.nome, texto: def.texto, efeitos: def.compilar(), pp: 0, familia: "tecnica", espec: { id: def.id } };
 }
 
 /** Interação ligada à técnica `tec` (id da peça). Se ela também se liga a uma ação (`vale`), `lig` diz a qual. */
 export function instanciarInteracao(def: DefInteracao, tec: string, lig: { liga: DadosCarac["liga"]; acao?: string }, id: string): InstEfeito {
   return {
-    id, nome: def.nome, texto: def.texto, efeitos: def.compilar(), pp: def.pp, familia: "interacao", espec: { id: def.id, tec },
+    id, nome: def.nome, texto: def.texto, efeitos: def.compilar(), pp: 0, familia: "interacao", espec: { id: def.id, tec },
     ...(def.vale.length > 0 ? { carac: { id: def.id, vale: def.vale, liga: lig.liga, ...(lig.acao && lig.liga === "uma" ? { acao: lig.acao } : {}), requer: def.com } } : {}),
   };
 }

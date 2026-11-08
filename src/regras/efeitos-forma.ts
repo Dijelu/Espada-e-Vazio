@@ -475,6 +475,8 @@ function mediaRapida(expr: string, ctx: CtxForma): number {
 
 export function custoPeca(p: InstEfeito, ctx: CtxForma): number {
   if (typeof p.pp === "number") return p.pp;
+  // técnica e interação especial não custam PP (só vaga); o preço de ficha antiga fica guardado em `pp`
+  if (p.familia === "tecnica" || p.familia === "interacao") return 0;
   return p.efeitos.reduce((s, e) => s + custoEfeito(e, ctx), 0);
 }
 
@@ -633,7 +635,7 @@ function extrasDoCartao(o: Partial<InstEfeito>): Partial<InstEfeito> {
   if (o.familia === "carac" || o.familia === "efeito" || o.familia === "tecnica" || o.familia === "interacao") out.familia = o.familia;
   const sp = o.espec as unknown as Record<string, unknown> | undefined;
   if ((o.familia === "tecnica" || o.familia === "interacao") && sp && typeof sp === "object" && typeof sp.id === "string" && sp.id) {
-    out.espec = { id: sp.id.slice(0, 40), ...(typeof sp.tec === "string" && sp.tec ? { tec: sp.tec.slice(0, 40) } : {}), ...(sp.auto === true ? { auto: true } : {}), ...(sp.antiga === true ? { antiga: true } : {}) };
+    out.espec = { id: sp.id.slice(0, 40), ...(typeof sp.tec === "string" && sp.tec ? { tec: sp.tec.slice(0, 40) } : {}), ...(sp.auto === true ? { auto: true } : {}), ...(sp.antiga === true ? { antiga: true } : {}), ...(sp.legado === true || (sp.antiga !== true && sp.auto !== true && typeof o.pp === "number" && o.pp > 0) ? { legado: true } : {}) };
   } else if (o.familia === "tecnica" || o.familia === "interacao") delete out.familia;
   const c = o.carac as unknown as Record<string, unknown> | undefined;
   if (c && typeof c === "object" && typeof c.id === "string" && c.id) {

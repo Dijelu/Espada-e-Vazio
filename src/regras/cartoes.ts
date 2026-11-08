@@ -31,6 +31,8 @@ export interface DadosEspecial {
   auto?: boolean;
   /** peça que veio de uma ficha antiga (os cartões de característica de antes): não ocupa vaga e não trava o salvamento */
   antiga?: boolean;
+  /** ficha salva quando técnica e interação ainda custavam PP: o preço guardado continua valendo só nesta peça. Peças novas custam 0 PP. */
+  legado?: boolean;
 }
 
 /** Marca de uma habilidade que nasceu de um cartão de ação. Sem a marca, a habilidade é do jeito antigo e continua igual. */
