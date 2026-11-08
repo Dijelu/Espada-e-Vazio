@@ -291,6 +291,81 @@ export const INTERACOES: DefInteracao[] = [
     texto: "Cada vez que você acerta a criatura marcada, ela ganha 1 peso (até a proficiência): -1,5 metro de deslocamento por peso, e com 3 pesos ou mais fica com desvantagem em salvaguardas de Destreza. Os pesos somem quando a marca termina. Serve à técnica Marcar alvo.",
     compilar: () => [{ k: "texto", t: "Peso dobrado: cada acerto seu na criatura marcada soma 1 peso (até a proficiência): -1,5 m de deslocamento por peso; com 3 ou mais, desvantagem em salvaguardas de Destreza. Somem quando a marca termina." }],
   },
+  {
+    id: "dominio-cura", nome: "Campo que restaura", com: ["dominio"], vale: [],
+    texto: "No início do turno de cada aliado dentro do campo, ele recupera PV iguais à proficiência. Serve à técnica Domínio.",
+    compilar: () => [{ k: "texto", t: "Campo que restaura: no início do turno de cada aliado dentro do campo, ele recupera PV iguais à proficiência." }],
+  },
+  {
+    id: "vinculo-prende", nome: "Elo que prende", com: ["vinculo"], vale: [],
+    texto: "A criatura ligada a você não pode se afastar mais de 9 metros de você; se tentar, faz salvaguarda de Força e, se falhar, o movimento termina. Serve à técnica Vínculo.",
+    compilar: () => [{ k: "texto", t: "Elo que prende: a criatura ligada não se afasta mais de 9 m de você; se tentar, salvaguarda de Força, e na falha o movimento termina." }],
+  },
+  {
+    id: "copia-dupla", nome: "Cópia dupla", com: ["copiar"], vale: [],
+    texto: "Você guarda até duas cópias ao mesmo tempo, e não só uma. Serve à técnica Copiar poderes.",
+    compilar: () => [{ k: "texto", t: "Cópia dupla: você guarda até duas cópias de poderes ao mesmo tempo." }],
+  },
+  {
+    id: "marca-revela", nome: "Marca que revela", com: ["marcar-alvo", "marcar-detonar"], vale: [],
+    texto: "A criatura marcada não pode ficar invisível nem se esconder de você, e os seus aliados têm vantagem para achá-la. Serve às técnicas de marca.",
+    compilar: () => [{ k: "texto", t: "Marca que revela: a criatura marcada não fica invisível nem se esconde de você; os aliados têm vantagem para achá-la." }],
+  },
+  {
+    id: "detonar-cadeia", nome: "Detonação em cadeia", com: ["marcar-detonar"], vale: [],
+    texto: "Ao detonar uma marca, as criaturas a 3 metros dela sofrem metade do dano (salvaguarda de Destreza anula). Serve à técnica Marcar e detonar.",
+    compilar: () => [{ k: "texto", t: "Detonação em cadeia: ao detonar uma marca, as criaturas a 3 m dela sofrem metade do dano; salvaguarda de Destreza anula." }],
+  },
+  {
+    id: "clones-explodem", nome: "Clones que explodem", com: ["clones"], vale: [],
+    texto: "Quando um clone seu é destruído, ele explode: as criaturas a 3 metros sofrem proficiência d6 de dano (salvaguarda de Destreza, metade no sucesso). Serve à técnica Clones.",
+    compilar: () => [{ k: "texto", t: "Clones que explodem: ao ser destruído, um clone explode; as criaturas a 3 m sofrem [PROF]d6 (salvaguarda de Destreza, metade)." }],
+  },
+  {
+    id: "escudo-vivo", nome: "Escudo vivo", com: ["invocacao", "invocacao-grande", "clones", "invocacao-enxame"], vale: [],
+    texto: "Reação: quando você ou um aliado a até 3 metros seria atingido, uma criatura, clone ou parte do enxame se joga na frente e leva o golpe no lugar. Ela some se o dano a reduzir a 0 PV. Serve às técnicas de criatura.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Jogar a criatura na frente", ritmo: "reacao", faz: "texto" } }],
+  },
+  {
+    id: "energia-dupla", nome: "Energia em dobro", com: ["energia"], vale: [],
+    texto: "Você pode guardar até duas cargas de energia ao mesmo tempo; gastas as duas juntas, a ação sai com +12 metros de alcance em vez de +6. Serve à técnica Ataque com energia.",
+    compilar: () => [{ k: "texto", t: "Energia em dobro: guarde até duas cargas; gastas juntas, a ação sai com +12 m de alcance." }],
+  },
+  {
+    id: "explosao-em-cadeia", nome: "Explosão em cadeia", com: ["marcar-detonar", "clones", "invocacao-enxame", "energia"], vale: [],
+    texto: "Combo: uma vez por turno, quando uma marca é detonada, um clone é destruído ou um enxame é lançado, a próxima ação de ataque sua no mesmo turno causa 1d6 de dano a mais. Serve a marcas, clones, enxame e energia.",
+    compilar: () => [{ k: "texto", t: "Explosão em cadeia: 1 vez por turno, ao detonar uma marca, destruir um clone, lançar o enxame ou gastar energia, a próxima ação de ataque sua no turno causa 1d6 a mais." }],
+  },
+  {
+    id: "sangue-partilhado", nome: "Sangue partilhado", com: ["vinculo", "dominio"], vale: [],
+    texto: "Combo: quem estiver ligado a você, ou dentro do campo, recupera metade dos PV que você recuperar (uma vez por turno). Serve às técnicas Vínculo e Domínio.",
+    compilar: () => [{ k: "texto", t: "Sangue partilhado: o ligado a você, ou os aliados no campo, recuperam metade dos PV que você recuperar (1 vez por turno)." }],
+  },
+  {
+    id: "cargas-escudo", nome: "Cargas como escudo", com: ["acumular-poder"], vale: [],
+    texto: "Reação: gasta cargas para reduzir o dano que você sofreria em 1d8 por carga gasta. Serve à técnica Acumular poder.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Gastar cargas para se proteger", ritmo: "reacao", faz: "texto" } }],
+  },
+  {
+    id: "absorvido-cura", nome: "Absorvido que cura", com: ["absorver-devolver"], vale: [],
+    texto: "Ação bônus: em vez de devolver, usa o valor guardado como PV temporários, até o máximo de 2 × proficiência. Serve à técnica Absorver e devolver.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Guardado vira PV temporários", ritmo: "bonus", faz: "texto" } }],
+  },
+  {
+    id: "sobrecarga-controlada", nome: "Sobrecarga controlada", com: ["sobrecarga"], vale: [],
+    texto: "O autodano da Sobrecarga cai para 1d4 fixo por turno, mas o dano a mais também cai para 1d4. Serve à técnica Sobrecarga.",
+    compilar: () => [{ k: "texto", t: "Sobrecarga controlada: autodano de 1d4 fixo por turno, e o dano a mais da Sobrecarga cai para 1d4." }],
+  },
+  {
+    id: "corte-em-linha", nome: "Corte em linha", com: ["corte-espaco"], vale: [],
+    texto: "O corte no espaço atinge todas as criaturas numa linha de 12 metros e 1,5 metro de largura: cada uma faz salvaguarda de Destreza e sofre metade do dano no sucesso. Serve à técnica Corte no espaço.",
+    compilar: () => [{ k: "texto", t: "Corte em linha: o corte no espaço atinge todas as criaturas numa linha de 12 m por 1,5 m; salvaguarda de Destreza, metade no sucesso." }],
+  },
+  {
+    id: "marca-passa-golpe", nome: "Marca que passa o golpe", com: ["vinculo", "marcar-alvo"], vale: [],
+    texto: "Combo: o primeiro ataque do turno contra a criatura marcada ou ligada a você ganha +1 de acerto. Serve às técnicas Vínculo e Marcar alvo.",
+    compilar: () => [{ k: "texto", t: "Marca que passa o golpe: o primeiro ataque do turno contra a criatura marcada ou ligada tem +1 de acerto." }],
+  },
 ];
 
 /** Interações que o jogador pode escolher na galeria (as automáticas das fichas antigas ficam de fora). */

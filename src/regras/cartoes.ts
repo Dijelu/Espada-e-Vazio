@@ -151,19 +151,19 @@ export const ppDaForca = (f: Forca, tipo?: string): number => (tipo === "shikai"
 /** As três forças com o preço certo para o tipo de forma (para a tela). */
 export const forcasDoTipo = (tipo?: string): InfoForca[] => FORCAS.map((x) => ({ ...x, pp: ppDaForca(x.id, tipo) }));
 
-/** Vagas especiais de cada forma: quantas técnicas especiais e quantas interações especiais ela aceita. Para mudar o número de uma forma, mude só esta tabela. */
+/** Vagas especiais de cada forma: quantas técnicas especiais e quantas interações especiais ela aceita (as interações são sempre o dobro das técnicas). Para mudar o número de uma forma, mude só esta tabela. */
 export interface VagasEspeciais { tec: number; inter: number }
 export const VAGAS_ESPECIAIS: Record<string, VagasEspeciais> = {
-  shikai: { tec: 1, inter: 1 },
-  bankai: { tec: 2, inter: 2 },
+  shikai: { tec: 1, inter: 2 },
+  bankai: { tec: 2, inter: 4 },
   /** Bankai verdadeira */
-  bankai2: { tec: 3, inter: 3 },
-  resurreccion: { tec: 3, inter: 3 },
+  bankai2: { tec: 3, inter: 6 },
+  resurreccion: { tec: 3, inter: 6 },
   /** segunda etapa */
-  segunda: { tec: 3, inter: 3 },
-  vollstandig: { tec: 2, inter: 2 },
+  segunda: { tec: 3, inter: 6 },
+  vollstandig: { tec: 2, inter: 4 },
   /** Máscara Hollow do Visored (ainda não tem montagem própria; a conta já fica pronta) */
-  mascara: { tec: 2, inter: 2 },
+  mascara: { tec: 2, inter: 4 },
 };
 export const vagasEspeciais = (tipo: string): VagasEspeciais => VAGAS_ESPECIAIS[tipo] ?? { tec: 1, inter: 1 };
 
