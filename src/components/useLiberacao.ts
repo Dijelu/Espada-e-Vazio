@@ -7,7 +7,7 @@ import { aplicarFaz } from "../regras/aplicar-faz";
 import { classePorId, type Calculo, type Ficha, type Liberacao } from "../regras/ficha";
 import { efeito as som } from "../lib/som";
 import { fimDaMascaraEsgota } from "../regras/hogyoku";
-import { MASCARAS, mascaraAtiva, tempMascara, type TipoMascara } from "../regras/mascara";
+import { MASCARAS, MASCARA_TETO, ganhoDeterminacao, mascaraAtiva, tempMascara, type TipoMascara } from "../regras/mascara";
 
 export const LIB_NUM: Record<string, number> = { shikai: 1, bankai: 2, bankai2: 3, resurreccion: 4, terror: 5, vollstandig: 6 };
 
@@ -124,7 +124,7 @@ export function useLiberacao(f: Ficha, c: Calculo, alterar: (p: Partial<Ficha>) 
   const tr = f.treinos;
   const hg = c.hogyoku;
   /** duração da máscara: a sorteada/treinada, +2 turnos com o Hōgyoku estabilizando o Hollow */
-  const mascMax = (tr.mascaraMax ?? 1) + (hg.estabiliza ? 2 : 0);
+  const mascMax = Math.min(tr.mascaraMax ?? 1, MASCARA_TETO) + (hg.estabiliza ? 2 : 0);
   const mascaraGasta = e.usos["mascara-turnos"] ?? 0;
   const mascaraRecarga = e.usos["mascara-recarga"] ?? 0;
   const setTreinos = (p: Partial<Ficha["treinos"]>) => alterar({ treinos: { ...f.treinos, ...p } });
@@ -132,6 +132,7 @@ export function useLiberacao(f: Ficha, c: Calculo, alterar: (p: Partial<Ficha>) 
   const tirarMascara = (porTempo: boolean) => {
     const usos = { ...e.usos };
     delete usos["mascara-turnos"];
+    delete usos["mascara-treino"];
     const temp = tempMascara(mascaraAtiva(f));
     const prAtual = temp.pr ? Math.min(c.pr, f.prAtual) : f.prAtual;
     // tirar a máscara não encerra a forma (só limpa o formato antigo, em que a máscara ocupava a liberação)
@@ -152,7 +153,8 @@ export function useLiberacao(f: Ficha, c: Calculo, alterar: (p: Partial<Ficha>) 
     if (!max) { max = 1 + Math.floor(Math.random() * 4); setTreinos({ mascaraMax: max }); }
     const custo = custoLib("mascara");
     const t = tempMascara(tr.mascara as TipoMascara);
-    const usos = { ...e.usos, "mascara-turnos": 1 };
+    const usos: Record<string, number> = { ...e.usos, "mascara-turnos": 1 };
+    delete usos["mascara-treino"];
     alterar({
       prAtual: Math.max(0, f.prAtual - custo) + Math.floor(c.pr * t.pr),
       treinos: { ...f.treinos, mascaraMax: max },
@@ -176,9 +178,16 @@ export function useLiberacao(f: Ficha, c: Calculo, alterar: (p: Partial<Ficha>) 
   // contagem de uma ficha antiga que passou da duração: a máscara acaba na hora e o contador volta a zero
   const passouDoTempo = masc && mascaraGasta > mascMax;
   useEffect(() => { if (passouDoTempo) tirarMascara(true); }, [passouDoTempo]); // eslint-disable-line react-hooks/exhaustive-deps
+  /** um ganho por vez que a máscara é posta, só com ela ligada, e sem passar do teto */
+  const baseMasc = Math.min(tr.mascaraMax ?? 1, MASCARA_TETO);
+  const mascaraTreinada = !!e.usos["mascara-treino"];
+  const podeTreinarMascara = masc && !mascaraTreinada && baseMasc < MASCARA_TETO;
   const treinarMascara = () => {
-    const ganho = Math.max(1, Math.floor((1 + Math.floor(Math.random() * 6)) / 2));
-    setTreinos({ mascaraMax: (tr.mascaraMax ?? 1) + ganho });
+    if (!masc) return setMsg("O ganho de tempo vale com a máscara posta.");
+    if (mascaraTreinada) return setMsg("Você já ganhou tempo nesta vez com a máscara. Ponha a máscara de novo para outro teste.");
+    if (baseMasc >= MASCARA_TETO) return setMsg(`A máscara já está no máximo: ${MASCARA_TETO} turnos.`);
+    const ganho = Math.min(ganhoDeterminacao(1 + Math.floor(Math.random() * 6)), MASCARA_TETO - baseMasc);
+    alterar({ treinos: { ...f.treinos, mascaraMax: baseMasc + ganho }, estado: { ...f.estado, usos: { ...e.usos, "mascara-treino": 1 } } });
     setMsg(`Teste de Determinação bem-sucedido: a máscara agora dura +${ganho} turno(s).`);
   };
 
@@ -200,5 +209,5 @@ export function useLiberacao(f: Ficha, c: Calculo, alterar: (p: Partial<Ficha>) 
     setMsg(custo ? `${id === "mascara" ? "Máscara" : id === "vollstandig" ? "Vollständig" : id === "bankai2" ? "Bankai Verdadeira" : id === "bankai" ? "Bankai" : id === "shikai" ? "Shikai" : id === "terror" ? "Segunda Etapa" : "Resurrección"} ativada: ${custo} PR gastos.` : "Liberação marcada. O custo está na descrição da sua Zanpakutou.");
   };
 
-  return { libs, custoLib, encerrarForma, fx, temTurnoDeForma, proximoTurno, tr, hg, mascMax, mascaraGasta, mascaraRecarga, setTreinos, tirarMascara, ativarMascara, novoTurnoMascara, treinarMascara, liberar, masc, temMascara, setE };
+  return { libs, custoLib, encerrarForma, fx, temTurnoDeForma, proximoTurno, tr, hg, mascMax, podeTreinarMascara, mascaraTreinada, mascaraGasta, mascaraRecarga, setTreinos, tirarMascara, ativarMascara, novoTurnoMascara, treinarMascara, liberar, masc, temMascara, setE };
 }

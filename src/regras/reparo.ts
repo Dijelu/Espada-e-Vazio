@@ -2,7 +2,7 @@
 import kidosJson from "./kidos.json";
 import tecnicasJson from "./tecnicas-reishi.json";
 import { ATRIBUTOS, PERICIAS, calcular, classePorId, liberacaoValida, normalizar, origemPorId, type Atr, type Ficha } from "./ficha";
-import { mascaraAtiva, podeMascara, tempMascara } from "./mascara";
+import { MASCARA_TETO, mascaraAtiva, podeMascara, tempMascara } from "./mascara";
 import { calcularLiberacao } from "./liberacao-forma";
 import { SCHRIFTS } from "./schrifts";
 import { normalizarEfeitos } from "./efeitos-forma";
@@ -112,7 +112,8 @@ export function repararFicha(bruta: Ficha): Reparo {
   if (f.treinos.mascara && !["conquistador", "predador", "equilibrio"].includes(f.treinos.mascara)) f.treinos.mascara = "";
   if (f.treinos.mascaraAparencia !== undefined && typeof f.treinos.mascaraAparencia !== "string") f.treinos.mascaraAparencia = "";
   if (f.treinos.mascaraFoto !== undefined && (typeof f.treinos.mascaraFoto !== "string" || !f.treinos.mascaraFoto.startsWith("data:image/") || f.treinos.mascaraFoto.length > 400000)) f.treinos.mascaraFoto = "";
-  if (f.treinos.mascaraMax !== undefined) f.treinos.mascaraMax = inteiro(f.treinos.mascaraMax, 0, 99, 0);
+  if (typeof f.treinos.mascaraMax === "number" && f.treinos.mascaraMax > MASCARA_TETO) nota(`A duração da Máscara Hollow (${f.treinos.mascaraMax} turnos) passava do máximo e foi ajustada para ${MASCARA_TETO}.`);
+  if (f.treinos.mascaraMax !== undefined) f.treinos.mascaraMax = inteiro(f.treinos.mascaraMax, 0, MASCARA_TETO, 0);
   f.treinos.pf = inteiro(f.treinos.pf, 0, 999, 0);
   f.treinos.geralDias = inteiro(f.treinos.geralDias, 0, 9999, 0);
 

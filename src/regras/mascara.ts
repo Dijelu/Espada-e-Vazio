@@ -9,6 +9,12 @@ export const MASCARAS: { id: TipoMascara; nome: string; texto: string }[] = [
   { id: "equilibrio", nome: "Máscara do Equilíbrio", texto: "Poder Amplificado (+metade da proficiência em dados nas técnicas e +1 dado nos golpes), Reiatsu Amplificada e Vitalidade Hollow (um quarto do total em PR e PV temporários)." },
 ];
 
+/** O livro não põe teto no treino da máscara; o site limita a duração base a 10 turnos (sem o Hōgyoku) para o contador não crescer sem fim. */
+export const MASCARA_TETO = 10;
+
+/** Ganho de um Teste de Determinação passado (livro: 1d6 turnos, dividido pela metade, arredondando para baixo, mínimo 1). Recebe o resultado do d6. */
+export const ganhoDeterminacao = (d6: number) => Math.max(1, Math.floor(d6 / 2));
+
 /** O Visored pode pôr a máscara? (origem Visored com o treino da Máscara Hollow) */
 export const podeMascara = (f: Ficha) => f.origem === "visored" && (f.treinos?.feitos ?? []).includes("visored-2");
 

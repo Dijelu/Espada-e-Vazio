@@ -444,7 +444,7 @@ export function PainelForma({ f, c, r, alterar, tipo, onEditar, onIrEvoluir, soA
     <>
       {[
         { n: "Novo turno", ic: "relogio", tipo: "Ação livre", p: "Conta mais um turno com a máscara. Passou do tempo, ela se desfaz.", b: "Novo turno", fn: L.novoTurnoMascara, on: ligada || L.mascaraRecarga > 0 },
-        { n: "Passei na Determinação", ic: "cranio-escudo", tipo: "Reação", p: "Quando o Mestre pede o teste de Determinação e você passa, a máscara passa a durar mais turnos.", b: "Passei (+tempo)", fn: L.treinarMascara, on: !!tr.mascaraMax },
+        { n: "Passei na Determinação", ic: "cranio-escudo", tipo: "Reação", p: "Quando o Mestre pede o teste de Determinação e você passa, a máscara passa a durar mais turnos.", b: "Passei (+tempo)", fn: L.treinarMascara, on: L.podeTreinarMascara },
         { n: "Tirar a Máscara", ic: "mascara-rachada", tipo: "Ação", p: "Tira a máscara antes do tempo acabar. Você não fica Esgotado, mas ela só volta depois do dobro do tempo usado.", b: "Tirar", fn: () => L.tirarMascara(false), on: ligada },
       ].map((x, i) => (
         <div className="cwx fc-wrap" data-orig="hol" key={x.n}>
