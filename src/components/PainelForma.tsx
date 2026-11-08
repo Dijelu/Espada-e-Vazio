@@ -49,6 +49,28 @@ function Cantos({ v }: { v: "shi" | "hol" | "holc" }) {
 const KANJI: Record<string, string> = { shikai: "始", bankai: "解", bankai2: "真" };
 const ICONES_PASSIVA: Record<Pele, string[]> = { shi: ["forja-espada", "onda-golpe", "espada-ponta", "fita", "lamina-lua", "brilho"], hol: ["cranio-escudo", "garras", "costelas", "osso-quebrado", "mandibula", "cranio-presas"] };
 
+/** Fissuras do Hollow que invadem o cabeçalho (sobre a arte da forma, ao redor da máscara). Só desenho; a animação é no CSS. */
+function FissurasCabeca() {
+  const L = ["M488 176 L452 160 L436 128 L398 118 L384 82 L346 70 L330 36", "M488 176 L520 140 L514 104 L548 74 L544 30", "M488 176 L458 214 L470 246 L438 268 L446 306 L414 330", "M488 176 L526 206 L560 200 L586 232 L580 276", "M452 160 L412 168 L386 148 L352 160 L320 140", "M470 246 L508 262 L520 296 L552 306", "M436 128 L452 96 L430 68"];
+  return (
+    <svg className="fp-fiss fp-fiss-cab" viewBox="0 0 600 340" preserveAspectRatio="xMaxYMid slice" aria-hidden="true" focusable="false">
+      {L.map((d, i) => <path key={i} className={i % 3 === 2 ? "fl-o" : "fl-v"} d={d} pathLength={100} style={{ ["--k" as string]: i }} />)}
+    </svg>
+  );
+}
+
+/** Fissuras e o fio vermelho pelas bordas do painel todo. */
+function FissurasBorda() {
+  return (
+    <svg className="fp-fiss fp-fiss-borda" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <path className="fl-fio" d="M88 0 L84 6 L90 12 L83 19 L89 27 L85 36 L91 45 L84 55 L90 64 L86 74 L91 84 L87 93 L90 100" pathLength={100} vectorEffect="non-scaling-stroke" />
+      <path className="fl-o" d="M84 12 L70 14 L64 18 L50 19" pathLength={100} vectorEffect="non-scaling-stroke" style={{ ["--k" as string]: 1 }} />
+      <path className="fl-v" d="M90 45 L74 48 L68 54 L52 56 L46 61" pathLength={100} vectorEffect="non-scaling-stroke" style={{ ["--k" as string]: 2 }} />
+      <path className="fl-o" d="M91 84 L76 86 L70 91 L56 92" pathLength={100} vectorEffect="non-scaling-stroke" style={{ ["--k" as string]: 3 }} />
+    </svg>
+  );
+}
+
 function iconeAcao(h: ItemAcao, pele: Pele): string {
   const cl = classificarHab(h as never);
   if (cl.cura || cl.curaPctDano) return "coracao";
@@ -301,6 +323,8 @@ export function PainelForma({ f, c, r, alterar, tipo, onEditar, onIrEvoluir, soA
   const lib = ehMascara ? "mascara" : liberacaoDaForma(tipoForma as TipoForma);
   const mascOn = !!mascaraAtiva(f);
   const ligada = ehMascara ? mascOn : f.estado.liberado === lib;
+  /** Visored com a Máscara posta junto da Shikai ou da Bankai: um painel só, a forma "hollowficada" pela máscara */
+  const fundida = !ehMascara && f.origem === "visored" && mascOn && ligada && origemDaForma(tipo) === "shinigami";
   const definida = tipoForma ? f.formas[tipoForma] : undefined;
   const provisoria: FormaLib | undefined = tipoForma && !(definida && definida.nome)
     ? { ...vazia(tipoForma), custo: 0, nome: TIPO_FORMA_NOME[tipoForma], modelo: tipoForma === "resurreccion" ? modeloResurreccionPadrao(f.subclasse) : "", habilidades: tipoForma === "segunda" && f.formas.resurreccion ? habilidadesDaForma(f.formas.resurreccion) : [] }
@@ -313,6 +337,14 @@ export function PainelForma({ f, c, r, alterar, tipo, onEditar, onIrEvoluir, soA
     if (!antes.current && ligada) { setAcende(true); const id = window.setTimeout(() => setAcende(false), 2800); antes.current = ligada; return () => window.clearTimeout(id); }
     antes.current = ligada;
   }, [ligada]);
+
+  // animação de infecção: toca quando a fusão começa (não ao só abrir a ficha)
+  const [infecta, setInfecta] = useState(false);
+  const antesF = useRef(fundida);
+  useEffect(() => {
+    if (!antesF.current && fundida) { setInfecta(true); const t = window.setTimeout(() => setInfecta(false), 3400); antesF.current = fundida; return () => window.clearTimeout(t); }
+    antesF.current = fundida;
+  }, [fundida]);
 
   const origem: OrigemPoder = ehMascara ? "hollow" : origemDaForma(tipo);
   const pele: Pele = origem === "hollow" ? "hol" : "shi";
@@ -335,7 +367,7 @@ export function PainelForma({ f, c, r, alterar, tipo, onEditar, onIrEvoluir, soA
   const rotulo = ehMascara ? "Máscara Hollow" : TIPO_FORMA_NOME[tipo as TipoForma];
   const construida = ehMascara ? !!tr.mascara : !!definida?.nome;
   const custoLib = ehMascara ? L.custoLib("mascara") : L.custoLib(lib as never);
-  const diff = ehMascara
+  const diffMasc: [string, string, string][] = (ehMascara || fundida)
     ? (() => {
         const ef = efeitoMascara(f, c.prof, f.nivel);
         const e2 = tr.mascara ? { rd: tr.mascara === "predador" ? Math.floor(f.nivel / 2) : 0, dadosGolpe: tr.mascara === "predador" ? c.prof : tr.mascara === "equilibrio" ? 1 : 0, dadosTecnica: tr.mascara === "conquistador" ? 2 * c.prof : tr.mascara === "equilibrio" ? Math.floor(c.prof / 2) : 0, cd: tr.mascara === "conquistador" ? c.prof : 0 } : ef;
@@ -349,7 +381,8 @@ export function PainelForma({ f, c, r, alterar, tipo, onEditar, onIrEvoluir, soA
         if (t.pr) d.push(["PR temporários", "0", String(Math.floor(c.pr * t.pr))]);
         return d;
       })()
-    : diferencas(f, c, base, com);
+    : [];
+  const diff = ehMascara ? diffMasc : diferencas(f, c, base, com);
 
   // custos e turnos
   const duracaoTxt = ehMascara ? `${L.mascMax} turno${L.mascMax === 1 ? "" : "s"}` : (forma as FormaLib).duracao;
@@ -372,6 +405,8 @@ export function PainelForma({ f, c, r, alterar, tipo, onEditar, onIrEvoluir, soA
     return { d: FA.arteHol("fd" + id, 1200, 280, 940, 148, 1, 21, tipoArt), m: FA.arteHol("fm" + id, 400, 190, 270, 100, 0.5, 23, tipoArt) };
   }, [id, tipoArt, tk, pele]);
 
+  const arteMasc = useMemo(() => (fundida ? TK.mascara("t" + id + "f") : ""), [fundida, id]);
+
   // sub, "Ler completo"
   const sub = ehMascara
     ? "Visored. O Hollow interior aparece no rosto: corpo mais duro e golpes mais pesados, por poucos turnos."
@@ -390,6 +425,8 @@ export function PainelForma({ f, c, r, alterar, tipo, onEditar, onIrEvoluir, soA
     if (fl.pontoFraco) completoTextos.push(`Ponto fraco: ${fl.pontoFraco}`);
     completoMeta.push(["Forma", rotulo], ["Custo para liberar", custoLib ? `${custoLib} PR` : "sem custo"], ["Duração", fl.duracao || "até você encerrar"]);
   }
+  const completoMascMeta: [string, string][] = [["Forma", masc?.nome ?? "Máscara Hollow"], ["Custo", `${custoLib || L.custoLib("mascara")} PR (5 × proficiência)`], ["Duração", `${L.mascMax} turno${L.mascMax === 1 ? "" : "s"}`]];
+  const completoMascTextos: string[] = [...(masc ? [masc.texto] : []), "Quando o tempo acaba você fica Esgotado. Tirar antes, com uma ação, evita o Esgotado, mas a máscara entra em recarga pelo dobro do tempo usado."];
   const temCompleto = completoTextos.join("").length > (sub?.length ?? 0) || ehMascara;
 
   // gatilhos (únicos) e preço da forma
@@ -412,7 +449,8 @@ export function PainelForma({ f, c, r, alterar, tipo, onEditar, onIrEvoluir, soA
     const tf = textosFx.find((t) => t.nome === fraco);
     unicas.push({ rot: "Preço da forma", n: fraco, icone: "cranio-rachado", cada: "todo turno", p: tf ? trecho(tf.t, 170) : "É o ponto fraco desta forma: o preço que ela cobra de quem a usa.", completo: tf && tf.t.length > 170 ? tf.t : undefined });
   }
-  if (ehMascara) unicas.push({ rot: "Preço da forma", n: "Esgotado ao fim", icone: "cranio-rachado", cada: "ao acabar o tempo", p: fimDaMascaraEsgota(f) ? `Quando os ${L.mascMax} turnos acabam, você fica Esgotado. Para evitar, tire a máscara antes, com uma ação.` : "O Hōgyoku estabiliza o Hollow: ao acabar o tempo você não fica Esgotado, mas a máscara entra em recarga." });
+  const precoMasc: Unica = { rot: "Preço da forma", n: "Esgotado ao fim", icone: "cranio-rachado", cada: "ao acabar o tempo", p: fimDaMascaraEsgota(f) ? `Quando os ${L.mascMax} turnos acabam, você fica Esgotado. Para evitar, tire a máscara antes, com uma ação.` : "O Hōgyoku estabiliza o Hollow: ao acabar o tempo você não fica Esgotado, mas a máscara entra em recarga." };
+  if (ehMascara) unicas.push(precoMasc);
   for (const g of fx?.gatilhos ?? []) {
     if (g.lig) continue;
     const usado = !!g.limite && !!usos[`fx:${g.peca}:${g.rotulo}`];
@@ -426,13 +464,18 @@ export function PainelForma({ f, c, r, alterar, tipo, onEditar, onIrEvoluir, soA
   }));
   // passivas
   const passivas: Passiva[] = [];
-  if (ehMascara && masc) {
+  const passivasMasc: Passiva[] = [];
+  if ((ehMascara || fundida) && masc) {
     let nivel = 0, cur = "";
     const itens: string[] = [];
     for (const ch of masc.texto.replace(/\.$/, "")) { if (ch === "(") nivel++; if (ch === ")") nivel--; if (nivel === 0 && ch === ",") { itens.push(cur.trim()); cur = ""; } else cur += ch; }
     if (cur.trim()) itens.push(cur.trim());
-    itens.flatMap((s) => s.split(/ e (?=[A-ZÁÉÍÓÚ])/)).forEach((s, k) => { const m = s.match(/^([^(]+)\((.*)\)\s*$/); passivas.push(m ? { n: m[1].trim(), p: m[2].trim().replace(/^./, (x) => x.toUpperCase()) + (m[2].endsWith(".") ? "" : "."), icone: ICONES_PASSIVA.hol[k % 6] } : { n: s, p: "" }); });
-  } else {
+    // separa "A (...) e B (...)" só fora dos parênteses
+    const dividirE = (t: string) => { const out: string[] = []; let d = 0, ini = 0; for (let i = 0; i < t.length; i++) { if (t[i] === "(") d++; else if (t[i] === ")") d--; else if (d === 0 && t.startsWith(" e ", i) && /[A-ZÁÉÍÓÚ]/.test(t[i + 3] ?? "")) { out.push(t.slice(ini, i)); ini = i + 3; } } out.push(t.slice(ini)); return out; };
+    itens.flatMap(dividirE).forEach((s, k) => { const m = s.match(/^([^(]+)\((.*)\)\s*$/); passivasMasc.push(m ? { n: m[1].trim(), p: m[2].trim().replace(/^./, (x) => x.toUpperCase()) + (m[2].endsWith(".") ? "" : "."), icone: ICONES_PASSIVA.hol[k % 6] } : { n: s, p: "" }); });
+  }
+  if (ehMascara) passivas.push(...passivasMasc);
+  else {
     for (const t of textosFx) if (t.nome !== fraco) passivas.push({ n: t.nome, p: trecho(t.t, 150) });
     for (const h of passivasHab) passivas.push({ n: h.nome, p: trecho(h.regra || h.texto, 150) });
     for (const l of (fx?.linhas ?? []).filter((x) => x.valor.length <= 40)) passivas.push({ n: `${l.rotulo} ${l.valor}`, p: `Vem de ${l.fonte}.` });
@@ -440,12 +483,12 @@ export function PainelForma({ f, c, r, alterar, tipo, onEditar, onIrEvoluir, soA
   const iconePassiva = (k: number) => ICONES_PASSIVA[pele][k % ICONES_PASSIVA[pele].length];
 
   // ações extras da Máscara
-  const cartasMascara: ReactNode = ehMascara ? (
+  const cartasMascara: ReactNode = (ehMascara || fundida) ? (
     <>
       {[
-        { n: "Novo turno", ic: "relogio", tipo: "Ação livre", p: "Conta mais um turno com a máscara. Passou do tempo, ela se desfaz.", b: "Novo turno", fn: L.novoTurnoMascara, on: ligada || L.mascaraRecarga > 0 },
+        { n: "Novo turno", ic: "relogio", tipo: "Ação livre", p: "Conta mais um turno com a máscara. Passou do tempo, ela se desfaz.", b: "Novo turno", fn: L.novoTurnoMascara, on: mascOn || L.mascaraRecarga > 0 },
         { n: "Passei na Determinação", ic: "cranio-escudo", tipo: "Reação", p: "Quando o Mestre pede o teste de Determinação e você passa, a máscara passa a durar mais turnos.", b: "Passei (+tempo)", fn: L.treinarMascara, on: L.podeTreinarMascara },
-        { n: "Tirar a Máscara", ic: "mascara-rachada", tipo: "Ação", p: "Tira a máscara antes do tempo acabar. Você não fica Esgotado, mas ela só volta depois do dobro do tempo usado.", b: "Tirar", fn: () => L.tirarMascara(false), on: ligada },
+        { n: "Tirar a Máscara", ic: "mascara-rachada", tipo: "Ação", p: "Tira a máscara antes do tempo acabar. Você não fica Esgotado, mas ela só volta depois do dobro do tempo usado.", b: "Tirar", fn: () => L.tirarMascara(false), on: mascOn },
       ].map((x, i) => (
         <div className="cwx fc-wrap" data-orig="hol" key={x.n}>
           <article className={`fc fc-acao${x.on ? "" : " off"}`} style={{ ["--i" as string]: i }} aria-label={x.n}>
@@ -473,14 +516,17 @@ export function PainelForma({ f, c, r, alterar, tipo, onEditar, onIrEvoluir, soA
   const trava = ehMascara ? !tr.mascara : false;
   const nAcoes = ehMascara ? 3 : acoes.length;
   return (
-    <div className={`fpw fp-${pele}${origem === "hollow" ? " amber" : ""}${acende ? " pf-acende" : ""}`} data-orig={pele} data-forma={id} {...(tk ? { "data-arte": tk } : {})}>
+    <div className={`fpw fp-${pele}${origem === "hollow" ? " amber" : ""}${acende ? " pf-acende" : ""}${fundida ? " fp-fusao" : ""}${infecta ? " fp-infecta" : ""}`} data-orig={pele} data-forma={id} {...(fundida ? { "data-fusao": "1" } : {})} {...(tk ? { "data-arte": tk } : {})}>
       <section className="fp" data-ligada={ligada ? 1 : 0} aria-labelledby={`fp-h-${id}`}>
+        {fundida && <FissurasBorda />}
         <header className="fp-cab">
           <Html tag="div" cls="fp-arte fp-arte-d" html={arte.d} />
           <Html tag="div" cls="fp-arte fp-arte-m" html={arte.m} />
+          {fundida && <Html tag="div" cls="fp-arte fp-arte-mask" html={arteMasc} />}
+          {fundida && <FissurasCabeca />}
           {pele === "shi" && <span className="fp-hanko" aria-hidden="true">{KANJI[id] ?? "解"}</span>}
           <div className="fp-tit">
-            <p className="fp-eb"><Ic n={pele === "shi" ? "sol-nuvem" : "mascara-rachada"} />Painel da forma · {rotulo}</p>
+            <p className="fp-eb"><Ic n={pele === "shi" && !fundida ? "sol-nuvem" : "mascara-rachada"} />Painel da forma · {rotulo}{fundida ? ` + ${masc?.nome ?? "Máscara Hollow"}` : ""}</p>
             <h2 id={`fp-h-${id}`}>{nomeForma}</h2>
             {sub && <p className="fp-sub">{sub}</p>}
             {temCompleto && <Completo meta={completoMeta} textos={completoTextos} />}
@@ -510,6 +556,31 @@ export function PainelForma({ f, c, r, alterar, tipo, onEditar, onIrEvoluir, soA
           <div className="fp-diff"><em>{ligada ? "O que mudou:" : "Ao ligar:"}</em>
             {diff.map(([k, a, b]) => ligada ? <span key={k}>{k} <b aria-hidden="true">▲</b> {b}</span> : <span key={k}>{k}{a ? `: ${a}` : ""} <b aria-hidden="true">→ ▲</b> {b}</span>)}
           </div>
+        )}
+        {fundida && (
+          <div className="fp-hol fp-fm-pele" data-orig="hol"><section className="fp-sec fp-fm" aria-label="Máscara Hollow fundida à forma">
+            <h3><Ic n="mascara-rachada" cls="h-ic" />Máscara Hollow <small>{masc?.nome} · fundida com a {rotulo}</small></h3>
+            <div className="fp-fm-resumo">
+              <span className="fp-turno" role="img" aria-label={`Turno ${L.mascaraGasta} de ${L.mascMax} da máscara`}>
+                {Array.from({ length: Math.min(L.mascMax, 24) }, (_, k) => <i key={k} className={k < L.mascaraGasta ? "pf-on" : ""} />)}
+                <small>turno {L.mascaraGasta} de {L.mascMax}</small>
+              </span>
+              {L.hg.estabiliza && <span className="fp-fm-tag" title="Hōgyoku: +2 turnos e sem Esgotado ao acabar o tempo">Hōgyoku +2</span>}
+            </div>
+            {diffMasc.length > 0 && (
+              <div className="fp-diff fp-diff-m"><em>Da máscara:</em>
+                {diffMasc.map(([k, , b]) => <span key={k}>{k} <b aria-hidden="true">▲</b> {b}</span>)}
+              </div>
+            )}
+            <div className="fp-grade">{cartasMascara}</div>
+            <div className="fp-grade fp-un fp-fm-un"><CartaUnica x={precoMasc} pele="hol" /></div>
+            {passivasMasc.length > 0 && (
+              <div className="fp-grade fp-pa">
+                {passivasMasc.map((x, k) => <div className="fc-pas" data-orig="hol" key={x.n + k}><span className="fc-pi" aria-hidden="true"><Ic n={x.icone ?? ICONES_PASSIVA.hol[k % 6]} /></span><h4>{x.n}</h4><p>{x.p}</p></div>)}
+              </div>
+            )}
+            <div className="cwx fp-fm-lc" data-orig="hol"><Completo meta={completoMascMeta} textos={completoMascTextos} /></div>
+          </section></div>
         )}
         {ehMascara && trava && <p className="fp-trava">Escolha a sua Máscara Hollow em Agir (a escolha é permanente) para liberar as cartas.</p>}
         {(nAcoes > 0 || !ligada) && (
@@ -718,6 +789,9 @@ export function FormasPoderes({ f, c, r, alterar, onEditar, onIrEvoluir }: { f: 
   const [sel, setSel] = useState<TipoPainel | "">("");
   if (abas.length === 0) return null;
   const atual = abas.find((x) => x.tipo === sel)?.tipo ?? abas.find((x) => x.tipo === ativaId)?.tipo ?? (mascaraAtiva(f) ? "mascara" : abas[0].tipo);
+  // Visored com máscara e Shikai/Bankai ligadas: a aba da máscara mostra o mesmo painel fundido da forma
+  const fundida = !!ativaId && f.origem === "visored" && !!mascaraAtiva(f) && origemDaForma(ativaId) === "shinigami";
+  const mostrar: TipoPainel = atual === "mascara" && fundida ? (ativaId as TipoPainel) : atual;
   const estaLigada = (t: TipoPainel) => (t === "mascara" ? !!mascaraAtiva(f) : f.estado.liberado === liberacaoDaForma(t));
   void L; void msg;
   return (
@@ -736,7 +810,7 @@ export function FormasPoderes({ f, c, r, alterar, onEditar, onIrEvoluir }: { f: 
           );
         })}
       </div>
-      {atual === "vollstandig" ? <PainelVoll key={atual} f={f} c={c} r={r} alterar={alterar} tipo={atual} onEditar={onEditar} onIrEvoluir={onIrEvoluir} /> : <PainelForma key={atual} f={f} c={c} r={r} alterar={alterar} tipo={atual} onEditar={onEditar} onIrEvoluir={onIrEvoluir} />}
+      {mostrar === "vollstandig" ? <PainelVoll key={mostrar} f={f} c={c} r={r} alterar={alterar} tipo={mostrar} onEditar={onEditar} onIrEvoluir={onIrEvoluir} /> : <PainelForma key={mostrar} f={f} c={c} r={r} alterar={alterar} tipo={mostrar} onEditar={onEditar} onIrEvoluir={onIrEvoluir} />}
     </div>
   );
 }
