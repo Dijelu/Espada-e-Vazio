@@ -153,8 +153,7 @@ export function CartasSituacoes({ f, alterar }: { f: Ficha; alterar: (p: Partial
               return (
                 <CartaPoder key={s.id} tipo={tipoPadraoDaOrigem(origemDaFonte(s.fonte, f))} selo={s.fonte} nome={s.nome} ativa={on} estado={on ? "Ligada" : undefined}
                   acao={<button type="button" className={`b${on ? "" : ""}`} aria-pressed={on} onClick={() => ligar(s.id)}>{on ? "Ligada · desligar" : "Ligar"}</button>}>
-                  <p className="vale-quando">Vale quando: {s.quando}</p>
-                  <TextoCarta texto={s.texto} />
+                  <TextoCarta quando={s.quando} texto={s.texto} />
                   {ESCALA[s.id] && (() => {
                     const esc = ESCALA[s.id];
                     const k = idSituacao(s.id);
