@@ -71,7 +71,7 @@ export function EfeitosNeutros({ f, tipo, r, mud }: Props) {
         </ul>
       )}
 
-      <div className="cartas-hab galeria-cartoes galeria-efeitos">
+      <div className="cartas-hab galeria-cartoes galeria-efeitos galeria-padrao">
         {FORCAS.map((fz) => (
           <CartaoEfeito key={fz.id} forca={fz.id} classe={classeDe(tipo)} livre={orc.livre} onAdicionar={(inst) => { mud({ efeitos: [...efeitos, inst] }); setMsg(`${inst.nome} entrou na forma (${fz.pp} PP).`); }} />
         ))}
@@ -92,17 +92,18 @@ function CartaoEfeito({ forca, classe, livre, onAdicionar }: { forca: Forca; cla
   const sem = pp > livre;
   const vazio = aba === "livre" && texto.trim().length < 5;
   return (
-    <article className="carta-hab carta-peca carta-neutra carta-efeito" data-classe={classe} data-forca={forca}>
+    <article className="carta-hab carta-peca carta-neutra carta-efeito carta-padrao" data-classe={classe} data-forca={forca}>
       <div className="carta-topo">
         <small className="ajuda">{LIMITE_TEXTO[forca]}</small>
         <span className="selo-pp">{pp}<i>PP</i></span>
       </div>
       <h3>{NOME_FORCA[forca]}</h3>
-      <p>{SOBRE[forca]}</p>
+      <p className="texto-carta">{SOBRE[forca]}</p>
       <div className="filtros-pecas" role="group" aria-label={`Como montar o ${NOME_FORCA[forca].toLowerCase()}`}>
         <button type="button" className={`chip chip-btn ${aba === "pronta" ? "on" : ""}`} aria-pressed={aba === "pronta"} onClick={() => setAba("pronta")}>Condição pronta</button>
         <button type="button" className={`chip chip-btn ${aba === "livre" ? "on" : ""}`} aria-pressed={aba === "livre"} onClick={() => setAba("livre")}>Escrever o efeito</button>
       </div>
+      <div className="opcoes-carta">
       {aba === "pronta" ? (
         <label className="campo">Condição ({lista.length} da faixa {forca === "medio" ? "média" : forca === "leve" ? "leve" : "forte"})
           <select value={cond} onChange={(e) => setCond(e.target.value)}>{lista.map((n) => <option key={n} value={n}>{n}</option>)}</select>
@@ -116,12 +117,15 @@ function CartaoEfeito({ forca, classe, livre, onAdicionar }: { forca: Forca; cla
           <p className="ajuda">Precisa do aval do Mestre. Pendente, vale só como texto.</p>
         </>
       )}
+      </div>
+      <div className="rodape-carta">
       <button type="button" className="btn-mini" disabled={sem || vazio} onClick={() => {
         onAdicionar(aba === "pronta"
           ? instanciarEfeito({ forca, modo: "pronta", condicao: { nome: cond, salva: "con", duracao: DURACAO_FORCA[forca] } }, novoId())
           : instanciarEfeito({ forca, modo: "livre", texto: texto.trim(), ...(onde.trim() ? { onde: onde.trim() } : {}), aval: "pendente" }, novoId(), nome));
         if (aba === "livre") { setNome(""); setTexto(""); setOnde(""); }
       }}>{sem ? "Pontos insuficientes" : vazio ? "Escreva o efeito" : "Adicionar"}</button>
+      </div>
     </article>
   );
 }

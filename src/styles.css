@@ -1887,7 +1887,6 @@ details.ficha-leitura-bloco[open] > summary { margin-bottom: 8px; }
 .caracs-acao .campo-liga { margin-top: 6px; max-width: 360px; }
 .galeria-caracs { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
 .carta-carac .duas { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.carta-carac .btn-mini { margin-top: auto; }
 .carta-carac.travada { opacity: .6; }
 .caracs-lista .link-perigo, .caracs-lista .tirar-confirma { flex: none; white-space: nowrap; }
 .caracs-lista .campo-liga select { max-width: 100%; }
@@ -1895,7 +1894,6 @@ details.ficha-leitura-bloco[open] > summary { margin-bottom: 8px; }
 /* Cartões de efeito (leve, médio, forte) */
 .galeria-efeitos { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
 .carta-efeito .campo small { display: block; margin-top: 4px; }
-.carta-efeito .btn-mini { margin-top: auto; }
 .carta-efeito .carta-topo small { font-weight: 800; letter-spacing: .04em; }
 .carta-efeito[data-forca="leve"] .carta-topo small { color: #9fd3a8; }
 .carta-efeito[data-forca="medio"] .carta-topo small { color: #e8c46a; }
@@ -1915,14 +1913,13 @@ details.ficha-leitura-bloco[open] > summary { margin-bottom: 8px; }
 .vagas-especiais { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin: 6px 0 4px; }
 .selo-vagas { padding: 4px 12px; border: 2px solid var(--accent); border-radius: 999px; font-size: 14px; background: color-mix(in srgb, var(--accent) 12%, transparent); }
 .galeria-especiais { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
-.carta-especial .btn-mini { margin-top: auto; }
 .carta-especial.travada { opacity: .6; }
 .carta-especial .serve-com { font-size: 13px; }
 
 /* ===== Cartões de ação padronizados: mesmo tamanho, botão alinhado na base ===== */
-.galeria-acoes { grid-template-columns: 1fr; align-items: stretch; }
-@media (min-width: 640px) { .galeria-acoes { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1100px) { .galeria-acoes { grid-template-columns: repeat(4, 1fr); } }
+.galeria-acoes, .galeria-padrao, .efeitos-forma .cartas-hab.galeria-padrao { grid-template-columns: 1fr; align-items: stretch; }
+@media (min-width: 640px) { .galeria-acoes, .galeria-padrao, .efeitos-forma .cartas-hab.galeria-padrao { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .galeria-acoes, .galeria-padrao, .efeitos-forma .cartas-hab.galeria-padrao { grid-template-columns: repeat(4, 1fr); } }
 .carta-padrao { display: flex; flex-direction: column; gap: 8px; align-content: normal; }
 .carta-padrao h3 { line-height: 1.15; }
 .carta-padrao .texto-carta { margin: 0; }
@@ -1939,3 +1936,14 @@ details.ficha-leitura-bloco[open] > summary { margin-bottom: 8px; }
 }
 .secao-final { margin-top: 6px; }
 .secao-final > .ajuda { margin: 0 0 8px; }
+
+/* ===== Padronização final: todos os cartões da montagem têm a mesma largura, a mesma altura na linha e o botão na base ===== */
+.carta-padrao > .carta-topo { min-height: 36px; }
+.carta-padrao .opcoes-carta { display: grid; gap: 8px; align-content: start; }
+.carta-padrao .opcoes-carta .duas { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.carta-padrao .opcoes-carta .campo, .carta-padrao .opcoes-carta .check { margin: 0; }
+.carta-padrao .rodape-carta .btn-mini { min-height: 44px; }
+.carta-montagem.carta-padrao { display: flex; flex-direction: column; }
+.carta-montagem.carta-padrao > .link-perigo { margin-top: auto; align-self: flex-start; }
+.cartoes-montados { align-items: stretch; }
+.carta-padrao .texto-carta { overflow-wrap: anywhere; }

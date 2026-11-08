@@ -95,14 +95,14 @@ export function TecnicasEspeciais({ f, tipo, r, mud, irParaInteracoes }: Props &
         </ul>
       )}
 
-      <div className="cartas-hab galeria-cartoes galeria-especiais">
+      <div className="cartas-hab galeria-cartoes galeria-especiais galeria-padrao">
         {TECNICAS.map((d) => {
           const repetida = minhas.some((e) => e.espec?.id === d.id);
           const sem = d.pp > orc.livre;
           const travada = repetida || cheio;
           const serve = INTERACOES.filter((i) => i.com.length === 0 || i.com.includes(d.id));
           return (
-            <article key={d.id} className={`carta-hab carta-peca carta-neutra carta-especial ${travada || sem ? "travada" : ""}`} data-classe={classeDe(tipo)}>
+            <article key={d.id} className={`carta-hab carta-peca carta-neutra carta-especial carta-padrao ${travada || sem ? "travada" : ""}`} data-classe={classeDe(tipo)}>
               <div className="carta-topo">
                 <small className="ajuda">Técnica especial</small>
                 <span className="selo-pp">{d.pp}<i>PP</i></span>
@@ -110,9 +110,11 @@ export function TecnicasEspeciais({ f, tipo, r, mud, irParaInteracoes }: Props &
               <h3>{d.nome}</h3>
               <p className="texto-carta">{d.texto}</p>
               <p className="ajuda serve-com"><b>Interações que servem:</b> {serve.map((i) => i.nome).join(", ")}</p>
-              <button type="button" className="btn-mini" disabled={travada || sem} onClick={() => adicionar(d)}>
-                {repetida ? "Já está na forma" : cheio ? "Sem vagas" : sem ? "Pontos insuficientes" : "Adicionar"}
-              </button>
+              <div className="rodape-carta">
+                <button type="button" className="btn-mini" disabled={travada || sem} onClick={() => adicionar(d)}>
+                  {repetida ? "Já está na forma" : cheio ? "Sem vagas" : sem ? "Pontos insuficientes" : "Adicionar"}
+                </button>
+              </div>
             </article>
           );
         })}
@@ -208,7 +210,7 @@ export function InteracoesEspeciais({ f, tipo, r, mud, irParaTecnicas }: Props &
         </ul>
       )}
 
-      <div className="cartas-hab galeria-cartoes galeria-especiais">
+      <div className="cartas-hab galeria-cartoes galeria-especiais galeria-padrao">
         {INTERACOES.map((d) => {
           const ts = servem(d);
           const repetida = minhas.some((e) => e.espec?.id === d.id);
@@ -219,7 +221,7 @@ export function InteracoesEspeciais({ f, tipo, r, mud, irParaTecnicas }: Props &
           const ok = acoesDe(d);
           const nomesTec = d.com.length ? d.com.map((c) => TECNICAS.find((t) => t.id === c)?.nome ?? c).join(" ou ") : "qualquer técnica";
           return (
-            <article key={d.id} className={`carta-hab carta-peca carta-neutra carta-especial ${travada || sem ? "travada" : ""}`} data-classe={classeDe(tipo)}>
+            <article key={d.id} className={`carta-hab carta-peca carta-neutra carta-especial carta-padrao ${travada || sem ? "travada" : ""}`} data-classe={classeDe(tipo)}>
               <div className="carta-topo">
                 <small className="ajuda">Interação especial{d.soHollow ? " · Visored e Hollow" : ""}</small>
                 <span className="selo-pp">{d.pp}<i>PP</i></span>
@@ -227,6 +229,7 @@ export function InteracoesEspeciais({ f, tipo, r, mud, irParaTecnicas }: Props &
               <h3>{d.nome}</h3>
               <p className="texto-carta">{d.texto}</p>
               <p className="ajuda serve-com"><b>Serve a:</b> {nomesTec}</p>
+              <div className="opcoes-carta">
               {ts.length > 1 && (
                 <label className="campo">Ligar à técnica
                   <select value={escolha[d.id] ?? ts[0].id} onChange={(e) => setEscolha((m) => ({ ...m, [d.id]: e.target.value }))}>
@@ -246,9 +249,12 @@ export function InteracoesEspeciais({ f, tipo, r, mud, irParaTecnicas }: Props &
               {d.vale.length > 0 && ok.length === 0 && <p className="aviso-mini">Vale em ações de {nomesVale(d.vale)}: ligue depois.</p>}
               {semTecnica && !proibida && <p className="aviso-mini">Monte antes a técnica: {nomesTec}.</p>}
               {proibida && <p className="aviso-mini">Só para Visored e Hollow.</p>}
-              <button type="button" className="btn-mini" disabled={travada || sem} onClick={() => adicionar(d)}>
-                {repetida ? "Já está na forma" : proibida ? "Indisponível" : semTecnica ? "Falta a técnica" : cheio ? "Sem vagas" : sem ? "Pontos insuficientes" : "Adicionar"}
-              </button>
+              </div>
+              <div className="rodape-carta">
+                <button type="button" className="btn-mini" disabled={travada || sem} onClick={() => adicionar(d)}>
+                  {repetida ? "Já está na forma" : proibida ? "Indisponível" : semTecnica ? "Falta a técnica" : cheio ? "Sem vagas" : sem ? "Pontos insuficientes" : "Adicionar"}
+                </button>
+              </div>
             </article>
           );
         })}

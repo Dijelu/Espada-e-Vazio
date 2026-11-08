@@ -111,7 +111,7 @@ export function CaracteristicasForma({ f, tipo, r, mud }: Props) {
         {GRUPOS_CARAC.filter((g) => CARACS.some((d) => d.grupo === g)).map((g) => <button type="button" key={g} className={`chip chip-btn ${grupo === g ? "on" : ""}`} aria-pressed={grupo === g} onClick={() => setGrupo(grupo === g ? "" : g)}>{g}</button>)}
       </div>
 
-      <div className="cartas-hab galeria-cartoes galeria-caracs">
+      <div className="cartas-hab galeria-cartoes galeria-caracs galeria-padrao">
         {lista.map((d) => {
           const p = params[d.id] ?? {};
           const { ok, final, padrao } = opcoesLiga(d);
@@ -124,13 +124,14 @@ export function CaracteristicasForma({ f, tipo, r, mud }: Props) {
           const repetida = !!d.unica && efeitos.some((e) => e.carac?.id === d.id);
           const travada = semAcao || faltam.length > 0 || repetida;
           return (
-            <article key={d.id} className={`carta-hab carta-peca carta-neutra carta-carac ${travada || sem ? "travada" : ""}`} data-classe={classeDe(tipo)} data-cat={d.grupo.toLowerCase()}>
+            <article key={d.id} className={`carta-hab carta-peca carta-neutra carta-carac carta-padrao ${travada || sem ? "travada" : ""}`} data-classe={classeDe(tipo)} data-cat={d.grupo.toLowerCase()}>
               <div className="carta-topo">
                 <small className="ajuda">{d.grupo}{d.vale.length > 0 ? ` · ${nomesVale(d.vale)}` : " · forma toda"}</small>
                 <span className="selo-pp">{custo}<i>PP</i></span>
               </div>
               <h3>{d.nome}</h3>
-              <p>{d.texto}</p>
+              <p className="texto-carta">{d.texto}</p>
+              <div className="opcoes-carta">
               {(d.param === "dados") && (
                 <div className="duas">
                   <label className="campo">Dados
@@ -176,9 +177,12 @@ export function CaracteristicasForma({ f, tipo, r, mud }: Props) {
               )}
               {semAcao && <p className="aviso-mini">Monte antes uma ação de {nomesVale(d.vale).toLowerCase()}.</p>}
               {faltam.length > 0 && <p className="aviso-mini">Precisa antes de: {faltam.map((x) => x.nome).join(", ")}.</p>}
-              <button type="button" className="btn-mini" disabled={travada || sem} onClick={() => adicionar(d)}>
-                {repetida ? "Já está na forma" : travada ? "Indisponível" : sem ? "Pontos insuficientes" : "Adicionar"}
-              </button>
+              </div>
+              <div className="rodape-carta">
+                <button type="button" className="btn-mini" disabled={travada || sem} onClick={() => adicionar(d)}>
+                  {repetida ? "Já está na forma" : travada ? "Indisponível" : sem ? "Pontos insuficientes" : "Adicionar"}
+                </button>
+              </div>
             </article>
           );
         })}

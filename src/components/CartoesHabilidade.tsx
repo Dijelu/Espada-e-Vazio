@@ -45,7 +45,7 @@ export function GaleriaAcoes({ tipo, ctx, ppExtra, habs, limite, atr, onUsar }: 
   const cheio = vagasUsadas(habs) >= limite;
   return (
     <>
-      <div className="cartas-hab galeria-cartoes galeria-acoes">
+      <div className="cartas-hab galeria-cartoes galeria-acoes galeria-padrao">
         {SUBS.map((s) => <CartaoDeAcao key={s.id} sub={s.id} classe={classe} ctx={ctx} ppExtra={ppExtra} habs={habs} cheio={cheio} atr={atr} onUsar={onUsar} />)}
       </div>
       <table className="tabela-pr">
@@ -113,7 +113,7 @@ function SecaoTecnicaFinal({ classe, ctx, ppExtra, habs, atr, onUsar }: { classe
     <section className="secao-final" aria-labelledby="titulo-final">
       <h4 id="titulo-final" className="sub-passivas">Técnica final</h4>
       <p className="ajuda">O golpe mais forte da forma. Ela já tem uma vaga reservada, fora das vagas das ações, e é sempre uma ação ({infoRitmo("acao").pr} PR). Há características que mexem com a técnica final.</p>
-      <div className="cartas-hab galeria-cartoes galeria-acoes">
+      <div className="cartas-hab galeria-cartoes galeria-acoes galeria-padrao">
         <article className="carta-hab carta-peca carta-neutra carta-acao carta-padrao carta-final" data-classe={classe}>
           <div className="carta-topo">
             <small className="ajuda">Técnica final · Ação</small>
@@ -168,7 +168,7 @@ export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, efeitos, on
   const doCartao = ehCartaoNovo(h);
   const nomeSub = h.cartao ? infoSub(h.cartao.sub).nome : "";
   return (
-    <article className={`carta-hab carta-peca carta-montagem ${a?.erros.length ? "carta-estourou" : ""}`} data-classe={classeDe(tipo)}>
+    <article className={`carta-hab carta-peca carta-montagem carta-padrao ${a?.erros.length ? "carta-estourou" : ""}`} data-classe={classeDe(tipo)}>
       <div className="carta-topo">
         <input className="carta-nome" value={h.nome} onChange={(e) => onChange({ nome: e.target.value })} placeholder="Nome do ataque ou técnica" aria-label="Nome" />
         {doCartao ? (
