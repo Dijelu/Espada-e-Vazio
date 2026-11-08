@@ -54,7 +54,7 @@ export function EfeitosForma({ f, tipo, r, mud, onGravar, modo = "tudo" }: Props
   useEffect(() => {
     if (tipo !== "vollstandig" || !f.schrift || r.schriftAuto === f.schrift || daSchrift.length === 0) return;
     const jaTem = new Set(efeitos.map((e) => e.preset));
-    const novas: InstEfeito[] = daSchrift.filter((p) => !jaTem.has(p.id)).map((p) => ({ id: novoId(), preset: p.id, nome: p.nome, texto: p.texto, efeitos: p.monta({}), pp: p.pp }));
+    const novas: InstEfeito[] = daSchrift.filter((p) => !jaTem.has(p.id)).map((p) => ({ id: novoId(), preset: p.id, nome: p.nome, texto: p.texto, efeitos: p.monta({}), pp: 0 }));
     mud({ efeitos: [...efeitos, ...novas], schriftAuto: f.schrift });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tipo, f.schrift, r.schriftAuto]);
@@ -66,8 +66,8 @@ export function EfeitosForma({ f, tipo, r, mud, onGravar, modo = "tudo" }: Props
   const adicionar = (p: Preset) => {
     const par = { ...(p.nPadrao ? { n: p.nPadrao } : {}), ...(params[p.id] ?? {}) };
     if (p.param === "atr" && !par.atr) par.atr = "for";
-    const inst: InstEfeito = { id: novoId(), preset: p.id, nome: nomeComParam(p, par), texto: p.texto, efeitos: p.monta(par), pp: p.pp !== undefined ? p.pp : undefined };
-    if (p.pp === undefined) inst.pp = undefined;
+    const inst: InstEfeito = { id: novoId(), preset: p.id, nome: nomeComParam(p, par), texto: p.texto, efeitos: p.monta(par), pp: p.schrift ? 0 : p.pp !== undefined ? p.pp : undefined };
+    if (p.pp === undefined && !p.schrift) inst.pp = undefined;
     const custo = custoPeca(inst, ctx);
     if (custo > orc.livre && custo > 0) { setMsg(`Faltam ${custo - orc.livre} PP para ${p.nome}.`); return; }
     if (p.monta({}).some((x) => x.k === "frenesi") && efeitos.some((e) => e.efeitos.some((x) => x.k === "frenesi"))) { setMsg("Só pode haver um frenesi na forma."); return; }
@@ -236,6 +236,8 @@ function nomeComParam(p: Preset, par: ParamPreset): string {
 }
 
 function custoPreset(p: Preset, par: ParamPreset, ctx: CtxForma): number {
+  // a Schrift é um recurso especial do Quincy: não usa PP
+  if (p.schrift) return 0;
   if (p.pp !== undefined) return p.pp;
   const efs = p.monta({ ...(p.nPadrao ? { n: p.nPadrao } : {}), ...par, atr: par.atr ?? "for" });
   return efs.reduce((s, e) => s + custoEfeito(e, ctx), 0);

@@ -30,6 +30,14 @@ export const HISTORICO_VERSOES: VersaoDoSistema[] = [
       "O teto de dano não aparece mais na tela.",
     ],
   },
+  {
+    versao: 2,
+    data: "2026-11-08",
+    titulo: "Schrift sem PP",
+    itens: [
+      "A Schrift não usa mais PP: ela é um recurso especial do Quincy (como a Vollständig), com poder próprio, e cada Quincy tem uma Schrift só.",
+    ],
+  },
 ];
 
 export const VERSAO_SISTEMA_ATUAL = HISTORICO_VERSOES[HISTORICO_VERSOES.length - 1].versao;

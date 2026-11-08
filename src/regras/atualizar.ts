@@ -11,12 +11,15 @@ import { calcularLiberacao } from "./liberacao-forma";
 import { TIPO_FORMA_NOME, liberacaoDaForma } from "./liberacoes";
 import { ehInteracao } from "./especiais";
 import { caracsValidas } from "./arma-forma";
+import { presetPorId } from "./efeitos-presets";
 
 /* ---------- a foto dos números ---------- */
 
 /** Todos os números que a ficha mostra e usa nas formas (PV, PR, CR, custos, PP, dano e PR de cada ação). Antes e depois da atualização têm de ser iguais.
  *  Fica de fora só o que não é número: os botões e as linhas de texto que a interação automática (0 PP) acrescenta para a técnica antiga continuar funcionando. */
-export function fotoNumeros(f: Ficha): string {
+export function fotoNumeros(original: Ficha): string {
+  // o PP da Schrift sai de propósito: nas duas fotos ele é zerado, para o resto da conta ser comparado por inteiro
+  const f: Ficha = { ...original, formas: Object.fromEntries(Object.entries(original.formas ?? {}).map(([k, fo]) => [k, fo && fo.efeitos ? { ...fo, efeitos: fo.efeitos.map((e) => (e.preset && presetPorId(e.preset)?.schrift ? { ...e, pp: 0 } : e)) } : fo])) };
   const saida: unknown[] = [];
   const pega = (g: Ficha) => {
     const k = calcular(g);
@@ -91,8 +94,8 @@ export interface PlanoAtualizacao {
   mudancas: string[];
 }
 
-const soma = (d: DetalheMigracao[], k: "paraEspecial" | "interacoesAuto" | "cartoesMarcados" | "textosGolpe") => d.reduce((n, x) => n + x[k], 0);
-const onde = (d: DetalheMigracao[], k: "paraEspecial" | "interacoesAuto" | "cartoesMarcados" | "textosGolpe") => d.filter((x) => x[k] > 0).map((x) => x.nome);
+const soma = (d: DetalheMigracao[], k: "paraEspecial" | "interacoesAuto" | "cartoesMarcados" | "textosGolpe" | "schriftSemPp") => d.reduce((n, x) => n + x[k], 0);
+const onde = (d: DetalheMigracao[], k: "paraEspecial" | "interacoesAuto" | "cartoesMarcados" | "textosGolpe" | "schriftSemPp") => d.filter((x) => x[k] > 0).map((x) => x.nome);
 const plural = (n: number, um: string, varios: string) => `${n} ${n === 1 ? um : varios}`;
 
 /** Mostra exatamente o que a atualização vai fazer nesta ficha, sem mudar nada nela. */
@@ -129,6 +132,8 @@ export function planejarAtualizacao(f: Ficha): PlanoAtualizacao {
   }
   const nTexto = soma(d, "textosGolpe");
   if (nTexto > 0) itens.push({ id: "golpe-reforcado", titulo: "Golpe reforçado", antes: "O texto dizia “Técnica especial: 1 uso por cena”.", depois: "Passa a dizer “Golpe reforçado: 1 uso por cena”. Só a palavra muda; a regra é a mesma.", formas: onde(d, "textosGolpe") });
+  const nSch = soma(d, "schriftSemPp");
+  if (nSch > 0) itens.push({ id: "schrift-sem-pp", titulo: "Schrift deixa de usar PP", antes: `${plural(nSch, "peça da Schrift gasta", "peças da Schrift gastam")} ${d.reduce((n, x) => n + x.schriftPp, 0)} PP da forma.`, depois: "O PP da Schrift sai da conta e esses pontos ficam livres na forma. O poder da Schrift não muda e nenhum outro número muda.", formas: onde(d, "schriftSemPp") });
   const comArma = d.filter((x) => x.armaSugerida);
   if (comArma.length > 0) itens.push({ id: "arma-modelo", titulo: "Arma da forma (modelo oficial)", antes: `${plural(comArma.length, "forma de modelo oficial", "formas de modelo oficial")} sem arma.`, depois: `Recebem a arma do modelo (${comArma.map((x) => x.armaSugerida).join(", ")}) só como informação. Nenhum cartão é travado e nenhum número muda.`, formas: comArma.map((x) => x.nome) });
   const revisar = itensARevisar(depois);

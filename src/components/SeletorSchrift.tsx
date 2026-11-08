@@ -10,9 +10,10 @@ export function SeletorSchrift({ valor, onChange, sugerida }: { valor: string; o
       <select value={valor} onChange={(e) => onChange(e.target.value)}>
         <option value="">Nenhuma</option>
         {antigo && <option value={valor}>{valor}</option>}
-        {SCHRIFTS.map((s) => <option key={s.id} value={s.nome}>{s.nome}</option>)}
+        {SCHRIFTS.filter((s) => !sugerida || s.nome === sugerida || s.nome === valor).map((s) => <option key={s.id} value={s.nome}>{s.nome}</option>)}
       </select>
       {atual && <small className="ajuda">{atual.base} Com a Vollständig: {atual.voll}</small>}
+      {sugerida && <small className="ajuda">Cada Quincy tem uma Schrift só, e ela não usa PP.</small>}
       {!valor && sugerida && <small className="ajuda">Sua Schrift de classe é {sugerida}.</small>}
     </label>
   );
