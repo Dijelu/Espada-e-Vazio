@@ -1862,7 +1862,8 @@ details.ficha-leitura-bloco[open] > summary { margin-bottom: 8px; }
 /* a rolagem é uma só: listas dentro do construtor não rolam por conta própria */
 .construtor .seletor-lista, .construtor .lista-kido, .construtor .armas-escolha { max-height: none; overflow: visible; flex: none; min-height: 0; }
 /* o passo a passo: trilha de passos presa no alto e botões de passo presos embaixo do miolo */
-.construtor .assistente-trilha { position: sticky; top: 0; z-index: 3; background: var(--bg); padding: 6px 0; }
+.assistente { --trilha-h: 52px; }
+.construtor .assistente-trilha { position: sticky; top: 0; z-index: 3; background: var(--bg); padding: 6px 0; box-sizing: border-box; height: var(--trilha-h); align-items: center; overflow-y: hidden; scrollbar-width: thin; }
 .construtor .assistente-nav { position: sticky; bottom: 0; z-index: 3; background: var(--bg); padding: 8px 0; }
 @media (max-width: 520px) {
   .construtor-topo h2 { font-size: 24px; }
@@ -1907,7 +1908,9 @@ details.ficha-leitura-bloco[open] > summary { margin-bottom: 8px; }
 .abas-cartoes button.on { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 18%, transparent); font-weight: 700; }
 .abas-cartoes button.alerta { border-color: #e8a13a; }
 .abas-cartoes button b { color: #f4c06a; }
-@media (max-width: 720px) { .abas-cartoes { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 720px) { .abas-cartoes { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; } .abas-cartoes button { min-height: 44px; padding: 4px 2px; font-size: 11px; flex-direction: column; gap: 0; line-height: 1.15; letter-spacing: -.01em; } .abas-cartoes button i { font-size: 11px; padding: 0 6px; } }
+/* no passo a passo a barra de abas fica presa logo abaixo da trilha de passos: nunca some atrás dela, nem ao rolar nem ao ser trazida para a tela */
+.assistente .abas-cartoes { position: sticky; top: var(--trilha-h); z-index: 2; background: var(--bg); padding: 6px 0; scroll-margin-top: var(--trilha-h); box-shadow: 0 1px 0 var(--line); }
 .faltas-especiais { border: 2px solid #e8a13a; border-left-width: 6px; border-radius: 8px; background: color-mix(in srgb, #e8a13a 10%, var(--panel2)); padding: 10px 14px; display: grid; gap: 6px; font-size: 14px; }
 .faltas-especiais ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
 .vagas-especiais { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin: 6px 0 4px; }
