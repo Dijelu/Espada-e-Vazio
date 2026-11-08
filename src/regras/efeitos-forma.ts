@@ -105,6 +105,27 @@ export interface CtxForma {
   tipo?: string;
 }
 
+/** A que ações um cartão de característica está ligado. `vale` são os tipos de ação em que ele pode entrar. */
+export interface LigAcao { modo: "final" | "uma" | "todas"; acao?: string; vale: string[] }
+/** A ação que está sendo lida (para saber se um cartão ligado entra nela). */
+export interface AcaoRef { id?: string; final?: boolean; sub?: string }
+
+/** O cartão ligado entra nesta ação? */
+export function ligaCom(l: LigAcao, a?: AcaoRef): boolean {
+  if (!a) return false;
+  if (a.sub && l.vale.length > 0 && !l.vale.includes(a.sub)) return false;
+  if (l.modo === "final") return !!a.final;
+  if (l.modo === "uma") return !!l.acao && a.id === l.acao;
+  return true;
+}
+
+/** Ligação de uma peça que é cartão de característica de ação (sem `vale`, a característica vale para a forma toda). */
+export function ligacaoDa(inst: InstEfeito): LigAcao | undefined {
+  const c = inst.carac;
+  if (!c || c.vale.length === 0) return undefined;
+  return { modo: c.liga, ...(c.acao ? { acao: c.acao } : {}), vale: c.vale };
+}
+
 export const ATR_NOME: Record<Atr, string> = { for: "Força", des: "Destreza", con: "Constituição", men: "Mente", esp: "Espírito" };
 
 const FICHAS = /^[0-9+\-*/(). ]+$/;
@@ -203,12 +224,12 @@ export interface SomaForma {
   dano: Record<Alvo, number>;
   dados: Record<Alvo, string[]>;
   /** cada cartão de dano (dados ou dano fixo) com os alvos a que vale, para somar uma vez só por habilidade */
-  cartoesDano: { em: Alvo[]; dado?: string; fixo: number }[];
+  cartoesDano: { em: Alvo[]; dado?: string; fixo: number; lig?: LigAcao }[];
   ignoraRd: Record<Alvo, number>;
   alcance: Record<Alvo, number>;
   vant: string[];
   resist: { dano: string; grau: string }[];
-  gatilhos: { rotulo: string; quando: Quando; limite?: string; faz: Faz; peca: string }[];
+  gatilhos: { rotulo: string; quando: Quando; limite?: string; faz: Faz; peca: string; /** cartão de característica ligado a uma ação: o botão aparece na ação */ lig?: LigAcao }[];
   /** a forma tira o controle de você: a cada turno, salvaguarda (leve e grande) ou o Mestre sempre joga (total) */
   frenesi?: "leve" | "grande" | "total";
   /** clones e invocações que a forma permite criar, com os números já calculados */
@@ -242,14 +263,20 @@ export function somarForma(f: Ficha, ctx: CtxForma): SomaForma | null {
   const linha = (rotulo: string, v: string, fonte: string) => s.linhas.push({ rotulo, valor: v, fonte });
   for (const { inst, fonte } of pecas) {
     const nome = fonte === "forma" ? inst.nome : `${inst.nome} (herdada)`;
+    const lig = ligacaoDa(inst);
     for (const e of inst.efeitos) {
       switch (e.k) {
         case "atr": { const v = valor(e.v, ctx); s.atr[e.atr] += v; linha(ATR_NOME[e.atr], sinal(v), nome); break; }
         case "cr": { const v = valor(e.v, ctx); s.cr += v; linha("CR", sinal(v), nome); break; }
         case "acerto": { const v = valor(e.v, ctx); e.em.forEach((a) => (s.acerto[a] += v)); linha(`Acerto: ${nomeAlvos(e.em)}`, sinal(v), nome); break; }
-        case "dano": { const v = valor(e.v, ctx); e.em.forEach((a) => (s.dano[a] += v)); if (v !== 0) s.cartoesDano.push({ em: e.em, fixo: v }); linha(`Dano: ${nomeAlvos(e.em)}`, sinal(v), nome); break; }
+        case "dano": {
+          const v = valor(e.v, ctx);
+          if (lig) { if (v !== 0) s.cartoesDano.push({ em: e.em, fixo: v, lig }); linha("Dano: ação ligada", sinal(v), nome); break; }
+          e.em.forEach((a) => (s.dano[a] += v)); if (v !== 0) s.cartoesDano.push({ em: e.em, fixo: v }); linha(`Dano: ${nomeAlvos(e.em)}`, sinal(v), nome); break;
+        }
         case "dados": {
           const n = valor(e.n, ctx);
+          if (n > 0 && lig) { s.cartoesDano.push({ em: e.em, dado: `${n}d${e.d}`, fixo: 0, lig }); linha("Dano: ação ligada", `+${n}d${e.d}${e.tipo ? ` ${e.tipo}` : ""}`, nome); break; }
           if (n > 0) { e.em.forEach((a) => s.dados[a].push(`${n}d${e.d}`)); s.cartoesDano.push({ em: e.em, dado: `${n}d${e.d}`, fixo: 0 }); linha(`Dano: ${nomeAlvos(e.em)}`, `+${n}d${e.d}${e.tipo ? ` ${e.tipo}` : ""}`, nome); }
           break;
         }
@@ -261,7 +288,7 @@ export function somarForma(f: Ficha, ctx: CtxForma): SomaForma | null {
         case "desloc": { const v = valor(e.v, ctx); if (e.modo === "voo") s.voo += v; else s.desloc += v; linha(e.modo === "voo" ? "Voo" : "Deslocamento", `${sinal(v)} m`, nome); break; }
         case "acoes": { if (e.tipo === "ataque") s.ataques += 1; else if (e.tipo === "reacao") s.reacoes += 1; else s.bonus += 1; linha(e.tipo === "ataque" ? "Ataques por ação" : e.tipo === "reacao" ? "Reações" : "Ações bônus", "+1", nome); break; }
         case "vant": { s.vant.push(e.em); linha("Vantagem", e.em, nome); break; }
-        case "gatilho": { s.gatilhos.push({ rotulo: e.rotulo || nome, quando: e.quando, limite: e.limite, faz: e.faz, peca: nome }); break; }
+        case "gatilho": { s.gatilhos.push({ rotulo: e.rotulo || nome, quando: e.quando, limite: e.limite, faz: e.faz, peca: nome, ...(lig ? { lig } : {}) }); break; }
         case "custo": { const v = valor(e.pr, ctx); s.manutencao += v; linha("Manutenção", `${v} PR por turno`, nome); break; }
         case "fim": { s.fim = e.esgotado; linha("Ao terminar", `Esgotado até o descanso ${e.esgotado === "curto" ? "curto" : "longo"}`, nome); break; }
         case "duracao": { s.duracao = valor(e.turnos, ctx); linha("Duração", `${s.duracao} turnos`, nome); break; }
@@ -306,10 +333,12 @@ export function somarForma(f: Ficha, ctx: CtxForma): SomaForma | null {
 }
 
 /** Dano que os cartões da forma somam a uma habilidade: cada cartão entra uma vez, se vale para algum dos alvos dela. */
-export function danoExtraDaAcao(forma: SomaForma | null | undefined, alvos: Alvo[]): { dados: string[]; fixo: number } {
+export function danoExtraDaAcao(forma: SomaForma | null | undefined, alvos: Alvo[], acao?: AcaoRef): { dados: string[]; fixo: number } {
   const out = { dados: [] as string[], fixo: 0 };
   for (const c of forma?.cartoesDano ?? []) {
-    if (!c.em.some((a) => alvos.includes(a))) continue;
+    // cartão de característica ligado a uma ação: entra só nas ações a que está ligado
+    if (c.lig) { if (!ligaCom(c.lig, acao)) continue; }
+    else if (!c.em.some((a) => alvos.includes(a))) continue;
     if (c.dado) out.dados.push(c.dado);
     out.fixo += c.fixo;
   }

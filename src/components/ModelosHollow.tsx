@@ -41,7 +41,7 @@ export function ModelosHollow({ f, tipo, ctx, onUsar }: Props) {
       <h3>{tipo === "resurreccion" ? "Resurrecciones prontas, montadas com cartões" : "Segundas Etapas prontas"}</h3>
       <p className="ajuda">
         {tipo === "resurreccion"
-          ? "Cada modelo já vem com as peças, as habilidades, o ponto fraco e o custo. Só aparecem liberados os que combinam com a sua classe e o seu Caminho."
+          ? "Cada modelo já vem com os cartões de característica, as habilidades, o ponto fraco e o custo. Só aparecem liberados os que combinam com a sua classe e o seu Caminho."
           : "A Segunda Etapa se apoia na sua Resurrección. Só a do Murciélago é canônica; as outras são criações inspiradas em Hollows e dependem da aprovação do Mestre."}
       </p>
       <div className="cartas-hab modelos-montados-lista">

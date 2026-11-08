@@ -5,6 +5,7 @@ import { ArtePainel } from "./ArtePainel";
 import { PainelSchrift } from "./PainelSchrift";
 import { ROTULO_ORIGEM, origemDaForma } from "../lib/origem";
 import { CartaoHabilidade } from "./CartoesHabilidade";
+import { CaracteristicasForma } from "./CaracteristicasForma";
 import { ModelosBankai } from "./ModelosBankai";
 import { shikaiExigida, temAShikai } from "../regras/bankai-exige-shikai";
 import { ModelosHollow } from "./ModelosHollow";
@@ -388,7 +389,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
                 <p className="ajuda">Cada habilidade com PR ou dano vira uma carta nova no Resumo, com botões de usar e rolar.</p>
                 <div className="cartas-hab cartoes-montados">
                   {r.habilidades.map((h) => (
-                    <CartaoHabilidade key={h.id} h={h} tipo={tipo} ctx={ctxAtual} ppExtra={(r.ppExtra ?? 0) > 0} nomeForma={r.nome} onChange={(p) => habil(h.id, p)} onRemover={() => mud({ habilidades: r.habilidades.filter((x) => x.id !== h.id) })} />
+                    <CartaoHabilidade key={h.id} h={h} tipo={tipo} ctx={ctxAtual} ppExtra={(r.ppExtra ?? 0) > 0} nomeForma={r.nome} efeitos={r.efeitos} onChange={(p) => habil(h.id, p)} onRemover={() => mud({ habilidades: r.habilidades.filter((x) => x.id !== h.id) })} />
                   ))}
                 </div>
                 <button type="button" className="btn btn-paper" disabled={vagasUsadas(r.habilidades) >= LIMITE_HAB[tipo]} onClick={() => mud({ habilidades: [...r.habilidades, { id: novoId(), nome: "", texto: "", custo: "", acao: "Ação" }] })}>Adicionar habilidade</button>
@@ -433,6 +434,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
               <label className="campo">Ponto fraco<textarea rows={2} value={r.pontoFraco} onChange={(e) => mud({ pontoFraco: e.target.value })} placeholder="Um preço ou vulnerabilidade da forma" /></label>
             )}
 
+            <CaracteristicasForma f={f} tipo={tipo} r={r} mud={mud} />
             <EfeitosForma f={f} tipo={tipo} r={r} mud={mud} onGravar={onGravar} />
           </div>
         )}

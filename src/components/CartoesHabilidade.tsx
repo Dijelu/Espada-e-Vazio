@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { analisarDano, ATR_AUTO, danoNoTeto } from "../regras/teto-dano";
 import { danoDoCartao, danoResolvido, ehCartaoNovo, infoRitmo, infoSub, novaHabilidade, RITMOS, SUBS, temFinal, vagasUsadas, type CuraTipo, type Ritmo, type SubAcao, CURAS } from "../regras/cartoes";
-import type { CtxForma } from "../regras/efeitos-forma";
+import type { CtxForma, InstEfeito } from "../regras/efeitos-forma";
+import { caracsDaAcao } from "../regras/caracteristicas";
 import type { FormaLib, HabForma } from "../regras/ficha";
 import { classeDe } from "./EfeitosForma";
 import { resolverDano } from "../regras/liberacoes";
@@ -111,12 +112,15 @@ interface CartaoProps {
   ppExtra: boolean;
   /** nome da forma, para a dica da descrição */
   nomeForma: string;
+  /** cartões de característica da forma (as marcas das ligadas a esta ação aparecem no cartão) */
+  efeitos?: InstEfeito[];
   onChange: (p: Partial<HabForma>) => void;
   onRemover: () => void;
 }
 
 /** Cartão de habilidade já montado: nome, ação, dano, custo calculado e a descrição do jogador. */
-export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, onChange, onRemover }: CartaoProps) {
+export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, efeitos, onChange, onRemover }: CartaoProps) {
+  const ligados = caracsDaAcao(efeitos, h);
   // ataque automático: o dano é calculado na leitura (nível, tipo de ação, técnica especial; os dados extras dos cartões não entram)
   const danoLido = danoDoCartao(h, ctx, ppExtra);
   const a = h.fixa ? null : analisarDano(danoLido, h.acao, ctx, ppExtra, h.especial ?? false);
@@ -149,6 +153,7 @@ export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, onChange, o
           </label>
         )}
       </div>
+      {ligados.length > 0 && <div className="marcas-carac" aria-label="Características ligadas">{ligados.map((e) => <span key={e.id} className="chip marca-carac">{e.nome}</span>)}</div>}
       {doCartao && <p className="ajuda tipo-cartao">{nomeSub}{h.cartao?.final ? " · técnica final (vaga extra)" : ""}</p>}
       <div className="filtros-pecas" role="group" aria-label="Tipo de ação">
         {ACOES.map((x) => <button key={x} type="button" disabled={!!h.cartao?.final} className={`chip chip-btn ${h.acao === x ? "on" : ""}`} aria-pressed={h.acao === x} onClick={() => onChange({ acao: x })}>{x}</button>)}

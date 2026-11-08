@@ -24,11 +24,11 @@ interface Props {
   mud: (p: Partial<FormaLib>) => void;
   /** grava a forma sem fechar (usado ao confirmar as escolhas) */
   onGravar?: (forma: FormaLib) => void;
-  /** "poder": só peças de poder; "fracos": só pontos fracos; sem valor: tudo junto */
+  /** "poder": só os cartões de característica de poder; "fracos": só pontos fracos; sem valor: tudo junto */
   modo?: "tudo" | "poder" | "fracos";
 }
 
-/** Construtor de efeitos da transformação: peças prontas ou criadas à mão, com orçamento em Pontos de Poder. */
+/** Construtor de efeitos da transformação: cartões de característica prontos ou criados à mão, com orçamento em Pontos de Poder. */
 export function EfeitosForma({ f, tipo, r, mud, onGravar, modo = "tudo" }: Props) {
   const c = useMemo(() => calcular({ ...f, estado: { ...f.estado, liberado: "" } }), [f]);
   const ctx: CtxForma = { n: f.nivel, prof: c.prof, atr: c.atr };
@@ -57,7 +57,7 @@ export function EfeitosForma({ f, tipo, r, mud, onGravar, modo = "tudo" }: Props
     mud({ efeitos: [...efeitos, ...novas], schriftAuto: f.schrift });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tipo, f.schrift, r.schriftAuto]);
-  const visiveis = efeitos.filter((e) => (modo === "tudo" ? true : modo === "fracos" ? custoPeca(e, ctx) < 0 : custoPeca(e, ctx) >= 0));
+  const visiveis = efeitos.filter((e) => (!e.familia || e.familia === "peca") && (modo === "tudo" ? true : modo === "fracos" ? custoPeca(e, ctx) < 0 : custoPeca(e, ctx) >= 0));
   const [soExcl, setSoExcl] = useState(false);
   const temExcl = lista.some((p) => exclusiva(p));
   const filtrados = lista.filter((p) => (!soExcl || exclusiva(p)) && (modo !== "fracos" || p.categoria === "Pontos fracos") && (modo !== "poder" || p.categoria !== "Pontos fracos") && (!cat || p.categoria === cat) && (!busca.trim() || `${p.nome} ${p.texto} ${p.caminho ?? ""}`.toLowerCase().includes(busca.trim().toLowerCase())));
@@ -76,7 +76,7 @@ export function EfeitosForma({ f, tipo, r, mud, onGravar, modo = "tudo" }: Props
   };
   const remover = (id: string) => mud({ efeitos: efeitos.filter((e) => e.id !== id) });
   const confirmar = () => {
-    if (orc.livre < 0) { setMsg("Tire alguma peça: o total passou dos pontos da forma."); return; }
+    if (orc.livre < 0) { setMsg("Tire algum cartão: o total passou dos pontos da forma."); return; }
     const novas = efeitos.map((e) => ({ ...e, confirmado: true }));
     mud({ efeitos: novas });
     onGravar?.({ ...r, efeitos: novas });
@@ -107,10 +107,10 @@ export function EfeitosForma({ f, tipo, r, mud, onGravar, modo = "tudo" }: Props
           <small>Sua Schrift</small>
           <b>{infoSchrift.nome}</b>
           <p>{infoSchrift.voll}</p>
-          <p className="ajuda">{daSchrift.length > 0 ? "As peças dela já entram montadas abaixo. Você pode tirar, se quiser." : "Ela age pelas ações da ficha; não há peça pronta para ela aqui."}</p>
+          <p className="ajuda">{daSchrift.length > 0 ? "Os cartões dela já entram montados abaixo. Você pode tirar, se quiser." : "Ela age pelas ações da ficha; não há cartão pronto para ela aqui."}</p>
         </div>
       )}
-      {visiveis.length === 0 && <p className="ajuda">{modo === "fracos" ? "Nenhum ponto fraco escolhido ainda. Quanto mais pesado, mais pontos ele devolve." : "Nenhuma peça ainda. Escolha abaixo."}</p>}
+      {visiveis.length === 0 && <p className="ajuda">{modo === "fracos" ? "Nenhum ponto fraco escolhido ainda. Quanto mais pesado, mais pontos ele devolve." : "Nenhum cartão de característica ainda. Escolha abaixo."}</p>}
       <ul className="efeitos-lista">
         {visiveis.map((e) => {
           const c = custoPeca(e, ctx);
@@ -142,8 +142,8 @@ export function EfeitosForma({ f, tipo, r, mud, onGravar, modo = "tudo" }: Props
       )}
       {msg && <p className="ajuda" role="status">{msg}</p>}
 
-      <h4 className="sub-passivas">Catálogo de peças</h4>
-      <input className="seletor-busca" value={busca} onChange={(e) => setBusca(e.target.value)} placeholder="Buscar peça (ex.: voo, dano, cura)" aria-label="Buscar peça" />
+      <h4 className="sub-passivas">Catálogo de cartões de característica</h4>
+      <input className="seletor-busca" value={busca} onChange={(e) => setBusca(e.target.value)} placeholder="Buscar cartão (ex.: voo, dano, cura)" aria-label="Buscar cartão" />
       <div className="filtros-pecas">
         <button type="button" className={`chip chip-btn ${cat === "" ? "on" : ""}`} onClick={() => setCat("")}>Todas</button>
         {modo !== "fracos" && temExcl && <button type="button" className={`chip chip-btn chip-exclusiva ${soExcl ? "on" : ""}`} onClick={() => setSoExcl(!soExcl)}>★ Só exclusivas</button>}
@@ -201,12 +201,12 @@ export function EfeitosForma({ f, tipo, r, mud, onGravar, modo = "tudo" }: Props
             </article>
           );
         })}
-        {filtrados.length === 0 && <p className="ajuda">Nenhuma peça encontrada.</p>}
+        {filtrados.length === 0 && <p className="ajuda">Nenhum cartão encontrado.</p>}
       </div>
 
-      <h4 className="sub-passivas">Criar uma peça</h4>
+      <h4 className="sub-passivas">Criar um cartão de característica</h4>
       {!novo ? (
-        <button type="button" className="btn btn-paper" onClick={() => setNovo(true)}>Criar peça própria</button>
+        <button type="button" className="btn btn-paper" onClick={() => setNovo(true)}>Criar cartão próprio</button>
       ) : (
         <PecaPropria ctx={ctx} livre={orc.livre} onCriar={(p) => { mud({ efeitos: [...efeitos, p] }); setNovo(false); setMsg(""); }} onFechar={() => setNovo(false)} />
       )}
@@ -242,7 +242,7 @@ const resumoDe = (e: InstEfeito, ctx: CtxForma) => {
   return s || "Efeito de texto: o Mestre resolve.";
 };
 
-/** Resumo em palavras do que a peça faz no nível atual. */
+/** Resumo em palavras do que o cartão faz no nível atual. */
 function somarFormaDe(e: InstEfeito, ctx: CtxForma): string {
   const fake = { formas: { shikai: { tipo: "shikai", efeitos: [e] } }, estado: { liberado: "shikai" } } as unknown as Ficha;
   const s = somarForma(fake, ctx);
@@ -270,7 +270,7 @@ function descreveFaz(z: import("../regras/efeitos-forma").Faz, ctx: CtxForma): s
   return partes.join(", ");
 }
 
-/** Editor de peça própria: escolhe o tipo de efeito e preenche só o que ele precisa. */
+/** Editor de cartão próprio: escolhe o tipo de efeito e preenche só o que ele precisa. */
 function PecaPropria({ ctx, livre, onCriar, onFechar }: { ctx: CtxForma; livre: number; onCriar: (p: InstEfeito) => void; onFechar: () => void }) {
   const [tipo, setTipo] = useState<"atr" | "cr" | "acerto" | "dano" | "dados" | "cd" | "rd" | "desloc" | "pvTemp" | "texto" | "fraco" | "invoca" | "fatr" | "fcr" | "facerto" | "fdano" | "fcd" | "fdesloc" | "fvulner" | "fcusto" | "ffim" | "fdur">("atr");
   const [nome, setNome] = useState("");
@@ -284,7 +284,7 @@ function PecaPropria({ ctx, livre, onCriar, onFechar }: { ctx: CtxForma; livre: 
   const [inv, setInv] = useState({ tipo: "clone" as "clone" | "invocacao", max: "2", pv: "[PROF]*2", cr: "10+[PROF]", acerto: "[PROF]", dano: "1d8+[PROF]", custoPr: "2" });
   const em = GRUPOS.find((x) => x.id === grupo)?.em ?? ARMADOS;
   const num = v.trim() === "" ? 0 : v.trim();
-  // pontos fracos: o jogador digita o tamanho da perda e a peça aplica com sinal negativo
+  // pontos fracos: o jogador digita o tamanho da perda e o cartão aplica com sinal negativo
   const neg = (x: string): Num => { const t = x.trim(); if (t === "") return 0; return /^\d+(\.\d+)?$/.test(t) ? -Number(t) : `0-(${t})`; };
   const [vuln, setVuln] = useState("fogo");
   const [fim, setFim] = useState<"curto" | "longo">("curto");
@@ -315,7 +315,7 @@ function PecaPropria({ ctx, livre, onCriar, onFechar }: { ctx: CtxForma; livre: 
   const ok = !!efeito && ((tipo !== "texto" && tipo !== "fraco") || texto.trim().length > 0) && (ehFraqueza || custo <= livre);
   return (
     <div className="npc-item peca-propria">
-      <label className="campo">O que a peça faz
+      <label className="campo">O que o cartão faz
         <select value={tipo} onChange={(e) => setTipo(e.target.value as typeof tipo)}>
           <option value="atr">Aumentar um atributo</option>
           <option value="cr">Aumentar a CR</option>
@@ -342,7 +342,7 @@ function PecaPropria({ ctx, livre, onCriar, onFechar }: { ctx: CtxForma; livre: 
           </optgroup>
         </select>
       </label>
-      <label className="campo">Nome<input value={nome} maxLength={60} onChange={(e) => setNome(e.target.value)} placeholder="Nome da peça" /></label>
+      <label className="campo">Nome<input value={nome} maxLength={60} onChange={(e) => setNome(e.target.value)} placeholder="Nome do cartão" /></label>
       {(tipo === "atr" || tipo === "fatr") && <label className="campo">Atributo<select value={atr} onChange={(e) => setAtr(e.target.value as Atr)}>{ATRS.map((a) => <option key={a} value={a}>{ATR_NOME[a]}</option>)}</select></label>}
       {(tipo === "acerto" || tipo === "dano" || tipo === "dados" || tipo === "facerto" || tipo === "fdano") && <label className="campo">Vale para<select value={grupo} onChange={(e) => setGrupo(e.target.value as Grupo)}>{GRUPOS.map((g) => <option key={g.id} value={g.id}>{g.nome}</option>)}</select></label>}
       {tipo === "dados" && <label className="campo">Dado<select value={d} onChange={(e) => setD(Number(e.target.value))}>{[4, 6, 8, 10, 12].map((x) => <option key={x} value={x}>d{x}</option>)}</select></label>}
@@ -366,7 +366,7 @@ function PecaPropria({ ctx, livre, onCriar, onFechar }: { ctx: CtxForma; livre: 
       {(tipo === "texto" || tipo === "fraco") && <label className="campo npc-larga">{tipo === "fraco" ? "Qual é o preço ou fraqueza" : "Descrição"}<textarea rows={2} maxLength={300} value={texto} onChange={(e) => setTexto(e.target.value)} /></label>}
       <p className="ajuda npc-larga">{custo < 0 ? "Devolve" : "Custo"}: <b>{Math.abs(custo)} PP</b>{custo > livre ? ` (faltam ${custo - livre})` : ""}</p>
       <div className="acoes-linha npc-larga">
-        <button type="button" className="btn-mini" disabled={!ok} onClick={() => efeito && onCriar({ id: novoId(), nome: nome.trim() || "Peça própria", efeitos: [efeito], pp: tipo === "texto" ? 1 : tipo === "fraco" ? -1 : undefined })}>Adicionar peça</button>
+        <button type="button" className="btn-mini" disabled={!ok} onClick={() => efeito && onCriar({ id: novoId(), nome: nome.trim() || "Cartão próprio", efeitos: [efeito], pp: tipo === "texto" ? 1 : tipo === "fraco" ? -1 : undefined })}>Adicionar cartão</button>
         <button type="button" className="link-perigo" onClick={onFechar}>Cancelar</button>
       </div>
     </div>

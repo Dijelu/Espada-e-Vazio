@@ -65,11 +65,11 @@ export function calcularLiberacao(tipo: FormaLib["tipo"], pecas: InstEfeito[], c
   let turnos: number | null = base;
   if (base !== null) {
     conta.push(`Duração de base: ${duracaoEmPalavras(base)}.`);
-    if (limite !== null) { turnos = Math.min(base, limite); conta.push(`Peça de duração curta: limite de ${duracaoEmPalavras(limite)}.`); }
-    if (mais > 0 && turnos !== null) { turnos += mais; conta.push(`Peças de duração extra: +${mais} turnos.`); }
+    if (limite !== null) { turnos = Math.min(base, limite); conta.push(`Cartão de duração curta: limite de ${duracaoEmPalavras(limite)}.`); }
+    if (mais > 0 && turnos !== null) { turnos += mais; conta.push(`Cartões de duração extra: +${mais} turnos.`); }
   } else {
-    if (limite !== null) { turnos = limite; conta.push(`Peça de duração curta: a forma dura ${duracaoEmPalavras(limite)}.`); }
-    if (mais > 0 && turnos !== null) { turnos += mais; conta.push(`Peças de duração extra: +${mais} turnos.`); }
+    if (limite !== null) { turnos = limite; conta.push(`Cartão de duração curta: a forma dura ${duracaoEmPalavras(limite)}.`); }
+    if (mais > 0 && turnos !== null) { turnos += mais; conta.push(`Cartões de duração extra: +${mais} turnos.`); }
   }
   if (turnos !== null && mais > 0 && custoPr !== null) {
     const adicional = Math.ceil(mais / TURNOS_POR_MINUTO * 4);

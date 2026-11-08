@@ -4,7 +4,8 @@ import { TIPO_FORMA_NOME, formaDaLiberacao, liberacaoDaForma, modeloResurreccion
 import { classificarHab } from "../regras/classificar-hab";
 import { habilidadesLidas } from "../regras/cartoes";
 import { acertoClasse } from "../regras/danos-classe";
-import { ATR_NOME, QUANDO_NOME, type Faz } from "../regras/efeitos-forma";
+import { ATR_NOME, QUANDO_NOME, ligaCom, type Faz } from "../regras/efeitos-forma";
+import { caracsDaAcao } from "../regras/caracteristicas";
 import { aplicarFaz } from "../regras/aplicar-faz";
 import { MASCARAS, efeitoMascara, mascaraAtiva, tempMascara, type TipoMascara } from "../regras/mascara";
 import { fimDaMascaraEsgota } from "../regras/hogyoku";
@@ -109,6 +110,21 @@ function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg, pele, i }: { f: F
       onMsg(`${h.nome}: ${gasta} PR gastos.`);
     }
   };
+  // cartões de característica ligados a esta ação: marcas no cartão e botões dos gatilhos (ex.: condição no acerto)
+  const ref = { id: h.id, final: (h as { cartao?: { final?: boolean } }).cartao?.final, sub: (h as { cartao?: { sub?: string } }).cartao?.sub };
+  const marcas = caracsDaAcao(forma.efeitos, h as unknown as HabForma);
+  const ligados = ativa ? (c.forma?.gatilhos ?? []).filter((g) => g.lig && ligaCom(g.lig, ref)) : [];
+  const aplicarLigado = (g: (typeof ligados)[number]) => {
+    const chave = `fx:${g.peca}:${g.rotulo}`;
+    if (g.limite && usos[chave]) { onMsg(`${g.rotulo}: já usado (${g.limite}).`); return; }
+    const res = aplicarFaz(f, c, g.faz);
+    const est = { ...f.estado };
+    if (res.pvTemp !== undefined) est.pvTemp = res.pvTemp;
+    if (res.rolar) r.expr(g.rotulo, res.rolar);
+    if (g.limite) est.usos = { ...usos, [chave]: 1 };
+    alterar({ ...res.parte, estado: est });
+    onMsg(`${h.nome}: ${res.dito.join(", ") || "feito"}.`);
+  };
   const rotulo = espUsada ? "Já usada nesta cena" : limUsada ? "Já usada" : esp ? `Usar técnica especial (${gasta} PR)` : lim ? `Usar (${gasta ? `${gasta} PR, ` : ""}${lim === "cena" ? "1 por cena" : lim === "curto" ? "1 por descanso curto" : "1 por descanso longo"})` : `Usar (${gasta} PR)`;
   const { resumo, resto } = resumir(h.texto);
   const [abertoC, setAbertoC] = useState(false);
@@ -119,6 +135,7 @@ function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg, pele, i }: { f: F
     if (/\d/.test(dano) && !(cl.cura && cl.cura === h.dano)) botoes.push(<button key="d" type="button" className={B} disabled={!reqOk} onClick={() => (ultimo.current = r.rolar(h.nome, dano)?.total ?? 0)}><Icone nome="dado" /> Dano {dano}</button>);
     if (/\d/.test(dano) && (cl.teste === "ataque" || cl.teste === "ataque+salva")) botoes.push(<button key="c" type="button" className={`${B} ${FR}`} disabled={!reqOk} onClick={() => r.expr(`Crítico: ${h.nome}`, dano, true)}>Crítico</button>);
     if (cl.cura || cl.curaPctDano) botoes.push(<button key="h" type="button" className={B} disabled={!reqOk} onClick={curar}>{cl.cura ? `Curar ${resolverDano(cl.cura, f, c)}` : `Curar ${cl.curaPctDano}% do último dano`}</button>);
+    ligados.forEach((g, k) => { const usado = !!g.limite && !!usos[`fx:${g.peca}:${g.rotulo}`]; botoes.push(<button key={`g${k}`} type="button" className={B} disabled={!reqOk || usado} title={`${g.peca}${g.limite ? `, 1 por ${g.limite}` : ""}`} onClick={() => aplicarLigado(g)}>{usado ? `${g.rotulo}: já usado` : g.rotulo}</button>); });
   } else {
     botoes.push(<button key="x" type="button" className={`${B} ${FR}`} disabled>Ligue a forma</button>);
   }
@@ -126,6 +143,7 @@ function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg, pele, i }: { f: F
   if (ativa && !cl.usaInvocacao && (cl.teste === "ataque" || cl.teste === "ataque+salva")) tags.push(<span className="fc-t" key="ac">acerto {mod(acerto)}</span>);
   if (ativa && (cl.teste === "salva" || cl.teste === "ataque+salva")) tags.push(<span className="fc-t" key="cd">CD {cdTec}{cl.salvaAtr ? ` ${ATR_NOME[cl.salvaAtr]}` : ""}{cl.metade ? " · metade" : ""}</span>);
   if (h.custo && !/\d\s*PR/.test(h.custo) && h.custo !== "—") tags.push(<span className="fc-t" key="cu">{h.custo}</span>);
+  marcas.forEach((e) => tags.push(<span className="fc-t" key={`m${e.id}`}>{e.nome}</span>));
   if (lim) tags.push(<span className="fc-t" key="li">1 por {lim === "cena" ? "cena" : lim === "curto" ? "descanso curto" : "descanso longo"}</span>);
   if (pele === "qui") {
     const tq: TagCarta[] = [];
@@ -133,6 +151,7 @@ function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg, pele, i }: { f: F
     if (ativa && !cl.usaInvocacao && (cl.teste === "ataque" || cl.teste === "ataque+salva")) tq.push({ t: `acerto ${mod(acerto)}` });
     if (ativa && (cl.teste === "salva" || cl.teste === "ataque+salva")) tq.push({ t: `CD ${cdTec}` });
     if (lim) tq.push({ t: `1 por ${lim === "cena" ? "cena" : lim === "curto" ? "descanso curto" : "descanso longo"}` });
+    marcas.forEach((e) => tq.push({ t: e.nome }));
     return (
       <CartaPoder tipo="voll" selo={h.acao} nome={h.nome || "Habilidade"} tags={tq} ativa={ativa} off={!ativa}
         acao={<>{botoes}{resto && <button type="button" className="info" aria-label={`Ler o texto completo de ${h.nome}`} onClick={() => setAbertoC((v) => !v)}>i</button>}</>}
@@ -338,6 +357,7 @@ export function PainelForma({ f, c, r, alterar, tipo, onEditar, onIrEvoluir, soA
   }
   if (ehMascara) unicas.push({ rot: "Preço da forma", n: "Esgotado ao fim", icone: "cranio-rachado", cada: "ao acabar o tempo", p: fimDaMascaraEsgota(f) ? `Quando os ${L.mascMax} turnos acabam, você fica Esgotado. Para evitar, tire a máscara antes, com uma ação.` : "O Hōgyoku estabiliza o Hollow: ao acabar o tempo você não fica Esgotado, mas a máscara entra em recarga." });
   for (const g of fx?.gatilhos ?? []) {
+    if (g.lig) continue;
     const usado = !!g.limite && !!usos[`fx:${g.peca}:${g.rotulo}`];
     unicas.push({ rot: g.limite ? "Única" : "Gatilho", n: g.rotulo, icone: "eclipse", cada: g.limite ? `1 por ${g.limite}` : QUANDO_NOME[g.quando], p: trecho((g.faz as { texto?: string }).texto ?? `${g.peca}: ${QUANDO_NOME[g.quando]}.`, 150),
       botao: ligada ? <button type="button" className="fc-b" disabled={usado} title={`${QUANDO_NOME[g.quando]}${g.limite ? `, 1 por ${g.limite}` : ""}`} onClick={() => aplicar(g)}>{usado ? "Já usado" : "Usar"}</button> : undefined });
@@ -512,7 +532,7 @@ export function PainelVoll({ f, c, r, alterar, onEditar, onIrEvoluir }: PainelPr
     setMsg(`${g.rotulo}: ${res.dito.join(", ") || "feito"}.`);
   };
   const textosFx = fx?.textos ?? [];
-  const unicas = (fx?.gatilhos ?? []).map((g) => ({ g, usado: !!g.limite && !!usos[`fx:${g.peca}:${g.rotulo}`] }));
+  const unicas = (fx?.gatilhos ?? []).filter((g) => !g.lig).map((g) => ({ g, usado: !!g.limite && !!usos[`fx:${g.peca}:${g.rotulo}`] }));
   const passivas: { n: string; p: string }[] = [
     ...textosFx.map((t) => ({ n: t.nome, p: trecho(t.t, 150) })),
     ...passivasHab.map((h) => ({ n: h.nome, p: trecho(h.regra || h.texto, 150) })),

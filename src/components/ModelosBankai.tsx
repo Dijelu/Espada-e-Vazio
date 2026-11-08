@@ -24,7 +24,7 @@ export function ModelosBankai({ f, tipo, ctx, onUsar }: Props) {
       <p className="ajuda">
         {tipo === "bankai2"
           ? "A Verdadeira se apoia na Bankai de mesmo nome e segue o tipo dela. Para usar uma, escolha antes a Bankai correspondente."
-          : "Cada modelo já vem com as peças, as habilidades, o ponto fraco, o custo e a duração calculados. Você pode mudar tudo depois. Cada Bankai pede a Shikai de mesmo dono: sem ela, o modelo fica travado."}
+          : "Cada modelo já vem com os cartões de característica, as habilidades, o ponto fraco, o custo e a duração calculados. Você pode mudar tudo depois. Cada Bankai pede a Shikai de mesmo dono: sem ela, o modelo fica travado."}
       </p>
       <div className="cartas-hab modelos-montados-lista">
         {lista.map((m: ModeloMontado) => {

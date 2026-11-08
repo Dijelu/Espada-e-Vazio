@@ -1873,3 +1873,15 @@ details.ficha-leitura-bloco[open] > summary { margin-bottom: 8px; }
 .tipo-cartao { margin: 0 0 6px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; font-size: 12px; }
 .carta-peca .carta-topo .selo-pp { flex: none; white-space: nowrap; }
 .carta-peca .carta-nome { min-width: 0; }
+
+/* Cartões de característica ligados às ações */
+.marcas-carac { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 6px; }
+.marca-carac { font-size: 12px; font-weight: 700; padding: 3px 9px; border: 1px solid var(--cor, var(--accent)); border-radius: 999px; background: color-mix(in srgb, var(--cor, var(--accent)) 14%, transparent); }
+.caracs-acao .caracs-lista li.solto { border-color: #e8a13a; border-style: dashed; }
+.caracs-acao .campo-liga { margin-top: 6px; max-width: 360px; }
+.galeria-caracs { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+.carta-carac .duas { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.carta-carac .btn-mini { margin-top: auto; }
+.carta-carac.travada { opacity: .6; }
+.caracs-lista .link-perigo, .caracs-lista .tirar-confirma { flex: none; white-space: nowrap; }
+.caracs-lista .campo-liga select { max-width: 100%; }

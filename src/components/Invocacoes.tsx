@@ -13,7 +13,7 @@ interface Props {
   compacto?: boolean;
 }
 
-/** Clones e invocações que as peças da forma permitem: invocar, acompanhar PV, atacar e dispensar. */
+/** Clones e invocações que os cartões de característica da forma permitem: invocar, acompanhar PV, atacar e dispensar. */
 export function AbaInvocacoes({ f, c, r, alterar, compacto }: Props) {
   const modelos = c.forma?.invocacoes ?? [];
   const lista = f.estado.invocacoes ?? [];
@@ -34,7 +34,7 @@ export function AbaInvocacoes({ f, c, r, alterar, compacto }: Props) {
 
   return (
     <section className="aba">
-      {!compacto && modelos.length === 0 && lista.length === 0 && <p className="ajuda">Nenhuma invocação <Info>Monte uma peça de invocação ou clone na aba Efeitos da sua forma e libere a forma.</Info></p>}
+      {!compacto && modelos.length === 0 && lista.length === 0 && <p className="ajuda">Nenhuma invocação <Info>Monte um cartão de característica de invocação ou clone na aba Efeitos da sua forma e libere a forma.</Info></p>}
       {modelos.length === 0 && lista.length > 0 && <p className="aviso-mini">A forma que criou estas invocações não está ativa. Dispense-as ou ative a forma de novo.</p>}
 
       {modelos.map((m) => {

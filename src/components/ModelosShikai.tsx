@@ -14,8 +14,8 @@ export function ModelosShikai({ ctx, onUsar }: Props) {
   return (
     <section className="modelos-montados">
       <h3>Shikais prontas, montadas com cartões</h3>
-      <p className="ajuda">Cada modelo já vem com as peças, as habilidades, o ponto fraco e o custo de liberação calculado. Você pode mudar tudo depois. As que têm Bankai pronta combinam com ela.</p>
-      <p className="regra-cartao">A Shikai começa no nível 5 com 4 PP e cresce até 8 PP no nível 13. O modelo já vem com as peças que cabem no seu nível ({orcamentoBase("shikai", ctx.n)} PP); as que sobram ficam anotadas no texto da forma para você acrescentar ao evoluir.</p>
+      <p className="ajuda">Cada modelo já vem com os cartões de característica, as habilidades, o ponto fraco e o custo de liberação calculado. Você pode mudar tudo depois. As que têm Bankai pronta combinam com ela.</p>
+      <p className="regra-cartao">A Shikai começa no nível 5 com 4 PP e cresce até 8 PP no nível 13. O modelo já vem com os cartões de característica que cabem no seu nível ({orcamentoBase("shikai", ctx.n)} PP); as que sobram ficam anotadas no texto da forma para você acrescentar ao evoluir.</p>
       <div className="cartas-hab modelos-montados-lista">
         {SHIKAIS_MONTADAS.map((m) => {
           const aberta = aberto === m.id;

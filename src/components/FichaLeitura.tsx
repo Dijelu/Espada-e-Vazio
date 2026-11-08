@@ -106,7 +106,7 @@ function Forma({ f, c, forma }: { f: Ficha; c: Calculo; forma: FormaLib }) {
       {forma.pontoFraco && <p className="ficha-leitura-fraco"><b>Ponto fraco:</b> {forma.pontoFraco}</p>}
       {(forma.efeitos?.length ?? 0) > 0 && (
         <details className="poder-livro">
-          <summary>Peças de efeito ({forma.efeitos!.length})</summary>
+          <summary>Cartões de característica e de efeito ({forma.efeitos!.length})</summary>
           <ul>{forma.efeitos!.map((e) => <li key={e.id}><b>{e.nome}</b>{e.texto ? `: ${e.texto}` : ""}</li>)}</ul>
         </details>
       )}

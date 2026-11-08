@@ -277,7 +277,7 @@ export function CartaNpc({ npc, onMudar, onSalvar, onApagar, onModelo, onDuplica
         <label className="marcar"><input type="checkbox" checked={lib.existe} onChange={(e) => mudarLib(e.target.checked && lib.bonusCr === 0 && Object.values(lib.bonusAtr).every((v) => v === 0) ? { ...liberacaoPadrao(am), nome: lib.nome } : { existe: e.target.checked }, true)} /> Esta ameaça tem {lib.nome}</label>
         {modelosParaNpc(am.categoria).length > 0 && (
           <div className="npc-item modelo-forma-npc">
-            <label className="campo npc-larga"><span>Modelo pronto de forma <Info>As peças do modelo já entram no CR e nos atributos da forma liberada e as habilidades viram botões no combate.</Info></span>
+            <label className="campo npc-larga"><span>Modelo pronto de forma <Info>Os cartões de característica do modelo já entram no CR e nos atributos da forma liberada e as habilidades viram botões no combate.</Info></span>
               <select
                 value={lib.modelo ? `${lib.modelo.tipo}:${lib.modelo.id}` : ""}
                 onChange={(e) => {

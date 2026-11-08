@@ -307,7 +307,7 @@ export function resolverDano(expr: string, f: Ficha, c: Calculo): string {
  * de dano da forma ativa (cada um entra nas habilidades a que vale), mais os dados da Máscara Hollow nas técnicas.
  * Sem `h`, só entram os cartões das técnicas da forma.
  */
-export function danoDaAcao(expr: string, f: Ficha, c: Calculo, forma: FormaLib, h?: Pick<HabForma, "nome" | "acao" | "dano" | "regra" | "texto" | "pr" | "custo">): string {
+export function danoDaAcao(expr: string, f: Ficha, c: Calculo, forma: FormaLib, h?: Pick<HabForma, "nome" | "acao" | "dano" | "regra" | "texto" | "pr" | "custo"> & { id?: string; cartao?: { sub: string; final?: boolean } }): string {
   let base = resolverDano(expr, f, c);
   if (forma.tipo === "bankai" && f.treinos.caminhoBankai === "plena") base = base.replace(/(\d+)d(\d+)/g, (_, n: string, d: string) => `${Math.floor(Number(n) * 1.25)}d${d}`);
   if (!/\d/.test(base)) return base;
@@ -315,7 +315,7 @@ export function danoDaAcao(expr: string, f: Ficha, c: Calculo, forma: FormaLib, 
   const t = c.forma;
   const alvos: Alvo[] = h ? alvosDaAcao(h, forma.tipo) : ["tecnica"];
   if (t && alvos.length) {
-    const x = danoExtraDaAcao(t, alvos);
+    const x = danoExtraDaAcao(t, alvos, h ? { id: h.id, final: h.cartao?.final, sub: h.cartao?.sub } : undefined);
     for (const d of x.dados) base += `+${d}`;
     if (x.fixo > 0) base += `+${x.fixo}`;
     else if (x.fixo < 0) base += String(x.fixo);

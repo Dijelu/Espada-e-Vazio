@@ -6,6 +6,7 @@ import { calcular, classePorId, type Ficha, type FormaLib, type HabForma, type T
 import { ACOES_DADOS, HAB_UNICAS, habilidadesDaForma, TIPO_FORMA_NOME, VOLL_PASSIVAS, picksVoll, totalPicks } from "../regras/liberacoes";
 import { EfeitosForma, EscolhaAtributos } from "./EfeitosForma";
 import { CartaoHabilidade, GaleriaAcoes } from "./CartoesHabilidade";
+import { CaracteristicasForma } from "./CaracteristicasForma";
 import { calcularLiberacao } from "../regras/liberacao-forma";
 import { SeletorDano } from "./SeletorFormula";
 import { Info } from "./Dica";
@@ -89,7 +90,7 @@ function ordenarPassos(base: Passo[]): Passo[] {
     .filter((p) => !["efeitos", "fraqueza", "custo", "revisao"].includes(p.id))
     .map((p) => (p.id === "acoes" ? { ...p, titulo: "Habilidades e efeitos", ajuda: `${p.ajuda} Logo abaixo, monte os efeitos com números: eles entram sozinhos na ficha enquanto a forma estiver ativa.` } : p));
   const pf: Passo = { id: "fraqueza", titulo: "Pontos fracos", ajuda: `${fraq?.ajuda ?? "Todo grande poder cobra um preço."} Escolha cartões: quanto mais pesado o ponto fraco, mais pontos ele devolve para montar a forma.` };
-  return [...meio, pf, ...(custo ? [{ ...custo, titulo: "Custo e duração", ajuda: "O custo de liberação e a duração são calculados sozinhos a partir das peças e dos pontos fracos que você escolheu." }] : []), rev];
+  return [...meio, pf, ...(custo ? [{ ...custo, titulo: "Custo e duração", ajuda: "O custo de liberação e a duração são calculados sozinhos a partir dos cartões de característica e dos pontos fracos que você escolheu." }] : []), rev];
 }
 const PASSOS_FULL: Record<TipoForma, Passo[]> = { ...PASSOS_BASE, bankai2: PASSOS_BASE.bankai };
 const PASSOS = Object.fromEntries(Object.entries(PASSOS_FULL).map(([k, v]) => [k, ordenarPassos(v)])) as Record<TipoForma, Passo[]>;
@@ -495,9 +496,10 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
             {r.habilidades.length > 0 && <h4 className="sub-passivas">Seus cartões</h4>}
             <div className="cartas-hab cartoes-montados">
               {r.habilidades.map((h) => (
-                <CartaoHabilidade key={h.id} h={h} tipo={tipo} ctx={ctxAtual} ppExtra={(r.ppExtra ?? 0) > 0} nomeForma={r.nome} onChange={(p) => habil(h.id, p)} onRemover={() => mud({ habilidades: r.habilidades.filter((x) => x.id !== h.id) })} />
+                <CartaoHabilidade key={h.id} h={h} tipo={tipo} ctx={ctxAtual} ppExtra={(r.ppExtra ?? 0) > 0} nomeForma={r.nome} efeitos={r.efeitos} onChange={(p) => habil(h.id, p)} onRemover={() => mud({ habilidades: r.habilidades.filter((x) => x.id !== h.id) })} />
               ))}
             </div>
+            <CaracteristicasForma f={f} tipo={tipo} r={r} mud={mud} />
           </>
         )}
 
@@ -509,7 +511,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
             </div>
             <ul className="conta-liberacao">{lib.conta.map((c) => <li key={c}>{c}</li>)}</ul>
             <p className="ajuda">Um turno dura 6 segundos: 10 turnos são 1 minuto. No combate, o botão "Novo turno" conta a duração sozinho e avisa quando a forma termina.</p>
-            {(r.efeitos?.length ?? 0) === 0 && <p className="aviso-mini">Sem peças de efeito, o custo e a duração ficam como no modelo. Escolha peças no passo anterior para o cálculo valer.</p>}
+            {(r.efeitos?.length ?? 0) === 0 && <p className="aviso-mini">Sem cartões de característica, o custo e a duração ficam como no modelo. Escolha cartões no passo anterior para o cálculo valer.</p>}
           </div>
         )}
 
