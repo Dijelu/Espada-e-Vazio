@@ -1,10 +1,10 @@
 /* Cartões de efeito neutros (leve, médio e forte): uma condição pronta ou um texto livre que o Mestre precisa aprovar. */
-import { FORCAS, type DadosEfeitoNeutro, type Forca } from "./cartoes";
+import { ppDaForca, type DadosEfeitoNeutro, type Forca } from "./cartoes";
 import type { Efeito, InstEfeito } from "./efeitos-forma";
 import { DURACAO_FORCA, LIMITE_FORCA, LIMITE_TEXTO, condicoesDaFaixa, faixaDaCondicao } from "./faixas-condicao";
 
 export const NOME_FORCA: Record<Forca, string> = { leve: "Efeito leve", medio: "Efeito médio", forte: "Efeito forte" };
-export const ppDaForca = (f: Forca) => FORCAS.find((x) => x.id === f)!.pp;
+export { ppDaForca };
 
 /** Efeito livre ainda sem o aval do Mestre: só vale como texto. */
 export const efeitoPendente = (inst: Pick<InstEfeito, "efeitoNeutro">) => inst.efeitoNeutro?.modo === "livre" && inst.efeitoNeutro.aval !== "ok";
@@ -29,12 +29,12 @@ export function compilarEfeito(d: DadosEfeitoNeutro, nome?: string): Efeito[] {
   return [{ k: "texto", t: `${nomeDoEfeito(d, nome)}: ${corpo}${onde} ${LIMITE_TEXTO[d.forca]}.${aviso}`.slice(0, 400) }];
 }
 
-/** Cria o cartão de efeito (peça com o preço fixo da força). */
-export function instanciarEfeito(d: DadosEfeitoNeutro, id: string, nome?: string): InstEfeito {
+/** Cria o cartão de efeito (peça com o preço fixo da força; na Shikai o preço é menor). O preço fica guardado na peça: mudar a tabela não mexe nas fichas já salvas. */
+export function instanciarEfeito(d: DadosEfeitoNeutro, id: string, nome?: string, tipo?: string): InstEfeito {
   const dados: DadosEfeitoNeutro = d.modo === "pronta" && d.condicao ? { ...d, forca: faixaDaCondicao(d.condicao.nome) } : { ...d, aval: d.aval ?? "pendente" };
   return {
     id, nome: nomeDoEfeito(dados, nome), texto: dados.modo === "pronta" ? `${dados.condicao?.nome} ao acertar (${LIMITE_TEXTO[dados.forca]})` : dados.texto,
-    efeitos: compilarEfeito(dados, nome), pp: ppDaForca(dados.forca), familia: "efeito", efeitoNeutro: dados,
+    efeitos: compilarEfeito(dados, nome), pp: ppDaForca(dados.forca, tipo), familia: "efeito", efeitoNeutro: dados,
   };
 }
 

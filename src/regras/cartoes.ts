@@ -99,22 +99,32 @@ export const SUBS: InfoSub[] = [
 export const infoSub = (s: SubAcao) => SUBS.find((x) => x.id === s) ?? SUBS[0];
 
 export interface InfoRitmo { id: Ritmo; nome: string; acao: string; pr: number }
-/** PR da ação: fixo por ritmo (como nos modelos do livro). */
+/**
+ * PR da ação: fixo por ritmo, valores pensados para ficar perto dos modelos do livro (ação 12, ação bônus 5, reação 6).
+ * Vale para os cartões de ação novos e para os botões que as técnicas e interações especiais criam. O dano máximo do cartão continua escondido e não depende destes números.
+ * Os cartões antigos (e os 47 modelos oficiais) guardam o PR deles e o teto de custo da conta de dano (20/8/10, em teto-dano.ts) não muda.
+ */
 export const RITMOS: InfoRitmo[] = [
-  { id: "acao", nome: "Ação", acao: "Ação", pr: 20 },
-  { id: "bonus", nome: "Ação bônus", acao: "Ação bônus", pr: 8 },
-  { id: "reacao", nome: "Reação", acao: "Reação", pr: 10 },
+  { id: "acao", nome: "Ação", acao: "Ação", pr: 12 },
+  { id: "bonus", nome: "Ação bônus", acao: "Ação bônus", pr: 5 },
+  { id: "reacao", nome: "Reação", acao: "Reação", pr: 6 },
 ];
 export const infoRitmo = (r: Ritmo) => RITMOS.find((x) => x.id === r) ?? RITMOS[0];
 export const ritmoDeAcao = (acao: string): Ritmo => tipoDeAcao(acao);
 
 export interface InfoForca { id: Forca; nome: string; pp: number }
-/** Preço dos cartões de efeito, em PP. */
+/** Preço dos cartões de efeito, em PP, de Bankai em diante (Bankai verdadeira, Resurrección, segunda etapa, Vollständig). */
 export const FORCAS: InfoForca[] = [
   { id: "leve", nome: "Leve", pp: 2 },
   { id: "medio", nome: "Médio", pp: 4 },
   { id: "forte", nome: "Forte", pp: 6 },
 ];
+/** A Shikai tem poucos PP, então os efeitos custam menos enquanto a forma for Shikai: leve 1, médio 2, forte 4. */
+export const PP_FORCA_SHIKAI: Record<Forca, number> = { leve: 1, medio: 2, forte: 4 };
+/** Preço em PP de um efeito (ou de uma condição de faixa) leve, médio ou forte na forma `tipo`. Sem o tipo, vale o preço cheio. */
+export const ppDaForca = (f: Forca, tipo?: string): number => (tipo === "shikai" ? PP_FORCA_SHIKAI[f] : FORCAS.find((x) => x.id === f)!.pp);
+/** As três forças com o preço certo para o tipo de forma (para a tela). */
+export const forcasDoTipo = (tipo?: string): InfoForca[] => FORCAS.map((x) => ({ ...x, pp: ppDaForca(x.id, tipo) }));
 
 /** Vagas especiais de cada forma: quantas técnicas especiais e quantas interações especiais ela aceita. Para mudar o número de uma forma, mude só esta tabela. */
 export interface VagasEspeciais { tec: number; inter: number }

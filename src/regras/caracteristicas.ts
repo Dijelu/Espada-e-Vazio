@@ -4,7 +4,7 @@
 import { custoEfeito, type CtxForma, type Efeito, type InstEfeito } from "./efeitos-forma";
 import type { DadosCarac, SubAcao } from "./cartoes";
 import { DURACAO_FORCA, LIMITE_FORCA, faixaDaCondicao } from "./faixas-condicao";
-import { FORCAS } from "./cartoes";
+import { ppDaForca } from "./cartoes";
 import type { HabForma } from "./ficha";
 
 export type Liga = DadosCarac["liga"];
@@ -105,7 +105,7 @@ export const CARACS: DefCarac[] = [
   {
     id: "condicao-acerto", nome: "Condição no acerto", grupo: "Controle", vale: ["ataque", "area", "movimento"], param: "condicao", rotuloParam: "Condição que o alvo recebe",
     texto: "Ao acertar com a ação ligada, o alvo recebe uma condição pronta (salvaguarda de Constituição). O preço e o limite de uso vêm da faixa da condição.",
-    pp: (p) => FORCAS.find((x) => x.id === faixaDaCondicao(p.condicao ?? "Preso"))!.pp,
+    pp: (p, ctx) => ppDaForca(faixaDaCondicao(p.condicao ?? "Preso"), ctx.tipo),
     compilar: (p) => {
       const cond = p.condicao ?? "Preso";
       const fx = faixaDaCondicao(cond);

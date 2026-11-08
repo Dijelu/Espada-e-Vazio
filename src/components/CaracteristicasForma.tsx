@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { calcular, type Ficha, type FormaLib, type HabForma } from "../regras/ficha";
 import { custoPeca, orcamentoDaForma, type CtxForma, type InstEfeito } from "../regras/efeitos-forma";
-import { FORCAS, infoSub, type SubAcao } from "../regras/cartoes";
+import { forcasDoTipo, infoSub, type SubAcao } from "../regras/cartoes";
 import {
   CARACS, GRUPOS_CARAC, acaoAceita, instanciarCarac, ondeLiga, requisitosFaltando, subDaHab,
   type DefCarac, type GrupoCarac, type Liga, type ParamsCarac,
@@ -27,7 +27,8 @@ const valorLiga = (c: NonNullable<InstEfeito["carac"]>) => (c.liga === "final" ?
 /** Cartões de característica neutros: poderes que se ligam à técnica final, a uma ação ou a todas as ações compatíveis. */
 export function CaracteristicasForma({ f, tipo, r, mud }: Props) {
   const c = useMemo(() => calcular({ ...f, estado: { ...f.estado, liberado: "" } }), [f]);
-  const ctx: CtxForma = { n: f.nivel, prof: c.prof, atr: c.atr };
+  const ctx: CtxForma = { n: f.nivel, prof: c.prof, atr: c.atr, tipo };
+  const forcas = forcasDoTipo(tipo);
   const efeitos = r.efeitos ?? [];
   const habs = r.habilidades ?? [];
   const orc = orcamentoDaForma(f, tipo, r, ctx);
@@ -157,13 +158,13 @@ export function CaracteristicasForma({ f, tipo, r, mud }: Props) {
               {d.param === "condicao" && (
                 <label className="campo">{d.rotuloParam}
                   <select value={p.condicao ?? "Preso"} onChange={(e) => setParams((m) => ({ ...m, [d.id]: { ...m[d.id], condicao: e.target.value } }))}>
-                    {FORCAS.map((fz) => (
+                    {forcas.map((fz) => (
                       <optgroup key={fz.id} label={`${fz.nome} · ${fz.pp} PP · ${LIMITE_TEXTO[fz.id]}`}>
                         {condicoesDaFaixa(fz.id).map((n) => <option key={n} value={n}>{n}</option>)}
                       </optgroup>
                     ))}
                   </select>
-                  <small className="ajuda">{(p.condicao ?? "Preso")} é de faixa {FORCAS.find((x) => x.id === FAIXA_CONDICAO[p.condicao ?? "Preso"])?.nome.toLowerCase()}.</small>
+                  <small className="ajuda">{(p.condicao ?? "Preso")} é de faixa {forcas.find((x) => x.id === FAIXA_CONDICAO[p.condicao ?? "Preso"])?.nome.toLowerCase()}.</small>
                 </label>
               )}
               {d.vale.length > 0 && ok.length > 0 && (

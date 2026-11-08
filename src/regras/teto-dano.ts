@@ -24,7 +24,7 @@ const FORMA: Record<string, { fator: number; dados: number }> = {
   segunda: { fator: 1.45, dados: 3 },
 };
 const FORMA_PADRAO = FORMA.bankai;
-/** Custo em PR no teto de cada tipo de ação (como nos modelos do livro). */
+/** Custo em PR no teto de cada tipo de ação, na conta dos cartões antigos e dos modelos oficiais (como nos modelos do livro). Os cartões de ação novos usam o PR fixo por ritmo de cartoes.ts (12/5/6). */
 const CUSTO_MAX: Record<TipoAcao, number> = { acao: 20, bonus: 8, reacao: 10 };
 /** Todo ataque com dano custa pelo menos esta parte do custo máximo. */
 const PISO = 0.25;
