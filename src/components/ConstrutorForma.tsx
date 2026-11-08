@@ -12,7 +12,7 @@ import { shikaiExigida, temAShikai } from "../regras/bankai-exige-shikai";
 import { ModelosHollow } from "./ModelosHollow";
 import { ModelosShikai } from "./ModelosShikai";
 import { calcularLiberacao } from "../regras/liberacao-forma";
-import { EscolhaAtributos } from "./EfeitosForma";
+import { EfeitosForma, EscolhaAtributos } from "./EfeitosForma";
 import { PontosFracosNeutros } from "./PontosFracosNeutros";
 import { SeletorDano } from "./SeletorFormula";
 import { Icone } from "./Icone";
@@ -445,6 +445,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
             )}
 
             <PontosFracosNeutros f={f} tipo={tipo} r={r} mud={mud} />
+            <EfeitosForma f={f} tipo={tipo} r={r} mud={mud} onGravar={onGravar} modo="fracos" />
           </div>
         )}
       </div>

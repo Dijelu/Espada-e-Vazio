@@ -1,9 +1,8 @@
 import { useMemo, useState } from "react";
 import { calcular, type Ficha, type FormaLib } from "../regras/ficha";
-import { custoPeca, orcamentoDaForma, type CtxForma } from "../regras/efeitos-forma";
+import type { CtxForma } from "../regras/efeitos-forma";
 import { forcasDoTipo, ppDaForca, type Forca } from "../regras/cartoes";
 import { NOME_FRACO, comAvalFraco, fracoPendente, instanciarFraco, prejuizoPorId, prejuizosDaFaixa } from "../regras/fracos-neutros";
-import { presetPorId } from "../regras/efeitos-presets";
 import { classeDe } from "./EfeitosForma";
 import { Info } from "./Dica";
 
@@ -28,10 +27,7 @@ export function PontosFracosNeutros({ f, tipo, r, mud }: Props) {
   const ctx: CtxForma = { n: f.nivel, prof: c.prof, atr: c.atr };
   const forcas = forcasDoTipo(tipo);
   const efeitos = r.efeitos ?? [];
-  const orc = orcamentoDaForma(f, tipo, r, ctx);
   const meus = efeitos.filter((e) => e.familia === "fraco");
-  // pontos fracos de antes (da galeria antiga): continuam valendo, mas não se escolhem mais
-  const antigos = efeitos.filter((e) => (!e.familia || e.familia === "peca") && (presetPorId(e.preset ?? "")?.categoria === "Pontos fracos" || custoPeca(e, ctx) < 0));
   const [msg, setMsg] = useState("");
   const [tirando, setTirando] = useState("");
   const remover = (id: string) => mud({ efeitos: efeitos.filter((e) => e.id !== id) });
@@ -46,12 +42,11 @@ export function PontosFracosNeutros({ f, tipo, r, mud }: Props) {
 
   return (
     <div className="caixa efeitos-forma efeitos-neutros pontos-fracos-neutros">
-      <h3>Pontos fracos da forma</h3>
+      <h3>Cartões de ponto fraco (leve, médio e forte)</h3>
       <p className="ajuda">
         Um preço que a forma cobra de você. Três tamanhos, e quanto mais pesado, mais pontos ele devolve: leve ({forcas[0].pp} PP), médio ({forcas[1].pp} PP) e forte ({forcas[2].pp} PP){tipo === "shikai" ? " (na Shikai devolvem menos; de Bankai em diante devolvem 2, 4 e 6 PP)" : ""}.
         {" "}<Info>Leve e médio contam no limite de um terço do total de PP da forma. O forte fica fora desse limite, até 9 pontos no total. Ponto fraco escrito só devolve pontos depois do aval do Mestre.</Info>
       </p>
-      <small className="ajuda">PP livres na forma: <b>{orc.livre}</b> de {orc.total}{orc.devolvido > 0 ? ` · ${orc.devolvido} devolvidos por pontos fracos` : ""}</small>
 
       {meus.length > 0 && (
         <ul className="efeitos-lista caracs-lista" aria-label="Pontos fracos da forma">
@@ -72,21 +67,6 @@ export function PontosFracosNeutros({ f, tipo, r, mud }: Props) {
             </li>
           ))}
         </ul>
-      )}
-
-      {antigos.length > 0 && (
-        <details className="fracos-antigos">
-          <summary>Pontos fracos de antes ({antigos.length})</summary>
-          <p className="ajuda">Estes vieram de uma ficha antiga ou de um modelo oficial. Continuam valendo igual; novos pontos fracos usam os cartões acima.</p>
-          <ul className="efeitos-lista caracs-lista" aria-label="Pontos fracos de antes">
-            {antigos.map((e) => (
-              <li key={e.id}>
-                <div><b>{e.nome}</b> <small>{custoPeca(e, ctx)} PP · de antes</small>{e.texto && <p className="ajuda">{e.texto}</p>}</div>
-                {botaoTirar(e)}
-              </li>
-            ))}
-          </ul>
-        </details>
       )}
 
       <div className="cartas-hab galeria-cartoes galeria-efeitos galeria-padrao">
