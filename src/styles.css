@@ -1901,3 +1901,21 @@ details.ficha-leitura-bloco[open] > summary { margin-bottom: 8px; }
 .carta-efeito[data-forca="leve"] .carta-topo small { color: #9fd3a8; }
 .carta-efeito[data-forca="medio"] .carta-topo small { color: #e8c46a; }
 .carta-efeito[data-forca="forte"] .carta-topo small { color: #ef7a7a; }
+
+/* ===== Montagem em quatro abas: Ações, Características, Técnicas especiais, Interações especiais ===== */
+.montagem-cartoes { display: grid; gap: 14px; margin: 14px 0; }
+.abas-cartoes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.abas-cartoes button { min-height: 48px; padding: 6px 8px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2px 6px; background: none; border: 2px solid var(--line); border-radius: 6px; color: var(--text); font: inherit; font-size: 14px; cursor: pointer; text-align: center; }
+.abas-cartoes button i { font-style: normal; font-size: 12px; font-weight: 800; padding: 1px 7px; border-radius: 999px; background: color-mix(in srgb, var(--accent) 22%, transparent); }
+.abas-cartoes button.on { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 18%, transparent); font-weight: 700; }
+.abas-cartoes button.alerta { border-color: #e8a13a; }
+.abas-cartoes button b { color: #f4c06a; }
+@media (max-width: 720px) { .abas-cartoes { grid-template-columns: 1fr 1fr; } }
+.faltas-especiais { border: 2px solid #e8a13a; border-left-width: 6px; border-radius: 8px; background: color-mix(in srgb, #e8a13a 10%, var(--panel2)); padding: 10px 14px; display: grid; gap: 6px; font-size: 14px; }
+.faltas-especiais ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+.vagas-especiais { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin: 6px 0 4px; }
+.selo-vagas { padding: 4px 12px; border: 2px solid var(--accent); border-radius: 999px; font-size: 14px; background: color-mix(in srgb, var(--accent) 12%, transparent); }
+.galeria-especiais { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+.carta-especial .btn-mini { margin-top: auto; }
+.carta-especial.travada { opacity: .6; }
+.carta-especial .serve-com { font-size: 13px; }

@@ -6,7 +6,8 @@ import { calcular, classePorId, type Ficha, type FormaLib, type HabForma, type T
 import { ACOES_DADOS, HAB_UNICAS, habilidadesDaForma, TIPO_FORMA_NOME, VOLL_PASSIVAS, picksVoll, totalPicks } from "../regras/liberacoes";
 import { EfeitosForma, EscolhaAtributos } from "./EfeitosForma";
 import { CartaoHabilidade, GaleriaAcoes } from "./CartoesHabilidade";
-import { CaracteristicasForma } from "./CaracteristicasForma";
+import { MontagemCartoes } from "./MontagemCartoes";
+import { faltasEspeciais } from "../regras/especiais";
 import { EfeitosNeutros } from "./EfeitosNeutros";
 import { efeitoPendente } from "../regras/efeitos-neutros";
 import { calcularLiberacao } from "../regras/liberacao-forma";
@@ -287,6 +288,8 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
   if (r.habilidades.length === 0) erros.push("Adicione pelo menos uma habilidade ou técnica.");
   const errosDano = r.habilidades.filter((h) => !h.fixa).flatMap((h) => (analisarDano(danoDoCartao(h, ctxAtual, (r.ppExtra ?? 0) > 0), h.acao, ctxAtual, (r.ppExtra ?? 0) > 0, h.especial ?? false)?.erros ?? []).map((e) => `${h.nome || "Habilidade"}: ${e}`));
   erros.push(...errosDano);
+  const faltas = faltasEspeciais(r.efeitos ?? [], tipo);
+  erros.push(...faltas);
   if (tipo === "shikai" && !r.categoria) erros.push("Escolha a categoria.");
   if ((tipo === "bankai" || tipo === "bankai2" || tipo === "resurreccion" || tipo === "segunda") && !r.pontoFraco.trim()) erros.push("Falta o ponto fraco.");
 
@@ -488,20 +491,23 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
                 mud({ habilidades: [...r.habilidades, ...antigas.slice(0, Math.max(0, maxHab - vagasUsadas(r.habilidades))).map((h) => ({ ...h, id: novoId(), nome: `${h.nome} (Segunda Etapa)`, pr: h.pr ? Math.round(h.pr * 1.25) : h.pr, custo: h.pr ? `${Math.round(h.pr * 1.25)} PR` : h.custo }))] });
               }}>Trazer as técnicas da minha Resurrección (custo +25%)</button>
             )}
-            <label className="campo">Atributo do bônus no dano
-              <select value={atr} onChange={(e) => setAtr(e.target.value)}>
-                {ATRIBUTOS_DANO.map((a) => <option key={a.v} value={a.v}>{a.n}</option>)}
-              </select>
-            </label>
-            <p className="ajuda">Escolha um dos quatro cartões de ação, o ritmo (ação, ação bônus ou reação) e monte. O dano e o custo em PR já vêm prontos. Depois é só escrever, na descrição, como a característica e o tema da sua forma aparecem neste ataque. Vagas: {vagasUsadas(r.habilidades)}/{maxHab}{cheio ? " (remova uma para trocar)" : ""}. A técnica final tem uma vaga extra{temFinal(r.habilidades) ? " (já usada)" : ""}.</p>
-            <GaleriaAcoes tipo={tipo} ctx={ctxAtual} ppExtra={(r.ppExtra ?? 0) > 0} habs={r.habilidades} limite={maxHab} atr={atr} onUsar={addHab} />
-            {r.habilidades.length > 0 && <h4 className="sub-passivas">Seus cartões</h4>}
-            <div className="cartas-hab cartoes-montados">
-              {r.habilidades.map((h) => (
-                <CartaoHabilidade key={h.id} h={h} tipo={tipo} ctx={ctxAtual} ppExtra={(r.ppExtra ?? 0) > 0} nomeForma={r.nome} efeitos={r.efeitos} onChange={(p) => habil(h.id, p)} onRemover={() => mud({ habilidades: r.habilidades.filter((x) => x.id !== h.id) })} />
-              ))}
-            </div>
-            <CaracteristicasForma f={f} tipo={tipo} r={r} mud={mud} />
+            <MontagemCartoes f={f} tipo={tipo} r={r} mud={mud} acoes={
+              <>
+                <label className="campo">Atributo do bônus no dano
+                  <select value={atr} onChange={(e) => setAtr(e.target.value)}>
+                    {ATRIBUTOS_DANO.map((a) => <option key={a.v} value={a.v}>{a.n}</option>)}
+                  </select>
+                </label>
+                <p className="ajuda">Escolha um dos quatro cartões de ação, o ritmo (ação, ação bônus ou reação) e monte. O dano e o custo em PR já vêm prontos. Depois é só escrever, na descrição, como a característica e o tema da sua forma aparecem neste ataque. Vagas: {vagasUsadas(r.habilidades)}/{maxHab}{cheio ? " (remova uma para trocar)" : ""}. A técnica final tem uma vaga extra{temFinal(r.habilidades) ? " (já usada)" : ""}.</p>
+                <GaleriaAcoes tipo={tipo} ctx={ctxAtual} ppExtra={(r.ppExtra ?? 0) > 0} habs={r.habilidades} limite={maxHab} atr={atr} onUsar={addHab} />
+                {r.habilidades.length > 0 && <h4 className="sub-passivas">Seus cartões</h4>}
+                <div className="cartas-hab cartoes-montados">
+                  {r.habilidades.map((h) => (
+                    <CartaoHabilidade key={h.id} h={h} tipo={tipo} ctx={ctxAtual} ppExtra={(r.ppExtra ?? 0) > 0} nomeForma={r.nome} efeitos={r.efeitos} onChange={(p) => habil(h.id, p)} onRemover={() => mud({ habilidades: r.habilidades.filter((x) => x.id !== h.id) })} />
+                  ))}
+                </div>
+              </>
+            } />
             <EfeitosNeutros f={f} tipo={tipo} r={r} mud={mud} />
           </>
         )}
@@ -548,12 +554,15 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
             )}
             {r.habilidades.map((h) => <p key={h.id}><b>{h.nome}</b> ({[h.acao, h.custo].filter(Boolean).join(", ")}): {h.texto}</p>)}
             {(r.efeitos?.length ?? 0) > 0 && <p><b>Efeitos:</b> {r.efeitos!.map((e) => e.nome).join(", ")}</p>}
+            {(r.efeitos ?? []).some((e) => e.familia === "tecnica") && (
+              <p className="quebra"><b>Técnicas especiais:</b>{(r.efeitos ?? []).filter((e) => e.familia === "tecnica").map((t) => `\n${t.nome}: ${(r.efeitos ?? []).filter((x) => x.familia === "interacao" && x.espec?.tec === t.id).map((x) => x.nome).join(", ") || "sem interação (falta)"}`)}</p>
+            )}
             {(r.efeitos ?? []).filter(efeitoPendente).length > 0 && <p className="aviso-mini">Aguardando o aval do Mestre: {(r.efeitos ?? []).filter(efeitoPendente).map((e) => e.nome).join(", ")}. Enquanto isso, valem só como texto.</p>}
             {r.pontoFraco && <p><b>Ponto fraco:</b> {r.pontoFraco}</p>}
             {(tipo === "shikai" || tipo === "bankai" || tipo === "bankai2") && <p><b>Custo e duração:</b> {lib.custoPr ?? r.custo} PR · {lib.duracaoTexto}</p>}
             {erros.length > 0 && <ul className="avisos">{erros.map((e) => <li key={e}>{e}</li>)}</ul>}
             <div className="assistente-fim">
-              <button type="button" className="btn" disabled={!r.nome.trim() || errosDano.length > 0} onClick={onSalvar}>Salvar {TIPO_FORMA_NOME[tipo]}</button>
+              <button type="button" className="btn" disabled={!r.nome.trim() || errosDano.length > 0 || faltas.length > 0} onClick={onSalvar}>Salvar {TIPO_FORMA_NOME[tipo]}</button>
               <button type="button" className="btn btn-paper" onClick={onEditarTudo}>Editar tudo em uma tela</button>
             </div>
           </>

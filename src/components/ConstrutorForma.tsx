@@ -5,7 +5,8 @@ import { ArtePainel } from "./ArtePainel";
 import { PainelSchrift } from "./PainelSchrift";
 import { ROTULO_ORIGEM, origemDaForma } from "../lib/origem";
 import { CartaoHabilidade } from "./CartoesHabilidade";
-import { CaracteristicasForma } from "./CaracteristicasForma";
+import { MontagemCartoes } from "./MontagemCartoes";
+import { faltasEspeciais } from "../regras/especiais";
 import { EfeitosNeutros } from "./EfeitosNeutros";
 import { ModelosBankai } from "./ModelosBankai";
 import { shikaiExigida, temAShikai } from "../regras/bankai-exige-shikai";
@@ -196,7 +197,8 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
   const bankais = BANKAIS.filter((b) => !q || b.nome.toLowerCase().includes(q));
 
   const errosDano = r.habilidades.filter((h) => !h.fixa).flatMap((h) => (analisarDano(danoDoCartao(h, ctxAtual, (r.ppExtra ?? 0) > 0), h.acao, ctxAtual, (r.ppExtra ?? 0) > 0, h.especial ?? false)?.erros ?? []).map((e) => `${h.nome || "Habilidade"}: ${e}`));
-  const podeSalvar = r.nome.trim().length > 0 && errosDano.length === 0;
+  const faltasEsp = faltasEspeciais(r.efeitos ?? [], tipo);
+  const podeSalvar = r.nome.trim().length > 0 && errosDano.length === 0 && faltasEsp.length === 0;
 
   return (
     <div className="construtor" role="dialog" aria-modal="true" aria-label={`Montar ${nomeTipo}`}>
@@ -384,7 +386,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
               </>
             )}
 
-            {(
+            <MontagemCartoes f={f} tipo={tipo} r={r} mud={mud} acoes={
               <div className="caixa">
                 <h3>{ehBankai ? "Habilidades e técnicas" : "Habilidades e técnicas da forma"}</h3>
                 <p className="ajuda">Cada habilidade com PR ou dano vira uma carta nova no Resumo, com botões de usar e rolar.</p>
@@ -395,7 +397,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
                 </div>
                 <button type="button" className="btn btn-paper" disabled={vagasUsadas(r.habilidades) >= LIMITE_HAB[tipo]} onClick={() => mud({ habilidades: [...r.habilidades, { id: novoId(), nome: "", texto: "", custo: "", acao: "Ação" }] })}>Adicionar habilidade</button>
               </div>
-            )}
+            } />
 
             {tipo === "vollstandig" && (
               <>
@@ -435,14 +437,13 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
               <label className="campo">Ponto fraco<textarea rows={2} value={r.pontoFraco} onChange={(e) => mud({ pontoFraco: e.target.value })} placeholder="Um preço ou vulnerabilidade da forma" /></label>
             )}
 
-            <CaracteristicasForma f={f} tipo={tipo} r={r} mud={mud} />
             <EfeitosNeutros f={f} tipo={tipo} r={r} mud={mud} />
             <EfeitosForma f={f} tipo={tipo} r={r} mud={mud} onGravar={onGravar} />
           </div>
         )}
       </div>
 
-      {errosDano.length > 0 && <ul className="avisos" role="alert">{errosDano.map((e) => <li key={e}>{e}</li>)}</ul>}
+      {(errosDano.length > 0 || faltasEsp.length > 0) && <ul className="avisos" role="alert">{[...errosDano, ...(faltasEsp.length > 0 ? [`Técnicas e interações especiais: ${faltasEsp.length === 1 ? "falta 1 coisa" : `faltam ${faltasEsp.length} coisas`}. Veja o aviso amarelo na tela de cartões.`] : [])].map((e) => <li key={e}>{e}</li>)}</ul>}
       <div className="construtor-rodape">
         <button type="button" className="btn btn-paper" onClick={onFechar}>Decidir depois</button>
         <button type="button" className="btn" disabled={!podeSalvar} onClick={() => onSalvar(r)}>
