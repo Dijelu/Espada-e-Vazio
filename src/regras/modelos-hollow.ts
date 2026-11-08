@@ -1,3 +1,5 @@
+import { RESURRECCIONES_NOVAS, SEGUNDAS_NOVAS } from "./modelos-novos";
+import { CARTOES_RES_NOVOS, CARTOES_SEGUNDA_NOVOS } from "./modelos-novos-cartoes";
 import type { HabForma } from "./ficha";
 import { armaDoModelo } from "./modelos-arma";
 import type { FormaLib } from "./ficha";
@@ -5,6 +7,9 @@ import { presetPorId } from "./efeitos-presets";
 import type { CtxForma, InstEfeito } from "./efeitos-forma";
 import { analisarDano } from "./teto-dano";
 import { calcularLiberacao } from "./liberacao-forma";
+import { marcarAcoes, montarCartoesModelo, type CartoesDoModelo } from "./modelos-cartoes";
+import { CARTOES_RES, CARTOES_SEGUNDA } from "./modelos-forma-cartoes";
+import { orcamentoBase } from "./efeitos-forma";
 
 const novoId = () => (typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : String(Date.now() + Math.random()));
 
@@ -1080,6 +1085,8 @@ export const RESURRECCIONES_MONTADAS: ModeloResHollow[] = [
   "ppGasto": 17
  }
 ];
+RESURRECCIONES_MONTADAS.push(...RESURRECCIONES_NOVAS);
+Object.assign(CARTOES_RES, CARTOES_RES_NOVOS);
 
 export const SEGUNDAS_MONTADAS: ModeloSegunda[] = [
  {
@@ -1443,6 +1450,8 @@ export const SEGUNDAS_MONTADAS: ModeloSegunda[] = [
   "ppGasto": 13
  }
 ];
+SEGUNDAS_MONTADAS.push(...SEGUNDAS_NOVAS);
+Object.assign(CARTOES_SEGUNDA, CARTOES_SEGUNDA_NOVOS);
 
 export const FONTES_HOLLOW: string[] = ["https://sportskeeda.com/anime/how-powerful-tier-harribel-bleach-abilities-explored", "https://sportskeeda.com/anime/what-baraggan-s-ability-bleach-his-powers-explained", "https://www.sportskeeda.com/anime/barragan-s-arrogante-bleach-spoiled-yhwach-s-plans-thousand-year-blood-war", "https://www.sportskeeda.com/anime/how-powerful-nelliel-bleach-powers-abilities-explored", "https://sportskeeda.com/anime/bleach-every-type-cero-explained", "https://www.sportskeeda.com/anime/bleach-aaroniero-might-become-strongest-espada", "https://fictionhorizon.com/strongest-espada-in-bleach/", "https://criticalhits.com.br/anime/as-5-tecnicas-mais-fortes-do-ulquiorra-em-bleach/", "https://criticalhits.com.br/anime/as-tecnicas-mais-fortes-da-halibel-de-bleach/", "https://criticalhits.com.br/anime/bleach-todos-os-espada/", "https://destructoidmod.netlify.app/host-https-bleach.fandom.com/wiki/Right_Arm_of_the_Giant,_Left_Arm_of_the_Devil", "https://breezewiki.discard.no/bleach/wiki/Cero_Doble", "https://daddyjim.ai/bleach/character/Wonderweiss-Margela", "https://daddyjim.ai/bleach/character/Rugir-del-Dragon", "https://daddyjim.ai/bleach/character/Cyclones", "https://daddyjim.ai/es/bleach/character/Lanzador-Verde", "https://myanimelist.net/character/1081/Ulquiorra_Cifer"];
 
@@ -1454,7 +1463,7 @@ function nomeDaPeca(nome: string, param?: ParamPeca): string {
   return nome;
 }
 
-function montar(tipo: "resurreccion" | "segunda", m: ModeloResHollow | ModeloSegunda, ctx: CtxForma) {
+function montar(tipo: "resurreccion" | "segunda", m: ModeloResHollow | ModeloSegunda, ctx: CtxForma, cart?: CartoesDoModelo) {
   const ids = [...m.efeitos, { id: m.pontoFraco, param: m.pontoFracoParam }];
   const efeitos: InstEfeito[] = [];
   for (const e of ids) {
@@ -1468,19 +1477,26 @@ function montar(tipo: "resurreccion" | "segunda", m: ModeloResHollow | ModeloSeg
     const pr = h.fixa ? (h.prFixo ?? 12) : a ? a.custoPr : 0;
     return { id: novoId(), nome: h.nome, acao: h.acao, custo: pr ? `${pr} PR` : "", pr: pr || undefined, dano: h.dano || undefined, modelo: h.modelo || undefined, regra: h.regra, desc: h.desc, especial: (h as { especial?: { condicao: string; duracao: string } }).especial, fixa: h.fixa || undefined, limite: (h as { especial?: unknown }).especial ? undefined : (/uma vez por cena/i.test(h.regra) ? "cena" as const : undefined), texto: [h.desc, h.regra].filter(Boolean).join("\n") };
   });
+  if (cart) {
+    const habs = marcarAcoes(habilidades, cart.acoes);
+    const r = montarCartoesModelo(cart, habs, { ...ctx, tipo }, tipo, orcamentoBase(tipo, ctx.n), novoId);
+    const libC = calcularLiberacao(tipo, r.efeitos, ctx, {});
+    const texto = [m.resumo, cart.sabor, r.fora.length ? `Cartões que ainda não cabem no seu nível e entram quando a forma crescer: ${r.fora.join("; ")}.` : ""].filter(Boolean).join("\n");
+    return { efeitos: r.efeitos, habilidades: habs, lib: libC, ponto: { nome: r.pontoFraco }, texto };
+  }
   const lib = calcularLiberacao(tipo, efeitos, ctx, {});
   const ponto = presetPorId(m.pontoFraco);
-  return { efeitos, habilidades, lib, ponto };
+  return { efeitos, habilidades, lib, ponto, texto: m.resumo };
 }
 
 /** Monta a Resurrección pronta, com peças, habilidades e ponto fraco. */
 export function formaDaResurreccion(m: ModeloResHollow, ctx: CtxForma): Partial<FormaLib> {
-  const { efeitos, habilidades, lib, ponto } = montar("resurreccion", m, ctx);
-  return { tipo: "resurreccion", modelo: m.id, nome: m.nome, comando: m.comando, aparencia: m.aparencia, traco: m.traco, efeitos, habilidades, pontoFraco: ponto?.nome ?? "", custo: lib.custoPr ?? (m.classe === "vazio" ? 40 : 45), duracao: lib.duracaoTexto || "até o fim da cena", texto: m.resumo, ...armaDoModelo("resurreccion", m.id) };
+  const { efeitos, habilidades, lib, ponto, texto } = montar("resurreccion", m, ctx, CARTOES_RES[m.id]);
+  return { tipo: "resurreccion", modelo: m.id, nome: m.nome, comando: m.comando, aparencia: m.aparencia, traco: m.traco, efeitos, habilidades, pontoFraco: ponto?.nome ?? "", custo: lib.custoPr ?? (m.classe === "vazio" ? 40 : 45), duracao: lib.duracaoTexto || "até o fim da cena", texto, ...armaDoModelo("resurreccion", m.id) };
 }
 
 /** Monta a Segunda Etapa pronta, apoiada na Resurrección indicada. */
 export function formaDaSegunda(m: ModeloSegunda, ctx: CtxForma): Partial<FormaLib> {
-  const { efeitos, habilidades, lib, ponto } = montar("segunda", m, ctx);
-  return { tipo: "segunda", modelo: m.id, nome: m.nome, comando: m.comando, aparencia: m.aparencia, efeitos, habilidades, pontoFraco: ponto?.nome ?? "", custo: lib.custoPr ?? 0, duracao: lib.duracaoTexto || "até o fim da cena", texto: m.resumo, preRequisito: m.preRequisito, baseModelo: m.baseResurreccion, ...armaDoModelo("segunda", m.id) };
+  const { efeitos, habilidades, lib, ponto, texto } = montar("segunda", m, ctx, CARTOES_SEGUNDA[m.id]);
+  return { tipo: "segunda", modelo: m.id, nome: m.nome, comando: m.comando, aparencia: m.aparencia, efeitos, habilidades, pontoFraco: ponto?.nome ?? "", custo: lib.custoPr ?? 0, duracao: lib.duracaoTexto || "até o fim da cena", texto, preRequisito: m.preRequisito, baseModelo: m.baseResurreccion, ...armaDoModelo("segunda", m.id) };
 }

@@ -120,6 +120,26 @@ export const TECNICAS: DefTecnica[] = [
     texto: "Ação bônus: você junta energia (Cero, flecha de reishi, onda de reiatsu) e a sua próxima ação de ataque à distância sai carregada, com +6 metros de alcance. Cria o botão “Juntar energia”.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Juntar energia", ritmo: "bonus", faz: "texto" } }],
   },
+  {
+    id: "acumular-poder", grupo: "Marcas e poderes", nome: "Acumular poder",
+    texto: "Reação: sempre que você sofre dano ou anda pelo menos 6 metros no turno, ganha 1 carga (até a proficiência, até o fim da cena). Cria o botão “Ganhar carga”. Precisa de uma interação das cargas.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Ganhar carga", ritmo: "reacao", faz: "texto" } }],
+  },
+  {
+    id: "absorver-devolver", grupo: "Marcas e poderes", nome: "Absorver e devolver",
+    texto: "Reação: a lâmina absorve o golpe que o atingiria: o dano cai em proficiência d8, e o valor reduzido fica guardado até o fim da cena. Cria o botão “Absorver o golpe”. Precisa de uma interação do que foi guardado.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Absorver o golpe", ritmo: "reacao", faz: "texto", ref: "[PROF]d8" } }],
+  },
+  {
+    id: "sobrecarga", grupo: "Marcas e poderes", nome: "Sobrecarga",
+    texto: "Ação bônus: você libera mais poder do que o corpo aguenta. Até o fim do seu próximo turno, os seus ataques causam 1d6 de dano a mais, mas no início de cada turno seu você sofre proficiência d4 de dano, que nada reduz. Cria o botão “Sobrecarregar”. Precisa de uma interação da sobrecarga.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Sobrecarregar", ritmo: "bonus", faz: "texto", ref: "1d6" } }],
+  },
+  {
+    id: "corte-espaco", grupo: "Marcas e poderes", nome: "Corte no espaço",
+    texto: "Ação bônus: a lâmina corta o próprio espaço. Até o fim do turno, a sua próxima ação de ataque corpo a corpo alcança uma criatura a até 12 metros, sem ser barrada por cobertura nem por barreira. Cria o botão “Cortar o espaço”. Precisa de uma interação do corte.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Cortar o espaço", ritmo: "bonus", faz: "texto" } }],
+  },
 ];
 
 export const INTERACOES: DefInteracao[] = [
@@ -187,9 +207,24 @@ export const INTERACOES: DefInteracao[] = [
     compilar: () => [{ k: "gatilho", quando: "inicioTurno", faz: { dano: { expr: "[PROF]d4", tipo: "Energia", area: "criaturas inimigas no domínio" } }, rotulo: "Domínio que fere" }],
   },
   {
+    id: "dominio-condicao", nome: "Campo que debilita", com: ["dominio"], vale: [],
+    texto: "Ao abrir o campo, escolha uma condição leve (Surdo, Distorcido, Amedrontado, Caído…). No início do turno de cada criatura inimiga dentro dele, ela faz salvaguarda de Constituição; se falhar, fica com essa condição até o fim do turno dela. Serve à técnica Domínio.",
+    compilar: () => [{ k: "texto", t: "Campo que debilita: no início do turno de cada inimigo dentro do campo, salvaguarda de Constituição; se falhar, fica com a condição leve escolhida ao abrir o campo até o fim do turno dele." }],
+  },
+  {
+    id: "dominio-sentidos", nome: "Domo sem sentidos", com: ["dominio"], vale: [],
+    texto: "No início do turno de cada criatura inimiga dentro do campo, ela faz salvaguarda de Constituição; se falhar, fica Cega e Surda até o fim do turno dela. Serve à técnica Domínio.",
+    compilar: () => [{ k: "texto", t: "Domo sem sentidos: no início do turno de cada inimigo dentro do campo, salvaguarda de Constituição; se falhar, fica Cego e Surdo até o fim do turno dele." }],
+  },
+  {
     id: "vinculo-dano", nome: "Dano compartilhado", com: ["vinculo"], vale: [],
     texto: "Reação: quando você sofre dano, metade dele passa para a criatura ligada a você, sem resistência. Serve à técnica Vínculo. Cria o botão “Passar o dano”.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Passar o dano", ritmo: "reacao", faz: "texto" } }],
+  },
+  {
+    id: "vinculo-cura", nome: "Cura compartilhada", com: ["vinculo"], vale: [],
+    texto: "Quando você ou a criatura ligada recupera PV, a outra recupera o mesmo valor, uma vez por turno. Serve à técnica Vínculo.",
+    compilar: () => [{ k: "texto", t: "Cura compartilhada: quando você ou a criatura ligada recupera PV, a outra recupera o mesmo valor, uma vez por turno." }],
   },
   {
     id: "vinculo-sentidos", nome: "Elo de sentidos", com: ["vinculo"], vale: [],
@@ -230,6 +265,31 @@ export const INTERACOES: DefInteracao[] = [
     id: "gran-rey-cero", armaReq: ["foco", "projetil", "longo-alcance"], nome: "Gran Rey Cero junto da energia", com: ["energia"], vale: [], soHollow: true,
     texto: "Para Visored e Hollow. Ação bônus: ao lançar a energia, você solta junto um Gran Rey Cero, com proficiência d8 de dano de Energia a mais, no mesmo alvo ou em linha. Serve à técnica Ataque com energia. Cria o botão “Gran Rey Cero”.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Gran Rey Cero", ritmo: "bonus", faz: "texto", ref: "[PROF]d8" } }],
+  },
+  {
+    id: "descarregar-poder", nome: "Descarregar as cargas", com: ["acumular-poder"], vale: [],
+    texto: "Ação bônus, ao acertar um golpe: gasta todas as cargas e o golpe causa 1d6 de dano a mais por carga gasta. Serve à técnica Acumular poder. Cria o botão “Descarregar as cargas”.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Descarregar as cargas", ritmo: "bonus", faz: "texto", ref: "1d6" } }],
+  },
+  {
+    id: "devolver-absorvido", nome: "Devolver o absorvido", com: ["absorver-devolver"], vale: [],
+    texto: "Ação bônus: devolve o que a lâmina guardou a uma criatura a até 18 metros, que faz salvaguarda de Destreza (CD 8 + proficiência + atributo); dano igual ao valor guardado (no máximo 4 × proficiência), metade no sucesso. O valor guardado zera. Serve à técnica Absorver e devolver. Cria o botão “Devolver o absorvido”.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Devolver o absorvido", ritmo: "bonus", faz: "texto" } }],
+  },
+  {
+    id: "furia-sem-distincao", nome: "Fúria sem distinção", com: ["sobrecarga"], vale: [],
+    texto: "Enquanto a Sobrecarga durar, você fica imune a Amedrontado e a cada ataque seu contra quem o feriu no último turno tem vantagem; em troca, os seus golpes em área também atingem aliados. Serve à técnica Sobrecarga.",
+    compilar: () => [{ k: "texto", t: "Fúria sem distinção: durante a Sobrecarga, imune a Amedrontado e com vantagem contra quem o feriu no último turno; os seus golpes em área também atingem aliados." }],
+  },
+  {
+    id: "fenda-aberta", nome: "Fenda aberta", com: ["corte-espaco"], vale: [],
+    texto: "Depois do corte, a fenda fica aberta até o fim do seu próximo turno: você pode atravessá-la como parte do movimento, até 12 metros na direção do corte, sem provocar ataques. Serve à técnica Corte no espaço.",
+    compilar: () => [{ k: "texto", t: "Fenda aberta: até o fim do próximo turno, você atravessa a fenda do corte como parte do movimento (até 12 m na direção do corte), sem provocar ataques." }],
+  },
+  {
+    id: "peso-dobrado", nome: "Peso dobrado", com: ["marcar-alvo"], vale: [],
+    texto: "Cada vez que você acerta a criatura marcada, ela ganha 1 peso (até a proficiência): -1,5 metro de deslocamento por peso, e com 3 pesos ou mais fica com desvantagem em salvaguardas de Destreza. Os pesos somem quando a marca termina. Serve à técnica Marcar alvo.",
+    compilar: () => [{ k: "texto", t: "Peso dobrado: cada acerto seu na criatura marcada soma 1 peso (até a proficiência): -1,5 m de deslocamento por peso; com 3 ou mais, desvantagem em salvaguardas de Destreza. Somem quando a marca termina." }],
   },
 ];
 

@@ -153,6 +153,54 @@ export const CARACS: DefCarac[] = [
     texto: "No início do seu turno, criaturas a 3 metros sofrem dano da aura (proficiência d6 do elemento escolhido).",
     pp: () => 3, compilar: (p) => [{ k: "gatilho", quando: "inicioTurno", faz: { dano: { expr: "[PROF]d6", tipo: p.tipo?.trim() || "Energia", area: "criaturas a 3 m de você" } }, rotulo: `Aura${p.tipo?.trim() ? ` de ${p.tipo.trim()}` : ""}` }],
   },
+  /* ---- Cartões acrescentados para cobrir mais ideias de forma (preços e textos propostos; o dono da mesa aprova) ---- */
+  {
+    id: "debilitar", nome: "Enfraquecer", grupo: "Controle", vale: ["ataque", "area", "movimento"],
+    texto: "Ao acertar com a ação ligada, o alvo faz salvaguarda de Constituição. Se falhar, você escolhe: -2 na CR dele, -2 no acerto dele ou -2 no dano dele, até o fim do próximo turno dele. 1 vez por turno.",
+    pp: (_p, ctx) => ppDaForca("leve", ctx.tipo),
+    compilar: () => [texto("Enfraquecer: ao acertar com a ação ligada, o alvo faz salvaguarda de Constituição; se falhar, você escolhe -2 na CR, -2 no acerto ou -2 no dano dele até o fim do próximo turno dele. 1 vez por turno.")],
+  },
+  {
+    id: "execucao", nome: "Golpe de misericórdia", grupo: "Ofensiva", vale: ["ataque", "movimento"],
+    texto: "Se o alvo estiver com metade dos PV ou menos, a ação ligada causa a proficiência em d6 de dano a mais. 1 vez por turno.",
+    pp: (_p, ctx) => ppDaForca("leve", ctx.tipo),
+    compilar: () => [texto("Golpe de misericórdia: contra um alvo com metade dos PV ou menos, a ação ligada causa [PROF]d6 de dano a mais. 1 vez por turno.")],
+  },
+  {
+    id: "puxar", armaReq: ["corrente", "segmentavel", "longo-alcance", "projetil"], nome: "Puxar", grupo: "Controle", vale: ["ataque", "movimento"],
+    texto: "O alvo faz salvaguarda de Força; se falhar, é puxado 6 metros na sua direção. Se bater em algo sólido no caminho, sofre 1d6 de dano.",
+    pp: () => 1, compilar: () => [texto("Puxar: o alvo atingido pela ação ligada faz salvaguarda de Força; se falhar, é puxado 6 metros na sua direção e, se bater em algo sólido, sofre 1d6 de dano.")],
+  },
+  {
+    id: "limpar-condicao", nome: "Purificar", grupo: "Apoio", vale: ["cura"],
+    texto: "Além de curar ou proteger, a ação ligada remove uma condição leve ou média de você ou de um aliado a até 9 metros.",
+    pp: (_p, ctx) => ppDaForca("leve", ctx.tipo),
+    compilar: () => [texto("Purificar: a ação ligada também remove uma condição leve ou média de você ou de um aliado a até 9 metros.")],
+  },
+  {
+    id: "devolver-golpe", nome: "Devolver o golpe", grupo: "Apoio", vale: ["cura"],
+    texto: "Quando a ação ligada reduz dano, você guarda o que foi reduzido: o seu próximo ataque, até o fim do seu próximo turno, causa esse valor a mais (no máximo 2 × proficiência).",
+    pp: (_p, ctx) => ppDaForca("medio", ctx.tipo),
+    compilar: () => [texto("Devolver o golpe: o dano que a ação ligada reduziu fica guardado; o seu próximo ataque, até o fim do seu próximo turno, causa esse valor a mais (máximo 2 × proficiência).")],
+  },
+  {
+    id: "aura-aliada", nome: "Aura de aliados", grupo: "Forma", vale: [], unica: true,
+    texto: "Aliados a até 9 metros de você têm +1 de acerto e +1 de CR enquanto a forma durar.",
+    pp: (_p, ctx) => ppDaForca("medio", ctx.tipo),
+    compilar: () => [texto("Aura de aliados: aliados a até 9 metros de você têm +1 de acerto e +1 de CR enquanto a forma durar.")],
+  },
+  {
+    id: "segunda-chance", nome: "Segunda chance", grupo: "Forma", vale: [], unica: true,
+    texto: "Uma vez por cena, ao cair a 0 PV, você volta com PV iguais a 2 × nível.",
+    pp: () => 3,
+    compilar: () => [{ k: "gatilho", quando: "atingido", limite: "cena", faz: { curaPv: "[NIV]*2" }, rotulo: "Segunda chance" }],
+  },
+  {
+    id: "imune-condicao", nome: "Imune a condição", grupo: "Forma", vale: [], param: "condicao", rotuloParam: "Condição a que você fica imune",
+    texto: "Você não sofre a condição escolhida enquanto a forma durar. O preço segue a faixa da condição (leve, média ou forte).",
+    pp: (p, ctx) => ppDaForca(faixaDaCondicao(p.condicao ?? "Preso"), ctx.tipo),
+    compilar: (p) => [texto(`Imune a condição: você não sofre ${p.condicao ?? "Preso"} enquanto a forma durar.`)],
+  },
 
 ];
 

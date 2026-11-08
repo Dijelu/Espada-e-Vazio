@@ -1,3 +1,5 @@
+import { BANKAIS_NOVAS } from "./modelos-novos";
+import { CARTOES_BANKAI_NOVOS } from "./modelos-novos-cartoes";
 import type { FormaLib, HabForma, TipoForma } from "./ficha";
 const novoId = () => (typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : String(Date.now() + Math.random()));
 import { armaDoModelo } from "./modelos-arma";
@@ -5,6 +7,9 @@ import { presetPorId } from "./efeitos-presets";
 import type { CtxForma, InstEfeito } from "./efeitos-forma";
 import { analisarDano } from "./teto-dano";
 import { calcularLiberacao } from "./liberacao-forma";
+import { marcarAcoes, montarCartoesModelo } from "./modelos-cartoes";
+import { CARTOES_BANKAI, CARTOES_BANKAI2 } from "./modelos-forma-cartoes";
+import { orcamentoBase } from "./efeitos-forma";
 
 export interface HabModelo { nome: string; acao: string; dano: string; regra: string; desc: string; modelo: string; especial?: { condicao: string; duracao: string }; limite?: "cena" | "curto" | "longo"; requisito?: string }
 export interface FormaModelo {
@@ -1741,6 +1746,8 @@ export const MODELOS_BANKAI: ModeloMontado[] = [
  "verdadeira": null
 }
 ];
+MODELOS_BANKAI.push(...BANKAIS_NOVAS);
+Object.assign(CARTOES_BANKAI, CARTOES_BANKAI_NOVOS);
 
 export const FONTES_MODELOS: string[] = ["https://www.cbr.com/bleach-toshiro-hitsugaya-zanpakuto-explained/", "https://fandomwire.com/bleach-thousand-year-blood-war-the-calamity-toshiro-hitsugaya-complete-bankai-explained/", "https://bleach.fandom.com/wiki/Sennen_Hy%C5%8Dr%C5%8D", "https://sportskeeda.com/anime/what-renji-s-true-bankai-bleach-explained", "https://comicbook.com/anime/news/bleach-tybw-renji-bankai-so-oh-zabimaru-true-form", "https://www.animeexplained.com/explained/bleach-byakuya-kuchikis-zanpakuto-senbonzakura-explained", "https://sportskeeda.com/anime/what-byakuya-s-bankai-bleach-senbonzakura-kageyoshi-explained", "https://animehunch.com/bankai-of-yamamoto-genryusai-explained-in-detail/", "https://sportskeeda.com/anime/bleach-tybw-yamamoto-s-bankai-zanka-tachi-explained", "https://www.soapcentral.com/anime/bleach-what-katen-kyokotsu-karamatsu-shinju", "https://sportskeeda.com/anime/why-shunsui-s-bankai-banned-bleach-explained", "https://fictionhorizon.com/bleach-komamuras-human-form-explained-how-powerful-is-it/", "https://fictionhorizon.com/what-is-mayuri-kurotsuchis-bankai-in-bleach-including-modified-explained/", "https://sportskeeda.com/anime/what-mayuri-s-bankai-ability-bleach-explained", "https://www.sportskeeda.com/anime/does-soifon-weakest-bankai-among-soul-reaper-captains-bleach-explored", "https://sportskeeda.com/anime/bleach-why-urahara-s-bankai-broken-ability-entire-series", "https://gotai13.blogspot.com/2010/03/tosen-kaname.html", "https://comicbook.com/anime/list/bleach-every-ichigo-form-explained-list"];
 
@@ -1757,6 +1764,25 @@ function nomeDaPeca(nome: string, param?: { atr?: string; tipo?: string; n?: num
 export function formaDoModelo(m: ModeloMontado, qual: "bankai" | "bankai2", ctx: CtxForma): Partial<FormaLib> | null {
   const base = qual === "bankai" ? m.bankai : m.verdadeira;
   if (!base) return null;
+  const cx = { ...ctx, tipo: qual };
+  const habilidades: HabForma[] = base.habilidades.map((h) => {
+    const a = h.dano ? analisarDano(h.dano, h.acao, cx, false, h.especial ?? false) : null;
+    const pr = a ? a.custoPr : 0;
+    return { id: novoId(), nome: h.nome, acao: h.acao, custo: pr ? `${pr} PR` : "", pr: pr || undefined, dano: h.dano || undefined, modelo: h.modelo || undefined, regra: h.regra, desc: h.desc, especial: h.especial, limite: h.especial ? undefined : (h.limite ?? (/uma vez por cena/i.test(h.regra) ? "cena" : undefined)), requisito: h.requisito, texto: [h.desc, h.regra, h.especial ? `Técnica especial: 1 uso por cena. Depois de usar, você fica ${h.especial.condicao} ${h.especial.duracao}.` : ""].filter(Boolean).join("\n") };
+  });
+  const cart = (qual === "bankai" ? CARTOES_BANKAI : CARTOES_BANKAI2)[m.id];
+  if (cart) {
+    const habs = marcarAcoes(habilidades, cart.acoes);
+    const { efeitos: ef, fora, pontoFraco } = montarCartoesModelo(cart, habs, { ...ctx, tipo: qual }, qual, orcamentoBase(qual, ctx.n), novoId);
+    const lb = calcularLiberacao(qual, ef, ctx, {});
+    const texto = [m.resumo, cart.sabor, fora.length ? `Cartões que ainda não cabem no seu nível e entram quando a forma crescer: ${fora.join("; ")}.` : ""].filter(Boolean).join("\n");
+    return {
+      tipo: qual, modelo: m.id, nome: base.nome, comando: base.comando, aparencia: base.aparencia,
+      estilo: base.estilo ?? m.bankai.estilo, efeitos: ef, habilidades: habs, pontoFraco,
+      custo: lb.custoPr ?? 0, duracao: lb.duracaoTexto ?? "", texto,
+      preRequisito: base.preRequisito, baseModelo: qual === "bankai2" ? m.id : undefined, ...armaDoModelo(qual, m.id),
+    };
+  }
   const ids = [...base.efeitos, { id: base.pontoFraco }];
   const efeitos: InstEfeito[] = [];
   for (const e of ids) {
@@ -1765,12 +1791,6 @@ export function formaDoModelo(m: ModeloMontado, qual: "bankai" | "bankai2", ctx:
     const par = { ...(e.param ?? {}) } as never as { atr?: never; tipo?: string; n?: number };
     efeitos.push({ id: novoId(), preset: p.id, nome: nomeDaPeca(p.nome, e.param), texto: p.texto, efeitos: p.monta(par as never), pp: p.pp });
   }
-  const cx = { ...ctx, tipo: qual };
-  const habilidades: HabForma[] = base.habilidades.map((h) => {
-    const a = h.dano ? analisarDano(h.dano, h.acao, cx, false, h.especial ?? false) : null;
-    const pr = a ? a.custoPr : 0;
-    return { id: novoId(), nome: h.nome, acao: h.acao, custo: pr ? `${pr} PR` : "", pr: pr || undefined, dano: h.dano || undefined, modelo: h.modelo || undefined, regra: h.regra, desc: h.desc, especial: h.especial, limite: h.especial ? undefined : (h.limite ?? (/uma vez por cena/i.test(h.regra) ? "cena" : undefined)), requisito: h.requisito, texto: [h.desc, h.regra, h.especial ? `Técnica especial: 1 uso por cena. Depois de usar, você fica ${h.especial.condicao} ${h.especial.duracao}.` : ""].filter(Boolean).join("\n") };
-  });
   const lib = calcularLiberacao(qual, efeitos, ctx, {});
   const ponto = presetPorId(base.pontoFraco);
   return {

@@ -179,12 +179,15 @@ export const LIMITE_CARACS_ARMA: Record<string, number> = {
   resurreccion: 4,
   /** segunda etapa */
   segunda: 6,
-  vollstandig: 2,
+  vollstandig: 4,
 };
 export const limiteCaracsArma = (tipo: string): number => LIMITE_CARACS_ARMA[tipo] ?? 0;
 
 /** Quantas técnicas finais cabem numa forma (vaga extra, fora do limite das ações normais). */
 export const LIMITE_FINAL = 1;
+/** Técnicas finais por forma: 2 na Bankai Verdadeira e na Segunda Etapa, 1 nas demais. */
+export const limiteFinal = (tipo: string): number => (tipo === "bankai2" || tipo === "segunda" ? 2 : LIMITE_FINAL);
+export const qtdFinais = (habs: HabForma[]) => habs.filter((h) => h.cartao?.final).length;
 
 /**
  * Os 20 cartões neutros de antes viram um dos quatro cartões de ação. `carac` diz qual característica o antigo cartão será

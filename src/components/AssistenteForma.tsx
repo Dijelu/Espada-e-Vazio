@@ -1,5 +1,5 @@
 import { analisarDano } from "../regras/teto-dano";
-import { aplicarMudanca, danoDoCartao, LIMITE_FINAL, temFinal, vagasUsadas } from "../regras/cartoes";
+import { aplicarMudanca, danoDoCartao, limiteFinal, qtdFinais, vagasUsadas } from "../regras/cartoes";
 import type { CtxForma } from "../regras/efeitos-forma";
 import { useEffect, useMemo, useState } from "react";
 import { calcular, classePorId, type Ficha, type FormaLib, type HabForma, type TipoForma } from "../regras/ficha";
@@ -258,8 +258,8 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
   const cheio = vagasUsadas(r.habilidades) >= maxHab;
   const jaTem = (nome: string) => !!nome && r.habilidades.some((x) => x.nome === nome);
   const addHab = (h: HabForma) => {
-    // a técnica final fica numa vaga extra (só 1 por forma); as outras ocupam as vagas normais
-    if (h.cartao?.final ? temFinal(r.habilidades) : cheio) return;
+    // a técnica final fica numa vaga extra (1 por forma; 2 na Verdadeira e na Segunda Etapa); as outras ocupam as vagas normais
+    if (h.cartao?.final ? qtdFinais(r.habilidades) >= limiteFinal(tipo) : cheio) return;
     if (h.nome && jaTem(h.nome)) return;
     mud({ habilidades: [...r.habilidades, { ...h, id: novoId() }] });
   };
@@ -296,7 +296,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
   if (carcRev.length > limiteCaracsArma(tipo)) erros.push(`Características da arma demais: o limite é ${limiteCaracsArma(tipo)}.`);
   if (tipo === "vollstandig" && usados < limite) erros.push(`Faltam ${limite - usados} habilidade(s) única(s).`);
   if (vagasUsadas(r.habilidades) > maxHab) erros.push(`Há habilidades demais: o limite é ${maxHab}.`);
-  if (r.habilidades.filter((h) => h.cartao?.final).length > LIMITE_FINAL) erros.push("Só pode haver uma técnica final por forma.");
+  if (qtdFinais(r.habilidades) > limiteFinal(tipo)) erros.push(limiteFinal(tipo) === 1 ? "Só pode haver uma técnica final por forma." : `Só pode haver ${limiteFinal(tipo)} técnicas finais nesta forma.`);
   if (r.habilidades.length === 0) erros.push("Adicione pelo menos uma habilidade ou técnica.");
   const errosDano = r.habilidades.filter((h) => !h.fixa).flatMap((h) => (analisarDano(danoDoCartao(h, ctxAtual, (r.ppExtra ?? 0) > 0), h.acao, ctxAtual, (r.ppExtra ?? 0) > 0, h.especial ?? false)?.erros ?? []).map((e) => `${h.nome || "Habilidade"}: ${e}`));
   erros.push(...errosDano);
@@ -512,7 +512,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
                     {ATRIBUTOS_DANO.map((a) => <option key={a.v} value={a.v}>{a.n}</option>)}
                   </select>
                 </label>
-                <p className="ajuda">Escolha um dos seis cartões de ação, o ritmo (ação, ação bônus ou reação) e monte. O dano (quando há) e o custo em PR já vêm prontos. Depois é só escrever, na descrição, como a característica e o tema da sua forma aparecem neste ataque. Vagas: {vagasUsadas(r.habilidades)}/{maxHab}{cheio ? " (remova uma para trocar)" : ""}. A técnica final tem uma vaga extra{temFinal(r.habilidades) ? " (já usada)" : ""}.</p>
+                <p className="ajuda">Escolha um dos seis cartões de ação, o ritmo (ação, ação bônus ou reação) e monte. O dano (quando há) e o custo em PR já vêm prontos. Depois é só escrever, na descrição, como a característica e o tema da sua forma aparecem neste ataque. Vagas: {vagasUsadas(r.habilidades)}/{maxHab}{cheio ? " (remova uma para trocar)" : ""}. A técnica final tem {limiteFinal(tipo) === 1 ? "uma vaga extra" : `${limiteFinal(tipo)} vagas extras`}{qtdFinais(r.habilidades) >= limiteFinal(tipo) ? " (já usada)" : qtdFinais(r.habilidades) > 0 ? ` (${qtdFinais(r.habilidades)} usada)` : ""}.</p>
                 <GaleriaAcoes tipo={tipo} ctx={ctxAtual} ppExtra={(r.ppExtra ?? 0) > 0} habs={r.habilidades} limite={maxHab} atr={atr} onUsar={addHab} arma={armaCtx} />
                 {r.habilidades.length > 0 && <h4 className="sub-passivas">Seus cartões</h4>}
                 <div className="cartas-hab cartoes-montados">

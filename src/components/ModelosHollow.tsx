@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { Ficha, FormaLib } from "../regras/ficha";
 import type { CtxForma } from "../regras/efeitos-forma";
+import { liquidoPecas, orcamentoBase } from "../regras/efeitos-forma";
 import { RESURRECCIONES_MONTADAS, SEGUNDAS_MONTADAS, formaDaResurreccion, formaDaSegunda, type HabHollow } from "../regras/modelos-hollow";
 
 interface Props {
@@ -22,7 +23,7 @@ export function ModelosHollow({ f, tipo, ctx, onUsar }: Props) {
   const [aberto, setAberto] = useState("");
   const itens: Item[] = tipo === "resurreccion"
     ? RESURRECCIONES_MONTADAS.map((m) => ({
-        id: m.id, nome: m.nome, dono: m.dono, resumo: m.resumo, aparencia: m.aparencia, ppGasto: m.ppGasto, canonica: m.canonica, habilidades: m.habilidades,
+        id: m.id, nome: m.nome, dono: m.dono, resumo: m.resumo, aparencia: m.aparencia, ppGasto: liquidoPecas(formaDaResurreccion(m, ctx).efeitos ?? [], orcamentoBase("resurreccion", ctx.n), ctx), canonica: m.canonica, habilidades: m.habilidades,
         etiqueta: `${CLASSE_NOME[m.classe]} · Caminho ${m.caminho}`,
         trava: f.classe !== m.classe ? `Exige a classe ${CLASSE_NOME[m.classe]}` : f.subclasse && f.subclasse !== m.caminho ? `Exige o Caminho ${m.caminho}` : "",
         usar: () => onUsar(formaDaResurreccion(m, ctx)),
@@ -30,7 +31,7 @@ export function ModelosHollow({ f, tipo, ctx, onUsar }: Props) {
     : SEGUNDAS_MONTADAS.map((m) => {
         const base = RESURRECCIONES_MONTADAS.find((x) => x.id === m.baseResurreccion)?.nome ?? m.baseResurreccion;
         return {
-          id: m.id, nome: m.nome, dono: m.dono, resumo: m.resumo, aparencia: m.aparencia, ppGasto: m.ppGasto, canonica: m.canonica, habilidades: m.habilidades,
+          id: m.id, nome: m.nome, dono: m.dono, resumo: m.resumo, aparencia: m.aparencia, ppGasto: liquidoPecas(formaDaSegunda(m, ctx).efeitos ?? [], orcamentoBase("segunda", ctx.n), ctx), canonica: m.canonica, habilidades: m.habilidades,
           etiqueta: `Sobre a Resurrección ${base}`, preRequisito: m.preRequisito,
           trava: f.formas.resurreccion?.modelo === m.baseResurreccion ? "" : `Exige a Resurrección ${base}`,
           usar: () => onUsar(formaDaSegunda(m, ctx)),

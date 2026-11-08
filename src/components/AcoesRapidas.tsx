@@ -54,6 +54,8 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
     // descansar tira a máscara e zera a contagem de turnos e a recarga dela
     delete usos["mascara-turnos"];
     delete usos["mascara-treino"];
+    delete usos["mascara-extra"];
+    delete usos["mascara-tentativas"];
     delete usos["mascara-recarga"];
     alterar({
       pvAtual: Math.min(c.pv, f.pvAtual + Math.floor(c.pv / 2)),
@@ -83,11 +85,13 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
     // a máscara também se desfaz no fim do combate (sem recarga nem Esgotado); os PR temporários dela saem
     delete todos["mascara-turnos"];
     delete todos["mascara-treino"];
+    delete todos["mascara-extra"];
+    delete todos["mascara-tentativas"];
     alterar({ ...(masc ? { prAtual: Math.min(c.pr, f.prAtual) } : {}), estado: { ...f.estado, ...fim, usos: todos, mascaraAtiva: false } });
     setMsg("Combate encerrado: habilidades de uso por combate renovadas.");
   };
 
-  const { libs, custoLib, encerrarForma, fx, temTurnoDeForma, proximoTurno, tr, hg, mascMax, podeTreinarMascara, mascaraTreinada, mascaraGasta, mascaraRecarga, setTreinos, tirarMascara, novoTurnoMascara, treinarMascara, liberar } = useLiberacao(f, c, alterar, r, setMsg);
+  const { libs, custoLib, encerrarForma, fx, temTurnoDeForma, proximoTurno, tr, hg, mascMax, cdManter, manterMascara, podeTreinarMascara, mascaraTreinada, mascaraGasta, mascaraRecarga, setTreinos, tirarMascara, novoTurnoMascara, treinarMascara, liberar } = useLiberacao(f, c, alterar, r, setMsg);
 
   /* ---- Hōgyoku (artefato opcional do Mestre) ---- */
   const h = f.hogyoku;
@@ -207,6 +211,7 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
           {!masc && mascaraRecarga > 0 && <span className="chip">recarga {mascaraRecarga}</span>}
           {!masc && !mascaraRecarga && tr.mascaraMax ? <small className="ajuda">dura {mascMax} turno(s)</small> : null}
           {(masc || mascaraRecarga > 0) && <button type="button" className="chip chip-btn" onClick={novoTurnoMascara}>Novo turno</button>}
+          {masc && mascaraGasta >= mascMax && <button type="button" className="chip chip-btn" onClick={manterMascara} title="Teste de Determinação (d20 + Mente) para a máscara durar mais 1d6 turnos. Falhou: ela cai e você fica Esgotado.">Manter a máscara (CD {cdManter})</button>}
           {tr.mascaraMax ? <button type="button" className="chip chip-btn" onClick={treinarMascara} disabled={!podeTreinarMascara} title={!masc ? "Vale com a máscara posta" : mascaraTreinada ? "Já usado nesta vez com a máscara" : !podeTreinarMascara ? "A máscara já está no tempo máximo" : "Use quando o Mestre pedir o teste de Determinação e você passar (uma vez por vez com a máscara)"}>Passei na Determinação (+tempo)</button> : null}
         </div>
       )}

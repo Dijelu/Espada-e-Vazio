@@ -124,7 +124,10 @@ export function useLiberacao(f: Ficha, c: Calculo, alterar: (p: Partial<Ficha>) 
   const tr = f.treinos;
   const hg = c.hogyoku;
   /** duração da máscara: a sorteada/treinada, +2 turnos com o Hōgyoku estabilizando o Hollow */
-  const mascMax = Math.min(tr.mascaraMax ?? 1, MASCARA_TETO) + (hg.estabiliza ? 2 : 0);
+  const mascMax = Math.min(tr.mascaraMax ?? 1, MASCARA_TETO) + (hg.estabiliza ? 2 : 0) + (e.usos["mascara-extra"] ?? 0);
+  /** passou dos turnos base: dá para tentar manter a máscara com um teste de Determinação (CD 12, +2 a cada tentativa seguida) */
+  const mascaraTentativas = e.usos["mascara-tentativas"] ?? 0;
+  const cdManter = 12 + 2 * mascaraTentativas;
   const mascaraGasta = e.usos["mascara-turnos"] ?? 0;
   const mascaraRecarga = e.usos["mascara-recarga"] ?? 0;
   const setTreinos = (p: Partial<Ficha["treinos"]>) => alterar({ treinos: { ...f.treinos, ...p } });
@@ -133,6 +136,8 @@ export function useLiberacao(f: Ficha, c: Calculo, alterar: (p: Partial<Ficha>) 
     const usos = { ...e.usos };
     delete usos["mascara-turnos"];
     delete usos["mascara-treino"];
+    delete usos["mascara-extra"];
+    delete usos["mascara-tentativas"];
     const temp = tempMascara(mascaraAtiva(f));
     const prAtual = temp.pr ? Math.min(c.pr, f.prAtual) : f.prAtual;
     // tirar a máscara não encerra a forma (só limpa o formato antigo, em que a máscara ocupava a liberação)
@@ -155,6 +160,8 @@ export function useLiberacao(f: Ficha, c: Calculo, alterar: (p: Partial<Ficha>) 
     const t = tempMascara(tr.mascara as TipoMascara);
     const usos: Record<string, number> = { ...e.usos, "mascara-turnos": 1 };
     delete usos["mascara-treino"];
+    delete usos["mascara-extra"];
+    delete usos["mascara-tentativas"];
     alterar({
       prAtual: Math.max(0, f.prAtual - custo) + Math.floor(c.pr * t.pr),
       treinos: { ...f.treinos, mascaraMax: max },
@@ -163,6 +170,20 @@ export function useLiberacao(f: Ficha, c: Calculo, alterar: (p: Partial<Ficha>) 
     som.corte();
     dispararLiberacao("mascara", MASCARAS.find((m) => m.id === tr.mascara)?.nome);
     setMsg(`Máscara ativada (${custo} PR). Ela dura ${max + (hg.estabiliza ? 2 : 0)} turno(s), contando este.`);
+  };
+  /** Fim dos turnos da máscara: teste de Determinação (d20 + salvaguarda de Mente) contra a CD; passando, +1d6 turnos nesta vez; falhando, a máscara cai. */
+  const manterMascara = () => {
+    if (!masc) return setMsg("Só dá para manter a máscara com ela posta.");
+    if (mascaraGasta < mascMax) return setMsg("A máscara ainda tem turnos: o teste vale quando o tempo acabar.");
+    const dado = 1 + Math.floor(Math.random() * 20);
+    const total = dado + (c.saves.men?.total ?? c.atr.men);
+    if (total < cdManter) {
+      setMsg(`Determinação ${total} contra CD ${cdManter}: falhou. A máscara cai.`);
+      return tirarMascara(true);
+    }
+    const ganho = 1 + Math.floor(Math.random() * 6);
+    setE({ usos: { ...e.usos, "mascara-extra": (e.usos["mascara-extra"] ?? 0) + ganho, "mascara-tentativas": mascaraTentativas + 1 } });
+    setMsg(`Determinação ${total} contra CD ${cdManter}: passou! A máscara dura mais ${ganho} turno(s). Próxima tentativa: CD ${cdManter + 2}.`);
   };
   const novoTurnoMascara = () => {
     if (masc) {
@@ -209,5 +230,5 @@ export function useLiberacao(f: Ficha, c: Calculo, alterar: (p: Partial<Ficha>) 
     setMsg(custo ? `${id === "mascara" ? "Máscara" : id === "vollstandig" ? "Vollständig" : id === "bankai2" ? "Bankai Verdadeira" : id === "bankai" ? "Bankai" : id === "shikai" ? "Shikai" : id === "terror" ? "Segunda Etapa" : "Resurrección"} ativada: ${custo} PR gastos.` : "Liberação marcada. O custo está na descrição da sua Zanpakutou.");
   };
 
-  return { libs, custoLib, encerrarForma, fx, temTurnoDeForma, proximoTurno, tr, hg, mascMax, podeTreinarMascara, mascaraTreinada, mascaraGasta, mascaraRecarga, setTreinos, tirarMascara, ativarMascara, novoTurnoMascara, treinarMascara, liberar, masc, temMascara, setE };
+  return { libs, custoLib, encerrarForma, fx, temTurnoDeForma, proximoTurno, tr, hg, mascMax, cdManter, manterMascara, podeTreinarMascara, mascaraTreinada, mascaraGasta, mascaraRecarga, setTreinos, tirarMascara, ativarMascara, novoTurnoMascara, treinarMascara, liberar, masc, temMascara, setE };
 }

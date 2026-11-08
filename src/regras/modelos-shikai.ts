@@ -1,3 +1,5 @@
+import { SHIKAIS_NOVAS } from "./modelos-novos";
+import { CARTOES_SHIKAI_NOVOS } from "./modelos-novos-cartoes";
 import type { FormaLib, HabForma } from "./ficha";
 import { armaDoModelo } from "./modelos-arma";
 import { presetPorId } from "./efeitos-presets";
@@ -938,6 +940,8 @@ export const SHIKAIS_MONTADAS: ModeloShikaiMontado[] = [
   "crescimento": "Nível 10 (5 PP): troque Kidō Canalizado por Corpo Leve (bruto 8, líquido 5; o Espelho é preço e devolve 3 inteiros). Nível 18+ (8 PP): acrescente Lâmina Afiada ou Corpo Leve. Exige aprovação do Mestre: a ilusão mexe com o jogo de todos."
  }
 ];
+SHIKAIS_MONTADAS.push(...SHIKAIS_NOVAS);
+Object.assign(CARTOES_SHIKAI, CARTOES_SHIKAI_NOVOS);
 
 export const FONTES_SHIKAI: string[] = ["https://sportskeeda.com/anime/what-shikai-release-commands-bleach-25-famous-zanpakutos-shikai-commands", "https://comicbook.com/anime/list/bleach-every-ichigo-form-explained-list", "https://www.animeexplained.com/explained/bleach-byakuya-kuchikis-zanpakuto-senbonzakura-explained", "https://www.cbr.com/bleach-toshiro-hitsugaya-zanpakuto-explained/", "https://swordslice.com/blogs/news/renji-s-sword-in-bleach-from-shikai-to-bankai-transformation", "https://en.wikipedia.org/wiki/Renji_Abarai", "https://www.animeexplained.com/?p=10929", "https://www.cbr.com/bleach-manga-ryujin-jakka-facts-trivia/", "https://www.animeexplained.com/explained/bleach-shunsui-kyorakus-zanpakuto-katen-kyokotsu-explained/", "https://fictionhorizon.com/what-is-komamuras-special-power-in-bleach/", "https://www.animeexplained.com/explained/bleach-mayuri-kurotsuchis-zanpakuto-explained/", "https://en.wikipedia.org/wiki/Mayuri_Kurotsuchi", "https://www.soapcentral.com/anime/whose-zanpakuto-suzumebachi-bleach-explained", "https://swordslice.com/blogs/news/kisuke-sword-abilities-explained-from-shikai-to-bankai", "https://gotai13.blogspot.com/2010/03/tosen-kaname.html", "https://fictionhorizon.com/bleach-rukias-shikai-sode-no-shirayuki-explained/", "https://www.animeexplained.com/explained/bleach-rukias-zanpakuto-sode-no-shirayuki-explained", "https://giantbomb.com/wiki/Characters/Rangiku_Matsumoto", "https://sportskeeda.com/anime/was-tosen-immune-aizen-s-kyoka-suigetsu-bleach-explained"];
 

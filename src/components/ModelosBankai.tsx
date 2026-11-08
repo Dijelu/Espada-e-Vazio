@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { Ficha, FormaLib } from "../regras/ficha";
 import type { CtxForma } from "../regras/efeitos-forma";
 import { shikaiExigida, temAShikai } from "../regras/bankai-exige-shikai";
+import { liquidoPecas, orcamentoBase } from "../regras/efeitos-forma";
 import { MODELOS_BANKAI, formaDoModelo, type ModeloMontado } from "../regras/modelos-bankai";
 
 interface Props {
@@ -36,7 +37,7 @@ export function ModelosBankai({ f, tipo, ctx, onUsar }: Props) {
             <article key={m.id} className={`carta-hab carta-peca carta-montagem ${liberada ? "" : "travada"}`} data-classe="shinigami">
               <div className="carta-topo">
                 <h3>{forma.nome}</h3>
-                <span className="selo-pp">{forma.ppGasto}<i>PP</i></span>
+                <span className="selo-pp">{liquidoPecas(formaDoModelo(m, tipo, ctx)?.efeitos ?? [], orcamentoBase(tipo, ctx.n), ctx)}<i>PP</i></span>
               </div>
               <p className="ajuda">{m.dono} · {ESTILO[m.bankai.estilo]}{tipo === "bankai" && m.verdadeira ? " · tem Verdadeira" : ""}</p>
               <p>{m.resumo}</p>

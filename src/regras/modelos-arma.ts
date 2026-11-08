@@ -24,6 +24,14 @@ const SHIKAI: Record<string, Linha> = {
   "sode-no-shirayuki": ["Katana", ["elemental", "contato"]],
   "haineko": ["Katana", ["enxame", "longo-alcance"]],
   "kyoka-suigetsu": ["Katana", ["contato", "agil"]],
+  "hozukimaru": ["Lança", ["segmentavel", "longo-alcance"]],
+  "wabisuke": ["Katana", ["contato", "pesada"]],
+  "minazuki": ["Katana", ["invocada", "contato"]],
+  "tachikaze": ["Faca", ["contato", "agil"]],
+  "fuji-kujaku": ["Falx", ["multiplas-laminas", "contato"]],
+  "kazeshini": ["Foice", ["dupla", "corrente"]],
+  "sogyo-no-kotowari": ["Katana", ["dupla", "corrente"]],
+  "nozarashi": ["Machado Grande", ["pesada", "contato"]],
 };
 
 /** Bankai (até 4 características) e, quando o modelo tem, a Bankai verdadeira (até 6). */
@@ -44,6 +52,11 @@ const BANKAI: Record<string, { bankai: Linha; verdadeira?: Linha }> = {
   "kamishini-no-yari": { bankai: ["Lança", ["longo-alcance", "contato", "segmentavel"]] },
   "shatatsu-karagara": { bankai: ["Alabarda", ["invocada", "longo-alcance", "corrente", "foco"]] },
   "shirafude-ichimonji": { bankai: ["Estoque", ["longo-alcance", "projetil", "foco", "agil"]] },
+  "ryumon-hozukimaru": { bankai: ["Machado Duplo", ["dupla", "corrente", "pesada", "contato"]] },
+  "minazuki-bankai": { bankai: ["Katana", ["elemental", "longo-alcance", "escudo", "invocada"]] },
+  "tekken-tachikaze": { bankai: ["Soqueiras", ["contato", "dupla", "elemental", "pesada"]] },
+  "fushi-no-kojo": { bankai: ["Kusarigama", ["dupla", "corrente", "contato", "foco"]] },
+  "kenpachi-bankai": { bankai: ["Machado Grande", ["pesada", "natural", "contato"]] },
 };
 
 const RESURRECCION: Record<string, Linha> = {
@@ -59,6 +72,11 @@ const RESURRECCION: Record<string, Linha> = {
   "arbol": ["Tentáculos", ["natural", "longo-alcance", "invocada", "enxame"]],
   "murcielago": ["Lança", ["projetil", "foco", "agil", "longo-alcance"]],
   "pantera": ["Garras de osso", ["natural", "agil", "contato"]],
+  "golondrina": ["Asas de lâmina", ["natural", "agil", "contato", "longo-alcance"]],
+  "lobos": ["Pistola", ["projetil", "invocada", "foco", "enxame"]],
+  "santa-teresa": ["Foice", ["natural", "dupla", "longo-alcance", "contato"]],
+  "fornicaras": ["Tentáculos", ["natural", "contato", "foco"]],
+  "trepadora": ["Tentáculos", ["natural", "longo-alcance", "contato", "enxame"]],
 };
 
 const SEGUNDA: Record<string, Linha> = {
@@ -67,6 +85,10 @@ const SEGUNDA: Record<string, Linha> = {
   "ira-furia": ["Punho de osso", ["natural", "pesada", "contato", "projetil"]],
   "tiburon-abismo": ["Cimitarra", ["natural", "elemental", "contato", "agil", "longo-alcance", "projetil"]],
   "pantera-rei": ["Garras de osso", ["natural", "agil", "contato", "projetil", "elemental", "foco"]],
+  "lobos-segunda": ["Pistola", ["projetil", "foco", "invocada", "agil"]],
+  "santa-teresa-segunda": ["Foice", ["natural", "dupla", "longo-alcance", "contato", "pesada"]],
+  "fornicaras-segunda": ["Tentáculos", ["natural", "contato", "foco", "longo-alcance"]],
+  "trepadora-segunda": ["Tentáculos", ["natural", "longo-alcance", "contato", "enxame"]],
 };
 
 export const TABELA_ARMA_MODELOS = { SHIKAI, BANKAI, RESURRECCION, SEGUNDA };
