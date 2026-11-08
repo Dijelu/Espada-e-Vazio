@@ -173,6 +173,9 @@ export function useLiberacao(f: Ficha, c: Calculo, alterar: (p: Partial<Ficha>) 
       setMsg(`Recarga da máscara: faltam ${mascaraRecarga - 1} turno(s).`);
     }
   };
+  // contagem de uma ficha antiga que passou da duração: a máscara acaba na hora e o contador volta a zero
+  const passouDoTempo = masc && mascaraGasta > mascMax;
+  useEffect(() => { if (passouDoTempo) tirarMascara(true); }, [passouDoTempo]); // eslint-disable-line react-hooks/exhaustive-deps
   const treinarMascara = () => {
     const ganho = Math.max(1, Math.floor((1 + Math.floor(Math.random() * 6)) / 2));
     setTreinos({ mascaraMax: (tr.mascaraMax ?? 1) + ganho });

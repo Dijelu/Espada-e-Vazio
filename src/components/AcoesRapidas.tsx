@@ -51,10 +51,13 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
     const limpa = !!usos["esgotado-curto"];
     delete usos["esgotado-curto"];
     for (const k of Object.keys(usos)) if (/^(esp:|lim-cena:|lim-curto:|req:)/.test(k)) delete usos[k];
+    // descansar tira a máscara e zera a contagem de turnos e a recarga dela
+    delete usos["mascara-turnos"];
+    delete usos["mascara-recarga"];
     alterar({
       pvAtual: Math.min(c.pv, f.pvAtual + Math.floor(c.pv / 2)),
       prAtual: Math.min(c.pr, f.prAtual + Math.floor(c.pr / 2)),
-      estado: { ...f.estado, curtosUsados: e.curtosUsados + 1, usos, condicoes: limpa ? e.condicoes.filter((x) => x !== "Esgotado") : e.condicoes },
+      estado: { ...f.estado, curtosUsados: e.curtosUsados + 1, mascaraAtiva: false, usos, condicoes: limpa ? e.condicoes.filter((x) => x !== "Esgotado") : e.condicoes },
     });
     setMsg("Descanso curto: recuperou metade do PV e do PR totais.");
   };
@@ -73,8 +76,11 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
     delete usos["ultimo-folego"];
     const fim = encerrarForma();
     const todos = { ...fim.usos, ...usos };
+    // acabou o combate: a contagem de turnos da forma e da máscara volta a zero
+    delete todos["forma-turnos"];
+    delete todos["forma-de"];
     // a máscara também se desfaz no fim do combate (sem recarga nem Esgotado); os PR temporários dela saem
-    if (masc) delete todos["mascara-turnos"];
+    delete todos["mascara-turnos"];
     alterar({ ...(masc ? { prAtual: Math.min(c.pr, f.prAtual) } : {}), estado: { ...f.estado, ...fim, usos: todos, mascaraAtiva: false } });
     setMsg("Combate encerrado: habilidades de uso por combate renovadas.");
   };
