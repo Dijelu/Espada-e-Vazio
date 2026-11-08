@@ -13,8 +13,19 @@ export type SubAcao = "ataque" | "area" | "cura" | "movimento";
 export type Ritmo = "acao" | "bonus" | "reacao";
 /** Força de um cartão de efeito. */
 export type Forca = "leve" | "medio" | "forte";
-/** Peça de poder (de sempre), cartão de característica ou cartão de efeito. Sem o campo, é peça de poder. */
-export type FamiliaCartao = "peca" | "carac" | "efeito";
+/**
+ * Peça de poder (de sempre), cartão de característica (genérico), cartão de efeito, técnica especial ou interação especial.
+ * Sem o campo, é peça de poder. Ação e característica se ligam de forma opcional; técnica e interação especial, de forma obrigatória.
+ */
+export type FamiliaCartao = "peca" | "carac" | "efeito" | "tecnica" | "interacao";
+
+/** Dados de uma técnica especial ou de uma interação especial (ver especiais.ts). */
+export interface DadosEspecial {
+  /** id no catálogo de técnicas ou de interações */
+  id: string;
+  /** só na interação: id da peça (técnica especial da mesma forma) a que ela serve */
+  tec?: string;
+}
 
 /** Marca de uma habilidade que nasceu de um cartão de ação. Sem a marca, a habilidade é do jeito antigo e continua igual. */
 export interface CartaoAcao {
@@ -100,6 +111,22 @@ export const FORCAS: InfoForca[] = [
   { id: "medio", nome: "Médio", pp: 4 },
   { id: "forte", nome: "Forte", pp: 6 },
 ];
+
+/** Vagas especiais de cada forma: quantas técnicas especiais e quantas interações especiais ela aceita. Para mudar o número de uma forma, mude só esta tabela. */
+export interface VagasEspeciais { tec: number; inter: number }
+export const VAGAS_ESPECIAIS: Record<string, VagasEspeciais> = {
+  shikai: { tec: 1, inter: 1 },
+  bankai: { tec: 2, inter: 2 },
+  /** Bankai verdadeira */
+  bankai2: { tec: 3, inter: 3 },
+  resurreccion: { tec: 3, inter: 3 },
+  /** segunda etapa */
+  segunda: { tec: 3, inter: 3 },
+  vollstandig: { tec: 2, inter: 2 },
+  /** Máscara Hollow do Visored (ainda não tem montagem própria; a conta já fica pronta) */
+  mascara: { tec: 2, inter: 2 },
+};
+export const vagasEspeciais = (tipo: string): VagasEspeciais => VAGAS_ESPECIAIS[tipo] ?? { tec: 1, inter: 1 };
 
 /** Quantas técnicas finais cabem numa forma (vaga extra, fora do limite das ações normais). */
 export const LIMITE_FINAL = 1;

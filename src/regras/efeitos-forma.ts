@@ -19,7 +19,8 @@ export const ALVOS: { id: Alvo; nome: string }[] = [
 /** "Ataques armados, podendo ser kidōs": golpes, disparos e Hadō. */
 export const ARMADOS: Alvo[] = ["golpe", "disparo", "hado"];
 
-import type { DadosCarac, DadosEfeitoNeutro, FamiliaCartao, Ritmo } from "./cartoes";
+import type { DadosCarac, DadosEfeitoNeutro, DadosEspecial, FamiliaCartao, Ritmo } from "./cartoes";
+import { especialFunciona } from "./especiais";
 
 export type Num = number | string;
 export type Quando = "liberar" | "inicioTurno" | "acerto" | "critico" | "abate" | "atingido" | "errou";
@@ -95,6 +96,8 @@ export interface InstEfeito {
   familia?: FamiliaCartao;
   carac?: DadosCarac;
   efeitoNeutro?: DadosEfeitoNeutro;
+  /** técnica especial ou interação especial (familia "tecnica" ou "interacao") */
+  espec?: DadosEspecial;
 }
 
 export interface CtxForma {
@@ -269,6 +272,13 @@ const nomeAlvos = (em: Alvo[]) => {
   return em.map((a) => ALVOS.find((x) => x.id === a)?.nome ?? a).join(", ");
 };
 
+/** Troca [PROF], [NIV]… do dado de um botão pelos números (sem conta: "[PROF]d8" vira "3d8"). */
+function dadosDoRef(ref: string | undefined, ctx: CtxForma): string | undefined {
+  if (!ref || !ref.includes("[")) return ref;
+  const v: Record<string, number> = { NIV: ctx.n, PROF: ctx.prof, FOR: ctx.atr.for, DES: ctx.atr.des, CON: ctx.atr.con, MEN: ctx.atr.men, ESP: ctx.atr.esp };
+  return ref.replace(/\[([A-Z]{3,4})\]/g, (_, k: string) => String(v[k] ?? 0));
+}
+
 export function somarForma(f: Ficha, ctx: CtxForma): SomaForma | null {
   const pecas = pecasAtivas(f);
   if (pecas.length === 0) return null;
@@ -278,8 +288,11 @@ export function somarForma(f: Ficha, ctx: CtxForma): SomaForma | null {
     vant: [], resist: [], gatilhos: [], invocacoes: [], manutencao: 0, duracaoMais: 0, textos: [], linhas: [],
   };
   const linha = (rotulo: string, v: string, fonte: string) => s.linhas.push({ rotulo, valor: v, fonte });
+  const todas = pecas.map((p) => p.inst);
   for (const { inst, fonte } of pecas) {
     const nome = fonte === "forma" ? inst.nome : `${inst.nome} (herdada)`;
+    // técnica especial sem interação (ou interação sem técnica) não funciona: nenhum dos efeitos dela entra
+    if (!especialFunciona(inst, todas)) { linha(inst.familia === "tecnica" ? "Técnica especial sem interação" : "Interação especial sem técnica", "não funciona", nome); continue; }
     const lig = ligacaoDa(inst);
     let ultimaChave = "";
     for (const e of inst.efeitos) {
@@ -325,7 +338,8 @@ export function somarForma(f: Ficha, ctx: CtxForma): SomaForma | null {
         case "duracaoMais": { const v = Math.max(0, valor(e.turnos, ctx)); s.duracaoMais += v; linha("Duração", `+${v} turnos`, nome); break; }
         case "gera": {
           const b = e.botao;
-          (s.botoes ??= []).push({ rotulo: b.rotulo || inst.nome, ritmo: b.ritmo, faz: b.faz, ...((b.faz === "invocar" ? b.ref || ultimaChave : b.ref) ? { ref: b.faz === "invocar" ? b.ref || ultimaChave : b.ref } : {}), ...(inst.texto ? { texto: inst.texto } : {}), peca: nome, ...(lig ? { lig } : {}) });
+          const refB = b.faz === "invocar" ? b.ref || ultimaChave : dadosDoRef(b.ref, ctx);
+          (s.botoes ??= []).push({ rotulo: b.rotulo || inst.nome, ritmo: b.ritmo, faz: b.faz, ...(refB ? { ref: refB } : {}), ...(inst.texto ? { texto: inst.texto } : {}), peca: nome, ...(lig ? { lig } : {}) });
           break;
         }
         case "liga": { (s.sinergias ??= []).push({ com: e.com, faz: e.faz, peca: nome, ...(lig ? { lig } : {}) }); break; }
@@ -614,7 +628,11 @@ const curto = (v: unknown, n: number) => (typeof v === "string" ? v.slice(0, n) 
 /** Campos dos cartões de característica e de efeito (opcionais; peça de poder antiga não tem nenhum). */
 function extrasDoCartao(o: Partial<InstEfeito>): Partial<InstEfeito> {
   const out: Partial<InstEfeito> = {};
-  if (o.familia === "carac" || o.familia === "efeito") out.familia = o.familia;
+  if (o.familia === "carac" || o.familia === "efeito" || o.familia === "tecnica" || o.familia === "interacao") out.familia = o.familia;
+  const sp = o.espec as unknown as Record<string, unknown> | undefined;
+  if ((o.familia === "tecnica" || o.familia === "interacao") && sp && typeof sp === "object" && typeof sp.id === "string" && sp.id) {
+    out.espec = { id: sp.id.slice(0, 40), ...(typeof sp.tec === "string" && sp.tec ? { tec: sp.tec.slice(0, 40) } : {}) };
+  } else if (o.familia === "tecnica" || o.familia === "interacao") delete out.familia;
   const c = o.carac as unknown as Record<string, unknown> | undefined;
   if (c && typeof c === "object" && typeof c.id === "string" && c.id) {
     const esc = c.escolha as Record<string, unknown> | undefined;

@@ -1,5 +1,6 @@
-/* Cartões de característica neutros: poderes que se ligam a uma ação (a técnica final, uma ação escolhida ou todas as compatíveis).
-   Cada um vira uma peça de efeitos (`compilar`) e custa Pontos de Poder da forma, como as peças de poder de sempre. */
+/* Cartões de característica da forma (genéricos): poderes que se ligam, de forma opcional, a uma ação (a técnica final, uma ação escolhida ou todas as compatíveis).
+   Cada um vira uma peça de efeitos (`compilar`) e custa Pontos de Poder da forma, como as peças de poder de sempre.
+   Os cartões que criam botões, invocações e sinergias (clones, invocação, marcar…) são técnicas e interações especiais: ver especiais.ts. */
 import { custoEfeito, type CtxForma, type Efeito, type InstEfeito } from "./efeitos-forma";
 import type { DadosCarac, SubAcao } from "./cartoes";
 import { DURACAO_FORCA, LIMITE_FORCA, faixaDaCondicao } from "./faixas-condicao";
@@ -7,8 +8,8 @@ import { FORCAS } from "./cartoes";
 import type { HabForma } from "./ficha";
 
 export type Liga = DadosCarac["liga"];
-export type GrupoCarac = "Ofensiva" | "Controle" | "Apoio" | "Invocação" | "Forma";
-export const GRUPOS_CARAC: GrupoCarac[] = ["Ofensiva", "Controle", "Apoio", "Invocação", "Forma"];
+export type GrupoCarac = "Ofensiva" | "Controle" | "Apoio" | "Forma";
+export const GRUPOS_CARAC: GrupoCarac[] = ["Ofensiva", "Controle", "Apoio", "Forma"];
 
 /** O que o jogador escolhe ao adicionar. */
 export interface ParamsCarac {
@@ -127,64 +128,6 @@ export const CARACS: DefCarac[] = [
     pp: () => 3, compilar: (p) => [{ k: "gatilho", quando: "inicioTurno", faz: { dano: { expr: "[PROF]d6", tipo: p.tipo?.trim() || "Energia", area: "criaturas a 3 m de você" } }, rotulo: `Aura${p.tipo?.trim() ? ` de ${p.tipo.trim()}` : ""}` }],
   },
 
-  /* ---------- Cartões que criam botões em jogo, invocações e sinergias ---------- */
-  {
-    id: "clone", nome: "Clones", grupo: "Invocação", vale: [], unica: true,
-    texto: "Cria clones de reiatsu (até metade da proficiência). Têm 1 PV, somem ao ser atingidos e o golpe real chega mesmo se o alvo esquivar do clone. Cria o botão “Criar clones”, que os coloca na aba de invocações.",
-    pp: () => 3,
-    compilar: () => [
-      { k: "invoca", nome: "Clone de reiatsu", tipo: "clone", max: "[PROF]/2", pv: 1, cr: "10+[PROF]+[DES]", acerto: "[PROF]+[DES]", dano: "1d8+[PROF]", custoPr: 2, texto: "Some ao ser atingido. O ataque do clone chega atrasado, mesmo que o alvo esquive." },
-      { k: "gera", botao: { rotulo: "Criar clones", ritmo: "bonus", faz: "invocar" } },
-    ],
-  },
-  {
-    id: "invocacao", nome: "Invocação", grupo: "Invocação", vale: [], unica: true,
-    texto: "Chama até 2 criaturas do tema da forma, que atacam por você e somem ao chegar a 0 PV. Cria o botão “Invocar”.",
-    pp: () => 4,
-    compilar: () => [
-      { k: "invoca", nome: "Invocação", tipo: "invocacao", max: 2, pv: "[PROF]*2", cr: "10+[PROF]", acerto: "[PROF]+[FOR]", dano: "[PROF]d6", custoPr: 4, texto: "Criatura do tema da forma." },
-      { k: "gera", botao: { rotulo: "Invocar", ritmo: "bonus", faz: "invocar" } },
-    ],
-  },
-  {
-    id: "invocacao-grande", nome: "Invocação grande", grupo: "Invocação", vale: [], unica: true,
-    texto: "Chama uma criatura grande e resistente (só uma por vez). Cria o botão “Invocar criatura grande”.",
-    pp: () => 6,
-    compilar: () => [
-      { k: "invoca", nome: "Criatura grande", tipo: "invocacao", max: 1, pv: "[PROF]*6", cr: "12+[PROF]", acerto: "[PROF]+[FOR]", dano: "[PROF]d8+[PROF]", custoPr: 8, texto: "Criatura grande do tema da forma." },
-      { k: "gera", botao: { rotulo: "Invocar criatura grande", ritmo: "bonus", faz: "invocar" } },
-    ],
-  },
-  {
-    id: "passo-clones", nome: "Passo entre clones", grupo: "Invocação", vale: [], unica: true, requer: ["clone"],
-    texto: "Ação bônus: você troca de lugar com um dos seus clones a até 18 metros, como um teleporte. O clone some e o seu próximo ataque no turno ganha vantagem. Precisa dos Clones.",
-    pp: () => 3,
-    compilar: () => [{ k: "gera", botao: { rotulo: "Passo entre clones", ritmo: "bonus", faz: "trocar", ref: "clone" } }],
-  },
-  {
-    id: "absorver-clones", nome: "Juntar clones à lâmina", grupo: "Invocação", vale: ["ataque", "area"], unica: true, requer: ["clone"],
-    texto: "Ação bônus: até 2 clones se juntam à sua arma. O próximo golpe da ação ligada (a técnica final, por exemplo) causa +1d10 por clone juntado. Precisa dos Clones.",
-    pp: () => 3,
-    compilar: () => [
-      { k: "gera", botao: { rotulo: "Juntar clones à lâmina", ritmo: "bonus", faz: "absorver", ref: "clone" } },
-      { k: "liga", com: "clone", faz: "absorver" },
-    ],
-  },
-  {
-    id: "reforco", nome: "Reforço", grupo: "Apoio", vale: [], unica: true,
-    texto: "Ação bônus: o seu próximo ataque no turno causa 2d10 de dano a mais. Cria o botão “Reforço”.",
-    pp: () => 2, compilar: () => [{ k: "gera", botao: { rotulo: "Reforço", ritmo: "bonus", faz: "texto", ref: "2d10" } }],
-  },
-  {
-    id: "marcar-alvo", nome: "Marcar alvo", grupo: "Controle", vale: [], unica: true,
-    texto: "Ação bônus: marca uma criatura a até 18 metros. O primeiro ataque de cada aliado contra ela no turno causa 1d6 de dano a mais. Cria o botão “Marcar alvo”.",
-    pp: () => 2, compilar: () => [{ k: "gera", botao: { rotulo: "Marcar alvo", ritmo: "bonus", faz: "texto", ref: "1d6" } }],
-  },
-  {
-    id: "provocar", nome: "Provocar", grupo: "Controle", vale: [], unica: true,
-    texto: "Ação bônus: uma criatura a até 18 metros faz salvaguarda de Mente (CD 8 + proficiência + atributo); se falhar, só pode atacar você até o fim do próximo turno dela. Cria o botão “Provocar”.",
-    pp: () => 2, compilar: () => [{ k: "gera", botao: { rotulo: "Provocar", ritmo: "bonus", faz: "texto" } }],
-  },
 ];
 
 export const caracPorId = (id: string) => CARACS.find((c) => c.id === id);

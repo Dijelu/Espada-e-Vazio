@@ -6,6 +6,7 @@ import { MASCARA_TETO, mascaraAtiva, podeMascara, tempMascara } from "./mascara"
 import { calcularLiberacao } from "./liberacao-forma";
 import { SCHRIFTS } from "./schrifts";
 import { normalizarEfeitos } from "./efeitos-forma";
+import { migrarEspeciais } from "./especiais";
 import { cartaoValido, marcaDoCartaoAntigo } from "./cartoes";
 
 const LIBERACOES = ["", "shikai", "bankai", "bankai2", "resurreccion", "terror", "vollstandig", "mascara"];
@@ -72,6 +73,11 @@ export function repararFicha(bruta: Ficha): Reparo {
   // efeitos montados nas formas: tira o que não for válido
   for (const forma of Object.values(f.formas ?? {})) {
     if (!forma || forma.efeitos === undefined) continue;
+    // os 8 cartões de característica que criavam botões viram técnica ou interação especial (só a etiqueta e a ligação; efeitos e preço ficam)
+    if (Array.isArray(forma.efeitos)) {
+      const mig = migrarEspeciais(forma.efeitos);
+      if (mig.mudou > 0) { forma.efeitos = mig.lista; nota(`Na forma ${forma.nome || forma.tipo}, ${mig.mudou} cartão(ões) viraram técnica ou interação especial; nada mudou nos números.`); }
+    }
     const antes = JSON.stringify(forma.efeitos);
     forma.efeitos = normalizarEfeitos(forma.efeitos);
     if (JSON.stringify(forma.efeitos) !== antes) nota(`Alguns efeitos da forma ${forma.nome || forma.tipo} estavam inválidos e foram ajustados.`);
