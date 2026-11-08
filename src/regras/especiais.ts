@@ -164,6 +164,8 @@ export function especialFunciona(inst: InstEfeito, todas: InstEfeito[]): boolean
 /** O que falta para a forma poder ser salva (vazio: está tudo certo). Cada item é uma frase pronta para a tela. */
 /** Quantas peças ocupam vaga: as que vieram de ficha antiga ou foram postas sozinhas na abertura não contam. */
 export const ocupaVaga = (e: InstEfeito) => !e.espec?.antiga && !e.espec?.auto;
+/** Quantas peças estão na forma sem ocupar vaga (de ficha antiga ou automáticas), para a tela mostrar "+2". */
+export const contarForaDeVaga = (efeitos: InstEfeito[], familia: "tecnica" | "interacao") => efeitos.filter((e) => (familia === "tecnica" ? ehTecnica(e) : ehInteracao(e)) && !ocupaVaga(e)).length;
 export const contarVagas = (efeitos: InstEfeito[], familia: "tecnica" | "interacao") => efeitos.filter((e) => (familia === "tecnica" ? ehTecnica(e) : ehInteracao(e)) && ocupaVaga(e)).length;
 
 /**

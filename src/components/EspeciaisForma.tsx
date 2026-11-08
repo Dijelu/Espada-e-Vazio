@@ -3,7 +3,7 @@ import { calcular, type Ficha, type FormaLib, type HabForma } from "../regras/fi
 import { orcamentoDaForma, type CtxForma, type InstEfeito } from "../regras/efeitos-forma";
 import { infoSub, vagasEspeciais, type SubAcao } from "../regras/cartoes";
 import {
-  INTERACOES_GALERIA, TECNICAS, contarVagas, ehInteracao, ehTecnica, instanciarInteracao, instanciarTecnica, interacaoPorId, interacaoServe, interacoesDe, podeUsarInteracao, tecnicaDe,
+  INTERACOES_GALERIA, TECNICAS, contarForaDeVaga, contarVagas, ehInteracao, ehTecnica, instanciarInteracao, instanciarTecnica, interacaoPorId, interacaoServe, interacoesDe, podeUsarInteracao, tecnicaDe,
   type DefInteracao, type DefTecnica,
 } from "../regras/especiais";
 import { subDaHab } from "../regras/caracteristicas";
@@ -66,7 +66,7 @@ export function TecnicasEspeciais({ f, tipo, r, mud, irParaInteracoes }: Props &
         {" "}<Info>Cada técnica custa PP da forma. Se você tirar a técnica, as interações dela ficam soltas e não valem até serem ligadas a outra.</Info>
       </p>
       <div className="vagas-especiais" aria-label="Vagas de técnicas especiais">
-        <span className="selo-vagas"><b>{contarVagas(efeitos, "tecnica")}/{v.tec}</b> vaga{v.tec === 1 ? "" : "s"} de técnica</span>
+        <span className="selo-vagas"><b>{contarVagas(efeitos, "tecnica")}/{v.tec}</b> vaga{v.tec === 1 ? "" : "s"} de técnica{contarForaDeVaga(efeitos, "tecnica") > 0 ? ` (+${contarForaDeVaga(efeitos, "tecnica")} de ficha antiga, fora das vagas)` : ""}</span>
         <small className="ajuda">PP livres na forma: <b>{orc.livre}</b> de {orc.total}</small>
       </div>
 
@@ -169,7 +169,7 @@ export function InteracoesEspeciais({ f, tipo, r, mud, irParaTecnicas }: Props &
         {" "}<Info>Cada interação custa PP da forma. A técnica sozinha não funciona: as interações é que dão o que fazer com ela.</Info>
       </p>
       <div className="vagas-especiais" aria-label="Vagas de interações especiais">
-        <span className="selo-vagas"><b>{contarVagas(efeitos, "interacao")}/{v.inter}</b> vaga{v.inter === 1 ? "" : "s"} de interação</span>
+        <span className="selo-vagas"><b>{contarVagas(efeitos, "interacao")}/{v.inter}</b> vaga{v.inter === 1 ? "" : "s"} de interação{contarForaDeVaga(efeitos, "interacao") > 0 ? ` (+${contarForaDeVaga(efeitos, "interacao")} automática${contarForaDeVaga(efeitos, "interacao") === 1 ? "" : "s"} ou de ficha antiga, fora das vagas)` : ""}</span>
         <small className="ajuda">PP livres na forma: <b>{orc.livre}</b> de {orc.total}</small>
       </div>
       {tecs.length === 0 && <p className="aviso-mini">Nenhuma técnica especial na forma ainda. <button type="button" className="link" onClick={irParaTecnicas}>Monte uma técnica primeiro</button>.</p>}

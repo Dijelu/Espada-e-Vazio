@@ -2,7 +2,7 @@ import { useState, type ReactNode } from "react";
 import type { Ficha, FormaLib } from "../regras/ficha";
 import { vagasEspeciais } from "../regras/cartoes";
 import { caracPorId } from "../regras/caracteristicas";
-import { contarVagas, faltasEspeciais } from "../regras/especiais";
+import { contarForaDeVaga, contarVagas, faltasEspeciais } from "../regras/especiais";
 import { CaracteristicasForma } from "./CaracteristicasForma";
 import { InteracoesEspeciais, TecnicasEspeciais } from "./EspeciaisForma";
 
@@ -33,8 +33,8 @@ export function MontagemCartoes({ f, tipo, r, mud, acoes }: Props) {
   const abas: { id: Aba; nome: string; n: string; alerta?: boolean }[] = [
     { id: "acoes", nome: "Ações", n: String(nAcoes) },
     { id: "caracs", nome: "Características", n: String(nCar) },
-    { id: "tecnicas", nome: "Técnicas especiais", n: `${nTec}/${v.tec}`, alerta: faltas.length > 0 && nTec > 0 },
-    { id: "interacoes", nome: "Interações especiais", n: `${nInt}/${v.inter}`, alerta: faltas.length > 0 && nInt > 0 },
+    { id: "tecnicas", nome: "Técnicas especiais", n: `${nTec}/${v.tec}${contarForaDeVaga(efeitos, "tecnica") ? ` +${contarForaDeVaga(efeitos, "tecnica")}` : ""}`, alerta: faltas.length > 0 && nTec > 0 },
+    { id: "interacoes", nome: "Interações especiais", n: `${nInt}/${v.inter}${contarForaDeVaga(efeitos, "interacao") ? ` +${contarForaDeVaga(efeitos, "interacao")}` : ""}`, alerta: faltas.length > 0 && nInt > 0 },
   ];
   return (
     <div className="montagem-cartoes">
