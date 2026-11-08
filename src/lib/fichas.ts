@@ -1,5 +1,6 @@
 import { supabase } from "./supabase";
 import { normalizar, type Ficha } from "../regras/ficha";
+import { VERSAO_SISTEMA_ATUAL } from "../regras/versao";
 
 export interface FichaSalva {
   id: string;
@@ -35,7 +36,7 @@ export async function criarFicha(ficha: Ficha, donoId: string): Promise<string> 
   if (!supabase) throw new Error("Sem conexão com o banco.");
   const { data, error } = await supabase
     .from("characters")
-    .insert({ owner_id: donoId, name: ficha.nome || "Sem nome", data: ficha })
+    .insert({ owner_id: donoId, name: ficha.nome || "Sem nome", data: { ...ficha, versaoSistema: VERSAO_SISTEMA_ATUAL } })
     .select("id")
     .single();
   if (error) throw error;

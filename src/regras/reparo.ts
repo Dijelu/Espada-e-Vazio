@@ -6,9 +6,10 @@ import { MASCARA_TETO, mascaraAtiva, podeMascara, tempMascara } from "./mascara"
 import { calcularLiberacao } from "./liberacao-forma";
 import { SCHRIFTS } from "./schrifts";
 import { normalizarEfeitos } from "./efeitos-forma";
-import { migrarEspeciais } from "./especiais";
-import { cartaoValido, marcaDoCartaoAntigo } from "./cartoes";
+import { cartaoValido } from "./cartoes";
 import { caracsValidas, normalizarArma } from "./arma-forma";
+import { migrarFormas } from "./migracao";
+import { VERSAO_SISTEMA_ATUAL, podeDesfazer, versaoDaFicha } from "./versao";
 
 const LIBERACOES = ["", "shikai", "bankai", "bankai2", "resurreccion", "terror", "vollstandig", "mascara"];
 const ATR_IDS = ATRIBUTOS.map((a) => a.id);
@@ -26,7 +27,25 @@ const unicos = <T,>(l: T[], chave: (x: T) => string = (x) => String(x)) => {
 
 export interface Reparo { ficha: Ficha; mudancas: string[] }
 
-export function repararFicha(bruta: Ficha): Reparo {
+export interface OpcoesReparo {
+  /** aplicar a migração das formas (cartões, interações, marcas de ficha antiga, arma do modelo). Padrão: só quando a ficha já está na versão atual.
+   *  Ficha de versão antiga abre em modo legado: nada muda sozinho; a migração só roda quando o dono toca em "Atualizar ficha". */
+  migrar?: boolean;
+}
+
+/** Conserta o que está fora do padrão. Em ficha de versão antiga não migra nada (modo legado), a não ser que `migrar` seja pedido. */
+export function repararFicha(bruta: Ficha, opc: OpcoesReparo = {}): Reparo {
+  const migrar = opc.migrar ?? versaoDaFicha(bruta) >= VERSAO_SISTEMA_ATUAL;
+  const r = repararBase(bruta);
+  if (!migrar) return r;
+  const m = migrarFormas(r.ficha);
+  if (m.mudancas.length === 0) return r;
+  // revalida as peças novas e refaz as contas de PV/PR
+  const r2 = repararBase(r.ficha);
+  return { ficha: r2.ficha, mudancas: [...r.mudancas, ...m.mudancas, ...r2.mudancas] };
+}
+
+function repararBase(bruta: Ficha): Reparo {
   const f = normalizar(structuredClone(bruta));
   const m: string[] = [];
   const nota = (t: string) => m.push(t);
@@ -74,11 +93,6 @@ export function repararFicha(bruta: Ficha): Reparo {
   // efeitos montados nas formas: tira o que não for válido
   for (const forma of Object.values(f.formas ?? {})) {
     if (!forma || forma.efeitos === undefined) continue;
-    // os 8 cartões de característica que criavam botões viram técnica ou interação especial (só a etiqueta e a ligação; efeitos e preço ficam)
-    if (Array.isArray(forma.efeitos)) {
-      const mig = migrarEspeciais(forma.efeitos);
-      if (mig.mudou > 0) { forma.efeitos = mig.lista; nota(`Na forma ${forma.nome || forma.tipo}, ${mig.mudou} cartão(ões) viraram técnica ou interação especial${mig.auto > 0 ? `; ${mig.auto} interação(ões) automática(s) foram postas (0 PP) para a técnica continuar funcionando` : ""}; nada mudou nos números.`); }
-    }
     const antes = JSON.stringify(forma.efeitos);
     forma.efeitos = normalizarEfeitos(forma.efeitos);
     if (JSON.stringify(forma.efeitos) !== antes) nota(`Alguns efeitos da forma ${forma.nome || forma.tipo} estavam inválidos e foram ajustados.`);
@@ -98,23 +112,18 @@ export function repararFicha(bruta: Ficha): Reparo {
     }
     if (forma.armaMantem !== undefined && forma.armaMantem !== true) delete forma.armaMantem;
   }
-  // cartões de ação: os cartões automáticos de antes só ganham uma marca (dano, custo e texto ficam exatamente como estavam)
+  // cartões de ação: tira a marca de cartão ou de características que seja lixo de arquivo (as marcas de "ficha antiga" vêm da migração, em migracao.ts)
   for (const forma of Object.values(f.formas ?? {})) {
     if (!forma || !Array.isArray(forma.habilidades)) continue;
-    let marcados = 0;
     forma.habilidades = forma.habilidades.map((h) => {
       let x = h;
       if (x.cartao !== undefined && !cartaoValido(x.cartao)) { const { cartao: _descartado, ...resto } = x; x = resto; }
       if (x.caracs !== undefined && !(Array.isArray(x.caracs) && x.caracs.every((c) => typeof c === "string"))) { const { caracs: _descartado, ...resto } = x; x = resto; }
-      // o rótulo antigo "Técnica especial" do golpe de dano maior virou "Golpe reforçado" (só a palavra no texto; nada muda nas regras)
-      if (typeof x.texto === "string" && x.texto.includes("Técnica especial: 1 uso por cena.")) x = { ...x, texto: x.texto.replace("Técnica especial: 1 uso por cena.", "Golpe reforçado: 1 uso por cena.") };
-      const marca = marcaDoCartaoAntigo(x);
-      if (!marca) return x;
-      marcados++;
-      return { ...x, cartao: marca };
+      return x;
     });
-    if (marcados > 0) nota(`Os cartões da forma ${forma.nome || forma.tipo} foram reorganizados nos novos tipos de ação; nada mudou nos números.`);
   }
+  // a cópia de antes da atualização some quando o prazo passa ou quando as formas já foram editadas (não dá mais para desfazer sem perder trabalho)
+  if (f.anteriorAtualizacao && !podeDesfazer(f)) delete f.anteriorAtualizacao;
   if (!["", "plena", "verdadeira"].includes(f.treinos.caminhoBankai)) { f.treinos.caminhoBankai = ""; nota("O caminho da Bankai estava inválido e foi limpo."); }
   // Bankai Plena: versões antigas gravavam o custo já pela metade e a liberação cobrava a metade de novo (1/4).
   // Agora a ficha guarda o custo cheio; se o custo salvo é exatamente a metade da conta das peças, volta ao cheio.

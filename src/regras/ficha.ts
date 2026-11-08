@@ -669,6 +669,23 @@ export interface Ficha {
   hogyoku: Hogyoku;
   zanpakutou: { nome: string; frase: string };
   formas: Partial<Record<TipoForma, FormaLib>>;
+  /** versão do sistema em que a ficha foi feita ou atualizada (regras/versao.ts). Sem o campo = versão 0 (ficha antiga). */
+  versaoSistema?: number;
+  /** marca da última atualização: some quando o jogador dispensa a lista "a revisar" */
+  atualizacao?: AtualizacaoFicha;
+  /** cópia das formas de antes da última atualização, para "Desfazer atualização" (só a última) */
+  anteriorAtualizacao?: { em: string; versao: number; formas: Partial<Record<TipoForma, FormaLib>> };
+}
+
+export interface AtualizacaoFicha {
+  /** quando atualizou (ISO) */
+  em: string;
+  /** versão de antes */
+  de: number;
+  /** assinatura das formas logo depois de atualizar: se mudar, a edição foi grande e o "Desfazer" fecha */
+  marca: string;
+  /** o jogador fechou a lista "a revisar" */
+  dispensada?: boolean;
 }
 
 const zero = (): Record<Atr, number> => ({ for: 0, des: 0, con: 0, men: 0, esp: 0 });
@@ -804,6 +821,12 @@ export function normalizar(bruto: Partial<Ficha> | null | undefined): Ficha {
     if (nf) formas[tipo as TipoForma] = nf;
   }
   f.formas = formas;
+  // versão do sistema e dados da atualização: só valem se tiverem a forma certa
+  if (!(typeof f.versaoSistema === "number" && Number.isInteger(f.versaoSistema) && f.versaoSistema > 0)) delete f.versaoSistema;
+  const at = f.atualizacao as unknown;
+  if (!(obj(at) && texto(at.em) && texto(at.marca) && typeof at.de === "number")) delete f.atualizacao;
+  const ant = f.anteriorAtualizacao as unknown;
+  if (!(obj(ant) && texto(ant.em) && typeof ant.versao === "number" && obj(ant.formas))) delete f.anteriorAtualizacao;
   return f;
 }
 
