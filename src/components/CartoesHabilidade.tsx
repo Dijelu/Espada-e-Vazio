@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-import { analisarDano, ATR_AUTO, danoNoTeto, MULT_DURACAO, PCT_CONDICAO, pctEspecial } from "../regras/teto-dano";
+import { analisarDano, ATR_AUTO, danoNoTeto } from "../regras/teto-dano";
+import { danoDoCartao } from "../regras/cartoes";
 import type { CtxForma } from "../regras/efeitos-forma";
 import type { FormaLib, HabForma } from "../regras/ficha";
 import { classeDe } from "./EfeitosForma";
@@ -70,15 +71,16 @@ interface CartaoProps {
 
 /** Cartão de habilidade já montado: nome, ação, dano, custo calculado e a descrição do jogador. */
 export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, onChange, onRemover }: CartaoProps) {
-  const a = h.fixa ? null : analisarDano(h.dano, h.acao, ctx, ppExtra, h.especial ?? false);
-  // ataque automático: o dano acompanha o teto (nível, tipo de ação, técnica especial; os dados extras dos cartões não entram)
+  // ataque automático: o dano é calculado na leitura (nível, tipo de ação, técnica especial; os dados extras dos cartões não entram)
+  const danoLido = danoDoCartao(h, ctx, ppExtra);
+  const a = h.fixa ? null : analisarDano(danoLido, h.acao, ctx, ppExtra, h.especial ?? false);
+  // a ficha também guarda o valor, para quem a lê fora desta tela
   const chaveAtr = JSON.stringify(ctx.atr);
   useEffect(() => {
     if (!h.auto || h.fixa) return;
     const d = danoNoTeto(h.acao, ctx, h.auto, ppExtra, h.especial ?? false);
     if (d && d !== h.dano) onChange({ dano: d });
   }, [h.auto, h.fixa, h.acao, h.dano, h.especial?.condicao, h.especial?.duracao, ctx.n, ctx.prof, ctx.tipo, chaveAtr, ppExtra]); // eslint-disable-line react-hooks/exhaustive-deps
-  const pct = pctEspecial(h.especial);
   const novo = h.regra !== undefined || h.desc !== undefined;
   const regra = h.regra ?? "";
   const desc = novo ? (h.desc ?? "") : h.texto;
@@ -107,21 +109,19 @@ export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, onChange, o
               {ATR_AUTO.map((x) => <option key={x.id} value={x.id}>{x.nome} ({ctx.atr[x.chave] >= 0 ? "+" : ""}{ctx.atr[x.chave]})</option>)}
             </select>
           </label>
-          <p className="ajuda">Rola: <b>{h.dano ? resolver(h.dano, ctx) : "—"}</b> <Info>O dano já vem no teto da ação. Mudou o nível, o tipo de ação ou a técnica especial? Ele se ajusta sozinho. O custo em PR é calculado pelo dano: quanto mais forte o golpe, mais PR.</Info></p>
-          {a && <p className="ajuda teto-dano">média {Math.round(a.media)} · teto {Math.round(a.teto)} · {a.custoPr} PR</p>}
-          <button type="button" className="link link-discreto" title="Ajustar o dano à mão (para um golpe mais barato, por exemplo)" onClick={() => onChange({ auto: undefined })}>Ajustar à mão</button>
+          <p className="ajuda">Rola: <b>{danoLido ? resolver(danoLido, ctx) : "—"}</b> <Info>O dano já vem pronto para a ação. Mudou o nível, o tipo de ação ou a técnica especial? Ele se ajusta sozinho. Você só escreve a descrição do ataque. O custo em PR acompanha o dano.</Info></p>
         </div>
       ) : (
         <>
           {!temDano && !h.fixa ? (
             <div className="seletor-formula">
               <span className="rotulo-sel">Dano</span>
-              <button type="button" className="btn-mini" onClick={() => { const d = danoNoTeto(h.acao, ctx, "ESP", ppExtra, h.especial ?? false); onChange({ auto: "ESP", ...(d ? { dano: d } : {}) }); }}>Adicionar ataque (dano no teto)</button>
+              <button type="button" className="btn-mini" onClick={() => { const d = danoNoTeto(h.acao, ctx, "ESP", ppExtra, h.especial ?? false); onChange({ auto: "ESP", ...(d ? { dano: d } : {}) }); }}>Adicionar ataque</button>
             </div>
           ) : (
             <SeletorDano rotulo="Dano" valor={h.dano ?? ""} ctx={ctx} analise={a} onChange={(x) => onChange({ dano: x })} />
           )}
-          {temDano && !h.fixa && <button type="button" className="link" onClick={() => onChange({ auto: "ESP" })}>Voltar ao dano automático (no teto)</button>}
+          {temDano && !h.fixa && <button type="button" className="link" onClick={() => onChange({ auto: "ESP" })}>Voltar ao dano automático</button>}
         </>
       )}
       {temDano && !h.fixa && (
@@ -135,18 +135,18 @@ export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, onChange, o
                 onChange({ especial: esp, ...(novo ? { texto: comporTexto(h.desc ?? "", regra, esp) } : {}) });
               }}
             />
-            Técnica especial{h.especial ? ` (+${pct}%)` : ""}
-          </label><Info>Só 1 vez por cena e, depois, você recebe uma condição. Em troca, o dano máximo sobe (quanto mais pesada a condição, mais sobe).</Info></div>
+            Técnica especial{h.especial ? " (dano maior)" : ""}
+          </label><Info>Só 1 vez por cena e, depois, você recebe uma condição. Em troca, o dano da técnica fica maior (quanto mais pesada a condição, maior).</Info></div>
           {h.especial && (
             <div className="duas">
               <label className="campo">Condição que você recebe
                 <select value={h.especial.condicao} onChange={(e) => { const esp = { ...h.especial!, condicao: e.target.value }; onChange({ especial: esp, ...(novo ? { texto: comporTexto(h.desc ?? "", regra, esp) } : {}) }); }}>
-                  {CONDICOES_ESPECIAL.map((c) => <option key={c} value={c}>{c} (+{PCT_CONDICAO[c] ?? 40}%)</option>)}
+                  {CONDICOES_ESPECIAL.map((c) => <option key={c} value={c}>{c}</option>)}
                 </select>
               </label>
               <label className="campo">Por quanto tempo
                 <select value={h.especial.duracao} onChange={(e) => { const esp = { ...h.especial!, duracao: e.target.value }; onChange({ especial: esp, ...(novo ? { texto: comporTexto(h.desc ?? "", regra, esp) } : {}) }); }}>
-                  {DURACOES_ESPECIAL.map((c) => <option key={c} value={c}>{c} (×{String(MULT_DURACAO[c] ?? 1).replace(".", ",")})</option>)}
+                  {DURACOES_ESPECIAL.map((c) => <option key={c} value={c}>{c}</option>)}
                 </select>
               </label>
             </div>

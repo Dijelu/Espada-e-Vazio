@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { calcular, classePorId, ataquesPorAcao, type Calculo, type Ficha, type FormaLib, type HabForma, type TipoForma } from "../regras/ficha";
 import { TIPO_FORMA_NOME, formaDaLiberacao, liberacaoDaForma, modeloResurreccionPadrao, habilidadesDaForma, resolverDano, danoDaAcao } from "../regras/liberacoes";
 import { classificarHab } from "../regras/classificar-hab";
+import { habilidadesLidas } from "../regras/cartoes";
 import { acertoClasse } from "../regras/danos-classe";
 import { ATR_NOME, QUANDO_NOME, type Faz } from "../regras/efeitos-forma";
 import { aplicarFaz } from "../regras/aplicar-faz";
@@ -251,7 +252,7 @@ export function PainelForma({ f, c, r, alterar, tipo, onEditar, onIrEvoluir, soA
   if (soAtiva && !ligada) return null;
   if (!ehMascara && !forma) return null;
 
-  const lista: HabForma[] = forma ? habilidadesDaForma(forma) : [];
+  const lista: HabForma[] = forma ? habilidadesLidas(forma, f) : [];
   const passivasHab = lista.filter((h) => classificarHab(h).passiva);
   const acoes = lista.filter((h) => !classificarHab(h).passiva);
   const nomeForma = ehMascara ? (masc?.nome ?? "Máscara Hollow") : (forma as FormaLib).nome;
@@ -492,7 +493,7 @@ export function PainelVoll({ f, c, r, alterar, onEditar, onIrEvoluir }: PainelPr
   }, []);
   const fx = ligada ? c.forma : com.forma;
   if (!forma || !forma.nome) return null;
-  const lista: HabForma[] = habilidadesDaForma(forma);
+  const lista: HabForma[] = habilidadesLidas(forma, f);
   const passivasHab = lista.filter((h) => classificarHab(h).passiva);
   const acoes = lista.filter((h) => !classificarHab(h).passiva);
   const diff = diferencas(f, c, base, com);

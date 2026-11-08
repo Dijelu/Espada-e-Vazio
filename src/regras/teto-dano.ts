@@ -108,9 +108,9 @@ export function analisarDano(expr: string | undefined, acao: string, ctx: CtxFor
   const facesMax = especial || forma.dados > 0 || custoPr <= custoMax / 2 ? 12 : 10;
   const bonusMax = maiorAtr(ctx) + ctx.prof;
   const erros: string[] = [];
-  if (qtd > qtdMax) erros.push(`Dados demais: o máximo no seu nível é ${qtdMax} (metade do nível mais 5).`);
+  if (qtd > qtdMax) erros.push(`Dados demais para o seu nível: use até ${qtdMax}.`);
   if (faces > facesMax) erros.push(`O d${faces} só vale em ataques baratos (até ${Math.floor(custoMax / 2)} PR). Use d${facesMax} ou menor.`);
-  if (fixo > bonusMax) erros.push(`Bônus fixo alto demais: o máximo é ${bonusMax} (maior atributo mais proficiência).`);
+  if (fixo > bonusMax) erros.push(`Bônus fixo alto demais: use até ${bonusMax}.`);
   // O teto vale só para o dano BASE da ação. Dados extras de cartões e peças de aumento de dano podem passar dele.
   const avisos: string[] = [];
   if (media > teto + 0.01) avisos.push(`O dano base (${Math.round(media)}) está acima do teto de referência (${Math.round(teto)}) para esta ação no nível ${ctx.n}.`);
@@ -119,7 +119,7 @@ export function analisarDano(expr: string | undefined, acao: string, ctx: CtxFor
 
 /** Texto curto para mostrar ao jogador sob o editor de dano. */
 export function resumoAnalise(a: AnaliseDano): string {
-  return `Dano médio ${Math.round(a.media)} · teto ${Math.round(a.teto)} · custo calculado: ${a.custoPr} PR`;
+  return `Dano médio ${Math.round(a.media)} · custo calculado: ${a.custoPr} PR`;
 }
 
 /** Atributos que o ataque automático pode usar. */

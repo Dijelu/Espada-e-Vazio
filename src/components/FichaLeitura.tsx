@@ -3,7 +3,8 @@ import { useMemo, type ReactNode } from "react";
 import { somarDadosGolpe } from "../regras/mascara";
 import { acertoClasse, danosDaClasse } from "../regras/danos-classe";
 import { CONDICAO_TEXTO, KIDOS, TALENTOS, talentosDe, type Talento } from "../regras/catalogo";
-import { HAB_UNICAS, TIPO_FORMA_NOME, danoDaAcao, habilidadesDaForma, liberacaoDaForma, resolverDano } from "../regras/liberacoes";
+import { HAB_UNICAS, TIPO_FORMA_NOME, danoDaAcao, liberacaoDaForma, resolverDano } from "../regras/liberacoes";
+import { habilidadesLidas } from "../regras/cartoes";
 import { ataqueMelhorado } from "../regras/melhorias";
 import { mascaraAtiva } from "../regras/mascara";
 import {
@@ -82,7 +83,7 @@ function Habilidade({ f, c, forma, h }: { f: Ficha; c: Calculo; forma: FormaLib;
 
 function Forma({ f, c, forma }: { f: Ficha; c: Calculo; forma: FormaLib }) {
   const ativa = f.estado.liberado === liberacaoDaForma(forma.tipo);
-  const habs = habilidadesDaForma(forma);
+  const habs = habilidadesLidas(forma, f);
   return (
     <article className={`ficha-leitura-forma ${ativa ? "ativa" : ""}`}>
       <small>

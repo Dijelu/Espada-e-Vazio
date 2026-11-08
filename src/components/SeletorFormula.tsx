@@ -158,7 +158,6 @@ export function SeletorDano({ rotulo = "Dano", valor: v, onChange, ctx, analise 
       <p className="ajuda">Rola: <b>{previa || txt}</b></p>
       {analise && <p className={`ajuda teto-dano ${analise.erros.length ? "estourou" : ""}`}>{resumoAnalise(analise)}</p>}
       {analise?.erros.map((e) => <p key={e} className="aviso-mini" role="alert">{e}</p>)}
-      {analise?.avisos.map((e) => <p key={e} className="ajuda aviso-info">{e}</p>)}
       <button type="button" className="link-perigo" onClick={() => onChange("")}>Tirar o dano</button>
     </div>
   );

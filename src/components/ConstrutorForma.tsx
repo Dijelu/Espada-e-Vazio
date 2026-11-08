@@ -1,4 +1,5 @@
 import { analisarDano } from "../regras/teto-dano";
+import { danoDoCartao } from "../regras/cartoes";
 import { TextoCarta } from "./TextoCarta";
 import { ArtePainel } from "./ArtePainel";
 import { PainelSchrift } from "./PainelSchrift";
@@ -201,7 +202,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
   const q = busca.trim().toLowerCase();
   const bankais = BANKAIS.filter((b) => !q || b.nome.toLowerCase().includes(q));
 
-  const errosDano = r.habilidades.filter((h) => !h.fixa).flatMap((h) => (analisarDano(h.dano, h.acao, ctxAtual, (r.ppExtra ?? 0) > 0, h.especial ?? false)?.erros ?? []).map((e) => `${h.nome || "Habilidade"}: ${e}`));
+  const errosDano = r.habilidades.filter((h) => !h.fixa).flatMap((h) => (analisarDano(danoDoCartao(h, ctxAtual, (r.ppExtra ?? 0) > 0), h.acao, ctxAtual, (r.ppExtra ?? 0) > 0, h.especial ?? false)?.erros ?? []).map((e) => `${h.nome || "Habilidade"}: ${e}`));
   const podeSalvar = r.nome.trim().length > 0 && errosDano.length === 0;
 
   return (
