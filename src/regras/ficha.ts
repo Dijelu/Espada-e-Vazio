@@ -1,6 +1,7 @@
 import { efeitoMascara } from "./mascara";
 import { nivelLiberacao, picksVoll, formaDaLiberacao } from "./liberacoes";
 import type { CartaoAcao } from "./cartoes";
+import type { ArmaForma } from "./arma-forma";
 import { somarForma, type InstEfeito, type SomaForma } from "./efeitos-forma";
 import { somaSituacoes } from "./situacionais";
 import { ataquesHueco, danoFixoHueco } from "./hueco";
@@ -582,6 +583,12 @@ export interface FormaLib {
   baseModelo?: string;
   /** Bankai potencializadora: os efeitos da Shikai valem também aqui, por metade do custo */
   herdaShikai?: boolean;
+  /** a arma da forma: define o golpe básico e as características de que os cartões precisam (ver arma-forma.ts). Sem ela, tudo fica liberado. */
+  arma?: ArmaForma;
+  /** características da arma marcadas (até o limite da forma, em cartoes.ts) */
+  armaCaracs?: string[];
+  /** Bankai e Bankai verdadeira: mantém a arma da forma anterior (a Shikai, ou a Bankai) */
+  armaMantem?: boolean;
 }
 
 export interface Estado {

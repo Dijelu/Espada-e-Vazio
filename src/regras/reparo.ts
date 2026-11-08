@@ -8,6 +8,7 @@ import { SCHRIFTS } from "./schrifts";
 import { normalizarEfeitos } from "./efeitos-forma";
 import { migrarEspeciais } from "./especiais";
 import { cartaoValido, marcaDoCartaoAntigo } from "./cartoes";
+import { caracsValidas, normalizarArma } from "./arma-forma";
 
 const LIBERACOES = ["", "shikai", "bankai", "bankai2", "resurreccion", "terror", "vollstandig", "mascara"];
 const ATR_IDS = ATRIBUTOS.map((a) => a.id);
@@ -81,6 +82,21 @@ export function repararFicha(bruta: Ficha): Reparo {
     const antes = JSON.stringify(forma.efeitos);
     forma.efeitos = normalizarEfeitos(forma.efeitos);
     if (JSON.stringify(forma.efeitos) !== antes) nota(`Alguns efeitos da forma ${forma.nome || forma.tipo} estavam inválidos e foram ajustados.`);
+  }
+  // arma da forma: tira o lixo (campo estranho, característica que não existe, repetida). Forma sem arma não muda em nada.
+  for (const forma of Object.values(f.formas ?? {})) {
+    if (!forma) continue;
+    if (forma.arma !== undefined) {
+      const a = normalizarArma(forma.arma);
+      if (!a) { delete forma.arma; nota(`A arma da forma ${forma.nome || forma.tipo} estava incompleta e foi retirada.`); }
+      else forma.arma = a;
+    }
+    if (forma.armaCaracs !== undefined) {
+      const l = caracsValidas(forma.armaCaracs);
+      if (l.length !== (Array.isArray(forma.armaCaracs) ? forma.armaCaracs.length : -1)) nota(`Características da arma da forma ${forma.nome || forma.tipo} repetidas ou que não existem foram retiradas.`);
+      if (l.length > 0) forma.armaCaracs = l; else delete forma.armaCaracs;
+    }
+    if (forma.armaMantem !== undefined && forma.armaMantem !== true) delete forma.armaMantem;
   }
   // cartões de ação: os cartões automáticos de antes só ganham uma marca (dano, custo e texto ficam exatamente como estavam)
   for (const forma of Object.values(f.formas ?? {})) {

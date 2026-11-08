@@ -5,6 +5,7 @@ import type { CtxForma } from "./efeitos-forma";
 import { analisarDano, danoNoTeto, tipoDeAcao } from "./teto-dano";
 import { habilidadesDaForma, resolverDano } from "./liberacoes";
 import { EFEITOS_REACAO, EFEITOS_SEM_DANO, efeitoDaAcao, temEfeitoEscolhido } from "./acoes-efeito";
+import type { CaracArmaId } from "./arma-forma";
 
 /* ---------------- Tipos ---------------- */
 
@@ -92,12 +93,14 @@ export interface InfoSub {
   dano: boolean;
   /** ritmo com que o cartão começa */
   ritmo: Ritmo;
+  /** características da arma de que o cartão precisa (basta uma). Sem o campo, qualquer arma serve. */
+  armaReq?: CaracArmaId[];
 }
 export const SUBS: InfoSub[] = [
   { id: "ataque", nome: "Ataque", texto: "Um golpe contra um único alvo.", fator: 1, dano: true, ritmo: "acao" },
   { id: "area", nome: "Área", texto: "Atinge todas as criaturas numa área (salvaguarda de Destreza: metade do dano no sucesso).", fator: 0.85, dano: true, ritmo: "acao" },
   { id: "cura", nome: "Cura ou proteção", texto: "Cura, dá PV temporários ou reduz o dano sofrido por você ou por um aliado.", fator: 1, dano: false, ritmo: "acao" },
-  { id: "movimento", nome: "Movimento e ataque", texto: "Você se move em linha reta e ataca no fim do deslocamento.", fator: 0.8, dano: true, ritmo: "acao" },
+  { id: "movimento", nome: "Movimento e ataque", texto: "Você se move em linha reta e ataca no fim do deslocamento.", fator: 0.8, dano: true, ritmo: "acao", armaReq: ["contato", "corrente"] },
   { id: "reacao", nome: "Reação com efeito", texto: "Uma reação sem dano em que você escolhe o efeito: anular uma técnica, trocar de lugar, redirecionar um ataque…", fator: 0, dano: false, ritmo: "reacao" },
   { id: "utilidade", nome: "Ação sem dano", texto: "Controle, marca ou utilidade: prende, assusta, marca um alvo ou ajuda os aliados.", fator: 0, dano: false, ritmo: "acao" },
 ];
@@ -146,6 +149,22 @@ export const VAGAS_ESPECIAIS: Record<string, VagasEspeciais> = {
   mascara: { tec: 2, inter: 2 },
 };
 export const vagasEspeciais = (tipo: string): VagasEspeciais => VAGAS_ESPECIAIS[tipo] ?? { tec: 1, inter: 1 };
+
+/**
+ * Quantas características da arma cada forma pode marcar (a variedade da arma cresce com a forma).
+ * A Vollständig tem arma só se o jogador quiser (Arma Espiritual ou canalizador). Para mudar um limite, mude só esta tabela.
+ */
+export const LIMITE_CARACS_ARMA: Record<string, number> = {
+  shikai: 2,
+  bankai: 4,
+  /** Bankai verdadeira */
+  bankai2: 6,
+  resurreccion: 4,
+  /** segunda etapa */
+  segunda: 6,
+  vollstandig: 2,
+};
+export const limiteCaracsArma = (tipo: string): number => LIMITE_CARACS_ARMA[tipo] ?? 0;
 
 /** Quantas técnicas finais cabem numa forma (vaga extra, fora do limite das ações normais). */
 export const LIMITE_FINAL = 1;
