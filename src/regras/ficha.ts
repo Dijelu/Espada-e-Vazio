@@ -674,7 +674,7 @@ export interface Ficha {
   /** marca da última atualização: some quando o jogador dispensa a lista "a revisar" */
   atualizacao?: AtualizacaoFicha;
   /** cópia das formas de antes da última atualização, para "Desfazer atualização" (só a última) */
-  anteriorAtualizacao?: { em: string; versao: number; formas: Partial<Record<TipoForma, FormaLib>> };
+  anteriorAtualizacao?: { em: string; versao: number; formas: Partial<Record<TipoForma, FormaLib>>; /** os outros campos da ficha que a atualização mexeu, como estavam (valor ausente = o campo não existia) */ campos?: Record<string, unknown> };
 }
 
 export interface AtualizacaoFicha {
@@ -826,7 +826,7 @@ export function normalizar(bruto: Partial<Ficha> | null | undefined): Ficha {
   const at = f.atualizacao as unknown;
   if (!(obj(at) && texto(at.em) && texto(at.marca) && typeof at.de === "number")) delete f.atualizacao;
   const ant = f.anteriorAtualizacao as unknown;
-  if (!(obj(ant) && texto(ant.em) && typeof ant.versao === "number" && obj(ant.formas))) delete f.anteriorAtualizacao;
+  if (!(obj(ant) && texto(ant.em) && typeof ant.versao === "number" && obj(ant.formas) && (ant.campos === undefined || obj(ant.campos)))) delete f.anteriorAtualizacao;
   return f;
 }
 

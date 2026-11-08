@@ -17,7 +17,7 @@ import { presetPorId } from "./efeitos-presets";
 
 /** Todos os números que a ficha mostra e usa nas formas (PV, PR, CR, custos, PP, dano e PR de cada ação). Antes e depois da atualização têm de ser iguais.
  *  Fica de fora só o que não é número: os botões e as linhas de texto que a interação automática (0 PP) acrescenta para a técnica antiga continuar funcionando. */
-export function fotoNumeros(original: Ficha): string {
+export function fotoNumeros(original: Ficha, custoRecalculado: readonly string[] = []): string {
   // o PP da Schrift sai de propósito: nas duas fotos ele é zerado, para o resto da conta ser comparado por inteiro
   const f: Ficha = { ...original, formas: Object.fromEntries(Object.entries(original.formas ?? {}).map(([k, fo]) => [k, fo && fo.efeitos ? { ...fo, efeitos: fo.efeitos.map((e) => (e.preset && presetPorId(e.preset)?.schrift ? { ...e, pp: 0 } : e)) } : fo])) };
   const saida: unknown[] = [];
@@ -30,7 +30,7 @@ export function fotoNumeros(original: Ficha): string {
   for (const [chave, forma] of Object.entries(f.formas ?? {})) {
     if (!forma) continue;
     const tipo = chave as TipoForma;
-    const linha: unknown[] = [tipo, forma.custo, forma.ppExtra ?? 0, (forma.efeitos ?? []).filter((e) => !(e.familia === "interacao" && e.espec?.auto)).map((e) => e.pp ?? 0)];
+    const linha: unknown[] = [tipo, custoRecalculado.includes(tipo) ? "custo recalculado" : forma.custo, forma.ppExtra ?? 0, (forma.efeitos ?? []).filter((e) => !(e.familia === "interacao" && e.espec?.auto)).map((e) => e.pp ?? 0)];
     try {
       const ativa = { ...f, estado: { ...f.estado, liberado: liberacaoDaForma(tipo) } } as Ficha;
       const kA = calcular(ativa);
@@ -134,6 +134,10 @@ export function planejarAtualizacao(f: Ficha): PlanoAtualizacao {
   if (nTexto > 0) itens.push({ id: "golpe-reforcado", titulo: "Golpe reforçado", antes: "O texto dizia “Técnica especial: 1 uso por cena”.", depois: "Passa a dizer “Golpe reforçado: 1 uso por cena”. Só a palavra muda; a regra é a mesma.", formas: onde(d, "textosGolpe") });
   const nSch = soma(d, "schriftSemPp");
   if (nSch > 0) itens.push({ id: "schrift-sem-pp", titulo: "Schrift deixa de usar PP", antes: `${plural(nSch, "peça da Schrift gasta", "peças da Schrift gastam")} ${d.reduce((n, x) => n + x.schriftPp, 0)} PP da forma.`, depois: "O PP da Schrift sai da conta e esses pontos ficam livres na forma. O poder da Schrift não muda e nenhum outro número muda.", formas: onde(d, "schriftSemPp") });
+  const comCusto = d.filter((x) => x.custoDepois !== undefined);
+  if (comCusto.length > 0) itens.push({ id: "custo-liberacao", titulo: "Custo de liberação recalculado", antes: comCusto.map((x) => `${x.nome}: ${x.custoAntes} PR`).join("; ") + ".", depois: comCusto.map((x) => `${x.nome}: ${x.custoDepois} PR`).join("; ") + ". Sem o PP da Schrift, o custo de liberar a forma é recalculado pelas peças que sobram.", formas: comCusto.map((x) => x.nome) });
+  const custoMao = d.filter((x) => x.schriftSemPp > 0 && x.custoManual);
+  if (custoMao.length > 0) itens.push({ id: "custo-manual", titulo: "Custo de liberação escrito por você", antes: custoMao.map((x) => x.nome).join(", ") + ": custo digitado à mão.", depois: "Continua do jeito que você escreveu; o sistema não mexe. Se quiser, use “Usar a sugestão” na forma.", formas: custoMao.map((x) => x.nome) });
   const comArma = d.filter((x) => x.armaSugerida);
   if (comArma.length > 0) itens.push({ id: "arma-modelo", titulo: "Arma da forma (modelo oficial)", antes: `${plural(comArma.length, "forma de modelo oficial", "formas de modelo oficial")} sem arma.`, depois: `Recebem a arma do modelo (${comArma.map((x) => x.armaSugerida).join(", ")}) só como informação. Nenhum cartão é travado e nenhum número muda.`, formas: comArma.map((x) => x.nome) });
   const revisar = itensARevisar(depois);
@@ -141,7 +145,8 @@ export function planejarAtualizacao(f: Ficha): PlanoAtualizacao {
   if (semArma.length > 0) itens.push({ id: "sem-arma", titulo: "Formas sem arma definida", antes: `${plural(semArma.length, "forma", "formas")} sem arma.`, depois: "Continuam sem arma e com tudo liberado, como hoje. Ficam na lista “a revisar” para você escolher a arma quando quiser.", formas: semArma.map((x) => depois.formas[x.forma]?.nome || TIPO_FORMA_NOME[x.forma]) });
   itens.push({ id: "versao", titulo: "Versão da ficha", antes: de === 0 ? "Sem versão (ficha antiga)." : `Versão ${de}.`, depois: `Versão ${VERSAO_SISTEMA_ATUAL}. A ficha de antes fica guardada para você poder desfazer.`, formas: [] });
 
-  const numerosIguais = fotoNumeros(vista) === fotoNumeros(depois);
+  const recalc = d.filter((x) => x.custoDepois !== undefined).map((x) => x.tipo as string);
+  const numerosIguais = fotoNumeros(vista, recalc) === fotoNumeros(depois, recalc);
   return { de, para: VERSAO_SISTEMA_ATUAL, itens, revisar, numerosIguais, ficha: depois, mudancas: [...mig.mudancas, ...rep.mudancas] };
 }
 
@@ -156,7 +161,15 @@ export function atualizarFicha(f: Ficha, agora: Date = new Date()): ResultadoAtu
   if (!plano.numerosIguais) return { ok: false, erro: "Não deu para atualizar sem mudar algum dos seus números. Nada foi alterado; fale com o Mestre." };
   const nova = structuredClone(plano.ficha);
   const em = agora.toISOString();
-  nova.anteriorAtualizacao = { em, versao: plano.de, formas: structuredClone(f.formas ?? {}) };
+  // guarda como estava tudo o que a atualização mexeu (formas e habilidades junto, mais qualquer outro campo da ficha que o reparo tenha tocado)
+  const antes = repararFicha(f, { migrar: false }).ficha as unknown as Record<string, unknown>;
+  const depoisR = plano.ficha as unknown as Record<string, unknown>;
+  const campos: Record<string, unknown> = {};
+  for (const k of new Set([...Object.keys(antes), ...Object.keys(depoisR)])) {
+    if (["formas", "versaoSistema", "atualizacao", "anteriorAtualizacao"].includes(k)) continue;
+    if (JSON.stringify(antes[k] ?? null) !== JSON.stringify(depoisR[k] ?? null)) campos[k] = antes[k] === undefined ? null : structuredClone(antes[k]);
+  }
+  nova.anteriorAtualizacao = { em, versao: plano.de, formas: structuredClone(f.formas ?? {}), ...(Object.keys(campos).length ? { campos } : {}) };
   nova.atualizacao = { em, de: plano.de, marca: marcaDasFormas(nova.formas) };
   nova.versaoSistema = VERSAO_SISTEMA_ATUAL;
   return { ok: true, ficha: nova, plano };
@@ -167,7 +180,9 @@ export function desfazerAtualizacao(f: Ficha, agora: number = Date.now()): Ficha
   const ant = f.anteriorAtualizacao;
   if (!ant || !podeDesfazer(f, agora)) return null;
   const { anteriorAtualizacao: _a, atualizacao: _b, versaoSistema: _v, ...resto } = f;
-  const volta: Ficha = { ...resto, formas: structuredClone(ant.formas) };
+  const volta = { ...resto, formas: structuredClone(ant.formas) } as Ficha & Record<string, unknown>;
+  // os outros campos que a atualização mexeu voltam como estavam (null = o campo não existia)
+  for (const [k, v] of Object.entries(ant.campos ?? {})) { if (v === null) delete volta[k]; else volta[k] = structuredClone(v); }
   if (ant.versao > 0) volta.versaoSistema = ant.versao;
   return volta;
 }

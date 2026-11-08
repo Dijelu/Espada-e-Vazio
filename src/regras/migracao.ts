@@ -10,6 +10,8 @@ import { migrarEspeciais } from "./especiais";
 import { marcaDoCartaoAntigo } from "./cartoes";
 import { armaDoModelo } from "./modelos-arma";
 import { presetPorId } from "./efeitos-presets";
+import { calcular } from "./ficha";
+import { calcularLiberacao } from "./liberacao-forma";
 
 export interface DetalheMigracao {
   tipo: TipoForma;
@@ -28,6 +30,11 @@ export interface DetalheMigracao {
   schriftSemPp: number;
   /** PP que essas peças gastavam */
   schriftPp: number;
+  /** custo de liberação (PR) salvo na forma antes e depois de tirar o PP da Schrift; só quando o custo mudou */
+  custoAntes?: number;
+  custoDepois?: number;
+  /** custo escrito à mão pelo jogador: não é recalculado */
+  custoManual?: boolean;
 }
 
 export interface ResultadoMigracao { detalhes: DetalheMigracao[]; mudancas: string[] }
@@ -59,7 +66,21 @@ export function migrarFormas(f: Ficha): ResultadoMigracao {
         d.schriftSemPp++; d.schriftPp += typeof e.pp === "number" ? e.pp : presetPorId(e.preset)?.pp ?? 0;
         return { ...e, pp: 0 };
       });
-      if (d.schriftSemPp > 0) mudancas.push(`Na forma ${nome}, a Schrift deixou de usar PP (${d.schriftPp} PP); o poder dela continua igual.`);
+      if (d.schriftSemPp > 0) {
+        mudancas.push(`Na forma ${nome}, a Schrift deixou de usar PP (${d.schriftPp} PP); o poder dela continua igual.`);
+        // o custo de liberação sai da conta das peças: sem o PP da Schrift, ele é recalculado (a não ser que o jogador tenha escrito o custo à mão)
+        if (forma.custoManual) d.custoManual = true;
+        else {
+          try {
+            const k = calcular({ ...f, estado: { ...f.estado, liberado: "" } });
+            const novo = calcularLiberacao(forma.tipo, forma.efeitos, { n: f.nivel, prof: k.prof, atr: k.atr, tipo: forma.tipo }, {}).custoPr;
+            if (novo !== null && novo !== forma.custo) {
+              d.custoAntes = forma.custo; d.custoDepois = novo; forma.custo = novo;
+              mudancas.push(`O custo de liberação da forma ${nome} foi recalculado: de ${d.custoAntes} para ${novo} PR.`);
+            }
+          } catch { /* conta impossível: deixa o custo como está */ }
+        }
+      }
     }
     if (Array.isArray(forma.habilidades)) {
       forma.habilidades = forma.habilidades.map((h) => {
