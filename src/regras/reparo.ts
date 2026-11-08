@@ -76,7 +76,7 @@ export function repararFicha(bruta: Ficha): Reparo {
     // os 8 cartões de característica que criavam botões viram técnica ou interação especial (só a etiqueta e a ligação; efeitos e preço ficam)
     if (Array.isArray(forma.efeitos)) {
       const mig = migrarEspeciais(forma.efeitos);
-      if (mig.mudou > 0) { forma.efeitos = mig.lista; nota(`Na forma ${forma.nome || forma.tipo}, ${mig.mudou} cartão(ões) viraram técnica ou interação especial; nada mudou nos números.`); }
+      if (mig.mudou > 0) { forma.efeitos = mig.lista; nota(`Na forma ${forma.nome || forma.tipo}, ${mig.mudou} cartão(ões) viraram técnica ou interação especial${mig.auto > 0 ? `; ${mig.auto} interação(ões) automática(s) foram postas (0 PP) para a técnica continuar funcionando` : ""}; nada mudou nos números.`); }
     }
     const antes = JSON.stringify(forma.efeitos);
     forma.efeitos = normalizarEfeitos(forma.efeitos);

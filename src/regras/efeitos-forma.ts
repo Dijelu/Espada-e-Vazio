@@ -631,7 +631,7 @@ function extrasDoCartao(o: Partial<InstEfeito>): Partial<InstEfeito> {
   if (o.familia === "carac" || o.familia === "efeito" || o.familia === "tecnica" || o.familia === "interacao") out.familia = o.familia;
   const sp = o.espec as unknown as Record<string, unknown> | undefined;
   if ((o.familia === "tecnica" || o.familia === "interacao") && sp && typeof sp === "object" && typeof sp.id === "string" && sp.id) {
-    out.espec = { id: sp.id.slice(0, 40), ...(typeof sp.tec === "string" && sp.tec ? { tec: sp.tec.slice(0, 40) } : {}) };
+    out.espec = { id: sp.id.slice(0, 40), ...(typeof sp.tec === "string" && sp.tec ? { tec: sp.tec.slice(0, 40) } : {}), ...(sp.auto === true ? { auto: true } : {}), ...(sp.antiga === true ? { antiga: true } : {}) };
   } else if (o.familia === "tecnica" || o.familia === "interacao") delete out.familia;
   const c = o.carac as unknown as Record<string, unknown> | undefined;
   if (c && typeof c === "object" && typeof c.id === "string" && c.id) {

@@ -2,7 +2,7 @@ import { useState, type ReactNode } from "react";
 import type { Ficha, FormaLib } from "../regras/ficha";
 import { vagasEspeciais } from "../regras/cartoes";
 import { caracPorId } from "../regras/caracteristicas";
-import { faltasEspeciais } from "../regras/especiais";
+import { contarVagas, faltasEspeciais } from "../regras/especiais";
 import { CaracteristicasForma } from "./CaracteristicasForma";
 import { InteracoesEspeciais, TecnicasEspeciais } from "./EspeciaisForma";
 
@@ -25,8 +25,8 @@ export function MontagemCartoes({ f, tipo, r, mud, acoes }: Props) {
   const [aba, setAba] = useState<Aba>("acoes");
   const efeitos = r.efeitos ?? [];
   const v = vagasEspeciais(tipo);
-  const nTec = efeitos.filter((e) => e.familia === "tecnica").length;
-  const nInt = efeitos.filter((e) => e.familia === "interacao").length;
+  const nTec = contarVagas(efeitos, "tecnica");
+  const nInt = contarVagas(efeitos, "interacao");
   const nCar = efeitos.filter((e) => e.familia === "carac" && !!e.carac && !!caracPorId(e.carac.id)).length;
   const nAcoes = (r.habilidades ?? []).length;
   const faltas = faltasEspeciais(efeitos, tipo);

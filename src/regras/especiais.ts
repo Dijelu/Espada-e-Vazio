@@ -29,6 +29,8 @@ export interface DefInteracao {
   vale: SubAcao[];
   /** só para Visored e Hollow */
   soHollow?: boolean;
+  /** só nasce na abertura de ficha antiga (interação automática): não aparece na galeria */
+  legado?: boolean;
   compilar: () => Efeito[];
 }
 
@@ -71,6 +73,16 @@ export const TECNICAS: DefTecnica[] = [
 
 export const INTERACOES: DefInteracao[] = [
   {
+    id: "comandar-invocacao", nome: "Comandar invocação", pp: 0, com: ["invocacao", "invocacao-grande"], vale: [], legado: true,
+    texto: "Interação automática das fichas antigas. Ação bônus: você manda a criatura chamada atacar ou andar. Mantém a técnica de invocação funcionando como antes. Cria o botão “Comandar invocação”.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Comandar invocação", ritmo: "bonus", faz: "texto" } }],
+  },
+  {
+    id: "usar-marca", nome: "Usar a marca", pp: 0, com: ["marcar-alvo"], vale: [], legado: true,
+    texto: "Interação automática das fichas antigas. Mantém a técnica Marcar alvo funcionando como antes; não cria botão novo.",
+    compilar: () => [],
+  },
+  {
     id: "passo-clones", nome: "Passo entre clones", pp: 3, com: ["clones"], vale: [],
     texto: "Ação bônus: você troca de lugar com um dos seus clones a até 18 metros, como um teleporte. O clone some e o seu próximo ataque no turno ganha vantagem. Serve à técnica Clones.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Passo entre clones", ritmo: "bonus", faz: "trocar", ref: "clone" } }],
@@ -99,6 +111,11 @@ export const INTERACOES: DefInteracao[] = [
     compilar: () => [{ k: "gera", botao: { rotulo: "Gran Rey Cero", ritmo: "bonus", faz: "texto", ref: "[PROF]d8" } }],
   },
 ];
+
+/** Interações que o jogador pode escolher na galeria (as automáticas das fichas antigas ficam de fora). */
+export const INTERACOES_GALERIA = INTERACOES.filter((i) => !i.legado);
+/** Interação automática de cada técnica que veio de ficha antiga. */
+export const INTERACAO_PADRAO: Record<string, string> = { clones: "passo-clones", invocacao: "comandar-invocacao", "invocacao-grande": "comandar-invocacao", "marcar-alvo": "usar-marca" };
 
 export const tecnicaPorId = (id: string) => TECNICAS.find((t) => t.id === id);
 export const interacaoPorId = (id: string) => INTERACOES.find((t) => t.id === id);
@@ -140,21 +157,29 @@ export function tecnicaDe(efeitos: InstEfeito[], inter: InstEfeito): InstEfeito 
 /** A peça especial funciona? Técnica só com interação ligada; interação só com técnica. As outras peças sempre valem. */
 export function especialFunciona(inst: InstEfeito, todas: InstEfeito[]): boolean {
   if (ehTecnica(inst)) return todas.some((x) => ehInteracao(x) && x.espec?.tec === inst.id && tecnicaDe(todas, x)?.id === inst.id);
-  if (ehInteracao(inst)) return !!tecnicaDe(todas, inst);
+  if (ehInteracao(inst)) return !!tecnicaDe(todas, inst) || inst.espec?.antiga === true;
   return true;
 }
 
 /** O que falta para a forma poder ser salva (vazio: está tudo certo). Cada item é uma frase pronta para a tela. */
+/** Quantas peças ocupam vaga: as que vieram de ficha antiga ou foram postas sozinhas na abertura não contam. */
+export const ocupaVaga = (e: InstEfeito) => !e.espec?.antiga && !e.espec?.auto;
+export const contarVagas = (efeitos: InstEfeito[], familia: "tecnica" | "interacao") => efeitos.filter((e) => (familia === "tecnica" ? ehTecnica(e) : ehInteracao(e)) && ocupaVaga(e)).length;
+
+/**
+ * O que falta para a forma poder ser salva (vazio: está tudo certo). Cada item é uma frase pronta para a tela.
+ * Só vale para montagens novas e edições do jogador: peça de ficha antiga (marcada `antiga`) e interação automática não travam o salvamento.
+ */
 export function faltasEspeciais(efeitos: InstEfeito[], tipo: string): string[] {
   const out: string[] = [];
   const v = vagasEspeciais(tipo);
-  const tecs = tecnicasDe(efeitos);
-  const ints = efeitos.filter(ehInteracao);
+  const tecs = tecnicasDe(efeitos).filter(ocupaVaga);
+  const ints = efeitos.filter((e) => ehInteracao(e) && ocupaVaga(e));
   if (tecs.length > v.tec) out.push(`Técnicas especiais demais: ${tecs.length} para ${v.tec} vaga${v.tec === 1 ? "" : "s"}. Tire ${tecs.length - v.tec}.`);
   if (ints.length > v.inter) out.push(`Interações especiais demais: ${ints.length} para ${v.inter} vaga${v.inter === 1 ? "" : "s"}. Tire ${ints.length - v.inter}.`);
   for (const t of tecs) {
     if (!interacoesDe(efeitos, t.id).some((x) => tecnicaDe(efeitos, x)?.id === t.id)) {
-      const serve = INTERACOES.filter((i) => interacaoServe(i, t)).map((i) => i.nome);
+      const serve = INTERACOES_GALERIA.filter((i) => interacaoServe(i, t)).map((i) => i.nome);
       out.push(`A técnica especial “${t.nome}” precisa de pelo menos uma interação especial. Monte uma na aba Interações especiais${serve.length ? ` (serve: ${serve.slice(0, 3).join(", ")}${serve.length > 3 ? "…" : ""})` : ""}.`);
     }
   }
@@ -176,18 +201,20 @@ const ANTIGA_INTERACAO: Record<string, string> = { "passo-clones": "passo-clones
 /**
  * Os 8 cartões de característica que criavam botões, invocações e sinergias viram técnica ou interação especial.
  * Só muda a etiqueta e a ligação: os efeitos e o preço (pp) ficam exatamente como estavam. Cada interação antiga se liga à primeira técnica
- * em que ela serve. Idempotente: o que já migrou não é tocado.
+ * em que ela serve. Toda peça convertida ganha `antiga` (não ocupa vaga nem trava o salvamento). A técnica convertida que ficou sem nenhuma
+ * interação ganha a interação padrão mais coerente, marcada `auto`, com 0 PP: assim ela continua funcionando em jogo como antes, e o jogador
+ * vê a interação na aba e pode trocá-la ou tirá-la. Interação antiga sem técnica continua funcionando sozinha. Idempotente: o que já migrou não é tocado.
  */
-export function migrarEspeciais(lista: InstEfeito[]): { lista: InstEfeito[]; mudou: number } {
+export function migrarEspeciais(lista: InstEfeito[]): { lista: InstEfeito[]; mudou: number; auto: number } {
   let mudou = 0;
   const marcadas = lista.map((e): InstEfeito => {
     const c = e.carac;
     if (e.familia !== "carac" || !c) return e;
-    if (ANTIGA_TECNICA[c.id]) { mudou++; const { carac: _c, ...resto } = e; return { ...resto, familia: "tecnica", espec: { id: ANTIGA_TECNICA[c.id] } }; }
-    if (ANTIGA_INTERACAO[c.id]) { mudou++; const { carac: _c, ...resto } = e; return { ...resto, familia: "interacao", espec: { id: ANTIGA_INTERACAO[c.id] }, ...(c.vale.length > 0 ? { carac: c } : {}) }; }
+    if (ANTIGA_TECNICA[c.id]) { mudou++; const { carac: _c, ...resto } = e; return { ...resto, familia: "tecnica", espec: { id: ANTIGA_TECNICA[c.id], antiga: true } }; }
+    if (ANTIGA_INTERACAO[c.id]) { mudou++; const { carac: _c, ...resto } = e; return { ...resto, familia: "interacao", espec: { id: ANTIGA_INTERACAO[c.id], antiga: true }, ...(c.vale.length > 0 ? { carac: c } : {}) }; }
     return e;
   });
-  if (mudou === 0) return { lista, mudou: 0 };
+  if (mudou === 0) return { lista, mudou: 0, auto: 0 };
   const tecs = marcadas.filter(ehTecnica);
   const ligadas = marcadas.map((e) => {
     if (!ehInteracao(e) || e.espec?.tec) return e;
@@ -195,5 +222,14 @@ export function migrarEspeciais(lista: InstEfeito[]): { lista: InstEfeito[]; mud
     const t = def && tecs.find((x) => interacaoServe(def, x));
     return t ? { ...e, espec: { ...e.espec!, tec: t.id } } : e;
   });
-  return { lista: ligadas, mudou };
+  // técnica antiga sem interação: ganha a interação padrão (automática, 0 PP, sem mexer em nenhum número)
+  const extras: InstEfeito[] = [];
+  for (const t of ligadas.filter((x) => ehTecnica(x) && x.espec?.antiga)) {
+    if (interacoesDe(ligadas, t.id).some((x) => tecnicaDe(ligadas, x)?.id === t.id)) continue;
+    const def = interacaoPorId(INTERACAO_PADRAO[t.espec!.id] ?? "");
+    if (!def) continue;
+    const nova = instanciarInteracao(def, t.id, { liga: "todas" }, `${t.id}-auto`);
+    extras.push({ ...nova, pp: 0, espec: { ...nova.espec!, auto: true } });
+  }
+  return { lista: [...ligadas, ...extras], mudou, auto: extras.length };
 }

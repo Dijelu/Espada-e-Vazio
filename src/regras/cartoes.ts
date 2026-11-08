@@ -25,6 +25,10 @@ export interface DadosEspecial {
   id: string;
   /** só na interação: id da peça (técnica especial da mesma forma) a que ela serve */
   tec?: string;
+  /** interação posta sozinha ao abrir uma ficha antiga, para a técnica continuar funcionando (não ocupa vaga e não custa PP) */
+  auto?: boolean;
+  /** peça que veio de uma ficha antiga (os cartões de característica de antes): não ocupa vaga e não trava o salvamento */
+  antiga?: boolean;
 }
 
 /** Marca de uma habilidade que nasceu de um cartão de ação. Sem a marca, a habilidade é do jeito antigo e continua igual. */

@@ -3,7 +3,7 @@ import { calcular, type Ficha, type FormaLib, type HabForma } from "../regras/fi
 import { orcamentoDaForma, type CtxForma, type InstEfeito } from "../regras/efeitos-forma";
 import { infoSub, vagasEspeciais, type SubAcao } from "../regras/cartoes";
 import {
-  INTERACOES, TECNICAS, ehInteracao, ehTecnica, instanciarInteracao, instanciarTecnica, interacaoPorId, interacaoServe, interacoesDe, podeUsarInteracao, tecnicaDe,
+  INTERACOES_GALERIA, TECNICAS, contarVagas, ehInteracao, ehTecnica, instanciarInteracao, instanciarTecnica, interacaoPorId, interacaoServe, interacoesDe, podeUsarInteracao, tecnicaDe,
   type DefInteracao, type DefTecnica,
 } from "../regras/especiais";
 import { subDaHab } from "../regras/caracteristicas";
@@ -48,7 +48,7 @@ export function TecnicasEspeciais({ f, tipo, r, mud, irParaInteracoes }: Props &
   const minhas = efeitos.filter(ehTecnica);
   const [msg, setMsg] = useState("");
   const [tirando, setTirando] = useState("");
-  const cheio = minhas.length >= v.tec;
+  const cheio = contarVagas(efeitos, "tecnica") >= v.tec;
 
   const adicionar = (d: DefTecnica) => {
     if (cheio) { setMsg(`Esta forma só tem ${v.tec} vaga${v.tec === 1 ? "" : "s"} de técnica especial.`); return; }
@@ -66,7 +66,7 @@ export function TecnicasEspeciais({ f, tipo, r, mud, irParaInteracoes }: Props &
         {" "}<Info>Cada técnica custa PP da forma. Se você tirar a técnica, as interações dela ficam soltas e não valem até serem ligadas a outra.</Info>
       </p>
       <div className="vagas-especiais" aria-label="Vagas de técnicas especiais">
-        <span className="selo-vagas"><b>{minhas.length}/{v.tec}</b> vaga{v.tec === 1 ? "" : "s"} de técnica</span>
+        <span className="selo-vagas"><b>{contarVagas(efeitos, "tecnica")}/{v.tec}</b> vaga{v.tec === 1 ? "" : "s"} de técnica</span>
         <small className="ajuda">PP livres na forma: <b>{orc.livre}</b> de {orc.total}</small>
       </div>
 
@@ -77,7 +77,7 @@ export function TecnicasEspeciais({ f, tipo, r, mud, irParaInteracoes }: Props &
             return (
               <li key={e.id} className={`${e.confirmado ? "travado" : ""} ${ligadas.length === 0 ? "solto" : ""}`}>
                 <div>
-                  <b>{e.nome}</b> <small>{e.pp ?? 0} PP{e.confirmado ? " · confirmado" : ""}</small>
+                  <b>{e.nome}</b> <small>{e.pp ?? 0} PP{e.confirmado ? " · confirmado" : ""}{e.espec?.auto ? " · automática" : e.espec?.antiga ? " · de ficha antiga" : ""}</small>
                   <p className="ajuda">{e.texto}</p>
                   {ligadas.length > 0 ? (
                     <div className="marcas-carac" aria-label={`Interações de ${e.nome}`}>
@@ -100,7 +100,7 @@ export function TecnicasEspeciais({ f, tipo, r, mud, irParaInteracoes }: Props &
           const repetida = minhas.some((e) => e.espec?.id === d.id);
           const sem = d.pp > orc.livre;
           const travada = repetida || cheio;
-          const serve = INTERACOES.filter((i) => i.com.length === 0 || i.com.includes(d.id));
+          const serve = INTERACOES_GALERIA.filter((i) => i.com.length === 0 || i.com.includes(d.id));
           return (
             <article key={d.id} className={`carta-hab carta-peca carta-neutra carta-especial carta-padrao ${travada || sem ? "travada" : ""}`} data-classe={classeDe(tipo)}>
               <div className="carta-topo">
@@ -142,7 +142,7 @@ export function InteracoesEspeciais({ f, tipo, r, mud, irParaTecnicas }: Props &
   const [tirando, setTirando] = useState("");
   const [escolha, setEscolha] = useState<Record<string, string>>({});
   const [ligas, setLigas] = useState<Record<string, string>>({});
-  const cheio = minhas.length >= v.inter;
+  const cheio = contarVagas(efeitos, "interacao") >= v.inter;
 
   const acoesDe = (d: Pick<DefInteracao, "vale">) => habs.filter((h: HabForma) => { const s = subDaHab(h); return !!s && d.vale.includes(s); });
   const servem = (d: DefInteracao) => tecs.filter((t) => interacaoServe(d, t));
@@ -169,7 +169,7 @@ export function InteracoesEspeciais({ f, tipo, r, mud, irParaTecnicas }: Props &
         {" "}<Info>Cada interação custa PP da forma. A técnica sozinha não funciona: as interações é que dão o que fazer com ela.</Info>
       </p>
       <div className="vagas-especiais" aria-label="Vagas de interações especiais">
-        <span className="selo-vagas"><b>{minhas.length}/{v.inter}</b> vaga{v.inter === 1 ? "" : "s"} de interação</span>
+        <span className="selo-vagas"><b>{contarVagas(efeitos, "interacao")}/{v.inter}</b> vaga{v.inter === 1 ? "" : "s"} de interação</span>
         <small className="ajuda">PP livres na forma: <b>{orc.livre}</b> de {orc.total}</small>
       </div>
       {tecs.length === 0 && <p className="aviso-mini">Nenhuma técnica especial na forma ainda. <button type="button" className="link" onClick={irParaTecnicas}>Monte uma técnica primeiro</button>.</p>}
@@ -184,7 +184,7 @@ export function InteracoesEspeciais({ f, tipo, r, mud, irParaTecnicas }: Props &
             return (
               <li key={e.id} className={`${e.confirmado ? "travado" : ""} ${atual ? "" : "solto"}`}>
                 <div>
-                  <b>{e.nome}</b> <small>{e.pp ?? 0} PP{e.confirmado ? " · confirmado" : ""}</small>
+                  <b>{e.nome}</b> <small>{e.pp ?? 0} PP{e.confirmado ? " · confirmado" : ""}{e.espec?.auto ? " · automática" : e.espec?.antiga ? " · de ficha antiga" : ""}</small>
                   <p className="ajuda">{e.texto}</p>
                   <label className="campo campo-liga">Serve à técnica
                     <select value={atual?.id ?? ""} onChange={(ev) => religarTec(e.id, ev.target.value)}>
@@ -211,7 +211,7 @@ export function InteracoesEspeciais({ f, tipo, r, mud, irParaTecnicas }: Props &
       )}
 
       <div className="cartas-hab galeria-cartoes galeria-especiais galeria-padrao">
-        {INTERACOES.map((d) => {
+        {INTERACOES_GALERIA.map((d) => {
           const ts = servem(d);
           const repetida = minhas.some((e) => e.espec?.id === d.id);
           const sem = d.pp > orc.livre;
