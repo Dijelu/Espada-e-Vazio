@@ -1,5 +1,6 @@
 import type { FormaLib, HabForma, TipoForma } from "./ficha";
 const novoId = () => (typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : String(Date.now() + Math.random()));
+import { armaDoModelo } from "./modelos-arma";
 import { presetPorId } from "./efeitos-presets";
 import type { CtxForma, InstEfeito } from "./efeitos-forma";
 import { analisarDano } from "./teto-dano";
@@ -1776,6 +1777,6 @@ export function formaDoModelo(m: ModeloMontado, qual: "bankai" | "bankai2", ctx:
     tipo: qual, modelo: m.id, nome: base.nome, comando: base.comando, aparencia: base.aparencia,
     estilo: base.estilo ?? m.bankai.estilo, efeitos, habilidades, pontoFraco: ponto?.nome ?? "",
     custo: lib.custoPr ?? 0, duracao: lib.duracaoTexto ?? "", texto: m.resumo,
-    preRequisito: base.preRequisito, baseModelo: qual === "bankai2" ? m.id : undefined,
+    preRequisito: base.preRequisito, baseModelo: qual === "bankai2" ? m.id : undefined, ...armaDoModelo(qual, m.id),
   };
 }

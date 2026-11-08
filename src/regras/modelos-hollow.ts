@@ -1,4 +1,5 @@
 import type { HabForma } from "./ficha";
+import { armaDoModelo } from "./modelos-arma";
 import type { FormaLib } from "./ficha";
 import { presetPorId } from "./efeitos-presets";
 import type { CtxForma, InstEfeito } from "./efeitos-forma";
@@ -1475,11 +1476,11 @@ function montar(tipo: "resurreccion" | "segunda", m: ModeloResHollow | ModeloSeg
 /** Monta a Resurrección pronta, com peças, habilidades e ponto fraco. */
 export function formaDaResurreccion(m: ModeloResHollow, ctx: CtxForma): Partial<FormaLib> {
   const { efeitos, habilidades, lib, ponto } = montar("resurreccion", m, ctx);
-  return { tipo: "resurreccion", modelo: m.id, nome: m.nome, comando: m.comando, aparencia: m.aparencia, traco: m.traco, efeitos, habilidades, pontoFraco: ponto?.nome ?? "", custo: lib.custoPr ?? (m.classe === "vazio" ? 40 : 45), duracao: lib.duracaoTexto || "até o fim da cena", texto: m.resumo };
+  return { tipo: "resurreccion", modelo: m.id, nome: m.nome, comando: m.comando, aparencia: m.aparencia, traco: m.traco, efeitos, habilidades, pontoFraco: ponto?.nome ?? "", custo: lib.custoPr ?? (m.classe === "vazio" ? 40 : 45), duracao: lib.duracaoTexto || "até o fim da cena", texto: m.resumo, ...armaDoModelo("resurreccion", m.id) };
 }
 
 /** Monta a Segunda Etapa pronta, apoiada na Resurrección indicada. */
 export function formaDaSegunda(m: ModeloSegunda, ctx: CtxForma): Partial<FormaLib> {
   const { efeitos, habilidades, lib, ponto } = montar("segunda", m, ctx);
-  return { tipo: "segunda", modelo: m.id, nome: m.nome, comando: m.comando, aparencia: m.aparencia, efeitos, habilidades, pontoFraco: ponto?.nome ?? "", custo: lib.custoPr ?? 0, duracao: lib.duracaoTexto || "até o fim da cena", texto: m.resumo, preRequisito: m.preRequisito, baseModelo: m.baseResurreccion };
+  return { tipo: "segunda", modelo: m.id, nome: m.nome, comando: m.comando, aparencia: m.aparencia, efeitos, habilidades, pontoFraco: ponto?.nome ?? "", custo: lib.custoPr ?? 0, duracao: lib.duracaoTexto || "até o fim da cena", texto: m.resumo, preRequisito: m.preRequisito, baseModelo: m.baseResurreccion, ...armaDoModelo("segunda", m.id) };
 }
