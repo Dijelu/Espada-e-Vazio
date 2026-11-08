@@ -1876,7 +1876,6 @@ details.ficha-leitura-bloco[open] > summary { margin-bottom: 8px; }
 .tabela-pr th, .tabela-pr td { text-align: left; padding: 4px 18px 4px 0; border-bottom: 1px solid var(--line); font-weight: 400; }
 .tabela-pr td { font-weight: 700; }
 .carta-acao .filtros-pecas { margin: 8px 0; }
-.carta-acao .btn-mini { margin-top: auto; }
 .tipo-cartao { margin: 0 0 6px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; font-size: 12px; }
 .carta-peca .carta-topo .selo-pp { flex: none; white-space: nowrap; }
 .carta-peca .carta-nome { min-width: 0; }
@@ -1919,3 +1918,24 @@ details.ficha-leitura-bloco[open] > summary { margin-bottom: 8px; }
 .carta-especial .btn-mini { margin-top: auto; }
 .carta-especial.travada { opacity: .6; }
 .carta-especial .serve-com { font-size: 13px; }
+
+/* ===== Cartões de ação padronizados: mesmo tamanho, botão alinhado na base ===== */
+.galeria-acoes { grid-template-columns: 1fr; align-items: stretch; }
+@media (min-width: 640px) { .galeria-acoes { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .galeria-acoes { grid-template-columns: repeat(4, 1fr); } }
+.carta-padrao { display: flex; flex-direction: column; gap: 8px; align-content: normal; }
+.carta-padrao h3 { line-height: 1.15; }
+.carta-padrao .texto-carta { margin: 0; }
+.carta-padrao .filtros-pecas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 4px 0; padding: 0; }
+.carta-padrao .filtros-pecas .chip-btn { margin: 0; padding: 6px 4px; font-size: 13px; text-align: center; white-space: normal; min-height: 40px; }
+.carta-padrao .opcoes-carta { display: grid; gap: 8px; }
+.carta-padrao .rodape-carta { margin-top: auto; display: grid; gap: 8px; }
+.carta-padrao .rodape-carta .btn-mini { margin-top: 0; width: 100%; }
+.linha-valor { font-size: 15px; }
+.linha-valor b { font-size: 17px; }
+@media (min-width: 721px) {
+  .carta-padrao h3 { min-height: 2.3em; }
+  .carta-padrao .texto-carta { min-height: 4.5em; }
+}
+.secao-final { margin-top: 6px; }
+.secao-final > .ajuda { margin: 0 0 8px; }

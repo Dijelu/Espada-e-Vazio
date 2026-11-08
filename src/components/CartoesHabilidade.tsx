@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { analisarDano, ATR_AUTO, danoNoTeto } from "../regras/teto-dano";
-import { danoDoCartao, danoResolvido, ehCartaoNovo, infoRitmo, infoSub, novaHabilidade, RITMOS, SUBS, temFinal, vagasUsadas, type CuraTipo, type Ritmo, type SubAcao, CURAS } from "../regras/cartoes";
+import { danoDoCartao, danoResolvido, ehCartaoNovo, infoRitmo, infoSub, novaHabilidade, rotuloDoValor, RITMOS, SUBS, vagasUsadas, type CuraTipo, type Ritmo, type SubAcao, CURAS } from "../regras/cartoes";
 import type { CtxForma, InstEfeito } from "../regras/efeitos-forma";
 import { caracsDaAcao } from "../regras/caracteristicas";
 import type { FormaLib, HabForma } from "../regras/ficha";
@@ -39,69 +39,98 @@ const TEXTO_ACAO: Record<SubAcao, { titulo: string; sobre: string }> = {
   movimento: { titulo: "Movimento e ataque (investida)", sobre: "Você avança em linha reta e ataca no fim. O dano é um pouco menor que o do ataque único." },
 };
 
-/** Os quatro cartões de ação. O dano e o custo já vêm prontos: o jogador escolhe o ritmo e escreve a descrição visual. */
+/** Os quatro cartões de ação, todos do mesmo tamanho e com o botão na base. O dano e o custo já vêm prontos: o jogador escolhe o ritmo e escreve a descrição visual. A técnica final tem a sua própria seção logo abaixo. */
 export function GaleriaAcoes({ tipo, ctx, ppExtra, habs, limite, atr, onUsar }: GaleriaProps) {
   const classe = classeDe(tipo);
   const cheio = vagasUsadas(habs) >= limite;
   return (
     <>
-      <div className="cartas-hab galeria-cartoes">
+      <div className="cartas-hab galeria-cartoes galeria-acoes">
         {SUBS.map((s) => <CartaoDeAcao key={s.id} sub={s.id} classe={classe} ctx={ctx} ppExtra={ppExtra} habs={habs} cheio={cheio} atr={atr} onUsar={onUsar} />)}
       </div>
       <table className="tabela-pr">
         <caption>Quanto cada ação custa em PR</caption>
         <tbody>{RITMOS.map((r) => <tr key={r.id}><th scope="row">{r.nome}</th><td>{r.pr} PR</td></tr>)}</tbody>
       </table>
+      <SecaoTecnicaFinal classe={classe} ctx={ctx} ppExtra={ppExtra} habs={habs} atr={atr} onUsar={onUsar} />
     </>
   );
 }
 
+const nomeLivre = (habs: HabForma[], base: string) => { let n = base, k = 2; while (habs.some((x) => x.nome === n)) n = `${base} ${k++}`; return n; };
+
+/** A linha do valor da ação com o texto certo para o tipo (Dano, Dano por alvo, Cura, PV temporário, Reduz, Barreira). */
+function LinhaValor({ h, ctx }: { h: HabForma; ctx: CtxForma }) {
+  const v = rotuloDoValor(h, h.dano ? danoResolvido(h.dano, ctx) : "");
+  return <p className="ajuda linha-valor">{v.rotulo} <b>{v.valor}</b></p>;
+}
+
 function CartaoDeAcao({ sub, classe, ctx, ppExtra, habs, cheio, atr, onUsar }: { sub: SubAcao; classe: string; ctx: CtxForma; ppExtra: boolean; habs: HabForma[]; cheio: boolean; atr: string; onUsar: (h: HabForma) => void }) {
-  const info = infoSub(sub);
   const [ritmo, setRitmo] = useState<Ritmo>("acao");
-  const [final, setFinal] = useState(false);
   const [cura, setCura] = useState<CuraTipo>("pv");
   const [emArea, setEmArea] = useState(false);
-  const podeFinal = info.dano && sub !== "cura";
-  const jaFinal = temFinal(habs);
-  const comFinal = final && podeFinal && !jaFinal;
-  const ritmoReal: Ritmo = comFinal ? "acao" : ritmo;
-  const h = novaHabilidade(sub, { ritmo: ritmoReal, final: comFinal, atr, cura, emArea }, ctx, ppExtra);
-  const bloqueado = comFinal ? false : cheio;
-  const nomeLivre = (base: string) => { let n = base, k = 2; while (habs.some((x) => x.nome === n)) n = `${base} ${k++}`; return n; };
-  const nomeId = `${sub}-ritmo`;
+  const h = novaHabilidade(sub, { ritmo, atr, cura, emArea }, ctx, ppExtra);
   return (
-    <article className="carta-hab carta-peca carta-neutra carta-acao" data-classe={classe}>
+    <article className="carta-hab carta-peca carta-neutra carta-acao carta-padrao" data-classe={classe}>
       <div className="carta-topo">
-        <small className="ajuda">{infoRitmo(ritmoReal).nome}</small>
+        <small className="ajuda">{infoRitmo(ritmo).nome}</small>
         <span className="selo-pp">{h.pr}<i>PR</i></span>
       </div>
       <h3>{TEXTO_ACAO[sub].titulo}</h3>
-      <p>{TEXTO_ACAO[sub].sobre}</p>
-      <div className="filtros-pecas" role="group" aria-label={`Ritmo de ${TEXTO_ACAO[sub].titulo}`} id={nomeId}>
-        {RITMOS.map((r) => <button key={r.id} type="button" disabled={comFinal} className={`chip chip-btn ${ritmoReal === r.id ? "on" : ""}`} aria-pressed={ritmoReal === r.id} onClick={() => setRitmo(r.id)}>{r.nome}</button>)}
+      <p className="texto-carta">{TEXTO_ACAO[sub].sobre}</p>
+      <div className="filtros-pecas" role="group" aria-label={`Ritmo de ${TEXTO_ACAO[sub].titulo}`}>
+        {RITMOS.map((r) => <button key={r.id} type="button" className={`chip chip-btn ${ritmo === r.id ? "on" : ""}`} aria-pressed={ritmo === r.id} onClick={() => setRitmo(r.id)}>{r.nome}</button>)}
       </div>
       {sub === "cura" && (
-        <>
+        <div className="opcoes-carta">
           <label className="campo">O que faz
             <select value={cura} onChange={(e) => setCura(e.target.value as CuraTipo)}>
               {CURAS.map((c) => <option key={c.id} value={c.id}>{c.nome}</option>)}
             </select>
           </label>
           {(cura === "pv" || cura === "temp") && <label className="check"><input type="checkbox" checked={emArea} onChange={(e) => setEmArea(e.target.checked)} /> Também os aliados em volta (área)</label>}
-        </>
+        </div>
       )}
-      {podeFinal && (
-        <div className="check"><label className="check">
-          <input type="checkbox" checked={comFinal} disabled={jaFinal} onChange={(e) => setFinal(e.target.checked)} />
-          Técnica final da forma{jaFinal ? " (já tem)" : ""}
-        </label><Info>A técnica final fica numa vaga extra: não gasta uma das vagas normais da forma. Só pode haver uma por forma e ela é sempre uma ação.</Info></div>
-      )}
-      {h.dano ? <p className="ajuda">Dano: <b>{danoResolvido(h.dano, ctx)}</b></p> : <p className="ajuda">Sem dano em dados</p>}
-      <button type="button" className="btn-mini" disabled={bloqueado} onClick={() => onUsar({ ...h, nome: nomeLivre(h.nome) })}>
-        {bloqueado ? "Sem vagas" : comFinal ? "Montar a técnica final" : "Montar este cartão"}
-      </button>
+      <div className="rodape-carta">
+        <LinhaValor h={h} ctx={ctx} />
+        <button type="button" className="btn-mini" disabled={cheio} onClick={() => onUsar({ ...h, nome: nomeLivre(habs, h.nome) })}>{cheio ? "Sem vagas" : "Montar este cartão"}</button>
+      </div>
     </article>
+  );
+}
+
+const FINAIS: SubAcao[] = ["ataque", "area", "movimento"];
+
+/**
+ * Técnica final: seção própria no fim da tela de ações. Toda forma tem uma, numa vaga extra (fora das vagas das ações), sempre como ação.
+ * Há características que mexem com ela.
+ */
+function SecaoTecnicaFinal({ classe, ctx, ppExtra, habs, atr, onUsar }: { classe: string; ctx: CtxForma; ppExtra: boolean; habs: HabForma[]; atr: string; onUsar: (h: HabForma) => void }) {
+  const [sub, setSub] = useState<SubAcao>("ataque");
+  const feita = habs.find((h) => h.cartao?.final);
+  const h = novaHabilidade(sub, { ritmo: "acao", final: true, atr }, ctx, ppExtra);
+  return (
+    <section className="secao-final" aria-labelledby="titulo-final">
+      <h4 id="titulo-final" className="sub-passivas">Técnica final</h4>
+      <p className="ajuda">O golpe mais forte da forma. Ela já tem uma vaga reservada, fora das vagas das ações, e é sempre uma ação ({infoRitmo("acao").pr} PR). Há características que mexem com a técnica final.</p>
+      <div className="cartas-hab galeria-cartoes galeria-acoes">
+        <article className="carta-hab carta-peca carta-neutra carta-acao carta-padrao carta-final" data-classe={classe}>
+          <div className="carta-topo">
+            <small className="ajuda">Técnica final · Ação</small>
+            <span className="selo-pp">{h.pr}<i>PR</i></span>
+          </div>
+          <h3>Técnica final</h3>
+          <p className="texto-carta">{feita ? `Já montada: ${feita.nome || "sem nome"}. Edite ou remova em “Seus cartões”.` : "Escolha como o golpe final atinge e monte. O dano já vem pronto."}</p>
+          <div className="filtros-pecas" role="group" aria-label="Tipo da técnica final">
+            {FINAIS.map((x) => <button key={x} type="button" disabled={!!feita} className={`chip chip-btn ${sub === x ? "on" : ""}`} aria-pressed={sub === x} onClick={() => setSub(x)}>{x === "movimento" ? "Investida" : infoSub(x).nome}</button>)}
+          </div>
+          <div className="rodape-carta">
+            <LinhaValor h={h} ctx={ctx} />
+            <button type="button" className="btn-mini" disabled={!!feita} onClick={() => onUsar({ ...h, nome: nomeLivre(habs, h.nome) })}>{feita ? "Já montada" : "Montar a técnica final"}</button>
+          </div>
+        </article>
+      </div>
+    </section>
   );
 }
 
@@ -161,7 +190,7 @@ export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, efeitos, on
       {doCartao && !h.auto ? (
         <div className="auto-dano">
           <span className="rotulo-sel">{h.dano ? "Valor" : "Efeito"}</span>
-          <p className="ajuda">{h.dano ? <>Rola: <b>{resolver(h.dano, ctx)}</b></> : "Sem número: o efeito está na regra do cartão."}</p>
+          <p className="ajuda">{h.dano || rotuloDoValor(h).rotulo === "Barreira" ? <>{rotuloDoValor(h, h.dano ? resolver(h.dano, ctx) : "").rotulo} <b>{rotuloDoValor(h, h.dano ? resolver(h.dano, ctx) : "").valor}</b></> : "Sem número: o efeito está na regra do cartão."}</p>
         </div>
       ) : h.auto && !h.fixa ? (
         <div className="auto-dano">
@@ -171,7 +200,7 @@ export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, efeitos, on
               {ATR_AUTO.map((x) => <option key={x.id} value={x.id}>{x.nome} ({ctx.atr[x.chave] >= 0 ? "+" : ""}{ctx.atr[x.chave]})</option>)}
             </select>
           </label>
-          <p className="ajuda">Rola: <b>{danoLido ? resolver(danoLido, ctx) : "—"}</b> <Info>O dano já vem pronto para a ação. Mudou o nível, o tipo de ação ou a técnica especial? Ele se ajusta sozinho. Você só escreve a descrição do ataque. {doCartao ? "O custo em PR vem do ritmo da ação." : "O custo em PR acompanha o dano."}</Info></p>
+          <p className="ajuda">{rotuloDoValor(h).rotulo} <b>{danoLido ? resolver(danoLido, ctx) : "—"}</b> <Info>O dano já vem pronto para a ação. Mudou o nível, o tipo de ação ou a técnica especial? Ele se ajusta sozinho. Você só escreve a descrição do ataque. {doCartao ? "O custo em PR vem do ritmo da ação." : "O custo em PR acompanha o dano."}</Info></p>
         </div>
       ) : (
         <>

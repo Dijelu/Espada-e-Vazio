@@ -244,6 +244,31 @@ export const CURAS: { id: CuraTipo; nome: string }[] = [
   { id: "barreira", nome: "Barreira (anula 1 ataque)" },
 ];
 
+/** O que um cartão de cura ou proteção faz, lido do cartão novo ou do nome do cartão antigo. */
+const CURA_DO_MODELO: Record<string, { cura: CuraTipo; emArea?: boolean }> = {
+  Defesa: { cura: "reduz" }, Barreira: { cura: "barreira" }, "Proteção": { cura: "temp" }, "Regeneração": { cura: "pv" }, "Cura em área": { cura: "pv", emArea: true },
+};
+const AREA_DO_MODELO = new Set(["Golpe em área", "Explosão final"]);
+
+/**
+ * O valor da ação com o rótulo certo para o tipo do cartão: ataque e investida "Dano", área "Dano por alvo",
+ * cura "Cura", PV temporário "PV temporário", redução "Reduz", barreira "Barreira". `valor` é a fórmula já com os números (ou vazio).
+ * Vale também para os cartões antigos, pelo nome do cartão de onde saíram.
+ */
+export function rotuloDoValor(h: Pick<HabForma, "cartao" | "modelo">, valor?: string): { rotulo: string; valor: string } {
+  const antigo = h.modelo ? CURA_DO_MODELO[h.modelo] : undefined;
+  const cura = h.cartao?.sub === "cura" ? h.cartao.cura ?? antigo?.cura ?? "pv" : h.cartao ? undefined : antigo?.cura;
+  const emArea = h.cartao?.sub === "cura" ? !!h.cartao.emArea : !!antigo?.emArea;
+  const v = valor ?? "";
+  const por = emArea ? " por alvo" : "";
+  if (cura === "barreira") return { rotulo: "Barreira", valor: "1 (anula 1 ataque)" };
+  if (cura === "reduz") return { rotulo: "Reduz", valor: v };
+  if (cura === "temp") return { rotulo: `PV temporário${por}:`, valor: v };
+  if (cura === "pv") return { rotulo: `Cura${por}:`, valor: v };
+  const area = h.cartao ? h.cartao.sub === "area" : !!h.modelo && AREA_DO_MODELO.has(h.modelo);
+  return { rotulo: area ? "Dano por alvo:" : "Dano:", valor: v };
+}
+
 /** O que o cartão faz no jogo (a "regra do cartão"). */
 export function regraDaAcao(sub: SubAcao, o: Pick<OpcoesAcao, "cura" | "emArea">): string {
   if (sub === "ataque") return "Um ataque contra um único alvo. Causa o dano indicado.";
@@ -259,6 +284,8 @@ export function regraDaAcao(sub: SubAcao, o: Pick<OpcoesAcao, "cura" | "emArea">
 }
 
 const NOME_PADRAO: Record<SubAcao, string> = { ataque: "Ataque", area: "Golpe em área", cura: "Cura", movimento: "Investida" };
+/** Nome sugerido da habilidade nova: no cartão de cura ou proteção, o nome segue o que ele faz. */
+const nomeSugerido = (sub: SubAcao, o: Pick<OpcoesAcao, "cura" | "emArea">) => (sub !== "cura" ? NOME_PADRAO[sub] : o.cura === "reduz" ? "Defesa" : o.cura === "barreira" ? "Barreira" : o.cura === "temp" ? "Proteção" : o.emArea ? "Cura em área" : "Cura");
 /** Nome interno do cartão (o que as regras de dano e de cura reconhecem). */
 const MODELO_DA_ACAO = (sub: SubAcao, o: Pick<OpcoesAcao, "cura">) => (sub === "cura" ? (o.cura === "reduz" ? "Defesa" : o.cura === "barreira" ? "Barreira" : o.cura === "temp" ? "Proteção" : "Regeneração") : NOME_PADRAO[sub]);
 
@@ -268,7 +295,7 @@ export function novaHabilidade(sub: SubAcao, o: OpcoesAcao, ctx: CtxForma, ppExt
   const r = infoRitmo(ritmo);
   const regra = regraDaAcao(sub, o);
   const cartao: CartaoAcao = { sub, ritmo, atr: o.atr, ...(o.final ? { final: true } : {}), ...(sub === "cura" ? { cura: o.cura ?? "pv", ...(o.emArea ? { emArea: true } : {}) } : {}) };
-  const base: HabForma = { id: "", nome: o.final ? "Técnica final" : NOME_PADRAO[sub], texto: regra, custo: `${r.pr} PR`, acao: r.acao, pr: r.pr, modelo: MODELO_DA_ACAO(sub, o), regra, desc: "", cartao };
+  const base: HabForma = { id: "", nome: o.final ? "Técnica final" : nomeSugerido(sub, o), texto: regra, custo: `${r.pr} PR`, acao: r.acao, pr: r.pr, modelo: MODELO_DA_ACAO(sub, o), regra, desc: "", cartao };
   if (infoSub(sub).dano) {
     const h = { ...base, auto: o.atr };
     const dano = danoDoCartao(h, ctx, ppExtra);
