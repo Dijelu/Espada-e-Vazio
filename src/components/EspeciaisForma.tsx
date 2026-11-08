@@ -3,8 +3,8 @@ import { calcular, type Ficha, type FormaLib, type HabForma } from "../regras/fi
 import { orcamentoDaForma, type CtxForma, type InstEfeito } from "../regras/efeitos-forma";
 import { infoSub, vagasEspeciais, type SubAcao } from "../regras/cartoes";
 import {
-  INTERACOES_GALERIA, TECNICAS, contarForaDeVaga, contarVagas, ehInteracao, ehTecnica, instanciarInteracao, instanciarTecnica, interacaoPorId, interacaoServe, interacoesDe, podeUsarInteracao, tecnicaDe,
-  type DefInteracao, type DefTecnica,
+  GRUPOS_TECNICA, INTERACOES_GALERIA, TECNICAS, contarForaDeVaga, contarVagas, ehInteracao, ehTecnica, instanciarInteracao, instanciarTecnica, interacaoPorId, interacaoServe, interacoesDe, podeUsarInteracao, tecnicaDe,
+  type DefInteracao, type DefTecnica, type GrupoTecnica,
 } from "../regras/especiais";
 import { subDaHab } from "../regras/caracteristicas";
 import { classeDe } from "./EfeitosForma";
@@ -48,6 +48,7 @@ export function TecnicasEspeciais({ f, tipo, r, mud, irParaInteracoes }: Props &
   const minhas = efeitos.filter(ehTecnica);
   const [msg, setMsg] = useState("");
   const [tirando, setTirando] = useState("");
+  const [grupo, setGrupo] = useState<GrupoTecnica | "">("");
   const cheio = contarVagas(efeitos, "tecnica") >= v.tec;
 
   const adicionar = (d: DefTecnica) => {
@@ -95,8 +96,12 @@ export function TecnicasEspeciais({ f, tipo, r, mud, irParaInteracoes }: Props &
         </ul>
       )}
 
+      <div className="filtros-pecas" role="group" aria-label="Grupo de técnicas especiais">
+        <button type="button" className={`chip chip-btn ${grupo === "" ? "on" : ""}`} aria-pressed={grupo === ""} onClick={() => setGrupo("")}>Todas</button>
+        {GRUPOS_TECNICA.map((g) => <button key={g} type="button" className={`chip chip-btn ${grupo === g ? "on" : ""}`} aria-pressed={grupo === g} onClick={() => setGrupo(grupo === g ? "" : g)}>{g}</button>)}
+      </div>
       <div className="cartas-hab galeria-cartoes galeria-especiais galeria-padrao">
-        {TECNICAS.map((d) => {
+        {TECNICAS.filter((d) => !grupo || d.grupo === grupo).map((d) => {
           const repetida = minhas.some((e) => e.espec?.id === d.id);
           const sem = d.pp > orc.livre;
           const travada = repetida || cheio;
@@ -104,7 +109,7 @@ export function TecnicasEspeciais({ f, tipo, r, mud, irParaInteracoes }: Props &
           return (
             <article key={d.id} className={`carta-hab carta-peca carta-neutra carta-especial carta-padrao ${travada || sem ? "travada" : ""}`} data-classe={classeDe(tipo)}>
               <div className="carta-topo">
-                <small className="ajuda">Técnica especial</small>
+                <small className="ajuda">Técnica especial · {d.grupo}</small>
                 <span className="selo-pp">{d.pp}<i>PP</i></span>
               </div>
               <h3>{d.nome}</h3>
@@ -142,6 +147,7 @@ export function InteracoesEspeciais({ f, tipo, r, mud, irParaTecnicas }: Props &
   const [tirando, setTirando] = useState("");
   const [escolha, setEscolha] = useState<Record<string, string>>({});
   const [ligas, setLigas] = useState<Record<string, string>>({});
+  const [paraTec, setParaTec] = useState("");
   const cheio = contarVagas(efeitos, "interacao") >= v.inter;
 
   const acoesDe = (d: Pick<DefInteracao, "vale">) => habs.filter((h: HabForma) => { const s = subDaHab(h); return !!s && d.vale.includes(s); });
@@ -210,8 +216,14 @@ export function InteracoesEspeciais({ f, tipo, r, mud, irParaTecnicas }: Props &
         </ul>
       )}
 
+      <label className="campo campo-filtro">Mostrar as interações que servem à técnica
+        <select value={paraTec} onChange={(e) => setParaTec(e.target.value)}>
+          <option value="">Todas as técnicas</option>
+          {TECNICAS.map((t) => <option key={t.id} value={t.id}>{t.nome}</option>)}
+        </select>
+      </label>
       <div className="cartas-hab galeria-cartoes galeria-especiais galeria-padrao">
-        {INTERACOES_GALERIA.map((d) => {
+        {INTERACOES_GALERIA.filter((d) => !paraTec || d.com.length === 0 || d.com.includes(paraTec)).map((d) => {
           const ts = servem(d);
           const repetida = minhas.some((e) => e.espec?.id === d.id);
           const sem = d.pp > orc.livre;

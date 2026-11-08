@@ -498,7 +498,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
                     {ATRIBUTOS_DANO.map((a) => <option key={a.v} value={a.v}>{a.n}</option>)}
                   </select>
                 </label>
-                <p className="ajuda">Escolha um dos quatro cartões de ação, o ritmo (ação, ação bônus ou reação) e monte. O dano e o custo em PR já vêm prontos. Depois é só escrever, na descrição, como a característica e o tema da sua forma aparecem neste ataque. Vagas: {vagasUsadas(r.habilidades)}/{maxHab}{cheio ? " (remova uma para trocar)" : ""}. A técnica final tem uma vaga extra{temFinal(r.habilidades) ? " (já usada)" : ""}.</p>
+                <p className="ajuda">Escolha um dos seis cartões de ação, o ritmo (ação, ação bônus ou reação) e monte. O dano (quando há) e o custo em PR já vêm prontos. Depois é só escrever, na descrição, como a característica e o tema da sua forma aparecem neste ataque. Vagas: {vagasUsadas(r.habilidades)}/{maxHab}{cheio ? " (remova uma para trocar)" : ""}. A técnica final tem uma vaga extra{temFinal(r.habilidades) ? " (já usada)" : ""}.</p>
                 <GaleriaAcoes tipo={tipo} ctx={ctxAtual} ppExtra={(r.ppExtra ?? 0) > 0} habs={r.habilidades} limite={maxHab} atr={atr} onUsar={addHab} />
                 {r.habilidades.length > 0 && <h4 className="sub-passivas">Seus cartões</h4>}
                 <div className="cartas-hab cartoes-montados">

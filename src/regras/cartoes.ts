@@ -4,11 +4,12 @@ import { calcular, type Atr, type Ficha, type FormaLib, type HabForma } from "./
 import type { CtxForma } from "./efeitos-forma";
 import { analisarDano, danoNoTeto, tipoDeAcao } from "./teto-dano";
 import { habilidadesDaForma, resolverDano } from "./liberacoes";
+import { EFEITOS_REACAO, EFEITOS_SEM_DANO, efeitoDaAcao, temEfeitoEscolhido } from "./acoes-efeito";
 
 /* ---------------- Tipos ---------------- */
 
-/** Os quatro cartões de ação. */
-export type SubAcao = "ataque" | "area" | "cura" | "movimento";
+/** Os cartões de ação: ataque, área, cura ou proteção e investida (com dano ou valor) e os dois sem dano, reação com efeito escolhido e ação sem dano. */
+export type SubAcao = "ataque" | "area" | "cura" | "movimento" | "reacao" | "utilidade";
 /** Quando a ação é usada. */
 export type Ritmo = "acao" | "bonus" | "reacao";
 /** Força de um cartão de efeito. */
@@ -47,6 +48,8 @@ export interface CartaoAcao {
   cura?: CuraTipo;
   /** cartão de cura ou proteção: atinge também os aliados em volta */
   emArea?: boolean;
+  /** cartão de reação com efeito escolhido ou de ação sem dano: o id do efeito escolhido na lista (ver acoes-efeito.ts) */
+  efeito?: string;
 }
 
 /** O que o cartão de cura ou proteção faz. */
@@ -95,6 +98,8 @@ export const SUBS: InfoSub[] = [
   { id: "area", nome: "Área", texto: "Atinge todas as criaturas numa área (salvaguarda de Destreza: metade do dano no sucesso).", fator: 0.85, dano: true, ritmo: "acao" },
   { id: "cura", nome: "Cura ou proteção", texto: "Cura, dá PV temporários ou reduz o dano sofrido por você ou por um aliado.", fator: 1, dano: false, ritmo: "acao" },
   { id: "movimento", nome: "Movimento e ataque", texto: "Você se move em linha reta e ataca no fim do deslocamento.", fator: 0.8, dano: true, ritmo: "acao" },
+  { id: "reacao", nome: "Reação com efeito", texto: "Uma reação sem dano em que você escolhe o efeito: anular uma técnica, trocar de lugar, redirecionar um ataque…", fator: 0, dano: false, ritmo: "reacao" },
+  { id: "utilidade", nome: "Ação sem dano", texto: "Controle, marca ou utilidade: prende, assusta, marca um alvo ou ajuda os aliados.", fator: 0, dano: false, ritmo: "acao" },
 ];
 export const infoSub = (s: SubAcao) => SUBS.find((x) => x.id === s) ?? SUBS[0];
 
@@ -184,7 +189,7 @@ export function marcaDoCartaoAntigo(h: HabForma): CartaoAcao | undefined {
 export function cartaoValido(c: unknown): c is CartaoAcao {
   if (!c || typeof c !== "object") return false;
   const o = c as Record<string, unknown>;
-  return SUBS.some((s) => s.id === o.sub) && RITMOS.some((r) => r.id === o.ritmo) && typeof o.atr === "string";
+  return SUBS.some((s) => s.id === o.sub) && RITMOS.some((r) => r.id === o.ritmo) && typeof o.atr === "string" && (o.efeito === undefined || typeof o.efeito === "string");
 }
 
 /** Números do personagem sem a forma ligada (é com eles que o dano do cartão é conferido). */
@@ -220,6 +225,8 @@ export function cartaoLido(h: HabForma, ctx: CtxForma, ppExtra = false): HabForm
 export function aplicarMudanca(h: HabForma, p: Partial<HabForma>, ctx: CtxForma, ppExtra = false): HabForma {
   const n = { ...h, ...p };
   if (ehCartaoNovo(n)) {
+    // a reação com efeito escolhido é sempre uma reação
+    if (n.cartao!.sub === "reacao") n.acao = infoRitmo("reacao").acao;
     const ritmo = ritmoDeAcao(n.acao);
     const pr = infoRitmo(ritmo).pr;
     return { ...n, cartao: { ...n.cartao!, ritmo }, pr, custo: `${pr} PR` };
@@ -249,7 +256,11 @@ export interface OpcoesAcao {
   atr: string;
   cura?: CuraTipo;
   emArea?: boolean;
+  /** reação com efeito escolhido e ação sem dano: id do efeito na lista (sem ele, vale o primeiro) */
+  efeito?: string;
 }
+
+export { EFEITOS_REACAO, EFEITOS_SEM_DANO };
 
 export const CURAS: { id: CuraTipo; nome: string }[] = [
   { id: "pv", nome: "Cura (recupera PV)" },
@@ -273,6 +284,7 @@ export function rotuloDoValor(h: Pick<HabForma, "cartao" | "modelo">, valor?: st
   const antigo = h.modelo ? CURA_DO_MODELO[h.modelo] : undefined;
   const cura = h.cartao?.sub === "cura" ? h.cartao.cura ?? antigo?.cura ?? "pv" : h.cartao ? undefined : antigo?.cura;
   const emArea = h.cartao?.sub === "cura" ? !!h.cartao.emArea : !!antigo?.emArea;
+  if (h.cartao && temEfeitoEscolhido(h.cartao.sub)) return { rotulo: "Efeito:", valor: efeitoDaAcao(h.cartao.sub, h.cartao.efeito).nome };
   const v = valor ?? "";
   const por = emArea ? " por alvo" : "";
   if (cura === "barreira") return { rotulo: "Barreira", valor: "1 (anula 1 ataque)" };
@@ -284,7 +296,8 @@ export function rotuloDoValor(h: Pick<HabForma, "cartao" | "modelo">, valor?: st
 }
 
 /** O que o cartão faz no jogo (a "regra do cartão"). */
-export function regraDaAcao(sub: SubAcao, o: Pick<OpcoesAcao, "cura" | "emArea">): string {
+export function regraDaAcao(sub: SubAcao, o: Pick<OpcoesAcao, "cura" | "emArea"> & { efeito?: string }): string {
+  if (temEfeitoEscolhido(sub)) return efeitoDaAcao(sub, o.efeito).texto;
   if (sub === "ataque") return "Um ataque contra um único alvo. Causa o dano indicado.";
   if (sub === "area") return "Atinge criaturas numa área de 6 metros de raio. Salvaguarda de Destreza (CD 8 + proficiência + atributo): dano na falha, metade no sucesso.";
   if (sub === "movimento") return "Você se move em linha reta até 12 metros e ataca no fim do deslocamento. Quem estiver no caminho faz salvaguarda de Destreza ou cai no chão.";
@@ -297,19 +310,21 @@ export function regraDaAcao(sub: SubAcao, o: Pick<OpcoesAcao, "cura" | "emArea">
   }
 }
 
-const NOME_PADRAO: Record<SubAcao, string> = { ataque: "Ataque", area: "Golpe em área", cura: "Cura", movimento: "Investida" };
+const NOME_PADRAO: Record<SubAcao, string> = { ataque: "Ataque", area: "Golpe em área", cura: "Cura", movimento: "Investida", reacao: "Reação com efeito", utilidade: "Ação sem dano" };
 /** Nome sugerido da habilidade nova: no cartão de cura ou proteção, o nome segue o que ele faz. */
-const nomeSugerido = (sub: SubAcao, o: Pick<OpcoesAcao, "cura" | "emArea">) => (sub !== "cura" ? NOME_PADRAO[sub] : o.cura === "reduz" ? "Defesa" : o.cura === "barreira" ? "Barreira" : o.cura === "temp" ? "Proteção" : o.emArea ? "Cura em área" : "Cura");
+const nomeSugerido = (sub: SubAcao, o: Pick<OpcoesAcao, "cura" | "emArea"> & { efeito?: string }) => (temEfeitoEscolhido(sub) ? efeitoDaAcao(sub, o.efeito).nome : sub !== "cura" ? NOME_PADRAO[sub] : o.cura === "reduz" ? "Defesa" : o.cura === "barreira" ? "Barreira" : o.cura === "temp" ? "Proteção" : o.emArea ? "Cura em área" : "Cura");
 /** Nome interno do cartão (o que as regras de dano e de cura reconhecem). */
 const MODELO_DA_ACAO = (sub: SubAcao, o: Pick<OpcoesAcao, "cura">) => (sub === "cura" ? (o.cura === "reduz" ? "Defesa" : o.cura === "barreira" ? "Barreira" : o.cura === "temp" ? "Proteção" : "Regeneração") : NOME_PADRAO[sub]);
 
 /** Monta a habilidade nova a partir de um cartão de ação: o dano já vem pronto e o jogador só escreve a descrição. */
 export function novaHabilidade(sub: SubAcao, o: OpcoesAcao, ctx: CtxForma, ppExtra = false): HabForma {
-  const ritmo = o.final ? "acao" : o.ritmo;
+  const ritmo: Ritmo = o.final ? "acao" : sub === "reacao" ? "reacao" : o.ritmo;
   const r = infoRitmo(ritmo);
   const regra = regraDaAcao(sub, o);
-  const cartao: CartaoAcao = { sub, ritmo, atr: o.atr, ...(o.final ? { final: true } : {}), ...(sub === "cura" ? { cura: o.cura ?? "pv", ...(o.emArea ? { emArea: true } : {}) } : {}) };
+  const cartao: CartaoAcao = { sub, ritmo, atr: o.atr, ...(o.final ? { final: true } : {}), ...(sub === "cura" ? { cura: o.cura ?? "pv", ...(o.emArea ? { emArea: true } : {}) } : {}), ...(temEfeitoEscolhido(sub) ? { efeito: efeitoDaAcao(sub, o.efeito).id } : {}) };
   const base: HabForma = { id: "", nome: o.final ? "Técnica final" : nomeSugerido(sub, o), texto: regra, custo: `${r.pr} PR`, acao: r.acao, pr: r.pr, modelo: MODELO_DA_ACAO(sub, o), regra, desc: "", cartao };
+  // reação com efeito escolhido e ação sem dano: sem número, o efeito está na regra do cartão
+  if (temEfeitoEscolhido(sub)) return { ...base, modelo: NOME_PADRAO[sub] };
   if (infoSub(sub).dano) {
     const h = { ...base, auto: o.atr };
     const dano = danoDoCartao(h, ctx, ppExtra);

@@ -568,6 +568,8 @@ export function normalizarEfeitos(raw: unknown): InstEfeito[] {
   return raw.slice(0, LIMITE_PECAS).flatMap((p): InstEfeito[] => {
     if (!p || typeof p !== "object") return [];
     const o = p as Partial<InstEfeito>;
+    // peças dos cartões novos guardam a duração inteira ("até o fim do próximo turno do alvo"); as peças de poder antigas e dos modelos oficiais seguem cortando em 30, como sempre
+    const duracaoMax = o.familia === "carac" || o.familia === "efeito" || o.familia === "tecnica" || o.familia === "interacao" ? 60 : 30;
     const efeitos = (Array.isArray(o.efeitos) ? o.efeitos : []).slice(0, 8).flatMap((e): Efeito[] => {
       if (!e || typeof e !== "object" || !ok.has((e as { k: string }).k)) return [];
       const x = e as Record<string, unknown>;
@@ -610,7 +612,7 @@ export function normalizarEfeitos(raw: unknown): InstEfeito[] {
           if (z.autoDano !== undefined) faz.autoDano = num(z.autoDano);
           if (typeof z.texto === "string") faz.texto = z.texto.slice(0, 300);
           const cd = z.condicao as { nome?: unknown; salva?: unknown; duracao?: unknown } | undefined;
-          if (cd && typeof cd.nome === "string" && cd.nome.trim()) faz.condicao = { nome: cd.nome.slice(0, 30), salva: ATRIBUTOS.includes(cd.salva as Atr) ? (cd.salva as Atr) : undefined, duracao: typeof cd.duracao === "string" ? cd.duracao.slice(0, 30) : undefined };
+          if (cd && typeof cd.nome === "string" && cd.nome.trim()) faz.condicao = { nome: cd.nome.slice(0, 30), salva: ATRIBUTOS.includes(cd.salva as Atr) ? (cd.salva as Atr) : undefined, duracao: typeof cd.duracao === "string" ? cd.duracao.slice(0, duracaoMax) : undefined };
           const d = z.dano as { expr?: unknown; tipo?: unknown; area?: unknown } | undefined;
           if (d && typeof d.expr === "string" && /^[\[\]A-Z0-9d+\-*/(). ]{1,40}$/.test(d.expr)) faz.dano = { expr: d.expr, tipo: String(d.tipo ?? "").slice(0, 30), area: typeof d.area === "string" ? d.area.slice(0, 40) : undefined };
           return [{ k, quando: q, limite: x.limite === "turno" || x.limite === "rodada" || x.limite === "cena" ? x.limite : undefined, faz, rotulo: typeof x.rotulo === "string" ? x.rotulo.slice(0, 80) : undefined }];
@@ -652,7 +654,7 @@ function extrasDoCartao(o: Partial<InstEfeito>): Partial<InstEfeito> {
       forca: n.forca === "medio" || n.forca === "forte" ? n.forca : "leve",
       modo: n.modo === "pronta" ? "pronta" : "livre",
       texto: curto(n.texto, 400),
-      ...(cd && typeof cd.nome === "string" && cd.nome.trim() ? { condicao: { nome: cd.nome.slice(0, 30), salva: ATRIBUTOS.includes(cd.salva as Atr) ? (cd.salva as Atr) : undefined, duracao: curto(cd.duracao, 30) } } : {}),
+      ...(cd && typeof cd.nome === "string" && cd.nome.trim() ? { condicao: { nome: cd.nome.slice(0, 30), salva: ATRIBUTOS.includes(cd.salva as Atr) ? (cd.salva as Atr) : undefined, duracao: curto(cd.duracao, 60) } } : {}),
       onde: curto(n.onde, 60),
       ...(n.modo === "pronta" ? {} : { aval: n.aval === "ok" ? ("ok" as const) : ("pendente" as const) }),
     };

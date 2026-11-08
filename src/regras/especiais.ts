@@ -9,9 +9,14 @@ import { vagasEspeciais, type DadosCarac, type SubAcao } from "./cartoes";
 
 /* ---------------- Catálogo ---------------- */
 
+/** Em que grupo a técnica aparece na galeria (só para a tela). */
+export type GrupoTecnica = "Criaturas" | "Campo e vínculo" | "Marcas e poderes";
+export const GRUPOS_TECNICA: GrupoTecnica[] = ["Criaturas", "Campo e vínculo", "Marcas e poderes"];
+
 export interface DefTecnica {
   id: string;
   nome: string;
+  grupo: GrupoTecnica;
   texto: string;
   /** preço em PP da forma */
   pp: number;
@@ -36,7 +41,7 @@ export interface DefInteracao {
 
 export const TECNICAS: DefTecnica[] = [
   {
-    id: "clones", nome: "Clones", pp: 3,
+    id: "clones", grupo: "Criaturas", nome: "Clones", pp: 3,
     texto: "Cria clones de reiatsu (até metade da proficiência). Têm 1 PV, somem ao ser atingidos e o golpe real chega mesmo se o alvo esquivar do clone. Cria o botão “Criar clones”, que os coloca na aba de invocações.",
     compilar: () => [
       { k: "invoca", nome: "Clone de reiatsu", tipo: "clone", max: "[PROF]/2", pv: 1, cr: "10+[PROF]+[DES]", acerto: "[PROF]+[DES]", dano: "1d8+[PROF]", custoPr: 2, texto: "Some ao ser atingido. O ataque do clone chega atrasado, mesmo que o alvo esquive." },
@@ -44,7 +49,7 @@ export const TECNICAS: DefTecnica[] = [
     ],
   },
   {
-    id: "invocacao", nome: "Invocação", pp: 4,
+    id: "invocacao", grupo: "Criaturas", nome: "Invocação", pp: 4,
     texto: "Chama até 2 criaturas do tema da forma, que atacam por você e somem ao chegar a 0 PV. Cria o botão “Invocar”.",
     compilar: () => [
       { k: "invoca", nome: "Invocação", tipo: "invocacao", max: 2, pv: "[PROF]*2", cr: "10+[PROF]", acerto: "[PROF]+[FOR]", dano: "[PROF]d6", custoPr: 4, texto: "Criatura do tema da forma." },
@@ -52,7 +57,7 @@ export const TECNICAS: DefTecnica[] = [
     ],
   },
   {
-    id: "invocacao-grande", nome: "Invocação grande", pp: 6,
+    id: "invocacao-grande", grupo: "Criaturas", nome: "Invocação grande", pp: 6,
     texto: "Chama uma criatura grande e resistente (só uma por vez). Cria o botão “Invocar criatura grande”.",
     compilar: () => [
       { k: "invoca", nome: "Criatura grande", tipo: "invocacao", max: 1, pv: "[PROF]*6", cr: "12+[PROF]", acerto: "[PROF]+[FOR]", dano: "[PROF]d8+[PROF]", custoPr: 8, texto: "Criatura grande do tema da forma." },
@@ -60,12 +65,36 @@ export const TECNICAS: DefTecnica[] = [
     ],
   },
   {
-    id: "marcar-alvo", nome: "Marcar alvo", pp: 2,
+    id: "invocacao-enxame", grupo: "Criaturas", nome: "Invocação em enxame", pp: 4,
+    texto: "Chama um enxame de criaturas minúsculas, até a proficiência de uma vez. Cada uma tem 1 PV e some ao ser atingida, mas ataca por você. Cria o botão “Chamar o enxame”. Precisa de uma interação do enxame.",
+    compilar: () => [
+      { k: "invoca", nome: "Enxame", tipo: "invocacao", max: "[PROF]", pv: 1, cr: "10+[DES]", acerto: "[PROF]+[DES]", dano: "1d4+[PROF]", custoPr: 1, texto: "Criatura minúscula do tema da forma. Some ao ser atingida." },
+      { k: "gera", botao: { rotulo: "Chamar o enxame", ritmo: "bonus", faz: "invocar" } },
+    ],
+  },
+  {
+    id: "invocacao-regenerativa", grupo: "Criaturas", nome: "Invocação que se regenera", pp: 5,
+    texto: "Chama até 2 criaturas que recuperam PV iguais à proficiência no início do seu turno. Cria o botão “Invocar criatura regenerativa”. Precisa de uma interação da regeneração.",
+    compilar: () => [
+      { k: "invoca", nome: "Criatura regenerativa", tipo: "invocacao", max: 2, pv: "[PROF]*2", cr: "10+[PROF]", acerto: "[PROF]+[FOR]", dano: "[PROF]d6", custoPr: 4, texto: "No início do seu turno, a criatura recupera PV iguais à proficiência." },
+      { k: "gera", botao: { rotulo: "Invocar criatura regenerativa", ritmo: "bonus", faz: "invocar" } },
+    ],
+  },
+  {
+    id: "invocacao-mutavel", grupo: "Criaturas", nome: "Invocação que se transforma", pp: 5,
+    texto: "Chama uma criatura que muda de forma e vira arma ou escudo para você. Só uma por vez. Cria o botão “Invocar criatura mutável”. Precisa de uma interação da transformação.",
+    compilar: () => [
+      { k: "invoca", nome: "Criatura mutável", tipo: "invocacao", max: 1, pv: "[PROF]*3", cr: "11+[PROF]", acerto: "[PROF]+[FOR]", dano: "[PROF]d6", custoPr: 5, texto: "Pode virar arma ou escudo de reiatsu para você (veja as interações)." },
+      { k: "gera", botao: { rotulo: "Invocar criatura mutável", ritmo: "bonus", faz: "invocar" } },
+    ],
+  },
+  {
+    id: "marcar-alvo", grupo: "Marcas e poderes", nome: "Marcar alvo", pp: 2,
     texto: "Ação bônus: marca uma criatura a até 18 metros. O primeiro ataque de cada aliado contra ela no turno causa 1d6 de dano a mais. Cria o botão “Marcar alvo”.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Marcar alvo", ritmo: "bonus", faz: "texto", ref: "1d6" } }],
   },
   {
-    id: "energia", nome: "Ataque com energia", pp: 3,
+    id: "energia", grupo: "Marcas e poderes", nome: "Ataque com energia", pp: 3,
     texto: "Ação bônus: você junta energia (Cero, flecha de reishi, onda de reiatsu) e a sua próxima ação de ataque à distância sai carregada, com +6 metros de alcance. Cria o botão “Juntar energia”.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Juntar energia", ritmo: "bonus", faz: "texto" } }],
   },
@@ -94,6 +123,36 @@ export const INTERACOES: DefInteracao[] = [
       { k: "gera", botao: { rotulo: "Juntar clones à lâmina", ritmo: "bonus", faz: "absorver", ref: "clone" } },
       { k: "liga", com: "clone", faz: "absorver" },
     ],
+  },
+  {
+    id: "lancar-enxame", nome: "Enxame sobre o alvo", pp: 2, com: ["invocacao-enxame"], vale: [],
+    texto: "Ação bônus: o enxame cobre uma criatura a até 18 metros. Ela sofre a proficiência em d4 de dano e faz salvaguarda de Destreza (CD 8 + proficiência + atributo); se falhar, fica com desvantagem nos ataques até o fim do próximo turno dela. Serve à técnica Invocação em enxame. Cria o botão “Lançar o enxame”.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Lançar o enxame", ritmo: "bonus", faz: "texto", ref: "[PROF]d4" } }],
+  },
+  {
+    id: "dispersar-enxame", nome: "Dispersar o enxame", pp: 2, com: ["invocacao-enxame"], vale: [],
+    texto: "Reação: quando um ataque em área atinge você, o enxame se espalha à sua volta e você sofre só metade do dano. Metade das criaturas do enxame some. Serve à técnica Invocação em enxame. Cria o botão “Dispersar o enxame”.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Dispersar o enxame", ritmo: "reacao", faz: "texto" } }],
+  },
+  {
+    id: "regenerar-invocacao", nome: "Regenerar a criatura", pp: 2, com: ["invocacao-regenerativa"], vale: [],
+    texto: "Ação bônus: uma criatura chamada a até 18 metros fecha as feridas e recupera a proficiência em d8 de PV. Serve à técnica Invocação que se regenera. Cria o botão “Regenerar a criatura”.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Regenerar a criatura", ritmo: "bonus", faz: "texto", ref: "[PROF]d8" } }],
+  },
+  {
+    id: "renascer-invocacao", nome: "Renascer das cinzas", pp: 3, com: ["invocacao-regenerativa"], vale: [],
+    texto: "Reação: quando uma criatura chamada chega a 0 PV, ela volta com metade dos PV dela. Só uma vez por cena. Serve à técnica Invocação que se regenera. Cria o botão “Fazer renascer”.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Fazer renascer", ritmo: "reacao", faz: "texto" } }],
+  },
+  {
+    id: "mutavel-arma", nome: "Criatura vira arma", pp: 2, com: ["invocacao-mutavel"], vale: [],
+    texto: "Ação bônus: a criatura chamada vira uma arma de reiatsu na sua mão e o seu próximo ataque no turno causa 1d10 de dano a mais. Serve à técnica Invocação que se transforma. Cria o botão “Criatura vira arma”.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Criatura vira arma", ritmo: "bonus", faz: "texto", ref: "1d10" } }],
+  },
+  {
+    id: "mutavel-escudo", nome: "Criatura vira escudo", pp: 2, com: ["invocacao-mutavel"], vale: [],
+    texto: "Ação bônus: a criatura chamada vira um escudo de reiatsu e você ganha +2 de CR até o início do seu próximo turno. Serve à técnica Invocação que se transforma. Cria o botão “Criatura vira escudo”.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Criatura vira escudo", ritmo: "bonus", faz: "texto" } }],
   },
   {
     id: "reforco", nome: "Reforço", pp: 2, com: [], vale: [],

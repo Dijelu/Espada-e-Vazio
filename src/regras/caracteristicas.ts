@@ -113,6 +113,29 @@ export const CARACS: DefCarac[] = [
     },
   },
   {
+    id: "condicao-escala", nome: "Condição que escala", grupo: "Controle", vale: ["ataque", "area", "movimento"], param: "condicao", rotuloParam: "Condição que o alvo recebe",
+    texto: "Ao acertar com a ação ligada, o alvo recebe uma condição pronta (salvaguarda de Constituição). A cada acerto seguinte no mesmo alvo na cena, a CD sobe 1 (até +3) e a condição dura 1 turno a mais. Custa 1 PP a mais que a condição simples.",
+    pp: (p, ctx) => ppDaForca(faixaDaCondicao(p.condicao ?? "Preso"), ctx.tipo) + 1,
+    compilar: (p) => {
+      const cond = p.condicao ?? "Preso";
+      const fx = faixaDaCondicao(cond);
+      return [
+        { k: "gatilho", quando: "acerto", limite: LIMITE_FORCA[fx], faz: { condicao: { nome: cond, salva: "con", duracao: DURACAO_FORCA[fx] } }, rotulo: `Aplicar ${cond} (escala)` },
+        texto(`Condição que escala (${cond}): a cada acerto seguinte da ação ligada no mesmo alvo na cena, a CD da salvaguarda sobe 1 (até +3) e a condição dura 1 turno a mais.`),
+      ];
+    },
+  },
+  {
+    id: "efeito-critico", nome: "Efeito em crítico", grupo: "Controle", vale: ["ataque", "movimento"], param: "condicao", rotuloParam: "Condição que o alvo recebe no crítico",
+    texto: "Quando a ação ligada acerta um crítico, o alvo recebe a condição escolhida, sem salvaguarda. Custa 1 PP a menos que a condição simples (mínimo 1).",
+    pp: (p, ctx) => Math.max(1, ppDaForca(faixaDaCondicao(p.condicao ?? "Preso"), ctx.tipo) - 1),
+    compilar: (p) => {
+      const cond = p.condicao ?? "Preso";
+      const fx = faixaDaCondicao(cond);
+      return [{ k: "gatilho", quando: "critico", limite: LIMITE_FORCA[fx], faz: { condicao: { nome: cond, duracao: DURACAO_FORCA[fx] } }, rotulo: `Crítico: ${cond}` }];
+    },
+  },
+  {
     id: "cura-no-acerto", nome: "Cura no acerto", grupo: "Apoio", vale: ["ataque", "movimento"],
     texto: "Uma vez por turno, ao acertar com a ação ligada, você recupera PV iguais à proficiência.",
     pp: () => 2, compilar: () => [{ k: "gatilho", quando: "acerto", limite: "turno", faz: { curaPv: "[PROF]" }, rotulo: "Cura no acerto" }],

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { analisarDano, ATR_AUTO, danoNoTeto } from "../regras/teto-dano";
 import { danoDoCartao, danoResolvido, ehCartaoNovo, infoRitmo, infoSub, novaHabilidade, rotuloDoValor, RITMOS, SUBS, vagasUsadas, type CuraTipo, type Ritmo, type SubAcao, CURAS } from "../regras/cartoes";
+import { GRUPOS_SEM_DANO, efeitoDaAcao, efeitosDoCartao, temEfeitoEscolhido, type GrupoSemDano } from "../regras/acoes-efeito";
 import type { CtxForma, InstEfeito } from "../regras/efeitos-forma";
 import { caracsDaAcao } from "../regras/caracteristicas";
 import type { FormaLib, HabForma } from "../regras/ficha";
@@ -37,9 +38,11 @@ const TEXTO_ACAO: Record<SubAcao, { titulo: string; sobre: string }> = {
   area: { titulo: "Área", sobre: "Atinge todos numa área de 6 metros. Cada alvo sofre um pouco menos que num ataque único." },
   cura: { titulo: "Cura ou proteção", sobre: "Cura você ou um aliado, dá PV temporários, reduz um dano ou cria uma barreira." },
   movimento: { titulo: "Movimento e ataque (investida)", sobre: "Você avança em linha reta e ataca no fim. O dano é um pouco menor que o do ataque único." },
+  reacao: { titulo: "Reação com efeito escolhido", sobre: "Uma reação sem dano. Você escolhe o efeito na lista: anular uma técnica, trocar de lugar, redirecionar um ataque…" },
+  utilidade: { titulo: "Ação sem dano", sobre: "Não causa dano. Escolha controle (prende, assusta, cala), marca ou utilidade (ajuda os aliados)." },
 };
 
-/** Os quatro cartões de ação, todos do mesmo tamanho e com o botão na base. O dano e o custo já vêm prontos: o jogador escolhe o ritmo e escreve a descrição visual. A técnica final tem a sua própria seção logo abaixo. */
+/** Os seis cartões de ação, todos do mesmo tamanho e com o botão na base. O dano e o custo já vêm prontos: o jogador escolhe o ritmo e escreve a descrição visual. A técnica final tem a sua própria seção logo abaixo. */
 export function GaleriaAcoes({ tipo, ctx, ppExtra, habs, limite, atr, onUsar }: GaleriaProps) {
   const classe = classeDe(tipo);
   const cheio = vagasUsadas(habs) >= limite;
@@ -59,7 +62,7 @@ export function GaleriaAcoes({ tipo, ctx, ppExtra, habs, limite, atr, onUsar }: 
 
 const nomeLivre = (habs: HabForma[], base: string) => { let n = base, k = 2; while (habs.some((x) => x.nome === n)) n = `${base} ${k++}`; return n; };
 
-/** A linha do valor da ação com o texto certo para o tipo (Dano, Dano por alvo, Cura, PV temporário, Reduz, Barreira). */
+/** A linha do valor da ação com o texto certo para o tipo (Dano, Dano por alvo, Cura, PV temporário, Reduz, Barreira, Efeito). */
 function LinhaValor({ h, ctx }: { h: HabForma; ctx: CtxForma }) {
   const v = rotuloDoValor(h, h.dano ? danoResolvido(h.dano, ctx) : "");
   return <p className="ajuda linha-valor">{v.rotulo} <b>{v.valor}</b></p>;
@@ -69,18 +72,40 @@ function CartaoDeAcao({ sub, classe, ctx, ppExtra, habs, cheio, atr, onUsar }: {
   const [ritmo, setRitmo] = useState<Ritmo>("acao");
   const [cura, setCura] = useState<CuraTipo>("pv");
   const [emArea, setEmArea] = useState(false);
-  const h = novaHabilidade(sub, { ritmo, atr, cura, emArea }, ctx, ppExtra);
+  const [grupo, setGrupo] = useState<GrupoSemDano>("controle");
+  const [efeito, setEfeito] = useState<string>("");
+  const comEfeito = temEfeitoEscolhido(sub);
+  const lista = comEfeito ? efeitosDoCartao(sub, sub === "utilidade" ? grupo : undefined) : [];
+  const efeitoAtual = comEfeito ? (lista.find((e) => e.id === efeito) ?? lista[0]) : undefined;
+  const reacaoFixa = sub === "reacao";
+  const ritmoReal: Ritmo = reacaoFixa ? "reacao" : ritmo;
+  const h = novaHabilidade(sub, { ritmo: ritmoReal, atr, cura, emArea, efeito: efeitoAtual?.id }, ctx, ppExtra);
   return (
     <article className="carta-hab carta-peca carta-neutra carta-acao carta-padrao" data-classe={classe}>
       <div className="carta-topo">
-        <small className="ajuda">{infoRitmo(ritmo).nome}</small>
+        <small className="ajuda">{infoRitmo(ritmoReal).nome}</small>
         <span className="selo-pp">{h.pr}<i>PR</i></span>
       </div>
       <h3>{TEXTO_ACAO[sub].titulo}</h3>
       <p className="texto-carta">{TEXTO_ACAO[sub].sobre}</p>
       <div className="filtros-pecas" role="group" aria-label={`Ritmo de ${TEXTO_ACAO[sub].titulo}`}>
-        {RITMOS.map((r) => <button key={r.id} type="button" className={`chip chip-btn ${ritmo === r.id ? "on" : ""}`} aria-pressed={ritmo === r.id} onClick={() => setRitmo(r.id)}>{r.nome}</button>)}
+        {RITMOS.map((r) => <button key={r.id} type="button" disabled={reacaoFixa && r.id !== "reacao"} className={`chip chip-btn ${ritmoReal === r.id ? "on" : ""}`} aria-pressed={ritmoReal === r.id} onClick={() => setRitmo(r.id)}>{r.nome}</button>)}
       </div>
+      {comEfeito && (
+        <div className="opcoes-carta">
+          {sub === "utilidade" && (
+            <div className="filtros-pecas" role="group" aria-label="Tipo de ação sem dano">
+              {GRUPOS_SEM_DANO.map((g) => <button key={g.id} type="button" className={`chip chip-btn ${grupo === g.id ? "on" : ""}`} aria-pressed={grupo === g.id} onClick={() => { setGrupo(g.id); setEfeito(""); }}>{g.nome}</button>)}
+            </div>
+          )}
+          <label className="campo">Efeito
+            <select value={efeitoAtual?.id ?? ""} onChange={(e) => setEfeito(e.target.value)}>
+              {lista.map((x) => <option key={x.id} value={x.id}>{x.nome}</option>)}
+            </select>
+          </label>
+          <p className="ajuda">{efeitoAtual?.texto}</p>
+        </div>
+      )}
       {sub === "cura" && (
         <div className="opcoes-carta">
           <label className="campo">O que faz
@@ -167,6 +192,14 @@ export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, efeitos, on
   /** cartão feito pelos cartões de ação: dano e custo já vêm prontos */
   const doCartao = ehCartaoNovo(h);
   const nomeSub = h.cartao ? infoSub(h.cartao.sub).nome : "";
+  /** reação com efeito escolhido ou ação sem dano: o efeito vem de uma lista */
+  const comEfeito = !!h.cartao && temEfeitoEscolhido(h.cartao.sub);
+  const efeitoAtual = comEfeito ? efeitoDaAcao(h.cartao!.sub, h.cartao!.efeito) : undefined;
+  const trocarEfeito = (id: string) => {
+    const novo = efeitoDaAcao(h.cartao!.sub, id);
+    const nomeEra = efeitoAtual?.nome;
+    onChange({ cartao: { ...h.cartao!, efeito: novo.id }, regra: novo.texto, texto: comporTexto(h.desc ?? "", novo.texto, h.especial), ...(h.nome === nomeEra || !h.nome ? { nome: novo.nome } : {}) });
+  };
   return (
     <article className={`carta-hab carta-peca carta-montagem carta-padrao ${a?.erros.length ? "carta-estourou" : ""}`} data-classe={classeDe(tipo)}>
       <div className="carta-topo">
@@ -185,9 +218,19 @@ export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, efeitos, on
       {ligados.length > 0 && <div className="marcas-carac" aria-label="Características ligadas">{ligados.map((e) => <span key={e.id} className="chip marca-carac">{e.nome}</span>)}</div>}
       {doCartao && <p className="ajuda tipo-cartao">{nomeSub}{h.cartao?.final ? " · técnica final (vaga extra)" : ""}</p>}
       <div className="filtros-pecas" role="group" aria-label="Tipo de ação">
-        {ACOES.map((x) => <button key={x} type="button" disabled={!!h.cartao?.final} className={`chip chip-btn ${h.acao === x ? "on" : ""}`} aria-pressed={h.acao === x} onClick={() => onChange({ acao: x })}>{x}</button>)}
+        {ACOES.map((x) => <button key={x} type="button" disabled={!!h.cartao?.final || (h.cartao?.sub === "reacao" && x !== "Reação")} className={`chip chip-btn ${h.acao === x ? "on" : ""}`} aria-pressed={h.acao === x} onClick={() => onChange({ acao: x })}>{x}</button>)}
       </div>
-      {doCartao && !h.auto ? (
+      {comEfeito && efeitoAtual ? (
+        <div className="auto-dano">
+          <span className="rotulo-sel">Efeito</span>
+          <label className="campo">Efeito escolhido
+            <select value={efeitoAtual.id} onChange={(e) => trocarEfeito(e.target.value)}>
+              {efeitosDoCartao(h.cartao!.sub).map((x) => <option key={x.id} value={x.id}>{x.nome}</option>)}
+            </select>
+          </label>
+          <p className="ajuda">Não causa dano. O efeito está na regra do cartão. O custo em PR vem do ritmo da ação.</p>
+        </div>
+      ) : doCartao && !h.auto ? (
         <div className="auto-dano">
           <span className="rotulo-sel">{h.dano ? "Valor" : "Efeito"}</span>
           <p className="ajuda">{h.dano || rotuloDoValor(h).rotulo === "Barreira" ? <>{rotuloDoValor(h, h.dano ? resolver(h.dano, ctx) : "").rotulo} <b>{rotuloDoValor(h, h.dano ? resolver(h.dano, ctx) : "").valor}</b></> : "Sem número: o efeito está na regra do cartão."}</p>
