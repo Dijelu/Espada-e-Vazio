@@ -3,8 +3,8 @@ import { dispararLiberacao, precarregarMascaras } from "./EfeitoLiberacao";
 import { useEffect, useState } from "react";
 import { Passo } from "./FichaPecas";
 import type { Rolagens } from "./Rolador";
-import { CONDICAO_TEXTO, CONDICOES, treinoConcluido } from "../regras/catalogo";
-import { Dica, Info } from "./Dica";
+import { treinoConcluido } from "../regras/catalogo";
+import { Info } from "./Dica";
 import { custoBankai, nivelLiberacao } from "../regras/liberacoes";
 import { aplicarFaz } from "../regras/aplicar-faz";
 import { classePorId, type Calculo, type Ficha, type Liberacao } from "../regras/ficha";
@@ -260,19 +260,6 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
           )}
         </div>
       )}
-
-      <details className="condicoes">
-        <summary>Condições {e.condicoes.length > 0 && <span className="chip">{e.condicoes.length}</span>}</summary>
-        <div className="chips">
-          {CONDICOES.map((n) => (
-            <Dica key={n} className="dica-inline" balao={<><b>{n}</b><ul>{(CONDICAO_TEXTO[n] ?? []).map((t, i) => <li key={i}>{t}</li>)}</ul></>}>
-              <button type="button" className={`chip chip-btn ${e.condicoes.includes(n) ? "on" : ""}`} aria-pressed={e.condicoes.includes(n)} onClick={() => setE({ condicoes: e.condicoes.includes(n) ? e.condicoes.filter((x) => x !== n) : [...e.condicoes, n] })}>
-                {n}
-              </button>
-            </Dica>
-          ))}
-        </div>
-      </details>
     </section>
   );
 }

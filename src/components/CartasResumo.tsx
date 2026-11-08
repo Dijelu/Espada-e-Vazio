@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { CONDICAO_TEXTO } from "../regras/catalogo";
+import { CONDICAO_TEXTO, CONDICOES } from "../regras/catalogo";
+import { Dica } from "./Dica";
 import { efeitosContinuos, habilidadesDaFicha, usosRestantes } from "../regras/habilidades";
 import { mod, type Calculo, type Ficha } from "../regras/ficha";
 import { mascaraAtiva } from "../regras/mascara";
@@ -97,13 +98,26 @@ export function EfeitosAtivos({ f, c }: { f: Ficha; c: Calculo }) {
   );
 }
 
-/** Condições que estão afetando o personagem agora, com o texto do livro. */
-export function CondicoesAtivas({ f }: { f: Ficha }) {
+/** Condições que estão afetando o personagem agora, com o texto do livro. É o único lugar para ligar e desligar condições; a faixa de estado só mostra a lista curta com ×. */
+export function CondicoesAtivas({ f, alterar }: { f: Ficha; alterar: (p: Partial<Ficha>) => void }) {
   const lista = f.estado.condicoes;
+  const alternar = (n: string) => alterar({ estado: { ...f.estado, condicoes: lista.includes(n) ? lista.filter((x) => x !== n) : [...lista, n] } });
   return (
     <div className="caixa">
       <h3>Condições</h3>
-      {lista.length === 0 && <p className="ajuda">Nenhuma condição. Marque em Condições, acima, quando algo te afetar; para tirar, toque no × da faixa de estado.</p>}
+      <details className="condicoes">
+        <summary>Adicionar ou tirar condição {lista.length > 0 && <span className="chip">{lista.length}</span>}</summary>
+        <div className="chips">
+          {CONDICOES.map((n) => (
+            <Dica key={n} className="dica-inline" balao={<><b>{n}</b><ul>{(CONDICAO_TEXTO[n] ?? []).map((t, i) => <li key={i}>{t}</li>)}</ul></>}>
+              <button type="button" className={`chip chip-btn ${lista.includes(n) ? "on" : ""}`} aria-pressed={lista.includes(n)} onClick={() => alternar(n)}>
+                {n}
+              </button>
+            </Dica>
+          ))}
+        </div>
+      </details>
+      {lista.length === 0 && <p className="ajuda">Nenhuma condição. Abra o bloco acima e marque quando algo te afetar; para tirar, toque no × da faixa de estado ou marque de novo.</p>}
       {lista.map((n) => (
         <details className="poder-livro" key={n} open>
           <summary>
