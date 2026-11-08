@@ -89,6 +89,26 @@ export const TECNICAS: DefTecnica[] = [
     ],
   },
   {
+    id: "dominio", grupo: "Campo e vínculo", nome: "Domínio (campo)", pp: 5,
+    texto: "Abre um campo de 9 metros de raio em volta de você, que dura até o fim da cena ou até você sair dele. As regras do campo vêm das interações. Cria o botão “Abrir o domínio” (uma ação). Precisa de uma interação do domínio.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Abrir o domínio", ritmo: "acao", faz: "texto" } }],
+  },
+  {
+    id: "vinculo", grupo: "Campo e vínculo", nome: "Vínculo", pp: 4,
+    texto: "Liga você a uma criatura a até 18 metros (ela faz salvaguarda de Mente para resistir). O vínculo dura até o fim da cena e só existe com uma criatura por vez. Cria o botão “Criar vínculo”. Precisa de uma interação do vínculo.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Criar vínculo", ritmo: "bonus", faz: "texto" } }],
+  },
+  {
+    id: "copiar", grupo: "Marcas e poderes", nome: "Copiar poderes", pp: 5,
+    texto: "Reação: ao ver uma criatura usar uma técnica, você copia o poder dela por turnos iguais à proficiência. Cria o botão “Copiar poder”. Precisa de uma interação da cópia.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Copiar poder", ritmo: "reacao", faz: "texto" } }],
+  },
+  {
+    id: "marcar-detonar", grupo: "Marcas e poderes", nome: "Marcar e detonar", pp: 4,
+    texto: "Ação bônus: coloca uma marca de reiatsu numa criatura a até 18 metros (até a proficiência de marcas ao mesmo tempo). As marcas só fazem algo quando você as detona. Cria o botão “Marcar para detonar”. Precisa de uma interação das marcas.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Marcar para detonar", ritmo: "bonus", faz: "texto" } }],
+  },
+  {
     id: "marcar-alvo", grupo: "Marcas e poderes", nome: "Marcar alvo", pp: 2,
     texto: "Ação bônus: marca uma criatura a até 18 metros. O primeiro ataque de cada aliado contra ela no turno causa 1d6 de dano a mais. Cria o botão “Marcar alvo”.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Marcar alvo", ritmo: "bonus", faz: "texto", ref: "1d6" } }],
@@ -153,6 +173,46 @@ export const INTERACOES: DefInteracao[] = [
     id: "mutavel-escudo", nome: "Criatura vira escudo", pp: 2, com: ["invocacao-mutavel"], vale: [],
     texto: "Ação bônus: a criatura chamada vira um escudo de reiatsu e você ganha +2 de CR até o início do seu próximo turno. Serve à técnica Invocação que se transforma. Cria o botão “Criatura vira escudo”.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Criatura vira escudo", ritmo: "bonus", faz: "texto" } }],
+  },
+  {
+    id: "regra-dominio", nome: "Regra do domínio", pp: 3, com: ["dominio"], vale: [],
+    texto: "Ação bônus: você impõe uma regra ao campo enquanto ele durar. Escolha uma: terreno difícil para os inimigos, inimigos com -2 de CR, ou você com vantagem nas salvaguardas dentro dele. Serve à técnica Domínio. Cria o botão “Impor a regra do domínio”.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Impor a regra do domínio", ritmo: "bonus", faz: "texto" } }],
+  },
+  {
+    id: "dominio-fere", nome: "Domínio que fere", pp: 3, com: ["dominio"], vale: [],
+    texto: "No início do seu turno, cada criatura inimiga dentro do campo sofre a proficiência em d4 de dano de Energia. Serve à técnica Domínio.",
+    compilar: () => [{ k: "gatilho", quando: "inicioTurno", faz: { dano: { expr: "[PROF]d4", tipo: "Energia", area: "criaturas inimigas no domínio" } }, rotulo: "Domínio que fere" }],
+  },
+  {
+    id: "vinculo-dano", nome: "Dano compartilhado", pp: 3, com: ["vinculo"], vale: [],
+    texto: "Reação: quando você sofre dano, metade dele passa para a criatura ligada a você, sem resistência. Serve à técnica Vínculo. Cria o botão “Passar o dano”.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Passar o dano", ritmo: "reacao", faz: "texto" } }],
+  },
+  {
+    id: "vinculo-sentidos", nome: "Elo de sentidos", pp: 2, com: ["vinculo"], vale: [],
+    texto: "Ação bônus: você enxerga e ouve pela criatura ligada até o início do seu próximo turno, e ela não consegue se esconder de você. Serve à técnica Vínculo. Cria o botão “Usar o elo”.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Usar o elo", ritmo: "bonus", faz: "texto" } }],
+  },
+  {
+    id: "usar-copia", nome: "Usar o poder copiado", pp: 3, com: ["copiar"], vale: [],
+    texto: "Ação: você usa o poder copiado com o seu atributo de ataque. O custo em PR é o do poder original. Serve à técnica Copiar poderes. Cria o botão “Usar o poder copiado”.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Usar o poder copiado", ritmo: "acao", faz: "texto" } }],
+  },
+  {
+    id: "guardar-copia", nome: "Guardar a cópia", pp: 2, com: ["copiar"], vale: [],
+    texto: "Ação bônus: a cópia passa a durar até o fim da cena, em vez de poucos turnos. Só uma cópia guardada por vez. Serve à técnica Copiar poderes. Cria o botão “Guardar a cópia”.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Guardar a cópia", ritmo: "bonus", faz: "texto" } }],
+  },
+  {
+    id: "detonar-marcas", nome: "Detonar as marcas", pp: 3, com: ["marcar-detonar"], vale: [],
+    texto: "Ação: todas as marcas explodem. Cada criatura marcada faz salvaguarda de Destreza (CD 8 + proficiência + atributo) e sofre a proficiência em d6 de dano de Energia por marca (metade no sucesso). Serve à técnica Marcar e detonar. Cria o botão “Detonar as marcas”.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Detonar as marcas", ritmo: "acao", faz: "texto", ref: "[PROF]d6" } }],
+  },
+  {
+    id: "marcas-acumulam", nome: "Marcas que acumulam", pp: 2, com: ["marcar-detonar"], vale: [],
+    texto: "Ação bônus: soma outra marca na mesma criatura (até 3). Cada marca extra acrescenta 1d6 à detonação. Serve à técnica Marcar e detonar. Cria o botão “Empilhar marca”.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Empilhar marca", ritmo: "bonus", faz: "texto", ref: "1d6" } }],
   },
   {
     id: "reforco", nome: "Reforço", pp: 2, com: [], vale: [],
