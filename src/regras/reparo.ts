@@ -4,7 +4,6 @@ import tecnicasJson from "./tecnicas-reishi.json";
 import { ATRIBUTOS, PERICIAS, calcular, classePorId, liberacaoValida, normalizar, origemPorId, type Atr, type Ficha } from "./ficha";
 import { mascaraAtiva, podeMascara, tempMascara } from "./mascara";
 import { calcularLiberacao } from "./liberacao-forma";
-import { mediaExtraPecas } from "./teto-dano";
 import { SCHRIFTS } from "./schrifts";
 import { normalizarEfeitos } from "./efeitos-forma";
 
@@ -84,7 +83,7 @@ export function repararFicha(bruta: Ficha): Reparo {
     try {
       const k = calcular({ ...f, estado: { ...f.estado, liberado: "" } });
       const base = { n: f.nivel, prof: k.prof, atr: k.atr };
-      const ctx = { ...base, tipo: "bankai" as const, extra: mediaExtraPecas(bk.efeitos ?? [], base) };
+      const ctx = { ...base, tipo: "bankai" as const };
       const cheio = calcularLiberacao("bankai", bk.efeitos ?? [], ctx).custoPr;
       const metade = calcularLiberacao("bankai", bk.efeitos ?? [], ctx, { metadeAntiga: true }).custoPr;
       if (cheio !== null && metade !== null && cheio !== metade && bk.custo === metade) {

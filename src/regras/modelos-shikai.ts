@@ -1,7 +1,7 @@
 import type { FormaLib, HabForma } from "./ficha";
 import { presetPorId } from "./efeitos-presets";
 import { liquidoPecas, orcamentoBase, type CtxForma, type InstEfeito } from "./efeitos-forma";
-import { analisarDano, mediaExtraPecas } from "./teto-dano";
+import { analisarDano } from "./teto-dano";
 import { calcularLiberacao } from "./liberacao-forma";
 
 const novoId = () => (typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : String(Date.now() + Math.random()));
@@ -964,7 +964,7 @@ export function formaDaShikai(m: ModeloShikaiMontado, ctx: CtxForma): Partial<Fo
     if (liquidoPecas([...efeitos, x], total, ctx) <= total) efeitos.push(x);
     else fora.push(x.nome);
   }
-  const cx = { ...ctx, tipo: "shikai", extra: mediaExtraPecas(efeitos, ctx) };
+  const cx = { ...ctx, tipo: "shikai" };
   const habilidades: HabForma[] = m.habilidades.map((h) => {
     const a = h.dano ? analisarDano(h.dano, h.acao, cx, false, (h as { especial?: { condicao: string; duracao: string } }).especial ?? false) : null;
     const pr = a ? a.custoPr : 0;

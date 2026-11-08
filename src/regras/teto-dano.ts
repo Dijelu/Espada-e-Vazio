@@ -1,36 +1,7 @@
 /* Teto de dano das habilidades criadas pelo jogador e custo em PR calculado a partir do dano.
    Referência: o golpe mais forte dos modelos do livro (Golpe em área, 20 PR): (nível/2 + 4) dados de d10 + o maior atributo. */
 import { resolverDano } from "./liberacoes";
-import { valor, type Alvo, type CtxForma, type InstEfeito } from "./efeitos-forma";
-import { alvosDaAcao } from "./dano-acoes-forma";
-import type { HabForma } from "./ficha";
-
-/** Dano médio que as peças da forma somam em cada técnica (dados extras das peças), para entrar na conta do teto. */
-export function mediaExtraPecas(efeitos: InstEfeito[], ctx: CtxForma): number {
-  let t = 0;
-  for (const p of efeitos) for (const e of p.efeitos) {
-    if (e.k !== "dados" || !e.em.includes("tecnica")) continue;
-    const n = valor(e.n, ctx);
-    if (n > 0) t += (n * (e.d + 1)) / 2;
-  }
-  return t;
-}
-
-/**
- * Dano médio que os cartões da forma somam a UMA habilidade (os que valem para o tipo dela: técnica da forma, golpe, Hadō, Cero…).
- * Cada cartão conta uma vez. Vai no lugar de `extra` ao conferir o teto dessa habilidade.
- */
-export function mediaExtraAcao(efeitos: InstEfeito[], ctx: CtxForma, h: Pick<HabForma, "nome" | "acao" | "dano" | "regra" | "texto" | "pr" | "custo"> & { modelo?: string }): number {
-  const alvos: Alvo[] = alvosDaAcao(h, ctx.tipo);
-  if (!alvos.length) return 0;
-  let t = 0;
-  for (const p of efeitos) for (const e of p.efeitos) {
-    if (e.k !== "dados" || !e.em.some((a) => alvos.includes(a))) continue;
-    const n = valor(e.n, ctx);
-    if (n > 0) t += (n * (e.d + 1)) / 2;
-  }
-  return t;
-}
+import type { CtxForma } from "./efeitos-forma";
 
 export type TipoAcao = "acao" | "bonus" | "reacao";
 
@@ -73,7 +44,10 @@ export interface AnaliseDano {
   qtdMax: number;
   facesMax: number;
   bonusMax: number;
+  /** bloqueiam o salvamento */
   erros: string[];
+  /** só informam (não bloqueiam): o dano base digitado passa do teto */
+  avisos: string[];
 }
 
 /** Lê o dano já resolvido ("10d12+5") e soma dados, maior dado e bônus fixo. */
@@ -132,14 +106,15 @@ export function analisarDano(expr: string | undefined, acao: string, ctx: CtxFor
   const custoPr = Math.max(1, Math.min(custoMax, Math.ceil(custoMax * bruto)));
   const qtdMax = qtdMaxDe(ctx, forma.dados, pct);
   const facesMax = especial || forma.dados > 0 || custoPr <= custoMax / 2 ? 12 : 10;
-  const extra = ctx.extra ?? 0;
   const bonusMax = maiorAtr(ctx) + ctx.prof;
   const erros: string[] = [];
   if (qtd > qtdMax) erros.push(`Dados demais: o máximo no seu nível é ${qtdMax} (metade do nível mais 5).`);
   if (faces > facesMax) erros.push(`O d${faces} só vale em ataques baratos (até ${Math.floor(custoMax / 2)} PR). Use d${facesMax} ou menor.`);
   if (fixo > bonusMax) erros.push(`Bônus fixo alto demais: o máximo é ${bonusMax} (maior atributo mais proficiência).`);
-  if (media + extra > teto + 0.01) erros.push(`Dano médio ${Math.round(media + extra)}${extra ? ` (contando os dados extras das peças da forma)` : ""} passa do teto de ${Math.round(teto)} para esta ação no nível ${ctx.n}.`);
-  return { media, teto, custoPr, qtdMax, facesMax, bonusMax, erros };
+  // O teto vale só para o dano BASE da ação. Dados extras de cartões e peças de aumento de dano podem passar dele.
+  const avisos: string[] = [];
+  if (media > teto + 0.01) avisos.push(`O dano base (${Math.round(media)}) está acima do teto de referência (${Math.round(teto)}) para esta ação no nível ${ctx.n}.`);
+  return { media, teto, custoPr, qtdMax, facesMax, bonusMax, erros, avisos };
 }
 
 /** Texto curto para mostrar ao jogador sob o editor de dano. */
@@ -168,7 +143,7 @@ export function danoNoTeto(acao: string, ctx: CtxForma, atr: string, comAval = f
     const k = n - metade;
     const expr = `[NIV/2${k > 0 ? `+${k}` : k < 0 ? String(k) : ""}]d${faces}+[${a0.id}]`;
     const an = analisarDano(expr, acao, ctx, comAval, especial);
-    if (an && an.erros.length === 0 && (ctx.extra ?? 0) + an.media <= an.teto + 0.01 && bonus >= 0) return expr;
+    if (an && an.erros.length === 0 && an.media <= an.teto + 0.01 && bonus >= 0) return expr;
   }
   return null;
 }

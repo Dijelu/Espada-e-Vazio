@@ -2,7 +2,7 @@ import type { FormaLib, HabForma, TipoForma } from "./ficha";
 const novoId = () => (typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : String(Date.now() + Math.random()));
 import { presetPorId } from "./efeitos-presets";
 import type { CtxForma, InstEfeito } from "./efeitos-forma";
-import { analisarDano, mediaExtraPecas } from "./teto-dano";
+import { analisarDano } from "./teto-dano";
 import { calcularLiberacao } from "./liberacao-forma";
 
 export interface HabModelo { nome: string; acao: string; dano: string; regra: string; desc: string; modelo: string; especial?: { condicao: string; duracao: string }; limite?: "cena" | "curto" | "longo"; requisito?: string }
@@ -1764,7 +1764,7 @@ export function formaDoModelo(m: ModeloMontado, qual: "bankai" | "bankai2", ctx:
     const par = { ...(e.param ?? {}) } as never as { atr?: never; tipo?: string; n?: number };
     efeitos.push({ id: novoId(), preset: p.id, nome: nomeDaPeca(p.nome, e.param), texto: p.texto, efeitos: p.monta(par as never), pp: p.pp });
   }
-  const cx = { ...ctx, tipo: qual, extra: mediaExtraPecas(efeitos, ctx) };
+  const cx = { ...ctx, tipo: qual };
   const habilidades: HabForma[] = base.habilidades.map((h) => {
     const a = h.dano ? analisarDano(h.dano, h.acao, cx, false, h.especial ?? false) : null;
     const pr = a ? a.custoPr : 0;

@@ -1313,6 +1313,7 @@ details.painel-hogyoku.discreto>summary{cursor:pointer;min-height:32px;display:f
 .regra-cartao { margin: 0; padding: 8px 10px; border-left: 3px solid var(--cor); background: #0003; border-radius: 4px; font-size: 14px; }
 .carta-estourou { border-color: #c81830 !important; box-shadow: 0 0 14px #c8183044; }
 .teto-dano.estourou { color: #ff9aa6; }
+.aviso-info { opacity: .75; font-size: .85em; margin: 2px 0; }
 
 /* ===== Bankais prontas (modelos montados) ===== */
 .modelos-montados { margin-bottom: 18px; }

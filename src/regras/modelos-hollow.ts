@@ -2,7 +2,7 @@ import type { HabForma } from "./ficha";
 import type { FormaLib } from "./ficha";
 import { presetPorId } from "./efeitos-presets";
 import type { CtxForma, InstEfeito } from "./efeitos-forma";
-import { analisarDano, mediaExtraPecas } from "./teto-dano";
+import { analisarDano } from "./teto-dano";
 import { calcularLiberacao } from "./liberacao-forma";
 
 const novoId = () => (typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : String(Date.now() + Math.random()));
@@ -1461,7 +1461,7 @@ function montar(tipo: "resurreccion" | "segunda", m: ModeloResHollow | ModeloSeg
     if (!p) continue;
     efeitos.push({ id: novoId(), preset: p.id, nome: nomeDaPeca(p.nome, e.param), texto: p.texto, efeitos: p.monta((e.param ?? {}) as never), pp: p.pp });
   }
-  const cx = { ...ctx, tipo, extra: mediaExtraPecas(efeitos, ctx) };
+  const cx = { ...ctx, tipo };
   const habilidades: HabForma[] = m.habilidades.map((h) => {
     const a = !h.fixa && h.dano ? analisarDano(h.dano, h.acao, cx, false, (h as { especial?: { condicao: string; duracao: string } }).especial ?? false) : null;
     const pr = h.fixa ? (h.prFixo ?? 12) : a ? a.custoPr : 0;

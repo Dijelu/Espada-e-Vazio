@@ -93,8 +93,6 @@ export interface CtxForma {
   atr: Record<Atr, number>;
   /** tipo da forma que está sendo montada (muda o teto de dano das habilidades) */
   tipo?: string;
-  /** dano médio extra que as peças da forma somam em cada técnica (conta no teto) */
-  extra?: number;
 }
 
 export const ATR_NOME: Record<Atr, string> = { for: "Força", des: "Destreza", con: "Constituição", men: "Mente", esp: "Espírito" };

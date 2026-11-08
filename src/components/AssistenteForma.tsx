@@ -1,4 +1,4 @@
-import { analisarDano, mediaExtraAcao, mediaExtraPecas } from "../regras/teto-dano";
+import { analisarDano } from "../regras/teto-dano";
 import type { CtxForma } from "../regras/efeitos-forma";
 import { useEffect, useMemo, useState } from "react";
 import { calcular, classePorId, type Ficha, type FormaLib, type HabForma, type TipoForma } from "../regras/ficha";
@@ -223,12 +223,12 @@ function modelos(tipo: TipoForma, atr: string, ctx: CtxForma): HabForma[] {
   /** Deixa o dano do cartão dentro do teto do nível: tira dados e baixa o dado até caber. */
   const caber = (dano: string, acao: string): string => {
     const m = dano.match(/^(.+?)d(\d+)(.*)$/);
-    if (!m || !analisarDano(dano, acao, ctx)?.erros.length) return dano;
+    if (!m || !(() => { const a = analisarDano(dano, acao, ctx); return a && (a.erros.length || a.avisos.length); })()) return dano;
     const contagens = ["[NIV/2+4]", "[NIV/2+3]", "[NIV/2+2]", "[NIV/2+1]", "[NIV/2]", ...Array.from({ length: Math.floor(ctx.n / 2) + 4 }, (_, k) => String(Math.floor(ctx.n / 2) + 4 - k))];
     for (const f of [Number(m[2]), 10, 8, 6].filter((x, i, a) => x <= Number(m[2]) && a.indexOf(x) === i)) {
       for (const c of contagens) {
         const e = `${c}d${f}${m[3]}`;
-        if (!analisarDano(e, acao, ctx)?.erros.length) return e;
+        { const a = analisarDano(e, acao, ctx); if (!a?.erros.length && !a?.avisos.length) return e; }
       }
     }
     return dano;
@@ -267,10 +267,8 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
   const ctxAtual = useMemo(() => {
     const k = calcular({ ...f, estado: { ...f.estado, liberado: "" } });
     const base = { n: f.nivel, prof: k.prof, atr: k.atr };
-    return { ...base, tipo, extra: mediaExtraPecas(r.efeitos ?? [], base) };
+    return { ...base, tipo };
   }, [f, tipo, r.efeitos]);
-  /** o teto de cada habilidade conta só os cartões de dano que valem para ela */
-  const ctxHab = (h: HabForma) => ({ ...ctxAtual, extra: mediaExtraAcao(r.efeitos ?? [], ctxAtual, h) });
   const lib = useMemo(
     () => calcularLiberacao(tipo, [...(r.efeitos ?? [])], ctxAtual, { plena: tipo === "bankai" && f.treinos.caminhoBankai === "plena" }),
     [tipo, r.efeitos, ctxAtual, f.treinos.caminhoBankai],
@@ -336,7 +334,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
   if (tipo === "vollstandig" && usados < limite) erros.push(`Faltam ${limite - usados} habilidade(s) única(s).`);
   if (r.habilidades.length > maxHab) erros.push(`Há habilidades demais: o limite é ${maxHab}.`);
   if (r.habilidades.length === 0) erros.push("Adicione pelo menos uma habilidade ou técnica.");
-  const errosDano = r.habilidades.filter((h) => !h.fixa).flatMap((h) => (analisarDano(h.dano, h.acao, ctxHab(h), (r.ppExtra ?? 0) > 0, h.especial ?? false)?.erros ?? []).map((e) => `${h.nome || "Habilidade"}: ${e}`));
+  const errosDano = r.habilidades.filter((h) => !h.fixa).flatMap((h) => (analisarDano(h.dano, h.acao, ctxAtual, (r.ppExtra ?? 0) > 0, h.especial ?? false)?.erros ?? []).map((e) => `${h.nome || "Habilidade"}: ${e}`));
   erros.push(...errosDano);
   if (tipo === "shikai" && !r.categoria) erros.push("Escolha a categoria.");
   if ((tipo === "bankai" || tipo === "bankai2" || tipo === "resurreccion" || tipo === "segunda") && !r.pontoFraco.trim()) erros.push("Falta o ponto fraco.");
@@ -549,7 +547,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
             {r.habilidades.length > 0 && <h4 className="sub-passivas">Seus cartões</h4>}
             <div className="cartas-hab cartoes-montados">
               {r.habilidades.map((h) => (
-                <CartaoHabilidade key={h.id} h={h} tipo={tipo} ctx={ctxHab(h)} ppExtra={(r.ppExtra ?? 0) > 0} nomeForma={r.nome} onChange={(p) => habil(h.id, p)} onRemover={() => mud({ habilidades: r.habilidades.filter((x) => x.id !== h.id) })} />
+                <CartaoHabilidade key={h.id} h={h} tipo={tipo} ctx={ctxAtual} ppExtra={(r.ppExtra ?? 0) > 0} nomeForma={r.nome} onChange={(p) => habil(h.id, p)} onRemover={() => mud({ habilidades: r.habilidades.filter((x) => x.id !== h.id) })} />
               ))}
             </div>
           </>

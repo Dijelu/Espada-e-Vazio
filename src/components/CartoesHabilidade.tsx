@@ -71,13 +71,13 @@ interface CartaoProps {
 /** Cartão de habilidade já montado: nome, ação, dano, custo calculado e a descrição do jogador. */
 export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, onChange, onRemover }: CartaoProps) {
   const a = h.fixa ? null : analisarDano(h.dano, h.acao, ctx, ppExtra, h.especial ?? false);
-  // ataque automático: o dano acompanha o teto (nível, tipo de ação, técnica especial e dados extras das peças)
+  // ataque automático: o dano acompanha o teto (nível, tipo de ação, técnica especial; os dados extras dos cartões não entram)
   const chaveAtr = JSON.stringify(ctx.atr);
   useEffect(() => {
     if (!h.auto || h.fixa) return;
     const d = danoNoTeto(h.acao, ctx, h.auto, ppExtra, h.especial ?? false);
     if (d && d !== h.dano) onChange({ dano: d });
-  }, [h.auto, h.fixa, h.acao, h.dano, h.especial?.condicao, h.especial?.duracao, ctx.n, ctx.prof, ctx.extra, ctx.tipo, chaveAtr, ppExtra]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [h.auto, h.fixa, h.acao, h.dano, h.especial?.condicao, h.especial?.duracao, ctx.n, ctx.prof, ctx.tipo, chaveAtr, ppExtra]); // eslint-disable-line react-hooks/exhaustive-deps
   const pct = pctEspecial(h.especial);
   const novo = h.regra !== undefined || h.desc !== undefined;
   const regra = h.regra ?? "";
