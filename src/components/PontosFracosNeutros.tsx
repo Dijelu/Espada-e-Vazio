@@ -113,7 +113,7 @@ function CartaoFraco({ forca, tipo, classe, onAdicionar }: { forca: Forca; tipo:
   return (
     <article className="carta-hab carta-peca carta-neutra carta-efeito carta-fraco carta-padrao" data-classe={classe} data-forca={forca}>
       <div className="carta-topo">
-        <small className="ajuda">{forca === "forte" ? "fora do limite de um terço" : "dentro do limite de um terço"}</small>
+        <small className="ajuda">{forca === "forte" ? "fora do teto de 1/3" : "dentro do teto de 1/3"}</small>
         <span className="selo-pp">+{pp}<i>PP</i></span>
       </div>
       <h3>{NOME_FRACO[forca]}</h3>
