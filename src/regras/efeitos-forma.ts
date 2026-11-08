@@ -19,7 +19,7 @@ export const ALVOS: { id: Alvo; nome: string }[] = [
 /** "Ataques armados, podendo ser kidōs": golpes, disparos e Hadō. */
 export const ARMADOS: Alvo[] = ["golpe", "disparo", "hado"];
 
-import type { DadosCarac, DadosEfeitoNeutro, DadosEspecial, FamiliaCartao, Ritmo } from "./cartoes";
+import type { DadosCarac, DadosEfeitoNeutro, DadosFracoNeutro, DadosEspecial, FamiliaCartao, Ritmo } from "./cartoes";
 import { especialFunciona } from "./especiais";
 
 export type Num = number | string;
@@ -96,6 +96,8 @@ export interface InstEfeito {
   familia?: FamiliaCartao;
   carac?: DadosCarac;
   efeitoNeutro?: DadosEfeitoNeutro;
+  /** cartão de ponto fraco leve, médio ou forte (familia "fraco") */
+  fracoNeutro?: DadosFracoNeutro;
   /** técnica especial ou interação especial (familia "tecnica" ou "interacao") */
   espec?: DadosEspecial;
 }
@@ -571,7 +573,7 @@ export function normalizarEfeitos(raw: unknown): InstEfeito[] {
     if (!p || typeof p !== "object") return [];
     const o = p as Partial<InstEfeito>;
     // peças dos cartões novos guardam a duração inteira ("até o fim do próximo turno do alvo"); as peças de poder antigas e dos modelos oficiais seguem cortando em 30, como sempre
-    const duracaoMax = o.familia === "carac" || o.familia === "efeito" || o.familia === "tecnica" || o.familia === "interacao" ? 60 : 30;
+    const duracaoMax = o.familia === "carac" || o.familia === "efeito" || o.familia === "fraco" || o.familia === "tecnica" || o.familia === "interacao" ? 60 : 30;
     const efeitos = (Array.isArray(o.efeitos) ? o.efeitos : []).slice(0, 8).flatMap((e): Efeito[] => {
       if (!e || typeof e !== "object" || !ok.has((e as { k: string }).k)) return [];
       const x = e as Record<string, unknown>;
@@ -622,7 +624,7 @@ export function normalizarEfeitos(raw: unknown): InstEfeito[] {
       }
       return [];
     });
-    return [{ id: String(o.id ?? Math.random().toString(36).slice(2, 9)).slice(0, 40), preset: typeof o.preset === "string" ? o.preset : undefined, nome: String(o.nome ?? "Efeito").slice(0, 80), texto: typeof o.texto === "string" ? o.texto.slice(0, 300) : undefined, efeitos, pp: typeof o.pp === "number" && Number.isFinite(o.pp) ? Math.max(-3, Math.min(20, Math.round(o.pp))) : undefined, confirmado: o.confirmado === true, ...extrasDoCartao(o) }];
+    return [{ id: String(o.id ?? Math.random().toString(36).slice(2, 9)).slice(0, 40), preset: typeof o.preset === "string" ? o.preset : undefined, nome: String(o.nome ?? "Efeito").slice(0, 80), texto: typeof o.texto === "string" ? o.texto.slice(0, 300) : undefined, efeitos, pp: typeof o.pp === "number" && Number.isFinite(o.pp) ? Math.max(o.familia === "fraco" ? -9 : -3, Math.min(20, Math.round(o.pp))) : undefined, confirmado: o.confirmado === true, ...extrasDoCartao(o) }];
   });
 }
 
@@ -632,7 +634,7 @@ const curto = (v: unknown, n: number) => (typeof v === "string" ? v.slice(0, n) 
 /** Campos dos cartões de característica e de efeito (opcionais; peça de poder antiga não tem nenhum). */
 function extrasDoCartao(o: Partial<InstEfeito>): Partial<InstEfeito> {
   const out: Partial<InstEfeito> = {};
-  if (o.familia === "carac" || o.familia === "efeito" || o.familia === "tecnica" || o.familia === "interacao") out.familia = o.familia;
+  if (o.familia === "carac" || o.familia === "efeito" || o.familia === "fraco" || o.familia === "tecnica" || o.familia === "interacao") out.familia = o.familia;
   const sp = o.espec as unknown as Record<string, unknown> | undefined;
   if ((o.familia === "tecnica" || o.familia === "interacao") && sp && typeof sp === "object" && typeof sp.id === "string" && sp.id) {
     out.espec = { id: sp.id.slice(0, 40), ...(typeof sp.tec === "string" && sp.tec ? { tec: sp.tec.slice(0, 40) } : {}), ...(sp.auto === true ? { auto: true } : {}), ...(sp.antiga === true ? { antiga: true } : {}), ...(sp.legado === true || (sp.antiga !== true && sp.auto !== true && typeof o.pp === "number" && o.pp > 0) ? { legado: true } : {}) };
@@ -649,6 +651,19 @@ function extrasDoCartao(o: Partial<InstEfeito>): Partial<InstEfeito> {
       ...(Array.isArray(c.requer) ? { requer: c.requer.filter((x): x is string => typeof x === "string").slice(0, 6).map((x) => x.slice(0, 40)) } : {}),
     };
   }
+  const fz = o.fracoNeutro as unknown as Record<string, unknown> | undefined;
+  if (o.familia === "fraco" && fz && typeof fz === "object") {
+    out.fracoNeutro = {
+      forca: fz.forca === "medio" || fz.forca === "forte" ? fz.forca : "leve",
+      modo: fz.modo === "pronta" ? "pronta" : "livre",
+      ...(typeof fz.prejuizo === "string" && fz.prejuizo ? { prejuizo: fz.prejuizo.slice(0, 40) } : {}),
+      ...(typeof fz.param === "string" && fz.param.trim() ? { param: fz.param.slice(0, 40) } : {}),
+      texto: curto(fz.texto, 400),
+      onde: curto(fz.onde, 60),
+      ...(fz.modo === "pronta" ? {} : { aval: fz.aval === "ok" ? ("ok" as const) : ("pendente" as const) }),
+      devolve: typeof fz.devolve === "number" && Number.isFinite(fz.devolve) ? Math.max(1, Math.min(9, Math.round(fz.devolve))) : 2,
+    };
+  } else if (o.familia === "fraco") delete out.familia;
   const n = o.efeitoNeutro as unknown as Record<string, unknown> | undefined;
   if (n && typeof n === "object") {
     const cd = n.condicao as { nome?: unknown; salva?: unknown; duracao?: unknown } | undefined;

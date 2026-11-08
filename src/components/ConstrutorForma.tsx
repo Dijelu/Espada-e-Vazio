@@ -12,7 +12,8 @@ import { shikaiExigida, temAShikai } from "../regras/bankai-exige-shikai";
 import { ModelosHollow } from "./ModelosHollow";
 import { ModelosShikai } from "./ModelosShikai";
 import { calcularLiberacao } from "../regras/liberacao-forma";
-import { EfeitosForma, EscolhaAtributos } from "./EfeitosForma";
+import { EscolhaAtributos } from "./EfeitosForma";
+import { PontosFracosNeutros } from "./PontosFracosNeutros";
 import { SeletorDano } from "./SeletorFormula";
 import { Icone } from "./Icone";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -443,7 +444,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
               <label className="campo">Ponto fraco<textarea rows={2} value={r.pontoFraco} onChange={(e) => mud({ pontoFraco: e.target.value })} placeholder="Um preço ou vulnerabilidade da forma" /></label>
             )}
 
-            <EfeitosForma f={f} tipo={tipo} r={r} mud={mud} onGravar={onGravar} modo="fracos" />
+            <PontosFracosNeutros f={f} tipo={tipo} r={r} mud={mud} />
           </div>
         )}
       </div>

@@ -4,7 +4,8 @@ import type { CtxForma } from "../regras/efeitos-forma";
 import { useEffect, useMemo, useState } from "react";
 import { calcular, classePorId, type Ficha, type FormaLib, type HabForma, type TipoForma } from "../regras/ficha";
 import { ACOES_DADOS, HAB_UNICAS, habilidadesDaForma, TIPO_FORMA_NOME, VOLL_PASSIVAS, picksVoll, totalPicks } from "../regras/liberacoes";
-import { EfeitosForma, EscolhaAtributos } from "./EfeitosForma";
+import { EscolhaAtributos } from "./EfeitosForma";
+import { PontosFracosNeutros } from "./PontosFracosNeutros";
 import { CartaoHabilidade, GaleriaAcoes } from "./CartoesHabilidade";
 import { MontagemCartoes } from "./MontagemCartoes";
 import { faltasEspeciais } from "../regras/especiais";
@@ -538,7 +539,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
 
         {passo.id === "fraqueza" && (
           <>
-            <EfeitosForma f={f} tipo={tipo} r={r} mud={mud} onGravar={onGravar} modo="fracos" />
+            <PontosFracosNeutros f={f} tipo={tipo} r={r} mud={mud} />
             <label className="campo">Ponto fraco, com as suas palavras
               <textarea rows={3} value={r.pontoFraco} onChange={(e) => mud({ pontoFraco: e.target.value })} placeholder="Como esse preço aparece na história e na mesa" />
             </label>

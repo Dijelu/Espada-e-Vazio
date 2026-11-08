@@ -19,7 +19,7 @@ export type Forca = "leve" | "medio" | "forte";
  * Peça de poder (de sempre), cartão de característica (genérico), cartão de efeito, técnica especial ou interação especial.
  * Sem o campo, é peça de poder. Ação e característica se ligam de forma opcional; técnica e interação especial, de forma obrigatória.
  */
-export type FamiliaCartao = "peca" | "carac" | "efeito" | "tecnica" | "interacao";
+export type FamiliaCartao = "peca" | "carac" | "efeito" | "tecnica" | "interacao" | "fraco";
 
 /** Dados de uma técnica especial ou de uma interação especial (ver especiais.ts). */
 export interface DadosEspecial {
@@ -81,6 +81,21 @@ export interface DadosEfeitoNeutro {
   condicao?: { nome: string; salva?: Atr; duracao?: string };
   onde?: string;
   aval?: "pendente" | "ok";
+}
+
+/** Cartão de ponto fraco leve, médio ou forte: um prejuízo pronto da faixa ou um texto livre que o Mestre aprova. Devolve pontos para a forma (leve 2, médio 4, forte 6; na Shikai 1, 2 e 4). */
+export interface DadosFracoNeutro {
+  forca: Forca;
+  modo: "livre" | "pronta";
+  /** id do prejuízo pronto (fracos-neutros.ts) */
+  prejuizo?: string;
+  /** o valor que o jogador digitou no prejuízo pronto que pede um tipo (ex.: o tipo de dano a que fica vulnerável) */
+  param?: string;
+  texto?: string;
+  onde?: string;
+  aval?: "pendente" | "ok";
+  /** quanto o cartão devolve, guardado na criação (mudar a tabela não mexe nas fichas salvas) */
+  devolve: number;
 }
 
 /* ---------------- Catálogo ---------------- */
