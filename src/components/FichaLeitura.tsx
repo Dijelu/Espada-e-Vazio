@@ -1,14 +1,15 @@
 /* Ficha completa em modo somente leitura: o Mestre vê tudo o que o jogador montou, sem poder alterar nada. */
 import { useMemo, type ReactNode } from "react";
-import { somarDadosGolpe } from "../regras/mascara";
 import { acertoClasse, danosDaClasse } from "../regras/danos-classe";
 import { CONDICAO_TEXTO, KIDOS, TALENTOS, talentosDe, type Talento } from "../regras/catalogo";
 import { HAB_UNICAS, TIPO_FORMA_NOME, danoDaAcao, liberacaoDaForma, resolverDano } from "../regras/liberacoes";
 import { habilidadesLidas } from "../regras/cartoes";
 import { ataqueMelhorado } from "../regras/melhorias";
+import { armaEfetiva, ataqueDaArma, caracsEfetivas, danoDoAtaque, golpeBasicoLiberado } from "../regras/arma-forma";
+import { ArmaDaForma } from "./EscolhaArmaForma";
 import { mascaraAtiva } from "../regras/mascara";
 import {
-  ATRIBUTOS, PERICIAS, ataqueBonus, ataquesPorAcao, calcular, classePorId, danoAtributo, mod, partesOrigem,
+  ATRIBUTOS, PERICIAS, ataqueBonus, ataquesPorAcao, calcular, classePorId, mod, partesOrigem,
   type Ataque, type Calculo, type Ficha, type FormaLib, type HabForma, type TipoForma,
 } from "../regras/ficha";
 
@@ -17,14 +18,7 @@ const NOME_LIBERACAO: Record<string, string> = { terror: "Segunda Etapa", mascar
 const LIMITE_NOME = { cena: "1 por cena", curto: "1 por descanso curto", longo: "1 por descanso longo" } as const;
 
 /** Dano final de um ataque cadastrado (mesma conta da página da ficha). */
-function danoFinal(f: Ficha, a: Ataque, c: Calculo) {
-  const dano = a.distancia ? ataqueMelhorado(f, a).dano : somarDadosGolpe(ataqueMelhorado(f, a).dano, c.dadosGolpeMascara);
-  if (!dano.trim()) return dano;
-  const atr = danoAtributo(c, a);
-  const geral = c.danoGeral > 0 ? `+${c.danoGeral}` : "";
-  if (a.distancia) return dano + atr + geral + (c.danoDisparo > 0 ? `+${c.danoDisparo}` : "") + c.danoDadosDisparo.map((d) => `+${d}`).join("");
-  return dano + atr + geral + (c.danoCorpo > 0 ? `+${c.danoCorpo}` : "") + c.danoDados.map((d) => `+${d}`).join("");
-}
+const danoFinal = danoDoAtaque;
 
 /** Acha o talento pelo id (o Tokubetsu guarda "classe/id" dos talentos emprestados). */
 function acharTalento(classe: string, id: string): Talento | undefined {
@@ -84,6 +78,8 @@ function Habilidade({ f, c, forma, h }: { f: Ficha; c: Calculo; forma: FormaLib;
 function Forma({ f, c, forma }: { f: Ficha; c: Calculo; forma: FormaLib }) {
   const ativa = f.estado.liberado === liberacaoDaForma(forma.tipo);
   const habs = habilidadesLidas(forma, f);
+  const armaLida = armaEfetiva(f, forma);
+  const golpeLido = golpeBasicoLiberado(armaLida) ? ataqueDaArma(armaLida, c) : undefined;
   return (
     <article className={`ficha-leitura-forma ${ativa ? "ativa" : ""}`}>
       <small>
@@ -98,6 +94,11 @@ function Forma({ f, c, forma }: { f: Ficha; c: Calculo; forma: FormaLib }) {
         {forma.duracao && <span>Duração <b>{forma.duracao}</b></span>}
         {forma.preRequisito && <span>Pré-requisito: {forma.preRequisito}</span>}
       </div>
+      {armaLida && (
+        <div className="ficha-leitura-arma">
+          <ArmaDaForma arma={armaLida} caracs={caracsEfetivas(f, forma)} extra={golpeLido && <p className="ajuda ac-res">Golpe básico: acerto <b>{mod(ataqueBonus(f, c, golpeLido))}</b> · dano <b>{danoDoAtaque(f, golpeLido, c) || "—"}</b></p>} />
+        </div>
+      )}
       {forma.aparencia && <p>{forma.aparencia}</p>}
       {forma.espirito && <p><b>Espírito:</b> {forma.espirito}</p>}
       {forma.traco && <p className="quebra"><b>{forma.traco.includes("\n") ? "Traços" : "Traço"}:</b>{forma.traco.includes("\n") ? "\n" : " "}{forma.traco}</p>}

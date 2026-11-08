@@ -9,6 +9,7 @@ import {
 import { FAIXA_CONDICAO, LIMITE_TEXTO, condicoesDaFaixa } from "../regras/faixas-condicao";
 import { classeDe } from "./EfeitosForma";
 import { Info } from "./Dica";
+import { faltaDaPeca, liberadoPelaArma, textoPrecisa, type ArmaCtx } from "../regras/arma-forma";
 
 const novoId = () => `fx-${Math.random().toString(36).slice(2, 9)}`;
 const nomesVale = (vale: SubAcao[]) => vale.map((s) => infoSub(s).nome).join(", ");
@@ -18,6 +19,8 @@ interface Props {
   tipo: FormaLib["tipo"];
   r: FormaLib;
   mud: (p: Partial<FormaLib>) => void;
+  /** a arma da forma: cartões que pedem uma característica que ela não tem ficam apagados, com o motivo */
+  arma?: ArmaCtx;
 }
 
 /** Valor do seletor "Ligar a": "final", "todas" ou "uma:<id da ação>". */
@@ -25,7 +28,7 @@ const lerLiga = (v: string): { liga: Liga; acao?: string } => (v === "final" ? {
 const valorLiga = (c: NonNullable<InstEfeito["carac"]>) => (c.liga === "final" ? "final" : c.liga === "uma" ? `uma:${c.acao ?? ""}` : "todas");
 
 /** Cartões de característica neutros: poderes que se ligam à técnica final, a uma ação ou a todas as ações compatíveis. */
-export function CaracteristicasForma({ f, tipo, r, mud }: Props) {
+export function CaracteristicasForma({ f, tipo, r, mud, arma }: Props) {
   const c = useMemo(() => calcular({ ...f, estado: { ...f.estado, liberado: "" } }), [f]);
   const ctx: CtxForma = { n: f.nivel, prof: c.prof, atr: c.atr, tipo };
   const forcas = forcasDoTipo(tipo);
@@ -52,6 +55,8 @@ export function CaracteristicasForma({ f, tipo, r, mud }: Props) {
     const alvo = d.vale.length === 0 ? { liga: "todas" as Liga } : lerLiga(ligas[d.id] ?? padrao);
     const inst = instanciarCarac(d, p, alvo, ctx, novoId());
     const custo = custoPeca(inst, ctx);
+    const lib = liberadoPelaArma(arma, d.armaReq);
+    if (!lib.ok) { setMsg(`${d.nome}: ${textoPrecisa(lib.falta)}.`); return; }
     if (custo > orc.livre) { setMsg(`Faltam ${custo - orc.livre} PP para ${d.nome}.`); return; }
     if (d.unica && efeitos.some((e) => e.carac?.id === d.id)) { setMsg(`${d.nome} só pode entrar uma vez.`); return; }
     setMsg(`${inst.nome} entrou na forma (${custo} PP).`);
@@ -75,6 +80,7 @@ export function CaracteristicasForma({ f, tipo, r, mud }: Props) {
             const def = CARACS.find((d) => d.id === e.carac?.id);
             const onde = ondeLiga(e, habs);
             const custo = custoPeca(e, ctx);
+            const faltaArma = faltaDaPeca(e, arma);
             const ok = def ? habs.filter((h) => acaoAceita(def, h)) : [];
             return (
               <li key={e.id} className={`${e.confirmado ? "travado" : ""} ${onde.solto ? "solto" : ""}`}>
@@ -91,6 +97,7 @@ export function CaracteristicasForma({ f, tipo, r, mud }: Props) {
                       </select>
                     </label>
                   ) : <p className="ajuda">Vale para a forma toda.</p>}
+                  {faltaArma.length > 0 && <p className="aviso-mini aviso-arma">A arma da forma mudou: este cartão {textoPrecisa(faltaArma)}. Ele continua aqui, mas o Mestre confere.</p>}
                   {onde.solto && e.carac && e.carac.vale.length > 0 && <p className="aviso-mini">Solto: {onde.texto}. Ligue a outra ação para ele valer.</p>}
                 </div>
                 {tirando === e.id ? (
@@ -123,7 +130,8 @@ export function CaracteristicasForma({ f, tipo, r, mud }: Props) {
           const custo = custoPeca(inst, ctx);
           const sem = custo > orc.livre;
           const repetida = !!d.unica && efeitos.some((e) => e.carac?.id === d.id);
-          const travada = semAcao || faltam.length > 0 || repetida;
+          const lib = liberadoPelaArma(arma, d.armaReq);
+          const travada = semAcao || faltam.length > 0 || repetida || !lib.ok;
           return (
             <article key={d.id} className={`carta-hab carta-peca carta-neutra carta-carac carta-padrao ${travada || sem ? "travada" : ""}`} data-classe={classeDe(tipo)} data-cat={d.grupo.toLowerCase()}>
               <div className="carta-topo">
@@ -178,10 +186,11 @@ export function CaracteristicasForma({ f, tipo, r, mud }: Props) {
               )}
               {semAcao && <p className="aviso-mini">Monte antes uma ação de {nomesVale(d.vale).toLowerCase()}.</p>}
               {faltam.length > 0 && <p className="aviso-mini">Precisa antes de: {faltam.map((x) => x.nome).join(", ")}.</p>}
+              {!lib.ok && <p className="aviso-mini aviso-arma">{`${textoPrecisa(lib.falta)}`.replace(/^./, (x) => x.toUpperCase())}.</p>}
               </div>
               <div className="rodape-carta">
                 <button type="button" className="btn-mini" disabled={travada || sem} onClick={() => adicionar(d)}>
-                  {repetida ? "Já está na forma" : travada ? "Indisponível" : sem ? "Pontos insuficientes" : "Adicionar"}
+                  {repetida ? "Já está na forma" : !lib.ok ? "Bloqueado pela arma" : travada ? "Indisponível" : sem ? "Pontos insuficientes" : "Adicionar"}
                 </button>
               </div>
             </article>

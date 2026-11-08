@@ -9,6 +9,7 @@ import { classeDe } from "./EfeitosForma";
 import { resolverDano } from "../regras/liberacoes";
 import { SeletorDano } from "./SeletorFormula";
 import { Info } from "./Dica";
+import { faltaDaHab, liberadoPelaArma, textoPrecisa, type ArmaCtx } from "../regras/arma-forma";
 
 const ACOES = ["Ação", "Ação bônus", "Reação"];
 
@@ -31,7 +32,12 @@ interface GaleriaProps {
   /** atributo do bônus do dano */
   atr: string;
   onUsar: (h: HabForma) => void;
+  /** a arma da forma: cartões que pedem uma característica que ela não tem ficam apagados, com o motivo */
+  arma?: ArmaCtx;
 }
+
+/** "Precisa de: contato ou corrente." */
+const frasePrecisa = (falta: string[]) => { const t = textoPrecisa(falta); return `${t[0].toUpperCase()}${t.slice(1)}.`; };
 
 const TEXTO_ACAO: Record<SubAcao, { titulo: string; sobre: string }> = {
   ataque: { titulo: "Ataque em alvo único", sobre: "Um golpe, um tiro, um corte. Atinge um alvo só e causa o dano cheio." },
@@ -43,19 +49,19 @@ const TEXTO_ACAO: Record<SubAcao, { titulo: string; sobre: string }> = {
 };
 
 /** Os seis cartões de ação, todos do mesmo tamanho e com o botão na base. O dano e o custo já vêm prontos: o jogador escolhe o ritmo e escreve a descrição visual. A técnica final tem a sua própria seção logo abaixo. */
-export function GaleriaAcoes({ tipo, ctx, ppExtra, habs, limite, atr, onUsar }: GaleriaProps) {
+export function GaleriaAcoes({ tipo, ctx, ppExtra, habs, limite, atr, onUsar, arma }: GaleriaProps) {
   const classe = classeDe(tipo);
   const cheio = vagasUsadas(habs) >= limite;
   return (
     <>
       <div className="cartas-hab galeria-cartoes galeria-acoes galeria-padrao">
-        {SUBS.map((s) => <CartaoDeAcao key={s.id} sub={s.id} classe={classe} ctx={ctx} ppExtra={ppExtra} habs={habs} cheio={cheio} atr={atr} onUsar={onUsar} />)}
+        {SUBS.map((s) => <CartaoDeAcao key={s.id} sub={s.id} classe={classe} ctx={ctx} ppExtra={ppExtra} habs={habs} cheio={cheio} atr={atr} onUsar={onUsar} arma={arma} />)}
       </div>
       <table className="tabela-pr">
         <caption>Quanto cada ação custa em PR</caption>
         <tbody>{RITMOS.map((r) => <tr key={r.id}><th scope="row">{r.nome}</th><td>{r.pr} PR</td></tr>)}</tbody>
       </table>
-      <SecaoTecnicaFinal classe={classe} ctx={ctx} ppExtra={ppExtra} habs={habs} atr={atr} onUsar={onUsar} />
+      <SecaoTecnicaFinal classe={classe} ctx={ctx} ppExtra={ppExtra} habs={habs} atr={atr} onUsar={onUsar} arma={arma} />
     </>
   );
 }
@@ -68,7 +74,7 @@ function LinhaValor({ h, ctx }: { h: HabForma; ctx: CtxForma }) {
   return <p className="ajuda linha-valor">{v.rotulo} <b>{v.valor}</b></p>;
 }
 
-function CartaoDeAcao({ sub, classe, ctx, ppExtra, habs, cheio, atr, onUsar }: { sub: SubAcao; classe: string; ctx: CtxForma; ppExtra: boolean; habs: HabForma[]; cheio: boolean; atr: string; onUsar: (h: HabForma) => void }) {
+function CartaoDeAcao({ sub, classe, ctx, ppExtra, habs, cheio, atr, onUsar, arma }: { sub: SubAcao; classe: string; ctx: CtxForma; ppExtra: boolean; habs: HabForma[]; cheio: boolean; atr: string; onUsar: (h: HabForma) => void; arma?: ArmaCtx }) {
   const [ritmo, setRitmo] = useState<Ritmo>("acao");
   const [cura, setCura] = useState<CuraTipo>("pv");
   const [emArea, setEmArea] = useState(false);
@@ -76,12 +82,18 @@ function CartaoDeAcao({ sub, classe, ctx, ppExtra, habs, cheio, atr, onUsar }: {
   const [efeito, setEfeito] = useState<string>("");
   const comEfeito = temEfeitoEscolhido(sub);
   const lista = comEfeito ? efeitosDoCartao(sub, sub === "utilidade" ? grupo : undefined) : [];
-  const efeitoAtual = comEfeito ? (lista.find((e) => e.id === efeito) ?? lista[0]) : undefined;
+  const okEf = (e: { armaReq?: readonly string[] }) => liberadoPelaArma(arma, e.armaReq).ok;
+  const efeitoAtual = comEfeito ? (lista.find((e) => e.id === efeito && okEf(e)) ?? lista.find(okEf) ?? lista[0]) : undefined;
+  // a arma da forma pode não sustentar o cartão (ou o efeito escolhido): ele fica apagado, com o motivo
+  const regSub = liberadoPelaArma(arma, infoSub(sub).armaReq);
+  const regEf = efeitoAtual ? liberadoPelaArma(arma, efeitoAtual.armaReq) : { ok: true, falta: [] as string[] };
+  const trava = !regSub.ok || !regEf.ok;
+  const falta = !regSub.ok ? regSub.falta : regEf.falta;
   const reacaoFixa = sub === "reacao";
   const ritmoReal: Ritmo = reacaoFixa ? "reacao" : ritmo;
   const h = novaHabilidade(sub, { ritmo: ritmoReal, atr, cura, emArea, efeito: efeitoAtual?.id }, ctx, ppExtra);
   return (
-    <article className="carta-hab carta-peca carta-neutra carta-acao carta-padrao" data-classe={classe}>
+    <article className={`carta-hab carta-peca carta-neutra carta-acao carta-padrao${trava ? " travada" : ""}`} data-classe={classe}>
       <div className="carta-topo">
         <small className="ajuda">{infoRitmo(ritmoReal).nome}</small>
         <span className="selo-pp">{h.pr}<i>PR</i></span>
@@ -100,7 +112,7 @@ function CartaoDeAcao({ sub, classe, ctx, ppExtra, habs, cheio, atr, onUsar }: {
           )}
           <label className="campo">Efeito
             <select value={efeitoAtual?.id ?? ""} onChange={(e) => setEfeito(e.target.value)}>
-              {lista.map((x) => <option key={x.id} value={x.id}>{x.nome}</option>)}
+              {lista.map((x) => { const l = liberadoPelaArma(arma, x.armaReq); return <option key={x.id} value={x.id} disabled={!l.ok}>{x.nome}{l.ok ? "" : ` (${textoPrecisa(l.falta)})`}</option>; })}
             </select>
           </label>
           <p className="ajuda">{efeitoAtual?.texto}</p>
@@ -118,7 +130,8 @@ function CartaoDeAcao({ sub, classe, ctx, ppExtra, habs, cheio, atr, onUsar }: {
       )}
       <div className="rodape-carta">
         <LinhaValor h={h} ctx={ctx} />
-        <button type="button" className="btn-mini" disabled={cheio} onClick={() => onUsar({ ...h, nome: nomeLivre(habs, h.nome) })}>{cheio ? "Sem vagas" : "Montar este cartão"}</button>
+        {trava && <p className="aviso-mini aviso-arma">{frasePrecisa(falta)}</p>}
+        <button type="button" className="btn-mini" disabled={cheio || trava} onClick={() => onUsar({ ...h, nome: nomeLivre(habs, h.nome) })}>{trava ? "Bloqueado pela arma" : cheio ? "Sem vagas" : "Montar este cartão"}</button>
       </div>
     </article>
   );
@@ -130,8 +143,11 @@ const FINAIS: SubAcao[] = ["ataque", "area", "movimento"];
  * Técnica final: seção própria no fim da tela de ações. Toda forma tem uma, numa vaga extra (fora das vagas das ações), sempre como ação.
  * Há características que mexem com ela.
  */
-function SecaoTecnicaFinal({ classe, ctx, ppExtra, habs, atr, onUsar }: { classe: string; ctx: CtxForma; ppExtra: boolean; habs: HabForma[]; atr: string; onUsar: (h: HabForma) => void }) {
-  const [sub, setSub] = useState<SubAcao>("ataque");
+function SecaoTecnicaFinal({ classe, ctx, ppExtra, habs, atr, onUsar, arma }: { classe: string; ctx: CtxForma; ppExtra: boolean; habs: HabForma[]; atr: string; onUsar: (h: HabForma) => void; arma?: ArmaCtx }) {
+  const [sub0, setSub] = useState<SubAcao>("ataque");
+  const livre = (x: SubAcao) => liberadoPelaArma(arma, infoSub(x).armaReq);
+  // se a arma não sustenta o tipo escolhido, cai para o primeiro que ela sustenta
+  const sub: SubAcao = livre(sub0).ok ? sub0 : FINAIS.find((x) => livre(x).ok) ?? sub0;
   const feita = habs.find((h) => h.cartao?.final);
   const h = novaHabilidade(sub, { ritmo: "acao", final: true, atr }, ctx, ppExtra);
   return (
@@ -147,8 +163,9 @@ function SecaoTecnicaFinal({ classe, ctx, ppExtra, habs, atr, onUsar }: { classe
           <h3>Técnica final</h3>
           <p className="texto-carta">{feita ? `Já montada: ${feita.nome || "sem nome"}. Edite ou remova em “Seus cartões”.` : "Escolha como o golpe final atinge e monte. O dano já vem pronto."}</p>
           <div className="filtros-pecas" role="group" aria-label="Tipo da técnica final">
-            {FINAIS.map((x) => <button key={x} type="button" disabled={!!feita} className={`chip chip-btn ${sub === x ? "on" : ""}`} aria-pressed={sub === x} onClick={() => setSub(x)}>{x === "movimento" ? "Investida" : infoSub(x).nome}</button>)}
+            {FINAIS.map((x) => <button key={x} type="button" disabled={!!feita || !livre(x).ok} title={livre(x).ok ? undefined : frasePrecisa(livre(x).falta)} className={`chip chip-btn ${sub === x ? "on" : ""}`} aria-pressed={sub === x} onClick={() => setSub(x)}>{x === "movimento" ? "Investida" : infoSub(x).nome}</button>)}
           </div>
+          {FINAIS.filter((x) => !livre(x).ok).map((x) => <p key={x} className="aviso-mini aviso-arma">{x === "movimento" ? "Investida" : infoSub(x).nome}: {frasePrecisa(livre(x).falta).toLowerCase()}</p>)}
           <div className="rodape-carta">
             <LinhaValor h={h} ctx={ctx} />
             <button type="button" className="btn-mini" disabled={!!feita} onClick={() => onUsar({ ...h, nome: nomeLivre(habs, h.nome) })}>{feita ? "Já montada" : "Montar a técnica final"}</button>
@@ -168,13 +185,16 @@ interface CartaoProps {
   nomeForma: string;
   /** cartões de característica da forma (as marcas das ligadas a esta ação aparecem no cartão) */
   efeitos?: InstEfeito[];
+  /** a arma da forma: se ela mudou e não sustenta mais este cartão, o cartão avisa (e continua na forma) */
+  arma?: ArmaCtx;
   onChange: (p: Partial<HabForma>) => void;
   onRemover: () => void;
 }
 
 /** Cartão de habilidade já montado: nome, ação, dano, custo calculado e a descrição do jogador. */
-export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, efeitos, onChange, onRemover }: CartaoProps) {
+export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, efeitos, arma, onChange, onRemover }: CartaoProps) {
   const ligados = caracsDaAcao(efeitos, h);
+  const faltaArma = faltaDaHab(h, arma);
   // ataque automático: o dano é calculado na leitura (nível, tipo de ação, golpe reforçado; os dados extras dos cartões não entram)
   const danoLido = danoDoCartao(h, ctx, ppExtra);
   const a = h.fixa ? null : analisarDano(danoLido, h.acao, ctx, ppExtra, h.especial ?? false);
@@ -215,6 +235,7 @@ export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, efeitos, on
           </label>
         )}
       </div>
+      {faltaArma.length > 0 && <p className="aviso-mini aviso-arma">A arma da forma mudou: este cartão {textoPrecisa(faltaArma)}. Ele continua aqui, mas o Mestre confere.</p>}
       {ligados.length > 0 && <div className="marcas-carac" aria-label="Características ligadas">{ligados.map((e) => <span key={e.id} className="chip marca-carac">{e.nome}</span>)}</div>}
       {doCartao && <p className="ajuda tipo-cartao">{nomeSub}{h.cartao?.final ? " · técnica final (vaga extra)" : ""}</p>}
       <div className="filtros-pecas" role="group" aria-label="Tipo de ação">

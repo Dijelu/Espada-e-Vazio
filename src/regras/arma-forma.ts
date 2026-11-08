@@ -5,11 +5,14 @@
    Regra de ouro da retrocompatibilidade: forma SEM arma, ficha antiga e modelo oficial (arma `informativa`) = tudo liberado.
    Os limites de características por forma (2/4/6…) ficam em cartoes.ts (LIMITE_CARACS_ARMA). */
 import { ARMAS } from "./catalogo";
-import { SUBS, limiteCaracsArma } from "./cartoes";
-import { CARACS } from "./caracteristicas";
-import { INTERACOES, TECNICAS } from "./especiais";
-import { EFEITOS_REACAO, EFEITOS_SEM_DANO } from "./acoes-efeito";
-import type { Ataque, Calculo, Ficha, FormaLib } from "./ficha";
+import { SUBS, infoSub, limiteCaracsArma } from "./cartoes";
+import { CARACS, caracPorId } from "./caracteristicas";
+import { INTERACOES, TECNICAS, interacaoPorId, tecnicaPorId } from "./especiais";
+import { EFEITOS_REACAO, EFEITOS_SEM_DANO, efeitoDaAcao, temEfeitoEscolhido } from "./acoes-efeito";
+import { ataqueMelhorado } from "./melhorias";
+import { somarDadosGolpe } from "./mascara";
+import { danoAtributo, type Ataque, type Calculo, type Ficha, type FormaLib, type HabForma } from "./ficha";
+import type { InstEfeito } from "./efeitos-forma";
 
 /* ---------------- Características da arma ---------------- */
 
@@ -187,8 +190,8 @@ export function liberadoPelaArma(ctx: ArmaCtx | undefined, req?: readonly string
   return { ok: tem, falta: tem ? [] : req.map(nomeCaracArma) };
 }
 
-/** "precisa de: múltiplas lâminas ou enxame de partes" (minúsculas, para o aviso do cartão). */
-export const textoPrecisa = (falta: string[]) => `precisa de: ${falta.map((n) => n.toLowerCase()).join(" ou ")}`;
+/** "precisa da característica: múltiplas lâminas ou enxame de partes" (minúsculas, para o aviso do cartão). */
+export const textoPrecisa = (falta: string[]) => `precisa da característica: ${falta.map((n) => n.toLowerCase()).join(" ou ")}`;
 
 /** Todos os cartões do catálogo que declaram requisito de arma (para conferir e para a tela de ajuda). */
 export function listarRequisitos(): { familia: "acao" | "carac" | "tecnica" | "interacao" | "efeito"; id: string; nome: string; req: CaracArmaId[] }[] {
@@ -198,6 +201,34 @@ export function listarRequisitos(): { familia: "acao" | "carac" | "tecnica" | "i
   for (const x of TECNICAS) if (x.armaReq) l.push({ familia: "tecnica", id: x.id, nome: x.nome, req: x.armaReq });
   for (const x of INTERACOES) if (x.armaReq) l.push({ familia: "interacao", id: x.id, nome: x.nome, req: x.armaReq });
   for (const x of [...EFEITOS_REACAO, ...EFEITOS_SEM_DANO]) if (x.armaReq) l.push({ familia: "efeito", id: x.id, nome: x.nome, req: x.armaReq });
+  return l;
+}
+
+/** O que falta para um cartão de ação ou de efeito escolhido já montado valer com a arma atual (vazio: está tudo certo). */
+export function faltaDaHab(h: Pick<HabForma, "cartao">, ctx: ArmaCtx | undefined): string[] {
+  if (!h.cartao || !armaTrava(ctx)) return [];
+  const a = liberadoPelaArma(ctx, infoSub(h.cartao.sub).armaReq);
+  if (!a.ok) return a.falta;
+  if (temEfeitoEscolhido(h.cartao.sub)) return liberadoPelaArma(ctx, efeitoDaAcao(h.cartao.sub, h.cartao.efeito).armaReq).falta;
+  return [];
+}
+
+/** O que falta para uma peça (característica, técnica especial ou interação especial) já montada valer com a arma atual. Peça de ficha antiga ou automática nunca avisa. */
+export function faltaDaPeca(e: InstEfeito, ctx: ArmaCtx | undefined): string[] {
+  if (!armaTrava(ctx) || e.espec?.antiga || e.espec?.auto) return [];
+  let req: readonly string[] | undefined;
+  if (e.familia === "tecnica" && e.espec) req = tecnicaPorId(e.espec.id)?.armaReq;
+  else if (e.familia === "interacao" && e.espec) req = interacaoPorId(e.espec.id)?.armaReq;
+  else if (e.familia === "carac" && e.carac) req = caracPorId(e.carac.id)?.armaReq;
+  return liberadoPelaArma(ctx, req).falta;
+}
+
+/** Os cartões já montados que a arma atual não sustenta (a arma mudou depois). Eles continuam na forma; a tela só avisa. */
+export function cartoesSemRequisito(forma: Pick<FormaLib, "habilidades" | "efeitos">, ctx: ArmaCtx | undefined): { id: string; nome: string; falta: string[] }[] {
+  if (!armaTrava(ctx)) return [];
+  const l: { id: string; nome: string; falta: string[] }[] = [];
+  for (const h of forma.habilidades ?? []) { const falta = faltaDaHab(h, ctx); if (falta.length) l.push({ id: h.id, nome: h.nome || "Ação sem nome", falta }); }
+  for (const e of forma.efeitos ?? []) { const falta = faltaDaPeca(e, ctx); if (falta.length) l.push({ id: e.id, nome: e.nome, falta }); }
   return l;
 }
 
@@ -219,6 +250,27 @@ export function resumoArma(a: ArmaForma): string {
     `peso ${a.peso}`,
   ].filter(Boolean).join(" · ");
 }
+
+/** Dano final de um ataque (mesma conta da página da ficha): dados da arma, atributo, bônus gerais e da forma. */
+export function danoDoAtaque(f: Ficha, a: Ataque, c: Calculo): string {
+  const dano = a.distancia ? ataqueMelhorado(f, a).dano : somarDadosGolpe(ataqueMelhorado(f, a).dano, c.dadosGolpeMascara);
+  if (!dano.trim()) return dano;
+  const atr = danoAtributo(c, a);
+  const geral = c.danoGeral > 0 ? `+${c.danoGeral}` : "";
+  if (a.distancia) return dano + atr + geral + (c.danoDisparo > 0 ? `+${c.danoDisparo}` : "") + c.danoDadosDisparo.map((d) => `+${d}`).join("");
+  return dano + atr + geral + (c.danoCorpo > 0 ? `+${c.danoCorpo}` : "") + c.danoDados.map((d) => `+${d}`).join("");
+}
+
+/** As características marcadas que valem para a forma: se ela mantém a arma de outra, vale a lista da forma que a guarda. */
+export function caracsEfetivas(f: Pick<Ficha, "formas">, forma: FormaArma | undefined, fundo = 0): string[] {
+  if (!forma) return [];
+  const de = FORMA_DA_ARMA_MANTIDA[forma.tipo];
+  if (forma.armaMantem && de && fundo < 3) { const base = f.formas?.[de]; return base ? caracsEfetivas(f, base, fundo + 1) : []; }
+  return forma.armaCaracs ?? [];
+}
+
+/** O golpe básico da arma só vale com a arma aprovada e que não seja só um dado informativo de modelo oficial. */
+export const golpeBasicoLiberado = (a: ArmaForma | undefined): a is ArmaForma => !!a && !a.informativa && !armaPendente(a);
 
 const ehDistancia = (a: ArmaForma) => (a.grupo ?? "").startsWith("À distância");
 

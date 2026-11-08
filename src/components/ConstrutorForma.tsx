@@ -34,6 +34,7 @@ import { aplicarFaz } from "../regras/aplicar-faz";
 import { novoId } from "./FichaPecas";
 import { AssistenteForma, LIMITE_HAB } from "./AssistenteForma";
 import { EscolhaArmaForma } from "./EscolhaArmaForma";
+import { armaCtxDaForma } from "../regras/arma-forma";
 import { SeletorSchrift } from "./SeletorSchrift";
 import { schriftDaFicha } from "../regras/schrifts";
 import { acoesDaForma, formaDaLiberacao, liberacaoDaForma, modeloResurreccionPadrao, comoHabilidades, habilidadesDaForma, maiorCustoPR, resolverDano, danoDaAcao, sugerirCusto } from "../regras/liberacoes";
@@ -107,6 +108,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
   }, [f, tipo, r.efeitos]);
   const [aberto, setAberto] = useState("");
   const [busca, setBusca] = useState("");
+  const armaCtx = armaCtxDaForma(f, r);
   const mud = (p: Partial<FormaLib>) =>
     setR((x) => {
       const n = { ...x, ...p };
@@ -397,7 +399,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
                 <p className="ajuda">Cada habilidade com PR ou dano vira uma carta nova no Resumo, com botões de usar e rolar.</p>
                 <div className="cartas-hab cartoes-montados">
                   {r.habilidades.map((h) => (
-                    <CartaoHabilidade key={h.id} h={h} tipo={tipo} ctx={ctxAtual} ppExtra={(r.ppExtra ?? 0) > 0} nomeForma={r.nome} efeitos={r.efeitos} onChange={(p) => habil(h.id, p)} onRemover={() => mud({ habilidades: r.habilidades.filter((x) => x.id !== h.id) })} />
+                    <CartaoHabilidade key={h.id} h={h} tipo={tipo} ctx={ctxAtual} ppExtra={(r.ppExtra ?? 0) > 0} nomeForma={r.nome} efeitos={r.efeitos} arma={armaCtx} onChange={(p) => habil(h.id, p)} onRemover={() => mud({ habilidades: r.habilidades.filter((x) => x.id !== h.id) })} />
                   ))}
                 </div>
                 <button type="button" className="btn btn-paper" disabled={vagasUsadas(r.habilidades) >= LIMITE_HAB[tipo]} onClick={() => mud({ habilidades: [...r.habilidades, { id: novoId(), nome: "", texto: "", custo: "", acao: "Ação" }] })}>Adicionar habilidade</button>

@@ -1991,3 +1991,22 @@ details.ficha-leitura-bloco[open] > summary { margin-bottom: 8px; }
 .arma-propria .btn { margin-top: 8px; }
 .escolha-arma .opcoes-grandes { display: grid; grid-template-columns: 1fr; gap: 8px; }
 @media (min-width: 640px) { .escolha-arma .opcoes-grandes { grid-template-columns: 1fr 1fr; } }
+
+/* Cartões que dependem da arma: apagados, com o motivo sempre visível */
+.carta-hab.travada .aviso-arma { opacity: 1; font-weight: 700; }
+.carta-padrao.travada { opacity: .72; }
+.carta-padrao.travada .aviso-arma { color: #f4c06a; }
+.carta-padrao.travada .btn-mini:disabled { cursor: not-allowed; }
+.arma-na-montagem { margin: 0; padding: 6px 12px; border-left: 4px solid var(--accent); background: color-mix(in srgb, var(--accent) 8%, transparent); border-radius: 0 6px 6px 0; }
+.aviso-arma-forma ul { margin: 0; }
+.aviso-arma { color: #f4c06a; }
+:root[data-theme="light"] .aviso-arma, :root[data-theme="light"] .carta-padrao.travada .aviso-arma, :root[data-theme="light"] .limite-arma.cheio, :root[data-theme="light"] .marca-aval { color: #8a4b00; }
+
+/* Arma da forma, compacta (painel da forma e ficha de leitura) */
+.arma-compacta { display: grid; gap: 6px; min-width: 0; }
+.arma-compacta .ac-linha { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; overflow-wrap: anywhere; }
+.arma-compacta .ac-res { margin: 0; }
+.ac-caracs { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 8px; }
+.ac-caracs li { display: inline-flex; align-items: center; gap: 4px; padding: 2px 10px; border: 1px solid var(--line); border-radius: 999px; font-size: 13px; background: var(--panel2); }
+.ac-golpe { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.ficha-leitura-arma { margin: 6px 0; padding: 8px 10px; border-left: 4px solid var(--accent); background: var(--panel2); border-radius: 6px; }

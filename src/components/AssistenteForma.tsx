@@ -16,7 +16,7 @@ import { Info } from "./Dica";
 import { novoId } from "./FichaPecas";
 import { SeletorSchrift } from "./SeletorSchrift";
 import { EscolhaArmaForma } from "./EscolhaArmaForma";
-import { armaEfetiva, armaPendente, caracsValidas, nomeCaracArma, resumoArma } from "../regras/arma-forma";
+import { armaCtxDaForma, armaEfetiva, armaPendente, cartoesSemRequisito, caracsValidas, nomeCaracArma, resumoArma, textoPrecisa } from "../regras/arma-forma";
 import { limiteCaracsArma } from "../regras/cartoes";
 import { schriftDaFicha } from "../regras/schrifts";
 import { CANALIZADORES_EXTRA, FRAQUEZAS_EXTRA, NOMES, TEMAS, type Tema } from "../regras/forma-sugestoes";
@@ -288,6 +288,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
     mud({ picks });
   };
 
+  const armaCtx = armaCtxDaForma(f, r);
   const armaRev = armaEfetiva(f, r);
   const carcRev = caracsValidas(r.armaCaracs);
   const erros: string[] = [];
@@ -512,11 +513,11 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
                   </select>
                 </label>
                 <p className="ajuda">Escolha um dos seis cartões de ação, o ritmo (ação, ação bônus ou reação) e monte. O dano (quando há) e o custo em PR já vêm prontos. Depois é só escrever, na descrição, como a característica e o tema da sua forma aparecem neste ataque. Vagas: {vagasUsadas(r.habilidades)}/{maxHab}{cheio ? " (remova uma para trocar)" : ""}. A técnica final tem uma vaga extra{temFinal(r.habilidades) ? " (já usada)" : ""}.</p>
-                <GaleriaAcoes tipo={tipo} ctx={ctxAtual} ppExtra={(r.ppExtra ?? 0) > 0} habs={r.habilidades} limite={maxHab} atr={atr} onUsar={addHab} />
+                <GaleriaAcoes tipo={tipo} ctx={ctxAtual} ppExtra={(r.ppExtra ?? 0) > 0} habs={r.habilidades} limite={maxHab} atr={atr} onUsar={addHab} arma={armaCtx} />
                 {r.habilidades.length > 0 && <h4 className="sub-passivas">Seus cartões</h4>}
                 <div className="cartas-hab cartoes-montados">
                   {r.habilidades.map((h) => (
-                    <CartaoHabilidade key={h.id} h={h} tipo={tipo} ctx={ctxAtual} ppExtra={(r.ppExtra ?? 0) > 0} nomeForma={r.nome} efeitos={r.efeitos} onChange={(p) => habil(h.id, p)} onRemover={() => mud({ habilidades: r.habilidades.filter((x) => x.id !== h.id) })} />
+                    <CartaoHabilidade key={h.id} h={h} tipo={tipo} ctx={ctxAtual} ppExtra={(r.ppExtra ?? 0) > 0} nomeForma={r.nome} efeitos={r.efeitos} arma={armaCtx} onChange={(p) => habil(h.id, p)} onRemover={() => mud({ habilidades: r.habilidades.filter((x) => x.id !== h.id) })} />
                   ))}
                 </div>
               </>
@@ -571,6 +572,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
             {(r.efeitos ?? []).some((e) => e.familia === "tecnica") && (
               <p className="quebra"><b>Técnicas especiais:</b>{(r.efeitos ?? []).filter((e) => e.familia === "tecnica").map((t) => `\n${t.nome}: ${(r.efeitos ?? []).filter((x) => x.familia === "interacao" && x.espec?.tec === t.id).map((x) => x.nome).join(", ") || "sem interação (falta)"}`)}</p>
             )}
+            {cartoesSemRequisito(r, armaCtx).length > 0 && <p className="aviso-mini">Cartões que a arma atual não sustenta: {cartoesSemRequisito(r, armaCtx).map((x) => `${x.nome} (${textoPrecisa(x.falta)})`).join("; ")}. Eles continuam na forma, mas o Mestre confere.</p>}
             {armaPendente(armaRev) && <p className="aviso-mini">Aguardando o aval do Mestre: a arma própria “{armaRev!.nome}”. Enquanto isso, ela vale só como texto e o golpe básico segue o da classe.</p>}
             {(r.efeitos ?? []).filter(efeitoPendente).length > 0 && <p className="aviso-mini">Aguardando o aval do Mestre: {(r.efeitos ?? []).filter(efeitoPendente).map((e) => e.nome).join(", ")}. Enquanto isso, valem só como texto.</p>}
             {r.pontoFraco && <p><b>Ponto fraco:</b> {r.pontoFraco}</p>}

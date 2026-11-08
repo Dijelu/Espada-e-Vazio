@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
-import { calcular, classePorId, ataquesPorAcao, type Calculo, type Ficha, type FormaLib, type HabForma, type TipoForma } from "../regras/ficha";
+import { calcular, classePorId, ataquesPorAcao, ataqueBonus, type Calculo, type Ficha, type FormaLib, type HabForma, type TipoForma } from "../regras/ficha";
 import { TIPO_FORMA_NOME, formaDaLiberacao, liberacaoDaForma, modeloResurreccionPadrao, habilidadesDaForma, resolverDano, danoDaAcao } from "../regras/liberacoes";
 import { classificarHab } from "../regras/classificar-hab";
 import { habilidadesLidas } from "../regras/cartoes";
@@ -19,6 +19,8 @@ import { FA, VA, TK as TKTipado } from "../lib/arte/geradores";
 const TK = TKTipado as unknown as { mascara: (p: string) => string; resurreccion: (p: string, v: unknown, seed: number, t: string) => string; VAR: { resurreccion: unknown; segunda: unknown } };
 import { resumir } from "./TextoCarta";
 import { PainelSchrift } from "./PainelSchrift";
+import { ArmaDaForma } from "./EscolhaArmaForma";
+import { armaEfetiva, ataqueDaArma, caracsEfetivas, danoDoAtaque, golpeBasicoLiberado } from "../regras/arma-forma";
 import { AbaInvocacoes } from "./Invocacoes";
 import { Icone } from "./Icone";
 import { vazia } from "./ConstrutorForma";
@@ -270,6 +272,34 @@ const custoDoBotao = (b: BotaoGerado, c: Calculo) => {
   if (b.faz === "invocar") { const m = c.forma?.invocacoes.find((x) => x.chave === b.ref); return m ? `${m.custoPr} PR cada · até ${m.max}` : "invocar"; }
   return `${infoRitmo(b.ritmo).nome} · ${infoRitmo(b.ritmo).pr} PR`;
 };
+
+/** A arma da forma: nome, propriedades e características (com ⓘ). Com a arma aprovada, o golpe básico usa os dados dela. */
+function SecaoArma({ f, c, r, forma, ligada, onMsg, vollst }: { f: Ficha; c: Calculo; r: Rolagens; forma: FormaLib | undefined; ligada: boolean; onMsg: (m: string) => void; vollst?: boolean }) {
+  const arma = forma ? armaEfetiva(f, forma) : undefined;
+  if (!forma || !arma) return null;
+  const caracs = caracsEfetivas(f, forma);
+  const golpe = golpeBasicoLiberado(arma) ? ataqueDaArma(arma, c) : undefined;
+  const dano = golpe ? danoDoAtaque(f, golpe, c) : "";
+  const acerto = golpe ? ataqueBonus(f, c, golpe) : 0;
+  const B = vollst ? "b" : "fc-b";
+  const extra = golpe && (
+    <div className="ac-golpe">
+      {ligada ? (
+        <>
+          <button type="button" className={B} onClick={() => r.d20(`Acerto: ${golpe.nome}`, acerto)}><Icone nome="dado" /> Acerto {mod(acerto)}</button>
+          {/\d/.test(dano) && <button type="button" className={B} onClick={() => { r.rolar(golpe.nome, dano); }}><Icone nome="dado" /> Dano {dano}</button>}
+          {/\d/.test(dano) && <button type="button" className={`${B} ${vollst ? "pf-fraco" : "fraco"}`} onClick={() => { r.expr(`Crítico: ${golpe.nome}`, dano, true); onMsg(`${golpe.nome}: crítico em ${arma.crit >= 20 ? "20" : `${arma.crit}–20`}, dano ×${arma.mult}.`); }}>Crítico</button>}
+        </>
+      ) : <button type="button" className={`${B} ${vollst ? "pf-fraco" : "fraco"}`} disabled>Ligue a forma</button>}
+    </div>
+  );
+  return (
+    <section className={vollst ? "pf-sec" : "fp-sec"} aria-label="Arma da forma">
+      <h3>{vollst ? <Html html={(VA.ic as unknown as (n: string) => string)("estrela4")} /> : <Ic n="fatia-espada" cls="h-ic" />}Arma da forma <small>{golpe ? "golpe básico e características" : "características da arma"}</small></h3>
+      <ArmaDaForma arma={arma} caracs={caracs} extra={extra} />
+    </section>
+  );
+}
 
 interface Unica { rot: string; n: string; p: string; cada: string; icone: string; botao?: ReactNode; completo?: string }
 interface Passiva { n: string; p: string; icone?: string }
@@ -583,6 +613,7 @@ export function PainelForma({ f, c, r, alterar, tipo, onEditar, onIrEvoluir, soA
           </section></div>
         )}
         {ehMascara && trava && <p className="fp-trava">Escolha a sua Máscara Hollow em Agir (a escolha é permanente) para liberar as cartas.</p>}
+        {!ehMascara && <SecaoArma f={f} c={c} r={r} forma={forma as FormaLib | undefined} ligada={ligada} onMsg={setMsg} />}
         {(nAcoes > 0 || !ligada) && (
           <section className="fp-sec" aria-label="Ações da forma">
             <h3><Ic n={pele === "shi" ? "fatia-espada" : "garras"} cls="h-ic" />Ações da forma <small>{nAcoes} {nAcoes === 1 ? "carta" : "cartas"} · custo em PR</small></h3>
@@ -722,6 +753,7 @@ export function PainelVoll({ f, c, r, alterar, onEditar, onIrEvoluir }: PainelPr
           </div>
         </section>
         {ligada && <PainelSchrift f={f} c={c} alterar={alterar} dentro />}
+        <SecaoArma f={f} c={c} r={r} forma={forma} ligada={ligada} onMsg={setMsg} vollst />
         {(fx?.botoes ?? []).length > 0 && (
           <section className="pf-sec" aria-label="Botões das características">
             <h3>{Ic2("estrela4")}Botões das características <small>criados pelos cartões da forma</small></h3>

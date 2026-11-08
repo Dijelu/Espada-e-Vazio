@@ -5,6 +5,8 @@ import { caracPorId } from "../regras/caracteristicas";
 import { contarForaDeVaga, contarVagas, faltasEspeciais } from "../regras/especiais";
 import { CaracteristicasForma } from "./CaracteristicasForma";
 import { InteracoesEspeciais, TecnicasEspeciais } from "./EspeciaisForma";
+import { armaCtxDaForma, armaPendente, armaTrava, cartoesSemRequisito, nomeCaracArma, resumoArma, textoPrecisa } from "../regras/arma-forma";
+import { Info } from "./Dica";
 
 type Aba = "acoes" | "caracs" | "tecnicas" | "interacoes";
 
@@ -30,6 +32,8 @@ export function MontagemCartoes({ f, tipo, r, mud, acoes }: Props) {
   const nCar = efeitos.filter((e) => e.familia === "carac" && !!e.carac && !!caracPorId(e.carac.id)).length;
   const nAcoes = (r.habilidades ?? []).length;
   const faltas = faltasEspeciais(efeitos, tipo);
+  const arma = armaCtxDaForma(f, r);
+  const semReq = cartoesSemRequisito(r, arma);
   const abas: { id: Aba; nome: string; n: string; alerta?: boolean }[] = [
     { id: "acoes", nome: "Ações", n: String(nAcoes) },
     { id: "caracs", nome: "Características", n: String(nCar) },
@@ -45,6 +49,18 @@ export function MontagemCartoes({ f, tipo, r, mud, acoes }: Props) {
           </button>
         ))}
       </div>
+      {armaTrava(arma) && (
+        <p className="ajuda arma-na-montagem">
+          <b>Arma:</b> {arma.arma!.nome}{arma.caracs.length > 0 ? ` · ${arma.caracs.map(nomeCaracArma).join(", ")}` : " · nenhuma característica marcada"}
+          {" "}<Info>{`${resumoArma(arma.arma!)}. Cartões que pedem uma característica que a arma não tem aparecem apagados, com o motivo. Para mudar, volte ao passo “Forma da arma”.${armaPendente(arma.arma) ? " A arma própria ainda espera o aval do Mestre." : ""}`}</Info>
+        </p>
+      )}
+      {semReq.length > 0 && (
+        <div className="faltas-especiais aviso-arma-forma" role="status">
+          <b>Cartões que a arma atual não sustenta (eles continuam na forma, mas o Mestre confere)</b>
+          <ul>{semReq.map((x) => <li key={x.id}>{x.nome}: {textoPrecisa(x.falta)}</li>)}</ul>
+        </div>
+      )}
       {faltas.length > 0 && (
         <div className="faltas-especiais" role="alert">
           <b>O que falta nas técnicas e interações especiais (a forma só salva quando estiver tudo certo)</b>
@@ -52,9 +68,9 @@ export function MontagemCartoes({ f, tipo, r, mud, acoes }: Props) {
         </div>
       )}
       <div role="tabpanel" id="painel-acoes" aria-labelledby="aba-acoes" hidden={aba !== "acoes"}>{acoes}</div>
-      <div role="tabpanel" id="painel-caracs" aria-labelledby="aba-caracs" hidden={aba !== "caracs"}><CaracteristicasForma f={f} tipo={tipo} r={r} mud={mud} /></div>
-      <div role="tabpanel" id="painel-tecnicas" aria-labelledby="aba-tecnicas" hidden={aba !== "tecnicas"}><TecnicasEspeciais f={f} tipo={tipo} r={r} mud={mud} irParaInteracoes={() => setAba("interacoes")} /></div>
-      <div role="tabpanel" id="painel-interacoes" aria-labelledby="aba-interacoes" hidden={aba !== "interacoes"}><InteracoesEspeciais f={f} tipo={tipo} r={r} mud={mud} irParaTecnicas={() => setAba("tecnicas")} /></div>
+      <div role="tabpanel" id="painel-caracs" aria-labelledby="aba-caracs" hidden={aba !== "caracs"}><CaracteristicasForma f={f} tipo={tipo} r={r} mud={mud} arma={arma} /></div>
+      <div role="tabpanel" id="painel-tecnicas" aria-labelledby="aba-tecnicas" hidden={aba !== "tecnicas"}><TecnicasEspeciais f={f} tipo={tipo} r={r} mud={mud} arma={arma} irParaInteracoes={() => setAba("interacoes")} /></div>
+      <div role="tabpanel" id="painel-interacoes" aria-labelledby="aba-interacoes" hidden={aba !== "interacoes"}><InteracoesEspeciais f={f} tipo={tipo} r={r} mud={mud} arma={arma} irParaTecnicas={() => setAba("tecnicas")} /></div>
     </div>
   );
 }

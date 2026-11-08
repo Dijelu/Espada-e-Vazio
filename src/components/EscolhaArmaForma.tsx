@@ -1,12 +1,12 @@
 /* Passo "Forma da arma": o jogador escolhe a arma do catálogo (ou monta uma arma própria, que o Mestre precisa aprovar)
    e marca as características da arma, até o limite da forma (cartoes.ts). A arma define o golpe básico; as características decidem
    quais cartões a forma pode montar. Sem arma, tudo fica liberado. */
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import type { Ficha, FormaLib } from "../regras/ficha";
 import { limiteCaracsArma } from "../regras/cartoes";
 import {
   ARMAS_LIVRES, ATRS_ARMA, CARACS_ARMA, DANOS_ARMA, FORMA_DA_ARMA_MANTIDA, GRUPOS_ARMA, PROPS_ARMA, TIPOS_DANO_ARMA,
-  armaDoCatalogo, armaEfetiva, armaPendente, armaPropriaVazia, caracsValidas, catalogoDaForma, listarRequisitos, nomeCaracArma, resumoArma,
+  armaDoCatalogo, armaEfetiva, armaPendente, armaPropriaVazia, caracArmaPorId, caracsValidas, catalogoDaForma, listarRequisitos, nomeCaracArma, resumoArma,
   type ArmaForma,
 } from "../regras/arma-forma";
 import { TIPO_FORMA_NOME } from "../regras/liberacoes";
@@ -222,6 +222,28 @@ export function EscolhaArmaForma({ f, tipo, r, mud }: Props) {
         </div>
       )}
       {msg && <p className="ajuda" role="status">{msg}</p>}
+    </div>
+  );
+}
+
+/** Arma e características da forma, em poucas linhas (painel da forma e ficha de leitura). Cada característica tem o ⓘ com a explicação curta. */
+export function ArmaDaForma({ arma, caracs, extra }: { arma: ArmaForma; caracs: string[]; extra?: ReactNode }) {
+  const pendente = armaPendente(arma);
+  return (
+    <div className="arma-compacta">
+      <p className="ac-linha">
+        <b>{arma.nome}</b>
+        {pendente && <span className="marca-aval" title="O golpe básico só vale depois do aval do Mestre">aval do Mestre pendente</span>}
+        {arma.informativa && <span className="marca-aval ok" title="Dado só informativo: não muda nenhum número da forma">só informativo</span>}
+        {" "}<Info>{`${resumoArma(arma)}.${arma.nota ? ` ${arma.nota}` : ""}`}</Info>
+      </p>
+      <p className="ajuda ac-res">{resumoArma(arma)}</p>
+      {caracs.length > 0 && (
+        <ul className="ac-caracs" aria-label="Características da arma">
+          {caracs.map((id) => <li key={id}>{nomeCaracArma(id)} <Info>{caracArmaPorId(id)?.texto ?? ""}</Info></li>)}
+        </ul>
+      )}
+      {extra}
     </div>
   );
 }

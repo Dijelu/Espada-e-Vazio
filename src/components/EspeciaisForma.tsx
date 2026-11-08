@@ -9,6 +9,7 @@ import {
 import { subDaHab } from "../regras/caracteristicas";
 import { classeDe } from "./EfeitosForma";
 import { Info } from "./Dica";
+import { faltaDaPeca, liberadoPelaArma, textoPrecisa, type ArmaCtx } from "../regras/arma-forma";
 
 const novoId = () => `fx-${Math.random().toString(36).slice(2, 9)}`;
 const nomesVale = (vale: SubAcao[]) => vale.map((s) => infoSub(s).nome.toLowerCase()).join(" ou ");
@@ -18,7 +19,12 @@ interface Props {
   tipo: FormaLib["tipo"];
   r: FormaLib;
   mud: (p: Partial<FormaLib>) => void;
+  /** a arma da forma: cartões que pedem uma característica que ela não tem ficam apagados, com o motivo */
+  arma?: ArmaCtx;
 }
+
+/** "Precisa de: enxame de partes ou múltiplas lâminas." */
+const frase = (falta: string[]) => { const t = textoPrecisa(falta); return `${t[0].toUpperCase()}${t.slice(1)}.`; };
 
 function useCtxForma(f: Ficha): CtxForma {
   const c = useMemo(() => calcular({ ...f, estado: { ...f.estado, liberado: "" } }), [f]);
@@ -40,7 +46,7 @@ function Tirar({ e, onTirar, tirando, setTirando }: { e: InstEfeito; onTirar: ()
 /* ---------------- Técnicas especiais ---------------- */
 
 /** Cartões de técnica especial: criam uma coisa em jogo (clones, invocações, uma marca, uma carga de energia). Só funcionam com ao menos uma interação especial. */
-export function TecnicasEspeciais({ f, tipo, r, mud, irParaInteracoes }: Props & { irParaInteracoes: () => void }) {
+export function TecnicasEspeciais({ f, tipo, r, mud, arma, irParaInteracoes }: Props & { irParaInteracoes: () => void }) {
   const ctx = useCtxForma(f);
   const efeitos = r.efeitos ?? [];
   const orc = orcamentoDaForma(f, tipo, r, ctx);
@@ -54,6 +60,8 @@ export function TecnicasEspeciais({ f, tipo, r, mud, irParaInteracoes }: Props &
   const adicionar = (d: DefTecnica) => {
     if (cheio) { setMsg(`Esta forma só tem ${v.tec} vaga${v.tec === 1 ? "" : "s"} de técnica especial.`); return; }
     if (d.pp > orc.livre) { setMsg(`Faltam ${d.pp - orc.livre} PP para ${d.nome}.`); return; }
+    const lib = liberadoPelaArma(arma, d.armaReq);
+    if (!lib.ok) { setMsg(`${d.nome}: ${textoPrecisa(lib.falta)}.`); return; }
     mud({ efeitos: [...efeitos, instanciarTecnica(d, novoId())] });
     setMsg(`${d.nome} entrou na forma (${d.pp} PP). Agora monte uma interação especial para ela: sem isso a técnica não funciona e a forma não salva.`);
   };
@@ -75,11 +83,13 @@ export function TecnicasEspeciais({ f, tipo, r, mud, irParaInteracoes }: Props &
         <ul className="efeitos-lista caracs-lista" aria-label="Técnicas especiais da forma">
           {minhas.map((e) => {
             const ligadas = interacoesDe(efeitos, e.id);
+            const faltaArma = faltaDaPeca(e, arma);
             return (
               <li key={e.id} className={`${e.confirmado ? "travado" : ""} ${ligadas.length === 0 ? "solto" : ""}`}>
                 <div>
                   <b>{e.nome}</b> <small>{e.pp ?? 0} PP{e.confirmado ? " · confirmado" : ""}{e.espec?.auto ? " · automática" : e.espec?.antiga ? " · de ficha antiga" : ""}</small>
                   <p className="ajuda">{e.texto}</p>
+                  {faltaArma.length > 0 && <p className="aviso-mini aviso-arma">A arma da forma mudou: esta técnica {textoPrecisa(faltaArma)}. Ela continua aqui, mas o Mestre confere.</p>}
                   {ligadas.length > 0 ? (
                     <div className="marcas-carac" aria-label={`Interações de ${e.nome}`}>
                       <small className="ajuda">Interações:</small>
@@ -104,7 +114,8 @@ export function TecnicasEspeciais({ f, tipo, r, mud, irParaInteracoes }: Props &
         {TECNICAS.filter((d) => !grupo || d.grupo === grupo).map((d) => {
           const repetida = minhas.some((e) => e.espec?.id === d.id);
           const sem = d.pp > orc.livre;
-          const travada = repetida || cheio;
+          const lib = liberadoPelaArma(arma, d.armaReq);
+          const travada = repetida || cheio || !lib.ok;
           const serve = INTERACOES_GALERIA.filter((i) => i.com.length === 0 || i.com.includes(d.id));
           return (
             <article key={d.id} className={`carta-hab carta-peca carta-neutra carta-especial carta-padrao ${travada || sem ? "travada" : ""}`} data-classe={classeDe(tipo)}>
@@ -116,8 +127,9 @@ export function TecnicasEspeciais({ f, tipo, r, mud, irParaInteracoes }: Props &
               <p className="texto-carta">{d.texto}</p>
               <p className="ajuda serve-com"><b>Interações que servem:</b> {serve.map((i) => i.nome).join(", ")}</p>
               <div className="rodape-carta">
+                {!lib.ok && <p className="aviso-mini aviso-arma">{frase(lib.falta)}</p>}
                 <button type="button" className="btn-mini" disabled={travada || sem} onClick={() => adicionar(d)}>
-                  {repetida ? "Já está na forma" : cheio ? "Sem vagas" : sem ? "Pontos insuficientes" : "Adicionar"}
+                  {repetida ? "Já está na forma" : !lib.ok ? "Bloqueado pela arma" : cheio ? "Sem vagas" : sem ? "Pontos insuficientes" : "Adicionar"}
                 </button>
               </div>
             </article>
@@ -135,7 +147,7 @@ export function TecnicasEspeciais({ f, tipo, r, mud, irParaInteracoes }: Props &
 const lerLiga = (v: string): { liga: "final" | "uma" | "todas"; acao?: string } => (v === "final" ? { liga: "final" } : v.startsWith("uma:") ? { liga: "uma", acao: v.slice(4) } : { liga: "todas" });
 
 /** Cartões de interação especial: dizem o que fazer com uma técnica especial. Cada interação precisa de uma técnica a que servir. */
-export function InteracoesEspeciais({ f, tipo, r, mud, irParaTecnicas }: Props & { irParaTecnicas: () => void }) {
+export function InteracoesEspeciais({ f, tipo, r, mud, arma, irParaTecnicas }: Props & { irParaTecnicas: () => void }) {
   const ctx = useCtxForma(f);
   const efeitos = r.efeitos ?? [];
   const habs = r.habilidades ?? [];
@@ -160,6 +172,8 @@ export function InteracoesEspeciais({ f, tipo, r, mud, irParaTecnicas }: Props &
     if (!alvo) return;
     if (cheio) { setMsg(`Esta forma só tem ${v.inter} vaga${v.inter === 1 ? "" : "s"} de interação especial.`); return; }
     if (d.pp > orc.livre) { setMsg(`Faltam ${d.pp - orc.livre} PP para ${d.nome}.`); return; }
+    const lib = liberadoPelaArma(arma, d.armaReq);
+    if (!lib.ok) { setMsg(`${d.nome}: ${textoPrecisa(lib.falta)}.`); return; }
     mud({ efeitos: [...efeitos, instanciarInteracao(d, alvo.id, lerLiga(ligas[d.id] ?? padraoLiga(d)), novoId())] });
     setMsg(`${d.nome} entrou na forma, ligada a ${alvo.nome} (${d.pp} PP).`);
   };
@@ -187,11 +201,13 @@ export function InteracoesEspeciais({ f, tipo, r, mud, irParaTecnicas }: Props &
             const atual = tecnicaDe(efeitos, e);
             const possiveis = def ? tecs.filter((t) => interacaoServe(def, t)) : tecs;
             const ok = def ? acoesDe(def) : [];
+            const faltaArma = faltaDaPeca(e, arma);
             return (
               <li key={e.id} className={`${e.confirmado ? "travado" : ""} ${atual ? "" : "solto"}`}>
                 <div>
                   <b>{e.nome}</b> <small>{e.pp ?? 0} PP{e.confirmado ? " · confirmado" : ""}{e.espec?.auto ? " · automática" : e.espec?.antiga ? " · de ficha antiga" : ""}</small>
                   <p className="ajuda">{e.texto}</p>
+                  {faltaArma.length > 0 && <p className="aviso-mini aviso-arma">A arma da forma mudou: esta interação {textoPrecisa(faltaArma)}. Ela continua aqui, mas o Mestre confere.</p>}
                   <label className="campo campo-liga">Serve à técnica
                     <select value={atual?.id ?? ""} onChange={(ev) => religarTec(e.id, ev.target.value)}>
                       {!atual && <option value="">Nenhuma (solta)</option>}
@@ -229,7 +245,8 @@ export function InteracoesEspeciais({ f, tipo, r, mud, irParaTecnicas }: Props &
           const sem = d.pp > orc.livre;
           const proibida = !podeUsarInteracao(d, f);
           const semTecnica = ts.length === 0;
-          const travada = repetida || cheio || proibida || semTecnica;
+          const lib = liberadoPelaArma(arma, d.armaReq);
+          const travada = repetida || cheio || proibida || semTecnica || !lib.ok;
           const ok = acoesDe(d);
           const nomesTec = d.com.length ? d.com.map((c) => TECNICAS.find((t) => t.id === c)?.nome ?? c).join(" ou ") : "qualquer técnica";
           return (
@@ -261,10 +278,11 @@ export function InteracoesEspeciais({ f, tipo, r, mud, irParaTecnicas }: Props &
               {d.vale.length > 0 && ok.length === 0 && <p className="aviso-mini">Vale em ações de {nomesVale(d.vale)}: ligue depois.</p>}
               {semTecnica && !proibida && <p className="aviso-mini">Monte antes a técnica: {nomesTec}.</p>}
               {proibida && <p className="aviso-mini">Só para Visored e Hollow.</p>}
+              {!lib.ok && <p className="aviso-mini aviso-arma">{frase(lib.falta)}</p>}
               </div>
               <div className="rodape-carta">
                 <button type="button" className="btn-mini" disabled={travada || sem} onClick={() => adicionar(d)}>
-                  {repetida ? "Já está na forma" : proibida ? "Indisponível" : semTecnica ? "Falta a técnica" : cheio ? "Sem vagas" : sem ? "Pontos insuficientes" : "Adicionar"}
+                  {repetida ? "Já está na forma" : proibida ? "Indisponível" : !lib.ok ? "Bloqueado pela arma" : semTecnica ? "Falta a técnica" : cheio ? "Sem vagas" : sem ? "Pontos insuficientes" : "Adicionar"}
                 </button>
               </div>
             </article>
