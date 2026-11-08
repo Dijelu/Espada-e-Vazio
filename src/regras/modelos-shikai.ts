@@ -4,6 +4,8 @@ import { presetPorId } from "./efeitos-presets";
 import { liquidoPecas, orcamentoBase, type CtxForma, type InstEfeito } from "./efeitos-forma";
 import { analisarDano } from "./teto-dano";
 import { calcularLiberacao } from "./liberacao-forma";
+import { marcarAcoes, montarCartoesModelo } from "./modelos-cartoes";
+import { CARTOES_SHIKAI } from "./modelos-shikai-cartoes";
 
 const novoId = () => (typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : String(Date.now() + Math.random()));
 
@@ -949,6 +951,8 @@ function nomeDaPeca(nome: string, param?: { atr?: string; tipo?: string; n?: num
 
 /** Monta a Shikai pronta com peças, habilidades, ponto fraco, custo e duração calculados. */
 export function formaDaShikai(m: ModeloShikaiMontado, ctx: CtxForma): Partial<FormaLib> {
+  const cart = CARTOES_SHIKAI[m.id];
+  if (cart) return formaDaShikaiComCartoes(m, ctx);
   const efeitos: InstEfeito[] = [];
   const total = orcamentoBase("shikai", ctx.n);
   const fora: string[] = [];
@@ -973,4 +977,25 @@ export function formaDaShikai(m: ModeloShikaiMontado, ctx: CtxForma): Partial<Fo
   });
   const lib = calcularLiberacao("shikai", efeitos, ctx, {});
   return { tipo: "shikai", modelo: m.id, nome: m.nome, comando: m.comando, categoria: m.categoria, aparencia: m.aparencia, espirito: m.espirito, efeitos, habilidades, pontoFraco: presetPorId(m.pontoFraco)?.nome ?? "", ...armaDoModelo("shikai", m.id), custo: lib.custoPr ?? 5, duracao: "até você encerrar", texto: fora.length ? `${m.resumo}\nCartões que ainda não cabem no seu nível e entram quando a Shikai crescer (até 8 PP no nível 13): ${fora.join(", ")}.` : m.resumo };
+}
+
+/** Os habilidades do modelo como estão no livro (dano e PR não mudam). */
+function habilidadesDoModelo(m: ModeloShikaiMontado, ctx: CtxForma): HabForma[] {
+  const cx = { ...ctx, tipo: "shikai" };
+  return m.habilidades.map((h) => {
+    const a = h.dano ? analisarDano(h.dano, h.acao, cx, false, (h as { especial?: { condicao: string; duracao: string } }).especial ?? false) : null;
+    const pr = a ? a.custoPr : 0;
+    return { id: novoId(), nome: h.nome, acao: h.acao, custo: pr ? `${pr} PR` : "", pr: pr || undefined, dano: h.dano || undefined, modelo: h.modelo || undefined, regra: h.regra, desc: h.desc, especial: (h as { especial?: { condicao: string; duracao: string } }).especial, limite: (h as { especial?: unknown }).especial ? undefined : (/uma vez por cena/i.test(h.regra) ? "cena" as const : undefined), texto: [h.desc, h.regra].filter(Boolean).join("\n") };
+  });
+}
+
+/** A Shikai do modelo montada só com os cartões neutros: ações com os números do livro, cartões de característica e de condição, ponto fraco neutro e o resto como sabor. */
+function formaDaShikaiComCartoes(m: ModeloShikaiMontado, ctx: CtxForma): Partial<FormaLib> {
+  const cart = CARTOES_SHIKAI[m.id];
+  const total = orcamentoBase("shikai", ctx.n);
+  const habilidades = marcarAcoes(habilidadesDoModelo(m, ctx), cart.acoes);
+  const { efeitos, fora, pontoFraco } = montarCartoesModelo(cart, habilidades, { ...ctx, tipo: "shikai" }, "shikai", total, novoId);
+  const lib = calcularLiberacao("shikai", efeitos, ctx, {});
+  const texto = [m.resumo, cart.sabor, fora.length ? `Cartões que ainda não cabem no seu nível e entram quando a Shikai crescer: ${fora.join("; ")}.` : ""].filter(Boolean).join("\n");
+  return { tipo: "shikai", modelo: m.id, nome: m.nome, comando: m.comando, categoria: m.categoria, aparencia: m.aparencia, espirito: m.espirito, efeitos, habilidades, pontoFraco, ...armaDoModelo("shikai", m.id), custo: lib.custoPr ?? 5, duracao: "até você encerrar", texto };
 }

@@ -18,6 +18,7 @@ export const PREJUIZOS: PrejuizoPronto[] = [
   { id: "l-corte", forca: "leve", nome: "Corte cego", texto: "-3 de dano fixo nos golpes, disparos e Hadō.", monta: () => [{ k: "dano", em: ATAQUES, v: -3 }] },
   { id: "l-passos", forca: "leve", nome: "Passos pesados", texto: "-3 m de deslocamento.", monta: () => [{ k: "desloc", modo: "chao", v: -3 }] },
   { id: "l-brasa", forca: "leve", nome: "Brasa curta", texto: "A forma dura só a proficiência em turnos.", monta: () => [{ k: "duracao", turnos: "[PROF]" }] },
+  { id: "l-corpo", forca: "leve", nome: "Corpo em brasa", texto: "O poder queima o corpo: Constituição -2 enquanto durar.", monta: () => [atr(-2, "con")] },
   { id: "m-casca", forca: "medio", nome: "Casca de vidro", texto: "CR -3 e Constituição -1 enquanto durar.", monta: () => [{ k: "cr", v: -3 }, atr(-1, "con")] },
   { id: "m-peso", forca: "medio", nome: "Peso do poder", texto: "Força -1 e Destreza -1.", monta: () => [atr(-1, "for"), atr(-1, "des")] },
   { id: "m-reiatsu", forca: "medio", nome: "Reiatsu instável", texto: "-2 na CD dos Kidōs e técnicas.", monta: () => [{ k: "cd", v: -2 }] },
