@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { Ficha, FormaLib } from "../regras/ficha";
 import type { CtxForma } from "../regras/efeitos-forma";
+import { shikaiExigida, temAShikai } from "../regras/bankai-exige-shikai";
 import { MODELOS_BANKAI, formaDoModelo, type ModeloMontado } from "../regras/modelos-bankai";
 
 interface Props {
@@ -23,12 +24,13 @@ export function ModelosBankai({ f, tipo, ctx, onUsar }: Props) {
       <p className="ajuda">
         {tipo === "bankai2"
           ? "A Verdadeira se apoia na Bankai de mesmo nome e segue o tipo dela. Para usar uma, escolha antes a Bankai correspondente."
-          : "Cada modelo já vem com as peças, as habilidades, o ponto fraco, o custo e a duração calculados. Você pode mudar tudo depois."}
+          : "Cada modelo já vem com as peças, as habilidades, o ponto fraco, o custo e a duração calculados. Você pode mudar tudo depois. Cada Bankai pede a Shikai de mesmo dono: sem ela, o modelo fica travado."}
       </p>
       <div className="cartas-hab modelos-montados-lista">
         {lista.map((m: ModeloMontado) => {
           const forma = tipo === "bankai2" ? m.verdadeira! : m.bankai;
-          const liberada = tipo === "bankai" || base === m.id;
+          const exige = tipo === "bankai" ? shikaiExigida(m.id) : null;
+          const liberada = tipo === "bankai" ? temAShikai(f.formas.shikai?.modelo, exige) : base === m.id;
           const aberta = aberto === m.id;
           return (
             <article key={m.id} className={`carta-hab carta-peca carta-montagem ${liberada ? "" : "travada"}`} data-classe="shinigami">
@@ -38,6 +40,7 @@ export function ModelosBankai({ f, tipo, ctx, onUsar }: Props) {
               </div>
               <p className="ajuda">{m.dono} · {ESTILO[m.bankai.estilo]}{tipo === "bankai" && m.verdadeira ? " · tem Verdadeira" : ""}</p>
               <p>{m.resumo}</p>
+              {!liberada && tipo === "bankai" && exige && <p className="regra-cartao"><b>Precisa da Shikai {exige.nome}:</b> escolha essa Shikai antes para usar este modelo.</p>}
               {forma.preRequisito && <p className="regra-cartao"><b>Pré-requisito:</b> {forma.preRequisito}</p>}
               {aberta && (
                 <>
@@ -55,7 +58,7 @@ export function ModelosBankai({ f, tipo, ctx, onUsar }: Props) {
                   disabled={!liberada}
                   onClick={() => { const x = formaDoModelo(m, tipo, ctx); if (x) onUsar(x); }}
                 >
-                  {liberada ? "Usar este modelo" : `Exige a Bankai ${m.bankai.nome}`}
+                  {liberada ? "Usar este modelo" : tipo === "bankai" && exige ? `Precisa da Shikai ${exige.nome}` : `Exige a Bankai ${m.bankai.nome}`}
                 </button>
               </div>
             </article>

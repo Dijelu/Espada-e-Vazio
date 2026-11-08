@@ -5,6 +5,7 @@ import { PainelSchrift } from "./PainelSchrift";
 import { ROTULO_ORIGEM, origemDaForma } from "../lib/origem";
 import { CartaoHabilidade } from "./CartoesHabilidade";
 import { ModelosBankai } from "./ModelosBankai";
+import { shikaiExigida, temAShikai } from "../regras/bankai-exige-shikai";
 import { ModelosHollow } from "./ModelosHollow";
 import { ModelosShikai } from "./ModelosShikai";
 import { calcularLiberacao } from "../regras/liberacao-forma";
@@ -243,7 +244,16 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
                     <div className="seletor-detalhe">
                       {b.texto.split("\n\n").slice(0, 6).map((p, i) => <p key={i}>{p}</p>)}
                       <p className="ajuda">O texto completo está no Capítulo 5.</p>
-                      <button type="button" className="btn" onClick={() => usarBankai(b.id)}>Usar a Bankai {b.nome}</button>
+                      {(() => {
+                        const exige = shikaiExigida(b.id, b.nome);
+                        const ok = temAShikai(f.formas.shikai?.modelo, exige);
+                        return (
+                          <>
+                            {!ok && exige && <p className="regra-cartao"><b>Precisa da Shikai {exige.nome}:</b> escolha essa Shikai antes para usar esta Bankai.</p>}
+                            <button type="button" className="btn" disabled={!ok} onClick={() => usarBankai(b.id)}>{ok ? `Usar a Bankai ${b.nome}` : `Precisa da Shikai ${exige?.nome}`}</button>
+                          </>
+                        );
+                      })()}
                     </div>
                   )}
                 </li>
