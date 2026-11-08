@@ -13,9 +13,9 @@ const ACOES = ["Ação", "Ação bônus", "Reação"];
 
 /** O texto que a ficha mostra: a descrição do jogador e, depois, a regra do cartão. */
 export const comporTexto = (desc: string, regra: string, especial?: HabForma["especial"]) =>
-  [desc.trim(), regra.trim(), especial ? `Técnica especial: 1 uso por cena. Depois de usar, você fica ${especial.condicao} ${especial.duracao}.` : ""].filter(Boolean).join("\n");
+  [desc.trim(), regra.trim(), especial ? `Golpe reforçado: 1 uso por cena. Depois de usar, você fica ${especial.condicao} ${especial.duracao}.` : ""].filter(Boolean).join("\n");
 
-/** Condições que a técnica especial pode cobrar de quem a usa. */
+/** Condições que o golpe reforçado pode cobrar de quem a usa. */
 export const CONDICOES_ESPECIAL = ["Esgotado", "Amedrontado", "Atordoado", "Caído", "Cego", "Surdo", "Distorcido", "Queimado", "Sangramento", "Congelado", "Preso", "Agarrado"];
 export const DURACOES_ESPECIAL = ["até o fim do próximo turno", "até o fim da cena", "até um descanso curto", "até um descanso longo"];
 
@@ -150,7 +150,7 @@ interface CartaoProps {
 /** Cartão de habilidade já montado: nome, ação, dano, custo calculado e a descrição do jogador. */
 export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, efeitos, onChange, onRemover }: CartaoProps) {
   const ligados = caracsDaAcao(efeitos, h);
-  // ataque automático: o dano é calculado na leitura (nível, tipo de ação, técnica especial; os dados extras dos cartões não entram)
+  // ataque automático: o dano é calculado na leitura (nível, tipo de ação, golpe reforçado; os dados extras dos cartões não entram)
   const danoLido = danoDoCartao(h, ctx, ppExtra);
   const a = h.fixa ? null : analisarDano(danoLido, h.acao, ctx, ppExtra, h.especial ?? false);
   // a ficha também guarda o valor, para quem a lê fora desta tela
@@ -200,7 +200,7 @@ export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, efeitos, on
               {ATR_AUTO.map((x) => <option key={x.id} value={x.id}>{x.nome} ({ctx.atr[x.chave] >= 0 ? "+" : ""}{ctx.atr[x.chave]})</option>)}
             </select>
           </label>
-          <p className="ajuda">{rotuloDoValor(h).rotulo} <b>{danoLido ? resolver(danoLido, ctx) : "—"}</b> <Info>O dano já vem pronto para a ação. Mudou o nível, o tipo de ação ou a técnica especial? Ele se ajusta sozinho. Você só escreve a descrição do ataque. {doCartao ? "O custo em PR vem do ritmo da ação." : "O custo em PR acompanha o dano."}</Info></p>
+          <p className="ajuda">{rotuloDoValor(h).rotulo} <b>{danoLido ? resolver(danoLido, ctx) : "—"}</b> <Info>O dano já vem pronto para a ação. Mudou o nível, o tipo de ação ou o golpe reforçado? Ele se ajusta sozinho. Você só escreve a descrição do ataque. {doCartao ? "O custo em PR vem do ritmo da ação." : "O custo em PR acompanha o dano."}</Info></p>
         </div>
       ) : (
         <>
@@ -226,7 +226,7 @@ export function CartaoHabilidade({ h, tipo, ctx, ppExtra, nomeForma, efeitos, on
                 onChange({ especial: esp, ...(novo ? { texto: comporTexto(h.desc ?? "", regra, esp) } : {}) });
               }}
             />
-            Técnica especial{h.especial ? " (dano maior)" : ""}
+            Golpe reforçado{h.especial ? " (dano maior)" : ""}
           </label><Info>Só 1 vez por cena e, depois, você recebe uma condição. Em troca, o dano da técnica fica maior (quanto mais pesada a condição, maior).</Info></div>
           {h.especial && (
             <div className="duas">

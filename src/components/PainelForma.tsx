@@ -126,7 +126,7 @@ function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg, pele, i }: { f: F
     if (esp) {
       const condicoes = f.estado.condicoes.includes(esp.condicao) ? f.estado.condicoes : [...f.estado.condicoes, esp.condicao];
       alterar({ ...gasto, estado: { ...f.estado, condicoes, usos: { ...usos, [chaveEsp]: 1 } } });
-      onMsg(`${h.nome}: técnica especial usada${gasta ? ` (${gasta} PR)` : ""}. Você ficou ${esp.condicao} ${esp.duracao}.`);
+      onMsg(`${h.nome}: golpe reforçado usado${gasta ? ` (${gasta} PR)` : ""}. Você ficou ${esp.condicao} ${esp.duracao}.`);
     } else if (lim) {
       alterar({ ...gasto, estado: { ...f.estado, usos: { ...usos, [chaveLim]: 1 } } });
       onMsg(`${h.nome}: usada${gasta ? ` (${gasta} PR)` : ""}. Só pode usar de novo ${lim === "cena" ? "na próxima cena" : lim === "curto" ? "depois de um descanso curto" : "depois de um descanso longo"}.`);
@@ -156,7 +156,7 @@ function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg, pele, i }: { f: F
   const extraAbs = sinAbs && carga > 0 ? `+${carga}d10` : "";
   const danoJogo = `${dano}${extraAbs}`;
   const gastarCarga = () => { if (extraAbs) alterar({ estado: { ...f.estado, usos: { ...usos, [CARGA_CLONES]: 0 } } }); };
-  const rotulo = espUsada ? "Já usada nesta cena" : limUsada ? "Já usada" : esp ? `Usar técnica especial (${gasta} PR)` : lim ? `Usar (${gasta ? `${gasta} PR, ` : ""}${lim === "cena" ? "1 por cena" : lim === "curto" ? "1 por descanso curto" : "1 por descanso longo"})` : `Usar (${gasta} PR)`;
+  const rotulo = espUsada ? "Já usada nesta cena" : limUsada ? "Já usada" : esp ? `Usar golpe reforçado (${gasta} PR)` : lim ? `Usar (${gasta ? `${gasta} PR, ` : ""}${lim === "cena" ? "1 por cena" : lim === "curto" ? "1 por descanso curto" : "1 por descanso longo"})` : `Usar (${gasta} PR)`;
   const { resumo, resto } = resumir(h.texto);
   const [abertoC, setAbertoC] = useState(false);
   const botoes: ReactNode[] = [];

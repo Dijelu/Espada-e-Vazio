@@ -1549,11 +1549,11 @@ Assim como o Shinigami tem defeitos, sua Bankai também deve ter. Você deve cri
 
 O dano de cada habilidade da Shikai, da Bankai e das outras formas tem um teto. A referência é (metade do nível + 4) dados de 5,5 de média, mais o maior atributo, e o teto muda conforme o tipo de ação: a Ação vale 115% da referência, a Ação Bônus 60% e a Reação 85%. As formas mais altas pesam mais: a Shikai fica com 115%, a Bankai, a Resurrección e a Vollständig com 130%, e a Bankai Verdadeira e a Segunda Etapa com 145%.
 
-Na prática, todo ataque que você cria já deve ficar perto desse teto, então ele é calculado por você ou pelo site: escolha apenas o atributo que entra como bônus de dano e se a técnica é especial. O custo em PR segue o dano: quanto mais forte o golpe, mais PR. Se você quiser um golpe mais barato, reduza o dano à mão.
+Na prática, todo ataque que você cria já deve ficar perto desse teto, então ele é calculado por você ou pelo site: escolha apenas o atributo que entra como bônus de dano e se o golpe é reforçado. O custo em PR segue o dano: quanto mais forte o golpe, mais PR. Se você quiser um golpe mais barato, reduza o dano à mão.
 
-### Técnica Especial
+### Golpe Reforçado
 
-Uma habilidade pode ser uma técnica especial: só pode ser usada uma vez por cena e, depois de usá-la, você recebe uma condição por um tempo. Em troca, o teto de dano dela sobe, e o máximo de dados sobe na mesma proporção. Quanto mais pesada a condição, e quanto mais ela dura, maior o aumento.
+Uma habilidade pode ser um golpe reforçado (não é o mesmo que as técnicas especiais dos cartões da montagem): só pode ser usada uma vez por cena e, depois de usá-la, você recebe uma condição por um tempo. Em troca, o teto de dano dela sobe, e o máximo de dados sobe na mesma proporção. Quanto mais pesada a condição, e quanto mais ela dura, maior o aumento.
 
 | Condição | Aumento do teto |
 |---|---|
@@ -1568,7 +1568,7 @@ Uma habilidade pode ser uma técnica especial: só pode ser usada uma vez por ce
 
 Os valores da tabela valem para a condição que dura até o fim da cena. Se ela dura só até o fim do próximo turno, o aumento é metade; até um descanso curto, é 1,4 vez; até um descanso longo, 1,8 vez (no máximo 120%). Exemplo: Sangramento até o fim da cena aumenta o teto em 60%.
 
-Uma habilidade que não é técnica especial pode ter um limite de uso (uma vez por cena, por descanso curto ou por descanso longo) ou um requisito. Cada um conta como ponto fraco e devolve pontos para a forma, até um máximo de 4 no total.
+Uma habilidade que não é golpe reforçado pode ter um limite de uso (uma vez por cena, por descanso curto ou por descanso longo) ou um requisito. Cada um conta como ponto fraco e devolve pontos para a forma, até um máximo de 4 no total.
 
 ### Orçamento da Forma
 

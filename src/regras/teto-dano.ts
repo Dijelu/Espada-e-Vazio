@@ -65,7 +65,7 @@ function lerResolvido(txt: string) {
   return { qtd, faces, media: media + fixo, fixo };
 }
 
-/** Técnica especial (1 uso por cena + condição para quem usa): quanto o teto sobe depende de quão ruim é a condição e de quanto tempo dura. */
+/** Golpe reforçado (1 uso por cena + condição para quem usa): quanto o teto sobe depende de quão ruim é a condição e de quanto tempo dura. */
 export const BONUS_ESPECIAL = 1.4;
 /** Aumento do teto (em %) para cada condição, quando dura até o fim da cena. */
 export const PCT_CONDICAO: Record<string, number> = {
@@ -78,7 +78,7 @@ export const MULT_DURACAO: Record<string, number> = {
 };
 export type Especial = { condicao: string; duracao: string };
 
-/** Quanto a técnica especial aumenta o teto (em %), de 10 a 120. Sem dados da condição, vale os 40% de antes. */
+/** Quanto o golpe reforçado aumenta o teto (em %), de 10 a 120. Sem dados da condição, vale os 40% de antes. */
 export function pctEspecial(esp: Especial | boolean | undefined | null): number {
   if (!esp) return 0;
   if (esp === true) return 40;
@@ -86,7 +86,7 @@ export function pctEspecial(esp: Especial | boolean | undefined | null): number 
   const mult = MULT_DURACAO[esp.duracao] ?? 1;
   return Math.max(10, Math.min(120, Math.round(base * mult)));
 }
-/** Máximo de dados: base do nível e da forma, mais a mesma porcentagem que a técnica especial soma ao teto. */
+/** Máximo de dados: base do nível e da forma, mais a mesma porcentagem que o golpe reforçado soma ao teto. */
 const qtdMaxDe = (ctx: CtxForma, formaDados: number, pct: number) => Math.ceil((Math.floor(ctx.n / 2) + 5 + formaDados) * (1 + pct / 100));
 
 export function analisarDano(expr: string | undefined, acao: string, ctx: CtxForma, comAval = false, especialEnt: Especial | boolean | undefined | null = false): AnaliseDano | null {

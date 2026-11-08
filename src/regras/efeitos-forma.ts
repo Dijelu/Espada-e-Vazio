@@ -499,7 +499,7 @@ export function liquidoPecas(pecas: InstEfeito[], total: number, ctx: CtxForma):
   return Math.ceil(gasto - Math.min(devolucao, Math.floor(total / 3)) - frenesiDev);
 }
 
-/** Limite de uso e requisito viram ponto fraco: 1 por cena +1, por descanso curto +2, por descanso longo +3, requisito +1 (no máximo 4 no total). A técnica especial já tem a sua troca. */
+/** Limite de uso e requisito viram ponto fraco: 1 por cena +1, por descanso curto +2, por descanso longo +3, requisito +1 (no máximo 4 no total). O golpe reforçado já tem a sua troca. */
 export function devolucaoLimites(habs: { limite?: string; requisito?: string; especial?: unknown }[]): number {
   let t = 0;
   for (const h of habs) {

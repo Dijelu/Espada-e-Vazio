@@ -90,6 +90,8 @@ export function repararFicha(bruta: Ficha): Reparo {
       let x = h;
       if (x.cartao !== undefined && !cartaoValido(x.cartao)) { const { cartao: _descartado, ...resto } = x; x = resto; }
       if (x.caracs !== undefined && !(Array.isArray(x.caracs) && x.caracs.every((c) => typeof c === "string"))) { const { caracs: _descartado, ...resto } = x; x = resto; }
+      // o rótulo antigo "Técnica especial" do golpe de dano maior virou "Golpe reforçado" (só a palavra no texto; nada muda nas regras)
+      if (typeof x.texto === "string" && x.texto.includes("Técnica especial: 1 uso por cena.")) x = { ...x, texto: x.texto.replace("Técnica especial: 1 uso por cena.", "Golpe reforçado: 1 uso por cena.") };
       const marca = marcaDoCartaoAntigo(x);
       if (!marca) return x;
       marcados++;
