@@ -15,6 +15,9 @@ import { SeletorDano } from "./SeletorFormula";
 import { Info } from "./Dica";
 import { novoId } from "./FichaPecas";
 import { SeletorSchrift } from "./SeletorSchrift";
+import { EscolhaArmaForma } from "./EscolhaArmaForma";
+import { armaEfetiva, armaPendente, caracsValidas, nomeCaracArma, resumoArma } from "../regras/arma-forma";
+import { limiteCaracsArma } from "../regras/cartoes";
 import { schriftDaFicha } from "../regras/schrifts";
 import { CANALIZADORES_EXTRA, FRAQUEZAS_EXTRA, NOMES, TEMAS, type Tema } from "../regras/forma-sugestoes";
 
@@ -39,7 +42,8 @@ const PASSOS_BASE: Record<Exclude<TipoForma, "bankai2">, Passo[]> = {
     { id: "categoria", titulo: "Categoria", ajuda: "Defina o tipo da sua Zanpakutou. Combate é voltada só para lutar. Elemental usa um elemento da natureza. Kido tem uma habilidade que faz tudo funcionar. Especial é o que não cabe nas outras." },
     { id: "espirito", titulo: "Espírito", ajuda: "A alma do Shinigami se reflete na Zanpakutou. Crie a aparência e a personalidade do espírito com base no seu personagem (ou no contrário dele). O espírito pode ter vontades diferentes das suas." },
     { id: "nome", titulo: "Nome e comando", ajuda: "O nome tem relação com a natureza da Zanpakutou. Na Shikai ele é um nome incompleto. O comando é a frase de liberação, como “Reduza tudo a Cinzas” seguido do nome." },
-    { id: "aparencia", titulo: "Forma", ajuda: "Ao liberar, a Zanpakutou pode ter outra forma: outra arma ou algo exótico. Pode ser dupla (duas armas). Ela usa o mesmo atributo da Asauchi nos ataques." },
+    { id: "arma", titulo: "Forma da arma", ajuda: "A arma define o golpe básico da forma e quais cartões você poderá montar depois. Escolha do catálogo ou monte uma arma própria (o Mestre aprova)." },
+    { id: "aparencia", titulo: "Aparência", ajuda: "Descreva a Zanpakutou ao ser liberada: as cores, o brilho, o que muda na lâmina. A arma e o golpe básico vêm do passo anterior." },
     { id: "acoes", titulo: "Habilidades e técnicas", ajuda: "Habilidades são poderes passivos da Shikai. Técnicas são ativadas de propósito. Use os cartões de ação e escreva como cada um aparece." },
     { id: "custo", titulo: "Custo de liberação", ajuda: "De 3 a 10 PR. Custos altos são para Shikais completas e poderosas; custos baixos, para as mais simples ou incompletas." },
     { id: "efeitos", titulo: "Efeitos e pontos", ajuda: "Aqui a forma ganha números de verdade: atributos, CR, dano, redução, clones e mais. Você tem pontos de poder para gastar, e os pontos fracos com nome devolvem pontos. Tudo entra sozinho na ficha enquanto a forma estiver ativa." },
@@ -48,6 +52,7 @@ const PASSOS_BASE: Record<Exclude<TipoForma, "bankai2">, Passo[]> = {
   bankai: [
     { id: "conceito", titulo: "Conceito", ajuda: "A Bankai reflete a alma do Shinigami. Pense no que ele esconde dentro de si e escolha como ela vai se comportar em relação à sua Shikai." },
     { id: "nome", titulo: "Nome e comando", ajuda: "O nome verdadeiro do espírito aparece na Bankai. O comando é a frase dita ao liberar, seguida do nome." },
+    { id: "arma", titulo: "Forma da arma", ajuda: "A arma define o golpe básico da forma e quais cartões você poderá montar depois. Escolha do catálogo ou monte uma arma própria (o Mestre aprova)." },
     { id: "aparencia", titulo: "Aparência", ajuda: "Na Bankai o espírito aparece no mundo real. A forma pode ficar igual ou mudar por completo. Pode ser algo grande ou pequeno." },
     { id: "acoes", titulo: "Habilidades e técnicas", ajuda: "Escolha de 3 a 4 habilidades. O custo de reiatsu depende do ritmo da ação. Use os cartões de ação abaixo e escreva como cada um aparece." },
     { id: "custo", titulo: "Custo e duração", ajuda: "O custo de liberação vai de 40 a 80 PR: mais poder, mais custo. A Bankai dura 1 minuto e precisa de novo custo para continuar." },
@@ -58,6 +63,7 @@ const PASSOS_BASE: Record<Exclude<TipoForma, "bankai2">, Passo[]> = {
   resurreccion: [
     { id: "conceito", titulo: "Conceito", ajuda: "A Resurrección é o corpo verdadeiro do Hollow. Pense em um animal, um monstro ou uma ideia, e em como isso combina com o seu Caminho." },
     { id: "nome", titulo: "Nome e comando", ajuda: "O nome costuma ser um animal ou conceito em espanhol. O comando é a frase dita ao liberar." },
+    { id: "arma", titulo: "Forma da arma", ajuda: "A arma define o golpe básico da forma e quais cartões você poderá montar depois. Escolha do catálogo ou monte uma arma própria (o Mestre aprova)." },
     { id: "aparencia", titulo: "Aparência", ajuda: "Descreva o corpo, a máscara e a arma natural na forma liberada." },
     { id: "traco", titulo: "Traço da forma", ajuda: "Um efeito pequeno e claro, na escala dos modelos do livro. O dano já vem da forma, então nada de bônus grandes." },
     { id: "acoes", titulo: "Técnicas", ajuda: "Inclua a técnica de assinatura do seu Caminho (12 PR) e mais uma ou duas técnicas: uma básica e a técnica final." },
@@ -68,6 +74,7 @@ const PASSOS_BASE: Record<Exclude<TipoForma, "bankai2">, Passo[]> = {
   segunda: [
     { id: "conceito", titulo: "Conceito", ajuda: "A Segunda Etapa é a Resurrección levada além: o corpo muda de novo, mais forte e mais cruel, e o Hollow mostra o que vinha escondendo. Pense no que a forma anterior segurava e no que se solta agora." },
     { id: "nome", titulo: "Nome e comando", ajuda: "O nome costuma ser a forma verdadeira do Hollow, mais sombria que a da Resurrección. O comando é a frase dita ao liberar, que costuma ser curta e pesada." },
+    { id: "arma", titulo: "Forma da arma", ajuda: "A arma define o golpe básico da forma e quais cartões você poderá montar depois. Escolha do catálogo ou monte uma arma própria (o Mestre aprova)." },
     { id: "aparencia", titulo: "Transformação", ajuda: "Descreva o que muda em relação à Resurrección: o corpo, a máscara, as asas, as armas e o ambiente. A Segunda Etapa precisa parecer outra criatura." },
     { id: "traco", titulo: "Novo traço", ajuda: "Um efeito novo e claro, no mesmo nível dos traços do livro. Ele substitui o traço da Resurrección enquanto a Segunda Etapa estiver ativa." },
     { id: "acoes", titulo: "Técnicas", ajuda: "Traga as técnicas da Resurrección, mais fortes, e escolha a técnica final. Pense em uma técnica de assinatura de longo alcance e em uma de defesa ou controle." },
@@ -77,6 +84,7 @@ const PASSOS_BASE: Record<Exclude<TipoForma, "bankai2">, Passo[]> = {
   ],
   vollstandig: [
     { id: "nome", titulo: "Nome e frase", ajuda: "A frase de liberação pode ser “Quincy Vollständig” ou um nome próprio. Se tiver Schrift, ela influencia o nome." },
+    { id: "arma", titulo: "Forma da arma (opcional)", ajuda: "Opcional. A arma define o golpe básico e quais cartões você poderá montar depois. Sem arma definida, tudo fica liberado." },
     { id: "aparencia", titulo: "Aparência", ajuda: "A Vollständig envolve o Quincy em reishi, em forma de asas e auréola. A cor costuma seguir a do reishi do Quincy." },
     { id: "canal", titulo: "Canalizador e Schrift", ajuda: "Todo Quincy precisa de um objeto para ativar a Vollständig. Se perder, recria no próximo descanso longo. A Schrift é opcional e precisa do aval do Mestre." },
     { id: "unicas", titulo: "Habilidades únicas", ajuda: "Escolha as habilidades que diferenciam a sua Vollständig. Depois de definidas, não mudam. Você pode repetir uma habilidade para acumular, menos Força e Precisão Espiritual." },
@@ -280,8 +288,11 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
     mud({ picks });
   };
 
+  const armaRev = armaEfetiva(f, r);
+  const carcRev = caracsValidas(r.armaCaracs);
   const erros: string[] = [];
   if (!r.nome.trim()) erros.push("Falta o nome.");
+  if (carcRev.length > limiteCaracsArma(tipo)) erros.push(`Características da arma demais: o limite é ${limiteCaracsArma(tipo)}.`);
   if (tipo === "vollstandig" && usados < limite) erros.push(`Faltam ${limite - usados} habilidade(s) única(s).`);
   if (vagasUsadas(r.habilidades) > maxHab) erros.push(`Há habilidades demais: o limite é ${maxHab}.`);
   if (r.habilidades.filter((h) => h.cartao?.final).length > LIMITE_FINAL) erros.push("Só pode haver uma técnica final por forma.");
@@ -382,6 +393,8 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
             </div>
           </>
         )}
+        {passo.id === "arma" && <EscolhaArmaForma f={f} tipo={tipo} r={r} mud={mud} />}
+
         {passo.id === "nome" && (
           <>
             <label className="campo">Nome<input value={r.nome} onChange={(e) => mud({ nome: e.target.value })} placeholder={tipo === "shikai" ? "Nome da Zanpakutou na Shikai" : tipo === "resurreccion" ? "Ex.: Pantera" : tipo === "vollstandig" ? "Ex.: Vollständig do Atirador" : "Nome verdadeiro da Zanpakutou"} /></label>
@@ -544,6 +557,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
             <h3>{r.nome || "(sem nome)"}</h3>
             {r.comando && <p><i>“{r.comando}”</i></p>}
             {r.aparencia && <p>{r.aparencia}</p>}
+            {armaRev && <p><b>Arma:</b> {armaRev.nome} ({resumoArma(armaRev)}){carcRev.length > 0 ? ` · ${carcRev.map(nomeCaracArma).join(", ")}` : ""}{armaPendente(armaRev) ? " · aval do Mestre pendente" : ""}</p>}
             {r.traco && <p className="quebra"><b>Traços:</b>{"\n"}{r.traco}</p>}
             {r.canalizador && <p><b>Canalizador:</b> {r.canalizador}</p>}
             {tipo === "shikai" && <p><b>{r.categoria || "Sem categoria"}</b> · {r.custo} PR</p>}
@@ -557,6 +571,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
             {(r.efeitos ?? []).some((e) => e.familia === "tecnica") && (
               <p className="quebra"><b>Técnicas especiais:</b>{(r.efeitos ?? []).filter((e) => e.familia === "tecnica").map((t) => `\n${t.nome}: ${(r.efeitos ?? []).filter((x) => x.familia === "interacao" && x.espec?.tec === t.id).map((x) => x.nome).join(", ") || "sem interação (falta)"}`)}</p>
             )}
+            {armaPendente(armaRev) && <p className="aviso-mini">Aguardando o aval do Mestre: a arma própria “{armaRev!.nome}”. Enquanto isso, ela vale só como texto e o golpe básico segue o da classe.</p>}
             {(r.efeitos ?? []).filter(efeitoPendente).length > 0 && <p className="aviso-mini">Aguardando o aval do Mestre: {(r.efeitos ?? []).filter(efeitoPendente).map((e) => e.nome).join(", ")}. Enquanto isso, valem só como texto.</p>}
             {r.pontoFraco && <p><b>Ponto fraco:</b> {r.pontoFraco}</p>}
             {(tipo === "shikai" || tipo === "bankai" || tipo === "bankai2") && <p><b>Custo e duração:</b> {lib.custoPr ?? r.custo} PR · {lib.duracaoTexto}</p>}

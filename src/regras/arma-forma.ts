@@ -80,7 +80,7 @@ export const GRUPOS_ARMA = ["Corpo a corpo leves", "Corpo a corpo pesadas", "À 
 
 /** Armas do corpo (Resurrección e segunda etapa). Números no mesmo padrão das armas leves e pesadas do livro. */
 const NATURAIS: Omit<ArmaForma, "fonte" | "grupo">[] = [
-  { nome: "Garra", dano: "1d8", tipo: "cortante", crit: 19, mult: 2, props: "", alcance: "", atr: "Força", peso: 1 },
+  { nome: "Garras de osso", dano: "1d8", tipo: "cortante", crit: 19, mult: 2, props: "", alcance: "", atr: "Força", peso: 1 },
   { nome: "Cauda", dano: "1d8", tipo: "concussão", crit: 20, mult: 2, props: "Alcance", alcance: "", atr: "Força", peso: 2 },
   { nome: "Lâmina no braço", dano: "1d10", tipo: "cortante", crit: 19, mult: 2, props: "", alcance: "", atr: "Destreza ou Força", peso: 2 },
   { nome: "Mordida", dano: "1d10", tipo: "perfurante", crit: 20, mult: 2, props: "", alcance: "", atr: "Força", peso: 2 },

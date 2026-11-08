@@ -33,6 +33,7 @@ import { Dica } from "./Dica";
 import { aplicarFaz } from "../regras/aplicar-faz";
 import { novoId } from "./FichaPecas";
 import { AssistenteForma, LIMITE_HAB } from "./AssistenteForma";
+import { EscolhaArmaForma } from "./EscolhaArmaForma";
 import { SeletorSchrift } from "./SeletorSchrift";
 import { schriftDaFicha } from "../regras/schrifts";
 import { acoesDaForma, formaDaLiberacao, liberacaoDaForma, modeloResurreccionPadrao, comoHabilidades, habilidadesDaForma, maiorCustoPR, resolverDano, danoDaAcao, sugerirCusto } from "../regras/liberacoes";
@@ -326,6 +327,10 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
             <label className="campo">Nome<input value={r.nome} onChange={(e) => mud({ nome: e.target.value })} placeholder={tipo === "vollstandig" ? "Ex.: Vollständig do Atirador" : "Nome da forma"} /></label>
             <label className="campo">{tipo === "vollstandig" ? "Frase de liberação" : "Comando / frase de liberação"}<input value={r.comando} onChange={(e) => mud({ comando: e.target.value })} placeholder={tipo === "vollstandig" ? "Ex.: Quincy Vollständig" : "Frase dita ao liberar"} /></label>
             <label className="campo">Aparência<textarea rows={3} value={r.aparencia} onChange={(e) => mud({ aparencia: e.target.value })} placeholder="Como o corpo, a arma, as asas ou o cenário mudam" /></label>
+            <div className="caixa">
+              <h3>Forma da arma{tipo === "vollstandig" ? " (opcional)" : ""}</h3>
+              <EscolhaArmaForma f={f} tipo={tipo} r={r} mud={mud} />
+            </div>
 
             {tipo === "shikai" && (
               <>

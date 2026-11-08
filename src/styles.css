@@ -1950,3 +1950,44 @@ details.ficha-leitura-bloco[open] > summary { margin-bottom: 8px; }
 .carta-montagem.carta-padrao > .link-perigo { margin-top: auto; align-self: flex-start; }
 .cartoes-montados { align-items: stretch; }
 .carta-padrao .texto-carta { overflow-wrap: anywhere; }
+
+/* ===== Forma da arma: arma do catálogo ou própria, e características da arma ===== */
+.escolha-arma { display: grid; gap: 12px; margin: 6px 0; }
+.escolha-arma > .ajuda { margin: 0; }
+.arma-atual { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 16px; padding: 10px 14px; border: 2px solid var(--line); border-left: 6px solid var(--accent); border-radius: 8px; background: var(--panel2); }
+.arma-atual b { font-size: 18px; margin-right: 8px; overflow-wrap: anywhere; }
+.arma-atual p { margin: 2px 0 0; }
+.arma-atual .check { display: flex; gap: 8px; align-items: center; font-size: 14px; }
+.marca-aval { display: inline-block; font-size: 12px; font-weight: 800; padding: 2px 9px; border: 1px solid #e8a13a; border-radius: 999px; color: #f4c06a; background: color-mix(in srgb, #e8a13a 14%, transparent); vertical-align: middle; white-space: nowrap; }
+.marca-aval.ok { border-color: var(--line); color: var(--muted); background: none; }
+.abas-arma { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+.abas-arma button { min-height: 48px; padding: 6px 8px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2px 6px; background: none; border: 2px solid var(--line); border-radius: 6px; color: var(--text); font: inherit; font-size: 14px; cursor: pointer; text-align: center; }
+.abas-arma button i { font-style: normal; font-size: 12px; font-weight: 800; padding: 1px 7px; border-radius: 999px; background: color-mix(in srgb, var(--accent) 22%, transparent); }
+.abas-arma button.on { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 18%, transparent); font-weight: 700; }
+.abas-arma button.cheia i { background: #e8a13a; color: #1b1206; }
+.painel-arma { display: grid; gap: 12px; }
+.painel-arma .filtros-pecas { margin: 0; }
+.carta-arma .selo-pp { font-size: 20px; }
+.carta-arma .texto-carta { font-weight: 700; }
+.carta-arma .texto-carta::first-letter { text-transform: uppercase; }
+.carta-arma .dados-arma { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 10px; margin: 0; font-size: 13px; }
+.carta-arma .dados-arma div { display: grid; gap: 0; }
+.carta-arma .dados-arma dt { color: var(--muted); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; }
+.carta-arma .dados-arma dd { margin: 0; font-weight: 700; }
+.carta-arma .marcas-carac { margin: 0; }
+.carta-arma.escolhida { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+.carta-arma .rodape-carta .btn-mini[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); }
+@media (min-width: 721px) { .carta-arma .texto-carta { min-height: 1.4em; } }
+.chips-carac { display: flex; flex-wrap: wrap; gap: 8px 12px; }
+.chip-carac { display: inline-flex; align-items: center; gap: 0; max-width: 100%; }
+.chip-carac .chip-btn { text-align: left; white-space: normal; padding: 6px 12px; }
+.chip-carac .chip-btn:disabled { opacity: .45; }
+.limite-arma { margin: 0; font-size: 14px; font-weight: 700; }
+.limite-arma.cheio { color: #f4c06a; }
+.arma-propria { border: 2px dashed var(--line); border-radius: 8px; padding: 10px 14px; }
+.arma-propria > summary { cursor: pointer; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; min-height: 36px; }
+.arma-propria[open] > summary { margin-bottom: 8px; }
+.arma-propria .grade-arma { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0 10px; }
+.arma-propria .btn { margin-top: 8px; }
+.escolha-arma .opcoes-grandes { display: grid; grid-template-columns: 1fr; gap: 8px; }
+@media (min-width: 640px) { .escolha-arma .opcoes-grandes { grid-template-columns: 1fr 1fr; } }
