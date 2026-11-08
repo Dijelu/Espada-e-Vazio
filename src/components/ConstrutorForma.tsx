@@ -6,6 +6,7 @@ import { PainelSchrift } from "./PainelSchrift";
 import { ROTULO_ORIGEM, origemDaForma } from "../lib/origem";
 import { CartaoHabilidade } from "./CartoesHabilidade";
 import { CaracteristicasForma } from "./CaracteristicasForma";
+import { EfeitosNeutros } from "./EfeitosNeutros";
 import { ModelosBankai } from "./ModelosBankai";
 import { shikaiExigida, temAShikai } from "../regras/bankai-exige-shikai";
 import { ModelosHollow } from "./ModelosHollow";
@@ -435,6 +436,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
             )}
 
             <CaracteristicasForma f={f} tipo={tipo} r={r} mud={mud} />
+            <EfeitosNeutros f={f} tipo={tipo} r={r} mud={mud} />
             <EfeitosForma f={f} tipo={tipo} r={r} mud={mud} onGravar={onGravar} />
           </div>
         )}

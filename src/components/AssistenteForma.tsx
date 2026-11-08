@@ -7,6 +7,8 @@ import { ACOES_DADOS, HAB_UNICAS, habilidadesDaForma, TIPO_FORMA_NOME, VOLL_PASS
 import { EfeitosForma, EscolhaAtributos } from "./EfeitosForma";
 import { CartaoHabilidade, GaleriaAcoes } from "./CartoesHabilidade";
 import { CaracteristicasForma } from "./CaracteristicasForma";
+import { EfeitosNeutros } from "./EfeitosNeutros";
+import { efeitoPendente } from "../regras/efeitos-neutros";
 import { calcularLiberacao } from "../regras/liberacao-forma";
 import { SeletorDano } from "./SeletorFormula";
 import { Info } from "./Dica";
@@ -500,6 +502,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
               ))}
             </div>
             <CaracteristicasForma f={f} tipo={tipo} r={r} mud={mud} />
+            <EfeitosNeutros f={f} tipo={tipo} r={r} mud={mud} />
           </>
         )}
 
@@ -545,6 +548,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
             )}
             {r.habilidades.map((h) => <p key={h.id}><b>{h.nome}</b> ({[h.acao, h.custo].filter(Boolean).join(", ")}): {h.texto}</p>)}
             {(r.efeitos?.length ?? 0) > 0 && <p><b>Efeitos:</b> {r.efeitos!.map((e) => e.nome).join(", ")}</p>}
+            {(r.efeitos ?? []).filter(efeitoPendente).length > 0 && <p className="aviso-mini">Aguardando o aval do Mestre: {(r.efeitos ?? []).filter(efeitoPendente).map((e) => e.nome).join(", ")}. Enquanto isso, valem só como texto.</p>}
             {r.pontoFraco && <p><b>Ponto fraco:</b> {r.pontoFraco}</p>}
             {(tipo === "shikai" || tipo === "bankai" || tipo === "bankai2") && <p><b>Custo e duração:</b> {lib.custoPr ?? r.custo} PR · {lib.duracaoTexto}</p>}
             {erros.length > 0 && <ul className="avisos">{erros.map((e) => <li key={e}>{e}</li>)}</ul>}

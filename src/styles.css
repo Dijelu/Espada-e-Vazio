@@ -1885,3 +1885,12 @@ details.ficha-leitura-bloco[open] > summary { margin-bottom: 8px; }
 .carta-carac.travada { opacity: .6; }
 .caracs-lista .link-perigo, .caracs-lista .tirar-confirma { flex: none; white-space: nowrap; }
 .caracs-lista .campo-liga select { max-width: 100%; }
+
+/* Cartões de efeito (leve, médio, forte) */
+.galeria-efeitos { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+.carta-efeito .campo small { display: block; margin-top: 4px; }
+.carta-efeito .btn-mini { margin-top: auto; }
+.carta-efeito .carta-topo small { font-weight: 800; letter-spacing: .04em; }
+.carta-efeito[data-forca="leve"] .carta-topo small { color: #9fd3a8; }
+.carta-efeito[data-forca="medio"] .carta-topo small { color: #e8c46a; }
+.carta-efeito[data-forca="forte"] .carta-topo small { color: #ef7a7a; }

@@ -53,7 +53,7 @@ const PF_TODAS: TipoForma[] = ["shikai", "bankai", "bankai2", "resurreccion", "s
 const A = (v: number, atr: Atr = "for"): Efeito => ({ k: "atr", atr, v });
 const todos = (v: number): Efeito[] => (["for", "des", "con", "men", "esp"] as Atr[]).map((a) => A(v, a));
 
-export const PRESETS: Preset[] = [
+const PRESETS_BASE: Preset[] = [
   /* ---------------- Shinigami: Shikai ---------------- */
   { id: "sk-fio", nome: "Lâmina Afiada", familias: SHIK, categoria: "Ofensivo", texto: "A margem de crítico dos seus golpes cai em 1 (anote no ataque: crítico 19).", monta: () => [{ k: "texto", t: "Seus golpes com a Zanpakutou acertam crítico com 19 ou 20." }], pp: 2, aprovacao: true },
   { id: "sk-elem", nome: "Fio Elemental", familias: SHIK, categoria: "Ofensivo", texto: "+1d6 de dano elemental nos golpes.", param: "tipo", rotuloParam: "Elemento", monta: (p) => [{ k: "dados", em: ["golpe"], n: 1, d: 6, tipo: p.tipo || "Elemental" }] },
@@ -284,10 +284,24 @@ export const PRESETS: Preset[] = [
   ...PRESETS_NOVOS,
 ];
 
+/**
+ * Peças de arma ou de personagem (marcas da Soi Fon, jogos do Shunsui…): só existem nos modelos oficiais e nas fichas que já as têm.
+ * Saem da galeria; no lugar entram os cartões neutros de efeito (leve, médio, forte) e de característica.
+ */
+export const LEGADO_IDS = new Set([
+  "sk-homonka", "sk-jogo", "sk-armadilha", "sk-canto", "sk-nervo", "sk-hipnose", "sk-geada", "sk-queima", "sk-veneno", "sk-neblina", "sk-clima",
+  "bk-correntes", "bv-quatro-elementos", "bv-senkei", "bk-ferida-partilhada", "bk-nevoa-veneno", "bv-gestacao", "bk-domo-grilo", "bk-reestrutura", "bv-corpo-ilusao", "bk-eletro",
+  "rs-respira", "rs-amor", "se-eras", "se-mar-profundo", "rs-saliva", "rs-absorcao",
+  "sk-segmentos", "bk-segmentos", "sk-gigante", "bk-maos", "bk-fio-mortal", "bk-ceifa", "rs-tentaculos", "se-latigo", "bk-sol-nascente",
+  "bk-escudo-corrente", "bk-escudo-petalas", "bv-braco-osso",
+]);
+
+export const PRESETS: Preset[] = PRESETS_BASE.map((p) => (LEGADO_IDS.has(p.id) ? { ...p, legado: true } : p));
+
 export const presetPorId = (id: string) => PRESETS.find((p) => p.id === id);
 
 export function presetsDaFamilia(tipo: TipoForma, opts: { potencializadora?: boolean; transformadora?: boolean; schrift?: string } = {}): Preset[] {
-  return PRESETS.filter((p) => p.familias.includes(tipo) && (!p.soPotencializadora || opts.potencializadora) && (!p.soTransformadora || opts.transformadora) && (!p.schrift || p.schrift === opts.schrift));
+  return PRESETS.filter((p) => !p.legado && p.familias.includes(tipo) && (!p.soPotencializadora || opts.potencializadora) && (!p.soTransformadora || opts.transformadora) && (!p.schrift || p.schrift === opts.schrift));
 }
 
 export const ALVOS_LIVRES: Alvo[] = ["golpe", "disparo", "hado", "bakudo", "tecnica", "reishi", "cero", "inato", "schrift"];

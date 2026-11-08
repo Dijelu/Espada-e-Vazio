@@ -611,7 +611,7 @@ function extrasDoCartao(o: Partial<InstEfeito>): Partial<InstEfeito> {
       texto: curto(n.texto, 400),
       ...(cd && typeof cd.nome === "string" && cd.nome.trim() ? { condicao: { nome: cd.nome.slice(0, 30), salva: ATRIBUTOS.includes(cd.salva as Atr) ? (cd.salva as Atr) : undefined, duracao: curto(cd.duracao, 30) } } : {}),
       onde: curto(n.onde, 60),
-      aval: n.aval === "ok" ? "ok" : "pendente",
+      ...(n.modo === "pronta" ? {} : { aval: n.aval === "ok" ? ("ok" as const) : ("pendente" as const) }),
     };
   }
   return out;
