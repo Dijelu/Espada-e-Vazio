@@ -15,7 +15,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { calcular, classePorId, type Ficha, type FormaLib, type HabForma, type TipoForma } from "../regras/ficha";
 import {
   BANKAIS,
-  SHIKAIS,
   HAB_UNICAS,
   RESURRECCIONES,
   TIPO_FORMA_NOME,
@@ -152,20 +151,6 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
     });
     setAba("meu");
   };
-  const usarShikai = (id: string) => {
-    const m = SHIKAIS.find((b) => b.id === id)!;
-    setR({
-      ...vazia("shikai"),
-      modelo: m.id,
-      nome: m.nome,
-      comando: "",
-      categoria: m.categoria,
-      custo: m.custo || 5,
-      aparencia: m.resumo,
-      habilidades: comoHabilidades(m.acoes),
-    });
-    setAba("meu");
-  };
   const usarRes = (id: string) => {
     const m = RESURRECCIONES.find((x) => x.id === id)!;
     setR({
@@ -237,31 +222,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
 
       <div className="construtor-corpo">
         {aba === "modelos" && tipo === "shikai" && (
-          <>
           <ModelosShikai ctx={ctxAtual} onUsar={(x) => { setR({ ...vazia("shikai"), ...x } as FormaLib); setAba("meu"); }} />
-          <h3 className="sub-passivas">Shikais do livro</h3>
-          <>
-            <input className="seletor-busca" value={busca} onChange={(e) => setBusca(e.target.value)} placeholder="Buscar Zanpakutou" aria-label="Buscar Zanpakutou" />
-            <ul className="seletor-lista">
-              {SHIKAIS.filter((b) => !q || b.nome.toLowerCase().includes(q)).map((b) => (
-                <li key={b.id} className={aberto === b.id ? "aberta" : ""}>
-                  <button type="button" className="seletor-item" aria-expanded={aberto === b.id} onClick={() => setAberto(aberto === b.id ? "" : b.id)}>
-                    <b>{b.nome}</b>
-                    <small>{b.categoria || "Sem categoria"}{b.custo ? ` · ${b.custo} PR para liberar` : ""}</small>
-                  </button>
-                  {aberto === b.id && (
-                    <div className="seletor-detalhe">
-                      <p>{b.resumo}</p>
-                      {b.acoes.length > 0 && <ul>{b.acoes.map((a) => <li key={a.id}><b>{a.nome}</b> ({a.acao}{a.pr ? `, ${a.pr} PR` : ""})</li>)}</ul>}
-                      <p className="ajuda">O texto completo está no Capítulo 5.</p>
-                      <button type="button" className="btn" onClick={() => usarShikai(b.id)}>Usar a Shikai {b.nome}</button>
-                    </div>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </>
-          </>
         )}
 
         {aba === "modelos" && ehBankai && (
