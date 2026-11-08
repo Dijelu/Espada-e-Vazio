@@ -86,3 +86,11 @@
 .fpw .fp-grade.fp-un { grid-template-columns: repeat(auto-fill, minmax(min(330px, 100%), 1fr)); }
 .fpw .fp-grade.fp-pa { grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); }
 .fpw .fp-grade > * { min-width: 0; }
+
+/* campo "dano que você ia sofrer" dos botões de defesa */
+.campo-dano { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: 4px 0 14px; padding: 8px 12px; border: 1px solid rgba(246, 236, 228, .22); border-left: 3px solid #b3122e; border-radius: 6px; background: rgba(5, 2, 3, .35); font-size: 13px; }
+.campo-dano span { font-weight: 800; }
+.campo-dano input { width: 92px; min-height: 34px; padding: 0 8px; border-radius: 5px; border: 1px solid rgba(246, 236, 228, .35); background: rgba(5, 2, 3, .6); color: inherit; font: inherit; }
+.campo-dano small { flex: 1 1 100%; opacity: .75; }
+.campo-copia input { width: 110px; }
+.campo-copia input.in-nome { width: 170px; }

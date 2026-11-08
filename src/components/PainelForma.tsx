@@ -1,4 +1,4 @@
-import { acionarPoder, aplicarUsos, bonusDeAtaque, eco, gastarAcerto, gastarBonus, limparPoder, poderesAtivos } from "../regras/poderes";
+import { acionarPoder, aplicarUsos, ataqueDeCorte, ataqueDoCopiado, capacidadeDeCopias, REGRA_DOMINIO, ataqueDeEnergia, bonusDeAtaque, eco, gastarAcerto, gastarBonus, limparPoder, marcarCortada, marcarLancada, poderesAtivos } from "../regras/poderes";
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { calcular, classePorId, ataquesPorAcao, ataqueBonus, type Calculo, type Ficha, type FormaLib, type HabForma, type TipoForma } from "../regras/ficha";
 import { TIPO_FORMA_NOME, formaDaLiberacao, liberacaoDaForma, modeloResurreccionPadrao, habilidadesDaForma, resolverDano, danoDaAcao } from "../regras/liberacoes";
@@ -254,7 +254,10 @@ function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg, pele, i }: { f: F
 const CARGA_CLONES = "fx:absorvidos";
 
 /** O que cada botão criado por um cartão de característica faz em jogo. */
-function executarBotao(f: Ficha, c: Calculo, r: Rolagens, alterar: (p: Partial<Ficha>) => void, b: BotaoGerado, dizer: (m: string) => void) {
+/** O que a pessoa digitou ou escolheu para o botão: dano sofrido, regra do domínio, poder copiado. */
+interface ExtraBotao { dano?: number; opcao?: number; copia?: { nome: string; dano: string; pr: number }; indiceCopia?: number }
+
+function executarBotao(f: Ficha, c: Calculo, r: Rolagens, alterar: (p: Partial<Ficha>) => void, b: BotaoGerado, dizer: (m: string) => void, ex: ExtraBotao = {}) {
   if (b.faz === "invocar") {
     const m = c.forma?.invocacoes.find((x) => x.chave === b.ref);
     if (!m) { dizer(`${b.rotulo}: ligue a forma primeiro.`); return; }
@@ -268,20 +271,53 @@ function executarBotao(f: Ficha, c: Calculo, r: Rolagens, alterar: (p: Partial<F
   if (f.prAtual < pr) { dizer(`${b.rotulo}: precisa de ${pr} PR.`); return; }
   const gasto = { prAtual: Math.max(0, f.prAtual - pr) };
   const usos = f.estado.usos ?? {};
+  // usar o poder copiado: o custo é o do poder original e o sistema rola o ataque e o dano anotados
+  if (b.rotulo === "Usar o poder copiado") {
+    const lista = f.estado.copiados ?? [];
+    const x = lista[Math.min(ex.indiceCopia ?? lista.length - 1, lista.length - 1)];
+    if (Number(usos["pw:copia"]) < 1 || !Number(usos["pw:copia"])) { dizer(`${b.rotulo}: não há cópia (copie um poder primeiro).`); return; }
+    if (!x) { dizer(`${b.rotulo}: anote o nome e o dano ao copiar o poder; sem isso não há o que rolar.`); return; }
+    const at = ataqueDoCopiado(c, x);
+    const custo = at.pr > 0 ? at.pr : pr;
+    if (f.prAtual < custo) { dizer(`${b.rotulo}: ${at.nome} custa ${custo} PR.`); return; }
+    alterar({ prAtual: Math.max(0, f.prAtual - custo) });
+    r.d20(`Acerto: ${at.nome} (copiado)`, at.acerto);
+    if (/\d/.test(at.dano)) r.rolar(`${at.nome} (copiado)`, at.dano);
+    dizer(`${at.nome} (poder copiado): ${custo} PR gastos; acerto ${at.acerto >= 0 ? "+" : ""}${at.acerto}${/\d/.test(at.dano) ? `, dano ${at.dano}` : ""}.`);
+    return;
+  }
   // poderes das técnicas e interações especiais: guardam estado na ficha e dão bônus aos cartões de ação
-  const pw = acionarPoder(b.rotulo, f, c, (rot, expr) => r.rolar(rot, expr)?.total ?? 0);
+  const pw = acionarPoder(b.rotulo, f, c, (rot, expr) => r.rolar(rot, expr)?.total ?? 0, ex.dano ?? 0, ex.opcao ?? 0);
   if (pw) {
     if (pw.erro) { dizer(pw.erro); return; }
     const est = { ...f.estado, usos: aplicarUsos(f, pw.usos ?? {}) };
     if (pw.pvTemp !== undefined) est.pvTemp = pw.pvTemp;
-    alterar({ ...gasto, estado: est });
+    // defesas que reduzem o dano: o que sobra é descontado (PV temporários primeiro)
+    let pvAtual = f.pvAtual;
+    if (pw.perdePv && pw.perdePv > 0) {
+      const t = Math.min(est.pvTemp ?? 0, pw.perdePv);
+      est.pvTemp = (est.pvTemp ?? 0) - t;
+      pvAtual = Math.max(0, f.pvAtual - (pw.perdePv - t));
+    }
+    // dispersar o enxame: metade das criaturas do enxame some
+    if (pw.perdePv !== undefined && /enxame/i.test(b.rotulo)) {
+      const chaves = new Set((c.forma?.invocacoes ?? []).filter((m) => /enxame/i.test(m.peca)).map((m) => m.chave));
+      const lista = [...(est.invocacoes ?? [])];
+      const alvo = lista.filter((x) => chaves.has(x.chave));
+      const tira = Math.floor(alvo.length / 2);
+      for (let k = 0; k < tira; k++) lista.splice(lista.findIndex((x) => chaves.has(x.chave)), 1);
+      est.invocacoes = lista;
+    }
+    if (pw.renasce) { est.invocacoes = [...(est.invocacoes ?? []), pw.renasce]; est.caida = undefined; }
+    if (b.rotulo === "Copiar poder" && ex.copia) est.copiados = [...(f.estado.copiados ?? []), ex.copia].slice(-capacidadeDeCopias(c));
+    alterar({ ...gasto, pvAtual, estado: est });
     dizer(`${b.rotulo}: ${pw.dito ?? "feito"} (${pr} PR)`);
     return;
   }
   if (b.faz === "trocar") {
     if (clonesEmCampo(f) === 0) { dizer(`${b.rotulo}: você precisa de um clone em campo.`); return; }
     const { lista } = retirarClones(f, 1);
-    alterar({ ...gasto, estado: { ...f.estado, invocacoes: lista } });
+    alterar({ ...gasto, estado: { ...f.estado, invocacoes: lista, usos: aplicarUsos(f, { "pw:vantagem": 1 }) } });
     dizer(`${b.rotulo}: você troca de lugar com um clone (ele some) e o seu próximo ataque no turno ganha vantagem (${pr} PR).`);
     return;
   }
@@ -298,6 +334,59 @@ function executarBotao(f: Ficha, c: Calculo, r: Rolagens, alterar: (p: Partial<F
   alterar(gasto);
   if (b.ref && /\d+d\d+/.test(b.ref)) r.rolar(`${b.rotulo}`, b.ref);
   dizer(`${b.rotulo}: ${pr} PR gastos.${b.ref && /\d+d\d+/.test(b.ref) ? ` Dado rolado: ${b.ref}.` : ""}`);
+}
+
+const DEFESAS = ["Dispersar o enxame", "Passar o dano", "Absorver o golpe", "Gastar cargas para se proteger"];
+/** Campo "dano que você ia sofrer": os botões de defesa descontam o resultado dos PV. */
+function CampoDano({ botoes, valor, onChange }: { botoes: { rotulo: string }[]; valor: string; onChange: (v: string) => void }) {
+  if (!botoes.some((b) => DEFESAS.includes(b.rotulo))) return null;
+  return (
+    <label className="campo-dano">
+      <span>Dano que você ia sofrer</span>
+      <input type="number" inputMode="numeric" min={0} value={valor} placeholder="0" onChange={(e) => onChange(e.target.value)} />
+      <small>Os botões de defesa (Absorver, Passar o dano, Dispersar, Cargas) descontam o resultado dos seus PV. Deixe vazio para ver só a regra.</small>
+    </label>
+  );
+}
+
+/** Ao copiar um poder, a pessoa anota o nome, o dano e o custo em PR; assim o botão "Usar o poder copiado" rola o ataque de verdade. */
+function CampoCopia({ botoes, nome, dano, pr, set }: { botoes: { rotulo: string }[]; nome: string; dano: string; pr: string; set: { nome: (v: string) => void; dano: (v: string) => void; pr: (v: string) => void } }) {
+  if (!botoes.some((b) => b.rotulo === "Copiar poder")) return null;
+  return (
+    <div className="campo-dano campo-copia">
+      <span>Poder a copiar</span>
+      <input type="text" className="in-nome" value={nome} placeholder="Nome do poder" onChange={(e) => set.nome(e.target.value)} />
+      <input type="text" value={dano} placeholder="Dano (ex.: 4d8)" onChange={(e) => set.dano(e.target.value)} />
+      <input type="number" inputMode="numeric" min={0} value={pr} placeholder="PR" onChange={(e) => set.pr(e.target.value)} />
+      <small>Escreva antes de apertar Copiar poder. Depois, "Usar o poder copiado" rola o ataque com o seu melhor atributo e cobra o PR do poder original.</small>
+    </div>
+  );
+}
+
+/** Botão de um poder. Os que precisam de uma escolha viram vários botões: a regra do domínio, quem ataca ao Comandar, qual poder copiado usar. */
+function botaoDoPoder(f: Ficha, c: Calculo, r: Rolagens, alterar: (p: Partial<Ficha>) => void, dizer: (m: string) => void, b: BotaoGerado, base: ExtraBotao, cls: string): ReactNode {
+  const normal = (rot: string, ex: ExtraBotao = {}, key?: string) => <button key={key ?? rot} type="button" className={cls} onClick={() => executarBotao(f, c, r, alterar, b, dizer, { ...base, ...ex })}>{rot}</button>;
+  if (b.rotulo === "Impor a regra do domínio") return <>{[1, 2, 3].map((o) => normal(({ 1: "Terreno difícil", 2: "Inimigos −2 CR", 3: "Vantagem nas salvaguardas" } as Record<number, string>)[o], { opcao: o }))}</>;
+  if (b.rotulo === "Comandar invocação") {
+    const lista = f.estado.invocacoes ?? [];
+    if (lista.length === 0) return <button type="button" className={cls} disabled>Nenhuma criatura em campo</button>;
+    const pr = infoRitmo(b.ritmo).pr;
+    return <>{lista.map((x) => (
+      <button key={x.id} type="button" className={cls} disabled={f.prAtual < pr} onClick={() => {
+        alterar({ prAtual: Math.max(0, f.prAtual - pr) });
+        r.d20(`Acerto: ${x.nome}`, x.acerto);
+        const d = x.dano ? resolverDano(x.dano, f, c) : "";
+        if (/\d/.test(d)) r.rolar(`${x.nome}: dano`, d);
+        dizer(`Comandar invocação: ${x.nome} ataca (acerto ${x.acerto >= 0 ? "+" : ""}${x.acerto}${/\d/.test(d) ? `, dano ${d}` : ""}). ${pr} PR gastos.`);
+      }}><Icone nome="dado" /> {x.nome} ataca (+{x.acerto})</button>
+    ))}</>;
+  }
+  if (b.rotulo === "Usar o poder copiado") {
+    const lista = f.estado.copiados ?? [];
+    if (lista.length === 0) return normal("Usar o poder copiado");
+    return <>{lista.map((x, k) => normal(`${x.nome}${x.pr ? ` (${x.pr} PR)` : ""}`, { indiceCopia: k }, `cp${k}`))}</>;
+  }
+  return normal(b.faz === "invocar" ? `${b.rotulo} (${emCampo(f, b.ref ?? "")} em campo)` : b.rotulo, {}, b.rotulo);
 }
 
 /** Os poderes que as técnicas deixaram ligados (cargas, energia, marcas, domínio…), com o ✕ para apagar um. */
@@ -323,21 +412,25 @@ const custoDoBotao = (b: BotaoGerado, c: Calculo) => {
 };
 
 /** A arma da forma: nome, propriedades e características (com ⓘ). Com a arma aprovada, o golpe básico usa os dados dela. */
-function SecaoArma({ f, c, r, forma, ligada, onMsg, vollst }: { f: Ficha; c: Calculo; r: Rolagens; forma: FormaLib | undefined; ligada: boolean; onMsg: (m: string) => void; vollst?: boolean }) {
+function SecaoArma({ f, c, r, alterar, forma, ligada, onMsg, vollst }: { f: Ficha; c: Calculo; r: Rolagens; alterar: (p: Partial<Ficha>) => void; forma: FormaLib | undefined; ligada: boolean; onMsg: (m: string) => void; vollst?: boolean }) {
   const arma = forma ? armaEfetiva(f, forma) : undefined;
   if (!forma || !arma) return null;
   const caracs = caracsEfetivas(f, forma);
   const golpe = golpeBasicoLiberado(arma) ? ataqueDaArma(arma, c) : undefined;
-  const dano = golpe ? danoDoAtaque(f, golpe, c) : "";
-  const acerto = golpe ? ataqueBonus(f, c, golpe) : 0;
+  const danoBase = golpe ? danoDoAtaque(f, golpe, c) : "";
+  // poderes ligados (energia, cargas, sobrecarga, corte no espaço…) também valem para o golpe básico da arma
+  const pod = golpe && ligada && /\d/.test(danoBase) ? bonusDeAtaque(f, c, !!golpe.distancia) : undefined;
+  const dano = `${danoBase}${pod ? pod.dados.map((d) => `+${d}`).join("") : ""}`;
+  const acerto = (golpe ? ataqueBonus(f, c, golpe) : 0) + (pod?.acerto ?? 0);
+  const gastarPoderes = () => { if (!pod) return; const p = gastarBonus(f, c, pod); if (Object.keys(p).length) alterar({ estado: { ...f.estado, usos: aplicarUsos(f, p) } }); };
   const B = vollst ? "b" : "fc-b";
   const extra = golpe && (
     <div className="ac-golpe">
       {ligada ? (
         <>
-          <button type="button" className={B} onClick={() => r.d20(`Acerto: ${golpe.nome}`, acerto)}><Icone nome="dado" /> Acerto {mod(acerto)}</button>
-          {/\d/.test(dano) && <button type="button" className={B} onClick={() => { r.rolar(golpe.nome, dano); }}><Icone nome="dado" /> Dano {dano}</button>}
-          {/\d/.test(dano) && <button type="button" className={`${B} ${vollst ? "pf-fraco" : "fraco"}`} onClick={() => { r.expr(`Crítico: ${golpe.nome}`, dano, true); onMsg(`${golpe.nome}: crítico em ${arma.crit >= 20 ? "20" : `${arma.crit}–20`}, dano ×${arma.mult}.`); }}>Crítico</button>}
+          <button type="button" className={B} onClick={() => { r.d20(`Acerto: ${golpe.nome}`, acerto); if (pod && pod.acerto > 0) alterar({ estado: { ...f.estado, usos: aplicarUsos(f, gastarAcerto(f, c, pod)) } }); }}><Icone nome="dado" /> Acerto {mod(acerto)}</button>
+          {/\d/.test(dano) && <button type="button" className={B} onClick={() => { r.rolar(golpe.nome, dano); gastarPoderes(); }}><Icone nome="dado" /> Dano {dano}</button>}
+          {/\d/.test(dano) && <button type="button" className={`${B} ${vollst ? "pf-fraco" : "fraco"}`} onClick={() => { r.expr(`Crítico: ${golpe.nome}`, dano, true); gastarPoderes(); onMsg(`${golpe.nome}: crítico em ${arma.crit >= 20 ? "20" : `${arma.crit}–20`}, dano ×${arma.mult}.`); }}>Crítico</button>}
         </>
       ) : <button type="button" className={`${B} ${vollst ? "pf-fraco" : "fraco"}`} disabled>Ligue a forma</button>}
     </div>
@@ -396,6 +489,10 @@ interface PainelProps {
 /** Painel de uma forma (ligada ou em repouso) no acabamento do protótipo aprovado: arte do cabeçalho, custos, estado, o que muda e as cartas. */
 export function PainelForma({ f, c, r, alterar, tipo, onEditar, onIrEvoluir, soAtiva }: PainelProps) {
   const [msg, setMsg] = useState("");
+  const [danoSofrido, setDanoSofrido] = useState("");
+  const [copiaNome, setCopiaNome] = useState("");
+  const [copiaDano, setCopiaDano] = useState("");
+  const [copiaPr, setCopiaPr] = useState("");
   const L = useLiberacao(f, c, alterar, r, setMsg);
   const ehMascara = tipo === "mascara";
   const tipoForma = ehMascara ? undefined : (tipo as TipoForma);
@@ -537,10 +634,49 @@ export function PainelForma({ f, c, r, alterar, tipo, onEditar, onIrEvoluir, soA
       botao: ligada ? <button type="button" className="fc-b" disabled={usado} title={`${QUANDO_NOME[g.quando]}${g.limite ? `, 1 por ${g.limite}` : ""}`} onClick={() => aplicar(g)}>{usado ? "Já usado" : "Usar"}</button> : undefined });
   }
   // botões que os cartões de característica criam
+  const exDe = (): ExtraBotao => ({
+    dano: Math.max(0, Math.floor(Number(danoSofrido) || 0)),
+    copia: { nome: copiaNome.trim() || "Poder copiado", dano: copiaDano.trim(), pr: Math.max(0, Math.floor(Number(copiaPr) || 0)) },
+  });
   const botoesGerados: Unica[] = (fx?.botoes ?? []).map((b) => ({
     rot: b.faz === "invocar" ? "Invocar" : infoRitmo(b.ritmo).nome, n: b.rotulo, icone: "eclipse", cada: custoDoBotao(b, c), p: trecho(b.texto ?? b.rotulo, 170),
-    botao: ligada ? <button type="button" className="fc-b" onClick={() => executarBotao(f, c, r, alterar, b, setMsg)}>{b.faz === "invocar" ? `${b.rotulo} (${emCampo(f, b.ref ?? "")} em campo)` : b.rotulo}</button> : undefined,
+    botao: ligada ? botaoDoPoder(f, c, r, alterar, setMsg, b, exDe(), "fc-b") : undefined,
   }));
+  // as técnicas que mandam usar "a próxima ação de ataque" criam o seu próprio cartão de ataque (não dependem de a forma ter outro)
+  const prL = infoRitmo("acao").pr;
+  const ataqueGerado = (cfg: { nome: string; chaveLancada: string; marca: () => Record<string, number | undefined>; a: { dano: string; acerto: number; tags: string[]; pronto: boolean; lancada: boolean; gasta: string[]; bonus: ReturnType<typeof bonusDeAtaque> }; vazio: string; cheio: string }) => {
+    const { a } = cfg;
+    const lancar = () => {
+      if (!a.pronto) { setMsg(`${cfg.nome}: ${cfg.vazio}`); return; }
+      if (a.lancada) { setMsg(`${cfg.nome}: já lançado. Role o dano.`); return; }
+      if (f.prAtual < prL) { setMsg(`${cfg.nome}: precisa de ${prL} PR.`); return; }
+      r.d20(`Acerto: ${cfg.nome}`, a.acerto);
+      alterar({ prAtual: Math.max(0, f.prAtual - prL), estado: { ...f.estado, usos: aplicarUsos(f, cfg.marca()) } });
+      setMsg(`${cfg.nome}: ${prL} PR gastos. Role o dano para soltar o golpe.`);
+    };
+    const soltar = (critico: boolean) => {
+      if (!a.lancada) { setMsg(`${cfg.nome}: lance primeiro.`); return; }
+      if (critico) r.expr(`Crítico: ${cfg.nome}`, a.dano, true); else r.rolar(cfg.nome, a.dano);
+      alterar({ estado: { ...f.estado, usos: aplicarUsos(f, gastarBonus(f, c, a.bonus), Object.fromEntries(a.gasta.map((k) => [`pw:${k}`, undefined]))) } });
+    };
+    botoesGerados.push({
+      rot: "Ataque", n: cfg.nome, icone: "eclipse", cada: `Ação · ${prL} PR`,
+      p: a.pronto ? `${cfg.cheio}${a.tags.length ? ` (${a.tags.join("; ")})` : ""}.` : cfg.vazio,
+      botao: ligada ? (
+        <>
+          <button type="button" className="fc-b" disabled={!a.pronto || a.lancada || f.prAtual < prL} onClick={lancar}><Icone nome="dado" /> Lançar ({prL} PR) · Acerto {mod(a.acerto)}</button>
+          <button type="button" className="fc-b" disabled={!a.lancada} onClick={() => soltar(false)}><Icone nome="dado" /> Dano {a.dano}</button>
+          <button type="button" className="fc-b fraco" disabled={!a.lancada} onClick={() => soltar(true)}>Crítico</button>
+        </>
+      ) : undefined,
+    });
+  };
+  if (fx) {
+    const en = ataqueDeEnergia(f, c);
+    if (en) ataqueGerado({ nome: "Lançar a energia", chaveLancada: "lancada", marca: marcarLancada, a: en, vazio: "Junte energia primeiro: este cartão solta a energia carregada em um ataque à distância.", cheio: `Solta a energia carregada: ataque à distância de ${c.prof}d6 de Energia, mais os poderes ligados` });
+    const co = ataqueDeCorte(f, c);
+    if (co) ataqueGerado({ nome: "Golpe pelo espaço", chaveLancada: "cortada", marca: marcarCortada, a: co, vazio: "Use Cortar o espaço primeiro: este cartão é o golpe corpo a corpo que atravessa o corte.", cheio: `Ataque corpo a corpo a até 12 m, sem ser barrado por cobertura: ${c.prof}d8 de dano cortante${co.linha ? ", em linha de 12 por 1,5 m (salvaguarda de Destreza, metade no sucesso)" : ""}` });
+  }
   // passivas
   const passivas: Passiva[] = [];
   const passivasMasc: Passiva[] = [];
@@ -662,7 +798,7 @@ export function PainelForma({ f, c, r, alterar, tipo, onEditar, onIrEvoluir, soA
           </section></div>
         )}
         {ehMascara && trava && <p className="fp-trava">Escolha a sua Máscara Hollow em Agir (a escolha é permanente) para liberar as cartas.</p>}
-        {!ehMascara && <SecaoArma f={f} c={c} r={r} forma={forma as FormaLib | undefined} ligada={ligada} onMsg={setMsg} />}
+        {!ehMascara && <SecaoArma f={f} c={c} r={r} alterar={alterar} forma={forma as FormaLib | undefined} ligada={ligada} onMsg={setMsg} />}
         {(nAcoes > 0 || !ligada) && (
           <section className="fp-sec" aria-label="Ações da forma">
             <h3><Ic n={pele === "shi" ? "fatia-espada" : "garras"} cls="h-ic" />Ações da forma <small>{nAcoes} {nAcoes === 1 ? "carta" : "cartas"} · custo em PR</small>{ligada && L.temTurnoDeForma && <button type="button" className="fp-btn-sec fp-novo-turno" onClick={L.proximoTurno} title="Renova os usos por turno (Cura no acerto, Reiatsu no acerto, Absorver…) e conta a duração da forma">Novo turno</button>}</h3>
@@ -677,6 +813,8 @@ export function PainelForma({ f, c, r, alterar, tipo, onEditar, onIrEvoluir, soA
           <section className="fp-sec" aria-label="Botões das características">
             <h3><Ic n="brilho" cls="h-ic" />Botões das características <small>criados pelos cartões da forma</small></h3>
             <PoderesAtivos f={f} alterar={alterar} />
+            <CampoDano botoes={fx?.botoes ?? []} valor={danoSofrido} onChange={setDanoSofrido} />
+            <CampoCopia botoes={fx?.botoes ?? []} nome={copiaNome} dano={copiaDano} pr={copiaPr} set={{ nome: setCopiaNome, dano: setCopiaDano, pr: setCopiaPr }} />
             <div className="fp-grade fp-un">{botoesGerados.map((x) => <CartaUnica key={x.n} x={x} pele={pele} />)}</div>
           </section>
         )}
@@ -714,6 +852,10 @@ export function PainelFormaAtiva({ f, c, r, alterar, onEditar }: { f: Ficha; c: 
 /** Painel da Vollständig (pele Quincy: reishi e cristal), no acabamento do protótipo v6. */
 export function PainelVoll({ f, c, r, alterar, onEditar, onIrEvoluir }: PainelProps) {
   const [msg, setMsg] = useState("");
+  const [danoSofrido, setDanoSofrido] = useState("");
+  const [copiaNome, setCopiaNome] = useState("");
+  const [copiaDano, setCopiaDano] = useState("");
+  const [copiaPr, setCopiaPr] = useState("");
   const L = useLiberacao(f, c, alterar, r, setMsg);
   const forma = f.formas.vollstandig;
   const ligada = f.estado.liberado === "vollstandig";
@@ -803,15 +945,17 @@ export function PainelVoll({ f, c, r, alterar, onEditar, onIrEvoluir }: PainelPr
           </div>
         </section>
         {ligada && <PainelSchrift f={f} c={c} alterar={alterar} dentro />}
-        <SecaoArma f={f} c={c} r={r} forma={forma} ligada={ligada} onMsg={setMsg} vollst />
+        <SecaoArma f={f} c={c} r={r} alterar={alterar} forma={forma} ligada={ligada} onMsg={setMsg} vollst />
         {(fx?.botoes ?? []).length > 0 && (
           <section className="pf-sec" aria-label="Botões das características">
             <h3>{Ic2("estrela4")}Botões das características <small>criados pelos cartões da forma</small></h3>
             <PoderesAtivos f={f} alterar={alterar} pele="qui" />
+            <CampoDano botoes={fx?.botoes ?? []} valor={danoSofrido} onChange={setDanoSofrido} />
+            <CampoCopia botoes={fx?.botoes ?? []} nome={copiaNome} dano={copiaDano} pr={copiaPr} set={{ nome: setCopiaNome, dano: setCopiaDano, pr: setCopiaPr }} />
             <div className="cartas">
               {(fx?.botoes ?? []).map((b) => (
                 <CartaPoder key={b.rotulo} tipo="voll" selo={b.faz === "invocar" ? "Invocar" : infoRitmo(b.ritmo).nome} nome={b.rotulo} tags={[{ t: custoDoBotao(b, c), pr: true }]} off={!ligada}
-                  acao={ligada ? <button type="button" className="b" onClick={() => executarBotao(f, c, r, alterar, b, setMsg)}>{b.faz === "invocar" ? `${b.rotulo} (${emCampo(f, b.ref ?? "")} em campo)` : b.rotulo}</button> : <button type="button" className="b pf-fraco" disabled>Ligue a forma</button>}>
+                  acao={ligada ? botaoDoPoder(f, c, r, alterar, setMsg, b, { dano: Math.max(0, Math.floor(Number(danoSofrido) || 0)), copia: { nome: copiaNome.trim() || "Poder copiado", dano: copiaDano.trim(), pr: Math.max(0, Math.floor(Number(copiaPr) || 0)) } }, "b") : <button type="button" className="b pf-fraco" disabled>Ligue a forma</button>}>
                   <p>{trecho(b.texto ?? b.rotulo, 150)}</p>
                 </CartaPoder>
               ))}

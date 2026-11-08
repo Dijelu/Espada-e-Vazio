@@ -607,6 +607,10 @@ export interface Estado {
   extras?: Record<string, number>;
   /** clones e invocações em campo (criados pelos efeitos da forma) */
   invocacoes?: Invocacao[];
+  /** a última criatura chamada que chegou a 0 PV (para a interação Fazer renascer) */
+  caida?: Invocacao;
+  /** poderes copiados (técnica Copiar poderes): nome, dano e custo em PR do poder original */
+  copiados?: { nome: string; dano: string; pr: number }[];
 }
 
 export interface Invocacao {
@@ -798,6 +802,8 @@ export function normalizar(bruto: Partial<Ficha> | null | undefined): Ficha {
   f.estado.usos = obj(f.estado.usos) ? f.estado.usos : {};
   if (f.estado.extras !== undefined && !obj(f.estado.extras)) f.estado.extras = {};
   if (f.estado.invocacoes !== undefined) f.estado.invocacoes = lista(f.estado.invocacoes, obj);
+  if (f.estado.caida !== undefined && !obj(f.estado.caida)) delete f.estado.caida;
+  if (f.estado.copiados !== undefined) f.estado.copiados = lista<Record<string, unknown>>(f.estado.copiados, obj).map((x) => ({ nome: texto(x.nome) ? String(x.nome) : "Poder copiado", dano: texto(x.dano) ? String(x.dano) : "", pr: Math.max(0, Math.floor(Number(x.pr) || 0)) }));
   if (!texto(f.estado.liberado)) f.estado.liberado = "";
   // a Máscara Hollow deixou de ser uma liberação: fichas antigas com `liberado: "mascara"` passam a ter a máscara posta
   // e nenhuma forma ativa (PV/PR temporários, usos e turnos da máscara ficam como estavam)
@@ -1046,6 +1052,8 @@ export function calcular(fOriginal: Ficha): Calculo {
   // O modificador de CR da Origem (ex.: Alvo Enorme, CR −1 do Gillian Fusão) é um ajuste sobre a CR da classe. Sem classe não há CR base (10 + prof…), então o −1 não se aplica e a CR não fica negativa.
   cr += (c ? ef.cr : 0) + f.ajuste.cr;
   // liberações que mexem na CR (Shikai soma a proficiência; Resurrección conforme a classe)
+  // Criatura vira escudo (interação especial): +2 de CR até o início do próximo turno
+  if (Number(f.estado.usos?.["pw:escudo-mutavel"]) > 0) cr += 2;
   if (f.estado.liberado === "shikai") cr += prof;
   if (f.estado.liberado === "resurreccion") {
     if (c?.id === "hueco") cr += prof + 1;

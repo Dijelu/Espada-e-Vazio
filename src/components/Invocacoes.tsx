@@ -4,6 +4,7 @@ import { resolverDano } from "../regras/liberacoes";
 import { novoId } from "./FichaPecas";
 import { emCampo as contar, invocarModelo } from "../regras/invocar";
 import { Info } from "./Dica";
+import { temCartao } from "../regras/poderes";
 
 interface Props {
   f: Ficha;
@@ -18,7 +19,7 @@ interface Props {
 export function AbaInvocacoes({ f, c, r, alterar, compacto }: Props) {
   const modelos = c.forma?.invocacoes ?? [];
   const lista = f.estado.invocacoes ?? [];
-  const salvar = (invocacoes: Invocacao[], extra: Partial<Ficha> = {}) => alterar({ ...extra, estado: { ...f.estado, invocacoes } });
+  const salvar = (invocacoes: Invocacao[], extra: Partial<Ficha> = {}) => alterar({ ...extra, estado: { ...f.estado, ...(extra.estado ?? {}), invocacoes } });
   const emCampo = (chave: string) => contar(f, chave);
 
   const invocar = (m: (typeof modelos)[number]) => {
@@ -28,7 +29,10 @@ export function AbaInvocacoes({ f, c, r, alterar, compacto }: Props) {
   const mudarPv = (id: string, delta: number) => {
     const atualizada = lista.map((x) => (x.id === id ? { ...x, pv: Math.max(0, Math.min(x.pvMax, x.pv + delta)) } : x));
     // chegou a 0 PV: some (clone ou invocação)
-    salvar(atualizada.filter((x) => x.pv > 0));
+    const caiu = atualizada.find((x) => x.id === id && x.pv <= 0);
+    if (caiu?.tipo === "clone" && temCartao(c, "Clones que explodem")) r.rolar(`${caiu.nome} explode (salvaguarda de Destreza, metade no sucesso)`, `${Math.max(1, c.prof)}d6`);
+    // a criatura chamada que caiu fica guardada para a interação Fazer renascer (clones não renascem)
+    salvar(atualizada.filter((x) => x.pv > 0), caiu && caiu.tipo !== "clone" ? { estado: { ...f.estado, invocacoes: atualizada.filter((x) => x.pv > 0), caida: caiu } } : {});
   };
   const dispensar = (id: string) => salvar(lista.filter((x) => x.id !== id));
 

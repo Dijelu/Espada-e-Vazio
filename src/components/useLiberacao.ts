@@ -63,10 +63,10 @@ export function useLiberacao(f: Ficha, c: Calculo, alterar: (p: Partial<Ficha>) 
     delete usos["forma-turnos"];
     delete usos["forma-de"];
     for (const k of Object.keys(usos)) if (/^(fx:|esp:|lim-cena:|req:|pw:)/.test(k)) delete usos[k];
-    if (!terror && !verdadeira && !fimFx) return { liberado: "", usos };
+    if (!terror && !verdadeira && !fimFx) return { liberado: "", usos, caida: undefined, copiados: undefined };
     if (verdadeira || fimFx === "curto") usos["esgotado-curto"] = 1;
     else delete usos["esgotado-curto"];
-    return { liberado: "", usos, condicoes: e.condicoes.includes("Esgotado") ? e.condicoes : [...e.condicoes, "Esgotado"] };
+    return { liberado: "", usos, caida: undefined, copiados: undefined, condicoes: e.condicoes.includes("Esgotado") ? e.condicoes : [...e.condicoes, "Esgotado"] };
   };
   const fx = c.forma;
   /** Há algo que muda a cada turno na forma ativa? */
