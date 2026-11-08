@@ -4,7 +4,10 @@ import { TIPO_FORMA_NOME, formaDaLiberacao, liberacaoDaForma, modeloResurreccion
 import { classificarHab } from "../regras/classificar-hab";
 import { habilidadesLidas } from "../regras/cartoes";
 import { acertoClasse } from "../regras/danos-classe";
-import { ATR_NOME, QUANDO_NOME, ligaCom, type Faz } from "../regras/efeitos-forma";
+import { ATR_NOME, QUANDO_NOME, ligaCom, type BotaoGerado, type Faz } from "../regras/efeitos-forma";
+import { clonesEmCampo, emCampo, invocarModelo, retirarClones } from "../regras/invocar";
+import { infoRitmo } from "../regras/cartoes";
+import { novoId } from "./FichaPecas";
 import { caracsDaAcao } from "../regras/caracteristicas";
 import { aplicarFaz } from "../regras/aplicar-faz";
 import { MASCARAS, efeitoMascara, mascaraAtiva, tempMascara, type TipoMascara } from "../regras/mascara";
@@ -125,6 +128,12 @@ function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg, pele, i }: { f: F
     alterar({ ...res.parte, estado: est });
     onMsg(`${h.nome}: ${res.dito.join(", ") || "feito"}.`);
   };
+  // sinergia: clones juntados à lâmina fortalecem o próximo golpe da ação ligada
+  const sinAbs = ativa ? (c.forma?.sinergias ?? []).find((s) => s.faz === "absorver" && s.lig && ligaCom(s.lig, ref)) : undefined;
+  const carga = Math.min(2, usos[CARGA_CLONES] ?? 0);
+  const extraAbs = sinAbs && carga > 0 ? `+${carga}d10` : "";
+  const danoJogo = `${dano}${extraAbs}`;
+  const gastarCarga = () => { if (extraAbs) alterar({ estado: { ...f.estado, usos: { ...usos, [CARGA_CLONES]: 0 } } }); };
   const rotulo = espUsada ? "Já usada nesta cena" : limUsada ? "Já usada" : esp ? `Usar técnica especial (${gasta} PR)` : lim ? `Usar (${gasta ? `${gasta} PR, ` : ""}${lim === "cena" ? "1 por cena" : lim === "curto" ? "1 por descanso curto" : "1 por descanso longo"})` : `Usar (${gasta} PR)`;
   const { resumo, resto } = resumir(h.texto);
   const [abertoC, setAbertoC] = useState(false);
@@ -132,8 +141,8 @@ function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg, pele, i }: { f: F
   if (ativa) {
     if (gasta > 0 || esp || lim) botoes.push(<button key="u" type="button" className={B} disabled={f.prAtual < gasta || bloqueada} onClick={usar}>{!reqOk ? "Falta o requisito" : rotulo}</button>);
     if (!cl.usaInvocacao && (cl.teste === "ataque" || cl.teste === "ataque+salva")) botoes.push(<button key="a" type="button" className={B} disabled={!reqOk} onClick={() => r.d20(`Acerto: ${h.nome}`, acerto)}><Icone nome="dado" /> Acerto {mod(acerto)}</button>);
-    if (/\d/.test(dano) && !(cl.cura && cl.cura === h.dano)) botoes.push(<button key="d" type="button" className={B} disabled={!reqOk} onClick={() => (ultimo.current = r.rolar(h.nome, dano)?.total ?? 0)}><Icone nome="dado" /> Dano {dano}</button>);
-    if (/\d/.test(dano) && (cl.teste === "ataque" || cl.teste === "ataque+salva")) botoes.push(<button key="c" type="button" className={`${B} ${FR}`} disabled={!reqOk} onClick={() => r.expr(`Crítico: ${h.nome}`, dano, true)}>Crítico</button>);
+    if (/\d/.test(dano) && !(cl.cura && cl.cura === h.dano)) botoes.push(<button key="d" type="button" className={B} disabled={!reqOk} onClick={() => { ultimo.current = r.rolar(h.nome, danoJogo)?.total ?? 0; gastarCarga(); }}><Icone nome="dado" /> Dano {danoJogo}</button>);
+    if (/\d/.test(dano) && (cl.teste === "ataque" || cl.teste === "ataque+salva")) botoes.push(<button key="c" type="button" className={`${B} ${FR}`} disabled={!reqOk} onClick={() => { r.expr(`Crítico: ${h.nome}`, danoJogo, true); gastarCarga(); }}>Crítico</button>);
     if (cl.cura || cl.curaPctDano) botoes.push(<button key="h" type="button" className={B} disabled={!reqOk} onClick={curar}>{cl.cura ? `Curar ${resolverDano(cl.cura, f, c)}` : `Curar ${cl.curaPctDano}% do último dano`}</button>);
     ligados.forEach((g, k) => { const usado = !!g.limite && !!usos[`fx:${g.peca}:${g.rotulo}`]; botoes.push(<button key={`g${k}`} type="button" className={B} disabled={!reqOk || usado} title={`${g.peca}${g.limite ? `, 1 por ${g.limite}` : ""}`} onClick={() => aplicarLigado(g)}>{usado ? `${g.rotulo}: já usado` : g.rotulo}</button>); });
   } else {
@@ -144,6 +153,7 @@ function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg, pele, i }: { f: F
   if (ativa && (cl.teste === "salva" || cl.teste === "ataque+salva")) tags.push(<span className="fc-t" key="cd">CD {cdTec}{cl.salvaAtr ? ` ${ATR_NOME[cl.salvaAtr]}` : ""}{cl.metade ? " · metade" : ""}</span>);
   if (h.custo && !/\d\s*PR/.test(h.custo) && h.custo !== "—") tags.push(<span className="fc-t" key="cu">{h.custo}</span>);
   marcas.forEach((e) => tags.push(<span className="fc-t" key={`m${e.id}`}>{e.nome}</span>));
+  if (extraAbs) tags.push(<span className="fc-t" key="ab">clones na lâmina {extraAbs}</span>);
   if (lim) tags.push(<span className="fc-t" key="li">1 por {lim === "cena" ? "cena" : lim === "curto" ? "descanso curto" : "descanso longo"}</span>);
   if (pele === "qui") {
     const tq: TagCarta[] = [];
@@ -152,6 +162,7 @@ function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg, pele, i }: { f: F
     if (ativa && (cl.teste === "salva" || cl.teste === "ataque+salva")) tq.push({ t: `CD ${cdTec}` });
     if (lim) tq.push({ t: `1 por ${lim === "cena" ? "cena" : lim === "curto" ? "descanso curto" : "descanso longo"}` });
     marcas.forEach((e) => tq.push({ t: e.nome }));
+    if (extraAbs) tq.push({ t: `clones na lâmina ${extraAbs}` });
     return (
       <CartaPoder tipo="voll" selo={h.acao} nome={h.nome || "Habilidade"} tags={tq} ativa={ativa} off={!ativa}
         acao={<>{botoes}{resto && <button type="button" className="info" aria-label={`Ler o texto completo de ${h.nome}`} onClick={() => setAbertoC((v) => !v)}>i</button>}</>}
@@ -191,6 +202,52 @@ function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg, pele, i }: { f: F
     </div>
   );
 }
+
+/** Quantos clones estão juntados à lâmina (somam 1d10 cada no próximo golpe da ação ligada; no máximo 2). */
+const CARGA_CLONES = "fx:absorvidos";
+
+/** O que cada botão criado por um cartão de característica faz em jogo. */
+function executarBotao(f: Ficha, c: Calculo, r: Rolagens, alterar: (p: Partial<Ficha>) => void, b: BotaoGerado, dizer: (m: string) => void) {
+  if (b.faz === "invocar") {
+    const m = c.forma?.invocacoes.find((x) => x.chave === b.ref);
+    if (!m) { dizer(`${b.rotulo}: ligue a forma primeiro.`); return; }
+    const res = invocarModelo(f, m, novoId, m.max);
+    if (res.criadas === 0) { dizer(res.motivo === "pr" ? `${b.rotulo}: faltam PR (${m.custoPr} PR cada).` : `${b.rotulo}: já está no máximo (${m.max}).`); return; }
+    alterar(res.parte);
+    dizer(`${b.rotulo}: ${res.criadas} ${res.criadas === 1 ? "criatura entrou" : "criaturas entraram"} na aba Invocações (${m.custoPr * res.criadas} PR).`);
+    return;
+  }
+  const pr = infoRitmo(b.ritmo).pr;
+  if (f.prAtual < pr) { dizer(`${b.rotulo}: precisa de ${pr} PR.`); return; }
+  const gasto = { prAtual: Math.max(0, f.prAtual - pr) };
+  const usos = f.estado.usos ?? {};
+  if (b.faz === "trocar") {
+    if (clonesEmCampo(f) === 0) { dizer(`${b.rotulo}: você precisa de um clone em campo.`); return; }
+    const { lista } = retirarClones(f, 1);
+    alterar({ ...gasto, estado: { ...f.estado, invocacoes: lista } });
+    dizer(`${b.rotulo}: você troca de lugar com um clone (ele some) e o seu próximo ataque no turno ganha vantagem (${pr} PR).`);
+    return;
+  }
+  if (b.faz === "absorver") {
+    const ja = Math.min(2, usos[CARGA_CLONES] ?? 0);
+    const quer = Math.min(2 - ja, clonesEmCampo(f));
+    if (2 - ja <= 0) { dizer(`${b.rotulo}: já há 2 clones na lâmina.`); return; }
+    if (quer <= 0) { dizer(`${b.rotulo}: você precisa de um clone em campo.`); return; }
+    const { lista, saiu } = retirarClones(f, quer);
+    alterar({ ...gasto, estado: { ...f.estado, invocacoes: lista, usos: { ...usos, [CARGA_CLONES]: ja + saiu } } });
+    dizer(`${b.rotulo}: ${saiu} ${saiu === 1 ? "clone se juntou" : "clones se juntaram"} à lâmina. O seu próximo golpe da ação ligada causa +${ja + saiu}d10 (${pr} PR).`);
+    return;
+  }
+  alterar(gasto);
+  if (b.ref && /\d+d\d+/.test(b.ref)) r.rolar(`${b.rotulo}`, b.ref);
+  dizer(`${b.rotulo}: ${pr} PR gastos.${b.ref && /\d+d\d+/.test(b.ref) ? ` Dado rolado: ${b.ref}.` : ""}`);
+}
+
+/** Linha de custo e do que o botão faz, para o cartão do botão. */
+const custoDoBotao = (b: BotaoGerado, c: Calculo) => {
+  if (b.faz === "invocar") { const m = c.forma?.invocacoes.find((x) => x.chave === b.ref); return m ? `${m.custoPr} PR cada · até ${m.max}` : "invocar"; }
+  return `${infoRitmo(b.ritmo).nome} · ${infoRitmo(b.ritmo).pr} PR`;
+};
 
 interface Unica { rot: string; n: string; p: string; cada: string; icone: string; botao?: ReactNode; completo?: string }
 interface Passiva { n: string; p: string; icone?: string }
@@ -362,6 +419,11 @@ export function PainelForma({ f, c, r, alterar, tipo, onEditar, onIrEvoluir, soA
     unicas.push({ rot: g.limite ? "Única" : "Gatilho", n: g.rotulo, icone: "eclipse", cada: g.limite ? `1 por ${g.limite}` : QUANDO_NOME[g.quando], p: trecho((g.faz as { texto?: string }).texto ?? `${g.peca}: ${QUANDO_NOME[g.quando]}.`, 150),
       botao: ligada ? <button type="button" className="fc-b" disabled={usado} title={`${QUANDO_NOME[g.quando]}${g.limite ? `, 1 por ${g.limite}` : ""}`} onClick={() => aplicar(g)}>{usado ? "Já usado" : "Usar"}</button> : undefined });
   }
+  // botões que os cartões de característica criam
+  const botoesGerados: Unica[] = (fx?.botoes ?? []).map((b) => ({
+    rot: b.faz === "invocar" ? "Invocar" : infoRitmo(b.ritmo).nome, n: b.rotulo, icone: "eclipse", cada: custoDoBotao(b, c), p: trecho(b.texto ?? b.rotulo, 170),
+    botao: ligada ? <button type="button" className="fc-b" onClick={() => executarBotao(f, c, r, alterar, b, setMsg)}>{b.faz === "invocar" ? `${b.rotulo} (${emCampo(f, b.ref ?? "")} em campo)` : b.rotulo}</button> : undefined,
+  }));
   // passivas
   const passivas: Passiva[] = [];
   if (ehMascara && masc) {
@@ -458,6 +520,12 @@ export function PainelForma({ f, c, r, alterar, tipo, onEditar, onIrEvoluir, soA
               {ehMascara ? cartasMascara : acoes.map((h, i) => <CartaAcao key={h.id} f={f} c={c} r={r} alterar={alterar} forma={forma as FormaLib} h={h} ativa={ligada} onMsg={setMsg} pele={pele} i={i} />)}
               {!ehMascara && acoes.length === 0 && <p className="fp-trava">Nenhuma habilidade cadastrada. Abra a seção Evoluir para adicionar.</p>}
             </div>
+          </section>
+        )}
+        {botoesGerados.length > 0 && (
+          <section className="fp-sec" aria-label="Botões das características">
+            <h3><Ic n="brilho" cls="h-ic" />Botões das características <small>criados pelos cartões da forma</small></h3>
+            <div className="fp-grade fp-un">{botoesGerados.map((x) => <CartaUnica key={x.n} x={x} pele={pele} />)}</div>
           </section>
         )}
         {unicas.length > 0 && (
@@ -583,6 +651,19 @@ export function PainelVoll({ f, c, r, alterar, onEditar, onIrEvoluir }: PainelPr
           </div>
         </section>
         {ligada && <PainelSchrift f={f} c={c} alterar={alterar} dentro />}
+        {(fx?.botoes ?? []).length > 0 && (
+          <section className="pf-sec" aria-label="Botões das características">
+            <h3>{Ic2("estrela4")}Botões das características <small>criados pelos cartões da forma</small></h3>
+            <div className="cartas">
+              {(fx?.botoes ?? []).map((b) => (
+                <CartaPoder key={b.rotulo} tipo="voll" selo={b.faz === "invocar" ? "Invocar" : infoRitmo(b.ritmo).nome} nome={b.rotulo} tags={[{ t: custoDoBotao(b, c), pr: true }]} off={!ligada}
+                  acao={ligada ? <button type="button" className="b" onClick={() => executarBotao(f, c, r, alterar, b, setMsg)}>{b.faz === "invocar" ? `${b.rotulo} (${emCampo(f, b.ref ?? "")} em campo)` : b.rotulo}</button> : <button type="button" className="b pf-fraco" disabled>Ligue a forma</button>}>
+                  <p>{trecho(b.texto ?? b.rotulo, 150)}</p>
+                </CartaPoder>
+              ))}
+            </div>
+          </section>
+        )}
         {unicas.length > 0 && (
           <section className="pf-sec" aria-label="Habilidades únicas">
             <h3>{Ic2("estrela4")}Habilidades únicas <small>{unicas.length} {unicas.length === 1 ? "escolhida" : "escolhidas"}</small></h3>

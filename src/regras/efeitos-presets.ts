@@ -296,6 +296,10 @@ export const LEGADO_IDS = new Set([
   "bk-escudo-corrente", "bk-escudo-petalas", "bv-braco-osso",
 ]);
 
+// as peças de invocação (20) dão lugar às características neutras Clones, Invocação e Invocação grande; as de Schrift e de Caminho ficam presas a eles
+for (const p of PRESETS_BASE) if (!p.schrift && !p.caminho && p.monta({ atr: "for" }).some((e) => e.k === "invoca")) LEGADO_IDS.add(p.id);
+LEGADO_IDS.add("bk-passo-clones");
+
 export const PRESETS: Preset[] = PRESETS_BASE.map((p) => (LEGADO_IDS.has(p.id) ? { ...p, legado: true } : p));
 
 export const presetPorId = (id: string) => PRESETS.find((p) => p.id === id);

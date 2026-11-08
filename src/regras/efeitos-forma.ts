@@ -242,6 +242,23 @@ export interface SomaForma {
   textos: { nome: string; t: string }[];
   /** linhas do resumo: o que mudou e de onde veio */
   linhas: { rotulo: string; valor: string; fonte: string }[];
+  /** botões de ação que os cartões de característica criam (só existe quando há algum) */
+  botoes?: BotaoGerado[];
+  /** sinergias entre cartões de característica (só existe quando há alguma) */
+  sinergias?: { com: string; faz: string; peca: string; lig?: LigAcao }[];
+}
+
+/** Botão que um cartão de característica cria em jogo. */
+export interface BotaoGerado {
+  rotulo: string;
+  ritmo: Ritmo;
+  faz: "invocar" | "trocar" | "absorver" | "texto";
+  /** invocar: chave do modelo de invocação; trocar e absorver: "clone"; texto: dado a rolar (ex.: 2d10), se houver */
+  ref?: string;
+  /** o que o botão faz, em palavras */
+  texto?: string;
+  peca: string;
+  lig?: LigAcao;
 }
 
 const porAlvo = <T,>(v: T): Record<Alvo, T> => Object.fromEntries(ALVOS.map((a) => [a.id, Array.isArray(v) ? [...v] : v])) as Record<Alvo, T>;
@@ -264,6 +281,7 @@ export function somarForma(f: Ficha, ctx: CtxForma): SomaForma | null {
   for (const { inst, fonte } of pecas) {
     const nome = fonte === "forma" ? inst.nome : `${inst.nome} (herdada)`;
     const lig = ligacaoDa(inst);
+    let ultimaChave = "";
     for (const e of inst.efeitos) {
       switch (e.k) {
         case "atr": { const v = valor(e.v, ctx); s.atr[e.atr] += v; linha(ATR_NOME[e.atr], sinal(v), nome); break; }
@@ -305,9 +323,16 @@ export function somarForma(f: Ficha, ctx: CtxForma): SomaForma | null {
           break;
         }
         case "duracaoMais": { const v = Math.max(0, valor(e.turnos, ctx)); s.duracaoMais += v; linha("Duração", `+${v} turnos`, nome); break; }
+        case "gera": {
+          const b = e.botao;
+          (s.botoes ??= []).push({ rotulo: b.rotulo || inst.nome, ritmo: b.ritmo, faz: b.faz, ...((b.faz === "invocar" ? b.ref || ultimaChave : b.ref) ? { ref: b.faz === "invocar" ? b.ref || ultimaChave : b.ref } : {}), ...(inst.texto ? { texto: inst.texto } : {}), peca: nome, ...(lig ? { lig } : {}) });
+          break;
+        }
+        case "liga": { (s.sinergias ??= []).push({ com: e.com, faz: e.faz, peca: nome, ...(lig ? { lig } : {}) }); break; }
         case "invoca": {
           const max = Math.max(1, Math.min(10, Math.floor(valor(e.max, ctx))));
-          s.invocacoes.push({ chave: `${inst.id}:${s.invocacoes.length}`, peca: nome, nome: e.nome || nome, tipo: e.tipo, max, pv: Math.max(1, Math.floor(valor(e.pv, ctx))), cr: Math.floor(valor(e.cr, ctx)), acerto: Math.floor(valor(e.acerto, ctx)), dano: e.dano, custoPr: Math.max(0, Math.floor(valor(e.custoPr, ctx))), texto: e.texto });
+          ultimaChave = `${inst.id}:${s.invocacoes.length}`;
+          s.invocacoes.push({ chave: ultimaChave, peca: nome, nome: e.nome || nome, tipo: e.tipo, max, pv: Math.max(1, Math.floor(valor(e.pv, ctx))), cr: Math.floor(valor(e.cr, ctx)), acerto: Math.floor(valor(e.acerto, ctx)), dano: e.dano, custoPr: Math.max(0, Math.floor(valor(e.custoPr, ctx))), texto: e.texto });
           linha(e.tipo === "clone" ? "Clones" : "Invocações", `até ${max}`, nome);
           break;
         }

@@ -2,6 +2,7 @@ import type { Calculo, Ficha, Invocacao } from "../regras/ficha";
 import type { Rolagens } from "./Rolador";
 import { resolverDano } from "../regras/liberacoes";
 import { novoId } from "./FichaPecas";
+import { emCampo as contar, invocarModelo } from "../regras/invocar";
 import { Info } from "./Dica";
 
 interface Props {
@@ -18,12 +19,11 @@ export function AbaInvocacoes({ f, c, r, alterar, compacto }: Props) {
   const modelos = c.forma?.invocacoes ?? [];
   const lista = f.estado.invocacoes ?? [];
   const salvar = (invocacoes: Invocacao[], extra: Partial<Ficha> = {}) => alterar({ ...extra, estado: { ...f.estado, invocacoes } });
-  const emCampo = (chave: string) => lista.filter((x) => x.chave === chave).length;
+  const emCampo = (chave: string) => contar(f, chave);
 
   const invocar = (m: (typeof modelos)[number]) => {
-    if (emCampo(m.chave) >= m.max || f.prAtual < m.custoPr) return;
-    const nova: Invocacao = { id: novoId(), chave: m.chave, nome: `${m.nome} ${emCampo(m.chave) + 1}`, tipo: m.tipo, pv: m.pv, pvMax: m.pv, cr: m.cr, acerto: m.acerto, dano: m.dano, texto: m.texto };
-    salvar([...lista, nova], m.custoPr > 0 ? { prAtual: Math.max(0, f.prAtual - m.custoPr) } : {});
+    const res = invocarModelo(f, m, novoId);
+    if (res.criadas > 0) alterar(res.parte);
   };
   const mudarPv = (id: string, delta: number) => {
     const atualizada = lista.map((x) => (x.id === id ? { ...x, pv: Math.max(0, Math.min(x.pvMax, x.pv + delta)) } : x));
