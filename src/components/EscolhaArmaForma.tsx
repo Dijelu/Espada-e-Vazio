@@ -5,7 +5,7 @@ import { useMemo, useState, type ReactNode } from "react";
 import type { Ficha, FormaLib } from "../regras/ficha";
 import { limiteCaracsArma } from "../regras/cartoes";
 import {
-  ARMAS_LIVRES, ATRS_ARMA, CARACS_ARMA, DANOS_ARMA, FORMA_DA_ARMA_MANTIDA, GRUPOS_ARMA, PROPS_ARMA, TIPOS_DANO_ARMA,
+  ARMAS_LIVRES, ATRS_ARMA, CARACS_ARMA, DANOS_ARMA, GRUPOS_CARAC_ARMA, GRUPO_DA_CARAC, FORMA_DA_ARMA_MANTIDA, GRUPOS_ARMA, PROPS_ARMA, TIPOS_DANO_ARMA,
   armaDoCatalogo, armaEfetiva, armaPendente, armaPropriaVazia, caracArmaPorId, caracsValidas, catalogoDaForma, listarRequisitos, nomeCaracArma, resumoArma,
   type ArmaForma,
 } from "../regras/arma-forma";
@@ -205,19 +205,24 @@ export function EscolhaArmaForma({ f, tipo, r, mud }: Props) {
             {marcadas.length} de {limite} características marcadas.{cheio ? ` Limite da ${nomeForma} atingido: desmarque uma para trocar.` : ""}
           </p>
           {sombra && <p className="aviso-mini">Sem arma definida todos os cartões já estão liberados. Escolha uma arma na aba Arma para as características valerem.</p>}
-          <div className="chips-carac" role="group" aria-label="Características da arma">
-            {CARACS_ARMA.map((c) => {
-              const on = marcadas.includes(c.id);
-              const pede = libera.filter((x) => x.req.includes(c.id));
-              const nomes = pede.slice(0, 6).map((x) => x.nome).join(", ");
-              return (
-                <span key={c.id} className="chip-carac">
-                  <button type="button" className={`chip chip-btn ${on ? "on" : ""}`} aria-pressed={on} disabled={(!on && cheio) || sombra} onClick={() => alternar(c.id)}>{on ? "✓ " : ""}{c.nome}</button>
-                  <Info>{`${c.texto} Ajuda a montar: ${nomes || "nenhum cartão ainda"}${pede.length > 6 ? ` e mais ${pede.length - 6}` : ""}.`}</Info>
-                </span>
-              );
-            })}
-          </div>
+          {GRUPOS_CARAC_ARMA.map((g) => (
+            <div key={g.id} className="grupo-carac" role="group" aria-label={g.nome}>
+              <h4 className="grupo-carac-t">{g.nome} <small>{g.sobre}</small></h4>
+              <div className="chips-carac">
+                {CARACS_ARMA.filter((c) => GRUPO_DA_CARAC[c.id] === g.id).map((c) => {
+                  const on = marcadas.includes(c.id);
+                  const pede = libera.filter((x) => x.req.includes(c.id));
+                  const nomes = pede.slice(0, 6).map((x) => x.nome).join(", ");
+                  return (
+                    <span key={c.id} className="chip-carac">
+                      <button type="button" className={`chip chip-btn ${on ? "on" : ""}`} aria-pressed={on} disabled={(!on && cheio) || sombra} onClick={() => alternar(c.id)}>{on ? "✓ " : ""}{c.nome}{pede.length > 0 && <small className="chip-n" title="Cartões que esta característica ajuda a montar"> · {pede.length}</small>}</button>
+                      <Info>{`${c.texto} Ajuda a montar: ${nomes || "nenhum cartão ainda"}${pede.length > 6 ? ` e mais ${pede.length - 6}` : ""}.`}</Info>
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
           {marcadas.length > 0 && <p className="ajuda">Marcadas: {marcadas.map(nomeCaracArma).join(", ")}.</p>}
         </div>
       )}

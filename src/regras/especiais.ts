@@ -91,12 +91,12 @@ export const TECNICAS: DefTecnica[] = [
     ],
   },
   {
-    id: "dominio", armaReq: ["elemental", "invocada", "foco"], grupo: "Campo e vínculo", nome: "Domínio (campo)",
+    id: "dominio", armaReq: ["elemental", "invocada", "foco", "ilusoria", "espacial"], grupo: "Campo e vínculo", nome: "Domínio (campo)",
     texto: "Abre um campo de 9 metros de raio em volta de você, que dura até o fim da cena ou até você sair dele. As regras do campo vêm das interações. Cria o botão “Abrir o domínio” (uma ação). Precisa de uma interação do domínio.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Abrir o domínio", ritmo: "acao", faz: "texto" } }],
   },
   {
-    id: "vinculo", armaReq: ["corrente", "segmentavel", "invocada", "contato"], grupo: "Campo e vínculo", nome: "Vínculo",
+    id: "vinculo", armaReq: ["corrente", "segmentavel", "invocada", "contato", "ilusoria", "venenosa"], grupo: "Campo e vínculo", nome: "Vínculo",
     texto: "Liga você a uma criatura a até 18 metros (ela faz salvaguarda de Mente para resistir). O vínculo dura até o fim da cena e só existe com uma criatura por vez. Cria o botão “Criar vínculo”. Precisa de uma interação do vínculo.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Criar vínculo", ritmo: "bonus", faz: "texto" } }],
   },
@@ -136,7 +136,7 @@ export const TECNICAS: DefTecnica[] = [
     compilar: () => [{ k: "gera", botao: { rotulo: "Sobrecarregar", ritmo: "bonus", faz: "texto", ref: "1d6" } }],
   },
   {
-    id: "corte-espaco", grupo: "Marcas e poderes", nome: "Corte no espaço",
+    id: "corte-espaco", armaReq: ["espacial", "longo-alcance"], grupo: "Marcas e poderes", nome: "Corte no espaço",
     texto: "Ação bônus: a lâmina corta o próprio espaço. Até o fim do turno, a sua próxima ação de ataque corpo a corpo alcança uma criatura a até 12 metros, sem ser barrada por cobertura nem por barreira. Cria o botão “Cortar o espaço”. Precisa de uma interação do corte.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Cortar o espaço", ritmo: "bonus", faz: "texto" } }],
   },
@@ -202,7 +202,7 @@ export const INTERACOES: DefInteracao[] = [
     compilar: () => [{ k: "gera", botao: { rotulo: "Impor a regra do domínio", ritmo: "bonus", faz: "texto" } }],
   },
   {
-    id: "dominio-fere", armaReq: ["elemental", "foco", "invocada"], nome: "Domínio que fere", com: ["dominio"], vale: [],
+    id: "dominio-fere", armaReq: ["elemental", "foco", "invocada", "venenosa"], nome: "Domínio que fere", com: ["dominio"], vale: [],
     texto: "No início do seu turno, cada criatura inimiga dentro do campo sofre a proficiência em d4 de dano de Energia. Serve à técnica Domínio.",
     compilar: () => [{ k: "gatilho", quando: "inicioTurno", faz: { dano: { expr: "[PROF]d4", tipo: "Energia", area: "criaturas inimigas no domínio" } }, rotulo: "Domínio que fere" }],
   },

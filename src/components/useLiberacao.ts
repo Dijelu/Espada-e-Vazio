@@ -1,3 +1,4 @@
+import { turnoDosPoderes } from "../regras/poderes";
 import { useEffect } from "react";
 import type { Rolagens } from "./Rolador";
 import { treinoConcluido } from "../regras/catalogo";
@@ -61,7 +62,7 @@ export function useLiberacao(f: Ficha, c: Calculo, alterar: (p: Partial<Ficha>) 
     const usos = { ...e.usos };
     delete usos["forma-turnos"];
     delete usos["forma-de"];
-    for (const k of Object.keys(usos)) if (/^(fx:|esp:|lim-cena:|req:)/.test(k)) delete usos[k];
+    for (const k of Object.keys(usos)) if (/^(fx:|esp:|lim-cena:|req:|pw:)/.test(k)) delete usos[k];
     if (!terror && !verdadeira && !fimFx) return { liberado: "", usos };
     if (verdadeira || fimFx === "curto") usos["esgotado-curto"] = 1;
     else delete usos["esgotado-curto"];
@@ -69,7 +70,7 @@ export function useLiberacao(f: Ficha, c: Calculo, alterar: (p: Partial<Ficha>) 
   };
   const fx = c.forma;
   /** Há algo que muda a cada turno na forma ativa? */
-  const temTurnoDeForma = e.liberado === "terror" || (!!fx && (fx.manutencao > 0 || !!fx.duracao || !!fx.frenesi || fx.gatilhos.some((g) => g.quando === "inicioTurno" || g.limite === "turno" || g.limite === "rodada")));
+  const temTurnoDeForma = e.liberado === "terror" || Object.keys(e.usos ?? {}).some((k) => k.startsWith("pw:")) || (!!fx && (fx.manutencao > 0 || !!fx.duracao || !!fx.frenesi || fx.gatilhos.some((g) => g.quando === "inicioTurno" || g.limite === "turno" || g.limite === "rodada")));
   /** Novo turno: renova os usos por turno, cobra a manutenção, aplica os efeitos de início de turno e conta a duração. */
   const proximoTurno = () => {
     if (!e.liberado || e.liberado === "mascara") return;
@@ -77,6 +78,7 @@ export function useLiberacao(f: Ficha, c: Calculo, alterar: (p: Partial<Ficha>) 
     if (usos["forma-de"] !== undefined && usos["forma-de"] !== LIB_NUM[e.liberado]) usos["forma-turnos"] = 0;
     usos["forma-de"] = LIB_NUM[e.liberado] ?? 0;
     for (const g of fx?.gatilhos ?? []) if (g.limite === "turno" || g.limite === "rodada") delete usos[`fx:${g.peca}:${g.rotulo}`];
+    for (const k of Object.keys(usos)) if (k.startsWith("fx:abs:")) delete usos[k];
     const partes: string[] = [];
     let pr = f.prAtual;
     const custo = (e.liberado === "terror" ? 2 : 0) + (fx?.manutencao ?? 0);
@@ -110,6 +112,11 @@ export function useLiberacao(f: Ficha, c: Calculo, alterar: (p: Partial<Ficha>) 
       if (res.rolar) r.expr(g.rotulo, res.rolar);
       partes.push(`${g.rotulo}: ${res.dito.join(", ") || "feito"}`);
     }
+    // poderes das técnicas: sobrecarga, cópia, domínio e o que vale por turno
+    const tp = turnoDosPoderes({ ...f, estado: { ...f.estado, usos } }, c, (rot, expr) => r.rolar(rot, expr)?.total ?? 0);
+    for (const [k, x] of Object.entries(tp.usos)) { if (x === undefined) delete usos[k]; else usos[k] = x; }
+    pv = Math.max(0, pv - tp.perdePv);
+    partes.push(...tp.ditos);
     usos["forma-turnos"] = (usos["forma-turnos"] ?? 0) + 1;
     if (fx?.duracao && usos["forma-turnos"] >= fx.duracao) {
       const fim = encerrarForma();

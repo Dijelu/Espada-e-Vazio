@@ -50,7 +50,7 @@ export function AcoesRapidas({ f, c, alterar, r }: { f: Ficha; c: Calculo; alter
     const usos = { ...e.usos };
     const limpa = !!usos["esgotado-curto"];
     delete usos["esgotado-curto"];
-    for (const k of Object.keys(usos)) if (/^(esp:|lim-cena:|lim-curto:|req:)/.test(k)) delete usos[k];
+    for (const k of Object.keys(usos)) if (/^(esp:|lim-cena:|lim-curto:|req:|pw:)/.test(k)) delete usos[k];
     // descansar tira a máscara e zera a contagem de turnos e a recarga dela
     delete usos["mascara-turnos"];
     delete usos["mascara-treino"];

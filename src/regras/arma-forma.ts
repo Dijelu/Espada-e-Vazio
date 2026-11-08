@@ -18,7 +18,22 @@ import type { InstEfeito } from "./efeitos-forma";
 
 export type CaracArmaId =
   | "segmentavel" | "arremesso" | "longo-alcance" | "contato" | "projetil" | "multiplas-laminas" | "enxame" | "invocada"
-  | "elemental" | "pesada" | "escudo" | "corrente" | "dupla" | "natural" | "foco" | "agil";
+  | "elemental" | "pesada" | "escudo" | "corrente" | "dupla" | "natural" | "foco" | "agil"
+  | "ilusoria" | "aerea" | "espacial" | "venenosa";
+
+/** Em que grupo a característica aparece na tela (só organização; não muda nenhuma regra). */
+export type GrupoCaracArma = "golpe" | "forma" | "origem";
+export const GRUPOS_CARAC_ARMA: { id: GrupoCaracArma; nome: string; sobre: string }[] = [
+  { id: "golpe", nome: "Como golpeia", sobre: "A distância do golpe e o jeito de acertar." },
+  { id: "forma", nome: "Como é feita", sobre: "O formato da arma: partes, fios, pares e escudos." },
+  { id: "origem", nome: "De onde vem o poder", sobre: "Corpo, espírito, elemento ou energia." },
+];
+export const GRUPO_DA_CARAC: Record<CaracArmaId, GrupoCaracArma> = {
+  contato: "golpe", "longo-alcance": "golpe", projetil: "golpe", arremesso: "golpe", agil: "golpe", pesada: "golpe",
+  segmentavel: "forma", corrente: "forma", "multiplas-laminas": "forma", enxame: "forma", dupla: "forma", escudo: "forma",
+  natural: "origem", invocada: "origem", elemental: "origem", foco: "origem",
+  ilusoria: "origem", espacial: "origem", venenosa: "origem", aerea: "golpe",
+};
 
 export interface DefCaracArma {
   id: CaracArmaId;
@@ -27,7 +42,7 @@ export interface DefCaracArma {
   texto: string;
 }
 
-/** As 16 características da arma. Para mudar a lista, mude só aqui. */
+/** As 20 características da arma. Para mudar a lista, mude só aqui. */
 export const CARACS_ARMA: DefCaracArma[] = [
   { id: "segmentavel", nome: "Segmentável ou flexível", texto: "A lâmina se divide em partes ligadas ou dobra como chicote. Serve para laçar, cortar em linha e alcançar longe. Ex.: Zabimaru." },
   { id: "arremesso", nome: "De arremesso", texto: "A arma é lançada contra o alvo e volta para a mão (ou se refaz). Ex.: chakram, lança jogada." },
@@ -44,6 +59,10 @@ export const CARACS_ARMA: DefCaracArma[] = [
   { id: "dupla", nome: "Par de armas", texto: "São duas armas ao mesmo tempo, uma em cada mão ou ligadas entre si." },
   { id: "natural", nome: "Parte do corpo", texto: "A arma é parte do corpo: garra, cauda, lâmina no braço, mordida, chifre." },
   { id: "foco", nome: "Foco de energia", texto: "A arma serve para juntar e soltar energia: canhão, cero, arco de reishi, kidō." },
+  { id: "ilusoria", nome: "Ilusória ou mental", texto: "A arma engana os sentidos ou a mente: reflexos, sonhos, vozes, imagens falsas. Ex.: Kyōka Suigetsu, Fornicarás." },
+  { id: "aerea", nome: "Aérea ou veloz", texto: "A arma tem asas ou age no ar, ou faz você se mover mais rápido que o normal. Ex.: asas de lâmina, passos de vento." },
+  { id: "espacial", nome: "Espacial ou temporal", texto: "A arma corta ou dobra o espaço, abre fendas ou mexe no tempo. Ex.: o corte de Nozarashi, a Garganta." },
+  { id: "venenosa", nome: "Venenosa ou corrosiva", texto: "A arma envenena, corrói ou apodrece o que toca: veneno, ácido, doenças. Ex.: Suzumebachi, Trepadora." },
   { id: "agil", nome: "Leve e precisa", texto: "Arma rápida, de golpes certeiros e técnicos. Boa para acertar pontos fracos e para golpes seguidos." },
 ];
 

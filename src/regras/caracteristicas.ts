@@ -71,12 +71,12 @@ export const CARACS: DefCarac[] = [
     pp: () => 2, compilar: () => [texto("Atravessa: o golpe da ação ligada ignora 5 de redução de dano do alvo.")],
   },
   {
-    id: "alcance", armaReq: ["longo-alcance", "projetil", "arremesso", "segmentavel", "corrente"], nome: "Alcance", grupo: "Ofensiva", vale: ["ataque", "area", "cura"],
+    id: "alcance", armaReq: ["longo-alcance", "projetil", "arremesso", "segmentavel", "corrente", "espacial"], nome: "Alcance", grupo: "Ofensiva", vale: ["ataque", "area", "cura"],
     texto: "A ação ligada alcança mais longe: +6 metros.",
     pp: () => 1, compilar: () => [texto("Alcance: a ação ligada alcança 6 metros a mais.")],
   },
   {
-    id: "golpe-duplo", armaReq: ["dupla", "multiplas-laminas", "agil", "enxame"], nome: "Golpe duplo", grupo: "Ofensiva", vale: ["ataque", "movimento"],
+    id: "golpe-duplo", armaReq: ["dupla", "multiplas-laminas", "agil", "enxame", "aerea"], nome: "Golpe duplo", grupo: "Ofensiva", vale: ["ataque", "movimento"],
     texto: "Dois golpes seguidos: contra o mesmo alvo ou contra dois alvos a 3 metros um do outro. O dano é dividido entre os alvos.",
     pp: () => 2, compilar: () => [texto("Golpe duplo: a ação ligada atinge dois alvos a 3 metros um do outro (ou o mesmo alvo duas vezes) e divide o dano entre eles.")],
   },
@@ -101,7 +101,7 @@ export const CARACS: DefCarac[] = [
     pp: () => 2, compilar: () => [texto("Linha: a ação ligada atinge todas as criaturas numa linha de 12 metros (salvaguarda de Destreza: metade do dano no sucesso).")],
   },
   {
-    id: "critico-ampliado", armaReq: ["agil", "projetil", "dupla"], nome: "Crítico ampliado", grupo: "Ofensiva", vale: ["ataque", "movimento"],
+    id: "critico-ampliado", armaReq: ["agil", "projetil", "dupla", "ilusoria"], nome: "Crítico ampliado", grupo: "Ofensiva", vale: ["ataque", "movimento"],
     texto: "A ação ligada acerta crítico com 19 ou 20.",
     pp: () => 2, compilar: () => [texto("Crítico ampliado: a ação ligada acerta crítico com 19 ou 20.")],
   },
@@ -149,7 +149,7 @@ export const CARACS: DefCarac[] = [
     pp: () => 2, compilar: () => [{ k: "gatilho", quando: "acerto", limite: "turno", faz: { pr: "[PROF]" }, rotulo: "Reiatsu no acerto" }],
   },
   {
-    id: "aura", armaReq: ["elemental", "invocada", "enxame"], nome: "Aura", grupo: "Forma", vale: [], param: "tipo", rotuloParam: "Elemento da aura",
+    id: "aura", armaReq: ["elemental", "invocada", "enxame", "venenosa"], nome: "Aura", grupo: "Forma", vale: [], param: "tipo", rotuloParam: "Elemento da aura",
     texto: "No início do seu turno, criaturas a 3 metros sofrem dano da aura (proficiência d6 do elemento escolhido).",
     pp: () => 3, compilar: (p) => [{ k: "gatilho", quando: "inicioTurno", faz: { dano: { expr: "[PROF]d6", tipo: p.tipo?.trim() || "Energia", area: "criaturas a 3 m de você" } }, rotulo: `Aura${p.tipo?.trim() ? ` de ${p.tipo.trim()}` : ""}` }],
   },
@@ -167,7 +167,7 @@ export const CARACS: DefCarac[] = [
     compilar: () => [texto("Golpe de misericórdia: contra um alvo com metade dos PV ou menos, a ação ligada causa [PROF]d6 de dano a mais. 1 vez por turno.")],
   },
   {
-    id: "puxar", armaReq: ["corrente", "segmentavel", "longo-alcance", "projetil"], nome: "Puxar", grupo: "Controle", vale: ["ataque", "movimento"],
+    id: "puxar", armaReq: ["corrente", "segmentavel", "longo-alcance", "projetil", "espacial"], nome: "Puxar", grupo: "Controle", vale: ["ataque", "movimento"],
     texto: "O alvo faz salvaguarda de Força; se falhar, é puxado 6 metros na sua direção. Se bater em algo sólido no caminho, sofre 1d6 de dano.",
     pp: () => 1, compilar: () => [texto("Puxar: o alvo atingido pela ação ligada faz salvaguarda de Força; se falhar, é puxado 6 metros na sua direção e, se bater em algo sólido, sofre 1d6 de dano.")],
   },

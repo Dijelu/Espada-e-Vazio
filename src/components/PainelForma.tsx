@@ -1,3 +1,4 @@
+import { acionarPoder, aplicarUsos, bonusDeAtaque, eco, gastarAcerto, gastarBonus, limparPoder, poderesAtivos } from "../regras/poderes";
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { calcular, classePorId, ataquesPorAcao, ataqueBonus, type Calculo, type Ficha, type FormaLib, type HabForma, type TipoForma } from "../regras/ficha";
 import { TIPO_FORMA_NOME, formaDaLiberacao, liberacaoDaForma, modeloResurreccionPadrao, habilidadesDaForma, resolverDano, danoDaAcao } from "../regras/liberacoes";
@@ -121,7 +122,7 @@ function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg, pele, i }: { f: F
     else if (cl.curaPctDano) total = Math.floor((ultimo.current * cl.curaPctDano) / 100);
     if (total <= 0) { onMsg(cl.curaPctDano ? "Role o dano primeiro: a cura é uma parte dele." : "Não consegui rolar a cura."); return; }
     alterar({ pvAtual: Math.min(c.pv, f.pvAtual + total) });
-    onMsg(`${h.nome}: você recupera ${total} PV.`);
+    onMsg(`${h.nome}: você recupera ${total} PV.${eco(f, c, total)}`);
   };
   const usar = () => {
     const gasto = { prAtual: Math.max(0, f.prAtual - gasta) };
@@ -156,15 +157,35 @@ function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg, pele, i }: { f: F
   const sinAbs = ativa ? (c.forma?.sinergias ?? []).find((s) => s.faz === "absorver" && s.lig && ligaCom(s.lig, ref)) : undefined;
   const carga = Math.min(2, usos[CARGA_CLONES] ?? 0);
   const extraAbs = sinAbs && carga > 0 ? `+${carga}d10` : "";
-  const danoJogo = `${dano}${extraAbs}`;
-  const gastarCarga = () => { if (extraAbs) alterar({ estado: { ...f.estado, usos: { ...usos, [CARGA_CLONES]: 0 } } }); };
+  // poderes ligados (cargas, energia, sobrecarga, corte no espaço…): somam no dano e no acerto dos ataques
+  const pod = ativa && /\d/.test(dano) && h.acao !== "Reação" && !(cl.cura && cl.cura === h.dano) ? bonusDeAtaque(f, c, !!cl.distancia) : undefined;
+  const danoJogo = `${dano}${extraAbs}${pod ? pod.dados.map((d) => `+${d}`).join("") : ""}`;
+  const acertoJogo = acerto + (pod?.acerto ?? 0);
+  const gastarCarga = () => {
+    const p = pod ? gastarBonus(f, c, pod) : {};
+    if (!extraAbs && Object.keys(p).length === 0) return;
+    alterar({ estado: { ...f.estado, usos: aplicarUsos(f, extraAbs ? { [CARGA_CLONES]: 0 } : {}, p) } });
+  };
+  const gastarAcertoPoder = () => { if (pod && pod.acerto > 0) alterar({ estado: { ...f.estado, usos: aplicarUsos(f, gastarAcerto(f, c, pod)) } }); };
   const rotulo = espUsada ? "Já usada nesta cena" : limUsada ? "Já usada" : esp ? `Usar golpe reforçado (${gasta} PR)` : lim ? `Usar (${gasta ? `${gasta} PR, ` : ""}${lim === "cena" ? "1 por cena" : lim === "curto" ? "1 por descanso curto" : "1 por descanso longo"})` : `Usar (${gasta} PR)`;
-  const { resumo, resto } = resumir(h.texto);
+  const { resumo, resto } = resumir(h.texto, 190);
   const [abertoC, setAbertoC] = useState(false);
+  // reação "Absorver reiatsu": o texto promete PR extras, então o botão aplica de verdade (1 vez por turno)
+  const ehAbsorver = /ganha PR extras iguais à sua proficiência/i.test(h.texto ?? "");
+  const chaveAbs = `fx:abs:${h.id}`;
+  const absUsado = !!usos[chaveAbs];
+  const absorver = () => {
+    if (absUsado) { onMsg(`${h.nome}: já usado neste turno.`); return; }
+    const antes = f.prAtual - gasta;
+    const ganho = Math.max(0, Math.min(c.pr + c.prof, Math.max(0, antes) + c.prof) - Math.max(0, antes));
+    alterar({ prAtual: Math.max(0, antes) + ganho, estado: { ...f.estado, usos: { ...usos, [chaveAbs]: 1 } } });
+    onMsg(`${h.nome}: ${gasta} PR gastos e ${ganho} PR absorvidos.`);
+  };
   const botoes: ReactNode[] = [];
   if (ativa) {
-    if (gasta > 0 || esp || lim) botoes.push(<button key="u" type="button" className={B} disabled={f.prAtual < gasta || bloqueada} onClick={usar}>{!reqOk ? "Falta o requisito" : rotulo}</button>);
-    if (!cl.usaInvocacao && (cl.teste === "ataque" || cl.teste === "ataque+salva")) botoes.push(<button key="a" type="button" className={B} disabled={!reqOk} onClick={() => r.d20(`Acerto: ${h.nome}`, acerto)}><Icone nome="dado" /> Acerto {mod(acerto)}</button>);
+    if (ehAbsorver) botoes.push(<button key="ab" type="button" className={B} disabled={f.prAtual < gasta || absUsado || !reqOk} onClick={absorver}>{absUsado ? "Já absorveu neste turno" : `Absorver (+${c.prof} PR)`}</button>);
+    else if (gasta > 0 || esp || lim) botoes.push(<button key="u" type="button" className={B} disabled={f.prAtual < gasta || bloqueada} onClick={usar}>{!reqOk ? "Falta o requisito" : rotulo}</button>);
+    if (!cl.usaInvocacao && (cl.teste === "ataque" || cl.teste === "ataque+salva")) botoes.push(<button key="a" type="button" className={B} disabled={!reqOk} onClick={() => { r.d20(`Acerto: ${h.nome}`, acertoJogo); gastarAcertoPoder(); }}><Icone nome="dado" /> Acerto {mod(acertoJogo)}</button>);
     if (/\d/.test(dano) && !(cl.cura && cl.cura === h.dano)) botoes.push(<button key="d" type="button" className={B} disabled={!reqOk} onClick={() => { ultimo.current = r.rolar(h.nome, danoJogo)?.total ?? 0; gastarCarga(); }}><Icone nome="dado" /> Dano {danoJogo}</button>);
     if (/\d/.test(dano) && (cl.teste === "ataque" || cl.teste === "ataque+salva")) botoes.push(<button key="c" type="button" className={`${B} ${FR}`} disabled={!reqOk} onClick={() => { r.expr(`Crítico: ${h.nome}`, danoJogo, true); gastarCarga(); }}>Crítico</button>);
     if (cl.cura || cl.curaPctDano) botoes.push(<button key="h" type="button" className={B} disabled={!reqOk} onClick={curar}>{cl.cura ? `Curar ${resolverDano(cl.cura, f, c)}` : `Curar ${cl.curaPctDano}% do último dano`}</button>);
@@ -173,20 +194,22 @@ function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg, pele, i }: { f: F
     botoes.push(<button key="x" type="button" className={`${B} ${FR}`} disabled>Ligue a forma</button>);
   }
   const tags: ReactNode[] = [];
-  if (ativa && !cl.usaInvocacao && (cl.teste === "ataque" || cl.teste === "ataque+salva")) tags.push(<span className="fc-t" key="ac">acerto {mod(acerto)}</span>);
+  if (ativa && !cl.usaInvocacao && (cl.teste === "ataque" || cl.teste === "ataque+salva")) tags.push(<span className="fc-t" key="ac">acerto {mod(acertoJogo)}</span>);
   if (ativa && (cl.teste === "salva" || cl.teste === "ataque+salva")) tags.push(<span className="fc-t" key="cd">CD {cdTec}{cl.salvaAtr ? ` ${ATR_NOME[cl.salvaAtr]}` : ""}{cl.metade ? " · metade" : ""}</span>);
   if (h.custo && !/\d\s*PR/.test(h.custo) && h.custo !== "—") tags.push(<span className="fc-t" key="cu">{h.custo}</span>);
   marcas.forEach((e) => tags.push(<span className="fc-t" key={`m${e.id}`}>{e.nome}</span>));
   if (extraAbs) tags.push(<span className="fc-t" key="ab">clones na lâmina {extraAbs}</span>);
+  pod?.tags.forEach((t, k) => tags.push(<span className="fc-t fc-poder" key={`pw${k}`}>{t}</span>));
   if (lim) tags.push(<span className="fc-t" key="li">1 por {lim === "cena" ? "cena" : lim === "curto" ? "descanso curto" : "descanso longo"}</span>);
   if (pele === "qui") {
     const tq: TagCarta[] = [];
     if (gasta > 0) tq.push({ t: `${gasta} PR`, pr: true });
-    if (ativa && !cl.usaInvocacao && (cl.teste === "ataque" || cl.teste === "ataque+salva")) tq.push({ t: `acerto ${mod(acerto)}` });
+    if (ativa && !cl.usaInvocacao && (cl.teste === "ataque" || cl.teste === "ataque+salva")) tq.push({ t: `acerto ${mod(acertoJogo)}` });
     if (ativa && (cl.teste === "salva" || cl.teste === "ataque+salva")) tq.push({ t: `CD ${cdTec}` });
     if (lim) tq.push({ t: `1 por ${lim === "cena" ? "cena" : lim === "curto" ? "descanso curto" : "descanso longo"}` });
     marcas.forEach((e) => tq.push({ t: e.nome }));
     if (extraAbs) tq.push({ t: `clones na lâmina ${extraAbs}` });
+    pod?.tags.forEach((t) => tq.push({ t }));
     return (
       <CartaPoder tipo="voll" selo={h.acao} nome={h.nome || "Habilidade"} tags={tq} ativa={ativa} off={!ativa}
         acao={<>{botoes}{resto && <button type="button" className="info" aria-label={`Ler o texto completo de ${h.nome}`} onClick={() => setAbertoC((v) => !v)}>i</button>}</>}
@@ -245,6 +268,16 @@ function executarBotao(f: Ficha, c: Calculo, r: Rolagens, alterar: (p: Partial<F
   if (f.prAtual < pr) { dizer(`${b.rotulo}: precisa de ${pr} PR.`); return; }
   const gasto = { prAtual: Math.max(0, f.prAtual - pr) };
   const usos = f.estado.usos ?? {};
+  // poderes das técnicas e interações especiais: guardam estado na ficha e dão bônus aos cartões de ação
+  const pw = acionarPoder(b.rotulo, f, c, (rot, expr) => r.rolar(rot, expr)?.total ?? 0);
+  if (pw) {
+    if (pw.erro) { dizer(pw.erro); return; }
+    const est = { ...f.estado, usos: aplicarUsos(f, pw.usos ?? {}) };
+    if (pw.pvTemp !== undefined) est.pvTemp = pw.pvTemp;
+    alterar({ ...gasto, estado: est });
+    dizer(`${b.rotulo}: ${pw.dito ?? "feito"} (${pr} PR)`);
+    return;
+  }
   if (b.faz === "trocar") {
     if (clonesEmCampo(f) === 0) { dizer(`${b.rotulo}: você precisa de um clone em campo.`); return; }
     const { lista } = retirarClones(f, 1);
@@ -265,6 +298,22 @@ function executarBotao(f: Ficha, c: Calculo, r: Rolagens, alterar: (p: Partial<F
   alterar(gasto);
   if (b.ref && /\d+d\d+/.test(b.ref)) r.rolar(`${b.rotulo}`, b.ref);
   dizer(`${b.rotulo}: ${pr} PR gastos.${b.ref && /\d+d\d+/.test(b.ref) ? ` Dado rolado: ${b.ref}.` : ""}`);
+}
+
+/** Os poderes que as técnicas deixaram ligados (cargas, energia, marcas, domínio…), com o ✕ para apagar um. */
+function PoderesAtivos({ f, alterar, pele }: { f: Ficha; alterar: (p: Partial<Ficha>) => void; pele?: "qui" }) {
+  const lista = poderesAtivos(f);
+  if (lista.length === 0) return null;
+  return (
+    <div className={`poderes-ativos${pele === "qui" ? " pq" : ""}`} role="status" aria-label="Poderes ligados">
+      <em>Ligado agora:</em>
+      {lista.map((p) => (
+        <span key={p.id} className="chip-poder">{p.nome} <b>{p.valor}</b>
+          <button type="button" aria-label={`Apagar ${p.nome}`} title="Apagar" onClick={() => alterar({ estado: { ...f.estado, usos: aplicarUsos(f, limparPoder(p.id)) } })}>✕</button>
+        </span>
+      ))}
+    </div>
+  );
 }
 
 /** Linha de custo e do que o botão faz, para o cartão do botão. */
@@ -616,7 +665,7 @@ export function PainelForma({ f, c, r, alterar, tipo, onEditar, onIrEvoluir, soA
         {!ehMascara && <SecaoArma f={f} c={c} r={r} forma={forma as FormaLib | undefined} ligada={ligada} onMsg={setMsg} />}
         {(nAcoes > 0 || !ligada) && (
           <section className="fp-sec" aria-label="Ações da forma">
-            <h3><Ic n={pele === "shi" ? "fatia-espada" : "garras"} cls="h-ic" />Ações da forma <small>{nAcoes} {nAcoes === 1 ? "carta" : "cartas"} · custo em PR</small></h3>
+            <h3><Ic n={pele === "shi" ? "fatia-espada" : "garras"} cls="h-ic" />Ações da forma <small>{nAcoes} {nAcoes === 1 ? "carta" : "cartas"} · custo em PR</small>{ligada && L.temTurnoDeForma && <button type="button" className="fp-btn-sec fp-novo-turno" onClick={L.proximoTurno} title="Renova os usos por turno (Cura no acerto, Reiatsu no acerto, Absorver…) e conta a duração da forma">Novo turno</button>}</h3>
             {!ligada && nAcoes > 0 && <p className="fp-trava">As cartas acendem quando {pele === "shi" ? "a forma liga" : "a forma desperta"}. Antes disso ficam travadas.</p>}
             <div className="fp-grade">
               {ehMascara ? cartasMascara : acoes.map((h, i) => <CartaAcao key={h.id} f={f} c={c} r={r} alterar={alterar} forma={forma as FormaLib} h={h} ativa={ligada} onMsg={setMsg} pele={pele} i={i} />)}
@@ -627,6 +676,7 @@ export function PainelForma({ f, c, r, alterar, tipo, onEditar, onIrEvoluir, soA
         {botoesGerados.length > 0 && (
           <section className="fp-sec" aria-label="Botões das características">
             <h3><Ic n="brilho" cls="h-ic" />Botões das características <small>criados pelos cartões da forma</small></h3>
+            <PoderesAtivos f={f} alterar={alterar} />
             <div className="fp-grade fp-un">{botoesGerados.map((x) => <CartaUnica key={x.n} x={x} pele={pele} />)}</div>
           </section>
         )}
@@ -757,6 +807,7 @@ export function PainelVoll({ f, c, r, alterar, onEditar, onIrEvoluir }: PainelPr
         {(fx?.botoes ?? []).length > 0 && (
           <section className="pf-sec" aria-label="Botões das características">
             <h3>{Ic2("estrela4")}Botões das características <small>criados pelos cartões da forma</small></h3>
+            <PoderesAtivos f={f} alterar={alterar} pele="qui" />
             <div className="cartas">
               {(fx?.botoes ?? []).map((b) => (
                 <CartaPoder key={b.rotulo} tipo="voll" selo={b.faz === "invocar" ? "Invocar" : infoRitmo(b.ritmo).nome} nome={b.rotulo} tags={[{ t: custoDoBotao(b, c), pr: true }]} off={!ligada}

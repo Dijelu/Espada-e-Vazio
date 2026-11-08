@@ -710,7 +710,7 @@ export const CARTOES_BANKAI: Record<string, CartoesDoModelo> = {
     },
     {
      "k": "I",
-     "id": "usar-marca",
+     "id": "marca-passa-golpe",
      "tec": "marcar-alvo"
     }
    ],

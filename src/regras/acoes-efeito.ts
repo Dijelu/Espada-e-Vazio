@@ -30,6 +30,8 @@ export const EFEITOS_REACAO: EfeitoAcao[] = [
   { id: "redirecionar", nome: "Redirecionar o ataque", texto: "Um ataque contra você muda de alvo: outra criatura a até 3 metros de você passa a ser o alvo, com um novo teste de acerto." },
   { id: "esquivar", nome: "Passo de esquiva", texto: "Você se move até 6 metros sem provocar ataques de oportunidade, e o ataque contra você sofre desvantagem no teste de acerto." },
   { id: "travar", armaReq: ["corrente", "segmentavel", "contato", "pesada", "escudo"], nome: "Travar o atacante", texto: "Quando uma criatura a até 3 metros ataca você, ela faz uma salvaguarda de Força (CD 8 + proficiência + atributo). Se falhar, fica Preso até o início do próximo turno dela e o ataque erra." },
+  { id: "imagem-falsa", armaReq: ["ilusoria"], nome: "Imagem falsa", texto: "Quando um ataque mira você, quem atacou faz uma salvaguarda de Mente (CD 8 + proficiência + atributo). Se falhar, o golpe acerta uma imagem sua e erra." },
+  { id: "fenda-fuga", armaReq: ["espacial"], nome: "Fenda de fuga", texto: "Você some do lugar e reaparece em outro ponto livre a até 9 metros. O ataque que mirava você é perdido." },
   { id: "absorver", nome: "Absorver reiatsu", texto: "Você absorve parte da técnica que atinge você e ganha PR extras iguais à sua proficiência. Funciona uma vez por turno." },
 ];
 
@@ -40,6 +42,8 @@ export const EFEITOS_SEM_DANO: EfeitoAcao[] = [
   { id: "silencio", grupo: "controle", nome: "Silêncio espiritual", texto: "Uma criatura a até 18 metros faz uma salvaguarda de Espírito (CD 8 + proficiência + atributo). Se falhar, não pode usar técnicas que gastem PR até o fim do próximo turno dela." },
   { id: "marca-caca", grupo: "marca", nome: "Marca de caça", texto: "Marca uma criatura a até 18 metros até o fim da cena. Você sempre sabe onde ela está, e o primeiro ataque seu em cada turno contra ela soma +2 no teste de acerto." },
   { id: "marca-reveladora", grupo: "marca", nome: "Marca reveladora", texto: "Marca uma criatura a até 18 metros até o fim da cena. Ela não consegue ficar invisível nem escondida de você, e os aliados somam +1 no primeiro ataque do turno contra ela." },
+  { id: "voo", armaReq: ["aerea"], grupo: "utilidade", nome: "Voo", texto: "Você ou um aliado a até 9 metros voa até o deslocamento, sem provocar ataques de oportunidade, e fica no ar até o fim do turno." },
+  { id: "veneno-paralisante", armaReq: ["venenosa"], grupo: "controle", nome: "Veneno que enfraquece", texto: "Uma criatura a até 9 metros faz uma salvaguarda de Constituição (CD 8 + proficiência + atributo). Se falhar, sofre -2 no acerto e no dano até o fim do próximo turno dela." },
   { id: "impulso", grupo: "utilidade", nome: "Impulso", texto: "Você ou um aliado a até 9 metros se move até o dobro do deslocamento, sem provocar ataques de oportunidade." },
   { id: "veu", armaReq: ["escudo", "elemental", "invocada"], grupo: "utilidade", nome: "Véu de reiatsu", texto: "Você ou um aliado a até 9 metros ganha +2 de CR até o início do seu próximo turno." },
   { id: "luz", armaReq: ["elemental", "foco", "invocada"], grupo: "utilidade", nome: "Luz espiritual", texto: "Uma luz de reiatsu ilumina uma área de 18 metros por 1 minuto e deixa à mostra as criaturas invisíveis dentro dela." },
