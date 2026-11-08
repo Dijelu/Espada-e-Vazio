@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { FormaLib } from "../regras/ficha";
-import { orcamentoBase, type CtxForma } from "../regras/efeitos-forma";
+import { liquidoPecas, orcamentoBase, type CtxForma } from "../regras/efeitos-forma";
 import { SHIKAIS_MONTADAS, formaDaShikai } from "../regras/modelos-shikai";
 
 /** Tira do texto antigo as frases que falam de níveis e deixa só o que diz respeito à Bankai. */
@@ -19,11 +19,13 @@ export function ModelosShikai({ ctx, onUsar }: Props) {
       <div className="cartas-hab modelos-montados-lista">
         {SHIKAIS_MONTADAS.map((m) => {
           const aberta = aberto === m.id;
+          // o PP mostrado é o que o modelo gasta de verdade no seu nível, com os cartões que cabem
+          const pp = liquidoPecas(formaDaShikai(m, ctx).efeitos ?? [], orcamentoBase("shikai", ctx.n), ctx);
           return (
             <article key={m.id} className="carta-hab carta-peca carta-montagem" data-classe="shinigami">
               <div className="carta-topo">
                 <h3>{m.nome}</h3>
-                <span className="selo-pp">{m.ppGasto}<i>PP</i></span>
+                <span className="selo-pp">{pp}<i>PP</i></span>
               </div>
               <p className="ajuda">{m.dono} · {m.categoria}{m.bankaiRelacionada ? " · tem Bankai pronta" : ""}</p>
               <p>{m.resumo}</p>
