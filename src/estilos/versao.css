@@ -52,7 +52,7 @@
 .ad-revisar h4 small { font-family: inherit; font-size: 13px; padding: 1px 8px; border-radius: 999px; background: var(--accent); color: var(--on-accent); }
 
 /* Selo do Mestre */
-.selo-desatualizada { display: inline-flex; align-items: center; white-space: nowrap; padding: 1px 10px; border-radius: 999px; font-size: 12px; font-weight: 800; letter-spacing: .03em; border: 2px solid var(--accent); color: var(--accent); background: transparent; }
+.selo-desatualizada { align-self: flex-start; width: fit-content; max-width: 100%; display: inline-flex; align-items: center; white-space: nowrap; padding: 1px 10px; border-radius: 999px; font-size: 12px; font-weight: 800; letter-spacing: .03em; border: 2px solid var(--accent); color: var(--accent); background: transparent; }
 :root[data-theme="dark"] .selo-desatualizada { background: var(--ho-osso); color: var(--ho-vazio); border-color: var(--ho-vermelho); }
 :root[data-theme="light"] .selo-desatualizada { background: var(--sh-carmim); color: var(--sh-washi); border-color: var(--sh-fundo); }
 :root[data-skin="quincy"] .selo-desatualizada { background: var(--qu-fundo); color: var(--qu-azul); border-color: var(--qu-azul); }

@@ -8,6 +8,8 @@ import { publicarCombate, type FichaDaMesa, type Npc } from "../lib/campanhas";
 import { rolarExpressao } from "../lib/dados";
 import { minimoUmDado } from "../regras/forma-npc";
 import { resolverDano } from "../regras/liberacoes";
+import { SeloVersao } from "./SeloVersao";
+import { contarDesatualizadas, fichaDesatualizada, versaoDaFicha } from "../regras/versao";
 
 interface AcaoNpc {
   nome: string;
@@ -265,6 +267,9 @@ export function CombateMesa({ campanhaId, fichas, npcs, pastas }: { campanhaId: 
     ],
     [fichas, npcs]
   );
+  // fichas de versão antiga: o Mestre vê o selo e o contador (só o dono atualiza)
+  const fichaPorId = useMemo(() => new Map(fichas.map((f) => [f.id, f])), [fichas]);
+  const nDesatualizadas = contarDesatualizadas(fichas);
   const primeira = fichas[0] ? `f:${fichas[0].id}` : pastas[0] ? `p:${pastas[0]}` : npcs[0] ? `n:${npcs[0].id}` : "";
   const escolhida = origem || primeira;
 
@@ -494,6 +499,12 @@ export function CombateMesa({ campanhaId, fichas, npcs, pastas }: { campanhaId: 
   return (
     <section className="caixa combate">
       <h3>Combate {est.ativo && <small>· rodada {est.rodada}</small>}</h3>
+      {nDesatualizadas > 0 && (
+        <p className="painel-versoes" role="status">
+          <span className="selo-desatualizada">{nDesatualizadas} {nDesatualizadas === 1 ? "desatualizada" : "desatualizadas"}</span>
+          <small>{nDesatualizadas === 1 ? "Uma ficha está" : `${nDesatualizadas} fichas estão`} em versão antiga e funciona como antes: {fichas.filter((f) => fichaDesatualizada(f.ficha)).map((f) => `${f.nome} (v${versaoDaFicha(f.ficha)})`).join(", ")}. Só o dono atualiza.</small>
+        </p>
+      )}
       <div className="combate-modo" role="group" aria-label="Vantagem nos d20">
         <small>Testes:</small>
         {(["normal", "vantagem", "desvantagem"] as ModoD20[]).map((m) => <button type="button" key={m} className={`btn ${modoD20 === m ? "btn-red" : "btn-paper"}`} onClick={() => setModoD20(m)}>{m === "normal" ? "Normal" : m === "vantagem" ? "Vantagem" : "Desvantagem"}</button>)}
@@ -503,7 +514,7 @@ export function CombateMesa({ campanhaId, fichas, npcs, pastas }: { campanhaId: 
       ) : (
         <div className="linha-rolar">
           <select value={escolhida} onChange={(e) => setOrigem(e.target.value)} aria-label="Quem entra no combate">
-            {fichas.length > 0 && <optgroup label="Jogadores">{opcoes.filter((o) => o.id.startsWith("f:")).map((o) => <option key={o.id} value={o.id}>{o.nome}</option>)}</optgroup>}
+            {fichas.length > 0 && <optgroup label="Jogadores">{opcoes.filter((o) => o.id.startsWith("f:")).map((o) => { const fi = fichaPorId.get(o.id.slice(2)); return <option key={o.id} value={o.id}>{o.nome}{fi && fichaDesatualizada(fi.ficha) ? ` · desatualizada (v${versaoDaFicha(fi.ficha)})` : ""}</option>; })}</optgroup>}
             {pastas.length > 0 && <optgroup label="Pastas de NPCs (todos de uma vez)">{pastas.map((p) => <option key={p} value={`p:${p}`}>Pasta: {p}</option>)}</optgroup>}
             {npcs.length > 0 && <optgroup label="NPCs">{opcoes.filter((o) => o.id.startsWith("n:")).map((o) => <option key={o.id} value={o.id}>{o.nome}</option>)}</optgroup>}
           </select>
@@ -549,7 +560,7 @@ export function CombateMesa({ campanhaId, fichas, npcs, pastas }: { campanhaId: 
                 <input type="number" value={p.ini ?? ""} placeholder="—" onChange={(e) => mudar(p.id, { ini: e.target.value === "" ? null : Number(e.target.value) })} />
               </label>
               <div className="combate-nome">
-                <b>{p.nome}</b>
+                <b>{p.nome}</b>{p.fichaId && fichaPorId.get(p.fichaId) && <SeloVersao ficha={fichaPorId.get(p.fichaId)!.ficha} />}
                 <small>{p.dono ? "Invocação" : p.tipo === "jogador" ? "Jogador" : "NPC"} · CR {p.cr}{p.rdFis || p.rdEso ? ` · RD ${p.rdFis ?? 0} fís. / ${p.rdEso ?? 0} eso.` : ""}</small>
               </div>
               {p.id === est.vez && !p.fora && <span className="combate-selo">No turno</span>}

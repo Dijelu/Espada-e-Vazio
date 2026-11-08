@@ -8,6 +8,9 @@ import prontas from "../regras/ameacas-prontas.json";
 const MODELOS = prontas as unknown as ModeloAmeaca[];
 import { CartaNpc } from "../components/CartaNpc";
 import { FichaLeitura } from "../components/FichaLeitura";
+import { AvisoVersao } from "../components/AvisoVersao";
+import { SeloVersao } from "../components/SeloVersao";
+import { contarDesatualizadas, fichaDesatualizada } from "../regras/versao";
 import { CombateMesa } from "../components/CombateMesa";
 import { OrdemCombate } from "../components/OrdemCombate";
 import {
@@ -35,6 +38,7 @@ export default function CampanhaPagina() {
   const [copiado, setCopiado] = useState(false);
   const [lendo, setLendo] = useState<string[]>([]);
   const [avisoNpcs, setAvisoNpcs] = useState("");
+  const [soDesatualizadas, setSoDesatualizadas] = useState(false);
 
   const meuId = sessao?.user.id ?? "";
   const mestre = camp ? camp.dono === meuId : false;
@@ -101,6 +105,8 @@ export default function CampanhaPagina() {
   };
 
   const pastas = Array.from(new Set(["", ...npcs.map((n) => n.dados.pasta)])).sort((a, b) => (a === "" ? -1 : b === "" ? 1 : a.localeCompare(b, "pt-BR")));
+  const nDesatualizadas = mestre ? contarDesatualizadas(fichas) : 0;
+  const fichasVistas = mestre && soDesatualizadas ? fichas.filter((m) => fichaDesatualizada(m.ficha)) : fichas;
   const guardar = (n: Npc) => tentar(() => salvarNpc(n), "Não foi possível salvar o NPC.");
 
   return (
@@ -121,8 +127,20 @@ export default function CampanhaPagina() {
       <section className="caixa">
         <h3>{mestre ? "Fichas dos jogadores" : "Suas fichas nesta mesa"}</h3>
         {fichas.length === 0 && <p>{mestre ? "Nenhum jogador ligou uma ficha ainda." : "Você ainda não ligou nenhuma ficha."}</p>}
+        {mestre && fichas.length > 0 && (
+          <div className="painel-versoes" role="group" aria-label="Versão das fichas">
+            {nDesatualizadas > 0 ? (
+              <button type="button" className={`chip chip-btn${soDesatualizadas ? " on" : ""}`} aria-pressed={soDesatualizadas} onClick={() => setSoDesatualizadas((v) => !v)}>
+                {nDesatualizadas} {nDesatualizadas === 1 ? "desatualizada" : "desatualizadas"}{soDesatualizadas ? " · mostrando só elas" : ""}
+              </button>
+            ) : (
+              <small>Todas as fichas estão na versão atual.</small>
+            )}
+            {nDesatualizadas > 0 && <small>Elas funcionam como antes; só o dono de cada ficha pode atualizar.</small>}
+          </div>
+        )}
         <div className="cartas">
-          {fichas.map((m) => {
+          {fichasVistas.map((m) => {
             const c = calcular(m.ficha);
             const classe = classePorId(m.ficha.classe);
             return (
@@ -130,6 +148,7 @@ export default function CampanhaPagina() {
                 <div className="carta-corpo">
                   <small>{classe?.nome ?? "Sem classe"} · nível {m.ficha.nivel}</small>
                   <b className="title-font">{m.nome}</b>
+                  {mestre && <SeloVersao ficha={m.ficha} />}
                   <div className="carta-nums">
                     <i>PV <strong>{m.ficha.pvAtual}/{c.pv}</strong></i>
                     <i>PR <strong>{m.ficha.prAtual}/{c.pr}</strong></i>
@@ -152,7 +171,7 @@ export default function CampanhaPagina() {
                     }}
                   >
                     <summary>{lendo.includes(m.id) ? "Recolher ficha" : "Ver ficha completa"}</summary>
-                    {lendo.includes(m.id) && <FichaLeitura f={m.ficha} nome={m.nome} />}
+                    {lendo.includes(m.id) && <><AvisoVersao f={m.ficha} modo="mestre" /><FichaLeitura f={m.ficha} nome={m.nome} /></>}
                   </details>
                 )}
               </article>
