@@ -24,8 +24,8 @@ interface Props {
   mud: (p: Partial<FormaLib>) => void;
   /** grava a forma sem fechar (usado ao confirmar as escolhas) */
   onGravar?: (forma: FormaLib) => void;
-  /** "poder": só os cartões de característica de poder; "fracos": só pontos fracos; sem valor: tudo junto */
-  modo?: "tudo" | "poder" | "fracos";
+  /** "painel": só o medidor de PP, os pontos do Mestre e as peças antigas já na forma (sem galeria); "poder": peças de poder; "fracos": só pontos fracos; sem valor: tudo junto */
+  modo?: "tudo" | "poder" | "fracos" | "painel";
 }
 
 /** Construtor de efeitos da transformação: cartões de característica prontos ou criados à mão, com orçamento em Pontos de Poder. */
@@ -45,6 +45,7 @@ export function EfeitosForma({ f, tipo, r, mud, onGravar, modo = "tudo" }: Props
   const pendentes = efeitos.filter((e) => !e.confirmado);
 
   const custoDo = (p: Preset) => custoPreset(p, params[p.id] ?? {}, ctx);
+  const painel = modo === "painel";
   const categorias = CATEGORIAS.filter((x) => (x !== "Schrift" || tipo === "vollstandig") && (modo === "fracos" ? x === "Pontos fracos" : modo === "poder" ? x !== "Pontos fracos" : true));
   const [tirando, setTirando] = useState("");
   const daSchrift = useMemo(() => (tipo === "vollstandig" && f.schrift ? lista.filter((p) => p.schrift === f.schrift) : []), [tipo, f.schrift, lista]);
@@ -57,7 +58,7 @@ export function EfeitosForma({ f, tipo, r, mud, onGravar, modo = "tudo" }: Props
     mud({ efeitos: [...efeitos, ...novas], schriftAuto: f.schrift });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tipo, f.schrift, r.schriftAuto]);
-  const visiveis = efeitos.filter((e) => (!e.familia || e.familia === "peca") && (modo === "tudo" ? true : modo === "fracos" ? custoPeca(e, ctx) < 0 : custoPeca(e, ctx) >= 0));
+  const visiveis = efeitos.filter((e) => (!e.familia || e.familia === "peca") && (modo === "tudo" || painel ? true : modo === "fracos" ? custoPeca(e, ctx) < 0 : custoPeca(e, ctx) >= 0));
   const [soExcl, setSoExcl] = useState(false);
   const temExcl = lista.some((p) => exclusiva(p));
   const filtrados = lista.filter((p) => (!soExcl || exclusiva(p)) && (modo !== "fracos" || p.categoria === "Pontos fracos") && (modo !== "poder" || p.categoria !== "Pontos fracos") && (!cat || p.categoria === cat) && (!busca.trim() || `${p.nome} ${p.texto} ${p.caminho ?? ""}`.toLowerCase().includes(busca.trim().toLowerCase())));
@@ -85,8 +86,8 @@ export function EfeitosForma({ f, tipo, r, mud, onGravar, modo = "tudo" }: Props
 
   return (
     <div className="caixa efeitos-forma">
-      <h3>{modo === "fracos" ? "Pontos fracos da forma" : "Cartões de característica da forma"}</h3>
-      {modo === "fracos" ? <p className="ajuda">Cada ponto fraco vale de verdade na ficha enquanto a forma estiver ativa. Os leves devolvem poucos pontos; os pesados, bastante, mas ficam fora do teto de um terço (até 9 pontos no total, junto com o frenesi).</p> : <p className="ajuda">Monte o que a forma dá enquanto estiver ativa. Cada cartão de característica custa Pontos de Poder (PP); os efeitos entram sozinhos na ficha ao liberar. Depois de <b>confirmar</b>, a peça fica travada; os pontos que sobrarem podem ser gastos depois.</p>}
+      <h3>{modo === "fracos" ? "Pontos fracos da forma" : painel ? "Pontos de Poder da forma" : "Cartões de característica da forma"}</h3>
+      {painel ? <p className="ajuda">Os cartões de característica e de efeito gastam estes pontos. Técnicas e interações especiais não gastam PP: elas só ocupam vagas.</p> : modo === "fracos" ? <p className="ajuda">Cada ponto fraco vale de verdade na ficha enquanto a forma estiver ativa. Os leves devolvem poucos pontos; os pesados, bastante, mas ficam fora do teto de um terço (até 9 pontos no total, junto com o frenesi).</p> : <p className="ajuda">Monte o que a forma dá enquanto estiver ativa. Cada cartão de característica custa Pontos de Poder (PP); os efeitos entram sozinhos na ficha ao liberar. Depois de <b>confirmar</b>, a peça fica travada; os pontos que sobrarem podem ser gastos depois.</p>}
 
       <div className={`medidor-pp ${orc.livre < 0 ? "estourou" : ""}`} role="status" aria-live="polite">
         <b>Pontos de Poder: {orc.gasto} de {orc.total}</b>
@@ -107,10 +108,11 @@ export function EfeitosForma({ f, tipo, r, mud, onGravar, modo = "tudo" }: Props
           <small>Sua Schrift</small>
           <b>{infoSchrift.nome}</b>
           <p>{infoSchrift.voll}</p>
-          <p className="ajuda">{daSchrift.length > 0 ? "Os cartões dela já entram montados abaixo. Você pode tirar, se quiser." : "Ela age pelas ações da ficha; não há cartão pronto para ela aqui."}</p>
+          <p className="ajuda">{daSchrift.length > 0 ? "Os cartões dela já entram montados, na lista de peças antigas. Você pode tirar, se quiser." : "Ela age pelas ações da ficha; não há cartão pronto para ela aqui."}</p>
         </div>
       )}
-      {visiveis.length === 0 && <p className="ajuda">{modo === "fracos" ? "Nenhum ponto fraco escolhido ainda. Quanto mais pesado, mais pontos ele devolve." : "Nenhum cartão de característica ainda. Escolha abaixo."}</p>}
+      {painel && visiveis.length > 0 && <h4 className="sub-passivas">Peças antigas desta forma</h4>}
+      {!painel && visiveis.length === 0 && <p className="ajuda">{modo === "fracos" ? "Nenhum ponto fraco escolhido ainda. Quanto mais pesado, mais pontos ele devolve." : "Nenhum cartão de característica ainda. Escolha abaixo."}</p>}
       <ul className="efeitos-lista">
         {visiveis.map((e) => {
           const c = custoPeca(e, ctx);
@@ -142,6 +144,7 @@ export function EfeitosForma({ f, tipo, r, mud, onGravar, modo = "tudo" }: Props
       )}
       {msg && <p className="ajuda" role="status">{msg}</p>}
 
+      {!painel && <>
       <h4 className="sub-passivas">Catálogo de cartões de característica</h4>
       <input className="seletor-busca" value={busca} onChange={(e) => setBusca(e.target.value)} placeholder="Buscar cartão (ex.: voo, dano, cura)" aria-label="Buscar cartão" />
       <div className="filtros-pecas">
@@ -210,6 +213,7 @@ export function EfeitosForma({ f, tipo, r, mud, onGravar, modo = "tudo" }: Props
       ) : (
         <PecaPropria ctx={ctx} livre={orc.livre} onCriar={(p) => { mud({ efeitos: [...efeitos, p] }); setNovo(false); setMsg(""); }} onFechar={() => setNovo(false)} />
       )}
+      </>}
     </div>
   );
 }

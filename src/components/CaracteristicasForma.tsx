@@ -7,7 +7,8 @@ import {
   type DefCarac, type GrupoCarac, type Liga, type ParamsCarac,
 } from "../regras/caracteristicas";
 import { FAIXA_CONDICAO, LIMITE_TEXTO, condicoesDaFaixa } from "../regras/faixas-condicao";
-import { classeDe } from "./EfeitosForma";
+import { classeDe, EfeitosForma } from "./EfeitosForma";
+import { EfeitosNeutros } from "./EfeitosNeutros";
 import { Info } from "./Dica";
 import { faltaDaPeca, liberadoPelaArma, textoPrecisa, type ArmaCtx } from "../regras/arma-forma";
 
@@ -21,6 +22,8 @@ interface Props {
   mud: (p: Partial<FormaLib>) => void;
   /** a arma da forma: cartões que pedem uma característica que ela não tem ficam apagados, com o motivo */
   arma?: ArmaCtx;
+  /** grava a forma sem fechar (confirmar as escolhas) */
+  onGravar?: (forma: FormaLib) => void;
 }
 
 /** Valor do seletor "Ligar a": "final", "todas" ou "uma:<id da ação>". */
@@ -28,7 +31,7 @@ const lerLiga = (v: string): { liga: Liga; acao?: string } => (v === "final" ? {
 const valorLiga = (c: NonNullable<InstEfeito["carac"]>) => (c.liga === "final" ? "final" : c.liga === "uma" ? `uma:${c.acao ?? ""}` : "todas");
 
 /** Cartões de característica neutros: poderes que se ligam à técnica final, a uma ação ou a todas as ações compatíveis. */
-export function CaracteristicasForma({ f, tipo, r, mud, arma }: Props) {
+export function CaracteristicasForma({ f, tipo, r, mud, arma, onGravar }: Props) {
   const c = useMemo(() => calcular({ ...f, estado: { ...f.estado, liberado: "" } }), [f]);
   const ctx: CtxForma = { n: f.nivel, prof: c.prof, atr: c.atr, tipo };
   const forcas = forcasDoTipo(tipo);
@@ -67,12 +70,12 @@ export function CaracteristicasForma({ f, tipo, r, mud, arma }: Props) {
 
   return (
     <div className="caixa efeitos-forma caracs-acao">
-      <h3>Características das ações</h3>
+      <h3>Características da forma</h3>
       <p className="ajuda">
-        Cada cartão de característica custa Pontos de Poder (PP) da forma e muda uma ação: mais dano, condição no acerto, alcance, área maior. Escolha a ação a que ele vale (a técnica final, uma ação sua ou todas as compatíveis). Passar do teto de dano com esses cartões é permitido.
+        Cada cartão de característica custa Pontos de Poder (PP) da forma e pode mudar uma ação (mais dano, condição no acerto, alcance, área maior). Escolha a ação a que ele vale (a técnica final, uma ação sua ou todas as compatíveis). Passar do teto de dano com esses cartões é permitido.
         {" "}<Info>Eles não ocupam vaga de ação. Se você tirar a ação ligada, o cartão fica “solto” e não vale em nada até você ligá-lo a outra.</Info>
       </p>
-      <small className="ajuda">PP livres na forma: <b>{orc.livre}</b> de {orc.total}</small>
+      <EfeitosForma f={f} tipo={tipo} r={r} mud={mud} onGravar={onGravar} modo="painel" />
 
       {minhas.length > 0 && (
         <ul className="efeitos-lista caracs-lista" aria-label="Características ligadas">
@@ -198,6 +201,7 @@ export function CaracteristicasForma({ f, tipo, r, mud, arma }: Props) {
         })}
       </div>
       {msg && <p className="ajuda" role="status">{msg}</p>}
+      <EfeitosNeutros f={f} tipo={tipo} r={r} mud={mud} />
     </div>
   );
 }

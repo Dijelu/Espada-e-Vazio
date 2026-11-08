@@ -7,7 +7,6 @@ import { ROTULO_ORIGEM, origemDaForma } from "../lib/origem";
 import { CartaoHabilidade } from "./CartoesHabilidade";
 import { MontagemCartoes } from "./MontagemCartoes";
 import { faltasEspeciais } from "../regras/especiais";
-import { EfeitosNeutros } from "./EfeitosNeutros";
 import { ModelosBankai } from "./ModelosBankai";
 import { shikaiExigida, temAShikai } from "../regras/bankai-exige-shikai";
 import { ModelosHollow } from "./ModelosHollow";
@@ -393,7 +392,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
               </>
             )}
 
-            <MontagemCartoes f={f} tipo={tipo} r={r} mud={mud} acoes={
+            <MontagemCartoes f={f} tipo={tipo} r={r} mud={mud} onGravar={onGravar} acoes={
               <div className="caixa">
                 <h3>{ehBankai ? "Habilidades e técnicas" : "Habilidades e técnicas da forma"}</h3>
                 <p className="ajuda">Cada habilidade com PR ou dano vira uma carta nova no Resumo, com botões de usar e rolar.</p>
@@ -444,8 +443,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
               <label className="campo">Ponto fraco<textarea rows={2} value={r.pontoFraco} onChange={(e) => mud({ pontoFraco: e.target.value })} placeholder="Um preço ou vulnerabilidade da forma" /></label>
             )}
 
-            <EfeitosNeutros f={f} tipo={tipo} r={r} mud={mud} />
-            <EfeitosForma f={f} tipo={tipo} r={r} mud={mud} onGravar={onGravar} />
+            <EfeitosForma f={f} tipo={tipo} r={r} mud={mud} onGravar={onGravar} modo="fracos" />
           </div>
         )}
       </div>

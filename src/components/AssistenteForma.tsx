@@ -8,7 +8,6 @@ import { EfeitosForma, EscolhaAtributos } from "./EfeitosForma";
 import { CartaoHabilidade, GaleriaAcoes } from "./CartoesHabilidade";
 import { MontagemCartoes } from "./MontagemCartoes";
 import { faltasEspeciais } from "../regras/especiais";
-import { EfeitosNeutros } from "./EfeitosNeutros";
 import { efeitoPendente } from "../regras/efeitos-neutros";
 import { calcularLiberacao } from "../regras/liberacao-forma";
 import { SeletorDano } from "./SeletorFormula";
@@ -99,7 +98,7 @@ function ordenarPassos(base: Passo[]): Passo[] {
   const rev = base.find((p) => p.id === "revisao")!;
   const meio = base
     .filter((p) => !["efeitos", "fraqueza", "custo", "revisao"].includes(p.id))
-    .map((p) => (p.id === "acoes" ? { ...p, titulo: "Habilidades e efeitos", ajuda: `${p.ajuda} Logo abaixo, monte os efeitos com números: eles entram sozinhos na ficha enquanto a forma estiver ativa.` } : p));
+    .map((p) => (p.id === "acoes" ? { ...p, titulo: "Habilidades e efeitos", ajuda: `${p.ajuda} Os números da forma (características e efeitos leve, médio e forte) ficam na aba Características e entram sozinhos na ficha enquanto a forma estiver ativa.` } : p));
   const pf: Passo = { id: "fraqueza", titulo: "Pontos fracos", ajuda: `${fraq?.ajuda ?? "Todo grande poder cobra um preço."} Escolha cartões: quanto mais pesado o ponto fraco, mais pontos ele devolve para montar a forma.` };
   return [...meio, pf, ...(custo ? [{ ...custo, titulo: "Custo e duração", ajuda: "O custo de liberação e a duração são calculados sozinhos a partir dos cartões de característica e dos pontos fracos que você escolheu." }] : []), rev];
 }
@@ -505,7 +504,7 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
                 mud({ habilidades: [...r.habilidades, ...antigas.slice(0, Math.max(0, maxHab - vagasUsadas(r.habilidades))).map((h) => ({ ...h, id: novoId(), nome: `${h.nome} (Segunda Etapa)`, pr: h.pr ? Math.round(h.pr * 1.25) : h.pr, custo: h.pr ? `${Math.round(h.pr * 1.25)} PR` : h.custo }))] });
               }}>Trazer as técnicas da minha Resurrección (custo +25%)</button>
             )}
-            <MontagemCartoes f={f} tipo={tipo} r={r} mud={mud} acoes={
+            <MontagemCartoes f={f} tipo={tipo} r={r} mud={mud} onGravar={onGravar} acoes={
               <>
                 <label className="campo">Atributo do bônus no dano
                   <select value={atr} onChange={(e) => setAtr(e.target.value)}>
@@ -522,7 +521,6 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
                 </div>
               </>
             } />
-            <EfeitosNeutros f={f} tipo={tipo} r={r} mud={mud} />
           </>
         )}
 
@@ -550,8 +548,6 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
             </div>
           </>
         )}
-
-        {passo.id === "acoes" && <EfeitosForma f={f} tipo={tipo} r={r} mud={mud} onGravar={onGravar} modo="poder" />}
 
         {passo.id === "revisao" && (
           <>

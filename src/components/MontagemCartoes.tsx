@@ -17,13 +17,14 @@ interface Props {
   mud: (p: Partial<FormaLib>) => void;
   /** conteúdo da aba Ações (os cartões de ação e as ações montadas) */
   acoes: ReactNode;
+  onGravar?: (forma: FormaLib) => void;
 }
 
 /**
  * Os quatro tipos de cartão da montagem de uma forma, cada um na sua aba:
  * Ações e Características (genéricas, ligadas de forma opcional) e Técnicas especiais e Interações especiais (ligadas de forma obrigatória).
  */
-export function MontagemCartoes({ f, tipo, r, mud, acoes }: Props) {
+export function MontagemCartoes({ f, tipo, r, mud, acoes, onGravar }: Props) {
   const [aba, setAba] = useState<Aba>("acoes");
   const efeitos = r.efeitos ?? [];
   const v = vagasEspeciais(tipo);
@@ -68,7 +69,7 @@ export function MontagemCartoes({ f, tipo, r, mud, acoes }: Props) {
         </div>
       )}
       <div role="tabpanel" id="painel-acoes" aria-labelledby="aba-acoes" hidden={aba !== "acoes"}>{acoes}</div>
-      <div role="tabpanel" id="painel-caracs" aria-labelledby="aba-caracs" hidden={aba !== "caracs"}><CaracteristicasForma f={f} tipo={tipo} r={r} mud={mud} arma={arma} /></div>
+      <div role="tabpanel" id="painel-caracs" aria-labelledby="aba-caracs" hidden={aba !== "caracs"}><CaracteristicasForma f={f} tipo={tipo} r={r} mud={mud} arma={arma} onGravar={onGravar} /></div>
       <div role="tabpanel" id="painel-tecnicas" aria-labelledby="aba-tecnicas" hidden={aba !== "tecnicas"}><TecnicasEspeciais f={f} tipo={tipo} r={r} mud={mud} arma={arma} irParaInteracoes={() => setAba("interacoes")} /></div>
       <div role="tabpanel" id="painel-interacoes" aria-labelledby="aba-interacoes" hidden={aba !== "interacoes"}><InteracoesEspeciais f={f} tipo={tipo} r={r} mud={mud} arma={arma} irParaTecnicas={() => setAba("tecnicas")} /></div>
     </div>
