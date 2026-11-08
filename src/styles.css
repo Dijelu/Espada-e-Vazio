@@ -401,9 +401,9 @@ img { max-width: 100%; }
 .cartas { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
 .carta { background: var(--panel); border: 3px solid var(--text); border-radius: 8px; display: flex; flex-direction: column; transition: transform .25s, box-shadow .25s; }
 .carta:hover { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--accent); }
-.carta-corpo { display: grid; gap: 4px; padding: 18px; }
+.carta-corpo { display: grid; gap: 6px; padding: 18px; }
 .carta-corpo small { color: var(--accent); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; font-size: 12px; }
-.carta-corpo b { font-size: 32px; line-height: 1; }
+.carta-corpo b { font-size: 30px; line-height: 1.08; }
 .carta-nums { display: flex; gap: 14px; margin-top: 8px; font-style: normal; }
 .carta-nums i { font-style: normal; color: var(--muted); font-size: 13px; }
 .carta-nums strong { color: var(--text); font-size: 20px; margin-left: 4px; }
