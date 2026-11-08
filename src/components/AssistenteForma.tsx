@@ -385,13 +385,13 @@ export function AssistenteForma({ f, tipo, r, mud, onSalvar, onEditarTudo, onGra
               </button>
               <button type="button" className={`opcao ${tipoNovo ? "on" : ""}`} onClick={() => setTipoNovo(true)}>
                 <b>Algo completamente novo</b>
-                <small>Escolha qualquer tipo e monte todas as habilidades do zero, sem depender da primeira Bankai.</small>
+                <small>Monte todas as habilidades do zero, sem depender da primeira Bankai.</small>
               </button>
             </div>
             {!tipoNovo && <p className="ajuda">★ exclusivos da Verdadeira <Info>Os cartões exclusivos da Verdadeira (marcados com ★) aparecem de acordo com o tipo da sua Bankai.</Info></p>}
           </>
         )}
-        {passo.id === "conceito" && (tipo === "bankai" || (tipo === "bankai2" && !estiloHerdado)) && (
+        {passo.id === "conceito" && tipo === "bankai" && (
           <>
             <div className="opcoes-grandes">
               <button type="button" className={`opcao ${r.estilo === "potencializadora" ? "on" : ""}`} onClick={() => mud({ estilo: "potencializadora" })}>
