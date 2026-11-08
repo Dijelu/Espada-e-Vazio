@@ -3,8 +3,9 @@ import { ICONES_GAME, ICONES_PHOSPHOR } from "../content/creditos-icones";
 const FONTES: [string, string, string][] = [
   ["Cinzel e Cinzel Decorative", "Natanael Gama (The Cinzel Project Authors)", "títulos do visual Quincy e nome da Vollständig"],
   ["Marcellus", "Brian J. Bonislawsky (Astigmatic)", "títulos das cartas Quincy"],
-  ["M PLUS 1", "The M+ FONTS Project Authors", "texto e números"],
-  ["Dela Gothic One", "Dela Gothic Project", "títulos"],
+  ["Cormorant Garamond", "The Cormorant Project Authors (Christian Thalmann)", "títulos, capítulos do livro, nomes das cartas e números de destaque"],
+  ["Source Sans 3", "Adobe (Paul D. Hunt)", "texto, tabelas, botões e números"],
+  ["Caveat Brush", "Impallari Type", "logo, menu e efeitos de liberação"],
   ["Shippori Mincho e Shippori Mincho B1", "The Shippori Mincho Project Authors", "títulos, modo livro e selo das formas Shinigami"],
   ["Grenze Gotisch", "The Grenze Gotisch Project Authors (Omnibus-Type)", "títulos das formas e cartas Hollow"],
 ];
@@ -47,7 +48,7 @@ export default function Creditos() {
 
       <section className="caixa">
         <h2>Fontes</h2>
-        <p>Todas sob a licença SIL Open Font License 1.1, servidas deste site (sem CDN para as fontes novas da ficha). Os textos das licenças estão em <code>/arte/fontes/OFL-*.txt</code>.</p>
+        <p>Todas sob a licença SIL Open Font License 1.1. As fontes ficam neste site, sem CDN; a única exceção é a Caveat Brush, que vem do Google Fonts. Os textos das licenças estão em <code>/fontes/OFL-*.txt</code> e <code>/arte/fontes/OFL-*.txt</code>.</p>
         <table className="tab-creditos">
           <thead><tr><th>Fonte</th><th>Autoria</th><th>Uso</th></tr></thead>
           <tbody>{FONTES.map(([n, a, u]) => <tr key={n}><td>{n}</td><td>{a}</td><td>{u}</td></tr>)}</tbody>

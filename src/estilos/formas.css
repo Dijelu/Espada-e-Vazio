@@ -4,12 +4,12 @@
                 washi (creme) #f6ece4   papel #efe3d1   névoa #d8c9bf / #e6d9cf   tinta (sobre papel) #1a0d10
    Paleta HOL : tinta-vazio #15101b / #1d1226 / #0c0710   osso #ece4d0   osso-sombra #d3c8ae   osso-fundo #b9ac8c   vermelho #e5173f (fundos: #b0102f)
                 âmbar #ff9a1f   âmbar-claro #ffc470   osso-névoa #cfc4ab
-   Tipografia: Shippori Mincho (nome e títulos Shinigami), Shippori Selo (só o kanji do selo), Grenze Gotisch (nome e títulos Hollow), M PLUS 1 (texto, números, botões).
+   Tipografia: Shippori Mincho (nome e títulos Shinigami), Shippori Selo (só o kanji do selo), Grenze Gotisch (nome e títulos Hollow), Source Sans 3 (texto, números, botões).
    Ícones: game-icons.net (CC BY 3.0) e Phosphor (MIT). Créditos: CREDITOS.md.
    ============================================================ */
 .fpw { --sumi: #0b0609; --sumi2: #140a0e; --carm: #b3122e; --carmv: #ff4d6a; --carme: #6d0a1d; --washi: #f6ece4; --papel: #efe3d1; --nev: #d8c9bf; --nev2: #e6d9cf; --tinta: #1a0d10;
   --tv: #15101b; --tv2: #1d1226; --tv3: #0c0710; --osso: #ece4d0; --osso2: #d3c8ae; --osso3: #b9ac8c; --verm: #e5173f; --vermf: #b0102f; --amb: #ff9a1f; --amb2: #ffc470; --ossn: #cfc4ab;
-  position: relative; font-family: "M PLUS 1", "Noto Sans CJK JP", system-ui, sans-serif; color: var(--washi); }
+  position: relative; font-family: "Source Sans 3", "Noto Sans CJK JP", system-ui, sans-serif; color: var(--washi); }
 .fpw .ic { width: 1em; height: 1em; fill: currentColor; flex: none; display: inline-block; vertical-align: -.14em; }
 .fpw .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .fpw button { font-family: inherit; }
@@ -139,7 +139,7 @@
 .fp-hol .fp-sec > h3 { font: 700 30px/1 "Grenze Gotisch", serif; color: #ece4d0; background: linear-gradient(90deg, #ece4d0 0, #e5173f 90px, transparent 90px) 0 100% / 100% 2px no-repeat, linear-gradient(90deg, rgba(229, 23, 63, .6), transparent 88%) 0 calc(100% - 6px) / 100% 1px no-repeat; }
 .fp-sec > h3 .h-ic { width: 27px; height: 27px; color: #ff4d6a; filter: drop-shadow(0 0 6px #ff4d6a88); }
 .fp-hol .fp-sec > h3 .h-ic { color: #ff9a1f; filter: drop-shadow(0 0 6px #ff9a1f77); }
-.fp-sec > h3 small { margin-left: auto; font: 500 13.5px "M PLUS 1", sans-serif; color: #d8c9bf; letter-spacing: 0; }
+.fp-sec > h3 small { margin-left: auto; font: 500 13.5px "Source Sans 3", sans-serif; color: #d8c9bf; letter-spacing: 0; }
 .fp-hol .fp-sec > h3 small { color: #cfc4ab; }
 .fp-trava { margin: -6px 0 16px; color: #e6d9cf; font-size: 14.5px; max-width: 70ch; line-height: 1.55; }
 .fp-grade { display: grid; grid-template-columns: repeat(auto-fill, minmax(268px, 1fr)); gap: 24px 20px; align-items: start; }

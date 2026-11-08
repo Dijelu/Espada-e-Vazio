@@ -1,9 +1,7 @@
-@font-face { font-family: "Dela Gothic One"; src: url("/arte/fontes/dela-gothic-one.woff") format("woff"); font-weight: 400; font-display: swap; }
-@font-face { font-family: "M PLUS 1"; src: url("/arte/fontes/mplus1.woff") format("woff"); font-weight: 100 900; font-display: swap; }
 @font-face { font-family: "Cinzel"; src: url("/arte/fontes/cinzel.woff") format("woff"); font-weight: 400 900; font-display: swap; }
 @font-face { font-family: "Shippori Mincho"; src: url("/arte/fontes/shippori-mincho-600.woff") format("woff"); font-weight: 400 700; font-display: swap; }
 /* Ajustes de encaixe do acabamento do protótipo nos componentes reais da ficha. */
-.ficha { --f-tit: "Dela Gothic One", "Noto Sans CJK JP Black", "Arial Black", sans-serif; --f-txt: "M PLUS 1", "Noto Sans CJK JP", system-ui, sans-serif; --carta-f: var(--f-txt); }
+.ficha { --f-tit: "Cormorant Garamond", "Cormorant", Georgia, serif; --f-txt: "Source Sans 3", "Noto Sans CJK JP", system-ui, sans-serif; --carta-f: var(--f-txt); }
 .cartas-hab:has(> .cwx) { grid-template-columns: repeat(auto-fill, minmax(214px, 1fr)); gap: 18px 16px; align-items: stretch; }
 .ficha .pf-carta h3 { text-transform: none; letter-spacing: normal; font-style: normal; }
 .ficha .pf-carta .corpo { position: relative; z-index: 1; display: grid; gap: 6px; align-content: start; margin: 6px 0 10px; font-size: 13px; line-height: 1.45; }
