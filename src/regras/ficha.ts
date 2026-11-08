@@ -1,5 +1,6 @@
 import { efeitoMascara } from "./mascara";
 import { nivelLiberacao, picksVoll, formaDaLiberacao } from "./liberacoes";
+import type { CartaoAcao } from "./cartoes";
 import { somarForma, type InstEfeito, type SomaForma } from "./efeitos-forma";
 import { somaSituacoes } from "./situacionais";
 import { ataquesHueco, danoFixoHueco } from "./hueco";
@@ -535,6 +536,10 @@ export interface HabForma {
   limite?: "cena" | "curto" | "longo";
   /** o que precisa ter acontecido antes de usar (marcado à mão em jogo); também devolve pontos */
   requisito?: string;
+  /** cartão de ação de onde a habilidade saiu (sem isto, a habilidade é do jeito antigo) */
+  cartao?: CartaoAcao;
+  /** ids das características ligadas a esta ação */
+  caracs?: string[];
 }
 
 /** Forma de liberação avançada do personagem (Bankai, Resurrección ou Vollständig). */

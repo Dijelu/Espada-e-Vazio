@@ -30,6 +30,8 @@ export interface Preset {
   aprovacao?: boolean;
   /** só pode entrar uma vez */
   unico?: boolean;
+  /** peça de antes dos cartões: continua valendo em ficha e modelo que a usam, mas sai da galeria quando houver um cartão neutro no lugar */
+  legado?: boolean;
   /** Caminho do Hollow a que pertence */
   caminho?: string;
   /** só para a Bankai potencializadora */

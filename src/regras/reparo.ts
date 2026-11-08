@@ -6,6 +6,7 @@ import { mascaraAtiva, podeMascara, tempMascara } from "./mascara";
 import { calcularLiberacao } from "./liberacao-forma";
 import { SCHRIFTS } from "./schrifts";
 import { normalizarEfeitos } from "./efeitos-forma";
+import { cartaoValido, marcaDoCartaoAntigo } from "./cartoes";
 
 const LIBERACOES = ["", "shikai", "bankai", "bankai2", "resurreccion", "terror", "vollstandig", "mascara"];
 const ATR_IDS = ATRIBUTOS.map((a) => a.id);
@@ -74,6 +75,21 @@ export function repararFicha(bruta: Ficha): Reparo {
     const antes = JSON.stringify(forma.efeitos);
     forma.efeitos = normalizarEfeitos(forma.efeitos);
     if (JSON.stringify(forma.efeitos) !== antes) nota(`Alguns efeitos da forma ${forma.nome || forma.tipo} estavam inválidos e foram ajustados.`);
+  }
+  // cartões de ação: os cartões automáticos de antes só ganham uma marca (dano, custo e texto ficam exatamente como estavam)
+  for (const forma of Object.values(f.formas ?? {})) {
+    if (!forma || !Array.isArray(forma.habilidades)) continue;
+    let marcados = 0;
+    forma.habilidades = forma.habilidades.map((h) => {
+      let x = h;
+      if (x.cartao !== undefined && !cartaoValido(x.cartao)) { const { cartao: _descartado, ...resto } = x; x = resto; }
+      if (x.caracs !== undefined && !(Array.isArray(x.caracs) && x.caracs.every((c) => typeof c === "string"))) { const { caracs: _descartado, ...resto } = x; x = resto; }
+      const marca = marcaDoCartaoAntigo(x);
+      if (!marca) return x;
+      marcados++;
+      return { ...x, cartao: marca };
+    });
+    if (marcados > 0) nota(`Os cartões da forma ${forma.nome || forma.tipo} foram reorganizados nos novos tipos de ação; nada mudou nos números.`);
   }
   if (!["", "plena", "verdadeira"].includes(f.treinos.caminhoBankai)) { f.treinos.caminhoBankai = ""; nota("O caminho da Bankai estava inválido e foi limpo."); }
   // Bankai Plena: versões antigas gravavam o custo já pela metade e a liberação cobrava a metade de novo (1/4).

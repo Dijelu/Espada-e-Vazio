@@ -19,6 +19,8 @@ export const ALVOS: { id: Alvo; nome: string }[] = [
 /** "Ataques armados, podendo ser kidōs": golpes, disparos e Hadō. */
 export const ARMADOS: Alvo[] = ["golpe", "disparo", "hado"];
 
+import type { DadosCarac, DadosEfeitoNeutro, FamiliaCartao, Ritmo } from "./cartoes";
+
 export type Num = number | string;
 export type Quando = "liberar" | "inicioTurno" | "acerto" | "critico" | "abate" | "atingido" | "errou";
 
@@ -72,6 +74,10 @@ export type Efeito =
   | { k: "preco"; pp: number; texto: string; autoDano?: Num }
   /** a forma dura mais alguns turnos (10 turnos = 1 minuto) */
   | { k: "duracaoMais"; turnos: Num }
+  /** a característica cria um botão de ação em jogo (invocar, trocar de lugar…); o motor ainda não o desenha */
+  | { k: "gera"; botao: { rotulo: string; ritmo: Ritmo; faz: "invocar" | "trocar" | "absorver" | "texto"; ref?: string } }
+  /** sinergia entre características (ex.: clones com a técnica final); o motor ainda não a usa */
+  | { k: "liga"; com: string; faz: string }
   | { k: "invoca"; nome: string; tipo: "clone" | "invocacao"; max: Num; pv: Num; cr: Num; acerto: Num; dano: string; custoPr: Num; texto?: string };
 
 /** Uma peça escolhida no construtor: um preset (com parâmetros) ou algo criado à mão. */
@@ -85,6 +91,10 @@ export interface InstEfeito {
   pp?: number;
   /** confirmado: não pode mais ser mudado nem tirado */
   confirmado?: boolean;
+  /** peça de poder (sem o campo), cartão de característica ou cartão de efeito */
+  familia?: FamiliaCartao;
+  carac?: DadosCarac;
+  efeitoNeutro?: DadosEfeitoNeutro;
 }
 
 export interface CtxForma {
@@ -377,6 +387,7 @@ export function custoEfeito(e: Efeito, ctx: CtxForma): number {
     case "frenesi": return e.nivel === "leve" ? -2 : e.nivel === "grande" ? -6 : -9;
     case "preco": return -Math.max(1, Math.min(9, Math.floor(e.pp)));
     case "duracaoMais": return Math.max(1, Math.ceil(valor(e.turnos, ctx) / 3));
+    case "gera": case "liga": return 0;
     case "invoca": {
       const max = Math.max(1, Math.min(10, Math.floor(valor(e.max, ctx))));
       const pv = Math.max(1, valor(e.pv, ctx));
@@ -476,14 +487,17 @@ export function avisosDeTeto(p: InstEfeito, ctx: CtxForma): string[] {
 
 export const totalAtr = (s: SomaForma | null | undefined) => (s ? ATRIBUTOS.reduce((t, a) => t + s.atr[a], 0) : 0);
 
+/** Quantas peças e cartões uma forma aceita ao ler uma ficha (antes eram 24). */
+export const LIMITE_PECAS = 60;
+
 /** Limpa o que veio de um arquivo ou de uma ficha antiga: tipos desconhecidos saem e valores soltos viram 0. */
 export function normalizarEfeitos(raw: unknown): InstEfeito[] {
   if (!Array.isArray(raw)) return [];
-  const ok = new Set(["atr", "cr", "acerto", "dano", "dados", "cd", "ignoraRd", "alcance", "rd", "resist", "desloc", "acoes", "vant", "gatilho", "custo", "fim", "duracao", "texto", "invoca", "frenesi", "preco", "duracaoMais"]);
+  const ok = new Set(["atr", "cr", "acerto", "dano", "dados", "cd", "ignoraRd", "alcance", "rd", "resist", "desloc", "acoes", "vant", "gatilho", "custo", "fim", "duracao", "texto", "invoca", "frenesi", "preco", "duracaoMais", "gera", "liga"]);
   const alvos = new Set(ALVOS.map((a) => a.id));
   const num = (v: unknown): Num => (typeof v === "number" && Number.isFinite(v) ? v : typeof v === "string" && /^[\[\]A-Z0-9+\-*/(). ]{1,40}$/.test(v) ? v : 0);
   const lista = (v: unknown): Alvo[] => (Array.isArray(v) ? (v.filter((x) => typeof x === "string" && alvos.has(x as Alvo)) as Alvo[]) : []);
-  return raw.slice(0, 24).flatMap((p): InstEfeito[] => {
+  return raw.slice(0, LIMITE_PECAS).flatMap((p): InstEfeito[] => {
     if (!p || typeof p !== "object") return [];
     const o = p as Partial<InstEfeito>;
     const efeitos = (Array.isArray(o.efeitos) ? o.efeitos : []).slice(0, 8).flatMap((e): Efeito[] => {
@@ -508,6 +522,12 @@ export function normalizarEfeitos(raw: unknown): InstEfeito[] {
         case "texto": return [{ k, t: String(x.t ?? "").slice(0, 400) }];
         case "preco": return [{ k, pp: Math.max(1, Math.min(9, Math.floor(Number(x.pp) || 1))), texto: String(x.texto ?? "").slice(0, 300), autoDano: x.autoDano === undefined ? undefined : num(x.autoDano) }];
         case "duracaoMais": return [{ k, turnos: num(x.turnos) }];
+        case "gera": {
+          const bt = (x.botao && typeof x.botao === "object" ? x.botao : {}) as Record<string, unknown>;
+          const faz = bt.faz === "trocar" || bt.faz === "absorver" || bt.faz === "texto" ? bt.faz : "invocar";
+          return [{ k, botao: { rotulo: String(bt.rotulo ?? "").slice(0, 60), ritmo: bt.ritmo === "bonus" || bt.ritmo === "reacao" ? bt.ritmo : "acao", faz, ref: typeof bt.ref === "string" ? bt.ref.slice(0, 40) : undefined } }];
+        }
+        case "liga": return [{ k, com: String(x.com ?? "").slice(0, 40), faz: String(x.faz ?? "").slice(0, 120) }];
         case "frenesi": return [{ k, nivel: x.nivel === "total" ? "total" : x.nivel === "grande" ? "grande" : "leve" }];
         case "invoca": return [{ k, nome: String(x.nome ?? "Invocação").slice(0, 40), tipo: x.tipo === "clone" ? "clone" : "invocacao", max: num(x.max), pv: num(x.pv), cr: num(x.cr), acerto: num(x.acerto), dano: typeof x.dano === "string" && /^[\[\]A-Z0-9d+\-*/(). ]{0,40}$/.test(x.dano) ? x.dano : "", custoPr: num(x.custoPr), texto: typeof x.texto === "string" ? x.texto.slice(0, 300) : undefined }];
         case "gatilho": {
@@ -530,6 +550,40 @@ export function normalizarEfeitos(raw: unknown): InstEfeito[] {
       }
       return [];
     });
-    return [{ id: String(o.id ?? Math.random().toString(36).slice(2, 9)).slice(0, 40), preset: typeof o.preset === "string" ? o.preset : undefined, nome: String(o.nome ?? "Efeito").slice(0, 80), texto: typeof o.texto === "string" ? o.texto.slice(0, 300) : undefined, efeitos, pp: typeof o.pp === "number" && Number.isFinite(o.pp) ? Math.max(-3, Math.min(20, Math.round(o.pp))) : undefined, confirmado: o.confirmado === true }];
+    return [{ id: String(o.id ?? Math.random().toString(36).slice(2, 9)).slice(0, 40), preset: typeof o.preset === "string" ? o.preset : undefined, nome: String(o.nome ?? "Efeito").slice(0, 80), texto: typeof o.texto === "string" ? o.texto.slice(0, 300) : undefined, efeitos, pp: typeof o.pp === "number" && Number.isFinite(o.pp) ? Math.max(-3, Math.min(20, Math.round(o.pp))) : undefined, confirmado: o.confirmado === true, ...extrasDoCartao(o) }];
   });
+}
+
+const SUBS_OK = ["ataque", "area", "cura", "movimento"];
+const curto = (v: unknown, n: number) => (typeof v === "string" ? v.slice(0, n) : undefined);
+
+/** Campos dos cartões de característica e de efeito (opcionais; peça de poder antiga não tem nenhum). */
+function extrasDoCartao(o: Partial<InstEfeito>): Partial<InstEfeito> {
+  const out: Partial<InstEfeito> = {};
+  if (o.familia === "carac" || o.familia === "efeito") out.familia = o.familia;
+  const c = o.carac as unknown as Record<string, unknown> | undefined;
+  if (c && typeof c === "object" && typeof c.id === "string" && c.id) {
+    const esc = c.escolha as Record<string, unknown> | undefined;
+    out.carac = {
+      id: c.id.slice(0, 40),
+      vale: Array.isArray(c.vale) ? (c.vale.filter((x) => SUBS_OK.includes(x as string)) as DadosCarac["vale"]) : [],
+      liga: c.liga === "final" || c.liga === "uma" ? c.liga : "todas",
+      ...(typeof c.acao === "string" ? { acao: c.acao.slice(0, 40) } : {}),
+      ...(esc && typeof esc === "object" ? { escolha: { condicao: curto(esc.condicao, 30), tipo: curto(esc.tipo, 30), n: typeof esc.n === "number" && Number.isFinite(esc.n) ? esc.n : undefined } } : {}),
+      ...(Array.isArray(c.requer) ? { requer: c.requer.filter((x): x is string => typeof x === "string").slice(0, 6).map((x) => x.slice(0, 40)) } : {}),
+    };
+  }
+  const n = o.efeitoNeutro as unknown as Record<string, unknown> | undefined;
+  if (n && typeof n === "object") {
+    const cd = n.condicao as { nome?: unknown; salva?: unknown; duracao?: unknown } | undefined;
+    out.efeitoNeutro = {
+      forca: n.forca === "medio" || n.forca === "forte" ? n.forca : "leve",
+      modo: n.modo === "pronta" ? "pronta" : "livre",
+      texto: curto(n.texto, 400),
+      ...(cd && typeof cd.nome === "string" && cd.nome.trim() ? { condicao: { nome: cd.nome.slice(0, 30), salva: ATRIBUTOS.includes(cd.salva as Atr) ? (cd.salva as Atr) : undefined, duracao: curto(cd.duracao, 30) } } : {}),
+      onde: curto(n.onde, 60),
+      aval: n.aval === "ok" ? "ok" : "pendente",
+    };
+  }
+  return out;
 }
