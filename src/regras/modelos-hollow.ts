@@ -1,3 +1,4 @@
+import { juntarTecnicasExtra, TECNICAS_EXTRA_RES } from "./modelos-tecnicas-extra";
 import { RESURRECCIONES_NOVAS, SEGUNDAS_NOVAS } from "./modelos-novos";
 import { CARTOES_RES_NOVOS, CARTOES_SEGUNDA_NOVOS } from "./modelos-novos-cartoes";
 import type { HabForma } from "./ficha";
@@ -1087,6 +1088,7 @@ export const RESURRECCIONES_MONTADAS: ModeloResHollow[] = [
 ];
 RESURRECCIONES_MONTADAS.push(...RESURRECCIONES_NOVAS);
 Object.assign(CARTOES_RES, CARTOES_RES_NOVOS);
+juntarTecnicasExtra(CARTOES_RES, TECNICAS_EXTRA_RES);
 
 export const SEGUNDAS_MONTADAS: ModeloSegunda[] = [
  {

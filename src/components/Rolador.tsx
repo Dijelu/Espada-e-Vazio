@@ -15,7 +15,7 @@ export function useRolagens() {
     som.dado();
   }, []);
 
-  const d20 = useCallback((rotulo: string, bonus: number, forcar?: Modo) => registrar(rolarD20(rotulo, bonus, forcar ?? modo)), [modo, registrar]);
+  const d20 = useCallback((rotulo: string, bonus: number, forcar?: Modo, critMin?: number) => registrar(rolarD20(rotulo, bonus, forcar ?? modo, critMin)), [modo, registrar]);
   const expr = useCallback(
     (rotulo: string, e: string, critico = false) => {
       const r = rolarExpressao(rotulo, e, critico);

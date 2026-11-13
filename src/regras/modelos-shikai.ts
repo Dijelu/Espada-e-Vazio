@@ -1,3 +1,4 @@
+import { juntarTecnicasExtra, TECNICAS_EXTRA_SHIKAI } from "./modelos-tecnicas-extra";
 import { SHIKAIS_NOVAS } from "./modelos-novos";
 import { CARTOES_SHIKAI_NOVOS } from "./modelos-novos-cartoes";
 import type { FormaLib, HabForma } from "./ficha";
@@ -942,6 +943,7 @@ export const SHIKAIS_MONTADAS: ModeloShikaiMontado[] = [
 ];
 SHIKAIS_MONTADAS.push(...SHIKAIS_NOVAS);
 Object.assign(CARTOES_SHIKAI, CARTOES_SHIKAI_NOVOS);
+juntarTecnicasExtra(CARTOES_SHIKAI, TECNICAS_EXTRA_SHIKAI);
 
 export const FONTES_SHIKAI: string[] = ["https://sportskeeda.com/anime/what-shikai-release-commands-bleach-25-famous-zanpakutos-shikai-commands", "https://comicbook.com/anime/list/bleach-every-ichigo-form-explained-list", "https://www.animeexplained.com/explained/bleach-byakuya-kuchikis-zanpakuto-senbonzakura-explained", "https://www.cbr.com/bleach-toshiro-hitsugaya-zanpakuto-explained/", "https://swordslice.com/blogs/news/renji-s-sword-in-bleach-from-shikai-to-bankai-transformation", "https://en.wikipedia.org/wiki/Renji_Abarai", "https://www.animeexplained.com/?p=10929", "https://www.cbr.com/bleach-manga-ryujin-jakka-facts-trivia/", "https://www.animeexplained.com/explained/bleach-shunsui-kyorakus-zanpakuto-katen-kyokotsu-explained/", "https://fictionhorizon.com/what-is-komamuras-special-power-in-bleach/", "https://www.animeexplained.com/explained/bleach-mayuri-kurotsuchis-zanpakuto-explained/", "https://en.wikipedia.org/wiki/Mayuri_Kurotsuchi", "https://www.soapcentral.com/anime/whose-zanpakuto-suzumebachi-bleach-explained", "https://swordslice.com/blogs/news/kisuke-sword-abilities-explained-from-shikai-to-bankai", "https://gotai13.blogspot.com/2010/03/tosen-kaname.html", "https://fictionhorizon.com/bleach-rukias-shikai-sode-no-shirayuki-explained/", "https://www.animeexplained.com/explained/bleach-rukias-zanpakuto-sode-no-shirayuki-explained", "https://giantbomb.com/wiki/Characters/Rangiku_Matsumoto", "https://sportskeeda.com/anime/was-tosen-immune-aizen-s-kyoka-suigetsu-bleach-explained"];
 

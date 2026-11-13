@@ -1,4 +1,4 @@
-import { acionarPoder, aplicarUsos, ataqueDeCorte, ataqueDoCopiado, capacidadeDeCopias, REGRA_DOMINIO, ataqueDeEnergia, bonusDeAtaque, eco, gastarAcerto, gastarBonus, limparPoder, marcarCortada, marcarLancada, poderesAtivos } from "../regras/poderes";
+import { acionarPoder, aplicarUsos, estadoDoBotao, medidorDoBotao, resumoDoProximoGolpe, type Medidor, ataqueDeCorte, ataqueDoCopiado, capacidadeDeCopias, REGRA_DOMINIO, ataqueDeEnergia, bonusDeAtaque, efeitoDasCaracs, type BotaoCarac, eco, gastarAcerto, gastarBonus, limparPoder, marcarCortada, marcarLancada, poderesAtivos } from "../regras/poderes";
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { calcular, classePorId, ataquesPorAcao, ataqueBonus, type Calculo, type Ficha, type FormaLib, type HabForma, type TipoForma } from "../regras/ficha";
 import { TIPO_FORMA_NOME, formaDaLiberacao, liberacaoDaForma, modeloResurreccionPadrao, habilidadesDaForma, resolverDano, danoDaAcao } from "../regras/liberacoes";
@@ -121,6 +121,7 @@ function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg, pele, i }: { f: F
     if (cl.cura) { const t = r.rolar(`Cura: ${h.nome}`, resolverDano(cl.cura, f, c)); total = t?.total ?? 0; }
     else if (cl.curaPctDano) total = Math.floor((ultimo.current * cl.curaPctDano) / 100);
     if (total <= 0) { onMsg(cl.curaPctDano ? "Role o dano primeiro: a cura é uma parte dele." : "Não consegui rolar a cura."); return; }
+    ultimo.current = total;
     alterar({ pvAtual: Math.min(c.pv, f.pvAtual + total) });
     onMsg(`${h.nome}: você recupera ${total} PV.${eco(f, c, total)}`);
   };
@@ -159,12 +160,15 @@ function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg, pele, i }: { f: F
   const extraAbs = sinAbs && carga > 0 ? `+${carga}d10` : "";
   // poderes ligados (cargas, energia, sobrecarga, corte no espaço…): somam no dano e no acerto dos ataques
   const pod = ativa && /\d/.test(dano) && h.acao !== "Reação" && !(cl.cura && cl.cura === h.dano) ? bonusDeAtaque(f, c, !!cl.distancia) : undefined;
-  const danoJogo = `${dano}${extraAbs}${pod ? pod.dados.map((d) => `+${d}`).join("") : ""}`;
+  // cartões de característica ligados a esta ação: dado extra, crítico, botões (empurrar, puxar, enfraquecer…)
+  const car = ativa ? efeitoDasCaracs(marcas, f, c, { reduzido: ultimo.current, efeito: (h as { cartao?: { efeito?: string } }).cartao?.efeito }) : undefined;
+  const danoJogo = `${dano}${extraAbs}${pod ? pod.dados.map((d) => `+${d}`).join("") : ""}${car ? car.dados.map((d) => `+${d}`).join("") : ""}`;
   const acertoJogo = acerto + (pod?.acerto ?? 0);
   const gastarCarga = () => {
     const p = pod ? gastarBonus(f, c, pod) : {};
-    if (!extraAbs && Object.keys(p).length === 0) return;
-    alterar({ estado: { ...f.estado, usos: aplicarUsos(f, extraAbs ? { [CARGA_CLONES]: 0 } : {}, p) } });
+    const q = Object.fromEntries((car?.gasta ?? []).map((k) => [`pw:${k}`, 1])) as Record<string, number | undefined>;
+    if (!extraAbs && Object.keys(p).length === 0 && Object.keys(q).length === 0) return;
+    alterar({ estado: { ...f.estado, usos: aplicarUsos(f, extraAbs ? { [CARGA_CLONES]: 0 } : {}, p, q) } });
   };
   const gastarAcertoPoder = () => { if (pod && pod.acerto > 0) alterar({ estado: { ...f.estado, usos: aplicarUsos(f, gastarAcerto(f, c, pod)) } }); };
   const rotulo = espUsada ? "Já usada nesta cena" : limUsada ? "Já usada" : esp ? `Usar golpe reforçado (${gasta} PR)` : lim ? `Usar (${gasta ? `${gasta} PR, ` : ""}${lim === "cena" ? "1 por cena" : lim === "curto" ? "1 por descanso curto" : "1 por descanso longo"})` : `Usar (${gasta} PR)`;
@@ -181,15 +185,22 @@ function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg, pele, i }: { f: F
     alterar({ prAtual: Math.max(0, antes) + ganho, estado: { ...f.estado, usos: { ...usos, [chaveAbs]: 1 } } });
     onMsg(`${h.nome}: ${gasta} PR gastos e ${ganho} PR absorvidos.`);
   };
+  const usarCarac = (b: BotaoCarac) => {
+    if (b.d20) r.d20(`${b.rotulo}: ${h.nome}`, acertoJogo, undefined, car?.critMin);
+    if (b.expr) r.rolar(`${b.rotulo}: ${h.nome}`, b.expr);
+    if (b.usos) alterar({ estado: { ...f.estado, usos: aplicarUsos(f, b.usos) } });
+    if (b.dito) onMsg(`${h.nome}: ${b.dito}`);
+  };
   const botoes: ReactNode[] = [];
   if (ativa) {
     if (ehAbsorver) botoes.push(<button key="ab" type="button" className={B} disabled={f.prAtual < gasta || absUsado || !reqOk} onClick={absorver}>{absUsado ? "Já absorveu neste turno" : `Absorver (+${c.prof} PR)`}</button>);
     else if (gasta > 0 || esp || lim) botoes.push(<button key="u" type="button" className={B} disabled={f.prAtual < gasta || bloqueada} onClick={usar}>{!reqOk ? "Falta o requisito" : rotulo}</button>);
-    if (!cl.usaInvocacao && (cl.teste === "ataque" || cl.teste === "ataque+salva")) botoes.push(<button key="a" type="button" className={B} disabled={!reqOk} onClick={() => { r.d20(`Acerto: ${h.nome}`, acertoJogo); gastarAcertoPoder(); }}><Icone nome="dado" /> Acerto {mod(acertoJogo)}</button>);
+    if (!cl.usaInvocacao && (cl.teste === "ataque" || cl.teste === "ataque+salva")) botoes.push(<button key="a" type="button" className={B} disabled={!reqOk} onClick={() => { r.d20(`Acerto: ${h.nome}`, acertoJogo, undefined, car?.critMin); gastarAcertoPoder(); }}><Icone nome="dado" /> Acerto {mod(acertoJogo)}</button>);
     if (/\d/.test(dano) && !(cl.cura && cl.cura === h.dano)) botoes.push(<button key="d" type="button" className={B} disabled={!reqOk} onClick={() => { ultimo.current = r.rolar(h.nome, danoJogo)?.total ?? 0; gastarCarga(); }}><Icone nome="dado" /> Dano {danoJogo}</button>);
     if (/\d/.test(dano) && (cl.teste === "ataque" || cl.teste === "ataque+salva")) botoes.push(<button key="c" type="button" className={`${B} ${FR}`} disabled={!reqOk} onClick={() => { r.expr(`Crítico: ${h.nome}`, danoJogo, true); gastarCarga(); }}>Crítico</button>);
     if (cl.cura || cl.curaPctDano) botoes.push(<button key="h" type="button" className={B} disabled={!reqOk} onClick={curar}>{cl.cura ? `Curar ${resolverDano(cl.cura, f, c)}` : `Curar ${cl.curaPctDano}% do último dano`}</button>);
     ligados.forEach((g, k) => { const usado = !!g.limite && !!usos[`fx:${g.peca}:${g.rotulo}`]; botoes.push(<button key={`g${k}`} type="button" className={B} disabled={!reqOk || usado} title={`${g.peca}${g.limite ? `, 1 por ${g.limite}` : ""}`} onClick={() => aplicarLigado(g)}>{usado ? `${g.rotulo}: já usado` : g.rotulo}</button>); });
+    car?.botoes.forEach((b) => botoes.push(<button key={`cb${b.id}`} type="button" className={`${B}${b.aceso ? " aceso" : ""}`} disabled={!reqOk || !!b.travado} title={b.travado ?? b.dica} onClick={() => usarCarac(b)}>{b.d20 || b.expr ? <Icone nome="dado" /> : null} {b.rotulo}</button>));
   } else {
     botoes.push(<button key="x" type="button" className={`${B} ${FR}`} disabled>Ligue a forma</button>);
   }
@@ -200,6 +211,7 @@ function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg, pele, i }: { f: F
   marcas.forEach((e) => tags.push(<span className="fc-t" key={`m${e.id}`}>{e.nome}</span>));
   if (extraAbs) tags.push(<span className="fc-t" key="ab">clones na lâmina {extraAbs}</span>);
   pod?.tags.forEach((t, k) => tags.push(<span className="fc-t fc-poder" key={`pw${k}`}>{t}</span>));
+  car?.tags.forEach((t, k) => tags.push(<span className="fc-t fc-poder" key={`cr${k}`}>{t}</span>));
   if (lim) tags.push(<span className="fc-t" key="li">1 por {lim === "cena" ? "cena" : lim === "curto" ? "descanso curto" : "descanso longo"}</span>);
   if (pele === "qui") {
     const tq: TagCarta[] = [];
@@ -210,6 +222,7 @@ function CartaAcao({ f, c, r, alterar, forma, h, ativa, onMsg, pele, i }: { f: F
     marcas.forEach((e) => tq.push({ t: e.nome }));
     if (extraAbs) tq.push({ t: `clones na lâmina ${extraAbs}` });
     pod?.tags.forEach((t) => tq.push({ t }));
+    car?.tags.forEach((t) => tq.push({ t }));
     return (
       <CartaPoder tipo="voll" selo={h.acao} nome={h.nome || "Habilidade"} tags={tq} ativa={ativa} off={!ativa}
         acao={<>{botoes}{resto && <button type="button" className="info" aria-label={`Ler o texto completo de ${h.nome}`} onClick={() => setAbertoC((v) => !v)}>i</button>}</>}
@@ -308,9 +321,11 @@ function executarBotao(f: Ficha, c: Calculo, r: Rolagens, alterar: (p: Partial<F
       for (let k = 0; k < tira; k++) lista.splice(lista.findIndex((x) => chaves.has(x.chave)), 1);
       est.invocacoes = lista;
     }
+    if (pw.curaPv && pw.curaPv > 0) pvAtual = Math.min(c.pv, pvAtual + pw.curaPv);
+    if (pw.some) est.invocacoes = (est.invocacoes ?? []).filter((x) => x.id !== pw.some);
     if (pw.renasce) { est.invocacoes = [...(est.invocacoes ?? []), pw.renasce]; est.caida = undefined; }
     if (b.rotulo === "Copiar poder" && ex.copia) est.copiados = [...(f.estado.copiados ?? []), ex.copia].slice(-capacidadeDeCopias(c));
-    alterar({ ...gasto, pvAtual, estado: est });
+    alterar({ ...gasto, pvAtual, ...(pw.ganhaPr ? { prAtual: Math.min(c.pr, (gasto.prAtual ?? f.prAtual) + pw.ganhaPr) } : {}), estado: est });
     dizer(`${b.rotulo}: ${pw.dito ?? "feito"} (${pr} PR)`);
     return;
   }
@@ -336,7 +351,7 @@ function executarBotao(f: Ficha, c: Calculo, r: Rolagens, alterar: (p: Partial<F
   dizer(`${b.rotulo}: ${pr} PR gastos.${b.ref && /\d+d\d+/.test(b.ref) ? ` Dado rolado: ${b.ref}.` : ""}`);
 }
 
-const DEFESAS = ["Dispersar o enxame", "Passar o dano", "Absorver o golpe", "Gastar cargas para se proteger"];
+const DEFESAS = ["Dispersar o enxame", "Passar o dano", "Absorver o golpe", "Gastar cargas para se proteger", "Barreira recebe o golpe"];
 /** Campo "dano que você ia sofrer": os botões de defesa descontam o resultado dos PV. */
 function CampoDano({ botoes, valor, onChange }: { botoes: { rotulo: string }[]; valor: string; onChange: (v: string) => void }) {
   if (!botoes.some((b) => DEFESAS.includes(b.rotulo))) return null;
@@ -344,7 +359,7 @@ function CampoDano({ botoes, valor, onChange }: { botoes: { rotulo: string }[]; 
     <label className="campo-dano">
       <span>Dano que você ia sofrer</span>
       <input type="number" inputMode="numeric" min={0} value={valor} placeholder="0" onChange={(e) => onChange(e.target.value)} />
-      <small>Os botões de defesa (Absorver, Passar o dano, Dispersar, Cargas) descontam o resultado dos seus PV. Deixe vazio para ver só a regra.</small>
+      <small>Os botões de defesa (Absorver, Passar o dano, Dispersar, Cargas, Barreira) descontam o resultado dos seus PV. Deixe vazio para ver só a regra.</small>
     </label>
   );
 }
@@ -365,7 +380,12 @@ function CampoCopia({ botoes, nome, dano, pr, set }: { botoes: { rotulo: string 
 
 /** Botão de um poder. Os que precisam de uma escolha viram vários botões: a regra do domínio, quem ataca ao Comandar, qual poder copiado usar. */
 function botaoDoPoder(f: Ficha, c: Calculo, r: Rolagens, alterar: (p: Partial<Ficha>) => void, dizer: (m: string) => void, b: BotaoGerado, base: ExtraBotao, cls: string): ReactNode {
-  const normal = (rot: string, ex: ExtraBotao = {}, key?: string) => <button key={key ?? rot} type="button" className={cls} onClick={() => executarBotao(f, c, r, alterar, b, dizer, { ...base, ...ex })}>{rot}</button>;
+  const est = estadoDoBotao(b.rotulo, f, c);
+  const semPr = b.faz === "texto" && b.rotulo !== "Usar o poder copiado" && f.prAtual < infoRitmo(b.ritmo).pr;
+  const motivo = !est.pronto ? est.motivo : semPr ? `faltam PR (${infoRitmo(b.ritmo).pr})` : undefined;
+  const normal = (rot: string, ex: ExtraBotao = {}, key?: string) => (
+    <button key={key ?? rot} type="button" className={`${cls}${est.aceso && !semPr ? " aceso" : ""}${motivo ? " travado" : ""}`} aria-disabled={motivo ? true : undefined} title={motivo ? `Agora não: ${motivo}` : undefined} onClick={() => executarBotao(f, c, r, alterar, b, dizer, { ...base, ...ex })}>{rot}</button>
+  );
   if (b.rotulo === "Impor a regra do domínio") return <>{[1, 2, 3].map((o) => normal(({ 1: "Terreno difícil", 2: "Inimigos −2 CR", 3: "Vantagem nas salvaguardas" } as Record<number, string>)[o], { opcao: o }))}</>;
   if (b.rotulo === "Comandar invocação") {
     const lista = f.estado.invocacoes ?? [];
@@ -389,10 +409,82 @@ function botaoDoPoder(f: Ficha, c: Calculo, r: Rolagens, alterar: (p: Partial<Fi
   return normal(b.faz === "invocar" ? `${b.rotulo} (${emCampo(f, b.ref ?? "")} em campo)` : b.rotulo, {}, b.rotulo);
 }
 
+/** Medidor de uma técnica: bolinhas (cargas, marcas, doses) ou barra (PV da barreira, dano guardado). */
+function MedidorPoder({ m }: { m: Medidor }) {
+  const cheio = m.atual >= m.max && m.max > 0;
+  if (m.tipo === "barra") {
+    return (
+      <span className={`med med-barra${cheio ? " cheio" : ""}${m.atual > 0 ? " on" : ""}`} role="img" aria-label={`${m.nome}: ${m.atual} de ${m.max}`}>
+        <i>{m.nome}</i><span className="med-trilho"><span style={{ width: `${Math.min(100, (m.atual / Math.max(1, m.max)) * 100)}%` }} /></span><b>{m.atual}<small>/{m.max}</small></b>
+      </span>
+    );
+  }
+  return (
+    <span className={`med med-pips${cheio ? " cheio" : ""}${m.atual > 0 ? " on" : ""}`} role="img" aria-label={`${m.nome}: ${m.atual} de ${m.max}`}>
+      <i>{m.nome}</i><span className="med-pp">{Array.from({ length: m.max }, (_, k) => <span key={k} className={k < m.atual ? "on" : ""} />)}</span>{m.max > 1 && <b>{m.atual}<small>/{m.max}</small></b>}
+    </span>
+  );
+}
+
+interface LinhaInteracao { nome: string; texto: string; botoes: ReactNode[]; custo?: string }
+interface GrupoTecnica { id: string; nome: string; texto: string; rot: string; medidor?: Medidor; botoes: { no: ReactNode; custo: string }[]; ataque?: { nome: string; texto: string; no: ReactNode }; ints: LinhaInteracao[] }
+
+/** Uma técnica especial no painel: o que ela é, o medidor dela, os botões que ela cria e, embaixo, as interações que a completam. */
+function CartaTecnica({ g, pele, ligada }: { g: GrupoTecnica; pele: Pele; ligada: boolean }) {
+  return (
+    <div className="cwx fc-wrap fc-tec-wrap" data-orig={pele}>
+      <article className={`fc fc-unica fc-tec${g.medidor && g.medidor.atual > 0 ? " viva" : ""}`} aria-label={g.nome}>
+        <Html html={FA.medalhao(pele, "eclipse")} />
+        <div className="fc-un-c">
+          <div className="tec-topo"><span className="fc-rot">{g.rot}</span>{g.medidor && <MedidorPoder m={g.medidor} />}</div>
+          <h4>{g.nome}</h4>
+          <p>{trecho(g.texto, 190)}</p>
+          {ligada && g.botoes.length > 0 && <div className="tec-botoes">{g.botoes.map((b, k) => <span key={k} className="tec-b">{b.no}<small>{b.custo}</small></span>)}</div>}
+          {g.ataque && (
+            <div className="tec-ataque">
+              <span className="tec-sub">Ação criada pela técnica</span>
+              <b>{g.ataque.nome}</b>
+              <p>{g.ataque.texto}</p>
+              {ligada && <div className="tec-botoes">{g.ataque.no}</div>}
+            </div>
+          )}
+          {g.ints.length > 0 && (
+            <ul className="tec-ints" aria-label={`Interações de ${g.nome}`}>
+              {g.ints.map((x) => (
+                <li key={x.nome} className={x.botoes.length ? "" : "passiva"}>
+                  <div><b>{x.nome}</b>{x.botoes.length === 0 && <em>sempre ligada</em>}{x.custo && <em>{x.custo}</em>}<p>{trecho(x.texto, 150)}</p></div>
+                  {ligada && x.botoes.length > 0 && <div className="tec-botoes">{x.botoes}</div>}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+        <Cantos v={pele} />
+      </article>
+      <Completo textos={[g.texto, ...g.ints.map((x) => `${x.nome}: ${x.texto}`)]} />
+    </div>
+  );
+}
+
+/** O resultado do último botão, num aviso que salta na tela e some sozinho (o texto também fica no topo do painel). */
+function AvisoAcao({ msg }: { msg: string }) {
+  const [visto, setVisto] = useState("");
+  useEffect(() => {
+    if (!msg) return;
+    setVisto(msg);
+    const t = window.setTimeout(() => setVisto(""), 6500);
+    return () => window.clearTimeout(t);
+  }, [msg]);
+  if (!visto) return null;
+  const erro = /precisa|primeiro|não há|não tem|já |sem |faltam|escreva|escolha|máximo/i.test(visto.split(":").slice(1).join(":").slice(0, 60)) && !/gastos|recupera|sofre|dano/i.test(visto);
+  return <div key={visto} className={`aviso-acao${erro ? " erro" : ""}`} role="status" aria-live="polite"><span>{visto}</span><button type="button" aria-label="Fechar aviso" onClick={() => setVisto("")}>✕</button></div>;
+}
+
 /** Os poderes que as técnicas deixaram ligados (cargas, energia, marcas, domínio…), com o ✕ para apagar um. */
-function PoderesAtivos({ f, alterar, pele }: { f: Ficha; alterar: (p: Partial<Ficha>) => void; pele?: "qui" }) {
+function PoderesAtivos({ f, c, alterar, pele }: { f: Ficha; c?: Calculo; alterar: (p: Partial<Ficha>) => void; pele?: "qui" }) {
   const lista = poderesAtivos(f);
   if (lista.length === 0) return null;
+  const prox = c ? resumoDoProximoGolpe(f, c) : undefined;
   return (
     <div className={`poderes-ativos${pele === "qui" ? " pq" : ""}`} role="status" aria-label="Poderes ligados">
       <em>Ligado agora:</em>
@@ -401,6 +493,12 @@ function PoderesAtivos({ f, alterar, pele }: { f: Ficha; alterar: (p: Partial<Fi
           <button type="button" aria-label={`Apagar ${p.nome}`} title="Apagar" onClick={() => alterar({ estado: { ...f.estado, usos: aplicarUsos(f, limparPoder(p.id)) } })}>✕</button>
         </span>
       ))}
+      {prox && (prox.corpo || prox.dist) && (
+        <span className="prox-golpe" title="O que os poderes ligados somam ao seu próximo golpe">
+          <i>Próximo golpe</i>
+          {prox.corpo === prox.dist ? <b>{prox.corpo}</b> : <>{prox.corpo && <b>corpo a corpo {prox.corpo}</b>}{prox.dist && <b>à distância {prox.dist}</b>}</>}
+        </span>
+      )}
     </div>
   );
 }
@@ -638,13 +736,10 @@ export function PainelForma({ f, c, r, alterar, tipo, onEditar, onIrEvoluir, soA
     dano: Math.max(0, Math.floor(Number(danoSofrido) || 0)),
     copia: { nome: copiaNome.trim() || "Poder copiado", dano: copiaDano.trim(), pr: Math.max(0, Math.floor(Number(copiaPr) || 0)) },
   });
-  const botoesGerados: Unica[] = (fx?.botoes ?? []).map((b) => ({
-    rot: b.faz === "invocar" ? "Invocar" : infoRitmo(b.ritmo).nome, n: b.rotulo, icone: "eclipse", cada: custoDoBotao(b, c), p: trecho(b.texto ?? b.rotulo, 170),
-    botao: ligada ? botaoDoPoder(f, c, r, alterar, setMsg, b, exDe(), "fc-b") : undefined,
-  }));
+  const ataquesDaTecnica: Record<string, { nome: string; texto: string; no: ReactNode }> = {};
   // as técnicas que mandam usar "a próxima ação de ataque" criam o seu próprio cartão de ataque (não dependem de a forma ter outro)
   const prL = infoRitmo("acao").pr;
-  const ataqueGerado = (cfg: { nome: string; chaveLancada: string; marca: () => Record<string, number | undefined>; a: { dano: string; acerto: number; tags: string[]; pronto: boolean; lancada: boolean; gasta: string[]; bonus: ReturnType<typeof bonusDeAtaque> }; vazio: string; cheio: string }) => {
+  const ataqueGerado = (cfg: { dono: string; nome: string; chaveLancada: string; marca: () => Record<string, number | undefined>; a: { dano: string; acerto: number; tags: string[]; pronto: boolean; lancada: boolean; gasta: string[]; bonus: ReturnType<typeof bonusDeAtaque> }; vazio: string; cheio: string }) => {
     const { a } = cfg;
     const lancar = () => {
       if (!a.pronto) { setMsg(`${cfg.nome}: ${cfg.vazio}`); return; }
@@ -659,24 +754,48 @@ export function PainelForma({ f, c, r, alterar, tipo, onEditar, onIrEvoluir, soA
       if (critico) r.expr(`Crítico: ${cfg.nome}`, a.dano, true); else r.rolar(cfg.nome, a.dano);
       alterar({ estado: { ...f.estado, usos: aplicarUsos(f, gastarBonus(f, c, a.bonus), Object.fromEntries(a.gasta.map((k) => [`pw:${k}`, undefined]))) } });
     };
-    botoesGerados.push({
-      rot: "Ataque", n: cfg.nome, icone: "eclipse", cada: `Ação · ${prL} PR`,
-      p: a.pronto ? `${cfg.cheio}${a.tags.length ? ` (${a.tags.join("; ")})` : ""}.` : cfg.vazio,
-      botao: ligada ? (
-        <>
-          <button type="button" className="fc-b" disabled={!a.pronto || a.lancada || f.prAtual < prL} onClick={lancar}><Icone nome="dado" /> Lançar ({prL} PR) · Acerto {mod(a.acerto)}</button>
-          <button type="button" className="fc-b" disabled={!a.lancada} onClick={() => soltar(false)}><Icone nome="dado" /> Dano {a.dano}</button>
-          <button type="button" className="fc-b fraco" disabled={!a.lancada} onClick={() => soltar(true)}>Crítico</button>
-        </>
-      ) : undefined,
-    });
+    const texto = a.pronto ? `${cfg.cheio}${a.tags.length ? ` (${a.tags.join("; ")})` : ""}.` : cfg.vazio;
+    const no = (
+      <>
+        <button type="button" className={`fc-b${a.pronto && !a.lancada ? " aceso" : ""}`} disabled={!a.pronto || a.lancada || f.prAtual < prL} onClick={lancar}><Icone nome="dado" /> Lançar ({prL} PR) · Acerto {mod(a.acerto)}</button>
+        <button type="button" className={`fc-b${a.lancada ? " aceso" : ""}`} disabled={!a.lancada} onClick={() => soltar(false)}><Icone nome="dado" /> Dano {a.dano}</button>
+        <button type="button" className="fc-b fraco" disabled={!a.lancada} onClick={() => soltar(true)}>Crítico</button>
+      </>
+    );
+    ataquesDaTecnica[cfg.dono] = { nome: cfg.nome, texto, no };
   };
   if (fx) {
     const en = ataqueDeEnergia(f, c);
-    if (en) ataqueGerado({ nome: "Lançar a energia", chaveLancada: "lancada", marca: marcarLancada, a: en, vazio: "Junte energia primeiro: este cartão solta a energia carregada em um ataque à distância.", cheio: `Solta a energia carregada: ataque à distância de ${c.prof}d6 de Energia, mais os poderes ligados` });
+    if (en) ataqueGerado({ dono: "Juntar energia", nome: "Lançar a energia", chaveLancada: "lancada", marca: marcarLancada, a: en, vazio: "Junte energia primeiro: esta ação solta a energia carregada em um ataque à distância.", cheio: `Solta a energia carregada: ataque à distância de ${c.prof}d6 de Energia, mais os poderes ligados` });
     const co = ataqueDeCorte(f, c);
-    if (co) ataqueGerado({ nome: "Golpe pelo espaço", chaveLancada: "cortada", marca: marcarCortada, a: co, vazio: "Use Cortar o espaço primeiro: este cartão é o golpe corpo a corpo que atravessa o corte.", cheio: `Ataque corpo a corpo a até 12 m, sem ser barrado por cobertura: ${c.prof}d8 de dano cortante${co.linha ? ", em linha de 12 por 1,5 m (salvaguarda de Destreza, metade no sucesso)" : ""}` });
+    if (co) ataqueGerado({ dono: "Cortar o espaço", nome: "Golpe pelo espaço", chaveLancada: "cortada", marca: marcarCortada, a: co, vazio: "Use Cortar o espaço primeiro: esta ação é o golpe corpo a corpo que atravessa o corte.", cheio: `Ataque corpo a corpo a até 12 m, sem ser barrado por cobertura: ${c.prof}d8 de dano cortante${co.linha ? ", em linha de 12 por 1,5 m (salvaguarda de Destreza, metade no sucesso)" : ""}` });
   }
+  // cada técnica especial vira um cartão só: os botões dela, a ação que ela cria e as interações que a completam
+  const efsForma = forma?.efeitos ?? [];
+  const botoesFx = fx?.botoes ?? [];
+  const usados = new Set<string>();
+  const noBotao = (b: BotaoGerado) => { usados.add(b.rotulo); return botaoDoPoder(f, c, r, alterar, setMsg, b, exDe(), "fc-b"); };
+  const gruposTec: GrupoTecnica[] = efsForma.filter((e) => e.familia === "tecnica").map((t) => {
+    const meus = botoesFx.filter((b) => b.peca === t.nome);
+    const principal = meus[0]?.rotulo ?? "";
+    const ints: LinhaInteracao[] = efsForma.filter((e) => e.familia === "interacao" && e.espec?.tec === t.id).map((i) => {
+      const bs = botoesFx.filter((b) => b.peca === i.nome);
+      return { nome: i.nome, texto: i.texto ?? "", botoes: bs.map((b) => <span key={b.rotulo} className="tec-b">{noBotao(b)}<small>{custoDoBotao(b, c)}</small></span>) };
+    });
+    return {
+      id: t.id, nome: t.nome, texto: t.texto ?? "", rot: "Técnica especial",
+      medidor: ligada && principal ? medidorDoBotao(principal, f, c) : undefined,
+      botoes: meus.map((b) => ({ no: noBotao(b), custo: custoDoBotao(b, c) })),
+      ataque: ataquesDaTecnica[principal],
+      ints,
+    };
+  }).filter((g) => g.botoes.length > 0 || g.ints.length > 0);
+  // o que sobra (botões de cartões de característica, ou de fichas antigas sem a técnica guardada) continua em cartões soltos
+  const botoesGerados: Unica[] = botoesFx.filter((b) => !usados.has(b.rotulo)).map((b) => ({
+    rot: b.faz === "invocar" ? "Invocar" : infoRitmo(b.ritmo).nome, n: b.rotulo, icone: "eclipse", cada: custoDoBotao(b, c), p: trecho(b.texto ?? b.rotulo, 170),
+    botao: ligada ? botaoDoPoder(f, c, r, alterar, setMsg, b, exDe(), "fc-b") : undefined,
+  }));
+  for (const [dono, at] of Object.entries(ataquesDaTecnica)) if (!gruposTec.some((g) => g.ataque === at)) botoesGerados.push({ rot: "Ataque", n: at.nome, icone: "eclipse", cada: `Ação · ${prL} PR · de ${dono}`, p: at.texto, botao: ligada ? at.no : undefined });
   // passivas
   const passivas: Passiva[] = [];
   const passivasMasc: Passiva[] = [];
@@ -766,6 +885,7 @@ export function PainelForma({ f, c, r, alterar, tipo, onEditar, onIrEvoluir, soA
           </div>
         </header>
         {msg && <p className="fp-msg" role="status">{msg}</p>}
+        <AvisoAcao msg={msg} />
         {provisoria && ligada && <p className="fp-msg">Você ainda não montou a sua {rotulo}. {acoes.length > 0 ? "Estas são as técnicas do modelo do livro para o seu Caminho." : "Monte as habilidades para vê-las aqui."} {onEditar && tipoForma && <button type="button" className="link" onClick={() => onEditar(tipoForma)}>Montar a minha agora</button>}</p>}
         {diff.length > 0 && (
           <div className="fp-diff"><em>{ligada ? "O que mudou:" : "Ao ligar:"}</em>
@@ -809,13 +929,14 @@ export function PainelForma({ f, c, r, alterar, tipo, onEditar, onIrEvoluir, soA
             </div>
           </section>
         )}
-        {botoesGerados.length > 0 && (
-          <section className="fp-sec" aria-label="Botões das características">
-            <h3><Ic n="brilho" cls="h-ic" />Botões das características <small>criados pelos cartões da forma</small></h3>
-            <PoderesAtivos f={f} alterar={alterar} />
+        {(gruposTec.length > 0 || botoesGerados.length > 0) && (
+          <section className="fp-sec fp-tecnicas" aria-label="Técnicas da forma">
+            <h3><Ic n="brilho" cls="h-ic" />Técnicas da forma <small>{gruposTec.length > 0 ? "cada técnica especial com as interações que a completam" : "criadas pelos cartões da forma"}</small></h3>
+            <PoderesAtivos f={f} c={c} alterar={alterar} />
             <CampoDano botoes={fx?.botoes ?? []} valor={danoSofrido} onChange={setDanoSofrido} />
             <CampoCopia botoes={fx?.botoes ?? []} nome={copiaNome} dano={copiaDano} pr={copiaPr} set={{ nome: setCopiaNome, dano: setCopiaDano, pr: setCopiaPr }} />
-            <div className="fp-grade fp-un">{botoesGerados.map((x) => <CartaUnica key={x.n} x={x} pele={pele} />)}</div>
+            {gruposTec.length > 0 && <div className="fp-grade fp-tec">{gruposTec.map((g) => <CartaTecnica key={g.id} g={g} pele={pele} ligada={ligada} />)}</div>}
+            {botoesGerados.length > 0 && <div className="fp-grade fp-un">{botoesGerados.map((x) => <CartaUnica key={x.n} x={x} pele={pele} />)}</div>}
           </section>
         )}
         {unicas.length > 0 && (

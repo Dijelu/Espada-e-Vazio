@@ -94,3 +94,85 @@
 .campo-dano small { flex: 1 1 100%; opacity: .75; }
 .campo-copia input { width: 110px; }
 .campo-copia input.in-nome { width: 170px; }
+
+/* ---------- Técnicas da forma: cada técnica especial num cartão, com medidor, botões e interações ---------- */
+.fpw .fp-grade.fp-tec { grid-template-columns: repeat(auto-fill, minmax(min(430px, 100%), 1fr)); align-items: start; margin-bottom: 16px; }
+.fpw .fc-tec { overflow: visible; transition: box-shadow .25s ease; }
+.fpw .fc-tec .fc-un-c { padding-right: 0; gap: 6px; }
+.fpw .tec-topo { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 10px; }
+.fpw .tec-botoes { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: flex-start; margin-top: 4px; }
+.fpw .tec-botoes .fc-b { margin-top: 0; flex: 0 1 auto; min-height: 38px; padding: 0 14px; }
+.fpw .tec-b { display: inline-flex; flex-direction: column; gap: 2px; min-width: 0; }
+.fpw .tec-b > small { font-size: 11.5px; font-weight: 700; opacity: .72; padding-left: 2px; }
+.fpw .tec-ataque { margin-top: 8px; padding: 10px 12px; border-left: 3px solid #b3122e; background: rgba(179, 18, 46, .08); border-radius: 0 6px 6px 0; display: grid; gap: 4px; }
+.fpw .tec-ataque > b { font: 700 17px/1.2 "Shippori Mincho", serif; }
+.fpw .tec-sub { font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #b3122e; }
+.fp-hol .tec-sub { color: #ffc470; }
+.fp-hol .tec-ataque { background: rgba(229, 23, 63, .12); border-left-color: #e5173f; }
+.fpw .tec-ints { list-style: none; margin: 10px 0 0; padding: 10px 0 0; border-top: 1px dashed rgba(122, 13, 32, .45); display: grid; gap: 10px; }
+.fp-hol .tec-ints { border-top-color: rgba(236, 228, 208, .35); }
+.fpw .tec-ints li { display: grid; gap: 6px; padding-left: 12px; border-left: 2px solid rgba(179, 18, 46, .55); }
+.fpw .tec-ints li.passiva { border-left-style: dotted; }
+.fpw .tec-ints li b { font-size: 14.5px; }
+.fpw .tec-ints li em { margin-left: 8px; font-style: normal; font-size: 11px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; opacity: .7; }
+.fpw .tec-ints li p { margin: 2px 0 0; font-size: 13px; line-height: 1.45; }
+
+/* medidores: bolinhas e barra */
+.fpw .med { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 800; color: #7a0d20; }
+.fp-hol .med { color: #ffc470; }
+.fpw .med > i { font-style: normal; letter-spacing: .04em; text-transform: uppercase; font-size: 11px; opacity: .85; }
+.fpw .med > b small { font-weight: 700; opacity: .65; }
+.fpw .med-pp { display: inline-flex; gap: 4px; }
+.fpw .med-pp > span { width: 11px; height: 11px; transform: rotate(45deg); border: 1.5px solid currentColor; background: transparent; transition: background .2s ease, box-shadow .2s ease; }
+.fpw .med-pp > span.on { background: #b3122e; border-color: #b3122e; box-shadow: 0 0 6px rgba(229, 23, 63, .7); }
+.fp-hol .med-pp > span.on { background: #ff9a1f; border-color: #ff9a1f; box-shadow: 0 0 6px rgba(255, 154, 31, .7); }
+.fpw .med-trilho { width: 86px; height: 8px; border: 1.5px solid currentColor; border-radius: 2px; overflow: hidden; }
+.fpw .med-trilho > span { display: block; height: 100%; background: #b3122e; transition: width .35s ease; }
+.fp-hol .med-trilho > span { background: #ff9a1f; }
+.fpw .med.cheio .med-pp > span.on, .fpw .med.cheio .med-trilho { animation: med-cheio 1.3s ease-in-out infinite; }
+@keyframes med-cheio { 50% { box-shadow: 0 0 12px rgba(229, 23, 63, .95); } }
+.fpw .fc-tec.viva { box-shadow: inset 0 0 0 2px #0b0609, inset 0 0 0 3px #e5173f, 0 0 0 1px rgba(229, 23, 63, .55), 0 10px 22px -8px rgba(229, 23, 63, .55); }
+
+/* botão pronto para pagar o que você preparou: acende; botão sem o que precisa: apagado, mas ainda diz o motivo ao ser tocado */
+.fpw .fc-b.aceso { animation: b-aceso 1.4s ease-in-out infinite; }
+@keyframes b-aceso { 0%, 100% { box-shadow: 0 0 0 0 rgba(255, 196, 112, 0); } 50% { box-shadow: 0 0 0 3px rgba(255, 196, 112, .75), 0 0 16px rgba(229, 23, 63, .7); } }
+.fpw .fc-b.travado { opacity: .5; filter: saturate(.4); border-style: dashed; }
+
+/* resumo do próximo golpe, ao lado dos poderes ligados */
+.prox-golpe { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; padding: 4px 12px; border: 1px solid #ffc470; border-radius: 999px; background: rgba(255, 196, 112, .1); color: #ffe2b3; font-size: 13px; }
+.prox-golpe > i { font-style: normal; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.prox-golpe > b { font-variant-numeric: tabular-nums; }
+
+/* aviso do último botão: salta no rodapé e some sozinho */
+.aviso-acao { position: fixed; left: 50%; bottom: 18px; z-index: 60; transform: translateX(-50%); width: min(640px, calc(100vw - 24px)); display: flex; align-items: flex-start; gap: 10px; padding: 12px 14px; border: 1px solid #e5173f; border-left-width: 5px; border-radius: 6px; background: #14080c; color: #f6ece4; font-size: 14px; line-height: 1.45; box-shadow: 0 14px 34px -10px #000, 0 0 0 1px rgba(0, 0, 0, .6); animation: aviso-sobe .28s cubic-bezier(.2, .9, .3, 1) both; }
+.aviso-acao.erro { border-color: #ffc470; }
+.aviso-acao > span { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }
+.aviso-acao > button { flex: 0 0 auto; width: 28px; height: 28px; border: 0; border-radius: 4px; background: rgba(255, 255, 255, .08); color: inherit; cursor: pointer; }
+@keyframes aviso-sobe { from { opacity: 0; transform: translate(-50%, 14px); } to { opacity: 1; transform: translate(-50%, 0); } }
+@media (prefers-reduced-motion: reduce) { .fpw .fc-b.aceso, .fpw .med.cheio .med-pp > span.on, .fpw .med.cheio .med-trilho, .aviso-acao { animation: none !important; } .fpw .fc-b.aceso { box-shadow: 0 0 0 3px rgba(255, 196, 112, .75); } }
+@media print { .aviso-acao { display: none; } }
+/* botões apagados dentro dos cartões claros e escuros: continuam legíveis */
+.fp-shi .fc-unica .fc-b:disabled { color: #7a5a5f; border-color: #a58d8d; background: rgba(26, 13, 16, .04); }
+.fp-shi .fc-unica .fc-b.fraco:not(:disabled) { background: transparent; color: #7a0d20; border-color: #7a0d20; box-shadow: none; }
+.fp-hol .fc-unica .fc-b:disabled { color: #9c8fb0; border-color: #5a4a6b; }
+
+/* ---------- progresso da montagem da forma ---------- */
+.forja { margin: 0 0 14px; padding: 12px 14px; border: 1px solid rgba(246, 236, 228, .18); border-radius: 8px; background: linear-gradient(180deg, rgba(179, 18, 46, .12), rgba(5, 2, 3, .2)); display: grid; gap: 10px; }
+.forja-topo { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
+.forja-topo > b { font: 700 18px/1.2 "Cormorant Garamond", serif; letter-spacing: .02em; }
+.forja-topo > span { font-size: 13px; opacity: .75; }
+.forja-topo > i { margin-left: auto; font-style: normal; font-weight: 800; font-variant-numeric: tabular-nums; color: #ffc470; }
+.forja-barra { height: 8px; border-radius: 999px; background: rgba(246, 236, 228, .12); overflow: hidden; }
+.forja-barra > span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #9a0f28, #e5173f 70%, #ffc470); transition: width .45s cubic-bezier(.2, .9, .3, 1); }
+.forja-passos { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(128px, 1fr)); gap: 8px; }
+.forja-passos li > button, .forja-passos li > .so { width: 100%; min-height: 44px; display: grid; grid-template-columns: 22px minmax(0, 1fr); grid-template-rows: auto auto; column-gap: 8px; align-items: center; text-align: left; padding: 6px 10px; border: 1px solid rgba(246, 236, 228, .16); border-radius: 6px; background: rgba(5, 2, 3, .35); color: inherit; font: inherit; }
+.forja-passos li > button { cursor: pointer; }
+.forja-passos li > button:hover { border-color: rgba(246, 236, 228, .45); }
+.forja-passos .marca { grid-row: 1 / span 2; width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; border: 1.5px solid rgba(246, 236, 228, .4); font-size: 12px; font-weight: 800; }
+.forja-passos b { font-size: 13.5px; }
+.forja-passos small { font-size: 11.5px; opacity: .7; }
+.forja-passos li.ok .marca { background: #b3122e; border-color: #e5173f; color: #fff; }
+.forja-passos li.ok > button, .forja-passos li.ok > .so { border-color: rgba(229, 23, 63, .55); }
+.forja-combo { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; font-size: 13px; }
+.forja-combo .chip small { opacity: .7; }
+@media (prefers-reduced-motion: reduce) { .forja-barra > span { transition: none; } }

@@ -23,7 +23,7 @@ const SHIKAI: Record<string, Linha> = {
   "suzumushi": ["Katana", ["multiplas-laminas", "contato"]],
   "sode-no-shirayuki": ["Katana", ["elemental", "contato"]],
   "haineko": ["Katana", ["enxame", "longo-alcance"]],
-  "kyoka-suigetsu": ["Katana", ["contato", "agil"]],
+  "kyoka-suigetsu": ["Katana", ["ilusoria", "agil"]],
   "hozukimaru": ["Lança", ["segmentavel", "multiplas-laminas"]],
   "wabisuke": ["Katana", ["contato", "pesada"]],
   "minazuki": ["Katana", ["invocada", "contato"]],

@@ -16,7 +16,8 @@ let contador = 0;
 const d = (lados: number) => 1 + Math.floor(Math.random() * lados);
 
 /** Rola um d20 somando o bônus, com vantagem ou desvantagem. */
-export function rolarD20(rotulo: string, bonus: number, modo: Modo): Rolagem {
+/** `critMin`: o menor valor do dado que conta como crítico (20, ou 19 com Crítico ampliado). */
+export function rolarD20(rotulo: string, bonus: number, modo: Modo, critMin = 20): Rolagem {
   const a = d(20);
   const b = modo === "normal" ? null : d(20);
   const usado = b === null ? a : modo === "vantagem" ? Math.max(a, b) : Math.min(a, b);
@@ -27,7 +28,7 @@ export function rolarD20(rotulo: string, bonus: number, modo: Modo): Rolagem {
     rotulo,
     detalhe: `${dados} ${sinal}`,
     total: usado + bonus,
-    critico: usado === 20,
+    critico: usado >= critMin,
     falhaCritica: usado === 1,
     modo,
     tipo: "d20",

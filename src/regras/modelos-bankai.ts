@@ -1,3 +1,4 @@
+import { juntarTecnicasExtra, TECNICAS_EXTRA_BANKAI } from "./modelos-tecnicas-extra";
 import { BANKAIS_NOVAS } from "./modelos-novos";
 import { CARTOES_BANKAI_NOVOS } from "./modelos-novos-cartoes";
 import type { FormaLib, HabForma, TipoForma } from "./ficha";
@@ -1748,6 +1749,7 @@ export const MODELOS_BANKAI: ModeloMontado[] = [
 ];
 MODELOS_BANKAI.push(...BANKAIS_NOVAS);
 Object.assign(CARTOES_BANKAI, CARTOES_BANKAI_NOVOS);
+juntarTecnicasExtra(CARTOES_BANKAI, TECNICAS_EXTRA_BANKAI);
 
 export const FONTES_MODELOS: string[] = ["https://www.cbr.com/bleach-toshiro-hitsugaya-zanpakuto-explained/", "https://fandomwire.com/bleach-thousand-year-blood-war-the-calamity-toshiro-hitsugaya-complete-bankai-explained/", "https://bleach.fandom.com/wiki/Sennen_Hy%C5%8Dr%C5%8D", "https://sportskeeda.com/anime/what-renji-s-true-bankai-bleach-explained", "https://comicbook.com/anime/news/bleach-tybw-renji-bankai-so-oh-zabimaru-true-form", "https://www.animeexplained.com/explained/bleach-byakuya-kuchikis-zanpakuto-senbonzakura-explained", "https://sportskeeda.com/anime/what-byakuya-s-bankai-bleach-senbonzakura-kageyoshi-explained", "https://animehunch.com/bankai-of-yamamoto-genryusai-explained-in-detail/", "https://sportskeeda.com/anime/bleach-tybw-yamamoto-s-bankai-zanka-tachi-explained", "https://www.soapcentral.com/anime/bleach-what-katen-kyokotsu-karamatsu-shinju", "https://sportskeeda.com/anime/why-shunsui-s-bankai-banned-bleach-explained", "https://fictionhorizon.com/bleach-komamuras-human-form-explained-how-powerful-is-it/", "https://fictionhorizon.com/what-is-mayuri-kurotsuchis-bankai-in-bleach-including-modified-explained/", "https://sportskeeda.com/anime/what-mayuri-s-bankai-ability-bleach-explained", "https://www.sportskeeda.com/anime/does-soifon-weakest-bankai-among-soul-reaper-captains-bleach-explored", "https://sportskeeda.com/anime/bleach-why-urahara-s-bankai-broken-ability-entire-series", "https://gotai13.blogspot.com/2010/03/tosen-kaname.html", "https://comicbook.com/anime/list/bleach-every-ichigo-form-explained-list"];
 

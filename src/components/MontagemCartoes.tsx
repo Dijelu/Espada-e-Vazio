@@ -2,7 +2,7 @@ import { useState, type ReactNode } from "react";
 import type { Ficha, FormaLib } from "../regras/ficha";
 import { vagasEspeciais } from "../regras/cartoes";
 import { caracPorId } from "../regras/caracteristicas";
-import { contarForaDeVaga, contarVagas, faltasEspeciais } from "../regras/especiais";
+import { INTERACOES_GALERIA, contarForaDeVaga, contarVagas, faltasEspeciais } from "../regras/especiais";
 import { CaracteristicasForma } from "./CaracteristicasForma";
 import { InteracoesEspeciais, TecnicasEspeciais } from "./EspeciaisForma";
 import { armaCtxDaForma, armaPendente, armaTrava, cartoesSemRequisito, nomeCaracArma, resumoArma, textoPrecisa } from "../regras/arma-forma";
@@ -41,8 +41,38 @@ export function MontagemCartoes({ f, tipo, r, mud, acoes, onGravar }: Props) {
     { id: "tecnicas", nome: "Técnicas especiais", n: `${nTec}/${v.tec}${contarForaDeVaga(efeitos, "tecnica") ? ` +${contarForaDeVaga(efeitos, "tecnica")}` : ""}`, alerta: faltas.length > 0 && nTec > 0 },
     { id: "interacoes", nome: "Interações especiais", n: `${nInt}/${v.inter}${contarForaDeVaga(efeitos, "interacao") ? ` +${contarForaDeVaga(efeitos, "interacao")}` : ""}`, alerta: faltas.length > 0 && nInt > 0 },
   ];
+  // progresso da montagem: o que já está pronto e o que ainda falta, num relance
+  const tecs = efeitos.filter((e) => e.familia === "tecnica");
+  const temFraco = (r.pontoFraco ?? "").trim().length > 0 || efeitos.some((e) => e.familia === "fraco");
+  const passos: { nome: string; ok: boolean; det: string; aba?: Aba }[] = [
+    { nome: "Nome", ok: r.nome.trim().length > 0, det: r.nome.trim() ? "definido" : "falta" },
+    { nome: "Ações", ok: nAcoes > 0, det: nAcoes > 0 ? `${nAcoes} cart${nAcoes === 1 ? "ão" : "ões"}` : "nenhuma", aba: "acoes" },
+    { nome: "Técnicas", ok: nTec > 0, det: `${nTec} de ${v.tec} vaga${v.tec === 1 ? "" : "s"}`, aba: "tecnicas" },
+    { nome: "Interações", ok: nTec > 0 && nInt > 0 && faltas.length === 0, det: nTec === 0 ? "depois da técnica" : `${nInt} de ${v.inter} vagas`, aba: "interacoes" },
+    { nome: "Ponto fraco", ok: temFraco, det: temFraco ? "definido" : "falta" },
+  ];
+  const feitos = passos.filter((x) => x.ok).length;
+  const pct = Math.round((feitos / passos.length) * 100);
+  const grau = pct >= 100 ? "Forma completa" : pct >= 80 ? "Quase pronta" : pct >= 40 ? "Tomando forma" : "Esboço";
+  // sugestões de combo: interações que servem às técnicas da forma e ainda não entraram (só enquanto houver vaga)
+  const jaTem = new Set(efeitos.filter((e) => e.familia === "interacao").map((e) => e.espec?.id));
+  const sugestoes = nInt < v.inter ? tecs.flatMap((t) => INTERACOES_GALERIA.filter((i) => i.com.includes(t.espec?.id ?? "") && !jaTem.has(i.id)).slice(0, 2).map((i) => ({ tec: t.nome, nome: i.nome }))).slice(0, 4) : [];
   return (
     <div className="montagem-cartoes">
+      <div className="forja" role="group" aria-label={`Progresso da forma: ${pct}% (${grau})`}>
+        <div className="forja-topo"><b>{grau}</b><span>{feitos} de {passos.length} etapas</span><i aria-hidden="true">{pct}%</i></div>
+        <div className="forja-barra" aria-hidden="true"><span style={{ width: `${pct}%` }} /></div>
+        <ol className="forja-passos">
+          {passos.map((x) => (
+            <li key={x.nome} className={x.ok ? "ok" : ""}>
+              {x.aba ? <button type="button" onClick={() => setAba(x.aba!)}><span className="marca" aria-hidden="true">{x.ok ? "✓" : "•"}</span><b>{x.nome}</b><small>{x.det}</small></button> : <span className="so"><span className="marca" aria-hidden="true">{x.ok ? "✓" : "•"}</span><b>{x.nome}</b><small>{x.det}</small></span>}
+            </li>
+          ))}
+        </ol>
+        {sugestoes.length > 0 && (
+          <p className="forja-combo"><b>Combos possíveis:</b> {sugestoes.map((x, k) => <button key={k} type="button" className="chip chip-btn" onClick={() => setAba("interacoes")} title={`Interação que serve à técnica ${x.tec}`}>{x.nome} <small>+ {x.tec}</small></button>)}</p>
+        )}
+      </div>
       <div className="abas-cartoes" role="tablist" aria-label="Tipos de cartão da forma">
         {abas.map((a) => (
           <button key={a.id} type="button" role="tab" id={`aba-${a.id}`} aria-selected={aba === a.id} aria-controls={`painel-${a.id}`} className={`${aba === a.id ? "on" : ""} ${a.alerta ? "alerta" : ""}`} onClick={() => setAba(a.id)}>

@@ -11,8 +11,8 @@ import type { CaracArmaId } from "./arma-forma";
 /* ---------------- Catálogo ---------------- */
 
 /** Em que grupo a técnica aparece na galeria (só para a tela). */
-export type GrupoTecnica = "Criaturas" | "Campo e vínculo" | "Marcas e poderes";
-export const GRUPOS_TECNICA: GrupoTecnica[] = ["Criaturas", "Campo e vínculo", "Marcas e poderes"];
+export type GrupoTecnica = "Criaturas" | "Campo e vínculo" | "Marcas e poderes" | "Controle e defesa" | "Corpo e reiatsu";
+export const GRUPOS_TECNICA: GrupoTecnica[] = ["Criaturas", "Campo e vínculo", "Marcas e poderes", "Controle e defesa", "Corpo e reiatsu"];
 
 export interface DefTecnica {
   id: string;
@@ -117,7 +117,7 @@ export const TECNICAS: DefTecnica[] = [
   },
   {
     id: "energia", armaReq: ["projetil", "foco", "longo-alcance", "elemental"], grupo: "Marcas e poderes", nome: "Ataque com energia",
-    texto: "Ação bônus: você junta energia (Cero, flecha de reishi, onda de reiatsu) e a sua próxima ação de ataque à distância sai carregada, com +6 metros de alcance. Cria o botão “Juntar energia”.",
+    texto: "Ação bônus: você junta energia (Cero, flecha de reishi, onda de reiatsu) e a sua próxima ação de ataque à distância sai carregada, com +6 metros de alcance. Cria o botão “Juntar energia” e a ação “Lançar a energia”, um ataque à distância de proficiência d6 de Energia que solta a carga.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Juntar energia", ritmo: "bonus", faz: "texto" } }],
   },
   {
@@ -137,8 +137,38 @@ export const TECNICAS: DefTecnica[] = [
   },
   {
     id: "corte-espaco", armaReq: ["espacial", "longo-alcance"], grupo: "Marcas e poderes", nome: "Corte no espaço",
-    texto: "Ação bônus: a lâmina corta o próprio espaço. Até o fim do turno, a sua próxima ação de ataque corpo a corpo alcança uma criatura a até 12 metros, sem ser barrada por cobertura nem por barreira. Cria o botão “Cortar o espaço”. Precisa de uma interação do corte.",
+    texto: "Ação bônus: a lâmina corta o próprio espaço. Até o fim do turno, a sua próxima ação de ataque corpo a corpo alcança uma criatura a até 12 metros, sem ser barrada por cobertura nem por barreira. Cria o botão “Cortar o espaço” e a ação “Golpe pelo espaço”, um ataque corpo a corpo de proficiência d8 que atravessa o corte. Precisa de uma interação do corte.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Cortar o espaço", ritmo: "bonus", faz: "texto" } }],
+  },
+  {
+    id: "ilusao", grupo: "Controle e defesa", nome: "Ilusão", armaReq: ["ilusoria", "foco"],
+    texto: "Ação bônus: uma criatura a até 18 metros faz salvaguarda de Mente (CD 8 + proficiência + atributo). Se falhar, fica presa numa ilusão até o fim do seu próximo turno: os seus ataques contra ela têm vantagem e os dela contra você têm desvantagem. Só uma criatura iludida por vez. Cria o botão “Lançar ilusão”. Precisa de uma interação da ilusão.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Lançar ilusão", ritmo: "bonus", faz: "texto" } }],
+  },
+  {
+    id: "selo", grupo: "Controle e defesa", nome: "Selo", armaReq: ["elemental", "corrente", "contato", "espacial"],
+    texto: "Ação: gelo, correntes ou reiatsu prendem uma criatura a até 9 metros. Ela faz salvaguarda de Força (CD 8 + proficiência + atributo); se falhar, fica Presa por 3 turnos, e no fim de cada turno dela repete a salvaguarda para sair. Só um selo por vez. Cria o botão “Selar”. Precisa de uma interação do selo.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Selar", ritmo: "acao", faz: "texto" } }],
+  },
+  {
+    id: "barreira", grupo: "Controle e defesa", nome: "Barreira", armaReq: ["escudo", "foco", "elemental"],
+    texto: "Ação bônus: ergue uma barreira de reiatsu com PV iguais a 5 × proficiência, que dura até o fim da cena ou até quebrar. Reação: a barreira recebe, no seu lugar ou no de um aliado a até 3 metros, o dano de um golpe; o que passar dos PV dela chega ao alvo. Cria os botões “Erguer barreira” e “Barreira recebe o golpe”. Precisa de uma interação da barreira.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Erguer barreira", ritmo: "bonus", faz: "texto" } }, { k: "gera", botao: { rotulo: "Barreira recebe o golpe", ritmo: "reacao", faz: "texto" } }],
+  },
+  {
+    id: "veneno", grupo: "Corpo e reiatsu", nome: "Veneno", armaReq: ["venenosa", "natural", "contato"],
+    texto: "Ação bônus, ao acertar um golpe: o alvo ganha 1 dose de veneno (até a proficiência de doses). No início de cada turno seu, ele sofre 1d4 de dano por dose, que nenhuma redução diminui. As doses duram até o fim da cena. Cria o botão “Envenenar”. Precisa de uma interação do veneno.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Envenenar", ritmo: "bonus", faz: "texto" } }],
+  },
+  {
+    id: "aceleracao", grupo: "Corpo e reiatsu", nome: "Aceleração", armaReq: ["aerea", "agil", "dupla"],
+    texto: "Ação bônus: até o fim do turno você ganha +9 metros de deslocamento, não provoca ataques de oportunidade e o seu primeiro ataque causa 1d8 de dano a mais. Cria o botão “Acelerar”. Precisa de uma interação da aceleração.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Acelerar", ritmo: "bonus", faz: "texto", ref: "1d8" } }],
+  },
+  {
+    id: "dreno", grupo: "Corpo e reiatsu", nome: "Drenar reiatsu", armaReq: ["natural", "contato", "venenosa", "corrente"],
+    texto: "Ação bônus, ao acertar um golpe corpo a corpo: você suga a força do alvo. Ele sofre proficiência d6 de dano, que nenhuma redução diminui, e você recupera o mesmo valor em PV. Cria o botão “Drenar”. Precisa de uma interação do dreno.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Drenar", ritmo: "bonus", faz: "texto", ref: "[PROF]d6" } }],
   },
 ];
 
@@ -278,13 +308,13 @@ export const INTERACOES: DefInteracao[] = [
   },
   {
     id: "furia-sem-distincao", nome: "Fúria sem distinção", com: ["sobrecarga"], vale: [],
-    texto: "Enquanto a Sobrecarga durar, você fica imune a Amedrontado e a cada ataque seu contra quem o feriu no último turno tem vantagem; em troca, os seus golpes em área também atingem aliados. Serve à técnica Sobrecarga.",
-    compilar: () => [{ k: "texto", t: "Fúria sem distinção: durante a Sobrecarga, imune a Amedrontado e com vantagem contra quem o feriu no último turno; os seus golpes em área também atingem aliados." }],
+    texto: "Enquanto a Sobrecarga durar, você fica imune a Amedrontado e a cada ataque seu contra quem o feriu no último turno tem vantagem; em troca, os seus golpes em área também atingem aliados. Serve à técnica Sobrecarga. Cria o botão “Entrar em fúria”, que só funciona com a Sobrecarga ligada.",
+    compilar: () => [{ k: "texto", t: "Fúria sem distinção: durante a Sobrecarga, imune a Amedrontado e com vantagem contra quem o feriu no último turno; os seus golpes em área também atingem aliados." }, { k: "gera", botao: { rotulo: "Entrar em fúria", ritmo: "bonus", faz: "texto" } }],
   },
   {
     id: "fenda-aberta", nome: "Fenda aberta", com: ["corte-espaco"], vale: [],
-    texto: "Depois do corte, a fenda fica aberta até o fim do seu próximo turno: você pode atravessá-la como parte do movimento, até 12 metros na direção do corte, sem provocar ataques. Serve à técnica Corte no espaço.",
-    compilar: () => [{ k: "texto", t: "Fenda aberta: até o fim do próximo turno, você atravessa a fenda do corte como parte do movimento (até 12 m na direção do corte), sem provocar ataques." }],
+    texto: "Depois do corte, a fenda fica aberta até o fim do seu próximo turno: você pode atravessá-la como parte do movimento, até 12 metros na direção do corte, sem provocar ataques. Serve à técnica Corte no espaço. Cria o botão “Atravessar a fenda” (uma vez por turno, enquanto a fenda estiver aberta).",
+    compilar: () => [{ k: "texto", t: "Fenda aberta: até o fim do próximo turno, você atravessa a fenda do corte como parte do movimento (até 12 m na direção do corte), sem provocar ataques." }, { k: "gera", botao: { rotulo: "Atravessar a fenda", ritmo: "bonus", faz: "texto" } }],
   },
   {
     id: "peso-dobrado", nome: "Peso dobrado", com: ["marcar-alvo"], vale: [],
@@ -298,8 +328,8 @@ export const INTERACOES: DefInteracao[] = [
   },
   {
     id: "vinculo-prende", nome: "Elo que prende", com: ["vinculo"], vale: [],
-    texto: "A criatura ligada a você não pode se afastar mais de 9 metros de você; se tentar, faz salvaguarda de Força e, se falhar, o movimento termina. Serve à técnica Vínculo.",
-    compilar: () => [{ k: "texto", t: "Elo que prende: a criatura ligada não se afasta mais de 9 m de você; se tentar, salvaguarda de Força, e na falha o movimento termina." }],
+    texto: "A criatura ligada a você não pode se afastar mais de 9 metros de você; se tentar, faz salvaguarda de Força e, se falhar, o movimento termina. Serve à técnica Vínculo. Cria o botão “Apertar o elo”.",
+    compilar: () => [{ k: "texto", t: "Elo que prende: a criatura ligada não se afasta mais de 9 m de você; se tentar, salvaguarda de Força, e na falha o movimento termina." }, { k: "gera", botao: { rotulo: "Apertar o elo", ritmo: "bonus", faz: "texto" } }],
   },
   {
     id: "copia-dupla", nome: "Cópia dupla", com: ["copiar"], vale: [],
@@ -308,8 +338,8 @@ export const INTERACOES: DefInteracao[] = [
   },
   {
     id: "marca-revela", nome: "Marca que revela", com: ["marcar-alvo", "marcar-detonar"], vale: [],
-    texto: "A criatura marcada não pode ficar invisível nem se esconder de você, e os seus aliados têm vantagem para achá-la. Serve às técnicas de marca.",
-    compilar: () => [{ k: "texto", t: "Marca que revela: a criatura marcada não fica invisível nem se esconde de você; os aliados têm vantagem para achá-la." }],
+    texto: "A criatura marcada não pode ficar invisível nem se esconder de você, e os seus aliados têm vantagem para achá-la. Serve às técnicas de marca. Cria o botão “Revelar o alvo”.",
+    compilar: () => [{ k: "texto", t: "Marca que revela: a criatura marcada não fica invisível nem se esconde de você; os aliados têm vantagem para achá-la." }, { k: "gera", botao: { rotulo: "Revelar o alvo", ritmo: "bonus", faz: "texto" } }],
   },
   {
     id: "detonar-cadeia", nome: "Detonação em cadeia", com: ["marcar-detonar"], vale: [],
@@ -365,6 +395,113 @@ export const INTERACOES: DefInteracao[] = [
     id: "marca-passa-golpe", nome: "Marca que passa o golpe", com: ["vinculo", "marcar-alvo"], vale: [],
     texto: "Combo: o primeiro ataque do turno contra a criatura marcada ou ligada a você ganha +1 de acerto. Serve às técnicas Vínculo e Marcar alvo.",
     compilar: () => [{ k: "texto", t: "Marca que passa o golpe: o primeiro ataque do turno contra a criatura marcada ou ligada tem +1 de acerto." }],
+  },
+  /* ----- Ilusão ----- */
+  {
+    id: "sentidos-invertidos", nome: "Sentidos invertidos", com: ["ilusao"], vale: [],
+    texto: "Ação bônus: você vira os sentidos da criatura iludida. No próximo turno dela, ela anda na direção oposta à que quer e ataca com desvantagem contra qualquer alvo. Serve à técnica Ilusão.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Inverter os sentidos", ritmo: "bonus", faz: "texto" } }],
+  },
+  {
+    id: "golpe-no-vazio", nome: "Golpe no vazio", com: ["ilusao"], vale: [],
+    texto: "Reação: quando a criatura iludida erra um ataque contra você, a ilusão a fere: ela sofre proficiência d6 de dano psíquico. Serve à técnica Ilusão.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Golpe no vazio", ritmo: "reacao", faz: "texto", ref: "[PROF]d6" } }],
+  },
+  {
+    id: "ilusao-perfeita", nome: "Ilusão perfeita", com: ["ilusao"], vale: [],
+    texto: "A ilusão dura até o fim da cena, e não só até o seu próximo turno. A criatura repete a salvaguarda de Mente no fim de cada turno dela para sair. Serve à técnica Ilusão.",
+    compilar: () => [{ k: "texto", t: "Ilusão perfeita: a ilusão dura até o fim da cena; a criatura repete a salvaguarda de Mente no fim de cada turno dela." }],
+  },
+  /* ----- Selo ----- */
+  {
+    id: "estilhacar-selo", nome: "Estilhaçar o selo", com: ["selo"], vale: [],
+    texto: "Ação bônus: o selo se parte com a criatura dentro. Ela sofre proficiência d10 de dano e o selo termina. Serve à técnica Selo.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Estilhaçar o selo", ritmo: "bonus", faz: "texto", ref: "[PROF]d10" } }],
+  },
+  {
+    id: "selo-que-cala", nome: "Selo que cala", com: ["selo"], vale: [],
+    texto: "Enquanto estiver selada, a criatura não usa reações nem técnicas que custem PR. Serve à técnica Selo.",
+    compilar: () => [{ k: "texto", t: "Selo que cala: a criatura selada não usa reações nem técnicas que custem PR." }],
+  },
+  {
+    id: "selo-em-area", nome: "Selo em área", com: ["selo"], vale: [],
+    texto: "O selo se espalha: todas as criaturas a até 3 metros do alvo também fazem a salvaguarda e ficam Presas se falharem. Serve à técnica Selo.",
+    compilar: () => [{ k: "texto", t: "Selo em área: as criaturas a até 3 m do alvo também fazem a salvaguarda e ficam Presas se falharem." }],
+  },
+  /* ----- Barreira ----- */
+  {
+    id: "barreira-devolve", nome: "Barreira que devolve", com: ["barreira"], vale: [],
+    texto: "Quando a barreira recebe um golpe, quem atacou sofre proficiência d4 de dano de Energia. Serve à técnica Barreira.",
+    compilar: () => [{ k: "texto", t: "Barreira que devolve: quando a barreira recebe um golpe, quem atacou sofre proficiência d4 de dano de Energia." }],
+  },
+  {
+    id: "barreira-restaura", nome: "Barreira que restaura", com: ["barreira"], vale: [],
+    texto: "Enquanto a barreira estiver de pé, no início do seu turno cada aliado a até 3 metros de você recupera PV iguais à proficiência. Serve à técnica Barreira.",
+    compilar: () => [{ k: "texto", t: "Barreira que restaura: com a barreira de pé, no início do seu turno cada aliado a até 3 m recupera PV iguais à proficiência." }],
+  },
+  {
+    id: "barreira-ampla", nome: "Barreira ampla", com: ["barreira"], vale: [],
+    texto: "A barreira nasce com 8 × proficiência de PV, e não 5 ×, e protege aliados a até 9 metros. Serve à técnica Barreira.",
+    compilar: () => [{ k: "texto", t: "Barreira ampla: a barreira nasce com 8 × proficiência de PV e protege aliados a até 9 m." }],
+  },
+  /* ----- Veneno ----- */
+  {
+    id: "segunda-picada", nome: "Segunda picada", com: ["veneno"], vale: [],
+    texto: "Ação: quando o alvo já tem o máximo de doses, você acerta o mesmo ponto. As doses somem e ele sofre o dobro da proficiência em d8 de dano (salvaguarda de Constituição, metade no sucesso). Serve à técnica Veneno.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Segunda picada", ritmo: "acao", faz: "texto" } }],
+  },
+  {
+    id: "veneno-que-corroi", nome: "Veneno que corrói", com: ["veneno"], vale: [],
+    texto: "O alvo envenenado perde 1 de CR a cada 2 doses (no máximo -3). Serve à técnica Veneno.",
+    compilar: () => [{ k: "texto", t: "Veneno que corrói: o alvo envenenado perde 1 de CR a cada 2 doses (no máximo -3)." }],
+  },
+  {
+    id: "veneno-que-alimenta", nome: "Veneno que alimenta", com: ["veneno"], vale: [],
+    texto: "Ação bônus: você puxa o veneno de volta. As doses do alvo somem e você recupera 1d6 de PV por dose. Serve à técnica Veneno.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Beber o veneno", ritmo: "bonus", faz: "texto", ref: "1d6" } }],
+  },
+  /* ----- Aceleração ----- */
+  {
+    id: "imagem-residual", nome: "Imagem residual", com: ["aceleracao"], vale: [],
+    texto: "Depois de acelerar, você deixa uma imagem para trás: o primeiro ataque contra você até o início do seu próximo turno tem desvantagem. Serve à técnica Aceleração.",
+    compilar: () => [{ k: "texto", t: "Imagem residual: depois de acelerar, o primeiro ataque contra você até o início do seu próximo turno tem desvantagem." }],
+  },
+  {
+    id: "golpe-em-passagem", nome: "Golpe em passagem", com: ["aceleracao"], vale: [],
+    texto: "Ação, enquanto acelerado: você atravessa uma linha de até 9 metros e corta quem estiver no caminho. Cada criatura faz salvaguarda de Destreza (CD 8 + proficiência + atributo): proficiência d6 de dano, metade no sucesso. Serve à técnica Aceleração.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Golpe em passagem", ritmo: "acao", faz: "texto", ref: "[PROF]d6" } }],
+  },
+  {
+    id: "ritmo-crescente", nome: "Ritmo crescente", com: ["aceleracao"], vale: [],
+    texto: "A cada turno seguido em que você acelera, o dano a mais do primeiro ataque sobe 1 dado: 2d8 no segundo turno, 3d8 do terceiro em diante. Um turno sem acelerar zera o ritmo. Serve à técnica Aceleração.",
+    compilar: () => [{ k: "texto", t: "Ritmo crescente: a cada turno seguido em que você acelera, o dano a mais sobe 1 dado (2d8, depois 3d8). Um turno sem acelerar zera o ritmo." }],
+  },
+  /* ----- Drenar reiatsu ----- */
+  {
+    id: "dreno-de-reiatsu", nome: "Dreno de reiatsu", com: ["dreno"], vale: [],
+    texto: "Além dos PV, você recupera PR iguais à metade do que drenou. Serve à técnica Drenar reiatsu.",
+    compilar: () => [{ k: "texto", t: "Dreno de reiatsu: além dos PV, você recupera PR iguais à metade do que drenou." }],
+  },
+  {
+    id: "dreno-partilhado", nome: "Dreno partilhado", com: ["dreno"], vale: [],
+    texto: "Um aliado a até 9 metros de você recupera metade dos PV que você drenou. Serve à técnica Drenar reiatsu.",
+    compilar: () => [{ k: "texto", t: "Dreno partilhado: um aliado a até 9 m recupera metade dos PV que você drenou." }],
+  },
+  {
+    id: "fome", nome: "Fome", com: ["dreno"], vale: [],
+    texto: "Combo: você drena 1 dado a mais para cada estado seu que o alvo carrega: marcado, envenenado, selado ou iludido. Serve à técnica Drenar reiatsu, junto de Marcar alvo, Veneno, Selo ou Ilusão.",
+    compilar: () => [{ k: "texto", t: "Fome: você drena 1 dado a mais para cada estado seu no alvo (marcado, envenenado, selado, iludido)." }],
+  },
+  /* ----- Criaturas ----- */
+  {
+    id: "ataque-conjunto", nome: "Ataque conjunto", com: ["invocacao", "invocacao-grande", "invocacao-regenerativa", "invocacao-mutavel"], vale: [],
+    texto: "Ação bônus, com uma criatura sua em campo: ela ataca junto com você, e o seu próximo ataque no turno causa 1d8 de dano a mais. Serve às técnicas de Invocação.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Ataque conjunto", ritmo: "bonus", faz: "texto", ref: "1d8" } }],
+  },
+  {
+    id: "devorar-criatura", nome: "Devorar a criatura", com: ["invocacao", "invocacao-grande", "invocacao-regenerativa", "invocacao-mutavel", "invocacao-enxame"], vale: [],
+    texto: "Ação bônus: você absorve de volta uma criatura sua em campo. Ela some e você recupera proficiência d6 de PV. Serve às técnicas de Invocação.",
+    compilar: () => [{ k: "gera", botao: { rotulo: "Devorar a criatura", ritmo: "bonus", faz: "texto", ref: "[PROF]d6" } }],
   },
 ];
 
