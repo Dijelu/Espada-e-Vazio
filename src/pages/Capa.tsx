@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { capitulos } from "../content/livro";
 import { useTema } from "../components/Theme";
+import { Brasas } from "../components/Brasas";
 
 const tiras = [
   { t: "Livro", d: "Regras com busca", img: "c08", to: "/livro" },
@@ -17,6 +18,7 @@ export default function Capa() {
     <main>
       <section className="hero">
         <img className="hero-art" src="/art/c04.jpg" alt="" />
+        <Brasas />
         <div className="hero-inner">
           <img key={tema} className="hero-sym" src={tema === "dark" ? "/art/sym-mask-claro.png" : "/art/sym-flame.png"} alt="" />
           <h1 className="title-font">
