@@ -76,6 +76,16 @@ export const CARTOES_SHIKAI_NOVOS: Record<string, CartoesDoModelo> = {
     blocos: [[{ k: "C", id: "golpe-duplo", liga: "Estocada Rápida" }], [{ k: "C", id: "empurrao", liga: "Corte do Vento" }]],
     fraco: leve("l-guarda"), sabor: "",
   },
+  "kinshara": {
+    acoes: {
+      "Açoite Dourado": { sub: "ataque", ritmo: "acao", atr: "ESP" },
+      "Izayoi Bara": { sub: "area", ritmo: "acao", atr: "ESP" },
+      "Acorde Rápido": { sub: "ataque", ritmo: "bonus", atr: "ESP" },
+      "Compasso de Guarda": { sub: "cura", ritmo: "reacao", atr: "ESP" },
+    },
+    blocos: [[{ k: "C", id: "alcance", liga: "Açoite Dourado" }], [{ k: "C", id: "golpe-duplo", liga: "Acorde Rápido" }]],
+    fraco: leve("l-guarda"), sabor: "",
+  },
   "fuji-kujaku": {
     acoes: {
       "Foice de Quatro Lâminas": { sub: "ataque", ritmo: "acao", atr: "FOR" },
@@ -137,6 +147,17 @@ export const CARTOES_BANKAI_NOVOS: Record<string, CartoesDoModelo> = {
     },
     blocos: [[{ k: "C", id: "golpe-duplo", liga: "Duplo Soco" }], [{ k: "C", id: "empurrao", liga: "Soco Explosivo" }], [{ k: "C", id: "explosao", liga: "Onda de Impacto" }], P("bk-forca", { atr: "for" }), P("bk-ferro"), P("bk-explosao"), P("bk-reacao"), P("bk-veloz"), P("bk-duplo")],
     fraco: medio("m-peso"), sabor: "",
+  },
+  "kinshara-butodan": {
+    acoes: {
+      "Batuta da Trupe": { sub: "ataque", ritmo: "acao", atr: "ESP" },
+      "Coro Dourado": { sub: "area", ritmo: "acao", atr: "ESP" },
+      "Dueto": { sub: "ataque", ritmo: "bonus", atr: "ESP" },
+      "Compasso Fechado": { sub: "cura", ritmo: "reacao", atr: "ESP" },
+      "Sinfonia Final": { sub: "ataque", ritmo: "acao", atr: "ESP", final: true },
+    },
+    blocos: [[{ k: "C", id: "golpe-duplo", liga: "Dueto" }], [{ k: "C", id: "explosao", liga: "Coro Dourado" }]],
+    fraco: { forca: "medio", modo: "livre", nome: "Ouvidos tapados", texto: "As ilusões da Trupe entram pelo som: uma criatura surda, ou que proteja os próprios ouvidos, é imune à técnica Ilusão e tem vantagem na salvaguarda do Coro Dourado." }, sabor: "",
   },
   "fushi-no-kojo": {
     acoes: {

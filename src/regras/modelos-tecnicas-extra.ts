@@ -18,9 +18,11 @@ export const TECNICAS_EXTRA_SHIKAI: Record<string, ItemModelo[][]> = {
   "ashisogi-jizo": [bloco("veneno", "veneno-que-corroi")],
   "benihime": [bloco("barreira", "barreira-devolve")],
   "kyoka-suigetsu": [bloco("ilusao", "ilusao-perfeita", "golpe-no-vazio")],
+  "kinshara": [bloco("energia", "energia-dupla")],
 };
 
 export const TECNICAS_EXTRA_BANKAI: Record<string, ItemModelo[][]> = {
+  "kinshara-butodan": [bloco("invocacao", "ataque-conjunto"), bloco("ilusao", "ilusao-perfeita", "sentidos-invertidos")],
   "tensa-zangetsu": [bloco("aceleracao", "imagem-residual", "ritmo-crescente"), bloco("energia", "energia-dupla")],
   "senbonzakura-kageyoshi": [bloco("invocacao-enxame", "lancar-enxame", "dispersar-enxame", "escudo-vivo")],
   "daiguren-hyorinmaru": [bloco("selo", "estilhacar-selo", "selo-em-area")],
