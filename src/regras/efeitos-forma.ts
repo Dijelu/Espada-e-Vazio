@@ -20,7 +20,7 @@ export const ALVOS: { id: Alvo; nome: string }[] = [
 export const ARMADOS: Alvo[] = ["golpe", "disparo", "hado"];
 
 import type { DadosCarac, DadosEfeitoNeutro, DadosFracoNeutro, DadosEspecial, FamiliaCartao, Ritmo } from "./cartoes";
-import { especialFunciona } from "./especiais";
+import { especialFunciona, especialSoHollow } from "./especiais";
 
 export type Num = number | string;
 export type Quando = "liberar" | "inicioTurno" | "acerto" | "critico" | "abate" | "atingido" | "errou";
@@ -64,6 +64,8 @@ export type Efeito =
   | { k: "resist"; dano: string; grau: "resist" | "imune" | "vulner" }
   | { k: "desloc"; modo: "chao" | "voo"; v: Num }
   | { k: "acoes"; tipo: "ataque" | "bonus" | "reacao" }
+  /** bônus na iniciativa */
+  | { k: "ini"; v: Num }
   | { k: "vant"; em: string }
   | { k: "gatilho"; quando: Quando; limite?: "turno" | "rodada" | "cena"; faz: Faz; rotulo?: string }
   | { k: "custo"; pr: Num }
@@ -156,9 +158,13 @@ export function valor(x: Num | undefined, ctx: CtxForma): number {
 type Fonte = "forma" | "shikai" | "resurreccion";
 
 /** As peças que valem agora: as da forma ativa e as que ela herda. */
+/** O Gran Rey Cero junto da energia só vale para Visored e Hollow (quem usa Cero). Em outras fichas a peça é ignorada. */
+export const podeCero = (f: Pick<Ficha, "origem" | "classe">) => f.origem === "visored" || ["hollow-comum", "gillian", "adjuchas", "vasto-lorde"].includes(f.origem) || f.classe === "hueco" || f.classe === "vazio";
+export const semCeroProibido = (f: Pick<Ficha, "origem" | "classe">, efs: InstEfeito[]) => (podeCero(f) ? efs : efs.filter((e) => !especialSoHollow(e.espec?.id)));
+
 export function pecasAtivas(f: Ficha): { inst: InstEfeito; fonte: Fonte }[] {
   const lib = f.estado.liberado;
-  const de = (forma: FormaLib | undefined, fonte: Fonte) => (forma?.efeitos ?? []).map((inst) => ({ inst, fonte }));
+  const de = (forma: FormaLib | undefined, fonte: Fonte) => semCeroProibido(f, forma?.efeitos ?? []).map((inst) => ({ inst, fonte }));
   const fm = f.formas ?? {};
   if (lib === "shikai") return de(fm.shikai, "forma");
   if (lib === "bankai") return [...de(fm.bankai, "forma"), ...(fm.bankai?.herdaShikai ? de(fm.shikai, "shikai") : [])];
@@ -221,6 +227,8 @@ export interface SomaForma {
   rdEso: number;
   desloc: number;
   voo: number;
+  /** bônus de iniciativa */
+  ini: number;
   ataques: number;
   reacoes: number;
   bonus: number;
@@ -285,7 +293,7 @@ export function somarForma(f: Ficha, ctx: CtxForma): SomaForma | null {
   const pecas = pecasAtivas(f);
   if (pecas.length === 0) return null;
   const s: SomaForma = {
-    atr: { for: 0, des: 0, con: 0, men: 0, esp: 0 }, cr: 0, rdFis: 0, rdEso: 0, desloc: 0, voo: 0, ataques: 0, reacoes: 0, bonus: 0, cd: 0,
+    atr: { for: 0, des: 0, con: 0, men: 0, esp: 0 }, cr: 0, rdFis: 0, rdEso: 0, desloc: 0, voo: 0, ini: 0, ataques: 0, reacoes: 0, bonus: 0, cd: 0,
     acerto: porAlvo(0), dano: porAlvo(0), dados: porAlvo<string[]>([]), cartoesDano: [], ignoraRd: porAlvo(0), alcance: porAlvo(0),
     vant: [], resist: [], gatilhos: [], invocacoes: [], manutencao: 0, duracaoMais: 0, textos: [], linhas: [],
   };
@@ -319,6 +327,7 @@ export function somarForma(f: Ficha, ctx: CtxForma): SomaForma | null {
         case "rd": { const v = valor(e.v, ctx); if (e.tipo !== "eso") s.rdFis += v; if (e.tipo !== "fis") s.rdEso += v; linha(`Redução de dano ${e.tipo === "fis" ? "física" : e.tipo === "eso" ? "esotérica" : ""}`.trim(), String(v), nome); break; }
         case "resist": { s.resist.push({ dano: e.dano, grau: e.grau }); linha(`${e.grau === "imune" ? "Imune a" : e.grau === "vulner" ? "Vulnerável a" : "Resistente a"} ${e.dano}`, "", nome); break; }
         case "desloc": { const v = valor(e.v, ctx); if (e.modo === "voo") s.voo += v; else s.desloc += v; linha(e.modo === "voo" ? "Voo" : "Deslocamento", `${sinal(v)} m`, nome); break; }
+        case "ini": { const v = valor(e.v, ctx); s.ini += v; linha("Iniciativa", sinal(v), nome); break; }
         case "acoes": { if (e.tipo === "ataque") s.ataques += 1; else if (e.tipo === "reacao") s.reacoes += 1; else s.bonus += 1; linha(e.tipo === "ataque" ? "Ataques por ação" : e.tipo === "reacao" ? "Reações" : "Ações bônus", "+1", nome); break; }
         case "vant": { s.vant.push(e.em); linha("Vantagem", e.em, nome); break; }
         case "gatilho": { s.gatilhos.push({ rotulo: e.rotulo || nome, quando: e.quando, limite: e.limite, faz: e.faz, peca: nome, ...(lig ? { lig } : {}) }); break; }
@@ -439,6 +448,7 @@ export function custoEfeito(e: Efeito, ctx: CtxForma): number {
     case "rd": { const b = Math.ceil(valor(e.v, ctx) / 2.5); return e.tipo === "fis" ? Math.ceil(b * 0.6) : b; }
     case "resist": return e.grau === "imune" ? 5 : e.grau === "vulner" ? -2 : 2;
     case "desloc": { const v = valor(e.v, ctx); return v < 0 ? devol(Math.ceil(-v / 3)) : Math.ceil(v / 3); }
+    case "ini": { const v = valor(e.v, ctx); return v < 0 ? devol(Math.ceil(-v / 3)) : Math.ceil(v / 3); }
     case "acoes": return e.tipo === "ataque" ? 4 : e.tipo === "bonus" ? 3 : 2;
     case "vant": return 1;
     case "gatilho": {
@@ -588,6 +598,7 @@ export function normalizarEfeitos(raw: unknown): InstEfeito[] {
         case "rd": return [{ k, tipo: x.tipo === "fis" || x.tipo === "eso" ? x.tipo : "ambos", v: num(x.v) }];
         case "resist": return [{ k, dano: String(x.dano ?? "").slice(0, 30), grau: x.grau === "imune" || x.grau === "vulner" ? x.grau : "resist" }];
         case "desloc": return [{ k, modo: x.modo === "voo" ? "voo" : "chao", v: num(x.v) }];
+        case "ini": return [{ k, v: num(x.v) }];
         case "acoes": return [{ k, tipo: x.tipo === "bonus" || x.tipo === "reacao" ? x.tipo : "ataque" }];
         case "vant": return [{ k, em: String(x.em ?? "").slice(0, 60) }];
         case "custo": return [{ k, pr: num(x.pr) }];

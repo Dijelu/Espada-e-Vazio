@@ -89,9 +89,22 @@ export const cdHakuda = (f: Ficha, c: Calculo) => 8 + c.prof + modDesarmado(f, c
 
 const sinal = (n: number) => (n < 0 ? `${n}` : `+${n}`);
 
-/** PR da técnica; o Combo custa 1 a menos com a essência Mestre do Punho (nunca menos de 1). */
+const ligada = (f: Ficha, id: string) => (f.estado.ativas ?? []).includes(`sit:${id}`);
+const bankaiAtiva = (f: Ficha) => f.estado.liberado === "bankai" || f.estado.liberado === "bankai2";
+
+/** Intercalar (Caminho do Guerreiro, 6º): a técnica Combo sai por metade do PR e com +1 dado. */
+export const intercalarAtivo = (f: Ficha, t: TecnicaHakuda) => f.classe === "hakuda" && t.req === "Combo" && ligada(f, "intercalar");
+/** Lâmina e Punho (Caminho do Guerreiro, 20º): com a Bankai ativa, as Técnicas de Hakuda custam metade. */
+export const laminaEPunhoAtivo = (f: Ficha) => f.classe === "hakuda" && ligada(f, "lamina-e-punho") && bankaiAtiva(f);
+/** Impacto Ininterrupto (Caminho do Guerreiro, 15º): ao acertar corpo a corpo, uma técnica de Ação sai como reação. */
+export const impactoAtivo = (f: Ficha, t: TecnicaHakuda) => f.classe === "hakuda" && t.req === "Ação" && ligada(f, "impacto-ininterrupto");
+
+/** PR da técnica. Metade com Intercalar (Combo) ou Lâmina e Punho (as duas não se somam); depois, o Combo custa 1 a menos com Mestre do Punho. Nunca menos de 1. */
 export function custoHakuda(t: TecnicaHakuda, f: Ficha): number {
-  return t.req === "Combo" && mestreDoPunho(f) > 0 ? Math.max(1, t.pr - 1) : t.pr;
+  let pr = t.pr;
+  if (intercalarAtivo(f, t) || laminaEPunhoAtivo(f)) pr = Math.ceil(pr / 2);
+  if (t.req === "Combo" && mestreDoPunho(f) > 0) pr -= 1;
+  return Math.max(1, pr);
 }
 
 /** Dano de uma técnica já com tudo somado. */
@@ -99,9 +112,11 @@ export function danoHakuda(t: TecnicaHakuda, f: Ficha, c: Calculo): string {
   const d = t.dano;
   const mod = modDesarmado(f, c);
   const dado = dadoDesarmado(f);
+  const mais = intercalarAtivo(f, t) ? 1 : 0; // Intercalar: +1 dado de dano
   let base = d.fixo ?? "";
-  if (d.prof) base = `${c.prof * d.prof}d${d.faces}`;
-  if (d.forca) base = `${Math.max(1, c.atr.for)}d${d.faces}`;
+  if (d.prof) base = `${c.prof * d.prof + mais}d${d.faces}`;
+  else if (d.forca) base = `${Math.max(1, c.atr.for) + mais}d${d.faces}`;
+  else if (mais && base) base = base.replace(/^(\d+)d(\d+)/, (_m, n, s) => `${Number(n) + 1}d${s}`);
   const partes = [base];
   if (d.soma === "arma") partes.push(dado ? `${dado}${mod ? sinal(mod) : ""}` : mod ? `${mod}` : "");
   else if (d.soma === "mod" && mod) partes.push(`${mod}`);

@@ -29,6 +29,8 @@ export interface ResPoder {
   curaPv?: number;
   /** PR que você recupera */
   ganhaPr?: number;
+  /** PR a mais que o botão gasta (além do custo do ritmo), ex.: guardar na reserva */
+  gastaPr?: number;
   /** id da criatura em campo que some (Devorar a criatura) */
   some?: string;
 }
@@ -86,6 +88,16 @@ export const PODER_POR_ROTULO: Record<string, string> = {
   "Atravessar a fenda": "fenda",
   "Apertar o elo": "elo",
   "Revelar o alvo": "revelar",
+  "Forçar a regeneração": "forcar-regen", "Regenerar membro": "regen-membro", "Recompor a armadura": "recompor-armadura", "Armadura que estoura": "armadura-estoura",
+  "Esticar o limite": "esticar-limite", "Somar sequência": "seq", "Errar a sequência": "seq-erro", "Finalizar a sequência": "seq-final",
+  "Esquentar": "calor", "Ventilar": "ventilar", "Dissipar em escudo": "calor-escudo", "Pagar com sangue": "sangue", "Sangue na lâmina": "sangue-lamina",
+  "Ler o oponente": "ler", "Ler o padrão": "ler-padrao", "Gelo no alvo": "gelo", "Arco voltaico": "arco",
+  "Começar contagem": "contagem", "Acertar o marcado": "contagem-acerto", "Impor tabu": "tabu", "Ela quebrou o tabu": "tabu-quebra",
+  "Apoio do familiar": "familiar-apoio", "Desviar": "desviar",
+  "Voltar um instante": "voltar", "Voltar o erro": "voltar-erro", "Guardar reserva": "reserva", "Soltar reserva": "reserva-solta", "Reserva de emergência": "reserva-emerg", "Reserva para o aliado": "reserva-aliado",
+  "Apostar": "aposta", "Sorte de jogador": "sorte", "Desaparecer": "invisivel", "Sumir parado": "sumir", "Deixar âncora": "ancora", "Voltar à âncora": "ancora-volta",
+  "Endurecer": "endurecer", "Corpo de aço": "corpo-aco", "Lançar fio": "fio", "Puxar o fio": "fio-puxa", "Esconder armadilha": "armadilha", "Armadilha disparou": "armadilha-dispara",
+  "Mover armadilha": "armadilha-move", "Bala": "bala", "Rajada": "rajada", "Saciar a fome": "fome",
 };
 /** As três regras que o domínio pode impor (a pessoa escolhe uma). */
 export const REGRA_DOMINIO: Record<number, string> = { 1: "terreno difícil para os inimigos no campo", 2: "inimigos no campo com −2 de CR", 3: "você com vantagem nas salvaguardas dentro do campo" };
@@ -286,7 +298,8 @@ export function acionarPoder(rotulo: string, f: Ficha, c: Calculo, rolar: Rolar,
       const n = Math.min(P, v("doses") + 1);
       if (n === v("doses")) return { erro: `${rotulo}: o alvo já tem o máximo de doses (${P}).` };
       const cr = temCartao(c, "Veneno que corrói") ? Math.min(3, Math.floor(n / 2)) : 0;
-      return { usos: set("doses", n), dito: `Dose ${n} de ${P}: no início de cada turno seu, o alvo sofre ${n}d4 de veneno${cr > 0 ? `; ele está com −${cr} de CR` : ""}.${n === P && temCartao(c, "Segunda picada") ? " Máximo de doses: a Segunda picada está pronta." : ""}` };
+      const tox = temCartao(c, "Toxina e veneno") ? Math.min(3, n) : 0;
+      return { usos: set("doses", n), dito: `Dose ${n} de ${P}: no início de cada turno seu, o alvo sofre ${n}d4 de veneno${cr > 0 ? `; ele está com −${cr} de CR` : ""}${tox > 0 ? `; a CD da toxina contra ele sobe +${tox}` : ""}.${n === P && temCartao(c, "Segunda picada") ? " Máximo de doses: a Segunda picada está pronta." : ""}` };
     }
     case "segunda-picada": {
       if (v("doses") < P) return { erro: `${rotulo}: o alvo precisa ter o máximo de doses (${v("doses")} de ${P}).` };
@@ -360,6 +373,227 @@ export function acionarPoder(rotulo: string, f: Ficha, c: Calculo, rolar: Rolar,
       if (v("escudo-mutavel") > 0) return { erro: `${rotulo}: a criatura já é um escudo.` };
       return { usos: set("escudo-mutavel", 1), dito: "A criatura vira um escudo de reiatsu: +2 de CR até o início do seu próximo turno (use Novo turno)." };
     }
+    /* ---- primeira leva de técnicas novas ---- */
+    case "forcar-regen": return { curaPv: P, dito: `A regeneração deste turno dobra: você recupera mais ${P} PV.` };
+    case "regen-membro": {
+      if (v("regen-membro") > 0) return { erro: `${rotulo}: já foi usado nesta cena.` };
+      return { usos: set("regen-membro", 1), curaPv: 3 * P, dito: `Um membro se refaz: você recupera ${3 * P} PV e se livra de uma condição física.` };
+    }
+    case "recompor-armadura": {
+      const alvo = 2 * P;
+      if ((f.estado.pvTemp ?? 0) >= alvo) return { erro: `${rotulo}: a armadura já está com ${f.estado.pvTemp} PV temporários.` };
+      return { pvTemp: alvo, dito: `A armadura se recompõe: ${alvo} PV temporários.` };
+    }
+    case "armadura-estoura": {
+      if ((f.estado.pvTemp ?? 0) > 0) return { erro: `${rotulo}: só quando os PV temporários acabam.` };
+      if (v("estourou") > 0) return { erro: `${rotulo}: já estourou nesta cena.` };
+      const t = rolar("Armadura que estoura", "2d6");
+      return { usos: set("estourou", 1), dito: `A armadura estoura: criaturas a até 3 m fazem salvaguarda de Destreza (CD ${8 + P + c.atr.esp}) ou sofrem ${t}.` };
+    }
+    case "esticar-limite": {
+      if (v("limite-turno") > 0) return { erro: `${rotulo}: só 1 vez por turno.` };
+      return { usos: junta(set("limite-turno", 1), set("limite-extra", v("limite-extra") + 1)), dito: `O limite da forma sobe 1 turno (+${v("limite-extra") + 1} no total).` };
+    }
+    case "seq": {
+      if (v("seq") >= P) return { erro: `${rotulo}: a sequência já está no máximo (${P}).` };
+      return { usos: set("seq", v("seq") + 1), dito: `Sequência ${v("seq") + 1}/${P}: +${v("seq") + 1} de dano nos golpes.` };
+    }
+    case "seq-erro": {
+      if (v("seq") < 1) return { erro: `${rotulo}: não há sequência.` };
+      const fica = temCartao(c, "Sequência firme") ? Math.floor(v("seq") / 2) : 0;
+      return { usos: set("seq", fica), dito: fica > 0 ? `Sequência firme: a sequência cai para ${fica}.` : "A sequência zerou." };
+    }
+    case "seq-final": {
+      if (v("seq") < 3) return { erro: `${rotulo}: precisa de 3 ou mais de sequência.` };
+      return { usos: junta(set("seq", 0), set("seq-final", 1)), dito: `Sequência gasta: o próximo golpe exige salvaguarda de Constituição (CD ${8 + P + Math.max(c.atr.for, c.atr.des, c.atr.esp)}) ou deixa o alvo Atordoado até o fim do próximo turno dele.` };
+    }
+    case "calor": {
+      if (v("calor") >= 5) return { erro: `${rotulo}: o calor já está em 5; descarregue (Ventilar) ou sofra no início do turno.` };
+      return { usos: set("calor", v("calor") + 1), dito: `Calor ${v("calor") + 1}/5: +${v("calor") + 1} de dano nos golpes.${v("calor") + 1 >= 5 ? " No início do próximo turno você descarrega ou sofre 3d6 de Fogo." : ""}` };
+    }
+    case "ventilar": {
+      if (v("calor") < 1) return { erro: `${rotulo}: não há calor.` };
+      const t = rolar("Ventilar", `${v("calor")}d4`);
+      return { usos: set("calor", 0), dito: `O calor sai em vapor (cone de 4,5 m): salvaguarda de Destreza (CD ${8 + P + c.atr.esp}), ${t} de dano de Fogo.` };
+    }
+    case "calor-escudo": {
+      if (v("calor") < 1) return { erro: `${rotulo}: não há calor.` };
+      const t = v("calor") * P;
+      return { usos: set("calor", 0), pvTemp: Math.max(f.estado.pvTemp ?? 0, t), dito: `O calor vira escudo: ${t} PV temporários.` };
+    }
+    case "sangue": {
+      if (f.pvAtual <= 1) return { erro: `${rotulo}: PV insuficientes.` };
+      const pago = Math.min(3 * P, f.pvAtual - 1);
+      return { usos: set("sangue", v("sangue") + pago), perdePv: pago, ganhaPr: Math.floor(pago / 2), dito: `Você paga ${pago} PV (nada reduz) e recupera ${Math.floor(pago / 2)} PR.` };
+    }
+    case "sangue-lamina": {
+      const n = Math.floor(v("sangue") / 5);
+      if (n < 1) return { erro: `${rotulo}: pague pelo menos 5 PV com sangue primeiro.` };
+      return { usos: junta(set("sangue", 0), set("sangue-golpe", n)), dito: `O próximo golpe causa +${n}d6.` };
+    }
+    case "ler": {
+      if (v("leituras") >= 3) return { erro: `${rotulo}: já são 3 leituras, o máximo.` };
+      return { usos: set("leituras", v("leituras") + 1), dito: `Teste de Intuição contra 10 + a proficiência do alvo. Se passar: leitura ${v("leituras") + 1}/3 (+${v("leituras") + 1} no acerto contra ele até o fim da cena) e você descobre uma resistência, uma fraqueza ou a CR dele.` };
+    }
+    case "ler-padrao": {
+      if (v("leituras") < 3) return { erro: `${rotulo}: precisa de 3 leituras.` };
+      return { usos: set("leituras", 0), dito: "Você lê o padrão dele: um ataque do alvo lido tem desvantagem. As leituras zeram." };
+    }
+    case "gelo": {
+      const n = v("gelo") + 1;
+      const cd = 8 + P + c.atr.esp;
+      if (n >= 3) return { usos: set("gelo", 0), dito: `Gelo 3/3: o alvo faz salvaguarda de Constituição (CD ${cd}) ou fica Contido até o fim do próximo turno dele. O gelo zera.${temCartao(c, "Frio que se espalha") ? " Frio que se espalha: cada criatura a até 3 m dele ganha 1 de gelo." : ""}` };
+      return { usos: set("gelo", n), dito: n === 1 ? "Gelo 1/3: o alvo perde 3 m de deslocamento." : "Gelo 2/3: o alvo fica sem reações." };
+    }
+    case "arco": {
+      const t = rolar("Arco voltaico", `${P}d6`);
+      const saltos = Math.max(1, Math.floor(P / 2));
+      return { dito: `O raio atinge uma criatura a até 18 m (salvaguarda de Destreza, CD ${8 + P + c.atr.esp}): ${t} de dano elétrico. Salta para até ${saltos} criatura${saltos === 1 ? "" : "s"}, cada uma a até 4,5 m da anterior, com metade do dano anterior.${temCartao(c, "Magnetismo") ? " Magnetismo: o último alvo é puxado 3 m para você." : ""}` };
+    }
+    case "contagem": {
+      if (v("contagem") > 0) return { erro: `${rotulo}: já há uma contagem em andamento.` };
+      return { usos: set("contagem", P), dito: `Marca posta com o número ${P}. Cada vez que você a acerta, o número cai 1; no 0, o seu próximo golpe nela é crítico.` };
+    }
+    case "contagem-acerto": {
+      if (v("contagem") < 1) return { erro: `${rotulo}: comece uma contagem primeiro.` };
+      const n = v("contagem") - 1;
+      if (n <= 0) return { usos: junta(set("contagem", 0), set("contagem-crit", 1)), dito: "A contagem chegou a 0: o seu próximo golpe no marcado é crítico." };
+      return { usos: set("contagem", n), dito: `A contagem cai para ${n}.` };
+    }
+    case "tabu": {
+      const cap = temCartao(c, "Tabu duplo") ? 2 : 1;
+      if (v("tabu") >= 1) return { erro: `${rotulo}: já há um tabu imposto.` };
+      return { usos: set("tabu", cap), dito: `Tabu imposto a uma criatura a até 18 m: ${cap === 2 ? "duas ações proibidas" : "uma ação proibida"} (atacar você, andar mais de 3 m ou usar técnica).` };
+    }
+    case "tabu-quebra": {
+      if (v("tabu") < 1) return { erro: `${rotulo}: não há tabu imposto.` };
+      const resta = v("tabu") - 1;
+      if (temCartao(c, "Tabu que trava")) return { usos: set("tabu", resta), dito: `Ela quebrou o tabu: salvaguarda de Espírito (CD ${8 + P + c.atr.esp}) ou fica Atordoada até o fim do próximo turno dela.` };
+      const t = rolar("Tabu", `${P + (temCartao(c, "Tabu secreto") ? 1 : 0)}d6`);
+      return { usos: set("tabu", resta), dito: `Ela quebrou o tabu e sofre ${t} de dano de Energia, sem salvaguarda.` };
+    }
+    case "familiar-apoio": {
+      if (!(f.estado.invocacoes ?? []).some((x) => /^Familiar/.test(x.nome))) return { erro: `${rotulo}: chame o familiar primeiro.` };
+      const d = temCartao(c, "Apoio redobrado") ? "1d6" : "1d4";
+      const t = rolar("Apoio do familiar", d);
+      return { dito: `O familiar apoia ${temCartao(c, "Apoio redobrado") ? "dois aliados" : "um aliado"} a até 9 m dele: +${t} (${d}) na próxima jogada de ataque ou salvaguarda.` };
+    }
+    /* ---- segunda leva ---- */
+    case "voltar": case "voltar-erro": {
+      const lim = P >= 5 ? 2 : 1;
+      if (v("voltou") >= lim) return { erro: `${rotulo}: já usou ${lim === 1 ? "o único uso" : "os dois usos"} desta cena.` };
+      if (id === "voltar-erro") return { usos: set("voltou", v("voltou") + 1), dito: "O tempo volta: role de novo o ataque seu que errou, no mesmo alvo." };
+      const cura = dano > 0 ? Math.min(dano, 5 * P) : 0;
+      const ja = temCartao(c, "Já vi esse golpe");
+      return { usos: junta(set("voltou", v("voltou") + 1), ja ? set("vant-voltou", 1) : {}), ...(dano > 0 ? { perdePv: dano - cura } : {}), dito: `${dano > 0 ? `O golpe é desfeito: você recupera ${cura} (de ${dano}); sofre ${dano - cura}, já descontado. ` : "Digite o dano do golpe para o sistema descontar. "}Você volta para onde estava no início do turno.${ja ? " Já vi esse golpe: o seu próximo ataque contra quem o feriu tem vantagem." : ""}` };
+    }
+    case "reserva": {
+      const cap = 2 * P;
+      if (v("reserva") >= cap) return { erro: `${rotulo}: a reserva já está cheia (${cap} PR).` };
+      const add = Math.min(2, cap - v("reserva"));
+      if (f.prAtual < add) return { erro: `${rotulo}: faltam PR para guardar.` };
+      return { usos: set("reserva", v("reserva") + add), gastaPr: add, dito: `${add} PR guardados na reserva (${v("reserva") + add}/${cap}); nada drena essa reserva.` };
+    }
+    case "reserva-solta": {
+      const r = v("reserva");
+      if (r < 1) return { erro: `${rotulo}: a reserva está vazia.` };
+      const n = Math.floor(r / 3);
+      return { usos: junta(set("reserva", 0), set("reserva-golpe", n)), ganhaPr: r, dito: `Você recupera ${r} PR${n > 0 ? ` e o próximo golpe causa +${n}d6` : ""}.` };
+    }
+    case "reserva-emerg": {
+      if (f.pvAtual > 0) return { erro: `${rotulo}: só ao cair a 0 PV.` };
+      if (v("reserva") < 1) return { erro: `${rotulo}: a reserva está vazia.` };
+      if (v("reserva-emerg") > 0) return { erro: `${rotulo}: já usou nesta cena.` };
+      return { usos: junta(set("reserva", 0), set("reserva-emerg", 1)), curaPv: v("reserva"), dito: `Você se levanta com ${v("reserva")} PV; a reserva zera.` };
+    }
+    case "reserva-aliado": {
+      const r = v("reserva");
+      if (r < 1) return { erro: `${rotulo}: a reserva está vazia.` };
+      return { usos: set("reserva", 0), dito: `Um aliado a até 9 m recupera ${r} PR; a reserva zera.` };
+    }
+    case "aposta": {
+      const dobra = temCartao(c, "Dobrar a aposta");
+      if ((v("aposta-ganha") > 0 && !dobra) || v("aposta-perda") > 0) return { erro: `${rotulo}: a aposta de agora ainda não foi gasta (ataque primeiro).` };
+      const d = Math.floor(rolar("Apostar", "1d6"));
+      if (d % 2 === 0) return { usos: junta(set("aposta-ganha", v("aposta-ganha") + 1), set("aposta-perda", 0)), dito: `Saiu ${d} (par): o próximo ataque causa +${P * (v("aposta-ganha") + 1)}d6.` };
+      const mult = v("aposta-ganha") > 0 ? 2 : 1;
+      const t = rolar("Apostar: o preço", `${P * mult}d4`);
+      return { usos: junta(set("aposta-perda", 1), set("aposta-ganha", 0)), perdePv: t, dito: `Saiu ${d} (ímpar): você sofre ${t} e o próximo ataque tem desvantagem${mult === 2 ? " (pagou as duas apostas)" : ""}.` };
+    }
+    case "sorte": {
+      if (v("sorte-usada") > 0) return { erro: `${rotulo}: já usou nesta cena.` };
+      return { usos: junta(set("sorte-usada", 1), set("aposta-ganha", 0), set("aposta-perda", 0)), dito: "Você joga o d6 de novo: aperte Apostar outra vez." };
+    }
+    case "invisivel": {
+      if (v("invisivel") > 0) return { erro: `${rotulo}: você já está invisível.` };
+      return { usos: set("invisivel", 2), dito: "Você some: invisível até atacar, usar técnica ou o fim do seu próximo turno. O ataque que sai da invisibilidade tem vantagem." };
+    }
+    case "sumir": {
+      if (v("sumir-usado") > 0) return { erro: `${rotulo}: já usou nesta cena.` };
+      return { usos: junta(set("sumir-usado", 1), set("invisivel", 2)), dito: "Parado, você continua invisível depois de atacar." };
+    }
+    case "ancora": {
+      if (v("ancoras") >= 2) return { erro: `${rotulo}: já são 2 âncoras.` };
+      return { usos: set("ancoras", v("ancoras") + 1), dito: `Âncora ${v("ancoras") + 1}/2 deixada num ponto a até 18 m.` };
+    }
+    case "ancora-volta": {
+      if (v("ancoras") < 1) return { erro: `${rotulo}: não há âncora.` };
+      const ch = temCartao(c, "Chegar golpeando");
+      return { usos: junta(set("ancoras", v("ancoras") - 1), ch ? set("chegada", 1) : {}), dito: `Você aparece na âncora (até 36 m); ela some.${ch ? " Chegar golpeando: o primeiro golpe agora tem vantagem." : ""}` };
+    }
+    case "endurecer": {
+      const corta = dano > 0 ? Math.min(dano, 2 * P) : 0;
+      return { usos: set("endurecido", 1), ...(dano > 0 ? { perdePv: dano - corta } : {}), dito: `${dano > 0 ? `O dano cai em ${corta} (de ${dano}); você sofre ${dano - corta}, já descontado. ` : `O dano que você sofreria cai em ${2 * P}. `}A parte endurecida ataca com desvantagem no próximo golpe${temCartao(c, "Punho de aço") ? " — mas com Punho de aço ele causa +1d8 e ignora 2 de redução de dano" : ""}.` };
+    }
+    case "corpo-aco": {
+      if (v("corpo-aco-usado") > 0) return { erro: `${rotulo}: já usou nesta cena.` };
+      return { usos: junta(set("corpo-aco-usado", 1), set("corpo-aco", 1), set("t-rd-fis", 99)), dito: "Corpo de aço: imune a dano físico até o início do seu próximo turno, com deslocamento 0." };
+    }
+    case "fio": {
+      if (v("fios") >= 2) return { erro: `${rotulo}: já são 2 fios.` };
+      return { usos: set("fios", v("fios") + 1), dito: `Fio ${v("fios") + 1}/2 preso a até 18 m.${v("fios") + 1 === 2 && temCartao(c, "Teia") ? " Teia: a linha entre os fios é armadilha." : ""}` };
+    }
+    case "fio-puxa": {
+      if (v("fios") < 1) return { erro: `${rotulo}: não há fio preso.` };
+      const corta = temCartao(c, "Fio cortante") ? rolar("Fio cortante", "2d6") : 0;
+      return { usos: set("fios", v("fios") - 1), dito: `Você se puxa até o fio sem provocar ataque de oportunidade, ou puxa o alvo 6 m (salvaguarda de Força, CD ${8 + P + Math.max(c.atr.for, c.atr.esp)}).${corta > 0 ? ` Fio cortante: se puxar uma criatura, ela sofre ${corta} cortante.` : ""}` };
+    }
+    case "armadilha": {
+      if (v("armadilhas") >= P) return { erro: `${rotulo}: já são ${P} armadilhas, o máximo.` };
+      return { usos: set("armadilhas", v("armadilhas") + 1), dito: `Armadilha ${v("armadilhas") + 1}/${P} escondida num ponto a até 9 m.` };
+    }
+    case "armadilha-dispara": {
+      if (v("armadilhas") < 1) return { erro: `${rotulo}: não há armadilha escondida.` };
+      const cd = 8 + P + c.atr.esp;
+      if (temCartao(c, "Armadilha que segura")) return { usos: set("armadilhas", v("armadilhas") - 1), dito: `A armadilha dispara: salvaguarda de Destreza (CD ${cd}) ou fica Contido até o fim do próximo turno dele.${temCartao(c, "Alarme") ? " Alarme: use a reação para andar 6 m." : ""}` };
+      const t = rolar("Armadilha", `1d10+${P}`);
+      return { usos: set("armadilhas", v("armadilhas") - 1), dito: `A armadilha dispara: salvaguarda de Destreza (CD ${cd}) ou ${t} de Energia.${temCartao(c, "Alarme") ? " Alarme: use a reação para andar 6 m." : ""}` };
+    }
+    case "armadilha-move": {
+      if (v("armadilhas") < 1) return { erro: `${rotulo}: não há armadilha escondida.` };
+      return { dito: "Uma armadilha muda de lugar, até 6 m." };
+    }
+    case "bala": {
+      const t = rolar("Bala", `1d10+${P}`);
+      return { dito: `Disparo de reiatsu a até 18 m (acerto +${P + c.atr.esp}): ${t} de Energia.${temCartao(c, "Bala que empurra") ? " Bala que empurra: o alvo é empurrado 3 m." : ""}` };
+    }
+    case "rajada": {
+      const a = rolar("Rajada: 1ª bala", `1d6+${P}`), b = rolar("Rajada: 2ª bala", `1d6+${P}`);
+      return { dito: `Duas balas (acerto +${P + c.atr.esp} cada): ${a} e ${b} de Energia.${temCartao(c, "Bala que empurra") ? " Bala que empurra: os alvos são empurrados 3 m." : ""}` };
+    }
+    case "fome": {
+      const cap = Math.max(1, Math.floor(P / 2));
+      if (v("fome") >= cap) return { erro: `${rotulo}: a fome já está no máximo (${cap}).` };
+      return { usos: set("fome", v("fome") + 1), dito: `Fome ${v("fome") + 1}/${cap}: +${v("fome") + 1} no acerto até o fim da cena.` };
+    }
+    case "desviar": {
+      const red = rolar("Desviar projéteis", "1d10") + c.atr.des + P;
+      if (dano > 0) {
+        const corta = Math.min(dano, red);
+        return { perdePv: dano - corta, dito: `O projétil cai em ${corta} (de ${dano}). Você sofre ${dano - corta}, já descontado.${corta >= dano ? ` Ele zerou: você pode lançá-lo de volta (ataque à distância, 18 m, ${dano} de dano).${temCartao(c, "Ricochete") ? " Ricochete: pula para mais uma criatura a até 4,5 m, com metade do dano." : ""}` : ""}` };
+      }
+      return { dito: `O dano do ataque à distância cai em ${red}. Se cair a 0, você pode lançá-lo de volta.` };
+    }
   }
   return undefined;
 }
@@ -408,6 +642,28 @@ export function bonusDeAtaque(f: Ficha, c: Calculo, distancia: boolean): BonusAt
     else b.tags.push("Alvo marcado");
   }
   if ((v("marca") > 0 || v("vinculo") > 0) && temCartao(c, "Marca que passa o golpe") && v("pg-usado") < 1) { b.acerto += 1; b.tags.push("Marca que passa o golpe: +1 no acerto"); }
+  if (v("seq") > 0 && !distancia) { b.dados.push(String(v("seq"))); b.tags.push(`Sequência ${v("seq")}: +${v("seq")}`); }
+  if (v("seq-final") > 0) { b.tags.push(`Finalizador: o alvo faz salvaguarda de Constituição (CD ${8 + P + Math.max(c.atr.for, c.atr.des, c.atr.esp)}) ou fica Atordoado`); b.gasta.push("seq-final"); }
+  if (v("calor") > 0 && !distancia) { b.dados.push(String(v("calor"))); b.tags.push(`Calor ${v("calor")}: +${v("calor")}`); if (v("calor") >= 5 && temCartao(c, "Ponto de fusão")) b.tags.push(`Ponto de fusão: ignora ${P} de redução de dano`); }
+  if (v("sangue-golpe") > 0) { b.dados.push(`${v("sangue-golpe")}d6`); b.tags.push(`Sangue na lâmina: +${v("sangue-golpe")}d6`); b.gasta.push("sangue-golpe"); }
+  if (v("leituras") > 0) { b.acerto += v("leituras"); b.tags.push(`Leitura ${v("leituras")}/3: +${v("leituras")} no acerto${v("leituras") >= 2 && temCartao(c, "Dissecar") ? " e ignora 2 de redução de dano" : ""}`); }
+  if (temCartao(c, "Ferido e perigoso") && f.pvAtual > 0 && f.pvAtual * 2 < c.pv) { b.acerto += 1; b.tags.push("Ferido e perigoso: +1 no acerto"); }
+  if (v("gelo") > 0) b.tags.push(`Alvo com gelo ${v("gelo")}/3${v("gelo") >= 2 && temCartao(c, "Gelo que racha a defesa") ? " (−2 de redução de dano contra os seus golpes)" : ""}`);
+  if (v("contagem") > 0) b.tags.push(`Contagem: ${v("contagem")}`);
+  if (v("contagem-crit") > 0) { b.tags.push("Contagem zerada: este golpe é crítico"); b.gasta.push("contagem-crit"); }
+  if (v("tabu") > 0) b.tags.push("Tabu imposto");
+  if (v("reserva-golpe") > 0) { b.dados.push(`${v("reserva-golpe")}d6`); b.tags.push(`Reserva solta: +${v("reserva-golpe")}d6`); b.gasta.push("reserva-golpe"); }
+  if (v("aposta-ganha") > 0) { const d = `${P * v("aposta-ganha")}d6`; b.dados.push(d); b.tags.push(`Aposta ganha: +${d}`); b.gasta.push("aposta-ganha"); }
+  if (v("aposta-perda") > 0) { b.tags.push("Aposta perdida: desvantagem no ataque"); b.gasta.push("aposta-perda"); }
+  if (v("invisivel") > 0) { b.tags.push("Invisível: vantagem no ataque"); if (temCartao(c, "Golpe do nada")) { b.dados.push("2d6"); b.tags.push("Golpe do nada: +2d6"); } b.gasta.push("invisivel"); }
+  if (v("chegada") > 0) { b.tags.push("Chegar golpeando: vantagem no ataque"); b.gasta.push("chegada"); }
+  if (v("vant-voltou") > 0) { b.tags.push("Já vi esse golpe: vantagem contra quem o feriu"); b.gasta.push("vant-voltou"); }
+  if (v("endurecido") > 0 && !distancia) {
+    if (temCartao(c, "Punho de aço")) { b.dados.push("1d8"); b.tags.push("Punho de aço: +1d8 e ignora 2 de redução de dano"); } else b.tags.push("Parte endurecida: desvantagem neste golpe");
+    b.gasta.push("endurecido");
+  }
+  if (v("fome") > 0) { b.acerto += v("fome"); b.tags.push(`Fome do Vazio: +${v("fome")} no acerto${v("fome") >= Math.max(1, Math.floor(P / 2)) && temCartao(c, "Evolução") ? " e resistência ao dano da última criatura derrubada" : ""}`); }
+  if (v("corpo-aco") > 0) b.tags.push("Corpo de aço: imune a dano físico, deslocamento 0");
   return b;
 }
 
@@ -502,6 +758,23 @@ export function turnoDosPoderes(f: Ficha, c: Calculo, rolar: Rolar): ResTurno {
   const r: ResTurno = { usos: {}, perdePv: 0, ditos: [] };
   r.usos[PW("cadeia-usada")] = undefined;
   r.usos[PW("pg-usado")] = undefined;
+  r.usos[PW("limite-turno")] = undefined;
+  if (temCartao(c, "Limite de liberação")) {
+    const lim = P + 2 + val(f, "limite-extra"), n = val(f, "limite-t") + 1;
+    if (n > lim) { r.usos[PW("limite-t")] = undefined; r.usos[PW("limite-extra")] = undefined; r.ditos.push(`O limite de ${lim} turnos acabou: a forma termina e você fica com 1 nível de cansaço`); }
+    else { r.usos[PW("limite-t")] = n; r.ditos.push(`Limite de liberação: turno ${n} de ${lim}${n === lim ? " (o último: o Último fôlego vale agora)" : ""}`); }
+  }
+  if (val(f, "corpo-aco") > 0) { r.usos[PW("corpo-aco")] = undefined; r.usos[PW("t-rd-fis")] = undefined; r.ditos.push("o Corpo de aço acabou"); }
+  const inv = val(f, "invisivel");
+  if (inv > 0) { r.usos[PW("invisivel")] = inv - 1 <= 0 ? undefined : inv - 1; if (inv - 1 <= 0) r.ditos.push("a invisibilidade acabou"); }
+  if (val(f, "fios") >= 2 && temCartao(c, "Teia")) r.ditos.push(`Teia: quem cruzar a linha entre os fios faz salvaguarda de Destreza (CD ${8 + P + c.atr.esp}) ou cai Caído`);
+  if (val(f, "calor") >= 5) { const d = rolar("Calor acumulado", "3d6"); r.perdePv += d; r.usos[PW("calor")] = undefined; r.ditos.push(`Calor em 5: você sofre ${d} de Fogo e o calor zera (descarregue com Ventilar antes, se quiser evitar)`); }
+  if (val(f, "contagem") > 0 && temCartao(c, "O tempo corre")) {
+    const n = val(f, "contagem") - 1;
+    if (n <= 0) { r.usos[PW("contagem")] = undefined; r.usos[PW("contagem-crit")] = 1; r.ditos.push("a contagem chegou a 0: o próximo golpe no marcado é crítico"); }
+    else { r.usos[PW("contagem")] = n; r.ditos.push(`O tempo corre: a contagem cai para ${n}`); }
+  }
+  if (temCartao(c, "Sentinela que cura") && (f.estado.invocacoes ?? []).some((x) => /^Sentinela/.test(x.nome))) r.ditos.push(`Sentinela que cura: um aliado a até 9 m dela recupera ${P} PV`);
   if (val(f, "provocado") > 0) { r.usos[PW("provocado")] = undefined; r.ditos.push("a provocação terminou"); }
   if (val(f, "escudo-mutavel") > 0) { r.usos[PW("escudo-mutavel")] = undefined; r.ditos.push("a criatura-escudo se desfez (−2 de CR)"); }
   // veneno: o alvo sofre 1d4 por dose
@@ -571,6 +844,8 @@ const NOMES: [string, string][] = [
   ["energia", "Energia carregada"], ["grc", "Gran Rey Cero"], ["cargas", "Cargas"], ["descarga", "Descarga pronta"], ["sobre", "Sobrecarga (turnos)"],
   ["guardado", "Dano guardado"], ["corte", "Corte no espaço"], ["marca", "Alvo marcado"], ["peso", "Peso na marca"], ["marcas", "Marcas"], ["pilha", "Marcas empilhadas"],
   ["ilusao", "Alvo iludido"], ["invertido", "Sentidos invertidos"], ["selo", "Selo (turnos)"], ["barreira", "Barreira (PV)"], ["doses", "Doses de veneno"], ["acel", "Acelerado"], ["ritmo", "Ritmo"], ["imagem", "Imagem residual"], ["conjunto", "Ataque conjunto"], ["furia", "Fúria sem distinção"], ["alvo-fraco", "Alvo com metade dos PV"], ["marca-caca", "Marca de caça"], ["veu", "Véu de reiatsu (+2 CR)"], ["devolvido", "Golpe guardado"], ["fenda", "Fenda aberta (turnos)"], ["elo", "Elo apertado"], ["revelado", "Alvo revelado"],
+  ["reserva", "Reserva de PR"], ["reserva-golpe", "Reserva no golpe"], ["aposta-ganha", "Aposta ganha"], ["aposta-perda", "Aposta perdida"], ["invisivel", "Invisível"], ["ancoras", "Âncoras"], ["chegada", "Chegou golpeando"], ["endurecido", "Parte endurecida"], ["corpo-aco", "Corpo de aço"], ["fios", "Fios presos"], ["armadilhas", "Armadilhas"], ["fome", "Fome do Vazio"], ["voltou", "Voltas no tempo"], ["vant-voltou", "Já vi esse golpe"],
+  ["seq", "Sequência"], ["seq-final", "Finalizador pronto"], ["calor", "Calor"], ["sangue", "Sangue pago"], ["sangue-golpe", "Sangue na lâmina"], ["leituras", "Leituras"], ["gelo", "Gelo no alvo"], ["contagem", "Contagem"], ["contagem-crit", "Próximo golpe crítico"], ["tabu", "Tabu imposto"], ["estourou", "Armadura estourou"], ["regen-membro", "Já regenerou membro"], ["limite-extra", "Turnos extras do limite"], ["limite-t", "Turnos do limite"],
   ["provocado", "Alvo provocado"], ["renasceu", "Já renasceu"], ["lancada", "Energia lançada"], ["cortada", "Corte lançado"], ["mutavel", "Criatura-arma"], ["escudo-mutavel", "Criatura-escudo (+2 CR)"], ["vantagem", "Vantagem no ataque"], ["dominio", "Domínio aberto"], ["regra", "Regra do campo"], ["vinculo", "Vínculo"], ["copia", "Poder copiado"], ["reforco", "Reforço"], ["cadeia", "Explosão em cadeia"],
 ];
 export function poderesAtivos(f: Ficha): PoderAtivo[] {
@@ -602,6 +877,7 @@ export interface EstadoBotao {
 const PAGAMENTO = new Set([
   "Gran Rey Cero", "Descarregar as cargas", "Gastar cargas para se proteger", "Devolver o absorvido", "Guardado vira PV temporários", "Detonar as marcas", "Empilhar marca",
   "Impor a regra do domínio", "Passar o dano", "Usar o elo", "Guardar a cópia", "Usar o poder copiado", "Fazer renascer", "Inverter os sentidos", "Golpe no vazio",
+  "Soltar reserva", "Voltar à âncora", "Armadilha disparou", "Puxar o fio", "Reserva de emergência", "Voltar um instante", "Ventilar", "Dissipar em escudo", "Sangue na lâmina", "Ler o padrão", "Finalizar a sequência", "Ela quebrou o tabu", "Acertar o marcado",
   "Estilhaçar o selo", "Barreira recebe o golpe", "Segunda picada", "Beber o veneno", "Golpe em passagem", "Ataque conjunto", "Devorar a criatura",
 ]);
 
@@ -630,6 +906,19 @@ export function medidorDoBotao(rotulo: string, f: Ficha, c: Calculo): Medidor | 
     case "Absorver o golpe": return { nome: "Guardado", atual: v("guardado"), max: 4 * P, tipo: "barra" };
     case "Erguer barreira": return { nome: "Barreira", atual: v("barreira"), max: (temCartao(c, "Barreira ampla") ? 8 : 5) * P, tipo: "barra" };
     case "Copiar poder": return v("copia") >= 90 ? { nome: "Cópia guardada", atual: 1, max: 1, tipo: "pips" } : { nome: "Cópia (turnos)", atual: v("copia"), max: P, tipo: "pips" };
+    case "Somar sequência": return { nome: "Sequência", atual: v("seq"), max: P, tipo: "pips" };
+    case "Esquentar": return { nome: "Calor", atual: v("calor"), max: 5, tipo: "pips" };
+    case "Ler o oponente": return { nome: "Leituras", atual: v("leituras"), max: 3, tipo: "pips" };
+    case "Gelo no alvo": return { nome: "Gelo", atual: v("gelo"), max: 3, tipo: "pips" };
+    case "Começar contagem": return { nome: "Contagem", atual: v("contagem"), max: P, tipo: "pips" };
+    case "Impor tabu": return { nome: "Tabu", atual: v("tabu"), max: temCartao(c, "Tabu duplo") ? 2 : 1, tipo: "pips" };
+    case "Esticar o limite": return { nome: "Limite (turnos)", atual: v("limite-t"), max: P + 2 + v("limite-extra"), tipo: "barra" };
+    case "Voltar um instante": return { nome: "Voltas", atual: v("voltou"), max: P >= 5 ? 2 : 1, tipo: "pips" };
+    case "Guardar reserva": return { nome: "Reserva (PR)", atual: v("reserva"), max: 2 * P, tipo: "barra" };
+    case "Deixar âncora": return { nome: "Âncoras", atual: v("ancoras"), max: 2, tipo: "pips" };
+    case "Lançar fio": return { nome: "Fios", atual: v("fios"), max: 2, tipo: "pips" };
+    case "Esconder armadilha": return { nome: "Armadilhas", atual: v("armadilhas"), max: P, tipo: "pips" };
+    case "Saciar a fome": return { nome: "Fome", atual: v("fome"), max: Math.max(1, Math.floor(P / 2)), tipo: "pips" };
     case "Abrir o domínio": return { nome: "Domínio", atual: v("dominio"), max: 1, tipo: "pips" };
     case "Criar vínculo": return { nome: "Vínculo", atual: v("vinculo"), max: 1, tipo: "pips" };
     case "Lançar ilusão": return { nome: "Ilusão", atual: v("ilusao") > 0 ? 1 : 0, max: 1, tipo: "pips" };

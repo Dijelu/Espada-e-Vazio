@@ -4,6 +4,9 @@ import type { FormaLib } from "./ficha";
 import { custoPeca, valor, type CtxForma, type InstEfeito } from "./efeitos-forma";
 
 export const TURNOS_POR_MINUTO = 10;
+/** Tetos do custo de liberação (PR). */
+export const TETO_BANKAI = 100;
+export const TETO_VERDADEIRA = 110;
 
 /** "1 minuto (10 turnos)", "30 segundos (5 turnos)", "1 min 30 s (15 turnos)". */
 export function duracaoEmPalavras(turnos: number): string {
@@ -46,12 +49,12 @@ export function calcularLiberacao(tipo: FormaLib["tipo"], pecas: InstEfeito[], c
     custoPr = Math.max(3, Math.min(10, 3 + Math.ceil(poder * 0.85)));
     conta.push(`Custo: 3 PR de base + 0,85 por ponto de poder (${poder}) = ${custoPr} PR (de 3 a 10).`);
   } else if (tipo === "bankai") {
-    const bruto = Math.max(20, Math.min(80, Math.round(20 + poder * 3)));
+    const bruto = Math.max(20, Math.min(TETO_BANKAI, Math.round(20 + poder * 2)));
     custoPr = extra.metadeAntiga ? Math.ceil(bruto / 2) : bruto;
-    conta.push(`Custo: 20 PR de base + 3 por ponto de poder (${poder}) = ${bruto} PR (de 20 a 80).`);
+    conta.push(`Custo: 20 PR de base + 2 por ponto de poder (${poder}) = ${bruto} PR (de 20 a ${TETO_BANKAI}).`);
   } else if (tipo === "bankai2") {
-    custoPr = Math.max(40, Math.min(80, Math.round(30 + poder * 3)));
-    conta.push(`Custo: 30 PR de base + 3 por ponto de poder (${poder}) = ${custoPr} PR (de 40 a 80).`);
+    custoPr = Math.max(40, Math.min(TETO_VERDADEIRA, Math.round(30 + poder * 2)));
+    conta.push(`Custo: 30 PR de base + 2 por ponto de poder (${poder}) = ${custoPr} PR (de 40 a ${TETO_VERDADEIRA}).`);
   }
 
   // duração
@@ -73,7 +76,7 @@ export function calcularLiberacao(tipo: FormaLib["tipo"], pecas: InstEfeito[], c
   }
   if (turnos !== null && mais > 0 && custoPr !== null) {
     const adicional = Math.ceil(mais / TURNOS_POR_MINUTO * 4);
-    custoPr = Math.min(80, custoPr + adicional);
+    custoPr = Math.min(tipo === "bankai2" ? TETO_VERDADEIRA : TETO_BANKAI, custoPr + adicional);
     conta.push(`Duração maior pesa no custo: +${adicional} PR = ${custoPr} PR.`);
   }
   if (tipo === "bankai" && extra.plena && custoPr !== null) conta.push(`Bankai Plena: ao liberar você paga a metade, ${Math.ceil(custoPr / 2)} PR (a ficha guarda o custo cheio, ${custoPr} PR).`);

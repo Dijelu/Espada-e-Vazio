@@ -81,7 +81,7 @@ const DICAS: Record<TipoForma, string> = {
   shikai:
     "A Shikai é o primeiro estágio da sua Zanpakutou. Escolha uma Zanpakutou pronta do livro, siga o passo a passo ou edite tudo de uma vez. O custo de liberação vai de 3 a 10 PR.",
   bankai:
-    "Escolha uma Bankai pronta do livro ou monte a sua. A Bankai Potencializadora intensifica os poderes da Shikai; a Transformadora cria um poder novo. O custo de liberação vai de 40 a 80 PR e dura 1 minuto. Toda Bankai tem um ponto fraco.",
+    "Escolha uma Bankai pronta do livro ou monte a sua. A Bankai Potencializadora intensifica os poderes da Shikai; a Transformadora cria um poder novo. O custo de liberação vai de 20 a 110 PR (Bankai até 100, Verdadeira até 110) e dura 1 minuto. Toda Bankai tem um ponto fraco.",
   resurreccion:
     "Custo, duração, bônus de CR e a técnica de assinatura já vêm da sua classe e do seu Caminho. Aqui você define a forma: nome, aparência, um traço pequeno e um ponto fraco.",
   segunda:
@@ -380,7 +380,7 @@ export function ConstrutorForma({ f, tipo, onSalvar, onGravar, onFechar }: Props
                   </select>
                 </label>
                 <div className="duas">
-                  <label className="campo">{caminhoFinal === "plena" ? "Custo base (você paga a metade)" : "Custo de liberação (40 a 80 PR)"}<input type="number" min={20} max={80} value={r.custo} onChange={(e) => mud({ custo: Number(e.target.value), custoManual: true })} />{dicaCusto}</label>
+                  <label className="campo">{caminhoFinal === "plena" ? "Custo base (você paga a metade)" : "Custo de liberação (20 a 110 PR)"}<input type="number" min={20} max={110} value={r.custo} onChange={(e) => mud({ custo: Number(e.target.value), custoManual: true })} />{dicaCusto}</label>
                   <label className="campo">Duração<input value={caminhoFinal === "verdadeira" ? "1 minuto (máximo)" : r.duracao} readOnly={caminhoFinal === "verdadeira"} onChange={(e) => mud({ duracao: e.target.value })} /></label>
                 </div>
               </>

@@ -278,7 +278,7 @@ function descreveFaz(z: import("../regras/efeitos-forma").Faz, ctx: CtxForma): s
 
 /** Editor de cartão próprio: escolhe o tipo de efeito e preenche só o que ele precisa. */
 function PecaPropria({ ctx, livre, onCriar, onFechar }: { ctx: CtxForma; livre: number; onCriar: (p: InstEfeito) => void; onFechar: () => void }) {
-  const [tipo, setTipo] = useState<"atr" | "cr" | "acerto" | "dano" | "dados" | "cd" | "rd" | "desloc" | "pvTemp" | "texto" | "fraco" | "invoca" | "fatr" | "fcr" | "facerto" | "fdano" | "fcd" | "fdesloc" | "fvulner" | "fcusto" | "ffim" | "fdur">("atr");
+  const [tipo, setTipo] = useState<"atr" | "cr" | "acerto" | "dano" | "dados" | "cd" | "rd" | "desloc" | "ini" | "pvTemp" | "texto" | "fraco" | "invoca" | "fatr" | "fcr" | "facerto" | "fdano" | "fcd" | "fdesloc" | "fvulner" | "fcusto" | "ffim" | "fdur">("atr");
   const [nome, setNome] = useState("");
   const [atr, setAtr] = useState<Atr>("for");
   const [grupo, setGrupo] = useState<Grupo>("armados");
@@ -303,6 +303,7 @@ function PecaPropria({ ctx, livre, onCriar, onFechar }: { ctx: CtxForma; livre: 
     : tipo === "cd" ? { k: "cd", v: num }
     : tipo === "rd" ? { k: "rd", tipo: rd, v: num }
     : tipo === "desloc" ? { k: "desloc", modo, v: num }
+    : tipo === "ini" ? { k: "ini", v: num }
     : tipo === "fatr" ? { k: "atr", atr, v: neg(v) }
     : tipo === "fcr" ? { k: "cr", v: neg(v) }
     : tipo === "facerto" ? { k: "acerto", em, v: neg(v) }
@@ -331,6 +332,7 @@ function PecaPropria({ ctx, livre, onCriar, onFechar }: { ctx: CtxForma; livre: 
           <option value="cd">CD dos Kidōs e técnicas</option>
           <option value="rd">Redução de dano</option>
           <option value="desloc">Deslocamento ou voo</option>
+          <option value="ini">Iniciativa</option>
           <option value="pvTemp">PV temporários ao liberar</option>
           <option value="texto">Efeito em texto (o Mestre aprova)</option>
           <option value="invoca">Clone ou invocação</option>

@@ -911,6 +911,9 @@ export interface Aviso {
   destino: DestinoAviso;
 }
 
+/** Bônus temporário de defesa/movimento que um botão de técnica deixou em `estado.usos` (chave "pw:t-…"); some no Novo turno. */
+export const tmpUso = (f: Ficha, k: string) => Math.max(0, Number(f.estado.usos?.["pw:" + k]) || 0);
+
 export interface Calculo {
   prof: number;
   atr: Record<Atr, number>;
@@ -1076,7 +1079,7 @@ export function calcular(fOriginal: Ficha): Calculo {
   if (f.estado.liberado === "bankai2") cr += 1;
 
   const sit = somaSituacoes(f, { n, prof, atr });
-  cr += sit.cr + bonusEscudo(f) + (fx?.cr ?? 0);
+  cr += sit.cr + bonusEscudo(f) + (fx?.cr ?? 0) + tmpUso(f, "t-cr");
 
   const mk = efeitoMascara(f, prof, n);
   let rdFisExtra = 0;
@@ -1141,10 +1144,10 @@ export function calcular(fOriginal: Ficha): Calculo {
     pv,
     pr,
     cr,
-    desloc: Math.max(ef.desloc + deslocExtra + px.desloc + sit.desloc + (fx?.desloc ?? 0), f.estado.liberado === "terror" ? 12 : 0),
-    rdFis: ef.rdFis + rdFisExtra + px.rdFis + mk.rd + (fx?.rdFis ?? 0),
-    rdEso: ef.rdEso + rdEsoExtra + px.rdEso + mk.rd + (fx?.rdEso ?? 0),
-    iniciativa: (ef.iniMente ? Math.max(atr.des, atr.men) : atr.des) + px.iniciativa,
+    desloc: Math.max(ef.desloc + deslocExtra + px.desloc + sit.desloc + (fx?.desloc ?? 0) + tmpUso(f, "t-desloc"), f.estado.liberado === "terror" ? 12 : 0),
+    rdFis: ef.rdFis + rdFisExtra + px.rdFis + mk.rd + (fx?.rdFis ?? 0) + tmpUso(f, "t-rd-fis"),
+    rdEso: ef.rdEso + rdEsoExtra + px.rdEso + mk.rd + (fx?.rdEso ?? 0) + tmpUso(f, "t-rd-eso"),
+    iniciativa: (ef.iniMente ? Math.max(atr.des, atr.men) : atr.des) + px.iniciativa + (fx?.ini ?? 0),
     // Ritter: armas Quincy corpo a corpo causam +3 de dano do 3º ao 9º nível
     danoCorpo: Math.max(0, (fx?.dano.golpe ?? 0) - (fx?.dano.disparo ?? 0)) + ef.danoCorpo + px.danoCorpo + sit.danoCorpo + (f.classe === "ritter" && n >= 3 && n <= 9 ? 3 : 0) + danoFixoHueco(f, prof) + (f.classe === "ritter" ? vollDano : 0) + (f.classe === "ritter" && n >= 10 ? prof : 0),
     crEvasao,

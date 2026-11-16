@@ -5,6 +5,8 @@ import { listarFichas, type FichaSalva } from "../lib/fichas";
 import { ataqueBonus, ataquesPorAcao, danoAtributo, calcular, type Ficha } from "../regras/ficha";
 import { ataqueMelhorado } from "../regras/melhorias";
 import { acertoClasse, danosDaClasse } from "../regras/danos-classe";
+import { KIDOS } from "../regras/catalogo";
+import { danoDoHado, expressaoHado } from "../regras/hado";
 import { duelo, mediaDano, pareado, veredito, FATOR_K, type Acao, type Combatente, type Resultado } from "../regras/simulador";
 
 let seq = 0;
@@ -26,6 +28,14 @@ function deFicha(nome: string, f: Ficha): Combatente {
     if (!d.acerto) continue;
     const custo = Number(d.custo?.match(/\d+/)?.[0] ?? 0);
     acoes.push(acaoVazia({ nome: d.nome, acerto: d.bonusAcerto ?? acertoClasse(f, c), dano: d.dano, custo, esoterico: true, golpes: 1 }));
+  }
+  // Hadōs e Bakudōs com dano em dados e jogada de acerto: uma ação esotérica cada, sem reforço de PR
+  for (const k of f.kidos) {
+    const d = KIDOS.find((x) => x.tipo === k.tipo && x.n === k.n);
+    if (!d || !/Jogada: Acerto/.test(d.meta ?? "")) continue;
+    const dd = danoDoHado(f, c, { ...d, tipo: k.tipo, texto: d.texto ?? "" });
+    if (!dd) continue;
+    acoes.push(acaoVazia({ nome: `${k.tipo === "hadou" ? "Hadō" : "Bakudō"} ${k.n}: ${k.nome}`, acerto: c.acertoKido, dano: expressaoHado(dd, 0, c.pr), custo: dd.custo, esoterico: true, golpes: 1 }));
   }
   return { nome, pv: c.pv, pr: c.pr, cr: c.cr, iniciativa: c.iniciativa, rdFis: c.rdFis, rdEso: c.rdEso, hierro: false, acoes: acoes.length ? acoes : [acaoVazia()] };
 }

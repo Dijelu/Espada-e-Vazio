@@ -55,7 +55,7 @@ const PASSOS_BASE: Record<Exclude<TipoForma, "bankai2">, Passo[]> = {
     { id: "arma", titulo: "Forma da arma", ajuda: "A arma define o golpe básico da forma e quais cartões você poderá montar depois. Escolha do catálogo ou monte uma arma própria (o Mestre aprova)." },
     { id: "aparencia", titulo: "Aparência", ajuda: "Na Bankai o espírito aparece no mundo real. A forma pode ficar igual ou mudar por completo. Pode ser algo grande ou pequeno." },
     { id: "acoes", titulo: "Habilidades e técnicas", ajuda: "Escolha de 3 a 4 habilidades. O custo de reiatsu depende do ritmo da ação. Use os cartões de ação abaixo e escreva como cada um aparece." },
-    { id: "custo", titulo: "Custo e duração", ajuda: "O custo de liberação vai de 40 a 80 PR: mais poder, mais custo. A Bankai dura 1 minuto e precisa de novo custo para continuar." },
+    { id: "custo", titulo: "Custo e duração", ajuda: "O custo de liberação vai de 20 a 110 PR: mais poder, mais custo. A Bankai dura 1 minuto e precisa de novo custo para continuar." },
     { id: "fraqueza", titulo: "Ponto fraco", ajuda: "Quase toda Bankai tem uma fraqueza: um efeito colateral para quem usa ou uma vulnerabilidade que os inimigos podem explorar." },
     { id: "efeitos", titulo: "Efeitos e pontos", ajuda: "Aqui a forma ganha números de verdade: atributos, CR, dano, redução, clones e mais. Você tem pontos de poder para gastar, e os pontos fracos com nome devolvem pontos. Tudo entra sozinho na ficha enquanto a forma estiver ativa." },
     { id: "revisao", titulo: "Revisão", ajuda: "Confira tudo. Depois de salvar, as habilidades viram cartas no Resumo e aparecem no painel quando a Bankai estiver ativa." },

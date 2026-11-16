@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { Ficha, FormaLib, HabForma } from "../regras/ficha";
-import type { InstEfeito } from "../regras/efeitos-forma";
+import { podeCero, type InstEfeito } from "../regras/efeitos-forma";
 import { infoRitmo, infoSub, vagasEspeciais, type SubAcao } from "../regras/cartoes";
 import {
   GRUPOS_TECNICA, INTERACOES_GALERIA, TECNICAS, contarForaDeVaga, contarVagas, ehInteracao, ehTecnica, instanciarInteracao, instanciarTecnica, interacaoPorId, interacaoServe, interacoesDe, podeUsarInteracao, tecnicaDe,
@@ -116,12 +116,13 @@ export function TecnicasEspeciais({ f, tipo, r, mud, arma, irParaInteracoes }: P
         {TECNICAS.filter((d) => !grupo || d.grupo === grupo).map((d) => {
           const repetida = minhas.some((e) => e.espec?.id === d.id);
           const lib = liberadoPelaArma(arma, d.armaReq);
-          const travada = repetida || cheio || !lib.ok;
+          const proibidaT = !!d.soHollow && !podeCero(f);
+          const travada = repetida || cheio || !lib.ok || proibidaT;
           const serve = INTERACOES_GALERIA.filter((i) => i.com.length === 0 || i.com.includes(d.id));
           return (
             <article key={d.id} className={`carta-hab carta-peca carta-neutra carta-especial carta-padrao ${travada ? "travada" : ""}`} data-classe={classeDe(tipo)}>
               <div className="carta-topo">
-                <small className="ajuda">Técnica especial · {d.grupo}</small>
+                <small className="ajuda">Técnica especial · {d.grupo}{d.soHollow ? " · Visored e Hollow" : ""}</small>
                 <SeloVaga />
               </div>
               <h3>{d.nome}</h3>
@@ -131,7 +132,7 @@ export function TecnicasEspeciais({ f, tipo, r, mud, arma, irParaInteracoes }: P
               <div className="rodape-carta">
                 {!lib.ok && <p className="aviso-mini aviso-arma">{frase(lib.falta)}</p>}
                 <button type="button" className="btn-mini" disabled={travada} onClick={() => adicionar(d)}>
-                  {repetida ? "Já está na forma" : !lib.ok ? "Bloqueado pela arma" : cheio ? "Sem vagas" : "Adicionar"}
+                  {repetida ? "Já está na forma" : proibidaT ? "Só Visored e Hollow" : !lib.ok ? "Bloqueado pela arma" : cheio ? "Sem vagas" : "Adicionar"}
                 </button>
               </div>
             </article>

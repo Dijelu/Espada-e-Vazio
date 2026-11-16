@@ -2,7 +2,7 @@
 import { TECNICAS_REISHI, custoTecnicaTexto, type TecnicaReishi } from "./catalogo";
 import { danoSchrift, schriftDaFicha, estagioSchrift, CUSTO_SCHRIFT } from "./schrifts";
 import type { Calculo, Ficha } from "./ficha";
-import { TECNICAS_HAKUDA, acertoHakuda, cdHakuda, custoHakuda, danoHakuda } from "./hakuda";
+import { TECNICAS_HAKUDA, acertoHakuda, cdHakuda, custoHakuda, danoHakuda, impactoAtivo, intercalarAtivo, laminaEPunhoAtivo } from "./hakuda";
 
 /** Bônus de acerto do ataque da classe. Técnicas de Reishi (cap. 03): proficiência + Mente no Schütze, proficiência + Espírito no Ritter. */
 export function acertoClasse(f: Ficha, c: Calculo): number {
@@ -88,15 +88,18 @@ export function danosDaClasse(f: Ficha, c: Calculo): DanoClasse[] {
     const t = TECNICAS_HAKUDA.find((x) => x.nome === nome);
     if (!t) continue;
     const pr = custoHakuda(t, f);
-    const reduz = pr < t.pr ? " (Mestre do Punho: −1 no Combo)" : "";
+    const por = [intercalarAtivo(f, t) ? "Intercalar: metade" : laminaEPunhoAtivo(f) ? "Lâmina e Punho: metade" : "", t.req === "Combo" && f.essencias.some((e) => e.nome === "Mestre do Punho") ? "Mestre do Punho: −1" : ""].filter(Boolean).join("; ");
+    const reduz = pr < t.pr && por ? ` (${por})` : "";
     const nota = [
       t.efeito,
       t.salva ? `Salvaguarda de ${t.salva}, CD ${cdHakuda(f, c)}.` : "",
       t.dano.vezes ? (t.dano.vezes === "prof" ? `Um golpe por ponto de proficiência (${c.prof}), cada um com seu acerto.` : "Três golpes, cada um com seu acerto.") : "",
       t.prExtra ? `Reforço: ${t.prExtra.texto} (${t.prExtra.pr} PR).` : "",
       t.req === "Combo" ? "Combo: vale nos ataques extras da ação Atacar; sem Ataque Extra, usa a Ação." : "",
+      intercalarAtivo(f, t) ? "Intercalar ligado: +1 dado de dano." : "",
+      impactoAtivo(f, t) ? "Impacto Ininterrupto ligado: pode sair como reação depois de acertar corpo a corpo." : "",
     ].filter(Boolean).join(" ");
-    out.push({ nome: t.nome, fonte: "Técnica de Hakuda", dano: danoHakuda(t, f, c), tipo: t.tipo, custo: `${pr} PR${reduz}`, acao: t.req, nota, acerto: t.acerto, bonusAcerto: acertoHakuda(f, c) });
+    out.push({ nome: t.nome, fonte: "Técnica de Hakuda", dano: danoHakuda(t, f, c), tipo: t.tipo, custo: `${pr} PR${reduz}`, acao: impactoAtivo(f, t) ? "Ação ou reação" : t.req, nota, acerto: t.acerto, bonusAcerto: acertoHakuda(f, c) });
   }
   // Visored que aprendeu o Cero (treinamento): 8 PR, 6d8 + Espírito ou Mente
   if (f.origem === "visored" && f.treinos.feitos.includes("visored-3")) {

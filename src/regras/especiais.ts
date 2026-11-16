@@ -3,22 +3,31 @@
    uma interação especial ligada, que diz o que fazer com ela (passo entre clones, Gran Rey Cero junto da energia…).
    Uma técnica pode ter várias interações; cada interação serve a uma técnica. Ação e característica comum se ligam de forma opcional;
    técnica e interação especial, de forma obrigatória. Só tipos (import type) vêm de efeitos-forma, para não fazer ciclo. */
-import type { Efeito, InstEfeito } from "./efeitos-forma";
+import { podeCero, type Efeito, type InstEfeito } from "./efeitos-forma";
 import type { Ficha } from "./ficha";
 import { vagasEspeciais, type DadosCarac, type SubAcao } from "./cartoes";
 import type { CaracArmaId } from "./arma-forma";
+import { INTERACOES_LEVA1, TECNICAS_LEVA1 } from "./especiais-leva1";
+import { INTERACOES_LEVA2, TECNICAS_LEVA2 } from "./especiais-leva2";
 
 /* ---------------- Catálogo ---------------- */
 
 /** Em que grupo a técnica aparece na galeria (só para a tela). */
-export type GrupoTecnica = "Criaturas" | "Campo e vínculo" | "Marcas e poderes" | "Controle e defesa" | "Corpo e reiatsu";
-export const GRUPOS_TECNICA: GrupoTecnica[] = ["Criaturas", "Campo e vínculo", "Marcas e poderes", "Controle e defesa", "Corpo e reiatsu"];
+export type GrupoTecnica =
+  | "Criaturas e invocações" | "Campo e terreno" | "Vínculo e ressonância" | "Marcas e maldições" | "Cargas, reservas e preço" | "Controle e defesa" | "Corpo e arma mutável"
+  | "Espaço e movimento" | "Tempo e ritmo" | "Ilusão e engano" | "Sentidos e regras do duelo" | "Elementos" | "Vida, morte e veneno" | "Hollow e Vazio";
+export const GRUPOS_TECNICA: GrupoTecnica[] = [
+  "Criaturas e invocações", "Campo e terreno", "Vínculo e ressonância", "Marcas e maldições", "Cargas, reservas e preço", "Controle e defesa", "Corpo e arma mutável",
+  "Espaço e movimento", "Tempo e ritmo", "Ilusão e engano", "Sentidos e regras do duelo", "Elementos", "Vida, morte e veneno", "Hollow e Vazio",
+];
 
 export interface DefTecnica {
   id: string;
   nome: string;
   grupo: GrupoTecnica;
   texto: string;
+  /** só para Visored e Hollow */
+  soHollow?: boolean;
   /** características da arma de que a técnica precisa (basta uma). Sem o campo, qualquer arma serve. */
   armaReq?: CaracArmaId[];
   compilar: () => Efeito[];
@@ -41,9 +50,9 @@ export interface DefInteracao {
   compilar: () => Efeito[];
 }
 
-export const TECNICAS: DefTecnica[] = [
+const TECNICAS_BASE: DefTecnica[] = [
   {
-    id: "clones", grupo: "Criaturas", nome: "Clones",
+    id: "clones", grupo: "Criaturas e invocações", nome: "Clones",
     texto: "Cria clones de reiatsu (até metade da proficiência). Têm 1 PV, somem ao ser atingidos e o golpe real chega mesmo se o alvo esquivar do clone. Cria o botão “Criar clones”, que os coloca na aba de invocações.",
     compilar: () => [
       { k: "invoca", nome: "Clone de reiatsu", tipo: "clone", max: "[PROF]/2", pv: 1, cr: "10+[PROF]+[DES]", acerto: "[PROF]+[DES]", dano: "1d8+[PROF]", custoPr: 2, texto: "Some ao ser atingido. O ataque do clone chega atrasado, mesmo que o alvo esquive." },
@@ -51,7 +60,7 @@ export const TECNICAS: DefTecnica[] = [
     ],
   },
   {
-    id: "invocacao", armaReq: ["invocada", "elemental"], grupo: "Criaturas", nome: "Invocação",
+    id: "invocacao", armaReq: ["invocada", "elemental"], grupo: "Criaturas e invocações", nome: "Invocação",
     texto: "Chama até 2 criaturas do tema da forma, que atacam por você e somem ao chegar a 0 PV. Cria o botão “Invocar”.",
     compilar: () => [
       { k: "invoca", nome: "Invocação", tipo: "invocacao", max: 2, pv: "[PROF]*2", cr: "10+[PROF]", acerto: "[PROF]+[FOR]", dano: "[PROF]d6", custoPr: 4, texto: "Criatura do tema da forma." },
@@ -59,7 +68,7 @@ export const TECNICAS: DefTecnica[] = [
     ],
   },
   {
-    id: "invocacao-grande", armaReq: ["invocada", "elemental"], grupo: "Criaturas", nome: "Invocação grande",
+    id: "invocacao-grande", armaReq: ["invocada", "elemental"], grupo: "Criaturas e invocações", nome: "Invocação grande",
     texto: "Chama uma criatura grande e resistente (só uma por vez). Cria o botão “Invocar criatura grande”.",
     compilar: () => [
       { k: "invoca", nome: "Criatura grande", tipo: "invocacao", max: 1, pv: "[PROF]*6", cr: "12+[PROF]", acerto: "[PROF]+[FOR]", dano: "[PROF]d8+[PROF]", custoPr: 8, texto: "Criatura grande do tema da forma." },
@@ -67,7 +76,7 @@ export const TECNICAS: DefTecnica[] = [
     ],
   },
   {
-    id: "invocacao-enxame", armaReq: ["enxame", "multiplas-laminas"], grupo: "Criaturas", nome: "Invocação em enxame",
+    id: "invocacao-enxame", armaReq: ["enxame", "multiplas-laminas"], grupo: "Criaturas e invocações", nome: "Invocação em enxame",
     texto: "Chama um enxame de criaturas minúsculas, até a proficiência de uma vez. Cada uma tem 1 PV e some ao ser atingida, mas ataca por você. Cria o botão “Chamar o enxame”. Precisa de uma interação do enxame.",
     compilar: () => [
       { k: "invoca", nome: "Enxame", tipo: "invocacao", max: "[PROF]", pv: 1, cr: "10+[DES]", acerto: "[PROF]+[DES]", dano: "1d4+[PROF]", custoPr: 1, texto: "Criatura minúscula do tema da forma. Some ao ser atingida." },
@@ -75,7 +84,7 @@ export const TECNICAS: DefTecnica[] = [
     ],
   },
   {
-    id: "invocacao-regenerativa", armaReq: ["invocada", "enxame"], grupo: "Criaturas", nome: "Invocação que se regenera",
+    id: "invocacao-regenerativa", armaReq: ["invocada", "enxame"], grupo: "Criaturas e invocações", nome: "Invocação que se regenera",
     texto: "Chama até 2 criaturas que recuperam PV iguais à proficiência no início do seu turno. Cria o botão “Invocar criatura regenerativa”. Precisa de uma interação da regeneração.",
     compilar: () => [
       { k: "invoca", nome: "Criatura regenerativa", tipo: "invocacao", max: 2, pv: "[PROF]*2", cr: "10+[PROF]", acerto: "[PROF]+[FOR]", dano: "[PROF]d6", custoPr: 4, texto: "No início do seu turno, a criatura recupera PV iguais à proficiência." },
@@ -83,7 +92,7 @@ export const TECNICAS: DefTecnica[] = [
     ],
   },
   {
-    id: "invocacao-mutavel", armaReq: ["invocada"], grupo: "Criaturas", nome: "Invocação que se transforma",
+    id: "invocacao-mutavel", armaReq: ["invocada"], grupo: "Criaturas e invocações", nome: "Invocação que se transforma",
     texto: "Chama uma criatura que muda de forma e vira arma ou escudo para você. Só uma por vez. Cria o botão “Invocar criatura mutável”. Precisa de uma interação da transformação.",
     compilar: () => [
       { k: "invoca", nome: "Criatura mutável", tipo: "invocacao", max: 1, pv: "[PROF]*3", cr: "11+[PROF]", acerto: "[PROF]+[FOR]", dano: "[PROF]d6", custoPr: 5, texto: "Pode virar arma ou escudo de reiatsu para você (veja as interações)." },
@@ -91,57 +100,57 @@ export const TECNICAS: DefTecnica[] = [
     ],
   },
   {
-    id: "dominio", armaReq: ["elemental", "invocada", "foco", "ilusoria", "espacial"], grupo: "Campo e vínculo", nome: "Domínio (campo)",
+    id: "dominio", armaReq: ["elemental", "invocada", "foco", "ilusoria", "espacial"], grupo: "Campo e terreno", nome: "Domínio (campo)",
     texto: "Abre um campo de 9 metros de raio em volta de você, que dura até o fim da cena ou até você sair dele. As regras do campo vêm das interações. Cria o botão “Abrir o domínio” (uma ação). Precisa de uma interação do domínio.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Abrir o domínio", ritmo: "acao", faz: "texto" } }],
   },
   {
-    id: "vinculo", armaReq: ["corrente", "segmentavel", "invocada", "contato", "ilusoria", "venenosa"], grupo: "Campo e vínculo", nome: "Vínculo",
+    id: "vinculo", armaReq: ["corrente", "segmentavel", "invocada", "contato", "ilusoria", "venenosa"], grupo: "Vínculo e ressonância", nome: "Vínculo",
     texto: "Liga você a uma criatura a até 18 metros (ela faz salvaguarda de Mente para resistir). O vínculo dura até o fim da cena e só existe com uma criatura por vez. Cria o botão “Criar vínculo”. Precisa de uma interação do vínculo.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Criar vínculo", ritmo: "bonus", faz: "texto" } }],
   },
   {
-    id: "copiar", grupo: "Marcas e poderes", nome: "Copiar poderes",
+    id: "copiar", grupo: "Sentidos e regras do duelo", nome: "Copiar poderes",
     texto: "Reação: ao ver uma criatura usar uma técnica, você copia o poder dela por turnos iguais à proficiência. Cria o botão “Copiar poder”. Precisa de uma interação da cópia.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Copiar poder", ritmo: "reacao", faz: "texto" } }],
   },
   {
-    id: "marcar-detonar", armaReq: ["projetil", "arremesso", "enxame", "foco", "elemental"], grupo: "Marcas e poderes", nome: "Marcar e detonar",
+    id: "marcar-detonar", armaReq: ["projetil", "arremesso", "enxame", "foco", "elemental"], grupo: "Marcas e maldições", nome: "Marcar e detonar",
     texto: "Ação bônus: coloca uma marca de reiatsu numa criatura a até 18 metros (até a proficiência de marcas ao mesmo tempo). As marcas só fazem algo quando você as detona. Cria o botão “Marcar para detonar”. Precisa de uma interação das marcas.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Marcar para detonar", ritmo: "bonus", faz: "texto" } }],
   },
   {
-    id: "marcar-alvo", grupo: "Marcas e poderes", nome: "Marcar alvo",
+    id: "marcar-alvo", grupo: "Marcas e maldições", nome: "Marcar alvo",
     texto: "Ação bônus: marca uma criatura a até 18 metros. O primeiro ataque de cada aliado contra ela no turno causa 1d6 de dano a mais. Cria o botão “Marcar alvo”.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Marcar alvo", ritmo: "bonus", faz: "texto", ref: "1d6" } }],
   },
   {
-    id: "energia", armaReq: ["projetil", "foco", "longo-alcance", "elemental"], grupo: "Marcas e poderes", nome: "Ataque com energia",
+    id: "energia", armaReq: ["projetil", "foco", "longo-alcance", "elemental"], grupo: "Cargas, reservas e preço", nome: "Ataque com energia",
     texto: "Ação bônus: você junta energia (Cero, flecha de reishi, onda de reiatsu) e a sua próxima ação de ataque à distância sai carregada, com +6 metros de alcance. Cria o botão “Juntar energia” e a ação “Lançar a energia”, um ataque à distância de proficiência d6 de Energia que solta a carga.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Juntar energia", ritmo: "bonus", faz: "texto" } }],
   },
   {
-    id: "acumular-poder", grupo: "Marcas e poderes", nome: "Acumular poder",
+    id: "acumular-poder", grupo: "Cargas, reservas e preço", nome: "Acumular poder",
     texto: "Reação: sempre que você sofre dano ou anda pelo menos 6 metros no turno, ganha 1 carga (até a proficiência, até o fim da cena). Cria o botão “Ganhar carga”. Precisa de uma interação das cargas.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Ganhar carga", ritmo: "reacao", faz: "texto" } }],
   },
   {
-    id: "absorver-devolver", grupo: "Marcas e poderes", nome: "Absorver e devolver",
+    id: "absorver-devolver", grupo: "Cargas, reservas e preço", nome: "Absorver e devolver",
     texto: "Reação: a lâmina absorve o golpe que o atingiria: o dano cai em proficiência d8, e o valor reduzido fica guardado até o fim da cena. Cria o botão “Absorver o golpe”. Precisa de uma interação do que foi guardado.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Absorver o golpe", ritmo: "reacao", faz: "texto", ref: "[PROF]d8" } }],
   },
   {
-    id: "sobrecarga", grupo: "Marcas e poderes", nome: "Sobrecarga",
+    id: "sobrecarga", grupo: "Cargas, reservas e preço", nome: "Sobrecarga",
     texto: "Ação bônus: você libera mais poder do que o corpo aguenta. Até o fim do seu próximo turno, os seus ataques causam 1d6 de dano a mais, mas no início de cada turno seu você sofre proficiência d4 de dano, que nada reduz. Cria o botão “Sobrecarregar”. Precisa de uma interação da sobrecarga.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Sobrecarregar", ritmo: "bonus", faz: "texto", ref: "1d6" } }],
   },
   {
-    id: "corte-espaco", armaReq: ["espacial", "longo-alcance"], grupo: "Marcas e poderes", nome: "Corte no espaço",
+    id: "corte-espaco", armaReq: ["espacial", "longo-alcance"], grupo: "Espaço e movimento", nome: "Corte no espaço",
     texto: "Ação bônus: a lâmina corta o próprio espaço. Até o fim do turno, a sua próxima ação de ataque corpo a corpo alcança uma criatura a até 12 metros, sem ser barrada por cobertura nem por barreira. Cria o botão “Cortar o espaço” e a ação “Golpe pelo espaço”, um ataque corpo a corpo de proficiência d8 que atravessa o corte. Precisa de uma interação do corte.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Cortar o espaço", ritmo: "bonus", faz: "texto" } }],
   },
   {
-    id: "ilusao", grupo: "Controle e defesa", nome: "Ilusão", armaReq: ["ilusoria", "foco"],
+    id: "ilusao", grupo: "Ilusão e engano", nome: "Ilusão", armaReq: ["ilusoria", "foco"],
     texto: "Ação bônus: uma criatura a até 18 metros faz salvaguarda de Mente (CD 8 + proficiência + atributo). Se falhar, fica presa numa ilusão até o fim do seu próximo turno: os seus ataques contra ela têm vantagem e os dela contra você têm desvantagem. Só uma criatura iludida por vez. Cria o botão “Lançar ilusão”. Precisa de uma interação da ilusão.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Lançar ilusão", ritmo: "bonus", faz: "texto" } }],
   },
@@ -156,23 +165,25 @@ export const TECNICAS: DefTecnica[] = [
     compilar: () => [{ k: "gera", botao: { rotulo: "Erguer barreira", ritmo: "bonus", faz: "texto" } }, { k: "gera", botao: { rotulo: "Barreira recebe o golpe", ritmo: "reacao", faz: "texto" } }],
   },
   {
-    id: "veneno", grupo: "Corpo e reiatsu", nome: "Veneno", armaReq: ["venenosa", "natural", "contato"],
+    id: "veneno", grupo: "Vida, morte e veneno", nome: "Veneno", armaReq: ["venenosa", "natural", "contato"],
     texto: "Ação bônus, ao acertar um golpe: o alvo ganha 1 dose de veneno (até a proficiência de doses). No início de cada turno seu, ele sofre 1d4 de dano por dose, que nenhuma redução diminui. As doses duram até o fim da cena. Cria o botão “Envenenar”. Precisa de uma interação do veneno.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Envenenar", ritmo: "bonus", faz: "texto" } }],
   },
   {
-    id: "aceleracao", grupo: "Corpo e reiatsu", nome: "Aceleração", armaReq: ["aerea", "agil", "dupla"],
+    id: "aceleracao", grupo: "Espaço e movimento", nome: "Aceleração", armaReq: ["aerea", "agil", "dupla"],
     texto: "Ação bônus: até o fim do turno você ganha +9 metros de deslocamento, não provoca ataques de oportunidade e o seu primeiro ataque causa 1d8 de dano a mais. Cria o botão “Acelerar”. Precisa de uma interação da aceleração.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Acelerar", ritmo: "bonus", faz: "texto", ref: "1d8" } }],
   },
   {
-    id: "dreno", grupo: "Corpo e reiatsu", nome: "Drenar reiatsu", armaReq: ["natural", "contato", "venenosa", "corrente"],
+    id: "dreno", grupo: "Vida, morte e veneno", nome: "Drenar reiatsu", armaReq: ["natural", "contato", "venenosa", "corrente"],
     texto: "Ação bônus, ao acertar um golpe corpo a corpo: você suga a força do alvo. Ele sofre proficiência d6 de dano, que nenhuma redução diminui, e você recupera o mesmo valor em PV. Cria o botão “Drenar”. Precisa de uma interação do dreno.",
     compilar: () => [{ k: "gera", botao: { rotulo: "Drenar", ritmo: "bonus", faz: "texto", ref: "[PROF]d6" } }],
   },
 ];
+export const TECNICAS: DefTecnica[] = [...TECNICAS_BASE, ...TECNICAS_LEVA1, ...TECNICAS_LEVA2];
 
-export const INTERACOES: DefInteracao[] = [
+
+const INTERACOES_BASE: DefInteracao[] = [
   {
     id: "comandar-invocacao", nome: "Comandar invocação", com: ["invocacao", "invocacao-grande"], vale: [], legado: true,
     texto: "Interação automática das fichas antigas. Ação bônus: você manda a criatura chamada atacar ou andar. Mantém a técnica de invocação funcionando como antes. Cria o botão “Comandar invocação”.",
@@ -504,17 +515,21 @@ export const INTERACOES: DefInteracao[] = [
     compilar: () => [{ k: "gera", botao: { rotulo: "Devorar a criatura", ritmo: "bonus", faz: "texto", ref: "[PROF]d6" } }],
   },
 ];
+export const INTERACOES: DefInteracao[] = [...INTERACOES_BASE, ...INTERACOES_LEVA1, ...INTERACOES_LEVA2];
+
 
 /** Interações que o jogador pode escolher na galeria (as automáticas das fichas antigas ficam de fora). */
 export const INTERACOES_GALERIA = INTERACOES.filter((i) => !i.legado);
 /** Interação automática de cada técnica que veio de ficha antiga. */
 export const INTERACAO_PADRAO: Record<string, string> = { clones: "passo-clones", invocacao: "comandar-invocacao", "invocacao-grande": "comandar-invocacao", "marcar-alvo": "usar-marca" };
 
+/** Esta técnica ou interação é só de Visored e Hollow? */
+export const especialSoHollow = (id: string | undefined) => !!id && !!(TECNICAS.find((t) => t.id === id)?.soHollow || INTERACOES.find((t) => t.id === id)?.soHollow);
 export const tecnicaPorId = (id: string) => TECNICAS.find((t) => t.id === id);
 export const interacaoPorId = (id: string) => INTERACOES.find((t) => t.id === id);
 
 /** Só Visored e Hollow usam o Gran Rey Cero junto da energia. */
-export const podeUsarInteracao = (def: DefInteracao, f: Pick<Ficha, "origem" | "classe">) => !def.soHollow || f.origem === "visored" || f.classe === "hueco" || f.classe === "vazio";
+export const podeUsarInteracao = (def: DefInteracao, f: Pick<Ficha, "origem" | "classe">) => !def.soHollow || podeCero(f);
 
 /* ---------------- Montar a peça de efeitos ---------------- */
 

@@ -4,6 +4,7 @@ import acoesJson from "./acoes-forma.json";
 import modelosVoll from "./vollstandig-modelos.json";
 import type { Calculo, Ficha, FormaLib, HabForma, TipoForma } from "./ficha";
 import { alvosDaAcao } from "./dano-acoes-forma";
+import { classificarHab } from "./classificar-hab";
 import { danoExtraDaAcao, type Alvo } from "./efeitos-forma";
 import { somarDadosGolpe } from "./mascara";
 
@@ -320,6 +321,15 @@ export function danoDaAcao(expr: string, f: Ficha, c: Calculo, forma: FormaLib, 
     if (x.fixo > 0) base += `+${x.fixo}`;
     else if (x.fixo < 0) base += String(x.fixo);
   }
+  // dano fixo corpo a corpo da Origem (Infectado, Predador, Caçador…) e das passivas: vale nas ações de ataque corpo a corpo da forma ativa
+  if (h && h.acao !== "Reação") {
+    const cl = classificarHab(h as never);
+    if (!cl.distancia && (cl.teste === "ataque" || cl.teste === "ataque+salva")) {
+      const daForma = Math.max(0, (c.forma?.dano.golpe ?? 0) - (c.forma?.dano.disparo ?? 0));
+      const corpo = c.danoCorpo - daForma;
+      if (corpo > 0) base += `+${corpo}`;
+    }
+  }
   // Máscara Hollow: dados a mais nas técnicas de Zanpakutou enquanto a forma está ativa
   if (alvos.length && c.dadosTecnicaMascara > 0 && f.estado.liberado === liberacaoDaForma(forma.tipo) && /\d+d\d+/.test(base)) base = somarDadosGolpe(base, c.dadosTecnicaMascara);
   return base;
@@ -354,9 +364,9 @@ export function maiorCustoPR(habs: { custo: string }[]): number {
   return m;
 }
 
-/** Sugestão de custo de liberação pelo maior custo de PR entre as habilidades. Shikai 3–10 PR, Bankai 40–80 PR. */
+/** Sugestão de custo de liberação pelo maior custo de PR entre as habilidades. Shikai 3–10 PR, Bankai 40–100 PR. */
 export function sugerirCusto(tipo: "shikai" | "bankai" | "bankai2", habs: { custo: string }[]): number {
   const m = maiorCustoPR(habs);
   if (tipo === "shikai") return m <= 0 ? 3 : m <= 5 ? 4 : m <= 10 ? 6 : m <= 15 ? 8 : 10;
-  return m <= 15 ? 40 : m <= 25 ? 50 : m <= 35 ? 60 : m <= 50 ? 70 : 80;
+  return m <= 15 ? 40 : m <= 25 ? 50 : m <= 35 ? 60 : m <= 50 ? 70 : m <= 70 ? 85 : 100;
 }
