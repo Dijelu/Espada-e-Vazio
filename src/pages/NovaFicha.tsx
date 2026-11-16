@@ -145,7 +145,7 @@ export default function NovaFicha() {
   };
 
   const escolherClasse = (id: string) => {
-    mudar({ classe: id, subclasse: "", saveExtra: [], pericias: [], talentos: [], kidos: [], tecnicasReishi: [], equip: equipamentoPadrao() });
+    mudar({ classe: id, subclasse: "", saveExtra: [], pericias: [], talentos: [], kidos: [], tecnicasReishi: [], tecnicasHakuda: [], equip: equipamentoPadrao() });
   };
 
   const mudarNivel = (n: number) => {

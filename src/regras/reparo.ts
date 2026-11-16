@@ -5,6 +5,7 @@ import { ATRIBUTOS, PERICIAS, calcular, classePorId, liberacaoValida, normalizar
 import { MASCARA_TETO, mascaraAtiva, podeMascara, tempMascara } from "./mascara";
 import { calcularLiberacao } from "./liberacao-forma";
 import { SCHRIFTS } from "./schrifts";
+import { nomesHakuda } from "./hakuda";
 import { normalizarEfeitos } from "./efeitos-forma";
 import { cartaoValido } from "./cartoes";
 import { caracsValidas, normalizarArma } from "./arma-forma";
@@ -81,6 +82,9 @@ function repararBase(bruta: Ficha): Reparo {
 
   const tec = unicos(f.tecnicasReishi.filter((t) => tecnicasValidas.has(t)));
   if (tec.length !== f.tecnicasReishi.length) { f.tecnicasReishi = tec; nota("Técnicas de Reishi repetidas ou que não existem foram retiradas."); }
+
+  const hak = unicos(f.tecnicasHakuda.filter((t) => nomesHakuda.has(t)));
+  if (hak.length !== f.tecnicasHakuda.length) { f.tecnicasHakuda = hak; nota("Técnicas de Hakuda repetidas ou que não existem foram retiradas."); }
 
   const ess = unicos(f.essencias, (e) => e.id);
   if (ess.length !== f.essencias.length) { f.essencias = ess; nota("Essências repetidas foram retiradas."); }

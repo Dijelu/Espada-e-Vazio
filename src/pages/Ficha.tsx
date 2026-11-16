@@ -13,6 +13,7 @@ import { NomeEssencia, TrocarEssencia } from "../components/EssenciaPecas";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { PainelKidos } from "../components/PainelKidos";
 import { acertoClasse, danosDaClasse } from "../regras/danos-classe";
+import { TECNICAS_HAKUDA, custoHakuda } from "../regras/hakuda";
 import { CartasHabilidades, CartasSituacoes, CondicoesAtivas, EfeitosAtivos } from "../components/CartasResumo";
 import { AcoesRapidas } from "../components/AcoesRapidas";
 import { EscolhaPoderes, pendencias, subclassePendente, totalPendencias } from "../components/EscolhaPoderes";
@@ -802,16 +803,16 @@ function DanosDaClasse({ f, c, r }: { f: TFicha; c: ReturnType<typeof calcular>;
   return (
     <>
       {lista.map((d) => (
-        <div className="carta-mini carta-ataque arma-classe" data-origem={d.fonte === "Classe" ? origemDaFonte("", f) : "quincy"} key={d.nome}>
+        <div className="carta-mini carta-ataque arma-classe" data-origem={d.fonte === "Classe" || d.fonte === "Técnica de Hakuda" ? origemDaFonte("", f) : "quincy"} key={d.nome}>
           <b>{d.nome} <em className="ca-tag">{d.fonte === "Classe" ? "da classe" : "técnica"}</em></b>
           <div className="ca-stats">
-            {d.acerto && <span>Acerto <b>{mod(acerto)}</b></span>}
+            {d.acerto && <span>Acerto <b>{mod(d.bonusAcerto ?? acerto)}</b></span>}
             <span>Dano <b>{d.dano}</b> de {d.tipo}</span>
             {d.acao && <span>Ação <b>{d.acao}</b></span>}
             {d.custo && <span>Custo <b>{d.custo}</b></span>}
           </div>
           {d.nota && <small className="ajuda">{d.nota}</small>}
-          {d.acerto ? <LinhaAtaque r={r} nome={d.nome} bonus={acerto} dano={d.dano} /> : (
+          {d.acerto ? <LinhaAtaque r={r} nome={d.nome} bonus={d.bonusAcerto ?? acerto} dano={d.dano} /> : (
             <span className="rolar-grupo">
               <button type="button" className="rolar" onClick={() => r.expr(`Dano: ${d.nome}`, d.dano)}>Dano</button>
             </span>
@@ -836,7 +837,7 @@ function LinhaAtaque({ r, nome, bonus, dano }: { r: Rolagens; nome: string; bonu
 /** Talentos, Kidō e técnicas escolhidos, com a descrição do livro. */
 function PoderesEscolhidos({ f }: { f: TFicha }) {
   const tals = talentosDe(f.classe).filter((t) => f.talentos.includes(t.id));
-  const nada = tals.length + f.kidos.length + f.tecnicasReishi.length === 0;
+  const nada = tals.length + f.kidos.length + f.tecnicasReishi.length + f.tecnicasHakuda.length === 0;
   if (nada) return null;
   return (
     <div className="caixa">
@@ -853,6 +854,14 @@ function PoderesEscolhidos({ f }: { f: TFicha }) {
         </p>
       ))}
       <div className="cartas-hab">
+        {f.tecnicasHakuda.map((t) => {
+          const d = TECNICAS_HAKUDA.find((x) => x.nome === t);
+          return (
+            <CartaPoder key={t} tipo="comum" selo="Técnica de Hakuda" nome={t} tags={d ? [{ t: d.req, pr: false }, { t: `${custoHakuda(d, f)} PR`, pr: true }, { t: d.alcance, pr: false }] : []}>
+              {d && <p>{d.efeito}{d.salva ? ` Salvaguarda de ${d.salva}.` : ""}</p>}
+            </CartaPoder>
+          );
+        })}
         {f.tecnicasReishi.map((t) => {
           const d = TECNICAS_REISHI.find((x) => x.nome === t);
           return (

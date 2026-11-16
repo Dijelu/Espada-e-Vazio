@@ -15,6 +15,7 @@ import {
   treinoConcluido,
   tecnicasConhecidas,
 } from "../regras/catalogo";
+import { TECNICAS_HAKUDA, custoHakuda, limiteTecnicasHakuda } from "../regras/hakuda";
 import { ATR_KIDO_LIVRO, classePorId, type Ficha } from "../regras/ficha";
 import { Dica, Info } from "./Dica";
 import { formaPendente } from "../regras/liberacoes";
@@ -26,6 +27,8 @@ export interface Pendencias {
   talentos: number;
   kidos: number;
   tecnicas: number;
+  /** Técnicas de Hakuda por escolher */
+  hakuda: number;
   /** forma de liberação (Bankai, Resurrección ou Vollständig) por montar */
   forma: number;
   /** subclasse do nível 3 ainda sem escolha */
@@ -47,6 +50,7 @@ export function pendencias(f: Ficha): Pendencias {
     talentos: Math.max(0, slotsTalento(f.nivel) - tals),
     kidos: Math.max(0, kidosConhecidos(f.classe, f.nivel) - f.kidos.length),
     tecnicas: Math.max(0, tecnicasConhecidas(f.classe, f.nivel) - f.tecnicasReishi.length),
+    hakuda: Math.max(0, limiteTecnicasHakuda(f) - f.tecnicasHakuda.length),
     forma: formaPendente(f, classePorId(f.classe)?.tipo, (k) => !["shikai", "bankai", "resurreccion"].includes(k) || treinoConcluido(f, k)) ? 1 : 0,
     subclasse: subclassePendente(f) ? 1 : 0,
     melhorias: melhoriasPendentes(f),
@@ -54,7 +58,7 @@ export function pendencias(f: Ficha): Pendencias {
   };
 }
 
-export const totalPendencias = (p: Pendencias) => p.talentos + p.kidos + p.tecnicas + p.forma + p.subclasse + p.melhorias + p.schrift;
+export const totalPendencias = (p: Pendencias) => p.talentos + p.kidos + p.tecnicas + p.hakuda + p.forma + p.subclasse + p.melhorias + p.schrift;
 
 export function EscolhaPoderes({ f, mudar }: { f: Ficha; mudar: (p: Partial<Ficha>) => void }) {
   const classe = classePorId(f.classe);
@@ -109,6 +113,12 @@ export function EscolhaPoderes({ f, mudar }: { f: Ficha; mudar: (p: Partial<Fich
   const alternarTecnica = (nome: string) => {
     if (f.tecnicasReishi.includes(nome)) mudar({ tecnicasReishi: f.tecnicasReishi.filter((x) => x !== nome) });
     else if (f.tecnicasReishi.length < maxTec) mudar({ tecnicasReishi: [...f.tecnicasReishi, nome] });
+  };
+
+  const maxHak = limiteTecnicasHakuda(f);
+  const alternarHakuda = (nome: string) => {
+    if (f.tecnicasHakuda.includes(nome)) mudar({ tecnicasHakuda: f.tecnicasHakuda.filter((x) => x !== nome) });
+    else if (f.tecnicasHakuda.length < maxHak) mudar({ tecnicasHakuda: [...f.tecnicasHakuda, nome] });
   };
 
   if (!classe) return <p className="ajuda">Escolha uma classe antes.</p>;
@@ -228,6 +238,29 @@ export function EscolhaPoderes({ f, mudar }: { f: Ficha; mudar: (p: Partial<Fich
               );
             })}
           </div>
+        </div>
+      )}
+
+      {maxHak > 0 && (
+        <div className="caixa">
+          <h3>Técnicas de Hakuda</h3>
+          <p className={`contagem ${pend.hakuda === 0 ? "ok" : ""}`} role="status">
+            {f.tecnicasHakuda.length} de {maxHak} conhecida(s){pend.hakuda > 0 ? ` · faltam ${pend.hakuda}` : ""}
+          </p>
+          <div className="lista-kido">
+            {TECNICAS_HAKUDA.map((t) => {
+              const on = f.tecnicasHakuda.includes(t.nome);
+              return (
+                <Dica key={t.nome} balao={<><b>{t.nome}</b><small>Hakuda · {t.req} · {custoHakuda(t, f)} PR · {t.alcance}</small><small>{t.efeito}</small></>}>
+                  <button type="button" className={`kido ${on ? "on" : ""}`} onClick={() => alternarHakuda(t.nome)} aria-pressed={on} disabled={!on && f.tecnicasHakuda.length >= maxHak}>
+                    <i>{t.req === "Combo" ? "C" : t.req === "Reação" ? "R" : t.req === "Ação Bônus" ? "B" : "A"}</i>
+                    <span>{t.nome}</span>
+                  </button>
+                </Dica>
+              );
+            })}
+          </div>
+          <p className="ajuda">A: ação · B: ação bônus · C: Combo (ataque extra) · R: reação. Três técnicas no 3º nível de Hakuda, mais três no 12º; os talentos Versatilidade Marcial e Marcial dão mais duas cada.</p>
         </div>
       )}
 

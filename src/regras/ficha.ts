@@ -666,6 +666,8 @@ export interface Ficha {
   /** atributo usado no acerto, na CD e no dano dos Kidōs (Hadō e Bakudō): escolha do jogador; fichas antigas ficam com Espírito */
   atrKido: AtrKido;
   tecnicasReishi: string[];
+  /** Técnicas de Hakuda conhecidas (cap. 11) */
+  tecnicasHakuda: string[];
   equip: Equip;
   treinos: Treinos;
   estado: Estado;
@@ -735,6 +737,7 @@ export function fichaNova(): Ficha {
     kidos: [],
     atrKido: "esp",
     tecnicasReishi: [],
+    tecnicasHakuda: [],
     equip: { forca: "", divisao: 0, asauchi: "", armas: [], artefato: "", naturalForma: "", extras: "" },
     treinos: { feitos: [], pf: 0, geralDias: 0, caminhoBankai: "" },
     estado: { pvTemp: 0, liberado: "", mascaraAtiva: false, condicoes: [], ultimoFolegoUsado: false, curtosUsados: 0, ativas: [], usos: {} },
@@ -821,6 +824,7 @@ export function normalizar(bruto: Partial<Ficha> | null | undefined): Ficha {
   f.kidos = lista<KidoEscolhido>(f.kidos, obj);
   f.atrKido = f.atrKido === "men" ? "men" : "esp";
   f.tecnicasReishi = lista<string>(f.tecnicasReishi, texto);
+  f.tecnicasHakuda = lista<string>(f.tecnicasHakuda, texto);
   const formas: Ficha["formas"] = {};
   for (const [tipo, forma] of Object.entries(obj(f.formas) ? f.formas : {})) {
     const nf = normalizarFormaLib(forma, tipo as TipoForma);

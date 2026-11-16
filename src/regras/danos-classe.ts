@@ -2,6 +2,7 @@
 import { TECNICAS_REISHI, custoTecnicaTexto, type TecnicaReishi } from "./catalogo";
 import { danoSchrift, schriftDaFicha, estagioSchrift, CUSTO_SCHRIFT } from "./schrifts";
 import type { Calculo, Ficha } from "./ficha";
+import { TECNICAS_HAKUDA, acertoHakuda, cdHakuda, custoHakuda, danoHakuda } from "./hakuda";
 
 /** Bônus de acerto do ataque da classe. Técnicas de Reishi (cap. 03): proficiência + Mente no Schütze, proficiência + Espírito no Ritter. */
 export function acertoClasse(f: Ficha, c: Calculo): number {
@@ -23,6 +24,8 @@ export interface DanoClasse {
   complemento?: boolean;
   /** o ataque usa jogada de acerto (senão, o alvo faz salvaguarda) */
   acerto?: boolean;
+  /** bônus de acerto próprio, quando difere do da classe (Hakuda) */
+  bonusAcerto?: number;
 }
 
 /** Atributo-chave das Técnicas de Reishi: Mente para o Schütze, Espírito para o Ritter. */
@@ -79,6 +82,21 @@ export function danosDaClasse(f: Ficha, c: Calculo): DanoClasse[] {
         out.push(l);
       }
     }
+  }
+  // Técnicas de Hakuda: acerto = proficiência + Força ou Destreza; salvaguarda com CD 8 + o mesmo
+  for (const nome of f.tecnicasHakuda) {
+    const t = TECNICAS_HAKUDA.find((x) => x.nome === nome);
+    if (!t) continue;
+    const pr = custoHakuda(t, f);
+    const reduz = pr < t.pr ? " (Mestre do Punho: −1 no Combo)" : "";
+    const nota = [
+      t.efeito,
+      t.salva ? `Salvaguarda de ${t.salva}, CD ${cdHakuda(f, c)}.` : "",
+      t.dano.vezes ? (t.dano.vezes === "prof" ? `Um golpe por ponto de proficiência (${c.prof}), cada um com seu acerto.` : "Três golpes, cada um com seu acerto.") : "",
+      t.prExtra ? `Reforço: ${t.prExtra.texto} (${t.prExtra.pr} PR).` : "",
+      t.req === "Combo" ? "Combo: vale nos ataques extras da ação Atacar; sem Ataque Extra, usa a Ação." : "",
+    ].filter(Boolean).join(" ");
+    out.push({ nome: t.nome, fonte: "Técnica de Hakuda", dano: danoHakuda(t, f, c), tipo: t.tipo, custo: `${pr} PR${reduz}`, acao: t.req, nota, acerto: t.acerto, bonusAcerto: acertoHakuda(f, c) });
   }
   // Visored que aprendeu o Cero (treinamento): 8 PR, 6d8 + Espírito ou Mente
   if (f.origem === "visored" && f.treinos.feitos.includes("visored-3")) {

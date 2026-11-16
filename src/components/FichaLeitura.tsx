@@ -215,6 +215,12 @@ export function FichaLeitura({ f, nome }: { f: Ficha; nome?: string }) {
           {periciasTreinadas.length ? (
             <div className="chips">{periciasTreinadas.map((p) => <span className="chip" key={p.id}>{p.nome} {mod(c.pericias[p.id].total)}</span>)}</div>
           ) : <p className="ajuda">Nenhuma.</p>}
+          {f.tecnicasHakuda.length > 0 && (
+            <>
+              <p><b>Técnicas de Hakuda:</b></p>
+              <div className="chips">{f.tecnicasHakuda.map((t) => <span key={t} className="chip">{t}</span>)}</div>
+            </>
+          )}
         </Bloco>
       </div>
 
@@ -240,7 +246,7 @@ export function FichaLeitura({ f, nome }: { f: Ficha; nome?: string }) {
             <div className="carta-mini carta-ataque" key={d.nome}>
               <b>{d.nome} <em className="ca-tag">{d.fonte === "Classe" ? "da classe" : "técnica"}</em></b>
               <div className="ca-stats">
-                {d.acerto && <span>Acerto <b>{mod(acertoCl)}</b></span>}
+                {d.acerto && <span>Acerto <b>{mod(d.bonusAcerto ?? acertoCl)}</b></span>}
                 <span>Dano <b>{d.dano}</b> de {d.tipo}</span>
                 {d.acao && <span>Ação <b>{d.acao}</b></span>}
                 {d.custo && <span>Custo <b>{d.custo}</b></span>}
@@ -275,7 +281,7 @@ export function FichaLeitura({ f, nome }: { f: Ficha; nome?: string }) {
           ) : <p className="ajuda">Nenhuma.</p>}
         </Bloco>
 
-        <Bloco titulo="Kidōs" n={f.kidos.length + f.tecnicasReishi.length}>
+        <Bloco titulo="Kidōs" n={f.kidos.length + f.tecnicasReishi.length + f.tecnicasHakuda.length}>
           {f.kidos.length ? (
             <ul className="ficha-leitura-lista">
               {f.kidos.map((k) => (

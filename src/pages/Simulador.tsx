@@ -25,7 +25,7 @@ function deFicha(nome: string, f: Ficha): Combatente {
   for (const d of danosDaClasse(f, c)) {
     if (!d.acerto) continue;
     const custo = Number(d.custo?.match(/\d+/)?.[0] ?? 0);
-    acoes.push(acaoVazia({ nome: d.nome, acerto: acertoClasse(f, c), dano: d.dano, custo, esoterico: true, golpes: 1 }));
+    acoes.push(acaoVazia({ nome: d.nome, acerto: d.bonusAcerto ?? acertoClasse(f, c), dano: d.dano, custo, esoterico: true, golpes: 1 }));
   }
   return { nome, pv: c.pv, pr: c.pr, cr: c.cr, iniciativa: c.iniciativa, rdFis: c.rdFis, rdEso: c.rdEso, hierro: false, acoes: acoes.length ? acoes : [acaoVazia()] };
 }
