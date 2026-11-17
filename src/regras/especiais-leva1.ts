@@ -61,7 +61,7 @@ export const TECNICAS_LEVA1: DefTecnica[] = [
     compilar: () => [bt("Arco voltaico", "acao", "[PROF]d6")],
   },
   {
-    id: "contagem", grupo: "Marcas e maldições", nome: "Contagem regressiva",
+    id: "contagem", grupo: "Marcas e maldições", nome: "Marca da contagem",
     texto: "Ação bônus: marca uma criatura com o número da sua proficiência. Cada vez que você a acerta, o número cai 1. No 0, o seu próximo golpe nela é crítico e a marca some. Cria os botões “Começar contagem” e “Acertar o marcado”. Precisa de uma interação da contagem.",
     compilar: () => [bt("Começar contagem"), bt("Acertar o marcado", "reacao")],
   },

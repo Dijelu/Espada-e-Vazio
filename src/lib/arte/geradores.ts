@@ -197,7 +197,7 @@ const VA = (() => {
   const EMB = { "Espadas Aladas": "espada-alada", "Galvano Javelin": "relampago-foco", "Sklaverei: Descarga": "cristal-brilho",
     "Força Espiritual": "cristais", "Potência Espiritual": "cristal-brilho", "Olhos do Céu": "cristal-olho", "Velocidade": "pe-alado",
     "Arma Espiritual": "lamina-relicario", "Consciência Expandida": "terceiro-olho", "Sklaverei": "cristal-barras", "Voo": "asa-pena", "Carga Elétrica": "relampago" };
-  const medalhao = (nome) => `<span class="va-emb" aria-hidden="true"><svg viewBox="0 0 64 64"><path class="m-1" d="M32 2L50 8L62 24V40L50 56L32 62L14 56L2 40V24L14 8Z"/><path class="m-2" d="M32 7L47 12L57 25V39L47 52L32 57L17 52L7 39V25L17 12Z"/><path class="m-3" d="M32 0V6M32 58V64M0 32H6M58 32H64"/></svg>${ic(EMB[nome] || "estrela4", "m-ic")}</span>`;
+  const medalhao = (nome) => `<span class="va-emb" aria-hidden="true"><svg viewBox="0 0 64 64"><path class="m-1" d="M32 2L50 8L62 24V40L50 56L32 62L14 56L2 40V24L14 8Z"/><path class="m-2" d="M32 7L47 12L57 25V39L47 52L32 57L17 52L7 39V25L17 12Z"/><path class="m-3" d="M32 0V6M32 58V64M0 32H6M58 32H64"/></svg>${ic(EMB[nome] || (/^[a-z0-9-]+$/.test(nome || "") ? nome : "estrela4"), "m-ic")}</span>`;
 
   return { cabArte, bannerArte, simbolos, defsGema, gema, ic, cantos, medalhao, EMB, PRNG, afina, linha, veias, lamina, f, estrela, cruz };
 })();

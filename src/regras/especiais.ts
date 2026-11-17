@@ -9,6 +9,8 @@ import { vagasEspeciais, type DadosCarac, type SubAcao } from "./cartoes";
 import type { CaracArmaId } from "./arma-forma";
 import { INTERACOES_LEVA1, TECNICAS_LEVA1 } from "./especiais-leva1";
 import { INTERACOES_LEVA2, TECNICAS_LEVA2 } from "./especiais-leva2";
+import { INTERACOES_LEVA3, TECNICAS_LEVA3 } from "./especiais-leva3";
+import { INTERACOES_LEVA4, TECNICAS_LEVA4 } from "./especiais-leva4";
 
 /* ---------------- Catálogo ---------------- */
 
@@ -180,7 +182,7 @@ const TECNICAS_BASE: DefTecnica[] = [
     compilar: () => [{ k: "gera", botao: { rotulo: "Drenar", ritmo: "bonus", faz: "texto", ref: "[PROF]d6" } }],
   },
 ];
-export const TECNICAS: DefTecnica[] = [...TECNICAS_BASE, ...TECNICAS_LEVA1, ...TECNICAS_LEVA2];
+export const TECNICAS: DefTecnica[] = [...TECNICAS_BASE, ...TECNICAS_LEVA1, ...TECNICAS_LEVA2, ...TECNICAS_LEVA3, ...TECNICAS_LEVA4];
 
 
 const INTERACOES_BASE: DefInteracao[] = [
@@ -515,13 +517,22 @@ const INTERACOES_BASE: DefInteracao[] = [
     compilar: () => [{ k: "gera", botao: { rotulo: "Devorar a criatura", ritmo: "bonus", faz: "texto", ref: "[PROF]d6" } }],
   },
 ];
-export const INTERACOES: DefInteracao[] = [...INTERACOES_BASE, ...INTERACOES_LEVA1, ...INTERACOES_LEVA2];
+export const INTERACOES: DefInteracao[] = [...INTERACOES_BASE, ...INTERACOES_LEVA1, ...INTERACOES_LEVA2, ...INTERACOES_LEVA3, ...INTERACOES_LEVA4];
 
 
 /** Interações que o jogador pode escolher na galeria (as automáticas das fichas antigas ficam de fora). */
 export const INTERACOES_GALERIA = INTERACOES.filter((i) => !i.legado);
 /** Interação automática de cada técnica que veio de ficha antiga. */
 export const INTERACAO_PADRAO: Record<string, string> = { clones: "passo-clones", invocacao: "comandar-invocacao", "invocacao-grande": "comandar-invocacao", "marcar-alvo": "usar-marca" };
+
+/** Ícone (do acervo /arte/sprite.svg) de cada grupo de técnica, para o medalhão do cartão. */
+export const ICONE_DO_GRUPO: Record<GrupoTecnica, string> = {
+  "Criaturas e invocações": "lobo-cabeca", "Campo e terreno": "sol-nuvem", "Vínculo e ressonância": "coracao-preso", "Marcas e maldições": "mira",
+  "Cargas, reservas e preço": "gota-pr", "Controle e defesa": "correntes", "Corpo e arma mutável": "forja-espada", "Espaço e movimento": "pe-alado",
+  "Tempo e ritmo": "relogio", "Ilusão e engano": "orbe-fumaca", "Sentidos e regras do duelo": "terceiro-olho", "Elementos": "brasas",
+  "Vida, morte e veneno": "coracao", "Hollow e Vazio": "mascara-caveira",
+};
+export const iconeDaTecnica = (id: string | undefined) => { const t = TECNICAS.find((x) => x.id === id); return t ? ICONE_DO_GRUPO[t.grupo] : "eclipse"; };
 
 /** Esta técnica ou interação é só de Visored e Hollow? */
 export const especialSoHollow = (id: string | undefined) => !!id && !!(TECNICAS.find((t) => t.id === id)?.soHollow || INTERACOES.find((t) => t.id === id)?.soHollow);

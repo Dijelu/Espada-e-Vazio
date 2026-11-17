@@ -5,6 +5,7 @@ import { infoRitmo, infoSub, vagasEspeciais, type SubAcao } from "../regras/cart
 import {
   GRUPOS_TECNICA, INTERACOES_GALERIA, TECNICAS, contarForaDeVaga, contarVagas, ehInteracao, ehTecnica, instanciarInteracao, instanciarTecnica, interacaoPorId, interacaoServe, interacoesDe, podeUsarInteracao, tecnicaDe,
   type DefInteracao, type DefTecnica, type GrupoTecnica,
+  ICONE_DO_GRUPO,
 } from "../regras/especiais";
 import { subDaHab } from "../regras/caracteristicas";
 import { classeDe } from "./EfeitosForma";
@@ -122,7 +123,7 @@ export function TecnicasEspeciais({ f, tipo, r, mud, arma, irParaInteracoes }: P
           return (
             <article key={d.id} className={`carta-hab carta-peca carta-neutra carta-especial carta-padrao ${travada ? "travada" : ""}`} data-classe={classeDe(tipo)}>
               <div className="carta-topo">
-                <small className="ajuda">Técnica especial · {d.grupo}{d.soHollow ? " · Visored e Hollow" : ""}</small>
+                <small className="ajuda"><svg className="ic ic-grupo" viewBox="0 0 512 512" aria-hidden="true" focusable="false"><use href={`/arte/sprite.svg#ic-${ICONE_DO_GRUPO[d.grupo]}`} /></svg>Técnica especial · {d.grupo}{d.soHollow ? " · Visored e Hollow" : ""}</small>
                 <SeloVaga />
               </div>
               <h3>{d.nome}</h3>

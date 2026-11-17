@@ -1,4 +1,6 @@
 import { acionarPoder, aplicarUsos, estadoDoBotao, medidorDoBotao, resumoDoProximoGolpe, type Medidor, ataqueDeCorte, ataqueDoCopiado, capacidadeDeCopias, REGRA_DOMINIO, ataqueDeEnergia, bonusDeAtaque, efeitoDasCaracs, type BotaoCarac, eco, gastarAcerto, gastarBonus, limparPoder, marcarCortada, marcarLancada, poderesAtivos } from "../regras/poderes";
+import { BrasasReiatsu } from "./BrasasReiatsu";
+import { iconeDaTecnica } from "../regras/especiais";
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { calcular, classePorId, ataquesPorAcao, ataqueBonus, type Calculo, type Ficha, type FormaLib, type HabForma, type TipoForma } from "../regras/ficha";
 import { TIPO_FORMA_NOME, formaDaLiberacao, liberacaoDaForma, modeloResurreccionPadrao, habilidadesDaForma, resolverDano, danoDaAcao } from "../regras/liberacoes";
@@ -428,14 +430,16 @@ function MedidorPoder({ m }: { m: Medidor }) {
 }
 
 interface LinhaInteracao { nome: string; texto: string; botoes: ReactNode[]; custo?: string }
-interface GrupoTecnica { id: string; nome: string; texto: string; rot: string; medidor?: Medidor; botoes: { no: ReactNode; custo: string }[]; ataque?: { nome: string; texto: string; no: ReactNode }; ints: LinhaInteracao[] }
+interface GrupoTecnica { id: string; nome: string; texto: string; rot: string; ic: string; medidor?: Medidor; botoes: { no: ReactNode; custo: string }[]; ataque?: { nome: string; texto: string; no: ReactNode }; ints: LinhaInteracao[] }
 
 /** Uma técnica especial no painel: o que ela é, o medidor dela, os botões que ela cria e, embaixo, as interações que a completam. */
 function CartaTecnica({ g, pele, ligada }: { g: GrupoTecnica; pele: Pele; ligada: boolean }) {
   return (
     <div className="cwx fc-wrap fc-tec-wrap" data-orig={pele}>
+      {ligada && g.medidor && g.medidor.atual > 0 && <BrasasReiatsu />}
       <article className={`fc fc-unica fc-tec${g.medidor && g.medidor.atual > 0 ? " viva" : ""}`} aria-label={g.nome}>
-        <Html html={FA.medalhao(pele, "eclipse")} />
+        <i className="tec-faisca" aria-hidden="true" />
+        <Html html={FA.medalhao(pele, g.ic)} />
         <div className="fc-un-c">
           <div className="tec-topo"><span className="fc-rot">{g.rot}</span>{g.medidor && <MedidorPoder m={g.medidor} />}</div>
           <h4>{g.nome}</h4>
@@ -470,7 +474,10 @@ function CartaTecnica({ g, pele, ligada }: { g: GrupoTecnica; pele: Pele; ligada
 /** A mesma técnica especial, na pele da Vollständig: usa a carta de poder do painel Quincy. */
 function CartaTecnicaVoll({ g, ligada }: { g: GrupoTecnica; ligada: boolean }) {
   return (
-    <CartaPoder tipo="voll" selo="Técnica especial" nome={g.nome} tags={g.medidor ? [{ t: `${g.medidor.nome} ${g.medidor.atual}/${g.medidor.max}` }] : []} off={!ligada}>
+    <div className="tec-voll-wrap">
+    {ligada && g.medidor && g.medidor.atual > 0 && <BrasasReiatsu />}
+    <CartaPoder tipo="voll" selo="Técnica especial" nome={g.nome} tags={g.medidor ? [{ t: `${g.medidor.nome} ${g.medidor.atual}/${g.medidor.max}` }] : []} off={!ligada} ativa={ligada && !!g.medidor && g.medidor.atual > 0} className="tec-voll">
+      <Html html={VA.medalhao(g.ic)} />
       <p>{trecho(g.texto, 190)}</p>
       {ligada && g.botoes.length > 0 && <div className="tec-botoes">{g.botoes.map((b, k) => <span key={k} className="tec-b">{b.no}<small>{b.custo}</small></span>)}</div>}
       {g.ataque && (
@@ -492,6 +499,7 @@ function CartaTecnicaVoll({ g, ligada }: { g: GrupoTecnica; ligada: boolean }) {
         </ul>
       )}
     </CartaPoder>
+    </div>
   );
 }
 
@@ -668,7 +676,7 @@ function montarTecnicas(a: { f: Ficha; c: Calculo; r: Rolagens; alterar: (p: Par
       return { nome: i.nome, texto: i.texto ?? "", botoes: bs.map((b) => <span key={b.rotulo} className="tec-b">{noBotao(b)}<small>{custoDoBotao(b, c)}</small></span>) };
     });
     return {
-      id: t.id, nome: t.nome, texto: t.texto ?? "", rot: "Técnica especial",
+      id: t.id, nome: t.nome, texto: t.texto ?? "", rot: "Técnica especial", ic: iconeDaTecnica(t.espec?.id),
       medidor: ligada && principal ? medidorDoBotao(principal, f, c) : undefined,
       botoes: meus.map((b) => ({ no: noBotao(b), custo: custoDoBotao(b, c) })),
       ataque: ataquesDaTecnica[principal],

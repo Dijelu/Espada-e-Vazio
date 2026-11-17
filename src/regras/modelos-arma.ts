@@ -33,6 +33,12 @@ const SHIKAI: Record<string, Linha> = {
   "kazeshini": ["Foice", ["dupla", "corrente"]],
   "sogyo-no-kotowari": ["Katana", ["dupla", "corrente"]],
   "nozarashi": ["Machado Grande", ["espacial", "projetil"]],
+  "hisagomaru": ["Katana", ["contato", "foco"]],
+  "sakanade": ["Katana", ["ilusoria", "foco"]],
+  "tobiume": ["Katana", ["elemental", "projetil"]],
+  "nejibana": ["Tridente", ["elemental", "agil", "longo-alcance"]],
+  "itegumo": ["Katana", ["multiplas-laminas", "contato"]],
+  "shinso": ["Adaga", ["longo-alcance", "agil"]],
 };
 
 /** Bankai (até 4 características) e, quando o modelo tem, a Bankai verdadeira (até 6). */
@@ -56,6 +62,7 @@ const BANKAI: Record<string, { bankai: Linha; verdadeira?: Linha }> = {
   "ryumon-hozukimaru": { bankai: ["Machado Duplo", ["dupla", "corrente", "pesada", "contato"]] },
   "minazuki-bankai": { bankai: ["Katana", ["elemental", "longo-alcance", "escudo", "invocada"]] },
   "kinshara-butodan": { bankai: ["Chicote", ["invocada", "ilusoria", "agil", "longo-alcance"]] },
+  "sakashima-yokoshima": { bankai: ["Katana", ["ilusoria", "foco", "espacial"]] },
   "tekken-tachikaze": { bankai: ["Soqueiras", ["contato", "dupla", "elemental", "pesada"]] },
   "fushi-no-kojo": { bankai: ["Foice Curta", ["dupla", "corrente", "contato", "foco"]] },
   "kenpachi-bankai": { bankai: ["Machado Grande", ["pesada", "natural", "contato"]] },
@@ -76,6 +83,8 @@ const RESURRECCION: Record<string, Linha> = {
   "pantera": ["Garras de osso", ["natural", "agil", "contato"]],
   "golondrina": ["Asa-lâmina", ["natural", "agil", "contato", "longo-alcance"]],
   "lobos": ["Pistola", ["projetil", "invocada", "foco", "enxame"]],
+  "aguila": ["Asa-lâmina", ["natural", "aerea", "agil", "contato"]],
+  "volcanica": ["Punho de osso", ["natural", "pesada", "elemental", "contato"]],
   "santa-teresa": ["Foice", ["natural", "dupla", "longo-alcance", "contato"]],
   "fornicaras": ["Tentáculos", ["natural", "contato", "foco"]],
   "trepadora": ["Tentáculos", ["natural", "longo-alcance", "contato", "enxame"]],

@@ -133,6 +133,32 @@
 @keyframes med-cheio { 50% { box-shadow: 0 0 12px rgba(229, 23, 63, .95); } }
 .fpw .fc-tec.viva { box-shadow: inset 0 0 0 2px #0b0609, inset 0 0 0 3px #e5173f, 0 0 0 1px rgba(229, 23, 63, .55), 0 10px 22px -8px rgba(229, 23, 63, .55); }
 
+/* cartão de técnica no estilo "reiatsu": faísca correndo pela borda (ao passar o mouse e enquanto a técnica está ativa) e brasas em volta da técnica ativa.
+   A cor segue a pele: carmesim na Shinigami e na Hollow, âmbar na Hollow de origem. */
+.fpw { --tec-cor: 229, 23, 63; }
+.fpw.fp-hol.amber { --tec-cor: 255, 154, 31; }
+.fpw .fc-tec-wrap { position: relative; }
+/* a mesma ideia na pele da Vollständig: brasas azuis de reishi e o emblema com o ícone do grupo */
+.pfw { --tec-cor: 92, 200, 255; }
+.pfw .tec-voll-wrap { position: relative; min-width: 0; }
+.pfw .tec-voll-wrap > .cwx { position: relative; z-index: 1; }
+.pfw .tec-voll .pf-carta > h3 { padding-right: 76px; }
+.pfw .tec-brasas { position: absolute; z-index: 0; left: -28px; top: -28px; width: calc(100% + 56px); height: calc(100% + 56px); pointer-events: none; }
+/* ícone do grupo na galeria de escolha */
+.ic-grupo { width: 18px; height: 18px; vertical-align: -4px; margin-right: 6px; color: currentColor; opacity: .9; }
+.fpw .fc-tec-wrap > .fc-tec { position: relative; z-index: 1; }
+.fpw .tec-brasas { position: absolute; z-index: 0; left: -28px; top: -28px; width: calc(100% + 56px); height: calc(100% + 56px); pointer-events: none; }
+.fpw .fc-tec.viva { box-shadow: inset 0 0 0 2px #0b0609, inset 0 0 0 3px rgb(var(--tec-cor)), 0 0 0 1px rgba(var(--tec-cor), .55), 0 10px 22px -8px rgba(var(--tec-cor), .55), 0 0 30px -6px rgba(var(--tec-cor), .7); }
+@property --tec-giro { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+.fpw .tec-faisca {
+  position: absolute; inset: 0; z-index: 3; border-radius: inherit; padding: 2px; pointer-events: none; opacity: 0; transition: opacity .3s ease;
+  background: conic-gradient(from var(--tec-giro), transparent 0 62%, rgb(var(--tec-cor)) 80%, #fff 86%, rgb(var(--tec-cor)) 92%, transparent 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+.fpw .fc-tec:hover > .tec-faisca, .fpw .fc-tec:focus-within > .tec-faisca, .fpw .fc-tec.viva > .tec-faisca { opacity: 1; animation: tec-giro 5s linear infinite; }
+@keyframes tec-giro { to { --tec-giro: 360deg; } }
+@media (prefers-reduced-motion: reduce) { .fpw .tec-faisca { animation: none !important; } }
+
 /* botão pronto para pagar o que você preparou: acende; botão sem o que precisa: apagado, mas ainda diz o motivo ao ser tocado */
 .fpw .fc-b.aceso { animation: b-aceso 1.4s ease-in-out infinite; }
 @keyframes b-aceso { 0%, 100% { box-shadow: 0 0 0 0 rgba(255, 196, 112, 0); } 50% { box-shadow: 0 0 0 3px rgba(255, 196, 112, .75), 0 0 16px rgba(229, 23, 63, .7); } }

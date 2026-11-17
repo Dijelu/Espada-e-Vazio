@@ -96,6 +96,66 @@ export const CARTOES_SHIKAI_NOVOS: Record<string, CartoesDoModelo> = {
     blocos: [[{ k: "T", id: "vinculo" }, { k: "I", id: "vinculo-cura", tec: "vinculo" }], [{ k: "C", id: "condicao-acerto", p: { condicao: "Agarrado" }, liga: "Ramas Sugadoras" }], [{ k: "C", id: "pr-no-acerto", liga: "Ramas Sugadoras" }], [{ k: "P", id: "sk-cura" }], [{ k: "P", id: "sk-alcance" }]],
     fraco: { forca: "leve", modo: "livre", nome: "Vaidade ferida", texto: "Se um alvo passar na salvaguarda das ramas duas vezes seguidas, a Shikai emburra: as ramas ficam sem efeito até o fim da cena." }, sabor: "",
   },
+  "hisagomaru": {
+    acoes: {
+      "Corte que Cura": { sub: "cura", ritmo: "acao", atr: "ESP" },
+      "Akeiro Hisagomaru": { sub: "ataque", ritmo: "acao", atr: "ESP" },
+      "Ponto de Sutura": { sub: "cura", ritmo: "bonus", atr: "ESP" },
+      "Lâmina que Aceita": { sub: "cura", ritmo: "reacao", atr: "ESP" },
+    },
+    blocos: [[{ k: "T", id: "toque-restaurador" }, { k: "I", id: "cura-limpa", tec: "toque-restaurador" }, { k: "I", id: "excesso-escudo", tec: "toque-restaurador" }], [{ k: "C", id: "alcance", liga: "Akeiro Hisagomaru" }]],
+    fraco: leve("l-corte"), sabor: "",
+  },
+  "sakanade": {
+    acoes: {
+      "Corte Invertido": { sub: "ataque", ritmo: "acao", atr: "DES" },
+      "Mundo de Cabeça para Baixo": { sub: "area", ritmo: "acao", atr: "ESP" },
+      "Troca de Lado": { sub: "ataque", ritmo: "bonus", atr: "DES" },
+      "Erro de Direção": { sub: "cura", ritmo: "reacao", atr: "DES" },
+    },
+    blocos: [[{ k: "T", id: "blefe" }, { k: "I", id: "blefe-duplo", tec: "blefe" }, { k: "I", id: "nome-falso", tec: "blefe" }], [{ k: "C", id: "condicao-acerto", p: { condicao: "Confuso" }, liga: "Troca de Lado" }]],
+    fraco: { forca: "leve", modo: "livre", nome: "Quem não respira não cai", texto: "O perfume só pega quem respira e sente cheiro: criaturas que prendem a respiração (salvaguarda de Constituição a cada turno) ou não têm olfato ignoram a inversão." }, sabor: "",
+  },
+  "tobiume": {
+    acoes: {
+      "Bola de Fogo": { sub: "ataque", ritmo: "acao", atr: "ESP" },
+      "Explosão de Ameixeira": { sub: "area", ritmo: "acao", atr: "ESP" },
+      "Brasa Rápida": { sub: "ataque", ritmo: "bonus", atr: "ESP" },
+      "Rede de Kidō": { sub: "cura", ritmo: "reacao", atr: "ESP" },
+    },
+    blocos: [[{ k: "T", id: "calor-acumulado" }, { k: "I", id: "ventilar", tec: "calor-acumulado" }, { k: "I", id: "dissipar-escudo", tec: "calor-acumulado" }], [{ k: "C", id: "alcance", liga: "Bola de Fogo" }]],
+    fraco: leve("l-guarda"), sabor: "",
+  },
+  "nejibana": {
+    acoes: {
+      "Giro da Maré": { sub: "ataque", ritmo: "acao", atr: "FOR" },
+      "Onda Esmagadora": { sub: "area", ritmo: "acao", atr: "FOR" },
+      "Estocada em Espiral": { sub: "ataque", ritmo: "bonus", atr: "FOR" },
+      "Cortina de Água": { sub: "cura", ritmo: "reacao", atr: "FOR" },
+    },
+    blocos: [[{ k: "T", id: "sequencia" }, { k: "I", id: "finalizador", tec: "sequencia" }, { k: "I", id: "sequencia-firme", tec: "sequencia" }], [{ k: "C", id: "golpe-duplo", liga: "Estocada em Espiral" }], [{ k: "C", id: "empurrao", liga: "Giro da Maré" }]],
+    fraco: leve("l-guarda"), sabor: "",
+  },
+  "itegumo": {
+    acoes: {
+      "Corte Triplo": { sub: "ataque", ritmo: "acao", atr: "FOR" },
+      "Leque de Geada": { sub: "area", ritmo: "acao", atr: "FOR" },
+      "Lâmina Solta": { sub: "ataque", ritmo: "bonus", atr: "FOR" },
+      "Guarda Cruzada": { sub: "cura", ritmo: "reacao", atr: "FOR" },
+    },
+    blocos: [[{ k: "T", id: "laminas-orbita" }, { k: "I", id: "muralha-giratoria", tec: "laminas-orbita" }, { k: "I", id: "chuva-orbita", tec: "laminas-orbita" }], [{ k: "C", id: "alcance", liga: "Lâmina Solta" }]],
+    fraco: leve("l-passos"), sabor: "",
+  },
+  "shinso": {
+    acoes: {
+      "Lança Divina": { sub: "ataque", ritmo: "acao", atr: "DES" },
+      "Varredura": { sub: "area", ritmo: "acao", atr: "DES" },
+      "Estocada no Passo": { sub: "ataque", ritmo: "bonus", atr: "DES" },
+      "Recolher": { sub: "cura", ritmo: "reacao", atr: "DES" },
+    },
+    blocos: [[{ k: "T", id: "primeiro-movimento" }, { k: "I", id: "surpresa-total", tec: "primeiro-movimento" }, { k: "I", id: "reflexo-pronto", tec: "primeiro-movimento" }], [{ k: "C", id: "alcance", liga: "Lança Divina" }], [{ k: "C", id: "atravessa", liga: "Lança Divina" }]],
+    fraco: leve("l-guarda"), sabor: "",
+  },
 };
 
 const P = (id: string, param?: { atr?: string; tipo?: string; n?: number }) => [{ k: "P" as const, id, ...(param ? { param } : {}) }];
@@ -170,6 +230,17 @@ export const CARTOES_BANKAI_NOVOS: Record<string, CartoesDoModelo> = {
     blocos: [[{ k: "C", id: "condicao-acerto", p: { condicao: "Agarrado" }, liga: "Laço Preso" }], [{ k: "C", id: "puxar", liga: "Laço Preso" }], [{ k: "T", id: "vinculo" }, { k: "I", id: "vinculo-cura", tec: "vinculo" }], P("bk-correntes"), P("bk-escudo-corrente"), P("bk-refaz"), P("bk-forca", { atr: "for" }), P("bk-reacao"), P("bk-ferro")],
     fraco: { forca: "forte", modo: "livre", nome: "Laço mortal", texto: "Se a Bankai estiver ativa quando você ou o alvo ligado levar o golpe final, os dois morrem." }, sabor: "",
   },
+  "sakashima-yokoshima": {
+    acoes: {
+      "Pétala Invertida": { sub: "ataque", ritmo: "acao", atr: "ESP" },
+      "Jardim de Cabeça para Baixo": { sub: "area", ritmo: "acao", atr: "ESP" },
+      "Passo ao Contrário": { sub: "ataque", ritmo: "bonus", atr: "DES" },
+      "Lado Trocado": { sub: "cura", ritmo: "reacao", atr: "DES" },
+      "Todos contra Todos": { sub: "ataque", ritmo: "acao", atr: "ESP", final: true },
+    },
+    blocos: [[{ k: "T", id: "embaralhar" }, { k: "I", id: "voce-amigo", tec: "embaralhar" }, { k: "I", id: "confusao-dura", tec: "embaralhar" }], [{ k: "T", id: "cenario-falso" }, { k: "I", id: "abismo", tec: "cenario-falso" }, { k: "I", id: "cenario-fere", tec: "cenario-falso" }], [{ k: "C", id: "alcance", liga: "Pétala Invertida" }], P("bk-forca", { atr: "esp" }), P("bk-dominio"), P("bk-reacao"), P("bk-mil")],
+    fraco: { forca: "medio", modo: "livre", nome: "Sozinho no palco", texto: "A inversão pega todo mundo no alcance, aliados incluídos: com um aliado a até 18 m, ele também faz as salvaguardas e pode atacar você ou outro aliado." }, sabor: "",
+  },
 };
 
 export const CARTOES_RES_NOVOS: Record<string, CartoesDoModelo> = {
@@ -233,6 +304,28 @@ export const CARTOES_RES_NOVOS: Record<string, CartoesDoModelo> = {
     },
     blocos: [P("rs-asas"), [{ k: "C", id: "golpe-duplo", liga: "Ala Cortadora" }], P("rs-pantera"), P("rs-hierro"), P("rs-garra"), P("rs-instinto"), P("rs-gemelos")],
     fraco: medio("m-reiatsu"), sabor: "",
+  },
+  "aguila": {
+    acoes: {
+      "Golpe Fantasma: Rasante da Águia": { sub: "ataque", ritmo: "acao", atr: "DES" },
+      "Garra de Rapina": { sub: "ataque", ritmo: "acao", atr: "DES" },
+      "Devorar Pluma": { sub: "area", ritmo: "acao", atr: "DES" },
+      "Bater de Asas": { sub: "ataque", ritmo: "bonus", atr: "DES" },
+      "Penas em Escudo": { sub: "cura", ritmo: "reacao", atr: "DES" },
+    },
+    blocos: [[{ k: "T", id: "voo-forma" }, { k: "I", id: "mergulho", tec: "voo-forma" }, { k: "I", id: "pairar", tec: "voo-forma" }], [{ k: "C", id: "golpe-duplo", liga: "Garra de Rapina" }], P("rs-pantera"), P("rs-hierro"), P("rs-garra"), P("rs-instinto")],
+    fraco: medio("m-reiatsu"), sabor: "",
+  },
+  "volcanica": {
+    acoes: {
+      "Gran Rey Cero: Erupção": { sub: "ataque", ritmo: "acao", atr: "ESP" },
+      "Soco de Lava": { sub: "ataque", ritmo: "acao", atr: "FOR" },
+      "Jato de Fogo": { sub: "area", ritmo: "acao", atr: "FOR" },
+      "Punho em Brasa": { sub: "ataque", ritmo: "bonus", atr: "FOR" },
+      "Muro de Calor": { sub: "cura", ritmo: "reacao", atr: "FOR" },
+    },
+    blocos: [[{ k: "T", id: "incendio" }, { k: "I", id: "fogo-anda", tec: "incendio" }, { k: "I", id: "apagar-fogo", tec: "incendio" }], [{ k: "T", id: "calor-acumulado" }, { k: "I", id: "ventilar", tec: "calor-acumulado" }, { k: "I", id: "ponto-fusao", tec: "calor-acumulado" }], P("rs-cero-denso"), P("rs-hierro"), P("rs-forca", { atr: "for" }), P("rs-instinto")],
+    fraco: medio("m-casca"), sabor: "",
   },
 };
 

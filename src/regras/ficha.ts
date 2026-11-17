@@ -911,8 +911,12 @@ export interface Aviso {
   destino: DestinoAviso;
 }
 
-/** Bônus temporário de defesa/movimento que um botão de técnica deixou em `estado.usos` (chave "pw:t-…"); some no Novo turno. */
-export const tmpUso = (f: Ficha, k: string) => Math.max(0, Number(f.estado.usos?.["pw:" + k]) || 0);
+/** Bônus temporário de defesa/movimento que um botão de técnica deixou em `estado.usos` (chave "pw:t-…"); várias fontes somam ("pw:t-cr:territorio" + "pw:t-cr:orbita") e podem ser negativas. */
+export const tmpUso = (f: Ficha, k: string) => {
+  let t = 0;
+  for (const [ch, v] of Object.entries(f.estado.usos ?? {})) if (ch === "pw:" + k || ch.startsWith("pw:" + k + ":")) t += Number(v) || 0;
+  return t;
+};
 
 export interface Calculo {
   prof: number;

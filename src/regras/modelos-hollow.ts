@@ -1,4 +1,4 @@
-import { juntarTecnicasExtra, TECNICAS_EXTRA_RES } from "./modelos-tecnicas-extra";
+import { juntarTecnicasExtra, TECNICAS_EXTRA_RES, TECNICAS_EXTRA_SEG } from "./modelos-tecnicas-extra";
 import { RESURRECCIONES_NOVAS, SEGUNDAS_NOVAS } from "./modelos-novos";
 import { CARTOES_RES_NOVOS, CARTOES_SEGUNDA_NOVOS } from "./modelos-novos-cartoes";
 import type { HabForma } from "./ficha";
@@ -1454,6 +1454,7 @@ export const SEGUNDAS_MONTADAS: ModeloSegunda[] = [
 ];
 SEGUNDAS_MONTADAS.push(...SEGUNDAS_NOVAS);
 Object.assign(CARTOES_SEGUNDA, CARTOES_SEGUNDA_NOVOS);
+juntarTecnicasExtra(CARTOES_SEGUNDA, TECNICAS_EXTRA_SEG);
 
 export const FONTES_HOLLOW: string[] = ["https://sportskeeda.com/anime/how-powerful-tier-harribel-bleach-abilities-explored", "https://sportskeeda.com/anime/what-baraggan-s-ability-bleach-his-powers-explained", "https://www.sportskeeda.com/anime/barragan-s-arrogante-bleach-spoiled-yhwach-s-plans-thousand-year-blood-war", "https://www.sportskeeda.com/anime/how-powerful-nelliel-bleach-powers-abilities-explored", "https://sportskeeda.com/anime/bleach-every-type-cero-explained", "https://www.sportskeeda.com/anime/bleach-aaroniero-might-become-strongest-espada", "https://fictionhorizon.com/strongest-espada-in-bleach/", "https://criticalhits.com.br/anime/as-5-tecnicas-mais-fortes-do-ulquiorra-em-bleach/", "https://criticalhits.com.br/anime/as-tecnicas-mais-fortes-da-halibel-de-bleach/", "https://criticalhits.com.br/anime/bleach-todos-os-espada/", "https://destructoidmod.netlify.app/host-https-bleach.fandom.com/wiki/Right_Arm_of_the_Giant,_Left_Arm_of_the_Devil", "https://breezewiki.discard.no/bleach/wiki/Cero_Doble", "https://daddyjim.ai/bleach/character/Wonderweiss-Margela", "https://daddyjim.ai/bleach/character/Rugir-del-Dragon", "https://daddyjim.ai/bleach/character/Cyclones", "https://daddyjim.ai/es/bleach/character/Lanzador-Verde", "https://myanimelist.net/character/1081/Ulquiorra_Cifer"];
 

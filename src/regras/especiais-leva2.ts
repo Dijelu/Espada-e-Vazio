@@ -51,9 +51,9 @@ export const TECNICAS_LEVA2: DefTecnica[] = [
     compilar: () => [bt("Bala")],
   },
   {
-    id: "fome-vazio", grupo: "Hollow e Vazio", nome: "Fome do Vazio", soHollow: true, armaReq: ["natural"],
+    id: "fome-vazio", grupo: "Hollow e Vazio", nome: "Devorar", soHollow: true, armaReq: ["natural"],
     texto: "Para Hollow e Visored. Quando você derruba uma criatura, recupera 2 × proficiência PV. Ação reativa: soma 1 de fome (até metade da proficiência, mínimo 1), que dá +1 de acerto por ponto até o fim da cena. Cria o botão “Saciar a fome”. Precisa de uma interação da fome.",
-    compilar: () => [{ k: "gatilho", quando: "abate", rotulo: "Fome do Vazio", faz: { curaPv: "[PROF]*2" } }, bt("Saciar a fome", "reacao")],
+    compilar: () => [{ k: "gatilho", quando: "abate", rotulo: "Devorar", faz: { curaPv: "[PROF]*2" } }, bt("Saciar a fome", "reacao")],
   },
 ];
 
