@@ -362,7 +362,7 @@ const INTERACOES_BASE: DefInteracao[] = [
   {
     id: "clones-explodem", nome: "Clones que explodem", com: ["clones"], vale: [],
     texto: "Quando um clone seu é destruído, ele explode: as criaturas a 3 metros sofrem proficiência d6 de dano (salvaguarda de Destreza, metade no sucesso). Serve à técnica Clones.",
-    compilar: () => [{ k: "texto", t: "Clones que explodem: ao ser destruído, um clone explode; as criaturas a 3 m sofrem [PROF]d6 (salvaguarda de Destreza, metade)." }],
+    compilar: () => [{ k: "gera", botao: { rotulo: "Um clone explodiu", ritmo: "reacao", faz: "texto" } }, { k: "texto", t: "Clones que explodem: ao ser destruído, um clone explode; as criaturas a 3 m sofrem [PROF]d6 (salvaguarda de Destreza, metade)." }],
   },
   {
     id: "escudo-vivo", nome: "Escudo vivo", com: ["invocacao", "invocacao-grande", "clones", "invocacao-enxame"], vale: [],
@@ -532,7 +532,33 @@ export const ICONE_DO_GRUPO: Record<GrupoTecnica, string> = {
   "Tempo e ritmo": "relogio", "Ilusão e engano": "orbe-fumaca", "Sentidos e regras do duelo": "terceiro-olho", "Elementos": "brasas",
   "Vida, morte e veneno": "coracao", "Hollow e Vazio": "mascara-caveira",
 };
-export const iconeDaTecnica = (id: string | undefined) => { const t = TECNICAS.find((x) => x.id === id); return t ? ICONE_DO_GRUPO[t.grupo] : "eclipse"; };
+/** Ícone próprio de cada técnica (cai para o do grupo quando não tem). */
+export const ICONE_DA_TECNICA: Record<string, string> = {
+  "clones": "sombra-seguidora", "invocacao": "lobo-cabeca", "invocacao-grande": "cranio-chifres", "invocacao-enxame": "gotas", "invocacao-regenerativa": "coracao", "invocacao-mutavel": "mascara-totem",
+  "dominio": "sol-nuvem", "vinculo": "coracao-preso", "copiar": "cristal-olho", "marcar-detonar": "explosao-espinhos", "marcar-alvo": "mira", "energia": "sopro-energia",
+  "acumular-poder": "cristal-barras", "absorver-devolver": "cristal-flutuante", "sobrecarga": "relampago-foco", "corte-espaco": "fatia-espada", "ilusao": "orbe-fumaca", "selo": "cadeado",
+  "barreira": "cranio-escudo", "veneno": "gotas", "aceleracao": "corrida", "dreno": "gula", "regeneracao": "coracao", "armadura-reiatsu": "cranio-escudo",
+  "toxina-paralisante": "gotas", "voto-restritivo": "fita", "limite-liberacao": "relogio", "sequencia": "cortes-cruzados", "calor-acumulado": "brasas", "pagar-sangue": "ferida-aberta",
+  "ler-oponente": "terceiro-olho", "congelamento": "floco", "arco-voltaico": "relampago", "contagem": "relogio", "tabu": "cruz-gotica", "familiar-apoio": "gato-oco",
+  "sentinela": "mascara-totem", "desviar-projeteis": "choque-laminas", "voltar-instante": "eclipse", "reserva-oculta": "gota-pr", "aposta": "cristal-brilho", "desaparecer": "orbe-fumaca",
+  "ancora-retorno": "ligar", "endurecer": "punho", "fio-reiatsu": "fitas", "armadilhas": "cristais", "bala": "sopro-energia", "fome-vazio": "maxilas-tubarao",
+  "territorio": "sol-nuvem", "santuario": "brilho", "doar-reiatsu": "gota-pr", "juramento": "coracao-preso", "maldicao-fraqueza": "cranio-medo", "marca-protetora": "cruz-gotica",
+  "aparar": "sabres-cruzados", "postura": "cranio-escudo", "crescer": "cranio-chifres", "laminas-orbita": "lamina-lua", "troca-posicao": "ligar", "primeiro-movimento": "pe-alado",
+  "golpe-atrasado": "relogio", "ponto-vital": "mira", "lamina-vento": "onda-golpe", "luz-ofuscante": "brilho", "toque-restaurador": "coracao", "executar": "lamina-arrasto",
+  "regeneracao-veloz": "osso-quebrado", "rugido-vazio": "grito", "blefe": "mascara-rachada", "batedor": "asa-pena", "montaria": "lobo-uivo", "espirito-lamina": "espada-alada",
+  "sombra-imitadora": "sombra-seguidora", "ninho": "costelas", "moldar-terreno": "cristais", "clima": "sol-nuvem", "arena": "sabres-cruzados", "gravidade": "eclipse-espinhos",
+  "ressonancia": "ligar", "golpe-combinado": "choque-laminas", "irmaos-arma": "sabres-cruzados", "ordem-batalha": "grito", "ferida-aberta": "ferida-aberta", "ima": "ligar",
+  "ultimo-recurso": "cranio-rachado", "espelho-condicao": "cristal-olho", "supressao": "correntes", "prisao-cubica": "cadeado", "onda-repulsao": "onda-crista", "arma-formas": "forja-espada",
+  "bracos-extras": "garras", "lamina-estica": "lanca-raio", "portais": "eclipse", "passo-sombras": "sombra-seguidora", "voo-forma": "capa-asas", "distancia-distorcida": "orbe-fumaca",
+  "arremesso": "punho", "tempo-lento": "relogio", "previsao": "terceiro-olho", "desgaste": "osso-quebrado", "instante": "relampago-foco", "trocar-rosto": "mascara-tribal",
+  "reiatsu-falsa": "cristal-brilho", "hipnose": "olho-fera", "cenario-falso": "orbe-fumaca", "embaralhar": "cranio-medo", "sentido-reiatsu": "terceiro-olho", "regras-duelo": "livro-aberto",
+  "memoria-combate": "livro-aberto", "faro-sangue": "olho-fera", "saber-nome": "livro-aberto", "incendio": "garras-fogo", "correnteza": "onda-crista", "pilares": "cristal-barras",
+  "elemento-mutavel": "cristais", "recusar-morte": "cranio-coroa", "adaptacao": "cranio-escudo", "semente-vida": "coracao", "garganta": "mandibula",
+};
+export const iconeDaTecnica = (id: string | undefined) => { const t = TECNICAS.find((x) => x.id === id); return t ? ICONE_DA_TECNICA[t.id] ?? ICONE_DO_GRUPO[t.grupo] : "eclipse"; };
+
+/** Interações que o sistema não tem como resolver sozinho: ficam marcadas "regra do Mestre" no cartão. */
+export const REGRA_DO_MESTRE = new Set(["voto-selado", "voto-partilhado", "rota-segura", "batedor-aponta", "pairar"]);
 
 /** Esta técnica ou interação é só de Visored e Hollow? */
 export const especialSoHollow = (id: string | undefined) => !!id && !!(TECNICAS.find((t) => t.id === id)?.soHollow || INTERACOES.find((t) => t.id === id)?.soHollow);

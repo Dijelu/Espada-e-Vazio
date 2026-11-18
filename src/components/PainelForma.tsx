@@ -1,6 +1,6 @@
 import { acionarPoder, aplicarUsos, estadoDoBotao, medidorDoBotao, resumoDoProximoGolpe, type Medidor, ataqueDeCorte, ataqueDoCopiado, capacidadeDeCopias, REGRA_DOMINIO, ataqueDeEnergia, bonusDeAtaque, efeitoDasCaracs, type BotaoCarac, eco, gastarAcerto, gastarBonus, limparPoder, marcarCortada, marcarLancada, poderesAtivos } from "../regras/poderes";
 import { BrasasReiatsu } from "./BrasasReiatsu";
-import { iconeDaTecnica } from "../regras/especiais";
+import { REGRA_DO_MESTRE, iconeDaTecnica } from "../regras/especiais";
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { calcular, classePorId, ataquesPorAcao, ataqueBonus, type Calculo, type Ficha, type FormaLib, type HabForma, type TipoForma } from "../regras/ficha";
 import { TIPO_FORMA_NOME, formaDaLiberacao, liberacaoDaForma, modeloResurreccionPadrao, habilidadesDaForma, resolverDano, danoDaAcao } from "../regras/liberacoes";
@@ -429,7 +429,7 @@ function MedidorPoder({ m }: { m: Medidor }) {
   );
 }
 
-interface LinhaInteracao { nome: string; texto: string; botoes: ReactNode[]; custo?: string }
+interface LinhaInteracao { nome: string; texto: string; botoes: ReactNode[]; custo?: string; mestre?: boolean }
 interface GrupoTecnica { id: string; nome: string; texto: string; rot: string; ic: string; medidor?: Medidor; botoes: { no: ReactNode; custo: string }[]; ataque?: { nome: string; texto: string; no: ReactNode }; ints: LinhaInteracao[] }
 
 /** Uma técnica especial no painel: o que ela é, o medidor dela, os botões que ela cria e, embaixo, as interações que a completam. */
@@ -457,7 +457,7 @@ function CartaTecnica({ g, pele, ligada }: { g: GrupoTecnica; pele: Pele; ligada
             <ul className="tec-ints" aria-label={`Interações de ${g.nome}`}>
               {g.ints.map((x) => (
                 <li key={x.nome} className={x.botoes.length ? "" : "passiva"}>
-                  <div><b>{x.nome}</b>{x.botoes.length === 0 && <em>sempre ligada</em>}{x.custo && <em>{x.custo}</em>}<p>{trecho(x.texto, 150)}</p></div>
+                  <div><b>{x.nome}</b>{x.botoes.length === 0 && <em>{x.mestre ? "regra do Mestre" : "sempre ligada"}</em>}{x.custo && <em>{x.custo}</em>}<p>{trecho(x.texto, 150)}</p></div>
                   {ligada && x.botoes.length > 0 && <div className="tec-botoes">{x.botoes}</div>}
                 </li>
               ))}
@@ -492,7 +492,7 @@ function CartaTecnicaVoll({ g, ligada }: { g: GrupoTecnica; ligada: boolean }) {
         <ul className="tec-ints" aria-label={`Interações de ${g.nome}`}>
           {g.ints.map((x) => (
             <li key={x.nome} className={x.botoes.length ? "" : "passiva"}>
-              <div><b>{x.nome}</b>{x.botoes.length === 0 && <em> · sempre ligada</em>}<p>{trecho(x.texto, 150)}</p></div>
+              <div><b>{x.nome}</b>{x.botoes.length === 0 && <em> · {x.mestre ? "regra do Mestre" : "sempre ligada"}</em>}<p>{trecho(x.texto, 150)}</p></div>
               {ligada && x.botoes.length > 0 && <div className="tec-botoes">{x.botoes}</div>}
             </li>
           ))}
@@ -673,7 +673,7 @@ function montarTecnicas(a: { f: Ficha; c: Calculo; r: Rolagens; alterar: (p: Par
     const principal = meus[0]?.rotulo ?? "";
     const ints: LinhaInteracao[] = efsForma.filter((e) => e.familia === "interacao" && e.espec?.tec === t.id).map((i) => {
       const bs = botoesFx.filter((b) => b.peca === i.nome);
-      return { nome: i.nome, texto: i.texto ?? "", botoes: bs.map((b) => <span key={b.rotulo} className="tec-b">{noBotao(b)}<small>{custoDoBotao(b, c)}</small></span>) };
+      return { nome: i.nome, texto: i.texto ?? "", mestre: REGRA_DO_MESTRE.has(i.espec?.id ?? ""), botoes: bs.map((b) => <span key={b.rotulo} className="tec-b">{noBotao(b)}<small>{custoDoBotao(b, c)}</small></span>) };
     });
     return {
       id: t.id, nome: t.nome, texto: t.texto ?? "", rot: "Técnica especial", ic: iconeDaTecnica(t.espec?.id),

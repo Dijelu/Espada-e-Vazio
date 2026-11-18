@@ -114,10 +114,10 @@ export const INTERACOES_LEVA1: DefInteracao[] = [
   /* Toxina paralisante */
   { id: "toxina-lenta", nome: "Toxina lenta", com: ["toxina-paralisante"], vale: [], texto: "O efeito da toxina só vem no fim do próximo turno do alvo; em troca, a CD da forma sobe 2.",
     compilar: () => [{ k: "cd", v: 2 }, tx("Toxina lenta: a toxina só faz efeito no fim do próximo turno do alvo; em troca, a CD da forma sobe 2.")] },
-  { id: "antidoto", nome: "Antídoto", com: ["toxina-paralisante"], vale: [], texto: "Ação bônus: tira Envenenado de um aliado a até 1,5 m.",
-    compilar: () => [tx("Antídoto: ação bônus, tira Envenenado de um aliado a até 1,5 m.")] },
+  { id: "antidoto", nome: "Antídoto", com: ["toxina-paralisante"], vale: [], texto: "Ação bônus: tira Envenenado de um aliado a até 1,5 m. Cria o botão “Dar o antídoto”.",
+    compilar: () => [bt("Dar o antídoto")] },
   { id: "toxina-acumula", nome: "Toxina que acumula", com: ["toxina-paralisante"], vale: [], texto: "Cada vez que o mesmo alvo falha na salvaguarda da toxina, a CD dela contra ele sobe 1 até o fim da cena (máximo +3).",
-    compilar: () => [tx("Toxina que acumula: a cada falha do mesmo alvo, a CD da toxina contra ele sobe 1 até o fim da cena (máximo +3).")] },
+    compilar: () => [bt("A toxina pegou", "reacao"), tx("Toxina que acumula: a cada falha do mesmo alvo, a CD da toxina contra ele sobe 1 até o fim da cena (máximo +3).")] },
   { id: "toxina-veneno", nome: "Toxina e veneno", com: ["toxina-paralisante", "veneno"], vale: [], texto: "Liga as duas técnicas: cada dose de veneno no alvo (até 3) soma +1 na CD da toxina contra ele (o botão Envenenar avisa).",
     compilar: () => [tx("Toxina e veneno: cada dose de veneno no alvo (até 3) soma +1 na CD da toxina contra ele.")] },
   /* Voto restritivo */

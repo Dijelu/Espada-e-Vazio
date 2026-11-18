@@ -135,7 +135,42 @@ function cadeia(f: Ficha, c: Calculo): { p: Patch; t: string } | undefined {
 
 /** Aciona o poder de um botão. Devolve undefined se o botão não é de um poder. */
 /** `dano`: o dano que a pessoa digitou (o golpe que ela ia sofrer); sem ele, os botões de defesa só mostram a regra. */
+/** Interações que só mudam como a mesa lê o efeito: o botão da técnica lembra delas na hora em que é apertado. */
+const LEMBRETES: Record<string, [string, string][]> = {
+  "Ler o oponente": [["Fraqueza exposta", "os aliados que ouvirem você também recebem o bônus de acerto das leituras."]],
+  "Arco voltaico": [["Raio na água", "alvos molhados que falharem por 5 ou mais ficam Atordoados até o fim do próximo turno deles."], ["Aterrar", "o raio pula os seus aliados."]],
+  "Desviar": [["Cobrir o aliado", "o desvio vale também para um aliado a até 1,5 m de você."]],
+  "Voltar um instante": [["Voltar um aliado", "pode valer para um aliado a até 9 m; ele recupera o dano do golpe, até 5 × proficiência."]],
+  "Apostar": [["Apostar contra ele", "o alvo escolhe par ou ímpar; se errar, o seu ataque também tem vantagem."]],
+  "Desaparecer": [["Pegadas falsas", "quem tenta achar você tem desvantagem em Percepção."]],
+  "Voltar à âncora": [["Âncora num aliado", "se a âncora estiver presa num aliado, você aparece a 1,5 m dele."], ["Com passageiro", "leva junto uma criatura que você esteja agarrando ou que aceite."]],
+  "Marcar território": [["Raízes", "no território você não pode ser empurrado nem derrubado."]],
+  "Marca protetora": [["Marca que avisa", "o aliado marcado não pode ser surpreendido e tem +2 de iniciativa."], ["Passar a marca", "como reação, a marca pula para outro aliado a até 9 m."]],
+  "Firmar a postura": [["Quebrar o golpe", "se um golpe corpo a corpo não passar da sua redução de dano, quem atacou faz salvaguarda de Força ou fica Caído."]],
+  "Executar": [["Olhar do ceifador", "você sabe quais criaturas a até 18 m estão abaixo do limite da execução."]],
+  "Blefar": [["Nome falso", "o blefe também confunde quem tenta Copiar ou Ler você."]],
+  "Gelo no alvo": [["Chão gelado", "quando o gelo chega a 3, o chão a 3 m do alvo vira escorregadio (Destreza ou Caído)."]],
+  "Acertar o marcado": [["Contagem que passa", "se o marcado cair, a contagem continua noutra criatura, com o número que tinha."]],
+  "Apoio do familiar": [["Familiar que leva o toque", "técnicas e Kidō de toque podem sair do familiar."], ["Familiar na sombra", "o familiar pode se esconder na sombra de um aliado (não pode ser alvo)."]],
+  "Golpe combinado": [["Elementos cruzados", "se o aliado tiver outro tipo de dano, o alvo perde a resistência aos dois até o fim do turno."]],
+  "Abrir corte": [["Cheiro de sangue", "você sempre sabe onde está a criatura cortada, mesmo invisível."]],
+  "Distorcer distância": [["Passo curto", "para você e aliados, dentro da área, cada 3 m conta como 1,5 m."]],
+  "Desacelerar": [["Tempo roubado", "para cada inimigo Lento, você ganha +1,5 m de deslocamento no turno."]],
+  "Desgastar": [["Desgaste fundo", "o desgaste só sai com um descanso longo."]],
+  "Entrar em ressonância": [["Eco", "quando você acerta um crítico, os aliados em ressonância ganham vantagem no próximo ataque."]],
+  "Farejar ferido": [["Golpe no ferido", "um crítico no ferido farejado faz ele sangrar 1d6 por turno até ser tratado."]],
+  "Medir a força": [["Rastro", "você segue uma criatura que fugiu até o fim da cena."]],
+};
+
+/** Aperta um botão de técnica: resolve o poder e acrescenta os lembretes das interações que estão na forma. */
 export function acionarPoder(rotulo: string, f: Ficha, c: Calculo, rolar: Rolar, dano = 0, opcao = 0): ResPoder | undefined {
+  const r = acionarPoderBase(rotulo, f, c, rolar, dano, opcao);
+  if (!r || r.erro || !r.dito) return r;
+  const extra = (LEMBRETES[rotulo] ?? []).filter(([n]) => temCartao(c, n)).map(([n, t]) => ` ${n}: ${t}`).join("");
+  return extra ? { ...r, dito: r.dito + extra } : r;
+}
+
+function acionarPoderBase(rotulo: string, f: Ficha, c: Calculo, rolar: Rolar, dano = 0, opcao = 0): ResPoder | undefined {
   const id = poderDoBotao(rotulo);
   if (!id) return undefined;
   const P = prof(c);
@@ -831,6 +866,9 @@ export function bonusDeAtaque(f: Ficha, c: Calculo, distancia: boolean): BonusAt
   if (v("contagem") > 0) b.tags.push(`Contagem: ${v("contagem")}`);
   if (v("contagem-crit") > 0) { b.tags.push("Contagem zerada: este golpe é crítico"); b.gasta.push("contagem-crit"); }
   if (v("tabu") > 0) b.tags.push("Tabu imposto");
+  if (v("ultimo-folego") > 0 && temCartao(c, "Último fôlego")) { b.dados.push(`${P}d8`); b.tags.push(`Último fôlego: +${P}d8 (último turno do limite)`); b.gasta.push("ultimo-folego"); }
+  if (v("contagem") > 0 && v("contagem") <= 2 && temCartao(c, "Anúncio")) b.tags.push("Anúncio: o marcado tem desvantagem nas salvaguardas de Mente");
+  if (temCartao(c, "Dois corpos, um golpe") && (f.estado.invocacoes ?? []).some((x) => /^Espírito da lâmina/.test(x.nome))) b.tags.push("Dois corpos: se o espírito já atacou este alvo no turno, vantagem");
   if (v("no-territorio") > 0) { b.acerto += 1; b.tags.push("No território: +1 no acerto"); }
   if (v("ira") > 0) { b.dados.push(`${P}d4`); b.tags.push(`Ira do guardião: +${P}d4`); b.gasta.push("ira"); }
   if (v("furia-juramento") > 0 && !distancia) { b.dados.push("1d6"); b.tags.push("Juramento quebrado: +1d6"); }
@@ -977,7 +1015,7 @@ export function turnoDosPoderes(f: Ficha, c: Calculo, rolar: Rolar): ResTurno {
   if (temCartao(c, "Limite de liberação")) {
     const lim = P + 2 + val(f, "limite-extra"), n = val(f, "limite-t") + 1;
     if (n > lim) { r.usos[PW("limite-t")] = undefined; r.usos[PW("limite-extra")] = undefined; r.ditos.push(`O limite de ${lim} turnos acabou: a forma termina e você fica com 1 nível de cansaço`); }
-    else { r.usos[PW("limite-t")] = n; r.ditos.push(`Limite de liberação: turno ${n} de ${lim}${n === lim ? " (o último: o Último fôlego vale agora)" : ""}`); }
+    else { r.usos[PW("limite-t")] = n; if (n === lim && temCartao(c, "Último fôlego")) r.usos[PW("ultimo-folego")] = 1; r.ditos.push(`Limite de liberação: turno ${n} de ${lim}${n === lim ? (temCartao(c, "Último fôlego") ? ` (o último: o primeiro golpe causa +${P}d8)` : " (o último)") : ""}`); }
   }
   if (val(f, "corpo-aco") > 0) { r.usos[PW("corpo-aco")] = undefined; r.usos[PW("t-rd-fis")] = undefined; r.ditos.push("o Corpo de aço acabou"); }
   const inv = val(f, "invisivel");
@@ -990,6 +1028,7 @@ export function turnoDosPoderes(f: Ficha, c: Calculo, rolar: Rolar): ResTurno {
     else { r.usos[PW("contagem")] = n; r.ditos.push(`O tempo corre: a contagem cai para ${n}`); }
   }
   if (temCartao(c, "Sentinela que cura") && (f.estado.invocacoes ?? []).some((x) => /^Sentinela/.test(x.nome))) r.ditos.push(`Sentinela que cura: um aliado a até 9 m dela recupera ${P} PV`);
+  if (temCartao(c, "Sentinela-farol") && (f.estado.invocacoes ?? []).some((x) => /^Sentinela/.test(x.nome))) r.ditos.push("Sentinela-farol: inimigos a até 9 m dela não ficam invisíveis nem se escondem");
   if (val(f, "provocado") > 0) { r.usos[PW("provocado")] = undefined; r.ditos.push("a provocação terminou"); }
   if (val(f, "escudo-mutavel") > 0) { r.usos[PW("escudo-mutavel")] = undefined; r.ditos.push("a criatura-escudo se desfez (−2 de CR)"); }
   // veneno: o alvo sofre 1d4 por dose
@@ -1064,7 +1103,7 @@ const NOMES: [string, string][] = [
   ["ilusao", "Alvo iludido"], ["invertido", "Sentidos invertidos"], ["selo", "Selo (turnos)"], ["barreira", "Barreira (PV)"], ["doses", "Doses de veneno"], ["acel", "Acelerado"], ["ritmo", "Ritmo"], ["imagem", "Imagem residual"], ["conjunto", "Ataque conjunto"], ["furia", "Fúria sem distinção"], ["alvo-fraco", "Alvo com metade dos PV"], ["marca-caca", "Marca de caça"], ["veu", "Véu de reiatsu (+2 CR)"], ["devolvido", "Golpe guardado"], ["fenda", "Fenda aberta (turnos)"], ["elo", "Elo apertado"], ["revelado", "Alvo revelado"],
   ["reserva", "Reserva de PR"], ["reserva-golpe", "Reserva no golpe"], ["aposta-ganha", "Aposta ganha"], ["aposta-perda", "Aposta perdida"], ["invisivel", "Invisível"], ["ancoras", "Âncoras"], ["chegada", "Chegou golpeando"], ["endurecido", "Parte endurecida"], ["corpo-aco", "Corpo de aço"], ["fios", "Fios presos"], ["armadilhas", "Armadilhas"], ["fome", "Fome (Devorar)"], ["voltou", "Voltas no tempo"], ["vant-voltou", "Já vi esse golpe"],
   ["territorio", "Território marcado"], ["no-territorio", "Dentro do território"], ["santuario", "Santuário (turnos)"], ["protegido", "Juramento de proteção"], ["ira", "Ira do guardião"], ["furia-juramento", "Fúria do juramento"], ["maldicao", "Maldição ativa"], ["protegidos", "Marcas protetoras"], ["ritmo-duelo", "Ritmo do duelo"], ["postura", "Postura inquebrável"], ["gigante", "Grande (turnos)"], ["orbita", "Lâminas em órbita"], ["surpresa", "Surpresa total"], ["atraso-pronto", "Golpe a atrasar"], ["atraso", "Dano atrasado"], ["vital", "Ponto vital"], ["vento", "Vento a favor"], ["casca", "Casca dura"], ["blefe", "Blefe"],
-  ["seq", "Sequência"], ["seq-final", "Finalizador pronto"], ["calor", "Calor"], ["sangue", "Sangue pago"], ["sangue-golpe", "Sangue na lâmina"], ["leituras", "Leituras"], ["gelo", "Gelo no alvo"], ["contagem", "Contagem"], ["contagem-crit", "Próximo golpe crítico"], ["tabu", "Tabu imposto"], ["estourou", "Armadura estourou"], ["regen-membro", "Já regenerou membro"], ["limite-extra", "Turnos extras do limite"], ["limite-t", "Turnos do limite"],
+  ["seq", "Sequência"], ["seq-final", "Finalizador pronto"], ["calor", "Calor"], ["sangue", "Sangue pago"], ["sangue-golpe", "Sangue na lâmina"], ["leituras", "Leituras"], ["gelo", "Gelo no alvo"], ["contagem", "Contagem"], ["contagem-crit", "Próximo golpe crítico"], ["tabu", "Tabu imposto"], ["estourou", "Armadura estourou"], ["regen-membro", "Já regenerou membro"], ["limite-extra", "Turnos extras do limite"], ["limite-t", "Turnos do limite"], ["ultimo-folego", "Último fôlego pronto"],
   ["provocado", "Alvo provocado"], ["renasceu", "Já renasceu"], ["lancada", "Energia lançada"], ["cortada", "Corte lançado"], ["mutavel", "Criatura-arma"], ["escudo-mutavel", "Criatura-escudo (+2 CR)"], ["vantagem", "Vantagem no ataque"], ["dominio", "Domínio aberto"], ["regra", "Regra do campo"], ["vinculo", "Vínculo"], ["copia", "Poder copiado"], ["reforco", "Reforço"], ["cadeia", "Explosão em cadeia"],
 ];
 export function poderesAtivos(f: Ficha): PoderAtivo[] {

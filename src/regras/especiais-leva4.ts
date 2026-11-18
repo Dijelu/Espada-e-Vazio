@@ -28,6 +28,7 @@ export const TECNICAS_LEVA4: DefTecnica[] = [
   { id: "espirito-lamina", grupo: "Criaturas e invocações", nome: "Espírito da lâmina",
     texto: "Ação: o espírito da arma toma forma ao seu lado (PV 4 × proficiência) e luta com você. Um por vez. Cria o botão “Manifestar o espírito”." + PRECISA("do espírito"),
     compilar: () => [{ k: "invoca", nome: "Espírito da lâmina", tipo: "invocacao", max: 1, pv: "[PROF]*4", cr: "12+[PROF]", acerto: "[PROF]+[ESP]", dano: "2d8+[PROF]", custoPr: 6, texto: "O espírito da sua arma, em corpo. Um por vez." }, { k: "gera", botao: { rotulo: "Manifestar o espírito", ritmo: "acao", faz: "invocar" } }] },
+  T("sombra-imitadora", "Criaturas e invocações", "Sombra imitadora", "Ação: a sombra de um inimigo a até 18 m levanta e luta por você por proficiência turnos (ele faz Espírito; se passar, nada). Ela tem metade dos PV atuais dele (até 5 × proficiência) e o ataque básico dele. Digite os PV atuais do alvo no campo de dano. Cria os botões “Levantar a sombra” e “Desfazer a sombra”.", "da sombra", [["Levantar a sombra", "acao"], ["Desfazer a sombra"]], ["ilusoria", "espacial"]),
   T("ninho", "Criaturas e invocações", "Ninho", "Ação bônus: você deixa um ninho a até 9 m. A cada Novo turno ele gera 1 cria (1 PV, ataque 1d4 + proficiência), até a proficiência. Cria os botões “Fazer o ninho” e “Soltar as crias”.", "do ninho", [["Fazer o ninho"], ["Soltar as crias", "acao"]], ["enxame", "venenosa", "natural"]),
   /* Campo e terreno */
   T("moldar-terreno", "Campo e terreno", "Moldar o terreno", "Ação bônus: um cubo de 6 m a até 18 m vira terreno difícil ou ergue um muro de 6 × 3 m. Até metade da proficiência de zonas ao mesmo tempo. Cria o botão “Moldar o terreno”.", "do terreno", [["Moldar o terreno"]], ["elemental", "pesada", "natural"]),
@@ -102,6 +103,9 @@ export const INTERACOES_LEVA4: DefInteracao[] = [
   I("montaria-alada", "Montaria alada", "montaria", "A montaria voa: o deslocamento montado vale como voo."),
   I("dois-corpos", "Dois corpos, um golpe", "espirito-lamina", "Quando você e o espírito atacam o mesmo alvo no turno, o segundo ataque tem vantagem."),
   B("trocar-espirito", "Trocar de lugar com o espírito", "espirito-lamina", "Ação bônus: você e o espírito trocam de lugar, sem provocar ataque de oportunidade.", "Trocar de lugar com o espírito"),
+  I("sombra-dono", "A sombra conhece o dono", "sombra-imitadora", "O original tem desvantagem no primeiro ataque contra a própria sombra."),
+  I("sombra-rouba", "Sombra que rouba", "sombra-imitadora", "Enquanto a sombra estiver de pé, o original tem −1 de CR."),
+  I("sombra-volta", "Sombra que volta", "sombra-imitadora", "Ao desfazer a sombra, ela entra no corpo do original: proficiência d6 de dano psíquico."),
   I("crias-venenosas", "Crias venenosas", "ninho", "Quem for ferido pelas crias fica Envenenado até o fim do próximo turno."),
   I("ninho-blindado", "Ninho blindado", "ninho", "O ninho tem PV 5 × proficiência e CR 14."),
   I("muro-espinhos", "Muro de espinhos", "moldar-terreno", "Quem toca o muro moldado sofre 1d6."),
